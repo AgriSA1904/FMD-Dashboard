@@ -447,7 +447,7 @@
     <div class="kicker">Coverage gap</div>
     <h2>Herd coverage against the two dose protocol.</h2>
     <div class="card">
-      <h3>Share of provincial cattle herd that has received at least one dose.</h3>
+      <h3>First round coverage: share of provincial cattle herd that has received at least one dose.</h3>
       <div class="chart-wrap tall"><canvas id="coverageChart"></canvas></div>
       <p style="font-size:14px;color:var(--charcoal);margin-top:var(--sp-4)" id="coverageNote"></p>
     </div>
@@ -493,6 +493,35 @@
     </div>
   </section>
 
+
+  <section>
+    <div class="kicker">Data validation</div>
+    <h2>Ministerial briefing vs JOC provincial returns.</h2>
+    <p style="color:var(--charcoal);font-size:14px;margin-top:calc(-1 * var(--sp-6));margin-bottom:var(--sp-6)">Comparing DAFF ministerial figures (23 April 2026) against AgriSA JOC provincial returns (latest available). A positive difference means JOC reports more vaccinations than the ministerial figure — expected given the later date. A negative difference flags a data quality issue for investigation.</p>
+    <div class="grid-2">
+      <div class="card">
+        <h3>Animals vaccinated: ministerial vs JOC per province.</h3>
+        <div class="chart-wrap tall"><canvas id="minJocChart"></canvas></div>
+      </div>
+      <div class="card">
+        <h3>Discrepancy summary.</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Province</th>
+              <th class="num">Ministerial<br><small style="font-weight:400">23 Apr</small></th>
+              <th class="num">JOC / AgriSA<br><small style="font-weight:400">Latest</small></th>
+              <th class="num">Difference</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="minJocTable"></tbody>
+        </table>
+        <p style="font-size:12px;color:var(--charcoal);margin-top:var(--sp-4);font-style:italic">Ministerial figures cover all cloven-hoofed animals. JOC returns may be cattle-only in some provinces — explaining part of the gap.</p>
+      </div>
+    </div>
+  </section>
+
   <section>
     <div class="kicker">Data quality</div>
     <h2>Where the data still needs work.</h2>
@@ -517,6 +546,11 @@
           <li><strong>Commodity submissions partial.</strong>MPO and RPO have submitted to date. NWGA (wool growers) and SAPPO (pork producers) returns are not yet in the dataset.</li>
         </ul>
       </div>
+    </div>
+    <div class="card" style="margin-top:var(--sp-6)">
+      <h3>Action items — data quality to-do list.</h3>
+      <p style="font-size:13px;color:var(--charcoal);margin-bottom:var(--sp-4)">Issues detected automatically from the current dataset. Each item identifies the responsible party and the corrective action required.</p>
+      <ul class="flag-list" id="qualityFlagsList"><li style="color:var(--charcoal);font-size:13px">Loading action items...</li></ul>
     </div>
   </section>
 
@@ -922,6 +956,188 @@ const DASHBOARD_DATA = {
     "source_date": "2026-05-05",
     "source_label": "Minister Steenhuisen media briefing, 5 May 2026"
   },
+  "ministerial_comparison": [
+    {
+      "code": "EC",
+      "name": "Eastern Cape",
+      "joc": 332182,
+      "joc_date": "2026-05-01",
+      "ministerial": 376122,
+      "ministerial_date": "2026-04-23",
+      "diff": -43940,
+      "flag": "critical"
+    },
+    {
+      "code": "FS",
+      "name": "Free State",
+      "joc": 353447,
+      "joc_date": "2026-05-01",
+      "ministerial": 446527,
+      "ministerial_date": "2026-04-23",
+      "diff": -93080,
+      "flag": "critical"
+    },
+    {
+      "code": "GP",
+      "name": "Gauteng",
+      "joc": 184036,
+      "joc_date": "2026-05-04",
+      "ministerial": 184036,
+      "ministerial_date": "2026-04-23",
+      "diff": 0,
+      "flag": "warning"
+    },
+    {
+      "code": "KZN",
+      "name": "KwaZulu-Natal",
+      "joc": 648609,
+      "joc_date": "2026-05-05",
+      "ministerial": 766508,
+      "ministerial_date": "2026-04-23",
+      "diff": -117899,
+      "flag": "critical"
+    },
+    {
+      "code": "LP",
+      "name": "Limpopo",
+      "joc": 128937,
+      "joc_date": "2026-05-01",
+      "ministerial": 183770,
+      "ministerial_date": "2026-04-23",
+      "diff": -54833,
+      "flag": "critical"
+    },
+    {
+      "code": "MP",
+      "name": "Mpumalanga",
+      "joc": 176811,
+      "joc_date": "2026-05-01",
+      "ministerial": 233510,
+      "ministerial_date": "2026-04-23",
+      "diff": -56699,
+      "flag": "critical"
+    },
+    {
+      "code": "NW",
+      "name": "North West",
+      "joc": 168748,
+      "joc_date": "2026-05-01",
+      "ministerial": 188073,
+      "ministerial_date": "2026-04-23",
+      "diff": -19325,
+      "flag": "critical"
+    },
+    {
+      "code": "NC",
+      "name": "Northern Cape",
+      "joc": 28054,
+      "joc_date": "2026-05-01",
+      "ministerial": 46996,
+      "ministerial_date": "2026-04-23",
+      "diff": -18942,
+      "flag": "critical"
+    },
+    {
+      "code": "WC",
+      "name": "Western Cape",
+      "joc": 176079,
+      "joc_date": "2026-05-01",
+      "ministerial": 164474,
+      "ministerial_date": "2026-04-23",
+      "diff": 11605,
+      "flag": null
+    }
+  ],
+  "quality_flags": [
+    {
+      "severity": "critical",
+      "province": "EC",
+      "title": "Eastern Cape: Animals vaccinated exceeds doses received",
+      "detail": "JOC reports 332,182 animals vaccinated but only 304,600 doses received in province. Likely a cumulative vs period reporting mismatch, or draw on pre-rollout stock.",
+      "action": "Confirm whether provincial figures are cumulative from rollout start or period-only. Request reconciliation of receipt and administration logs.",
+      "owner": "Eastern Cape AgriSA affiliate / JOC"
+    },
+    {
+      "severity": "critical",
+      "province": "LP",
+      "title": "Limpopo: Animals vaccinated exceeds doses received",
+      "detail": "JOC reports 128,937 animals vaccinated but only 126,720 doses received in province. Likely a cumulative vs period reporting mismatch, or draw on pre-rollout stock.",
+      "action": "Confirm whether provincial figures are cumulative from rollout start or period-only. Request reconciliation of receipt and administration logs.",
+      "owner": "Limpopo AgriSA affiliate / JOC"
+    },
+    {
+      "severity": "critical",
+      "province": "NW",
+      "title": "North West: Animals vaccinated exceeds doses received",
+      "detail": "JOC reports 168,748 animals vaccinated but only 161,420 doses received in province. Likely a cumulative vs period reporting mismatch, or draw on pre-rollout stock.",
+      "action": "Confirm whether provincial figures are cumulative from rollout start or period-only. Request reconciliation of receipt and administration logs.",
+      "owner": "North West AgriSA affiliate / JOC"
+    },
+    {
+      "severity": "critical",
+      "province": "EC",
+      "title": "Eastern Cape: JOC figure lower than ministerial briefing",
+      "detail": "Ministerial (2026-04-23) reported 376,122 cattle vaccinated; current JOC/AgriSA figure is 332,182 \u2014 gap of 43,940. Impossible if both are cumulative.",
+      "action": "Reconcile AgriSA provincial return against ministerial figure. Determine whether ministerial count includes additional species (pigs, sheep) beyond cattle only.",
+      "owner": "Eastern Cape AgriSA affiliate"
+    },
+    {
+      "severity": "critical",
+      "province": "FS",
+      "title": "Free State: JOC figure lower than ministerial briefing",
+      "detail": "Ministerial (2026-04-23) reported 446,527 cattle vaccinated; current JOC/AgriSA figure is 353,447 \u2014 gap of 93,080. Impossible if both are cumulative.",
+      "action": "Reconcile AgriSA provincial return against ministerial figure. Determine whether ministerial count includes additional species (pigs, sheep) beyond cattle only.",
+      "owner": "Free State AgriSA affiliate"
+    },
+    {
+      "severity": "critical",
+      "province": "KZN",
+      "title": "KwaZulu-Natal: JOC figure lower than ministerial briefing",
+      "detail": "Ministerial (2026-04-23) reported 766,508 cattle vaccinated; current JOC/AgriSA figure is 648,609 \u2014 gap of 117,899. Impossible if both are cumulative.",
+      "action": "Reconcile AgriSA provincial return against ministerial figure. Determine whether ministerial count includes additional species (pigs, sheep) beyond cattle only.",
+      "owner": "KwaZulu-Natal AgriSA affiliate"
+    },
+    {
+      "severity": "critical",
+      "province": "LP",
+      "title": "Limpopo: JOC figure lower than ministerial briefing",
+      "detail": "Ministerial (2026-04-23) reported 183,770 cattle vaccinated; current JOC/AgriSA figure is 128,937 \u2014 gap of 54,833. Impossible if both are cumulative.",
+      "action": "Reconcile AgriSA provincial return against ministerial figure. Determine whether ministerial count includes additional species (pigs, sheep) beyond cattle only.",
+      "owner": "Limpopo AgriSA affiliate"
+    },
+    {
+      "severity": "critical",
+      "province": "MP",
+      "title": "Mpumalanga: JOC figure lower than ministerial briefing",
+      "detail": "Ministerial (2026-04-23) reported 233,510 cattle vaccinated; current JOC/AgriSA figure is 176,811 \u2014 gap of 56,699. Impossible if both are cumulative.",
+      "action": "Reconcile AgriSA provincial return against ministerial figure. Determine whether ministerial count includes additional species (pigs, sheep) beyond cattle only.",
+      "owner": "Mpumalanga AgriSA affiliate"
+    },
+    {
+      "severity": "critical",
+      "province": "NW",
+      "title": "North West: JOC figure lower than ministerial briefing",
+      "detail": "Ministerial (2026-04-23) reported 188,073 cattle vaccinated; current JOC/AgriSA figure is 168,748 \u2014 gap of 19,325. Impossible if both are cumulative.",
+      "action": "Reconcile AgriSA provincial return against ministerial figure. Determine whether ministerial count includes additional species (pigs, sheep) beyond cattle only.",
+      "owner": "North West AgriSA affiliate"
+    },
+    {
+      "severity": "critical",
+      "province": "NC",
+      "title": "Northern Cape: JOC figure lower than ministerial briefing",
+      "detail": "Ministerial (2026-04-23) reported 46,996 cattle vaccinated; current JOC/AgriSA figure is 28,054 \u2014 gap of 18,942. Impossible if both are cumulative.",
+      "action": "Reconcile AgriSA provincial return against ministerial figure. Determine whether ministerial count includes additional species (pigs, sheep) beyond cattle only.",
+      "owner": "Northern Cape AgriSA affiliate"
+    },
+    {
+      "severity": "critical",
+      "province": "national",
+      "title": "National: Spoilage data absent across all provinces",
+      "detail": "No province has reported non-zero vaccine spoilage in any submission. Cold chain failures and near-expiry stock are almost certainly occurring.",
+      "action": "Add spoilage/wastage field to all provincial JOC templates. Request immediate ad-hoc return from all provinces on doses spoiled to date.",
+      "owner": "FMD ICC Secretariat"
+    }
+  ],
   "sources_used": [
     "01 May 2026/AgriSA - FMD Vaccination Data - 01.05.26.xlsx",
     "04-10-2026_FMD ICC Update.pdf",
@@ -1316,6 +1532,79 @@ if (data.ministerial) try {
       + '</tbody></table>';
   }
 } catch(e) { showError('ministerialBanner', 'Ministerial section', e); }
+
+// ── Ministerial vs JOC comparison ────────────────────────────────────────────
+if (chartJsReady && data.ministerial_comparison) try {
+  const mc = data.ministerial_comparison;
+  new Chart(safeEl('minJocChart'), {
+    type: 'bar',
+    data: {
+      labels: mc.map(p => p.code),
+      datasets: [
+        { label: 'Ministerial (23 Apr)',
+          data: mc.map(p => p.ministerial || 0),
+          backgroundColor: BRAND.sage, borderRadius: 3 },
+        { label: 'JOC / AgriSA (latest)',
+          data: mc.map(p => p.joc || 0),
+          backgroundColor: mc.map(p =>
+            p.flag === 'critical' ? '#c0392b' :
+            p.flag === 'warning'  ? '#e67e22' : BRAND.olive),
+          borderRadius: 3 }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { position: 'bottom' } },
+      scales: {
+        y: { beginAtZero: true, grid: { color: BRAND.mist },
+             ticks: { callback: v => (v/1000).toFixed(0) + 'k' } },
+        x: { grid: { display: false } }
+      }
+    }
+  });
+
+  const tableEl = safeEl('minJocTable');
+  if (tableEl) {
+    tableEl.innerHTML = mc.map(p => {
+      const flagStyle = p.flag === 'critical' ? 'color:#c0392b;font-weight:700' :
+                        p.flag === 'warning'  ? 'color:#e67e22;font-weight:600' :
+                                                'color:#27ae60';
+      const flagText  = p.flag === 'critical' ? '&#9888; Discrepancy' :
+                        p.flag === 'warning'  ? '&#9651; No change' : '&#10003; Progress';
+      const diffFmt   = p.diff !== null
+        ? `<span style="${p.diff < 0 ? 'color:#c0392b' : 'color:#27ae60'}">${p.diff >= 0 ? '+' : ''}${fmt(p.diff)}</span>`
+        : '<span style="color:var(--charcoal)">N/A</span>';
+      return `<tr>
+        <td><strong>${p.code}</strong><br><small style="color:var(--charcoal);font-size:11px">${p.joc_date || ''}</small></td>
+        <td class="num">${p.ministerial ? fmt(p.ministerial) : '<span style="color:var(--charcoal)">—</span>'}</td>
+        <td class="num">${p.joc ? fmt(p.joc) : '<span style="color:var(--charcoal)">—</span>'}</td>
+        <td class="num">${diffFmt}</td>
+        <td style="${flagStyle};font-size:12px">${flagText}</td>
+      </tr>`;
+    }).join('');
+  }
+} catch(e) { showError('minJocChart', 'Ministerial vs JOC chart', e); }
+
+// ── Dynamic quality flags / action items ──────────────────────────────────────
+if (data.quality_flags) try {
+  const qfEl = safeEl('qualityFlagsList');
+  if (qfEl) {
+    if (data.quality_flags.length === 0) {
+      qfEl.innerHTML = '<li style="color:#27ae60;font-size:13px">&#10003; No data quality issues detected in this build.</li>';
+    } else {
+      qfEl.innerHTML = data.quality_flags.map(f => `
+        <li class="${f.severity === 'critical' ? 'critical' : ''}">
+          <strong>${f.province !== 'national' ? '[' + f.province + '] ' : ''}${f.title}</strong>
+          <span style="display:block;margin-top:4px;font-size:13px;color:var(--charcoal)">${f.detail}</span>
+          <span style="display:block;margin-top:6px;font-size:12px;background:rgba(0,0,0,0.04);padding:7px 10px;border-radius:4px;line-height:1.5">
+            <strong>Action:</strong> ${f.action}<br>
+            <strong>Owner:</strong> <em>${f.owner}</em>
+          </span>
+        </li>`).join('');
+    }
+  }
+} catch(e) { showError('qualityFlagsList', 'Quality flags', e); }
+
 
 </script>
 </body>
