@@ -349,7 +349,7 @@
       </div>
       <div class="badge-block">
         <span class="pill-status">As at 2026-05-01</span>
-        <span class="last-updated">Built 2026-05-06</span>
+        <span class="last-updated">Built 2026-05-07</span>
       </div>
     </div>
   </div>
@@ -608,7 +608,7 @@
 <script>
 const DASHBOARD_DATA = {
   "snapshot_date": "2026-05-01",
-  "build_date": "2026-05-06",
+  "build_date": "2026-05-07",
   "provinces": [
     {
       "code": "EC",
@@ -709,7 +709,7 @@ const DASHBOARD_DATA = {
     {
       "code": "WC",
       "name": "Western Cape",
-      "as_of": "2026-05-01",
+      "as_of": "2026-05-04",
       "herd": 458457,
       "positive": 25,
       "suspected": 17,
@@ -1042,7 +1042,7 @@ const DASHBOARD_DATA = {
       "code": "WC",
       "name": "Western Cape",
       "joc": 176079,
-      "joc_date": "2026-05-01",
+      "joc_date": "2026-05-04",
       "ministerial": 164474,
       "ministerial_date": "2026-04-23",
       "diff": 11605,
@@ -1145,6 +1145,8 @@ const DASHBOARD_DATA = {
     "17 April 2026/2. AgriSA - FMD Vaccination Data - 17.04.26.pdf",
     "24 April 2026/AgriSA - FMD Vaccination Data - 24.04.26.xlsx",
     "26 March 2026/AgriSA - FMD Vaccination Data - 26.03.26.pdf",
+    "689472179_1403112188514725_9185104008803752555_n.jpg",
+    "AWC and RPO FMD update 4 Mei 2026.pdf",
     "AgriSA FMD Data - ICC Update - 01.04.2026.pdf",
     "ICC FMD_VaccineRollout_20March2026.pdf",
     "MEDIA BRIEFING BY MINISTER OF AGRICULTURE_LATIN AMERICA OUTCOMES_SECTION 10_FMD_05MAY2026.pdf",
@@ -1611,7 +1613,7 @@ if (chartJsReady && data.ministerial_comparison) try {
         <td>TOTAL</td>
         <td class="num">${fmt(totalMin)}</td>
         <td class="num">${fmt(totalJoc)}</td>
-        <td class="num"><span style="${totalDiff < 0 ? 'color:#c0392b' : 'color:#27ae60'}">${total        <td class="num"><span style="${totalDiff < 0 ? 'color:#c0392b' : 'color:#27ae60'}">${totalDiff >= 0 ? '+' : ''}${fmt(totalDiff)}</span></td>
+        <td class="num"><span style="${totalDiff < 0 ? 'color:#c0392b' : 'color:#27ae60'}">${totalDiff >= 0 ? '+' : ''}${fmt(totalDiff)}</span></td>
         <td style="font-size:12px;color:var(--charcoal)">${diffCount} of ${mc.length} provinces</td>
       </tr>`;
   }
