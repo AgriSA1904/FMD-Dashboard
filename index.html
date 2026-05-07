@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Foot and mouth disease in South Africa. AgriCulture SA dashboard.</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
 <style>
   :root {
     /* AgriCulture SA brand palette */
@@ -1554,17 +1555,42 @@ if (chartJsReady && data.ministerial_comparison) try {
     },
     options: {
       responsive: true, maintainAspectRatio: false,
-      plugins: { legend: { position: 'bottom' } },
+      plugins: {
+        legend: { position: 'bottom' },
+        tooltip: {
+          callbacks: {
+            label: ctx => {
+              const v = ctx.parsed.y;
+              return ` ${ctx.dataset.label}: ${v.toLocaleString()}`;
+            }
+          }
+        },
+        datalabels: {
+          anchor: 'end', align: 'end', offset: 1,
+          font: { size: 9, weight: '500' },
+          color: '#444',
+          formatter: v => v >= 1000 ? (v/1000).toFixed(0) + 'k' : v
+        }
+      },
       scales: {
         y: { beginAtZero: true, grid: { color: BRAND.mist },
              ticks: { callback: v => (v/1000).toFixed(0) + 'k' } },
         x: { grid: { display: false } }
-      }
-    }
+      },
+      layout: { padding: { top: 20 } }
+    },
+    plugins: (typeof ChartDataLabels !== 'undefined') ? [ChartDataLabels] : []
   });
 
   const tableEl = safeEl('minJocTable');
   if (tableEl) {
+    let totalMin = 0, totalJoc = 0, totalDiff = 0;
+    let diffCount = 0;
+    mc.forEach(p => {
+      if (p.ministerial) totalMin += p.ministerial;
+      if (p.joc) totalJoc += p.joc;
+      if (p.diff !== null) { totalDiff += p.diff; diffCount++; }
+    });
     tableEl.innerHTML = mc.map(p => {
       const flagStyle = p.flag === 'critical' ? 'color:#c0392b;font-weight:700' :
                         p.flag === 'warning'  ? 'color:#e67e22;font-weight:600' :
@@ -1581,7 +1607,13 @@ if (chartJsReady && data.ministerial_comparison) try {
         <td class="num">${diffFmt}</td>
         <td style="${flagStyle};font-size:12px">${flagText}</td>
       </tr>`;
-    }).join('');
+    }).join('') + `<tr style="border-top:2px solid #ccc;font-weight:700;background:var(--mist)">
+        <td>TOTAL</td>
+        <td class="num">${fmt(totalMin)}</td>
+        <td class="num">${fmt(totalJoc)}</td>
+        <td class="num"><span style="${totalDiff < 0 ? 'color:#c0392b' : 'color:#27ae60'}">${total        <td class="num"><span style="${totalDiff < 0 ? 'color:#c0392b' : 'color:#27ae60'}">${totalDiff >= 0 ? '+' : ''}${fmt(totalDiff)}</span></td>
+        <td style="font-size:12px;color:var(--charcoal)">${diffCount} of ${mc.length} provinces</td>
+      </tr>`;
   }
 } catch(e) { showError('minJocChart', 'Ministerial vs JOC chart', e); }
 
