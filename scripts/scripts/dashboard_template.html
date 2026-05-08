@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html lang="en-ZA">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Foot and mouth disease in South Africa. AgriCulture SA dashboard.</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
+<style>
+  :root {
+    /* AgriCulture SA brand palette */
+    --pine: #102D2D;
+    --olive: #5B7E3D;
+    --grass: #A2C93C;
+    --lime: #CBD929;
+    --sage: #95A495;
+    --pale-sage: #D7E1D1;
+    --mist: #E4E6D9;
+    --bone: #F6F7F3;
+    --charcoal: #58595B;
+    --white: #FFFFFF;
+    --rule-grey: #C8C8C8;
+    /* Spacing scale (8pt base) */
+    --sp-2: 8px; --sp-3: 12px; --sp-4: 16px; --sp-6: 24px;
+    --sp-7: 32px; --sp-9: 56px; --sp-10: 72px; --sp-12: 128px;
+    /* Border radius */
+    --r-chip: 12px; --r-card: 15px; --r-pill: 63px; --r-full: 9999px;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body {
+    margin: 0;
+    font-family: "Acumin Pro", "Inter", "Calibri", system-ui, sans-serif;
+    color: var(--pine);
+    background: var(--bone);
+    line-height: 1.5;
+    font-size: 16px;
+    font-weight: 400;
+  }
+
+  /* Header (Pine section pattern) */
+  header {
+    background: var(--pine);
+    color: var(--white);
+    padding: var(--sp-9) var(--sp-9) var(--sp-7);
+  }
+  .header-inner { max-width: 1440px; margin: 0 auto; }
+  .header-top {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    flex-wrap: wrap; gap: var(--sp-6);
+  }
+  .brand-mark {
+    display: inline-flex; align-items: center; gap: 10px;
+    margin-bottom: var(--sp-6); color: var(--white);
+    font-weight: 600; font-size: 13px; letter-spacing: 0.4px;
+  }
+  .brand-icon {
+    width: 28px; height: 28px; border-radius: var(--r-chip);
+    background: var(--olive); display: inline-flex;
+    align-items: center; justify-content: center;
+    color: var(--white); font-weight: 700; font-size: 12px;
+  }
+  .kicker-light {
+    color: rgba(255,255,255,0.55); text-transform: uppercase;
+    font-size: 12px; letter-spacing: 0.6px; font-weight: 500;
+    margin-bottom: var(--sp-3);
+  }
+  .title-block h1 {
+    margin: 0 0 var(--sp-3); font-size: 38px;
+    font-weight: 300; letter-spacing: -0.5px; line-height: 1.1;
+  }
+  .title-block h1 .accent { color: var(--lime); }
+  .title-block .subtitle {
+    font-size: 16px; color: rgba(255,255,255,0.85);
+    margin: 0; max-width: 720px;
+  }
+  .badge-block { text-align: right; min-width: 220px; }
+  .pill-status {
+    display: inline-block; background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.22);
+    padding: 6px 18px; border-radius: var(--r-pill);
+    font-size: 12px; font-weight: 600; letter-spacing: 0.4px;
+    text-transform: uppercase; color: var(--white);
+  }
+  .last-updated {
+    display: block; font-size: 13px; color: rgba(255,255,255,0.7);
+    margin-top: var(--sp-3);
+  }
+
+  main { max-width: 1440px; margin: 0 auto; padding: var(--sp-10) var(--sp-9) var(--sp-12); }
+  section { margin-bottom: var(--sp-10); }
+
+  .kicker {
+    color: rgba(15,45,45,0.7); text-transform: uppercase;
+    font-size: 12px; letter-spacing: 0.6px; font-weight: 500;
+    margin-bottom: var(--sp-3);
+  }
+  .eyebrow {
+    color: var(--charcoal); text-transform: uppercase;
+    font-size: 15px; letter-spacing: 1.5px; font-weight: 300;
+    margin-bottom: var(--sp-2); padding-bottom: var(--sp-3);
+    border-bottom: 1px solid #999999; max-width: 493px;
+  }
+  h2 {
+    font-size: 28px; font-weight: 300; color: var(--pine);
+    margin: 0 0 var(--sp-7); letter-spacing: -0.3px; line-height: 1.2;
+  }
+  h3 {
+    font-size: 16px; font-weight: 600; margin: 0 0 var(--sp-4);
+    color: var(--pine); letter-spacing: -0.1px;
+  }
+
+  /* KPI cards */
+  .kpi-grid {
+    display: grid; gap: var(--sp-4);
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  }
+  .kpi {
+    background: var(--white); border-radius: var(--r-card);
+    padding: var(--sp-6); border: 1px solid var(--mist);
+  }
+  .kpi-label {
+    font-size: 11px; font-weight: 600; color: var(--charcoal);
+    text-transform: uppercase; letter-spacing: 0.6px;
+    margin-bottom: var(--sp-3);
+  }
+  .kpi-value {
+    font-size: 32px; font-weight: 300; margin: 0 0 var(--sp-2);
+    color: var(--pine); letter-spacing: -0.5px; line-height: 1;
+  }
+  .kpi-sub { font-size: 13px; color: var(--charcoal); }
+  .kpi-trend { font-size: 12px; font-weight: 600; margin-top: var(--sp-3); }
+  .trend-up { color: var(--olive); }
+  .trend-down { color: var(--charcoal); }
+  .trend-flat { color: var(--charcoal); opacity: 0.7; }
+
+  /* Layout */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-6); }
+  .grid-3 { display: grid; grid-template-columns: 2fr 1fr; gap: var(--sp-6); }
+  @media (max-width: 900px) { .grid-2, .grid-3 { grid-template-columns: 1fr; } }
+
+  .card {
+    background: var(--white); border-radius: var(--r-card);
+    padding: var(--sp-7); border: 1px solid var(--mist);
+  }
+  .card-soft {
+    background: var(--mist); border-radius: var(--r-card);
+    padding: var(--sp-7);
+  }
+  .chart-wrap { position: relative; height: 320px; }
+  .chart-wrap.tall { height: 380px; }
+
+  /* Tables */
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  th, td {
+    text-align: left; padding: var(--sp-3) var(--sp-4);
+    border-bottom: 1px solid var(--mist);
+  }
+  th {
+    background: var(--bone); font-size: 11px; font-weight: 600;
+    color: var(--charcoal); text-transform: uppercase; letter-spacing: 0.4px;
+  }
+  td.num { text-align: right; font-variant-numeric: tabular-nums; }
+  tr:hover td { background: var(--bone); }
+  tfoot td {
+    font-weight: 600; background: var(--bone);
+    border-top: 2px solid var(--rule-grey); color: var(--pine);
+  }
+
+  /* Status pills */
+  .pill {
+    display: inline-block; padding: 4px 14px; border-radius: var(--r-pill);
+    font-size: 11px; font-weight: 600; letter-spacing: 0.3px;
+  }
+  .pill-pine { background: var(--pine); color: var(--white); }
+  .pill-olive { background: var(--olive); color: var(--white); }
+  .pill-sage { background: var(--sage); color: var(--white); }
+  .pill-mist { background: var(--mist); color: var(--pine); }
+
+  /* Progress bars */
+  .progress-bar {
+    background: var(--mist); border-radius: var(--r-pill);
+    overflow: hidden; height: 18px; min-width: 110px; position: relative;
+  }
+  .progress-fill { height: 100%; background: var(--olive); }
+  .progress-label {
+    position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+    font-size: 11px; font-weight: 600; color: var(--pine);
+  }
+
+  /* Flag list */
+  .flag-list { list-style: none; padding: 0; margin: 0; }
+  .flag-list li {
+    padding: var(--sp-4) var(--sp-6); margin-bottom: var(--sp-3);
+    border-radius: var(--r-chip); background: var(--bone);
+    border-left: 3px solid var(--olive); font-size: 14px; line-height: 1.5;
+    color: var(--charcoal);
+  }
+  .flag-list li.critical {
+    background: var(--mist); border-left-color: var(--pine);
+  }
+  .flag-list li strong {
+    display: block; margin-bottom: 4px; color: var(--pine);
+    font-size: 14px; font-weight: 600;
+  }
+
+  /* Provincial list view */
+  .prov-list { display: flex; flex-direction: column; gap: var(--sp-2); }
+  .prov-row {
+    display: grid; grid-template-columns: 4px 1.6fr 1fr 1.4fr;
+    gap: var(--sp-4); align-items: center; padding: var(--sp-3) var(--sp-4);
+    background: var(--bone); border-radius: var(--r-chip);
+  }
+  .prov-row .accent-bar { width: 4px; height: 36px; border-radius: 4px; background: var(--sage); }
+  .prov-row .name { font-weight: 600; font-size: 14px; color: var(--pine); }
+  .prov-row .cases { display: flex; align-items: baseline; gap: 6px; }
+  .prov-row .cases-num { font-size: 22px; font-weight: 300; color: var(--pine); letter-spacing: -0.3px; }
+  .prov-row .cases-label { font-size: 11px; color: var(--charcoal); text-transform: uppercase; letter-spacing: 0.4px; }
+  .prov-row .cov { display: flex; align-items: center; gap: var(--sp-3); font-size: 12px; color: var(--charcoal); }
+
+  /* (legacy heatmap class kept for backward compat) */
+  .map-wrap {
+    display: grid; gap: var(--sp-2);
+    grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(5, auto);
+    grid-template-areas:
+      ".  lp lp ."
+      "nw gp mp ."
+      "nw fs kzn kzn"
+      "nc nc ec ec"
+      ".  wc wc .";
+  }
+  .prov-card {
+    border-radius: var(--r-chip); padding: var(--sp-4);
+    color: var(--white); background: var(--olive); font-size: 13px;
+    display: flex; flex-direction: column; justify-content: space-between;
+    min-height: 96px;
+  }
+  .prov-card.lp { grid-area: lp; } .prov-card.gp { grid-area: gp; }
+  .prov-card.mp { grid-area: mp; } .prov-card.nw { grid-area: nw; }
+  .prov-card.fs { grid-area: fs; } .prov-card.kzn { grid-area: kzn; }
+  .prov-card.nc { grid-area: nc; } .prov-card.ec { grid-area: ec; }
+  .prov-card.wc { grid-area: wc; }
+  .prov-name { font-weight: 600; font-size: 13px; margin-bottom: 4px; letter-spacing: 0.2px; }
+  .prov-cases { font-size: 26px; font-weight: 300; line-height: 1; letter-spacing: -0.3px; }
+  .prov-meta { font-size: 11px; opacity: 0.85; margin-top: 6px; }
+
+  .legend {
+    display: flex; gap: var(--sp-4); flex-wrap: wrap;
+    font-size: 12px; margin-top: var(--sp-4); align-items: center;
+    color: var(--charcoal);
+  }
+  .legend-item { display: flex; align-items: center; gap: 6px; }
+  .legend-swatch {
+    display: inline-block; width: 14px; height: 14px;
+    border-radius: 3px;
+  }
+
+  /* Pine alert banner (dark section pattern) */
+  .alert-banner {
+    background: var(--pine); color: var(--white);
+    border-radius: var(--r-card); padding: var(--sp-7) var(--sp-9);
+    margin-bottom: var(--sp-9); display: grid;
+    grid-template-columns: auto 1fr; gap: var(--sp-7); align-items: center;
+  }
+  .alert-banner .accent { color: var(--lime); font-weight: 500; }
+  .alert-headline {
+    font-size: 22px; font-weight: 300; line-height: 1.3;
+    letter-spacing: -0.2px; margin: 0;
+  }
+  .alert-figure {
+    font-size: 56px; font-weight: 300; color: var(--lime);
+    line-height: 1; letter-spacing: -1.5px;
+  }
+  .alert-figure-label {
+    font-size: 11px; color: rgba(255,255,255,0.55);
+    text-transform: uppercase; letter-spacing: 0.6px; margin-top: var(--sp-2);
+  }
+  @media (max-width: 720px) {
+    .alert-banner { grid-template-columns: 1fr; }
+  }
+
+  /* Footer (Pine pattern) */
+  footer {
+    background: var(--pine); color: var(--white);
+    padding: var(--sp-10) var(--sp-9); margin-top: var(--sp-12);
+  }
+  .footer-inner {
+    max-width: 1440px; margin: 0 auto;
+    display: grid; grid-template-columns: 2fr 1fr 1fr; gap: var(--sp-9);
+  }
+  @media (max-width: 900px) {
+    .footer-inner { grid-template-columns: 1fr; gap: var(--sp-7); }
+  }
+  footer h4 {
+    color: rgba(255,255,255,0.55); font-size: 12px;
+    margin: 0 0 var(--sp-4); text-transform: uppercase; letter-spacing: 0.6px;
+    font-weight: 500;
+  }
+  footer p { color: rgba(255,255,255,0.85); font-size: 14px; margin: 0 0 var(--sp-3); }
+  footer ul { padding-left: 18px; margin: 0; color: rgba(255,255,255,0.85); }
+  footer ul li { font-size: 13px; margin-bottom: 4px; }
+  footer code {
+    background: rgba(255,255,255,0.1); padding: 2px 6px;
+    border-radius: 4px; font-size: 12px; color: var(--lime);
+  }
+  .footer-divider {
+    border-top: 1px solid rgba(255,255,255,0.13);
+    margin-top: var(--sp-9); padding-top: var(--sp-6);
+    color: rgba(255,255,255,0.5); font-size: 12px; letter-spacing: 0.4px;
+  }
+  .footer-brand {
+    display: flex; align-items: center; gap: 10px;
+    color: var(--white); font-weight: 600; font-size: 16px;
+    margin-bottom: var(--sp-4);
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="brand-mark">
+      <svg viewBox="0 0 515.86 227.59" width="170" height="75" aria-label="AgriCulture South Africa">
+        <g fill="#FFFFFF">
+          <path d="M231.09,145.6l-3.72-12.15h-21.73l-4.17,12.15h-13.04l21.02-58.88h14.28l20.75,58.88h-13.39ZM216.46,99.93h-.09l-7.54,23.41h14.99l-7.36-23.41Z"/>
+          <path d="M276.82,139.75c-1.6,3.9-6.3,6.21-11.97,6.21-14.37,0-19.33-11-19.33-22.44,0-13.57,8.51-22.7,19.07-22.7,5.5,0,9.49,2.13,12.24,6.56v-5.41h11.53v44.07c0,13.12-9.58,20.22-21.73,20.22s-22.63-7.01-22.63-18.27h10.73c0,5.23,5.34,8.34,11.1,8.34,6.12,0,11-3.64,11-9.4v-7.18ZM277.17,124.85c0-9.49-3.28-14.01-9.84-14.01s-9.84,4.35-9.84,13.3c0,7.8,4.17,12.77,9.84,12.77s9.84-4.7,9.84-12.06Z"/>
+          <path d="M296.49,145.6v-43.63h10.82v5.23c3.81-5.85,8.25-6.38,12.95-6.38h1.51v11.79c-1.06-.18-2.13-.26-3.19-.26-7.09,0-10.55,3.55-10.55,10.55v22.7h-11.53Z"/>
+          <path d="M328.24,145.6v-43.63h11.53v43.63h-11.53Z"/>
+          <path d="M381.26,104.1c-.62-6.03-4.26-8.96-11.79-8.96-6.83,0-10.46,2.39-10.46,7.18,0,3.37,2.75,5.68,9.13,7.18,7.54,1.77,12.86,3.19,17.47,5.14,5.32,2.22,9.22,5.85,9.22,15.25,0,11.26-10.11,17.74-22.26,17.74-17.03,0-25.72-6.74-26.16-19.69h11.88c.09,5.94,5.5,9.75,12.68,9.75,7.72,0,11.88-3.1,11.88-7.89,0-3.9-1.6-6.3-9.13-7.89-18-3.81-25.98-7.01-25.98-19.69,0-9.75,7.18-17.47,21.73-17.47s23.06,7.72,23.5,19.33h-11.7Z"/>
+          <path d="M439.08,145.6l-3.72-12.15h-21.73l-4.17,12.15h-13.04l21.02-58.88h14.28l20.75,58.88h-13.39ZM424.45,99.93h-.09l-7.54,23.41h14.99l-7.36-23.41Z"/>
+          <circle cx="334" cy="91.31" r="6.55"/>
+          <path d="M434.48,74.99v-1.63h7.23v1.63h-2.64v7.19h-1.94v-7.19h-2.64Z"/>
+          <path d="M445.7,73.36l2.06,6.07h.02l1.95-6.07h2.73v8.82h-1.81v-6.25h-.02l-2.16,6.25h-1.5l-2.16-6.19h-.02v6.19h-1.82v-8.82h2.73Z"/>
+          <circle cx="120.27" cy="62.7" r="18.05"/>
+          <path d="M97.09,100.52c5.76,3.06,12.24,6.89,13.14,14.09.12.97.18,2.08.18,3.33,0,12.71.01,25.41,0,38.12,0,.07-.06.13-.13.13-.02,0-.05,0-.07-.02-1.88-1.06-2.81-2.69-2.79-4.89.06-8.13.11-16.27-.01-24.4-.02-1.24-.08-2.17-.18-2.8-.55-3.44-2.27-6.19-5.19-8.25-6.63-4.68-14.05-7.86-20.23-13.04-5.22-4.37-8.81-10.03-10.53-16.61-.59-2.24-.97-4.18-.91-6.39,0-.02.02-.03.04-.03.01,0,.02,0,.03.02,1.57,4.86,4.85,8.66,9.14,11.37.53.33,1.34.79,2.45,1.37,5.02,2.65,10.04,5.31,15.05,7.97Z"/>
+          <path d="M74.18,104.82c4.2,2.26,8.43,4.44,12.65,6.65,2.77,1.45,5.11,2.74,7.02,3.87,4.98,2.94,9.13,6.98,9.6,13.09.03.34.04,1.28.05,2.81.02,4.11.02,8.21,0,12.32,0,.22-.01.41-.03.56,0,.05-.03.06-.07.03-1.11-.84-1.66-1.94-1.65-3.29,0-1.68.04-2.84-.29-4.22-.78-3.28-2.29-6.01-5.05-7.95-7.87-5.54-17.01-8.79-24.01-15.8-3.3-3.3-5.72-7.14-7.25-11.52-1.01-2.89-1.66-5.81-1.76-8.87,0-.03.02-.05.05-.05.02,0,.04.01.05.03,1.82,5.5,5.64,9.64,10.69,12.35Z"/>
+          <path d="M114.48,112.03c.1.64.15,1.58.15,2.8,0,22.21,0,45.9.01,68.11h3.51c.06-25.25.06-51.98,0-77.23,0-1.47-.02-2.4-.06-2.81-.37-4.25-2.8-8.08-6.28-10.49-2.19-1.52-4.56-2.79-7.06-4.02-4.78-2.35-9.56-4.71-14.34-7.07-.84-.41-2.24-1.18-4.21-2.29-4.07-2.31-7.31-5.68-9.09-9.94-.23-.56-.46-1.11-.67-1.66-.04-.1-.06-.09-.06,0,0,1.4.12,2.75.38,4.05,1.49,7.4,5.28,13.75,11.1,18.5,4.81,3.92,9.97,6.6,15.72,9.84.92.52,1.72,1,2.4,1.43,1.37.87,2.99,1.86,4.31,2.96,2.31,1.92,3.73,4.89,4.18,7.82Z"/>
+          <path d="M143.9,100.52c-5.75,3.06-12.23,6.89-13.14,14.09-.12.97-.18,2.08-.18,3.33,0,12.71-.01,25.41,0,38.12,0,.07.06.13.13.13.02,0,.05,0,.07-.02,1.88-1.06,2.81-2.69,2.79-4.89-.06-8.13-.11-16.27.01-24.4.02-1.24.08-2.17.18-2.8.55-3.44,2.27-6.19,5.18-8.25,6.62-4.68,14.04-7.86,20.22-13.04,5.21-4.36,8.81-10.03,10.52-16.61.59-2.24.97-4.18.91-6.39,0-.02-.02-.03-.04-.03-.01,0-.02,0-.03.02-1.57,4.86-4.85,8.66-9.14,11.37-.53.33-1.34.79-2.44,1.37-5.01,2.65-10.03,5.31-15.04,7.97Z"/>
+          <path d="M166.81,104.82c-4.19,2.26-8.43,4.44-12.64,6.65-2.77,1.45-5.11,2.74-7.02,3.87-4.97,2.94-9.13,6.98-9.59,13.09-.03.34-.04,1.28-.05,2.81-.02,4.11-.02,8.21,0,12.32,0,.22.01.41.03.56,0,.05.03.06.07.03,1.11-.84,1.66-1.94,1.65-3.29,0-1.68-.04-2.84.29-4.22.78-3.28,2.29-6.01,5.05-7.95,7.86-5.54,17-8.79,24-15.8,3.3-3.3,5.71-7.14,7.25-11.52,1.01-2.89,1.66-5.81,1.76-8.87,0-.03-.02-.05-.05-.05-.02,0-.04.01-.05.03-1.82,5.5-5.64,9.64-10.68,12.35Z"/>
+          <path d="M126.51,112.03c-.1.64-.15,1.58-.15,2.8,0,22.21,0,45.9-.01,68.11h-3.51c-.06-25.25-.06-51.98,0-77.23,0-1.47.02-2.4.06-2.81.37-4.25,2.8-8.08,6.28-10.49,2.19-1.52,4.56-2.79,7.06-4.02,4.78-2.35,9.56-4.71,14.34-7.07.84-.41,2.24-1.18,4.21-2.29,4.07-2.31,7.31-5.68,9.09-9.94.23-.56.46-1.11.67-1.66.04-.1.06-.09.06,0,0,1.4-.12,2.75-.38,4.05-1.49,7.4-5.28,13.75-11.1,18.5-4.81,3.92-9.97,6.6-15.72,9.84-.92.52-1.72,1-2.4,1.43-1.37.87-2.99,1.86-4.31,2.96-2.31,1.92-3.73,4.89-4.18,7.82Z"/>
+        </g>
+      </svg>
+    </div>
+    <div class="header-top">
+      <div class="title-block">
+        <div class="kicker-light">FMD Industry Coordination Council</div>
+        <h1>Foot and mouth disease in South Africa.</h1>
+        <p class="subtitle">A weekly view of vaccine rollout, disease status and provincial coverage. Compiled by AgriCulture South Africa from provincial Joint Operations Committee submissions.</p>
+      </div>
+      <div class="badge-block">
+        <span class="pill-status">As at __SNAPSHOT_DATE__</span>
+        <span class="last-updated">Built __BUILD_DATE__</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <div class="alert-banner" id="alertBanner"></div>
+
+  <section>
+    <div class="kicker">National headline indicators</div>
+    <h2>What we know this week.</h2>
+    <div class="kpi-grid" id="kpiGrid"></div>
+  </section>
+
+  <section>
+    <div class="kicker">Provincial snapshot</div>
+    <h2>Active cases and vaccine coverage by province.</h2>
+    <div class="grid-3">
+      <div class="card">
+        <h3>Provincial list.</h3>
+        <p style="font-size:13px;color:var(--charcoal);margin:0 0 var(--sp-4)">Sorted by confirmed case load. The accent bar at the left shows severity; the bar to the right of the percentage shows vaccine coverage of the provincial cattle herd.</p>
+        <div class="prov-list" id="provList"></div>
+        <div class="legend">
+          <span class="legend-item"><span class="legend-swatch" style="background:#D7E1D1"></span>0 to 10 cases</span>
+          <span class="legend-item"><span class="legend-swatch" style="background:#95A495"></span>11 to 100 cases</span>
+          <span class="legend-item"><span class="legend-swatch" style="background:#5B7E3D"></span>101 to 250 cases</span>
+          <span class="legend-item"><span class="legend-swatch" style="background:#244B33"></span>251 to 400 cases</span>
+          <span class="legend-item"><span class="legend-swatch" style="background:#102D2D"></span>More than 400 cases</span>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Outbreak hotspots.</h3>
+        <p style="font-size:13px;color:var(--charcoal);margin:0 0 var(--sp-4)">Confirmed positive cases by province.</p>
+        <div class="chart-wrap"><canvas id="hotspotChart"></canvas></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="kicker">Trends over time</div>
+    <h2>Disease and vaccine progression.</h2>
+    <div class="grid-2">
+      <div class="card">
+        <h3>Weekly disease cases.</h3>
+        <div class="chart-wrap"><canvas id="caseTrend"></canvas></div>
+      </div>
+      <div class="card">
+        <h3>Vaccines received and administered. Cumulative.</h3>
+        <div class="chart-wrap"><canvas id="vaxTrend"></canvas></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="kicker">Vaccine flow</div>
+    <h2>Doses by province and by manufacturer.</h2>
+    <div class="grid-3">
+      <div class="card">
+        <h3>Doses received and animals vaccinated by province.</h3>
+        <div class="chart-wrap tall"><canvas id="provVax"></canvas></div>
+      </div>
+      <div class="card">
+        <h3>Vaccine source mix.</h3>
+        <div class="chart-wrap"><canvas id="sourceChart"></canvas></div>
+        <p style="font-size:11px;color:var(--charcoal);margin-top:var(--sp-3)" id="sourceNote"></p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="kicker">Provincial detail</div>
+    <h2>Per province as at the latest available submission.</h2>
+    <div class="card">
+      <table>
+        <thead>
+          <tr>
+            <th>Province</th>
+            <th class="num">Positive</th>
+            <th class="num">Suspect</th>
+            <th class="num">Pending</th>
+            <th class="num">Cattle herd</th>
+            <th class="num">Doses received</th>
+            <th class="num">Animals vaccinated</th>
+            <th class="num">Balance</th>
+            <th>Coverage</th>
+          </tr>
+        </thead>
+        <tbody id="provTable"></tbody>
+        <tfoot id="provTableFoot"></tfoot>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <div class="kicker">Coverage gap</div>
+    <h2>Herd coverage against the two dose protocol.</h2>
+    <div class="card">
+      <h3>First round coverage: share of provincial cattle herd that has received at least one dose.</h3>
+      <div class="chart-wrap tall"><canvas id="coverageChart"></canvas></div>
+      <p style="font-size:14px;color:var(--charcoal);margin-top:var(--sp-4)" id="coverageNote"></p>
+    </div>
+  </section>
+
+  <section>
+    <div class="kicker">Commodity organisation view</div>
+    <h2>RPO breakdown by animal classification.</h2>
+    <p style="color:var(--charcoal);font-size:14px;margin-top:calc(-1 * var(--sp-6));margin-bottom:var(--sp-6)">Submitted by the Red Meat Producers' Organisation. Splits animals vaccinated into Dairy, Commercial Beef, Pigs and Communal categories. The RPO classification differs from the AgriSA Commercial and Communal split.</p>
+    <div class="grid-2">
+      <div class="card">
+        <h3>Animals vaccinated by classification.</h3>
+        <div class="chart-wrap"><canvas id="rpoClassChart"></canvas></div>
+      </div>
+      <div class="card">
+        <h3>Cross source comparison.</h3>
+        <p style="font-size:13px;color:var(--charcoal);margin-bottom:var(--sp-4)">AgriSA and RPO report different national totals. The gap reflects different definitions and coverage scopes, not necessarily a data error.</p>
+        <table>
+          <thead>
+            <tr><th>Metric</th><th class="num">AgriSA</th><th class="num">RPO</th><th class="num">Gap</th></tr>
+          </thead>
+          <tbody id="crossSourceTable"></tbody>
+        </table>
+        <p style="font-size:12px;color:var(--charcoal);margin-top:var(--sp-4);font-style:italic">RPO total likely covers commercial cattle classifications only. AgriSA total includes broader provincial returns.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="ministerialSection">
+    <div class="kicker">Ministerial update — 5 May 2026</div>
+    <h2>Updated figures from the Minister of Agriculture.</h2>
+    <div id="ministerialBanner" style="margin-bottom:var(--sp-6)"></div>
+    <div class="grid-2">
+      <div class="card" id="ministerialKpiCard"></div>
+      <div class="card" id="policyEventsCard">
+        <h3>Policy milestones.</h3>
+        <ul class="flag-list" id="policyEventsList"></ul>
+      </div>
+    </div>
+    <div class="card" style="margin-top:var(--sp-6)" id="incomingSupplyCard">
+      <h3>Upcoming vaccine supply pipeline.</h3>
+      <div id="incomingSupplyBody"></div>
+    </div>
+  </section>
+
+
+  <section>
+    <div class="kicker">Data validation</div>
+    <h2>Ministerial briefing vs JOC provincial returns.</h2>
+    <p style="color:var(--charcoal);font-size:14px;margin-top:calc(-1 * var(--sp-6));margin-bottom:var(--sp-6)">Comparing DAFF ministerial figures (23 April 2026) against AgriSA JOC provincial returns (latest available). A positive difference means JOC reports more vaccinations than the ministerial figure — expected given the later date. A negative difference flags a data quality issue for investigation.</p>
+    <div class="grid-2">
+      <div class="card">
+        <h3>Animals vaccinated: ministerial vs JOC per province.</h3>
+        <div class="chart-wrap tall"><canvas id="minJocChart"></canvas></div>
+      </div>
+      <div class="card">
+        <h3>Discrepancy summary.</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Province</th>
+              <th class="num">Ministerial<br><small style="font-weight:400">23 Apr</small></th>
+              <th class="num">JOC / AgriSA<br><small style="font-weight:400">Latest</small></th>
+              <th class="num">Difference</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="minJocTable"></tbody>
+        </table>
+        <p style="font-size:12px;color:var(--charcoal);margin-top:var(--sp-4);font-style:italic">Ministerial figures cover all cloven-hoofed animals. JOC returns may be cattle-only in some provinces — explaining part of the gap.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="kicker">Data quality</div>
+    <h2>Where the data still needs work.</h2>
+    <div class="grid-2">
+      <div class="card">
+        <h3>Reconciliation issues.</h3>
+        <ul class="flag-list">
+          <li class="critical"><strong>Spoilage is not tracked nationally.</strong>The national total is reported as zero or blank in every weekly submission. Only KZN reports percentages. True wastage remains unknown.</li>
+          <li class="critical"><strong>About 988 000 doses without a manufacturer breakdown.</strong>KZN's bulk allocation is reported only as a Total figure, with no Bioaftogen, DolVet, OBP or BVI split.</li>
+          <li><strong>State and Private Vet figures do not reconcile to Total.</strong>Suggests Total is the planned allocation while State and Private Vet are recorded receipts.</li>
+          <li><strong>Animals Vaccinated by type does not reconcile to TOTAL Animals Vaccinated.</strong>Free State and Limpopo subtotals do not match the stated totals.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Reporting gaps and ambiguities.</h3>
+        <ul class="flag-list">
+          <li class="critical"><strong>Mpumalanga reporting is sparse.</strong>Limited spoilage and channel split data despite being a top five outbreak province.</li>
+          <li><strong>KZN allocation rationale is undocumented.</strong>Largest provincial allocation but minimal cases. The pattern suggests pre-emptive ring vaccination, but the policy is not stated in any source file.</li>
+          <li><strong>No batch, expiry or cold chain data.</strong>Cumulative receipts only. The current balance could be ageing toward spoilage with no visibility.</li>
+          <li><strong>The reporting schema changed mid-period.</strong>Reports before 1 April 2026 use a simpler schema. Later weeks add State and Private Vet and Commercial and Communal columns.</li>
+          <li><strong>The national herd denominator changed silently.</strong>From 12 470 648 on 1 April 2026 to 12 496 199 from 17 April 2026 onwards, with no annotation.</li>
+          <li><strong>Commodity submissions partial.</strong>MPO and RPO have submitted to date. NWGA (wool growers) and SAPPO (pork producers) returns are not yet in the dataset.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card" style="margin-top:var(--sp-6)">
+      <h3>Action items — data quality to-do list.</h3>
+      <p style="font-size:13px;color:var(--charcoal);margin-bottom:var(--sp-4)">Issues detected automatically from the current dataset. Each item identifies the responsible party and the corrective action required.</p>
+      <ul class="flag-list" id="qualityFlagsList"><li style="color:var(--charcoal);font-size:13px">Loading action items...</li></ul>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">
+        <svg viewBox="0 0 515.86 227.59" width="180" height="80" aria-label="AgriCulture South Africa">
+          <g fill="#FFFFFF">
+            <path d="M231.09,145.6l-3.72-12.15h-21.73l-4.17,12.15h-13.04l21.02-58.88h14.28l20.75,58.88h-13.39ZM216.46,99.93h-.09l-7.54,23.41h14.99l-7.36-23.41Z"/>
+            <path d="M276.82,139.75c-1.6,3.9-6.3,6.21-11.97,6.21-14.37,0-19.33-11-19.33-22.44,0-13.57,8.51-22.7,19.07-22.7,5.5,0,9.49,2.13,12.24,6.56v-5.41h11.53v44.07c0,13.12-9.58,20.22-21.73,20.22s-22.63-7.01-22.63-18.27h10.73c0,5.23,5.34,8.34,11.1,8.34,6.12,0,11-3.64,11-9.4v-7.18ZM277.17,124.85c0-9.49-3.28-14.01-9.84-14.01s-9.84,4.35-9.84,13.3c0,7.8,4.17,12.77,9.84,12.77s9.84-4.7,9.84-12.06Z"/>
+            <path d="M296.49,145.6v-43.63h10.82v5.23c3.81-5.85,8.25-6.38,12.95-6.38h1.51v11.79c-1.06-.18-2.13-.26-3.19-.26-7.09,0-10.55,3.55-10.55,10.55v22.7h-11.53Z"/>
+            <path d="M328.24,145.6v-43.63h11.53v43.63h-11.53Z"/>
+            <path d="M381.26,104.1c-.62-6.03-4.26-8.96-11.79-8.96-6.83,0-10.46,2.39-10.46,7.18,0,3.37,2.75,5.68,9.13,7.18,7.54,1.77,12.86,3.19,17.47,5.14,5.32,2.22,9.22,5.85,9.22,15.25,0,11.26-10.11,17.74-22.26,17.74-17.03,0-25.72-6.74-26.16-19.69h11.88c.09,5.94,5.5,9.75,12.68,9.75,7.72,0,11.88-3.1,11.88-7.89,0-3.9-1.6-6.3-9.13-7.89-18-3.81-25.98-7.01-25.98-19.69,0-9.75,7.18-17.47,21.73-17.47s23.06,7.72,23.5,19.33h-11.7Z"/>
+            <path d="M439.08,145.6l-3.72-12.15h-21.73l-4.17,12.15h-13.04l21.02-58.88h14.28l20.75,58.88h-13.39ZM424.45,99.93h-.09l-7.54,23.41h14.99l-7.36-23.41Z"/>
+            <circle cx="334" cy="91.31" r="6.55"/>
+            <circle cx="120.27" cy="62.7" r="18.05"/>
+            <path d="M97.09,100.52c5.76,3.06,12.24,6.89,13.14,14.09.12.97.18,2.08.18,3.33,0,12.71.01,25.41,0,38.12,0,.07-.06.13-.13.13-.02,0-.05,0-.07-.02-1.88-1.06-2.81-2.69-2.79-4.89.06-8.13.11-16.27-.01-24.4-.02-1.24-.08-2.17-.18-2.8-.55-3.44-2.27-6.19-5.19-8.25-6.63-4.68-14.05-7.86-20.23-13.04-5.22-4.37-8.81-10.03-10.53-16.61-.59-2.24-.97-4.18-.91-6.39,0-.02.02-.03.04-.03.01,0,.02,0,.03.02,1.57,4.86,4.85,8.66,9.14,11.37.53.33,1.34.79,2.45,1.37,5.02,2.65,10.04,5.31,15.05,7.97Z"/>
+            <path d="M74.18,104.82c4.2,2.26,8.43,4.44,12.65,6.65,2.77,1.45,5.11,2.74,7.02,3.87,4.98,2.94,9.13,6.98,9.6,13.09.03.34.04,1.28.05,2.81.02,4.11.02,8.21,0,12.32,0,.22-.01.41-.03.56,0,.05-.03.06-.07.03-1.11-.84-1.66-1.94-1.65-3.29,0-1.68.04-2.84-.29-4.22-.78-3.28-2.29-6.01-5.05-7.95-7.87-5.54-17.01-8.79-24.01-15.8-3.3-3.3-5.72-7.14-7.25-11.52-1.01-2.89-1.66-5.81-1.76-8.87,0-.03.02-.05.05-.05.02,0,.04.01.05.03,1.82,5.5,5.64,9.64,10.69,12.35Z"/>
+            <path d="M114.48,112.03c.1.64.15,1.58.15,2.8,0,22.21,0,45.9.01,68.11h3.51c.06-25.25.06-51.98,0-77.23,0-1.47-.02-2.4-.06-2.81-.37-4.25-2.8-8.08-6.28-10.49-2.19-1.52-4.56-2.79-7.06-4.02-4.78-2.35-9.56-4.71-14.34-7.07-.84-.41-2.24-1.18-4.21-2.29-4.07-2.31-7.31-5.68-9.09-9.94-.23-.56-.46-1.11-.67-1.66-.04-.1-.06-.09-.06,0,0,1.4.12,2.75.38,4.05,1.49,7.4,5.28,13.75,11.1,18.5,4.81,3.92,9.97,6.6,15.72,9.84.92.52,1.72,1,2.4,1.43,1.37.87,2.99,1.86,4.31,2.96,2.31,1.92,3.73,4.89,4.18,7.82Z"/>
+            <path d="M143.9,100.52c-5.75,3.06-12.23,6.89-13.14,14.09-.12.97-.18,2.08-.18,3.33,0,12.71-.01,25.41,0,38.12,0,.07.06.13.13.13.02,0,.05,0,.07-.02,1.88-1.06,2.81-2.69,2.79-4.89-.06-8.13-.11-16.27.01-24.4.02-1.24.08-2.17.18-2.8.55-3.44,2.27-6.19,5.18-8.25,6.62-4.68,14.04-7.86,20.22-13.04,5.21-4.36,8.81-10.03,10.52-16.61.59-2.24.97-4.18.91-6.39,0-.02-.02-.03-.04-.03-.01,0-.02,0-.03.02-1.57,4.86-4.85,8.66-9.14,11.37-.53.33-1.34.79-2.44,1.37-5.01,2.65-10.03,5.31-15.04,7.97Z"/>
+            <path d="M166.81,104.82c-4.19,2.26-8.43,4.44-12.64,6.65-2.77,1.45-5.11,2.74-7.02,3.87-4.97,2.94-9.13,6.98-9.59,13.09-.03.34-.04,1.28-.05,2.81-.02,4.11-.02,8.21,0,12.32,0,.22.01.41.03.56,0,.05.03.06.07.03,1.11-.84,1.66-1.94,1.65-3.29,0-1.68-.04-2.84.29-4.22.78-3.28,2.29-6.01,5.05-7.95,7.86-5.54,17-8.79,24-15.8,3.3-3.3,5.71-7.14,7.25-11.52,1.01-2.89,1.66-5.81,1.76-8.87,0-.03-.02-.05-.05-.05-.02,0-.04.01-.05.03-1.82,5.5-5.64,9.64-10.68,12.35Z"/>
+            <path d="M126.51,112.03c-.1.64-.15,1.58-.15,2.8,0,22.21,0,45.9-.01,68.11h-3.51c-.06-25.25-.06-51.98,0-77.23,0-1.47.02-2.4.06-2.81.37-4.25,2.8-8.08,6.28-10.49,2.19-1.52,4.56-2.79,7.06-4.02,4.78-2.35,9.56-4.71,14.34-7.07.84-.41,2.24-1.18,4.21-2.29,4.07-2.31,7.31-5.68,9.09-9.94.23-.56.46-1.11.67-1.66.04-.1.06-.09.06,0,0,1.4-.12,2.75-.38,4.05-1.49,7.4-5.28,13.75-11.1,18.5-4.81,3.92-9.97,6.6-15.72,9.84-.92.52-1.72,1-2.4,1.43-1.37.87-2.99,1.86-4.31,2.96-2.31,1.92-3.73,4.89-4.18,7.82Z"/>
+          </g>
+        </svg>
+      </div>
+      <p>Compiled by AgriCulture South Africa for the Foot and Mouth Disease Industry Coordination Council. Data is drawn from weekly provincial Joint Operations Committee meetings and submitted by the provincial affiliates of AgriCulture South Africa, with commodity organisation contributions from MPO, RPO, and where available NWGA and SAPPO.</p>
+      <p style="margin-top:var(--sp-4)">Master record at <code>master_data.csv</code>. Build script at <code>scripts/build_dashboard.py</code>.</p>
+    </div>
+    <div>
+      <h4>Sources used in this build</h4>
+      <ul id="sourceList"></ul>
+    </div>
+    <div>
+      <h4>Refresh process</h4>
+      <p>New submissions go into the <code>inbox/</code> folder. The Friday scheduled task ingests them, supersedes prior versions where the same period and metric are restated, archives the source, and rebuilds this dashboard.</p>
+      <p style="margin-top:var(--sp-4)">Backdated submissions are supported. The effective date places observations on the timeline. The version column tracks supersedes.</p>
+    </div>
+    <div>
+      <h4>External live sources</h4>
+      <p>Government and third-party portals publishing FMD data independently of the JOC pipeline. Use these to verify or supplement provincial submissions.</p>
+      <ul>
+        <li><a href="https://gis.westerncape.gov.za/portal/apps/experiencebuilder/experience/?id=46f73682c6fc4b3a9fdc03bfa62223b4#data_s=id%3AdataSource_3-19cc1ddc5bc-layer-6-19cc1ddc61b-layer-7%3A300" target="_blank" rel="noopener" style="color:rgba(255,255,255,0.9)">Western Cape GIS Portal</a> — WC Government interactive FMD map (ArcGIS). Cases and vaccination by district. Check when WC JOC submission is delayed.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-divider">
+    AgriCulture South Africa is the public-facing brand of AgriSA.
+  </div>
+</footer>
+
+<script>
+/* DATA_PLACEHOLDER */
+
+const BRAND = {
+  pine:'#102D2D', olive:'#5B7E3D', grass:'#A2C93C', lime:'#CBD929',
+  sage:'#95A495', paleSage:'#D7E1D1', mist:'#E4E6D9', bone:'#F6F7F3',
+  charcoal:'#58595B', white:'#FFFFFF', rule:'#C8C8C8',
+  pineDark:'#0A1E1E', pineMid:'#244B33'
+};
+
+function caseColor(n) {
+  if (n <= 10)  return BRAND.paleSage;
+  if (n <= 100) return BRAND.sage;
+  if (n <= 250) return BRAND.olive;
+  if (n <= 400) return BRAND.pineMid;
+  return BRAND.pine;
+}
+function fmt(n) { return Number(n).toLocaleString('en-ZA'); }
+
+// ── Safe helpers ────────────────────────────────────────────────────────────
+// Each rendering section runs inside its own try/catch so a single bad value
+// cannot blank the entire page.  Errors are shown inline, in the element that
+// failed, so the rest of the dashboard keeps working.
+function safeEl(id) {
+  const el = document.getElementById(id);
+  if (!el) console.warn('[FMD] element not found: ' + id);
+  return el;
+}
+function showError(id, section, err) {
+  const el = safeEl(id);
+  if (el) el.innerHTML =
+    '<p style="color:#c0392b;font-size:13px;padding:8px;background:#fdecea;border-radius:4px">'
+    + '⚠ ' + section + ' could not render: ' + err.message + '</p>';
+  console.error('[FMD] ' + section + ':', err);
+}
+
+// ── Boot: parse data ─────────────────────────────────────────────────────────
+let data, N, provinces;
+try {
+  data = DASHBOARD_DATA;
+  N = data.national;
+  provinces = data.provinces;
+  if (!data || !N || !Array.isArray(provinces))
+    throw new Error('DASHBOARD_DATA is missing required fields (national or provinces)');
+} catch(e) {
+  document.querySelector('main').innerHTML =
+    '<div style="padding:40px;color:#c0392b;font-size:16px">'
+    + '<strong>Dashboard failed to load data.</strong><br>'
+    + e.message + '<br><br>'
+    + 'Reload the page. If this recurs, run: <code>python3 scripts/build_dashboard.py</code></div>';
+  throw e;  // stop execution; no point rendering empty sections
+}
+
+// ── Alert banner ─────────────────────────────────────────────────────────────
+try {
+  const dosesPerAnimal = 2;
+  const fullCoverageNeed = N.herd_cattle * dosesPerAnimal;
+  const shortfall = fullCoverageNeed - N.received;
+  const shortfallM = (shortfall / 1e6).toFixed(1);
+  safeEl('alertBanner').innerHTML = `
+    <div>
+      <div class="alert-figure">${shortfallM}M</div>
+      <div class="alert-figure-label">Doses still required</div>
+    </div>
+    <div>
+      <p class="alert-headline">
+        We have received <span class="accent">${fmt(N.received)} doses</span> against a national herd of ${fmt(N.herd_cattle)} cattle.
+        Full coverage at two doses per animal requires roughly ${(fullCoverageNeed/1e6).toFixed(1)} million doses.
+        The most recent week added ${fmt(N.delta_administered)} animals vaccinated and ${fmt(N.delta_received)} fresh doses.
+      </p>
+    </div>
+  `;
+} catch(e) { showError('alertBanner', 'Alert banner', e); }
+
+// ── KPI cards ─────────────────────────────────────────────────────────────────
+try {
+  const coverage = (N.administered / N.herd_cattle * 100);
+  const fullCoverageNeed = N.herd_cattle * 2;
+  const kpis = [
+    { label:'Confirmed positive cases', value: fmt(N.positive),
+      sub:`Δ ${N.delta_positive>=0?'+':''}${N.delta_positive} since prior week` },
+    { label:'Suspected and pending', value: fmt(N.suspected + N.pending),
+      sub:`${fmt(N.suspected)} suspected, ${fmt(N.pending)} pending` },
+    { label:'Vaccines received', value: fmt(N.received),
+      sub:'Cumulative since rollout start',
+      trend:`+${fmt(N.delta_received)} this week` },
+    { label:'Animals vaccinated', value: fmt(N.administered),
+      sub:`+${fmt(N.delta_administered)} this week`,
+      trend: N.delta_administered<100000?'Pace slowing':'Pace holding' },
+    { label:'Vaccine balance', value: fmt(N.balance),
+      sub:'Plus 75 000 emergency stock',
+      trend:'Spoilage not tracked' },
+    { label:'Herd coverage', value: coverage.toFixed(1)+'%',
+      sub:'Share of national cattle herd vaccinated',
+      trend:`Goal: ${(fullCoverageNeed/1e6).toFixed(1)} million doses for two dose protocol` }
+  ];
+  safeEl('kpiGrid').innerHTML = kpis.map(k => `
+    <div class="kpi">
+      <div class="kpi-label">${k.label}</div>
+      <div class="kpi-value">${k.value}</div>
+      <div class="kpi-sub">${k.sub}</div>
+      ${k.trend?`<div class="kpi-trend trend-up">${k.trend}</div>`:''}
+    </div>`).join('');
+} catch(e) { showError('kpiGrid', 'KPI cards', e); }
+
+// ── Provincial list view ──────────────────────────────────────────────────────
+try {
+  const provList = safeEl('provList');
+  if (!provList) throw new Error('provList element missing from HTML');
+  provinces.slice().sort((a,b)=>b.positive-a.positive).forEach(p => {
+    const cov = ((p.vaccinated / Math.max(p.herd, 1)) * 100).toFixed(1);
+    const row = document.createElement('div');
+    row.className = 'prov-row';
+    row.innerHTML = `
+      <div class="accent-bar" style="background:${caseColor(p.positive)}"></div>
+      <div class="name">${p.name}</div>
+      <div class="cases"><span class="cases-num">${fmt(p.positive)}</span><span class="cases-label">positive</span></div>
+      <div class="cov">
+        <span style="min-width:48px">${cov}%</span>
+        <div class="progress-bar" style="flex:1">
+          <div class="progress-fill" style="width:${Math.min(parseFloat(cov),100)}%"></div>
+          <div class="progress-label">${fmt(p.vaccinated)} vacc.</div>
+        </div>
+      </div>
+    `;
+    provList.appendChild(row);
+  });
+} catch(e) { showError('provList', 'Provincial list', e); }
+
+// ── Provincial table ──────────────────────────────────────────────────────────
+try {
+  const tbody = safeEl('provTable');
+  if (tbody) {
+    provinces.slice().sort((a,b)=>b.positive-a.positive).forEach(p => {
+      const cov = (p.vaccinated / Math.max(p.herd, 1)) * 100;
+      const balance = p.received - p.vaccinated;
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td><strong>${p.name}</strong></td>
+        <td class="num">${fmt(p.positive)}</td>
+        <td class="num">${fmt(p.suspected)}</td>
+        <td class="num">${fmt(p.pending)}</td>
+        <td class="num">${fmt(p.herd)}</td>
+        <td class="num">${fmt(p.received)}</td>
+        <td class="num">${fmt(p.vaccinated)}</td>
+        <td class="num">${fmt(balance)}</td>
+        <td>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width:${Math.min(cov,100)}%"></div>
+            <div class="progress-label">${cov.toFixed(1)}%</div>
+          </div>
+        </td>`;
+      tbody.appendChild(tr);
+    });
+  }
+  const tfoot = safeEl('provTableFoot');
+  if (tfoot) tfoot.innerHTML = `
+    <tr>
+      <td>National</td>
+      <td class="num">${fmt(N.positive)}</td>
+      <td class="num">${fmt(N.suspected)}</td>
+      <td class="num">${fmt(N.pending)}</td>
+      <td class="num">${fmt(N.herd_cattle)}</td>
+      <td class="num">${fmt(N.received)}</td>
+      <td class="num">${fmt(N.administered)}</td>
+      <td class="num">${fmt(N.balance)}</td>
+      <td>${(N.administered/N.herd_cattle*100).toFixed(1)}%</td>
+    </tr>`;
+} catch(e) { showError('provTable', 'Provincial table', e); }
+
+// ── Chart.js global defaults ─────────────────────────────────────────────────
+// Chart.js is loaded from CDN. If it fails to load, chart sections will show
+// a clear error rather than blanking the whole page.
+let chartJsReady = (typeof Chart !== 'undefined');
+if (!chartJsReady) {
+  console.warn('[FMD] Chart.js did not load — charts will be skipped');
+  ['hotspotChart','caseTrend','vaxTrend','provVax','sourceChart','coverageChart','rpoClassChart']
+    .forEach(id => showError(id, 'Chart (Chart.js failed to load)', new Error('CDN unavailable')));
+}
+
+if (chartJsReady) {
+  try {
+    Chart.defaults.font.family = '"Acumin Pro", "Inter", "Calibri", system-ui, sans-serif';
+    Chart.defaults.font.size = 12;
+    Chart.defaults.color = BRAND.charcoal;
+    Chart.defaults.borderColor = BRAND.mist;
+  } catch(e) { console.warn('[FMD] Chart defaults:', e); }
+}
+
+// ── Outbreak hotspot bar chart ───────────────────────────────────────────────
+if (chartJsReady) try {
+  const hotspots = provinces.slice().sort((a,b)=>b.positive-a.positive);
+  new Chart(safeEl('hotspotChart'), {
+    type:'bar',
+    data:{ labels:hotspots.map(p=>p.code),
+      datasets:[{ label:'Positive cases', data:hotspots.map(p=>p.positive),
+        backgroundColor:hotspots.map(p=>caseColor(p.positive)), borderRadius:4 }]},
+    options:{ responsive:true, maintainAspectRatio:false,
+      plugins:{legend:{display:false}},
+      scales:{y:{beginAtZero:true, grid:{color:BRAND.mist}}, x:{grid:{display:false}}} }
+  });
+} catch(e) { showError('hotspotChart', 'Hotspot chart', e); }
+
+// ── Case trend line chart ────────────────────────────────────────────────────
+if (chartJsReady) try {
+  new Chart(safeEl('caseTrend'), {
+    type:'line',
+    data:{ labels:data.weekly.map(w=>w.date),
+      datasets:[
+        { label:'Positive', data:data.weekly.map(w=>w.positive),
+          borderColor:BRAND.pine, backgroundColor:'rgba(16,45,45,0.08)', tension:0.25, fill:true, spanGaps:true, borderWidth:2 },
+        { label:'Suspected', data:data.weekly.map(w=>w.suspected),
+          borderColor:BRAND.olive, backgroundColor:'rgba(91,126,61,0.08)', tension:0.25, fill:true, spanGaps:true, borderWidth:2 },
+        { label:'Pending', data:data.weekly.map(w=>w.pending),
+          borderColor:BRAND.sage, backgroundColor:'rgba(149,164,149,0.08)', tension:0.25, fill:true, spanGaps:true, borderWidth:2 }
+      ]},
+    options:{ responsive:true, maintainAspectRatio:false,
+      plugins:{legend:{position:'bottom'}},
+      scales:{y:{beginAtZero:true, grid:{color:BRAND.mist}}, x:{grid:{display:false}}} }
+  });
+} catch(e) { showError('caseTrend', 'Case trend chart', e); }
+
+// ── Vaccination trend chart ──────────────────────────────────────────────────
+if (chartJsReady) try {
+  new Chart(safeEl('vaxTrend'), {
+    type:'line',
+    data:{ labels:data.weekly.map(w=>w.date),
+      datasets:[
+        { label:'Vaccines received', data:data.weekly.map(w=>w.received),
+          borderColor:BRAND.pine, backgroundColor:'rgba(16,45,45,0.1)', tension:0.25, fill:true, borderWidth:2 },
+        { label:'Animals vaccinated', data:data.weekly.map(w=>w.administered),
+          borderColor:BRAND.olive, backgroundColor:'rgba(91,126,61,0.12)', tension:0.25, fill:true, borderWidth:2 }
+      ]},
+    options:{ responsive:true, maintainAspectRatio:false,
+      plugins:{legend:{position:'bottom'}},
+      scales:{y:{beginAtZero:true, grid:{color:BRAND.mist}, ticks:{callback:(v)=>(v/1e6).toFixed(1)+'M'}}, x:{grid:{display:false}}} }
+  });
+} catch(e) { showError('vaxTrend', 'Vaccination trend chart', e); }
+
+// ── Provincial vaccination bar chart ─────────────────────────────────────────
+if (chartJsReady) try {
+  new Chart(safeEl('provVax'), {
+    type:'bar',
+    data:{ labels:provinces.map(p=>p.name),
+      datasets:[
+        { label:'Doses received', data:provinces.map(p=>p.received), backgroundColor:BRAND.pine, borderRadius:3 },
+        { label:'Animals vaccinated', data:provinces.map(p=>p.vaccinated), backgroundColor:BRAND.olive, borderRadius:3 }
+      ]},
+    options:{ responsive:true, maintainAspectRatio:false, indexAxis:'y',
+      plugins:{legend:{position:'bottom'}},
+      scales:{x:{beginAtZero:true, grid:{color:BRAND.mist}}, y:{grid:{display:false}}} }
+  });
+} catch(e) { showError('provVax', 'Provincial vaccination chart', e); }
+
+// ── Manufacturer source doughnut ─────────────────────────────────────────────
+if (chartJsReady) try {
+  const s = data.sources;
+  new Chart(safeEl('sourceChart'), {
+    type:'doughnut',
+    data:{ labels:['Bioaftogen','DolVet','OBP and ARC','BVI','Unallocated, KZN bulk'],
+      datasets:[{ data:[s.bioaftogen, s.dolvet, s.obp_arc, s.bvi, s.unallocated],
+        backgroundColor:[BRAND.pine, BRAND.olive, BRAND.sage, BRAND.paleSage, BRAND.mist],
+        borderWidth:2, borderColor:BRAND.white }]},
+    options:{ responsive:true, maintainAspectRatio:false,
+      plugins:{legend:{position:'bottom', labels:{boxWidth:12, padding:10}}},
+      cutout:'62%' }
+  });
+  const sourceNote = safeEl('sourceNote');
+  if (sourceNote) sourceNote.textContent =
+    `Manufacturer level totals sum to ${fmt(s.bioaftogen+s.dolvet+s.obp_arc+s.bvi)} doses. The ${fmt(N.received)} national total includes ${fmt(s.unallocated)} doses reported without a manufacturer breakdown.`;
+} catch(e) { showError('sourceChart', 'Source mix chart', e); }
+
+// ── Herd coverage chart ──────────────────────────────────────────────────────
+if (chartJsReady) try {
+  const sortedCov = provinces.slice().sort((a,b)=>(b.vaccinated/Math.max(b.herd,1))-(a.vaccinated/Math.max(a.herd,1)));
+  new Chart(safeEl('coverageChart'), {
+    type:'bar',
+    data:{ labels:sortedCov.map(p=>p.name),
+      datasets:[{ label:'% of cattle herd vaccinated, at least one dose',
+        data:sortedCov.map(p=>((p.vaccinated/Math.max(p.herd,1))*100).toFixed(1)),
+        backgroundColor:sortedCov.map(p=>{
+          const cov=p.vaccinated/Math.max(p.herd,1);
+          if (cov>0.4) return BRAND.pine;
+          if (cov>0.2) return BRAND.olive;
+          if (cov>0.1) return BRAND.sage;
+          return BRAND.paleSage;
+        }), borderRadius:3 }]},
+    options:{ responsive:true, maintainAspectRatio:false,
+      plugins:{legend:{display:false}},
+      scales:{y:{beginAtZero:true, max:100, grid:{color:BRAND.mist}, ticks:{callback:(v)=>v+'%'}}, x:{grid:{display:false}}} }
+  });
+  const covNote = safeEl('coverageNote');
+  if (covNote) covNote.innerHTML =
+    `Full herd coverage at two doses per animal requires <strong>${fmt(N.herd_cattle*2)} doses</strong>. To date, ${fmt(N.received)} doses have been received in country, leaving an outstanding need of <strong>roughly ${((N.herd_cattle*2-N.received)/1e6).toFixed(1)} million doses</strong>.`;
+} catch(e) { showError('coverageChart', 'Coverage chart', e); }
+
+// ── RPO classification chart ─────────────────────────────────────────────────
+if (chartJsReady && data.rpo) try {
+  const rpoTotals = data.rpo.totals;
+  new Chart(safeEl('rpoClassChart'), {
+    type:'doughnut',
+    data:{ labels:['Dairy','Commercial Beef','Pigs','Communal'],
+      datasets:[{ data:[rpoTotals.dairy_vaccinated, rpoTotals.commercial_beef_vaccinated, rpoTotals.pigs_vaccinated, rpoTotals.communal_vaccinated],
+        backgroundColor:[BRAND.pine, BRAND.olive, BRAND.sage, BRAND.paleSage],
+        borderWidth:2, borderColor:BRAND.white }]},
+    options:{ responsive:true, maintainAspectRatio:false,
+      plugins:{legend:{position:'bottom', labels:{boxWidth:12, padding:10}}},
+      cutout:'62%' }
+  });
+} catch(e) { showError('rpoClassChart', 'RPO classification chart', e); }
+
+// ── Cross-source comparison table ─────────────────────────────────────────────
+if (data.cross_source) try {
+  const cs = data.cross_source;
+  const csRows = [
+    ['Vaccines received',  cs.agrisa_received,    cs.rpo_received],
+    ['Animals vaccinated', cs.agrisa_administered, cs.rpo_administered],
+  ];
+  const csEl = safeEl('crossSourceTable');
+  if (csEl) csEl.innerHTML = csRows.map(([label, a, r]) => `
+    <tr>
+      <td>${label}</td>
+      <td class="num">${fmt(a)}</td>
+      <td class="num">${fmt(r)}</td>
+      <td class="num">${fmt(a - r)}</td>
+    </tr>`).join('');
+} catch(e) { showError('crossSourceTable', 'Cross-source table', e); }
+
+// ── Sources used list ─────────────────────────────────────────────────────────
+if (data.sources_used) try {
+  const slEl = safeEl('sourceList');
+  if (slEl) slEl.innerHTML =
+    data.sources_used.map(s => `<li style="font-size:12px;font-family:monospace;word-break:break-all">${s}</li>`).join('');
+} catch(e) { showError('sourceList', 'Sources list', e); }
+
+// ── Ministerial section ───────────────────────────────────────────────────────
+if (data.ministerial) try {
+  const m = data.ministerial;
+  const bannerEl = safeEl('ministerialBanner');
+  if (bannerEl && m.doses_procured) {
+    bannerEl.innerHTML = `
+      <div style="background:var(--pine);color:#fff;border-radius:8px;padding:20px 24px;display:flex;gap:32px;flex-wrap:wrap;align-items:center">
+        <div><div style="font-size:32px;font-weight:700">${fmt(m.doses_procured)}</div><div style="font-size:13px;opacity:0.8">Total doses procured</div></div>
+        ${m.doses_distributed?`<div><div style="font-size:32px;font-weight:700">${fmt(m.doses_distributed)}</div><div style="font-size:13px;opacity:0.8">Doses distributed</div></div>`:''}
+        ${m.animals_vaccinated?`<div><div style="font-size:32px;font-weight:700">${fmt(m.animals_vaccinated)}</div><div style="font-size:13px;opacity:0.8">Animals vaccinated (ministerial, as of ${m.animals_vaccinated_asof||''})</div></div>`:''}
+        <div style="flex:1;min-width:200px;font-size:13px;opacity:0.8">${m.source_label||''}</div>
+      </div>`;
+  }
+  const kpiCard = safeEl('ministerialKpiCard');
+  if (kpiCard) {
+    kpiCard.innerHTML = '<h3>Provincial cattle vaccinated (ministerial).</h3>';
+    if (m.provincial_cattle && Object.keys(m.provincial_cattle).length) {
+      const rows = Object.entries(m.provincial_cattle)
+        .sort((a,b)=>b[1].value-a[1].value)
+        .map(([code, d]) => `<tr><td>${code}</td><td class="num">${fmt(d.value)}</td><td style="font-size:12px;color:var(--charcoal)">${d.as_of}</td></tr>`)
+        .join('');
+      kpiCard.innerHTML += `<table><thead><tr><th>Province</th><th class="num">Cattle vaccinated</th><th>As of</th></tr></thead><tbody>${rows}</tbody></table>`;
+    }
+  }
+  const policyEl = safeEl('policyEventsList');
+  if (policyEl && m.policy_events && m.policy_events.length) {
+    policyEl.innerHTML = m.policy_events.map(ev =>
+      `<li><strong>${ev.date} — ${ev.title}</strong> ${ev.detail||''}</li>`).join('');
+  }
+  const supplyEl = safeEl('incomingSupplyBody');
+  if (supplyEl && m.incoming_supply && m.incoming_supply.length) {
+    supplyEl.innerHTML = `<table><thead><tr><th>Vaccine</th><th class="num">Doses</th><th>Expected</th><th>Notes</th></tr></thead><tbody>`
+      + m.incoming_supply.map(i => `<tr><td>${i.vaccine}</td><td class="num">${fmt(i.doses)}</td><td>${i.expected}</td><td style="font-size:12px">${i.notes||''}</td></tr>`).join('')
+      + '</tbody></table>';
+  }
+} catch(e) { showError('ministerialBanner', 'Ministerial section', e); }
+
+// ── Ministerial vs JOC comparison ────────────────────────────────────────────
+if (chartJsReady && data.ministerial_comparison) try {
+  const mc = data.ministerial_comparison;
+  new Chart(safeEl('minJocChart'), {
+    type: 'bar',
+    data: {
+      labels: mc.map(p => p.code),
+      datasets: [
+        { label: 'Ministerial (23 Apr)',
+          data: mc.map(p => p.ministerial || 0),
+          backgroundColor: BRAND.sage, borderRadius: 3 },
+        { label: 'JOC / AgriSA (latest)',
+          data: mc.map(p => p.joc || 0),
+          backgroundColor: mc.map(p =>
+            p.flag === 'critical' ? '#c0392b' :
+            p.flag === 'warning'  ? '#e67e22' : BRAND.olive),
+          borderRadius: 3 }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { position: 'bottom' },
+        tooltip: {
+          callbacks: {
+            label: ctx => {
+              const v = ctx.parsed.y;
+              return ` ${ctx.dataset.label}: ${v.toLocaleString()}`;
+            }
+          }
+        },
+        datalabels: {
+          anchor: 'end', align: 'end', offset: 1,
+          font: { size: 9, weight: '500' },
+          color: '#444',
+          formatter: v => v >= 1000 ? (v/1000).toFixed(0) + 'k' : v
+        }
+      },
+      scales: {
+        y: { beginAtZero: true, grid: { color: BRAND.mist },
+             ticks: { callback: v => (v/1000).toFixed(0) + 'k' } },
+        x: { grid: { display: false } }
+      },
+      layout: { padding: { top: 20 } }
+    },
+    plugins: (typeof ChartDataLabels !== 'undefined') ? [ChartDataLabels] : []
+  });
+
+  const tableEl = safeEl('minJocTable');
+  if (tableEl) {
+    let totalMin = 0, totalJoc = 0, totalDiff = 0;
+    let diffCount = 0;
+    mc.forEach(p => {
+      if (p.ministerial) totalMin += p.ministerial;
+      if (p.joc) totalJoc += p.joc;
+      if (p.diff !== null) { totalDiff += p.diff; diffCount++; }
+    });
+    tableEl.innerHTML = mc.map(p => {
+      const flagStyle = p.flag === 'critical' ? 'color:#c0392b;font-weight:700' :
+                        p.flag === 'warning'  ? 'color:#e67e22;font-weight:600' :
+                                                'color:#27ae60';
+      const flagText  = p.flag === 'critical' ? '&#9888; Discrepancy' :
+                        p.flag === 'warning'  ? '&#9651; No change' : '&#10003; Progress';
+      const diffFmt   = p.diff !== null
+        ? `<span style="${p.diff < 0 ? 'color:#c0392b' : 'color:#27ae60'}">${p.diff >= 0 ? '+' : ''}${fmt(p.diff)}</span>`
+        : '<span style="color:var(--charcoal)">N/A</span>';
+      return `<tr>
+        <td><strong>${p.code}</strong><br><small style="color:var(--charcoal);font-size:11px">${p.joc_date || ''}</small></td>
+        <td class="num">${p.ministerial ? fmt(p.ministerial) : '<span style="color:var(--charcoal)">—</span>'}</td>
+        <td class="num">${p.joc ? fmt(p.joc) : '<span style="color:var(--charcoal)">—</span>'}</td>
+        <td class="num">${diffFmt}</td>
+        <td style="${flagStyle};font-size:12px">${flagText}</td>
+      </tr>`;
+    }).join('') + `<tr style="border-top:2px solid #ccc;font-weight:700;background:var(--mist)">
+        <td>TOTAL</td>
+        <td class="num">${fmt(totalMin)}</td>
+        <td class="num">${fmt(totalJoc)}</td>
+        <td class="num"><span style="${totalDiff < 0 ? 'color:#c0392b' : 'color:#27ae60'}">${totalDiff >= 0 ? '+' : ''}${fmt(totalDiff)}</span></td>
+        <td style="font-size:12px;color:var(--charcoal)">${diffCount} of ${mc.length} provinces</td>
+      </tr>`;
+  }
+} catch(e) { showError('minJocChart', 'Ministerial vs JOC chart', e); }
+
+// ── Dynamic quality flags / action items ──────────────────────────────────────
+if (data.quality_flags) try {
+  const qfEl = safeEl('qualityFlagsList');
+  if (qfEl) {
+    if (data.quality_flags.length === 0) {
+      qfEl.innerHTML = '<li style="color:#27ae60;font-size:13px">&#10003; No data quality issues detected in this build.</li>';
+    } else {
+      qfEl.innerHTML = data.quality_flags.map(f => `
+        <li class="${f.severity === 'critical' ? 'critical' : ''}">
+          <strong>${f.province !== 'national' ? '[' + f.province + '] ' : ''}${f.title}</strong>
+          <span style="display:block;margin-top:4px;font-size:13px;color:var(--charcoal)">${f.detail}</span>
+          <span style="display:block;margin-top:6px;font-size:12px;background:rgba(0,0,0,0.04);padding:7px 10px;border-radius:4px;line-height:1.5">
+            <strong>Action:</strong> ${f.action}<br>
+            <strong>Owner:</strong> <em>${f.owner}</em>
+          </span>
+        </li>`).join('');
+    }
+  }
+} catch(e) { showError('qualityFlagsList', 'Quality flags', e); }
+
+
+</script>
+</body>
+</html>
