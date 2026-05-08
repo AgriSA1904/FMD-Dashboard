@@ -1,0 +1,120 @@
+name: Build and Deploy FMD Dashboard
+
+on:
+  # Trigger on any push to main that touches the data or scripts
+  push:
+    branches:
+      - main
+    paths:
+      - 'master_data.csv'
+      - 'scripts/build_dashboard.py'
+      - 'scripts/dashboard_template.html'
+
+  # Allow a manual trigger from the GitHub Actions UI at any time
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: 'Reason for manual rebuild (optional)'
+        required: false
+        default: 'Manual rebuild triggered from GitHub UI'
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write   # needed to commit FMD_Dashboard.html back to the repo
+
+    steps:
+      # ── 1. Check out the repository ────────────────────────────────────────
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # full history so git log is available if needed
+
+      # ── 2. Set up Python ───────────────────────────────────────────────────
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          # No pip install step needed — build_dashboard.py uses only
+          # the standard library (csv, json, os, datetime, re)
+
+      # ── 3. Verify required files are present before building ───────────────
+      - name: Verify required files
+        run: |
+          echo "Checking required files..."
+          test -f master_data.csv          || { echo "ERROR: master_data.csv not found"; exit 1; }
+          test -f scripts/build_dashboard.py       || { echo "ERROR: scripts/build_dashboard.py not found"; exit 1; }
+          test -f scripts/dashboard_template.html  || { echo "ERROR: scripts/dashboard_template.html not found"; exit 1; }
+          echo "Row count: $(wc -l < master_data.csv) lines in master_data.csv"
+          echo "All required files present."
+
+      # ── 4. Run the build script ─────────────────────────────────────────────
+      # Uses the importlib method as specified in project instructions.
+      # DO NOT change to: python3 scripts/build_dashboard.py
+      # The importlib method bypasses the Windows bytecode cache and is the
+      # canonical build invocation for this project.
+      - name: Build FMD_Dashboard.html
+        run: |
+          python -c "
+          import importlib.util
+          spec = importlib.util.spec_from_file_location('build', 'scripts/build_dashboard.py')
+          mod = importlib.util.module_from_spec(spec)
+          spec.loader.exec_module(mod)
+          "
+
+      # ── 5. Verify the output looks valid before committing ─────────────────
+      - name: Verify build output
+        run: |
+          test -f FMD_Dashboard.html || { echo "ERROR: FMD_Dashboard.html was not created"; exit 1; }
+          grep -q "const DASHBOARD_DATA" FMD_Dashboard.html || { echo "ERROR: DASHBOARD_DATA not found in output"; exit 1; }
+          grep -q "</html>" FMD_Dashboard.html               || { echo "ERROR: output does not end with </html>"; exit 1; }
+          SIZE=$(wc -c < FMD_Dashboard.html)
+          echo "FMD_Dashboard.html size: $SIZE bytes"
+          if [ "$SIZE" -lt 50000 ]; then
+            echo "ERROR: output is suspiciously small ($SIZE bytes) — build may have failed silently"
+            exit 1
+          fi
+          echo "Build output verified."
+
+      # ── 6. Commit and push the rebuilt dashboard ───────────────────────────
+      - name: Commit and push FMD_Dashboard.html
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Only commit if the file actually changed
+          if git diff --quiet FMD_Dashboard.html; then
+            echo "FMD_Dashboard.html is unchanged — nothing to commit."
+          else
+            SNAPSHOT=$(python -c "
+          import csv
+          rows = list(csv.DictReader(open('master_data.csv')))
+          dates = sorted(set(r['effective_date'] for r in rows if r['source_org'] in ('AgriSA-NAT','ICC')))
+          print(dates[-1] if dates else 'unknown')
+            ")
+            git add FMD_Dashboard.html
+            git commit -m "chore: rebuild dashboard [snapshot ${SNAPSHOT}] [skip ci]"
+            git push
+            echo "Dashboard committed and pushed (snapshot: ${SNAPSHOT})."
+          fi
+
+      # ── 7. Summary ─────────────────────────────────────────────────────────
+      - name: Build summary
+        if: always()
+        run: |
+          echo "=============================="
+          echo "  FMD Dashboard Build Summary"
+          echo "=============================="
+          echo "Trigger:    ${{ github.event_name }}"
+          echo "Branch:     ${{ github.ref_name }}"
+          echo "Commit:     ${{ github.sha }}"
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "Reason:     ${{ github.event.inputs.reason }}"
+          fi
+          echo "Runner OS:  ${{ runner.os }}"
+          echo "Timestamp:  $(date -u '+%Y-%m-%d %H:%M UTC')"
+          if [ -f FMD_Dashboard.html ]; then
+            echo "Output:     FMD_Dashboard.html ($(wc -c < FMD_Dashboard.html) bytes)"
+          fi
+          echo "=============================="
