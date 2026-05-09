@@ -106,3 +106,26 @@ summed to 1,669 on the same screen.
 - Positive cases: +195
 - Doses received: +425,175
 - Animals vaccinated: +261,606
+
+---
+
+## 2026-05-09 — Correction: EC animals vaccinated (07-May rows)
+
+**Error:** Three EC rows from the 07-May ingest had values taken from the doses-received
+section of the spreadsheet, not the animals-vaccinated district sum.
+
+| Metric | Wrong value (v1, superseded) | Correct value (v2) |
+|---|---|---|
+| EC animals vaccinated (total) | 469,955 | **309,935** |
+| EC commercial vaccinated | 284,178 | **164,234** |
+| EC communal vaccinated | 182,350 | **145,701** |
+
+**Source of correct figures:** District totals from the vaccination table:
+SB=81,490 + AN=87,965 + AM=23,389 + CH=39,519 + JG=59,204 + OT=18,368 = **309,935**
+(Commercial=164,234 + Communal=145,701 = 309,935 ✓)
+
+The 469,955 figure is the total doses received (Bioaftogen state+private + DollVet
+state+private + BVI + OBP/ARC), correctly held in `doses_received / all / all = 469,995`.
+
+**National administered updated:** 2,380,626 → **2,220,606** (province-summed).
+**master_data.csv total rows: 802**

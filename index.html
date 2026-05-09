@@ -620,7 +620,7 @@ const DASHBOARD_DATA = {
       "negative": 14,
       "pending": 0,
       "received": 469995,
-      "vaccinated": 469955
+      "vaccinated": 309935
     },
     {
       "code": "FS",
@@ -806,11 +806,11 @@ const DASHBOARD_DATA = {
     "negative": 60,
     "pending": 191,
     "received": 3254035,
-    "administered": 2380626,
+    "administered": 2220606,
     "herd_cattle": 12496199,
-    "balance": 873409,
+    "balance": 1033429,
     "delta_received": 425175,
-    "delta_administered": 261606,
+    "delta_administered": 101586,
     "delta_positive": 195,
     "prior_snapshot": "2026-04-24",
     "live_snapshot": "2026-05-08"
@@ -882,7 +882,7 @@ const DASHBOARD_DATA = {
   },
   "cross_source": {
     "agrisa_received": 3254035,
-    "agrisa_administered": 2380626,
+    "agrisa_administered": 2220606,
     "rpo_received": 2532849,
     "rpo_administered": 1214088
   },
@@ -963,12 +963,12 @@ const DASHBOARD_DATA = {
     {
       "code": "EC",
       "name": "Eastern Cape",
-      "joc": 469955,
+      "joc": 309935,
       "joc_date": "2026-05-07",
       "ministerial": 376122,
       "ministerial_date": "2026-04-23",
-      "diff": 93833,
-      "flag": null
+      "diff": -66187,
+      "flag": "critical"
     },
     {
       "code": "FS",
@@ -1067,6 +1067,14 @@ const DASHBOARD_DATA = {
       "detail": "JOC reports 168,748 animals vaccinated but only 161,420 doses received in province. Likely a cumulative vs period reporting mismatch, or draw on pre-rollout stock.",
       "action": "Confirm whether provincial figures are cumulative from rollout start or period-only. Request reconciliation of receipt and administration logs.",
       "owner": "North West AgriSA affiliate / JOC"
+    },
+    {
+      "severity": "critical",
+      "province": "EC",
+      "title": "Eastern Cape: JOC figure lower than ministerial briefing",
+      "detail": "Ministerial (2026-04-23) reported 376,122 cattle vaccinated; current JOC/AgriSA figure is 309,935 \u2014 gap of 66,187. Impossible if both are cumulative.",
+      "action": "Reconcile AgriSA provincial return against ministerial figure. Determine whether ministerial count includes additional species (pigs, sheep) beyond cattle only.",
+      "owner": "Eastern Cape AgriSA affiliate"
     },
     {
       "severity": "critical",
