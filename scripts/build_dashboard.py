@@ -224,26 +224,29 @@ def build_rpo_classification(rows):
                                                vaccine_type="all", vet_channel="all") or 0)}
 
 def national_view(rows, snapshot):
-    # Use the latest non-superseded value per metric, preferring AgriSA-NAT as canonical.
-    def nat(metric, vaccine_type="", vet_channel=""):
+    # Legacy: pull national-level rows (used for delta comparisons only).
+    def nat_legacy(metric, vaccine_type="", vet_channel=""):
         return latest_metric(rows, province="national", metric=metric,
                              vaccine_type=vaccine_type, vet_channel=vet_channel,
                              prefer_org=["AgriSA-NAT", "ICC", "WC-GIS", "EC-DARD", "FS-DARD"]) or 0
-    out = {
-        "positive":   int(nat("positive_cases")),
-        "suspected":  int(nat("suspected_cases")),
-        "negative":   int(nat("negative_cases")),
-        "pending":    int(nat("pending_cases")),
-        "received":   int(nat("doses_received", "all", "all")),
-        "administered": int(nat("animals_vaccinated", "all", "all")),
+    return {
+        "_legacy_received":     int(nat_legacy("doses_received", "all", "all")),
+        "_legacy_administered": int(nat_legacy("animals_vaccinated", "all", "all")),
+        "_legacy_positive":     int(nat_legacy("positive_cases")),
     }
-    # Herd cattle: sum the most recent per-province values
-    herd = 0
-    for code, _ in PROVINCES:
-        v = latest_metric(rows, province=code, metric="herd_cattle",
-                          prefer_org=["AgriSA-NAT", "ICC", "WC-GIS", "EC-DARD", "FS-DARD"])
-        if v: herd += v
-    out["herd_cattle"] = int(herd)
+
+def national_view_from_provinces(province_list, rows):
+    """Compute national totals by summing province card values.
+    This guarantees national KPIs always equal the sum shown on province cards."""
+    out = {
+        "positive":     sum(p["positive"]   for p in province_list),
+        "suspected":    sum(p["suspected"]  for p in province_list),
+        "negative":     sum(p["negative"]   for p in province_list),
+        "pending":      sum(p["pending"]    for p in province_list),
+        "received":     sum(p["received"]   for p in province_list),
+        "administered": sum(p["vaccinated"] for p in province_list),
+        "herd_cattle":  sum(p["herd"]       for p in province_list),
+    }
     out["balance"] = out["received"] - out["administered"]
     return out
 
@@ -388,13 +391,19 @@ def build_dashboard():
     snapshot = dates[-1]
     print(f"Building dashboard from snapshot {snapshot}; {len(dates)} weekly points.")
 
-    nat = national_view(rows, snapshot)
+    provinces = build_provinces(rows, snapshot)
+    nat       = national_view_from_provinces(provinces, rows)
+    legacy    = national_view(rows, snapshot)   # for delta computation only
+
+    # snapshot_date = most recent as_of date across any province (shows true data currency)
+    live_snapshot = max((p["as_of"] for p in provinces), default=snapshot)
+
     payload = {
-        "snapshot_date": snapshot,
+        "snapshot_date": live_snapshot,
         "build_date": str(date.today()),
-        "provinces": build_provinces(rows, snapshot),
+        "provinces": provinces,
         "weekly": build_weekly(rows),
-        "sources": build_source_mix(rows, snapshot),
+        "sources": build_source_mix(rows, live_snapshot),
         "national": nat,
         "rpo": build_rpo_classification(rows),
     }
@@ -408,14 +417,18 @@ def build_dashboard():
                         and r["metric"] == "animals_vaccinated" and r["vaccine_type"] == "all"
                         and r["superseded_by"] == ""), None)
     payload["cross_source"] = {
-        "agrisa_received": int(nat["received"]),
-        "agrisa_administered": int(nat["administered"]),
+        "agrisa_received": int(nat["received"]),         # province-summed
+        "agrisa_administered": int(nat["administered"]), # province-summed
         "rpo_received": int(rpo_nat_recv or 0),
         "rpo_administered": int(rpo_nat_adm or 0),
     }
 
     # Week-on-week deltas vs prior weekly snapshot at national level
+    # Deltas: current summed-province total vs prior AgriSA-NAT weekly snapshot.
+    # Using AgriSA-NAT as the prior baseline gives a stable week-on-week comparison
+    # even when the current figure comes from more recent per-province submissions.
     prior = dates[-2] if len(dates) >= 2 else None
+    prior_snap = dates[-1]   # last AgriSA-NAT date (used as prior when provinces are newer)
     if prior:
         prior_recv = latest_value(rows, effective_date=prior, province="national",
                                   metric="doses_received",
@@ -425,13 +438,16 @@ def build_dashboard():
                                   vaccine_type="all", vet_channel="all") or 0
         prior_pos  = latest_value(rows, effective_date=prior, province="national",
                                   metric="positive_cases") or 0
-        payload["national"]["delta_received"]     = int(nat["received"] - prior_recv)
+        payload["national"]["delta_received"]     = int(nat["received"]     - prior_recv)
         payload["national"]["delta_administered"] = int(nat["administered"] - prior_adm)
-        payload["national"]["delta_positive"]     = int(nat["positive"] - prior_pos)
+        payload["national"]["delta_positive"]     = int(nat["positive"]     - prior_pos)
     else:
         payload["national"]["delta_received"] = 0
         payload["national"]["delta_administered"] = 0
         payload["national"]["delta_positive"] = 0
+    # Store the prior-week baseline date for display
+    payload["national"]["prior_snapshot"] = prior if prior else ""
+    payload["national"]["live_snapshot"]  = live_snapshot
 
     # Ministerial / DAFF figures — most recent Ministry-sourced totals
     def min_nat(metric, vaccine_type="", vet_channel=""):
@@ -502,7 +518,7 @@ def build_dashboard():
 
     min_comparison = build_ministerial_comparison(rows)
     payload["ministerial_comparison"] = min_comparison
-    payload["quality_flags"] = build_quality_flags(rows, snapshot, min_comparison)
+    payload["quality_flags"] = build_quality_flags(rows, live_snapshot, min_comparison)
 
     # Source attribution: every source file contributing to the current view
     payload["sources_used"] = sorted(set(r["source_file"] for r in rows

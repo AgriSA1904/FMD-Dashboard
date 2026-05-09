@@ -79,3 +79,30 @@ Xhariep=11, Mangaung Metro=7 — Fezile Dabi remains the most affected district.
 `FS-DARD` added to `prefer_org` lists in `build_dashboard.py`.
 
 **master_data.csv total rows: 799**
+
+---
+
+## 2026-05-08 — Fix: national KPIs now reconcile with province cards
+
+**Root cause:** `national_view()` was reading from `province="national"` rows (last AgriSA-NAT
+file = 01-May) while province cards used per-province rows (EC as of 07-May, FS as of 08-May).
+This caused visible contradictions — national positive cases showed 1,474 while province cards
+summed to 1,669 on the same screen.
+
+**Fix applied to `build_dashboard.py`:**
+- National KPIs now computed by **summing province card values** (`national_view_from_provinces`)
+- `snapshot_date` now shows most recent province `as_of` date (2026-05-08) rather than last AgriSA-NAT date
+- Week-on-week deltas compare current summed-province total vs prior AgriSA-NAT weekly point (2026-04-24)
+- Weekly trend chart unchanged — still shows verified AgriSA-NAT weekly cadence
+
+**Dashboard now shows (fully reconciled):**
+| Metric | National KPI | Sum of provinces |
+|---|---|---|
+| Positive cases | **1,669** | 1,669 ✓ |
+| Doses received | **3,254,035** | 3,254,035 ✓ |
+| Animals vaccinated | **2,380,626** | 2,380,626 ✓ |
+
+**Week-on-week deltas vs 24-Apr baseline:**
+- Positive cases: +195
+- Doses received: +425,175
+- Animals vaccinated: +261,606
