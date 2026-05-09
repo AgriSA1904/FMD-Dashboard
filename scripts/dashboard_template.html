@@ -477,6 +477,49 @@
     </div>
   </section>
 
+
+  <section>
+    <div class="kicker">Dairy industry view</div>
+    <h2>MPO: Dairy herd vaccination and FMD case burden.</h2>
+    <p style="color:var(--charcoal);font-size:14px;margin-top:calc(-1 * var(--sp-6));margin-bottom:var(--sp-6)">
+      Submitted by the Milk Producers' Organisation (MPO). Covers dairy cattle only.
+      Snapshot as of <span id="mpoSnapshotDate">—</span>.
+    </p>
+
+    <!-- KPI row -->
+    <div class="grid-3" style="margin-bottom:var(--sp-6)">
+      <div class="card" style="text-align:center">
+        <div style="font-size:13px;font-weight:600;color:var(--pine);text-transform:uppercase;letter-spacing:.05em;margin-bottom:var(--sp-2)">Dairy cows vaccinated</div>
+        <div id="mpoDairyVaccTotal" style="font-size:2.2rem;font-weight:700;color:var(--pine);line-height:1">—</div>
+        <div style="font-size:12px;color:var(--charcoal);margin-top:var(--sp-2)">national total (excl. WC)</div>
+      </div>
+      <div class="card" style="text-align:center">
+        <div style="font-size:13px;font-weight:600;color:var(--rust);text-transform:uppercase;letter-spacing:.05em;margin-bottom:var(--sp-2)">Confirmed dairy farms</div>
+        <div id="mpoDairyConfirmed" style="font-size:2.2rem;font-weight:700;color:var(--rust);line-height:1">—</div>
+        <div style="font-size:12px;color:var(--charcoal);margin-top:var(--sp-2)">farms with confirmed FMD cases</div>
+      </div>
+      <div class="card" style="text-align:center">
+        <div style="font-size:13px;font-weight:600;color:var(--amber);text-transform:uppercase;letter-spacing:.05em;margin-bottom:var(--sp-2)">Active dairy farms</div>
+        <div id="mpoDairyActive" style="font-size:2.2rem;font-weight:700;color:var(--amber);line-height:1">—</div>
+        <div style="font-size:12px;color:var(--charcoal);margin-top:var(--sp-2)">currently showing clinical signs</div>
+      </div>
+    </div>
+
+    <!-- Charts row -->
+    <div class="grid-2">
+      <div class="card">
+        <h3>Dairy cows vaccinated by province.</h3>
+        <div class="chart-wrap" style="height:260px"><canvas id="mpoDairyVaxChart"></canvas></div>
+        <p style="font-size:12px;color:var(--charcoal);margin-top:var(--sp-3);font-style:italic" id="mpoWcNote"></p>
+      </div>
+      <div class="card">
+        <h3>Active dairy FMD cases by province.</h3>
+        <div class="chart-wrap" style="height:260px"><canvas id="mpoActiveCasesChart"></canvas></div>
+        <p style="font-size:12px;color:var(--charcoal);margin-top:var(--sp-3);font-style:italic" id="mpoKznNote"></p>
+      </div>
+    </div>
+  </section>
+
   <section id="ministerialSection">
     <div class="kicker">Ministerial update — 5 May 2026</div>
     <h2>Updated figures from the Minister of Agriculture.</h2>
@@ -781,7 +824,7 @@ try {
 let chartJsReady = (typeof Chart !== 'undefined');
 if (!chartJsReady) {
   console.warn('[FMD] Chart.js did not load — charts will be skipped');
-  ['hotspotChart','caseTrend','vaxTrend','provVax','sourceChart','coverageChart','rpoClassChart']
+  ['hotspotChart','caseTrend','vaxTrend','provVax','sourceChart','coverageChart','rpoClassChart','mpoDairyVaxChart','mpoActiveCasesChart']
     .forEach(id => showError(id, 'Chart (Chart.js failed to load)', new Error('CDN unavailable')));
 }
 
@@ -932,6 +975,91 @@ if (data.cross_source) try {
       <td class="num">${fmt(a - r)}</td>
     </tr>`).join('');
 } catch(e) { showError('crossSourceTable', 'Cross-source table', e); }
+
+// ── MPO dairy section ─────────────────────────────────────────────────────────
+if (data.mpo) try {
+  const mpo = data.mpo;
+  const byProv = mpo.by_province || {};
+
+  // KPI cards
+  const mpoVaccEl = safeEl('mpoDairyVaccTotal');
+  if (mpoVaccEl) mpoVaccEl.textContent = fmt(mpo.national_dairy_vaccinated);
+  const mpoConfEl = safeEl('mpoDairyConfirmed');
+  if (mpoConfEl) mpoConfEl.textContent = fmt(mpo.confirmed_farms);
+  const mpoActEl = safeEl('mpoDairyActive');
+  if (mpoActEl) mpoActEl.textContent = fmt(mpo.active_farms);
+
+  // Snapshot date
+  const mpoSnap = safeEl('mpoSnapshotDate');
+  if (mpoSnap) mpoSnap.textContent = mpo.snapshot_date || '—';
+
+  // Notes
+  const wcNote = safeEl('mpoWcNote');
+  if (wcNote) wcNote.textContent = mpo.wc_note || '';
+  const kznNote = safeEl('mpoKznNote');
+  if (kznNote) kznNote.textContent = mpo.kzn_note || '';
+
+  // Province order (sorted by dairy vaccinated descending for chart readability)
+  const provOrder = Object.entries(byProv)
+    .sort((a,b) => b[1].dairy_vaccinated - a[1].dairy_vaccinated);
+  const provLabels  = provOrder.map(([,p]) => p.name);
+  const vaccValues  = provOrder.map(([,p]) => p.dairy_vaccinated);
+  const casesValues = provOrder.map(([,p]) => p.active_cases);
+
+  // Dairy vaccinated — horizontal bar
+  if (chartJsReady) new Chart(safeEl('mpoDairyVaxChart'), {
+    type: 'bar',
+    data: {
+      labels: provLabels,
+      datasets: [{
+        label: 'Dairy cows vaccinated',
+        data: vaccValues,
+        backgroundColor: vaccValues.map(v => v === Math.max(...vaccValues) ? BRAND.pine : BRAND.sage),
+        borderRadius: 3,
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false },
+        tooltip: { callbacks: { label: ctx => ' ' + fmt(ctx.raw) + ' dairy cows' }}},
+      scales: {
+        x: { ticks: { callback: v => fmt(v) }, grid: { color: 'rgba(0,0,0,.05)' }},
+        y: { ticks: { font: { size: 12 }}}
+      }
+    }
+  });
+
+  // Active cases — horizontal bar, sorted by cases
+  const caseOrder = Object.entries(byProv)
+    .sort((a,b) => b[1].active_cases - a[1].active_cases);
+  const caseLabels = caseOrder.map(([,p]) => p.name);
+  const caseVals   = caseOrder.map(([,p]) => p.active_cases);
+
+  if (chartJsReady) new Chart(safeEl('mpoActiveCasesChart'), {
+    type: 'bar',
+    data: {
+      labels: caseLabels,
+      datasets: [{
+        label: 'Active dairy FMD farms',
+        data: caseVals,
+        backgroundColor: caseVals.map(v => v === Math.max(...caseVals) ? BRAND.rust : BRAND.amber),
+        borderRadius: 3,
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false },
+        tooltip: { callbacks: { label: ctx => ' ' + ctx.raw + ' active dairy farms' }}},
+      scales: {
+        x: { ticks: { stepSize: 10 }, grid: { color: 'rgba(0,0,0,.05)' }},
+        y: { ticks: { font: { size: 12 }}}
+      }
+    }
+  });
+} catch(e) { showError('mpoDairyVaxChart', 'MPO dairy section', e); }
+
 
 // ── Sources used list ─────────────────────────────────────────────────────────
 if (data.sources_used) try {

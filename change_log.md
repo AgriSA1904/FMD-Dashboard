@@ -129,3 +129,33 @@ state+private + BVI + OBP/ARC), correctly held in `doses_received / all / all = 
 
 **National administered updated:** 2,380,626 → **2,220,606** (province-summed).
 **master_data.csv total rows: 802**
+
+---
+
+## 2026-05-09 — MPO Week 28 ingest + new MPO dashboard section
+
+**Source:** `inbox/MPO/Week 28- Update on the state of FMD and vaccine rollouts in the dairy industry.pdf`
+**Source org:** MPO (Milk Producers' Organisation) | **Snapshot:** 2026-05-01 | **Rows appended:** 22
+
+### Data ingested
+
+| Metric | National | Notes |
+|---|---|---|
+| Dairy cows vaccinated | **579,917** | Excl. WC (167,124 — not exclusively dairy) |
+| Confirmed dairy farms | **169** | Farms with confirmed FMD to date |
+| Active dairy farms | **122** | Currently showing clinical signs |
+
+Provincial dairy vaccinated: KZN=360,159 · EC=168,142 · FS=15,104 · GP=14,832 · MP=9,863 · NW=6,342 · LP=5,475 · WC=167,124* · NC=0
+
+Active dairy FMD cases by province: KZN=60 · MP=17 · EC=18 · FS=10 · NW=7 · WC=6 · GP=3 · LP=1 · NC=0
+
+### New dashboard section
+
+Added **"Dairy industry view"** section (MPO) containing:
+- 3 KPI cards: dairy cows vaccinated (579,917) / confirmed farms (169) / active farms (122)
+- Horizontal bar chart: dairy cows vaccinated by province (KZN leads at 360,159)
+- Horizontal bar chart: active dairy FMD cases by province (KZN highest at 60)
+- WC and KZN milestone notes inline
+
+Section appears between RPO section and Ministerial section.
+**master_data.csv total rows: 824**

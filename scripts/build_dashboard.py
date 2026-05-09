@@ -223,6 +223,46 @@ def build_rpo_classification(rows):
                                                metric="animals_vaccinated",
                                                vaccine_type="all", vet_channel="all") or 0)}
 
+
+def build_mpo_classification(rows):
+    """MPO dairy-specific breakdown: dairy cows vaccinated and active FMD cases by province."""
+    mpo_rows = [r for r in rows if r["source_org"] == "MPO" and r["superseded_by"] == ""
+                and r["province"] != "national"]
+    PROV_NAMES = dict(PROVINCES)
+    by_prov = {}
+    for r in mpo_rows:
+        p = r["province"]
+        by_prov.setdefault(p, {"name": PROV_NAMES.get(p, p),
+                                "dairy_vaccinated": 0, "active_cases": 0})
+        if r["metric"] == "dairy_vaccinated":
+            by_prov[p]["dairy_vaccinated"] = int(num(r["value"]) or 0)
+        elif r["metric"] == "dairy_active_cases":
+            by_prov[p]["active_cases"] = int(num(r["value"]) or 0)
+
+    def mpo_nat(metric):
+        matches = [r for r in rows if r["source_org"] == "MPO"
+                   and r["province"] == "national" and r["metric"] == metric
+                   and r["superseded_by"] == ""]
+        if not matches:
+            return None
+        matches.sort(key=lambda r: r["effective_date"], reverse=True)
+        return int(num(matches[0]["value"]) or 0)
+
+    mpo_dates = [r["effective_date"] for r in rows if r["source_org"] == "MPO"
+                 and r["superseded_by"] == ""]
+    snapshot = max(mpo_dates) if mpo_dates else ""
+
+    return {
+        "national_dairy_vaccinated": mpo_nat("dairy_vaccinated"),
+        "confirmed_farms":           mpo_nat("dairy_confirmed_farms"),
+        "active_farms":              mpo_nat("dairy_active_farms"),
+        "snapshot_date":             snapshot,
+        "source_label":              "MPO Week 28 — dairy industry update",
+        "wc_note":                   "Western Cape: 167,124 animals vaccinated — not exclusively dairy; excluded from national total.",
+        "kzn_note":                  "KwaZulu-Natal: All dairy cows have received their first round of FMD vaccine.",
+        "by_province":               by_prov,
+    }
+
 def national_view(rows, snapshot):
     # Legacy: pull national-level rows (used for delta comparisons only).
     def nat_legacy(metric, vaccine_type="", vet_channel=""):
@@ -406,6 +446,7 @@ def build_dashboard():
         "sources": build_source_mix(rows, live_snapshot),
         "national": nat,
         "rpo": build_rpo_classification(rows),
+        "mpo": build_mpo_classification(rows),
     }
     # Cross-source totals for the discrepancy panel
     rpo_nat_recv = next((num(r["value"]) for r in rows
