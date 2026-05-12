@@ -132,21 +132,21 @@ def build_provinces(rows, snapshot_date):
             "code": code, "name": name,
             "as_of": ed,
             "herd": int(latest_metric(rows, province=code, metric="herd_cattle",
-                                      prefer_org=["AgriSA-NAT", "ICC", "WC-GIS", "EC-DARD", "FS-DARD"]) or 0),
+                                      prefer_org=["AgriSA-NAT", "ICC", "WC-GIS", "LDARD", "EC-DARD", "EC-DRDAR", "FS-DARD"]) or 0),
             "positive": int(latest_metric(rows, province=code, metric="positive_cases",
-                                          prefer_org=["AgriSA-NAT", "ICC", "WC-GIS", "EC-DARD", "FS-DARD"]) or 0),
+                                          prefer_org=["AgriSA-NAT", "ICC", "WC-GIS", "LDARD", "EC-DARD", "EC-DRDAR", "FS-DARD"]) or 0),
             "suspected": int(latest_metric(rows, province=code, metric="suspected_cases",
-                                           prefer_org=["AgriSA-NAT", "ICC", "WC-GIS", "EC-DARD", "FS-DARD"]) or 0),
+                                           prefer_org=["AgriSA-NAT", "ICC", "WC-GIS", "LDARD", "EC-DARD", "EC-DRDAR", "FS-DARD"]) or 0),
             "negative": int(latest_metric(rows, province=code, metric="negative_cases",
-                                          prefer_org=["AgriSA-NAT", "ICC", "WC-GIS", "EC-DARD", "FS-DARD"]) or 0),
+                                          prefer_org=["AgriSA-NAT", "ICC", "WC-GIS", "LDARD", "EC-DARD", "EC-DRDAR", "FS-DARD"]) or 0),
             "pending": int(latest_metric(rows, province=code, metric="pending_cases",
-                                         prefer_org=["AgriSA-NAT", "ICC", "WC-GIS", "EC-DARD", "FS-DARD"]) or 0),
+                                         prefer_org=["AgriSA-NAT", "ICC", "WC-GIS", "LDARD", "EC-DARD", "EC-DRDAR", "FS-DARD"]) or 0),
             "received": int(latest_metric(rows, province=code, metric="doses_received",
                                           vaccine_type="all", vet_channel="all",
-                                          prefer_org=["AgriSA-NAT", "ICC", "WC-GIS", "EC-DARD", "FS-DARD"]) or 0),
+                                          prefer_org=["AgriSA-NAT", "ICC", "WC-GIS", "LDARD", "EC-DARD", "EC-DRDAR", "FS-DARD"]) or 0),
             "vaccinated": int(latest_metric(rows, province=code, metric="animals_vaccinated",
                                             vaccine_type="all", vet_channel="all",
-                                            prefer_org=["AgriSA-NAT", "ICC", "WC-GIS", "GDARD", "EC-DARD", "FS-DARD"]) or 0),
+                                            prefer_org=["AgriSA-NAT", "ICC", "WC-GIS", "GDARD", "LDARD", "EC-DARD", "EC-DRDAR", "FS-DARD"]) or 0),
         })
     return out
 
@@ -195,7 +195,7 @@ def build_source_mix(rows, snapshot_date):
         out[vt] = int(total)
     nat_total = latest_metric(rows, province="national", metric="doses_received",
                               vaccine_type="all", vet_channel="all",
-                              prefer_org=["AgriSA-NAT", "ICC", "WC-GIS", "EC-DARD", "FS-DARD"]) or 0
+                              prefer_org=["AgriSA-NAT", "ICC", "WC-GIS", "LDARD", "EC-DARD", "EC-DRDAR", "FS-DARD"]) or 0
     sum_mfg = sum(out.values())
     out["unallocated"] = max(0, int(nat_total) - sum_mfg)
     return out
@@ -268,7 +268,7 @@ def national_view(rows, snapshot):
     def nat_legacy(metric, vaccine_type="", vet_channel=""):
         return latest_metric(rows, province="national", metric=metric,
                              vaccine_type=vaccine_type, vet_channel=vet_channel,
-                             prefer_org=["AgriSA-NAT", "ICC", "WC-GIS", "EC-DARD", "FS-DARD"]) or 0
+                             prefer_org=["AgriSA-NAT", "ICC", "WC-GIS", "LDARD", "EC-DARD", "EC-DRDAR", "FS-DARD"]) or 0
     return {
         "_legacy_received":     int(nat_legacy("doses_received", "all", "all")),
         "_legacy_administered": int(nat_legacy("animals_vaccinated", "all", "all")),
@@ -298,7 +298,7 @@ def build_ministerial_comparison(rows):
     for code, name in PROVINCES:
         joc = latest_metric(rows, province=code, metric="animals_vaccinated",
                             vaccine_type="all", vet_channel="all",
-                            prefer_org=["AgriSA-NAT", "ICC", "WC-GIS", "GDARD", "EC-DARD", "FS-DARD"])
+                            prefer_org=["AgriSA-NAT", "ICC", "WC-GIS", "GDARD", "LDARD", "EC-DARD", "EC-DRDAR", "FS-DARD"])
         joc_date = latest_province_date(rows, code)
 
         min_rows = [r for r in rows if r["source_org"] == "Ministry"
@@ -339,10 +339,10 @@ def build_quality_flags(rows, snapshot, min_comparison):
     for code, name in PROVINCES:
         received = latest_metric(rows, province=code, metric="doses_received",
                                  vaccine_type="all", vet_channel="all",
-                                 prefer_org=["AgriSA-NAT", "ICC", "EC-DARD", "FS-DARD"])
+                                 prefer_org=["AgriSA-NAT", "ICC", "LDARD", "EC-DARD", "EC-DRDAR", "FS-DARD"])
         vaccinated = latest_metric(rows, province=code, metric="animals_vaccinated",
                                    vaccine_type="all", vet_channel="all",
-                                   prefer_org=["AgriSA-NAT", "ICC", "WC-GIS", "GDARD", "EC-DARD", "FS-DARD"])
+                                   prefer_org=["AgriSA-NAT", "ICC", "WC-GIS", "GDARD", "LDARD", "EC-DARD", "EC-DRDAR", "FS-DARD"])
         if received and vaccinated and vaccinated > received:
             flags.append({
                 "severity": "critical", "province": code,
