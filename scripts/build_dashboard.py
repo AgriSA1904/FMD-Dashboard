@@ -203,7 +203,6 @@ def build_source_mix(rows, snapshot_date):
 def build_rpo_classification(rows):
     """RPO commodity-level breakdown: Dairy / Commercial Beef / Pigs / Communal."""
     metrics = {
-        "dairy_vaccinated": 0,
         "commercial_beef_vaccinated": 0,
         "pigs_vaccinated": 0,
         "communal_vaccinated": 0,

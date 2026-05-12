@@ -457,7 +457,7 @@
   <section>
     <div class="kicker">Commodity organisation view</div>
     <h2>RPO breakdown by animal classification.</h2>
-    <p style="color:var(--charcoal);font-size:14px;margin-top:calc(-1 * var(--sp-6));margin-bottom:var(--sp-6)">Submitted by the Red Meat Producers' Organisation. Splits animals vaccinated into Dairy, Commercial Beef, Pigs and Communal categories. The RPO classification differs from the AgriSA Commercial and Communal split.</p>
+    <p style="color:var(--charcoal);font-size:14px;margin-top:calc(-1 * var(--sp-6));margin-bottom:var(--sp-6)">Submitted by the Red Meat Producers' Organisation. Splits animals vaccinated into Commercial Beef, Pigs and Communal categories. Dairy cattle are reported separately in the MPO section below.</p>
     <div class="grid-2">
       <div class="card">
         <h3>Animals vaccinated by classification.</h3>
@@ -860,62 +860,42 @@ const DASHBOARD_DATA = {
   },
   "rpo": {
     "totals": {
-      "dairy_vaccinated": 514110,
       "commercial_beef_vaccinated": 289910,
       "pigs_vaccinated": 19000,
       "communal_vaccinated": 280730
     },
     "by_province": {
       "EC": {
-        "dairy_vaccinated": 67576,
         "commercial_beef_vaccinated": 16640,
         "pigs_vaccinated": 0,
         "communal_vaccinated": 84279
       },
-      "WC": {
-        "dairy_vaccinated": 121183,
-        "commercial_beef_vaccinated": 0,
-        "pigs_vaccinated": 0,
-        "communal_vaccinated": 0
-      },
       "NC": {
-        "dairy_vaccinated": 99,
         "commercial_beef_vaccinated": 10427,
         "pigs_vaccinated": 0,
         "communal_vaccinated": 5553
       },
-      "NW": {
-        "dairy_vaccinated": 5662,
-        "commercial_beef_vaccinated": 0,
-        "pigs_vaccinated": 0,
-        "communal_vaccinated": 0
-      },
       "LP": {
-        "dairy_vaccinated": 5475,
         "commercial_beef_vaccinated": 36022,
         "pigs_vaccinated": 0,
         "communal_vaccinated": 58514
       },
       "MP": {
-        "dairy_vaccinated": 9341,
         "commercial_beef_vaccinated": 49948,
         "pigs_vaccinated": 0,
         "communal_vaccinated": 73796
       },
       "KZN": {
-        "dairy_vaccinated": 265942,
         "commercial_beef_vaccinated": 20000,
         "pigs_vaccinated": 16000,
         "communal_vaccinated": 0
       },
       "FS": {
-        "dairy_vaccinated": 13554,
         "commercial_beef_vaccinated": 135446,
         "pigs_vaccinated": 3000,
         "communal_vaccinated": 0
       },
       "GP": {
-        "dairy_vaccinated": 25278,
         "commercial_beef_vaccinated": 21427,
         "pigs_vaccinated": 0,
         "communal_vaccinated": 58588
@@ -1558,8 +1538,8 @@ if (chartJsReady && data.rpo) try {
   const rpoTotals = data.rpo.totals;
   new Chart(safeEl('rpoClassChart'), {
     type:'doughnut',
-    data:{ labels:['Dairy','Commercial Beef','Pigs','Communal'],
-      datasets:[{ data:[rpoTotals.dairy_vaccinated, rpoTotals.commercial_beef_vaccinated, rpoTotals.pigs_vaccinated, rpoTotals.communal_vaccinated],
+    data:{ labels:['Commercial Beef','Pigs','Communal'],
+      datasets:[{ data:[rpoTotals.commercial_beef_vaccinated, rpoTotals.pigs_vaccinated, rpoTotals.communal_vaccinated],
         backgroundColor:[BRAND.pine, BRAND.olive, BRAND.sage, BRAND.paleSage],
         borderWidth:2, borderColor:BRAND.white }]},
     options:{ responsive:true, maintainAspectRatio:false,

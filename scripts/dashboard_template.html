@@ -457,7 +457,7 @@
   <section>
     <div class="kicker">Commodity organisation view</div>
     <h2>RPO breakdown by animal classification.</h2>
-    <p style="color:var(--charcoal);font-size:14px;margin-top:calc(-1 * var(--sp-6));margin-bottom:var(--sp-6)">Submitted by the Red Meat Producers' Organisation. Splits animals vaccinated into Dairy, Commercial Beef, Pigs and Communal categories. The RPO classification differs from the AgriSA Commercial and Communal split.</p>
+    <p style="color:var(--charcoal);font-size:14px;margin-top:calc(-1 * var(--sp-6));margin-bottom:var(--sp-6)">Submitted by the Red Meat Producers' Organisation. Splits animals vaccinated into Commercial Beef, Pigs and Communal categories. Dairy cattle are reported separately in the MPO section below.</p>
     <div class="grid-2">
       <div class="card">
         <h3>Animals vaccinated by classification.</h3>
@@ -949,8 +949,8 @@ if (chartJsReady && data.rpo) try {
   const rpoTotals = data.rpo.totals;
   new Chart(safeEl('rpoClassChart'), {
     type:'doughnut',
-    data:{ labels:['Dairy','Commercial Beef','Pigs','Communal'],
-      datasets:[{ data:[rpoTotals.dairy_vaccinated, rpoTotals.commercial_beef_vaccinated, rpoTotals.pigs_vaccinated, rpoTotals.communal_vaccinated],
+    data:{ labels:['Commercial Beef','Pigs','Communal'],
+      datasets:[{ data:[rpoTotals.commercial_beef_vaccinated, rpoTotals.pigs_vaccinated, rpoTotals.communal_vaccinated],
         backgroundColor:[BRAND.pine, BRAND.olive, BRAND.sage, BRAND.paleSage],
         borderWidth:2, borderColor:BRAND.white }]},
     options:{ responsive:true, maintainAspectRatio:false,
