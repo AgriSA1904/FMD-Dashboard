@@ -832,3 +832,39 @@ EC: ~157,258 unvaccinated dairy animals remain; ~30,000 more doses needed.
 3. **MP mass vaccination 11 May** — MPO flagged rescheduled Ministerial event; watch for outcome report.
 4. **EC pptx ARC/BVI discrepancy** — still outstanding; confirm with EC-DRDAR.
 5. **FS 5-case gap at 24 Apr** (from session 5) and **7-case gap at 8 May** — confirm Mangaung Met figures at next FS JOC.
+
+---
+
+## 2026-05-12 — Full sync: LP 7-May PCM, MPO Week 29, EC/FS data restored
+
+**master_data.csv: 997 rows (997 data rows)**
+
+### What was fixed / added
+
+**EC-DARD data restored (07 May 2026)**
+Session 7 ran from a different master baseline and the EC-DARD rows were lost.
+Re-added: positive_cases=282, suspected=220, negative=14,
+animals_vaccinated=309,935 (v2, supersedes EC-DRDAR 469,955),
+commercial_vaccinated=164,234, communal_vaccinated=145,701,
+doses_received all/all=469,995 and per-vaccine-type breakdown.
+
+**FS-DARD data restored (08 May 2026)**
+Same baseline issue. Re-added: positive_cases=473, suspected=467,
+doses_received all/all=838,400 (Bioaftogen 370k + DollVet 466.1k + OBP 2.3k),
+animals_vaccinated=399,397.
+
+**LP PCM 7 May 2026 — LDARD presentation (data as at 06 May 2026)**
+Disease: positive=61 (49+12 Day0), suspected=74, negative=51, pending=237, closed=5.
+Vaccination (07 May): total=192,485 — Comm=103,095, Communal=77,516, Emerging=11,874.
+By district: Capricorn=40,228, Mopani=29,569, Sekhukhune=20,328, Vhembe=38,872, Waterberg=63,488.
+New vaccine allocations: DollVet +150,000, piggery-specific +30,000.
+
+**MPO Week 29 (snapshot 08 May 2026)**
+National dairy vaccinated: 729,692 (up from 579,917 in Week 28; WC now dairy-specific 140,746).
+Confirmed dairy farms: 171 (+2). Active dairy farms: 124 (+2). KZN 2 new cases.
+Per-province active dairy FMD cases restored (Week 28 map data).
+
+**Build script fixes**
+- MPO schema unified: dairy_vaccinated, dairy_cows_vaccinated, dairy_farms_active_fmd all recognised.
+- LDARD added to prefer_org for all province metrics.
+- LP animals_vaccinated row corrected to vaccine_type=all.

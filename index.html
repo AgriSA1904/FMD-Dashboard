@@ -658,24 +658,24 @@ const DASHBOARD_DATA = {
       "name": "Eastern Cape",
       "as_of": "2026-05-08",
       "herd": 2895096,
-      "positive": 166,
+      "positive": 282,
       "suspected": 220,
       "negative": 14,
       "pending": 0,
       "received": 563758,
-      "vaccinated": 469955
+      "vaccinated": 309935
     },
     {
       "code": "FS",
       "name": "Free State",
       "as_of": "2026-05-08",
       "herd": 1928862,
-      "positive": 456,
-      "suspected": 361,
+      "positive": 473,
+      "suspected": 467,
       "negative": 0,
       "pending": 0,
-      "received": 397340,
-      "vaccinated": 353447
+      "received": 838400,
+      "vaccinated": 399397
     },
     {
       "code": "GP",
@@ -706,12 +706,12 @@ const DASHBOARD_DATA = {
       "name": "Limpopo",
       "as_of": "2026-05-08",
       "herd": 1007316,
-      "positive": 40,
-      "suspected": 56,
-      "negative": 43,
-      "pending": 189,
+      "positive": 61,
+      "suspected": 74,
+      "negative": 51,
+      "pending": 237,
       "received": 251680,
-      "vaccinated": 158347
+      "vaccinated": 192485
     },
     {
       "code": "MP",
@@ -844,17 +844,17 @@ const DASHBOARD_DATA = {
     "unallocated": 358480
   },
   "national": {
-    "positive": 1536,
-    "suspected": 834,
-    "negative": 60,
-    "pending": 191,
-    "received": 3031698,
-    "administered": 2364086,
+    "positive": 1690,
+    "suspected": 958,
+    "negative": 68,
+    "pending": 239,
+    "received": 3472758,
+    "administered": 2284154,
     "herd_cattle": 12496199,
-    "balance": 667612,
-    "delta_received": 202838,
-    "delta_administered": 245066,
-    "delta_positive": 62,
+    "balance": 1188604,
+    "delta_received": 643898,
+    "delta_administered": 165134,
+    "delta_positive": 216,
     "prior_snapshot": "2026-04-24",
     "live_snapshot": "2026-05-11"
   },
@@ -924,9 +924,9 @@ const DASHBOARD_DATA = {
     "national_total": 1214088
   },
   "mpo": {
-    "national_dairy_vaccinated": null,
-    "confirmed_farms": null,
-    "active_farms": null,
+    "national_dairy_vaccinated": 729692,
+    "confirmed_farms": 171,
+    "active_farms": 124,
     "snapshot_date": "2026-05-11",
     "source_label": "MPO Week 28 \u2014 dairy industry update",
     "wc_note": "Western Cape: 167,124 animals vaccinated \u2014 not exclusively dairy; excluded from national total.",
@@ -934,43 +934,43 @@ const DASHBOARD_DATA = {
     "by_province": {
       "KZN": {
         "name": "KwaZulu-Natal",
-        "dairy_vaccinated": 0,
-        "active_cases": 0
+        "dairy_vaccinated": 360200,
+        "active_cases": 60
       },
       "EC": {
         "name": "Eastern Cape",
-        "dairy_vaccinated": 0,
-        "active_cases": 0
+        "dairy_vaccinated": 177130,
+        "active_cases": 18
       },
       "FS": {
         "name": "Free State",
-        "dairy_vaccinated": 0,
-        "active_cases": 0
+        "dairy_vaccinated": 15104,
+        "active_cases": 10
       },
       "LP": {
         "name": "Limpopo",
-        "dairy_vaccinated": 0,
-        "active_cases": 0
+        "dairy_vaccinated": 5475,
+        "active_cases": 1
       },
       "GP": {
         "name": "Gauteng",
-        "dairy_vaccinated": 0,
-        "active_cases": 0
+        "dairy_vaccinated": 14832,
+        "active_cases": 3
       },
       "MP": {
         "name": "Mpumalanga",
-        "dairy_vaccinated": 0,
-        "active_cases": 0
+        "dairy_vaccinated": 9863,
+        "active_cases": 17
       },
       "NW": {
         "name": "North West",
-        "dairy_vaccinated": 0,
-        "active_cases": 0
+        "dairy_vaccinated": 6342,
+        "active_cases": 7
       },
       "WC": {
         "name": "Western Cape",
-        "dairy_vaccinated": 0,
-        "active_cases": 0
+        "dairy_vaccinated": 140746,
+        "active_cases": 6
       },
       "NC": {
         "name": "Northern Cape",
@@ -980,8 +980,8 @@ const DASHBOARD_DATA = {
     }
   },
   "cross_source": {
-    "agrisa_received": 3031698,
-    "agrisa_administered": 2364086,
+    "agrisa_received": 3472758,
+    "agrisa_administered": 2284154,
     "rpo_received": 2532849,
     "rpo_administered": 1214088
   },
@@ -1062,21 +1062,21 @@ const DASHBOARD_DATA = {
     {
       "code": "EC",
       "name": "Eastern Cape",
-      "joc": 469955,
+      "joc": 309935,
       "joc_date": "2026-05-08",
       "ministerial": 376122,
       "ministerial_date": "2026-04-23",
-      "diff": 93833,
-      "flag": null
+      "diff": -66187,
+      "flag": "critical"
     },
     {
       "code": "FS",
       "name": "Free State",
-      "joc": 353447,
+      "joc": 399397,
       "joc_date": "2026-05-08",
       "ministerial": 446527,
       "ministerial_date": "2026-04-23",
-      "diff": -93080,
+      "diff": -47130,
       "flag": "critical"
     },
     {
@@ -1102,12 +1102,12 @@ const DASHBOARD_DATA = {
     {
       "code": "LP",
       "name": "Limpopo",
-      "joc": 158347,
+      "joc": 192485,
       "joc_date": "2026-05-08",
       "ministerial": 183770,
       "ministerial_date": "2026-04-23",
-      "diff": -25423,
-      "flag": "critical"
+      "diff": 8715,
+      "flag": null
     },
     {
       "code": "MP",
@@ -1161,9 +1161,17 @@ const DASHBOARD_DATA = {
     },
     {
       "severity": "critical",
+      "province": "EC",
+      "title": "Eastern Cape: JOC figure lower than ministerial briefing",
+      "detail": "Ministerial (2026-04-23) reported 376,122 cattle vaccinated; current JOC/AgriSA figure is 309,935 \u2014 gap of 66,187. Impossible if both are cumulative.",
+      "action": "Reconcile AgriSA provincial return against ministerial figure. Determine whether ministerial count includes additional species (pigs, sheep) beyond cattle only.",
+      "owner": "Eastern Cape AgriSA affiliate"
+    },
+    {
+      "severity": "critical",
       "province": "FS",
       "title": "Free State: JOC figure lower than ministerial briefing",
-      "detail": "Ministerial (2026-04-23) reported 446,527 cattle vaccinated; current JOC/AgriSA figure is 353,447 \u2014 gap of 93,080. Impossible if both are cumulative.",
+      "detail": "Ministerial (2026-04-23) reported 446,527 cattle vaccinated; current JOC/AgriSA figure is 399,397 \u2014 gap of 47,130. Impossible if both are cumulative.",
       "action": "Reconcile AgriSA provincial return against ministerial figure. Determine whether ministerial count includes additional species (pigs, sheep) beyond cattle only.",
       "owner": "Free State AgriSA affiliate"
     },
@@ -1174,14 +1182,6 @@ const DASHBOARD_DATA = {
       "detail": "Ministerial (2026-04-23) reported 766,508 cattle vaccinated; current JOC/AgriSA figure is 648,609 \u2014 gap of 117,899. Impossible if both are cumulative.",
       "action": "Reconcile AgriSA provincial return against ministerial figure. Determine whether ministerial count includes additional species (pigs, sheep) beyond cattle only.",
       "owner": "KwaZulu-Natal AgriSA affiliate"
-    },
-    {
-      "severity": "critical",
-      "province": "LP",
-      "title": "Limpopo: JOC figure lower than ministerial briefing",
-      "detail": "Ministerial (2026-04-23) reported 183,770 cattle vaccinated; current JOC/AgriSA figure is 158,347 \u2014 gap of 25,423. Impossible if both are cumulative.",
-      "action": "Reconcile AgriSA provincial return against ministerial figure. Determine whether ministerial count includes additional species (pigs, sheep) beyond cattle only.",
-      "owner": "Limpopo AgriSA affiliate"
     },
     {
       "severity": "critical",
@@ -1251,6 +1251,7 @@ const DASHBOARD_DATA = {
     "inbox/Limpopo/DRAFT FMD PCM MEETING PACK 20260423 REV0.pdf",
     "inbox/Limpopo/FMD PCM MEETING PACK 20260409 REV0.pdf",
     "inbox/Limpopo/FMD PCM MEETING PACK 20260507 REV1.pdf",
+    "inbox/Limpopo/FMD PCM MEETING PACK 20260514 REV0.pdf",
     "inbox/MPO/Week 28- Update on the state of FMD and vaccine rollouts in the dairy industry.pdf",
     "inbox/MPO/Week 29- Update on the state of FMD and vaccine rollouts in the dairy industry.pdf",
     "inbox/Media Statement Minister Steenhuisen announces progress in Foot and mouth disease vaccination strategy.pdf",

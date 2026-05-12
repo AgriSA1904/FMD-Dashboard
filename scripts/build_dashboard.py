@@ -234,14 +234,23 @@ def build_mpo_classification(rows):
         p = r["province"]
         by_prov.setdefault(p, {"name": PROV_NAMES.get(p, p),
                                 "dairy_vaccinated": 0, "active_cases": 0})
-        if r["metric"] == "dairy_vaccinated":
+        VACC_METRICS  = {"dairy_vaccinated", "dairy_cows_vaccinated"}
+        ACTIVE_METRICS = {"dairy_active_cases", "dairy_farms_active_fmd",
+                          "dairy_active_farms"}
+        if r["metric"] in VACC_METRICS:
             by_prov[p]["dairy_vaccinated"] = int(num(r["value"]) or 0)
-        elif r["metric"] == "dairy_active_cases":
+        elif r["metric"] in ACTIVE_METRICS:
             by_prov[p]["active_cases"] = int(num(r["value"]) or 0)
 
     def mpo_nat(metric):
+        METRIC_ALIASES = {
+            "dairy_vaccinated":    {"dairy_vaccinated","dairy_cows_vaccinated"},
+            "dairy_active_farms":  {"dairy_active_farms","dairy_farms_active_fmd","dairy_active_cases"},
+            "dairy_confirmed_farms":{"dairy_confirmed_farms","dairy_farms_confirmed_fmd"},
+        }
+        aliases = METRIC_ALIASES.get(metric, {metric})
         matches = [r for r in rows if r["source_org"] == "MPO"
-                   and r["province"] == "national" and r["metric"] == metric
+                   and r["province"] == "national" and r["metric"] in aliases
                    and r["superseded_by"] == ""]
         if not matches:
             return None
