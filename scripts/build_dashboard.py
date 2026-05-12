@@ -216,7 +216,9 @@ def build_rpo_classification(rows):
         v = num(r["value"]) or 0
         by_prov.setdefault(prov, dict.fromkeys(metrics, 0))[m] = int(v)
         metrics[m] += int(v)
-    return {"totals": metrics, "by_province": by_prov,
+    # Province order matches the standard PROVINCES list for consistent display
+    ordered_prov = {code: by_prov[code] for code, _ in PROVINCES if code in by_prov}
+    return {"totals": metrics, "by_province": ordered_prov,
             "national_total": int(latest_value(rows, effective_date="2026-04-28",
                                                province="national",
                                                metric="animals_vaccinated",

@@ -464,15 +464,20 @@
         <div class="chart-wrap"><canvas id="rpoClassChart"></canvas></div>
       </div>
       <div class="card">
-        <h3>Cross source comparison.</h3>
-        <p style="font-size:13px;color:var(--charcoal);margin-bottom:var(--sp-4)">AgriSA and RPO report different national totals. The gap reflects different definitions and coverage scopes, not necessarily a data error.</p>
-        <table>
+        <h3>Animals vaccinated by province and classification.</h3>
+        <p style="font-size:13px;color:var(--charcoal);margin-bottom:var(--sp-4)">RPO-reported vaccination totals per province, split by Commercial Beef, Pigs and Communal. Snapshot as at 28 April 2026.</p>
+        <table id="rpoProvTable">
           <thead>
-            <tr><th>Metric</th><th class="num">AgriSA</th><th class="num">RPO</th><th class="num">Gap</th></tr>
+            <tr>
+              <th>Province</th>
+              <th class="num">Commercial Beef</th>
+              <th class="num">Pigs</th>
+              <th class="num">Communal</th>
+              <th class="num">Total</th>
+            </tr>
           </thead>
-          <tbody id="crossSourceTable"></tbody>
+          <tbody id="rpoProvTableBody"></tbody>
         </table>
-        <p style="font-size:12px;color:var(--charcoal);margin-top:var(--sp-4);font-style:italic">RPO total likely covers commercial cattle classifications only. AgriSA total includes broader provincial returns.</p>
       </div>
     </div>
   </section>
@@ -959,22 +964,41 @@ if (chartJsReady && data.rpo) try {
   });
 } catch(e) { showError('rpoClassChart', 'RPO classification chart', e); }
 
-// ── Cross-source comparison table ─────────────────────────────────────────────
-if (data.cross_source) try {
-  const cs = data.cross_source;
-  const csRows = [
-    ['Vaccines received',  cs.agrisa_received,    cs.rpo_received],
-    ['Animals vaccinated', cs.agrisa_administered, cs.rpo_administered],
-  ];
-  const csEl = safeEl('crossSourceTable');
-  if (csEl) csEl.innerHTML = csRows.map(([label, a, r]) => `
-    <tr>
-      <td>${label}</td>
-      <td class="num">${fmt(a)}</td>
-      <td class="num">${fmt(r)}</td>
-      <td class="num">${fmt(a - r)}</td>
-    </tr>`).join('');
-} catch(e) { showError('crossSourceTable', 'Cross-source table', e); }
+// ── RPO provincial breakdown table ───────────────────────────────────────────
+if (data.rpo && data.rpo.by_province) try {
+  const byProv = data.rpo.by_province;
+  const tbody = safeEl('rpoProvTableBody');
+  if (tbody) {
+    const PROV_NAMES = {EC:'Eastern Cape',FS:'Free State',GP:'Gauteng',KZN:'KwaZulu-Natal',
+      LP:'Limpopo',MP:'Mpumalanga',NW:'North West',NC:'Northern Cape',WC:'Western Cape'};
+    let rows = '';
+    let totComm=0, totPigs=0, totComm2=0;
+    Object.entries(byProv).forEach(([code, v]) => {
+      const comm  = v.commercial_beef_vaccinated || 0;
+      const pigs  = v.pigs_vaccinated || 0;
+      const comm2 = v.communal_vaccinated || 0;
+      const total = comm + pigs + comm2;
+      if (total === 0) return;
+      totComm += comm; totPigs += pigs; totComm2 += comm2;
+      rows += `<tr>
+        <td>${PROV_NAMES[code] || code}</td>
+        <td class="num">${fmt(comm)}</td>
+        <td class="num">${pigs > 0 ? fmt(pigs) : '—'}</td>
+        <td class="num">${comm2 > 0 ? fmt(comm2) : '—'}</td>
+        <td class="num"><strong>${fmt(total)}</strong></td>
+      </tr>`;
+    });
+    const grandTotal = totComm + totPigs + totComm2;
+    rows += `<tr style="border-top:2px solid var(--pine);font-weight:600">
+      <td>Total</td>
+      <td class="num">${fmt(totComm)}</td>
+      <td class="num">${fmt(totPigs)}</td>
+      <td class="num">${fmt(totComm2)}</td>
+      <td class="num">${fmt(grandTotal)}</td>
+    </tr>`;
+    tbody.innerHTML = rows;
+  }
+} catch(e) { showError('rpoProvTable', 'RPO provincial table', e); }
 
 // ── MPO dairy section ─────────────────────────────────────────────────────────
 if (data.mpo) try {
