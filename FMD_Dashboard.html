@@ -471,8 +471,8 @@
             <tr>
               <th>Province</th>
               <th class="num">Commercial Beef</th>
-              <th class="num">Pigs</th>
               <th class="num">Communal</th>
+              <th class="num">Pigs</th>
               <th class="num">Total</th>
             </tr>
           </thead>
@@ -1572,8 +1572,8 @@ if (data.rpo && data.rpo.by_province) try {
       rows += `<tr>
         <td>${PROV_NAMES[code] || code}</td>
         <td class="num">${fmt(comm)}</td>
-        <td class="num">${pigs > 0 ? fmt(pigs) : '—'}</td>
         <td class="num">${comm2 > 0 ? fmt(comm2) : '—'}</td>
+        <td class="num">${pigs > 0 ? fmt(pigs) : '—'}</td>
         <td class="num"><strong>${fmt(total)}</strong></td>
       </tr>`;
     });
@@ -1581,8 +1581,8 @@ if (data.rpo && data.rpo.by_province) try {
     rows += `<tr style="border-top:2px solid var(--pine);font-weight:600">
       <td>Total</td>
       <td class="num">${fmt(totComm)}</td>
-      <td class="num">${fmt(totPigs)}</td>
       <td class="num">${fmt(totComm2)}</td>
+      <td class="num">${fmt(totPigs)}</td>
       <td class="num">${fmt(grandTotal)}</td>
     </tr>`;
     tbody.innerHTML = rows;
