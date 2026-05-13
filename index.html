@@ -351,7 +351,7 @@
       </div>
       <div class="badge-block">
         <span class="pill-status">As at 2026-05-01</span>
-        <span class="last-updated">Built 2026-05-12</span>
+        <span class="last-updated">Built 2026-05-13</span>
       </div>
     </div>
   </div>
@@ -456,33 +456,6 @@
     </div>
   </section>
 
-  <section>
-    <div class="kicker">Commodity organisation view</div>
-    <h2>RPO breakdown by animal classification.</h2>
-    <p style="color:var(--charcoal);font-size:14px;margin-top:calc(-1 * var(--sp-6));margin-bottom:var(--sp-6)">Submitted by the Red Meat Producers' Organisation. Splits animals vaccinated into Commercial Beef, Pigs and Communal categories. Dairy cattle are reported separately in the MPO section below.</p>
-    <div class="grid-2">
-      <div class="card">
-        <h3>Animals vaccinated by classification.</h3>
-        <div class="chart-wrap"><canvas id="rpoClassChart"></canvas></div>
-      </div>
-      <div class="card">
-        <h3>Animals vaccinated by province and classification.</h3>
-        <p style="font-size:13px;color:var(--charcoal);margin-bottom:var(--sp-4)">RPO-reported vaccination totals per province, split by Commercial Beef, Pigs and Communal. Snapshot as at 28 April 2026.</p>
-        <table id="rpoProvTable">
-          <thead>
-            <tr>
-              <th>Province</th>
-              <th class="num">Commercial Beef</th>
-              <th class="num">Communal</th>
-              <th class="num">Pigs</th>
-              <th class="num">Total</th>
-            </tr>
-          </thead>
-          <tbody id="rpoProvTableBody"></tbody>
-        </table>
-      </div>
-    </div>
-  </section>
 
 
   <section>
@@ -594,7 +567,7 @@
           <li><strong>No batch, expiry or cold chain data.</strong>Cumulative receipts only. The current balance could be ageing toward spoilage with no visibility.</li>
           <li><strong>The reporting schema changed mid-period.</strong>Reports before 1 April 2026 use a simpler schema. Later weeks add State and Private Vet and Commercial and Communal columns.</li>
           <li><strong>The national herd denominator changed silently.</strong>From 12 470 648 on 1 April 2026 to 12 496 199 from 17 April 2026 onwards, with no annotation.</li>
-          <li><strong>Commodity submissions partial.</strong>MPO and RPO have submitted to date. NWGA (wool growers) and SAPPO (pork producers) returns are not yet in the dataset.</li>
+          <li><strong>Commodity submissions partial.</strong>MPO has submitted to date. NWGA (wool growers) and SAPPO (pork producers) returns are not yet in the dataset.</li>
         </ul>
       </div>
     </div>
@@ -658,7 +631,7 @@
 <script>
 const DASHBOARD_DATA = {
   "snapshot_date": "2026-05-11",
-  "build_date": "2026-05-12",
+  "build_date": "2026-05-13",
   "provinces": [
     {
       "code": "EC",
@@ -865,51 +838,6 @@ const DASHBOARD_DATA = {
     "prior_snapshot": "2026-04-24",
     "live_snapshot": "2026-05-11"
   },
-  "rpo": {
-    "totals": {
-      "commercial_beef_vaccinated": 289910,
-      "pigs_vaccinated": 19000,
-      "communal_vaccinated": 280730
-    },
-    "by_province": {
-      "EC": {
-        "commercial_beef_vaccinated": 16640,
-        "pigs_vaccinated": 0,
-        "communal_vaccinated": 84279
-      },
-      "FS": {
-        "commercial_beef_vaccinated": 135446,
-        "pigs_vaccinated": 3000,
-        "communal_vaccinated": 0
-      },
-      "GP": {
-        "commercial_beef_vaccinated": 21427,
-        "pigs_vaccinated": 0,
-        "communal_vaccinated": 58588
-      },
-      "KZN": {
-        "commercial_beef_vaccinated": 20000,
-        "pigs_vaccinated": 16000,
-        "communal_vaccinated": 0
-      },
-      "LP": {
-        "commercial_beef_vaccinated": 36022,
-        "pigs_vaccinated": 0,
-        "communal_vaccinated": 58514
-      },
-      "MP": {
-        "commercial_beef_vaccinated": 49948,
-        "pigs_vaccinated": 0,
-        "communal_vaccinated": 73796
-      },
-      "NC": {
-        "commercial_beef_vaccinated": 10427,
-        "pigs_vaccinated": 0,
-        "communal_vaccinated": 5553
-      }
-    },
-    "national_total": 1214088
-  },
   "mpo": {
     "national_dairy_vaccinated": 729692,
     "confirmed_farms": 171,
@@ -965,12 +893,6 @@ const DASHBOARD_DATA = {
         "active_cases": 0
       }
     }
-  },
-  "cross_source": {
-    "agrisa_received": 3472758,
-    "agrisa_administered": 2284154,
-    "rpo_received": 2532849,
-    "rpo_administered": 1214088
   },
   "ministerial": {
     "doses_procured": 6000000,
@@ -1420,7 +1342,7 @@ try {
 let chartJsReady = (typeof Chart !== 'undefined');
 if (!chartJsReady) {
   console.warn('[FMD] Chart.js did not load — charts will be skipped');
-  ['hotspotChart','caseTrend','vaxTrend','provVax','sourceChart','coverageChart','rpoClassChart','mpoDairyVaxChart','mpoActiveCasesChart']
+  ['hotspotChart','caseTrend','vaxTrend','provVax','sourceChart','coverageChart','mpoDairyVaxChart','mpoActiveCasesChart']
     .forEach(id => showError(id, 'Chart (Chart.js failed to load)', new Error('CDN unavailable')));
 }
 
@@ -1553,43 +1475,8 @@ if (chartJsReady && data.rpo) try {
       plugins:{legend:{position:'bottom', labels:{boxWidth:12, padding:10}}},
       cutout:'62%' }
   });
-} catch(e) { showError('rpoClassChart', 'RPO classification chart', e); }
+} catch(e) { showError( 'RPO classification chart', e); }
 
-// ── RPO provincial breakdown table ───────────────────────────────────────────
-if (data.rpo && data.rpo.by_province) try {
-  const byProv = data.rpo.by_province;
-  const tbody = safeEl('rpoProvTableBody');
-  if (tbody) {
-    const PROV_NAMES = {EC:'Eastern Cape',FS:'Free State',GP:'Gauteng',KZN:'KwaZulu-Natal',
-      LP:'Limpopo',MP:'Mpumalanga',NW:'North West',NC:'Northern Cape',WC:'Western Cape'};
-    let rows = '';
-    let totComm=0, totPigs=0, totComm2=0;
-    Object.entries(byProv).forEach(([code, v]) => {
-      const comm  = v.commercial_beef_vaccinated || 0;
-      const pigs  = v.pigs_vaccinated || 0;
-      const comm2 = v.communal_vaccinated || 0;
-      const total = comm + pigs + comm2;
-      if (total === 0) return;
-      totComm += comm; totPigs += pigs; totComm2 += comm2;
-      rows += `<tr>
-        <td>${PROV_NAMES[code] || code}</td>
-        <td class="num">${fmt(comm)}</td>
-        <td class="num">${comm2 > 0 ? fmt(comm2) : '—'}</td>
-        <td class="num">${pigs > 0 ? fmt(pigs) : '—'}</td>
-        <td class="num"><strong>${fmt(total)}</strong></td>
-      </tr>`;
-    });
-    const grandTotal = totComm + totPigs + totComm2;
-    rows += `<tr style="border-top:2px solid var(--pine);font-weight:600">
-      <td>Total</td>
-      <td class="num">${fmt(totComm)}</td>
-      <td class="num">${fmt(totComm2)}</td>
-      <td class="num">${fmt(totPigs)}</td>
-      <td class="num">${fmt(grandTotal)}</td>
-    </tr>`;
-    tbody.innerHTML = rows;
-  }
-} catch(e) { showError('rpoProvTable', 'RPO provincial table', e); }
 
 // ── MPO dairy section ─────────────────────────────────────────────────────────
 if (data.mpo) try {

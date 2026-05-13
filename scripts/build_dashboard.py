@@ -455,23 +455,7 @@ def build_dashboard():
         "weekly": build_weekly(rows),
         "sources": build_source_mix(rows, live_snapshot),
         "national": nat,
-        "rpo": build_rpo_classification(rows),
         "mpo": build_mpo_classification(rows),
-    }
-    # Cross-source totals for the discrepancy panel
-    rpo_nat_recv = next((num(r["value"]) for r in rows
-                         if r["source_org"] == "RPO" and r["province"] == "national"
-                         and r["metric"] == "doses_received" and r["vaccine_type"] == "all"
-                         and r["superseded_by"] == ""), None)
-    rpo_nat_adm = next((num(r["value"]) for r in rows
-                        if r["source_org"] == "RPO" and r["province"] == "national"
-                        and r["metric"] == "animals_vaccinated" and r["vaccine_type"] == "all"
-                        and r["superseded_by"] == ""), None)
-    payload["cross_source"] = {
-        "agrisa_received": int(nat["received"]),         # province-summed
-        "agrisa_administered": int(nat["administered"]), # province-summed
-        "rpo_received": int(rpo_nat_recv or 0),
-        "rpo_administered": int(rpo_nat_adm or 0),
     }
 
     # Week-on-week deltas vs prior weekly snapshot at national level
