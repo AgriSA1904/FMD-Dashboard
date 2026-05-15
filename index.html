@@ -745,7 +745,7 @@ const DASHBOARD_DATA = {
       "date": "2026-03-25",
       "received": 2077682,
       "administered": 828868,
-      "positive": 1067,
+      "positive": 997,
       "suspected": null,
       "pending": null
     },
@@ -753,33 +753,33 @@ const DASHBOARD_DATA = {
       "date": "2026-03-26",
       "received": 2296037,
       "administered": 1125880,
-      "positive": 1080,
-      "suspected": 284,
-      "pending": 179
+      "positive": 997,
+      "suspected": null,
+      "pending": null
     },
     {
       "date": "2026-04-01",
       "received": 2570940,
       "administered": 1738424,
-      "positive": 1325,
-      "suspected": 728,
-      "pending": 189
+      "positive": 1345,
+      "suspected": null,
+      "pending": null
     },
     {
       "date": "2026-04-10",
       "received": 2570940,
       "administered": 1738424,
-      "positive": 1325,
-      "suspected": 728,
+      "positive": 1345,
+      "suspected": 56,
       "pending": 189
     },
     {
       "date": "2026-04-17",
       "received": 2678900,
       "administered": 2053533,
-      "positive": 1348,
-      "suspected": 818,
-      "pending": 191
+      "positive": 1345,
+      "suspected": 832,
+      "pending": 212
     },
     {
       "date": "2026-04-24",
@@ -793,8 +793,8 @@ const DASHBOARD_DATA = {
       "date": "2026-05-01",
       "received": 2828860,
       "administered": 2148494,
-      "positive": 1474,
-      "suspected": 868,
+      "positive": 1536,
+      "suspected": 872,
       "pending": 191
     }
   ],
@@ -806,8 +806,8 @@ const DASHBOARD_DATA = {
     "unallocated": 358480
   },
   "national": {
-    "positive": 1474,
-    "suspected": 868,
+    "positive": 1536,
+    "suspected": 872,
     "negative": 60,
     "pending": 191,
     "received": 2828860,
@@ -816,7 +816,7 @@ const DASHBOARD_DATA = {
     "balance": 680366,
     "delta_received": 0,
     "delta_administered": 29474,
-    "delta_positive": 0
+    "delta_positive": 62
   },
   "mpo": {
     "weekly": [
@@ -1290,8 +1290,8 @@ try {
   const coverage = (N.administered / N.herd_cattle * 100);
   const fullCoverageNeed = N.herd_cattle * 2;
   const kpis = [
-    { label:'Confirmed outbreaks (ICC national)', value: fmt(N.positive),
-      sub:N.delta_positive===0?'ICC figure unchanged from prior period — likely understated':`Δ ${N.delta_positive>=0?'+':''}${N.delta_positive} since prior week` },
+    { label:'Confirmed outbreaks', value: fmt(N.positive),
+      sub:N.delta_positive===0?'No change from prior consolidated period — awaiting updated provincial JOC submissions':`Δ ${N.delta_positive>=0?'+':''}${N.delta_positive} since prior week` },
     { label:'Suspected and pending', value: fmt(N.suspected + N.pending),
       sub:`${fmt(N.suspected)} suspected, ${fmt(N.pending)} pending` },
     { label:'Vaccines received', value: fmt(N.received),
