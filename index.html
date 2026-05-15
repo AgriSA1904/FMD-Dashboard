@@ -129,10 +129,15 @@
     color: var(--pine); letter-spacing: -0.5px; line-height: 1;
   }
   .kpi-sub { font-size: 13px; color: var(--charcoal); }
+  .kpi-delta { font-size: 12px; font-weight: 600; margin: var(--sp-2) 0 var(--sp-2); }
   .kpi-trend { font-size: 12px; font-weight: 600; margin-top: var(--sp-3); }
   .trend-up { color: var(--olive); }
   .trend-down { color: var(--charcoal); }
   .trend-flat { color: var(--charcoal); opacity: 0.7; }
+  .pos { color: var(--olive); }
+  .neg { color: #c0392b; }
+  .grid-3c { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: var(--sp-6); }
+  @media (max-width: 900px) { .grid-3c { grid-template-columns: 1fr; } }
 
   /* Layout */
   .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-6); }
@@ -455,24 +460,29 @@
   </section>
 
   <section>
-    <div class="kicker">Commodity organisation view</div>
-    <h2>RPO breakdown by animal classification.</h2>
-    <p style="color:var(--charcoal);font-size:14px;margin-top:calc(-1 * var(--sp-6));margin-bottom:var(--sp-6)">Submitted by the Red Meat Producers' Organisation. Splits animals vaccinated into Dairy, Commercial Beef, Pigs and Communal categories. The RPO classification differs from the AgriSA Commercial and Communal split.</p>
+    <div class="kicker">Dairy industry — MPO</div>
+    <h2>Dairy herd vaccination progress.</h2>
+    <p style="color:var(--charcoal);font-size:14px;margin-top:calc(-1 * var(--sp-6));margin-bottom:var(--sp-6)">Submitted by the Milk Producers' Organisation. Tracks dairy cows vaccinated and FMD farm status across provinces. Data as at the most recent MPO weekly report.</p>
+    <div class="grid-3c" style="margin-bottom:var(--sp-6)">
+      <div class="card" id="mpoDairyCowsKpi"></div>
+      <div class="card" id="mpoFarmsConfirmedKpi"></div>
+      <div class="card" id="mpoFarmsActiveKpi"></div>
+    </div>
     <div class="grid-2">
       <div class="card">
-        <h3>Animals vaccinated by classification.</h3>
-        <div class="chart-wrap"><canvas id="rpoClassChart"></canvas></div>
+        <h3>Dairy cows vaccinated per province.</h3>
+        <div class="chart-wrap tall"><canvas id="mpoDairyChart"></canvas></div>
       </div>
       <div class="card">
-        <h3>Cross source comparison.</h3>
-        <p style="font-size:13px;color:var(--charcoal);margin-bottom:var(--sp-4)">AgriSA and RPO report different national totals. The gap reflects different definitions and coverage scopes, not necessarily a data error.</p>
+        <h3>Week-on-week change.</h3>
         <table>
           <thead>
-            <tr><th>Metric</th><th class="num">AgriSA</th><th class="num">RPO</th><th class="num">Gap</th></tr>
+            <tr><th>Province</th><th class="num">Latest</th><th class="num">Prior week</th><th class="num">Change</th></tr>
           </thead>
-          <tbody id="crossSourceTable"></tbody>
+          <tbody id="mpoDairyTable"></tbody>
+          <tfoot id="mpoDairyFoot"></tfoot>
         </table>
-        <p style="font-size:12px;color:var(--charcoal);margin-top:var(--sp-4);font-style:italic">RPO total likely covers commercial cattle classifications only. AgriSA total includes broader provincial returns.</p>
+        <p style="font-size:12px;color:var(--charcoal);margin-top:var(--sp-4);font-style:italic">WC Week 29 decrease (167,124 → 140,746) likely reflects a methodology correction from total cattle to dairy-only. Both figures held in master and flagged for MPO confirmation.</p>
       </div>
     </div>
   </section>
@@ -641,7 +651,7 @@ const DASHBOARD_DATA = {
       "herd": 474928,
       "positive": 289,
       "suspected": 2,
-      "negative": 3,
+      "negative": 0,
       "pending": 0,
       "received": 284720,
       "vaccinated": 184036
@@ -651,8 +661,8 @@ const DASHBOARD_DATA = {
       "name": "KwaZulu-Natal",
       "as_of": "2026-05-15",
       "herd": 2726308,
-      "positive": 69,
-      "suspected": 72,
+      "positive": 0,
+      "suspected": 0,
       "negative": 0,
       "pending": 0,
       "received": 760040,
@@ -663,10 +673,10 @@ const DASHBOARD_DATA = {
       "name": "Limpopo",
       "as_of": "2026-05-11",
       "herd": 1007316,
-      "positive": 40,
-      "suspected": 56,
-      "negative": 43,
-      "pending": 189,
+      "positive": 0,
+      "suspected": 0,
+      "negative": 0,
+      "pending": 0,
       "received": 126720,
       "vaccinated": 128937
     },
@@ -687,7 +697,7 @@ const DASHBOARD_DATA = {
       "name": "North West",
       "as_of": "2026-05-08",
       "herd": 1383919,
-      "positive": 286,
+      "positive": 0,
       "suspected": 0,
       "negative": 0,
       "pending": 0,
@@ -699,10 +709,10 @@ const DASHBOARD_DATA = {
       "name": "Northern Cape",
       "as_of": "2026-05-08",
       "herd": 443893,
-      "positive": 2,
-      "suspected": 2,
+      "positive": 0,
+      "suspected": 0,
       "negative": 0,
-      "pending": 2,
+      "pending": 0,
       "received": 85600,
       "vaccinated": 28054
     },
@@ -712,7 +722,7 @@ const DASHBOARD_DATA = {
       "as_of": "2026-05-08",
       "herd": 458457,
       "positive": 25,
-      "suspected": 17,
+      "suspected": 0,
       "negative": 0,
       "pending": 0,
       "received": 330140,
@@ -813,76 +823,107 @@ const DASHBOARD_DATA = {
     "delta_administered": 29474,
     "delta_positive": 0
   },
-  "rpo": {
-    "totals": {
-      "dairy_vaccinated": 514110,
-      "commercial_beef_vaccinated": 289910,
-      "pigs_vaccinated": 19000,
-      "communal_vaccinated": 280730
-    },
-    "by_province": {
-      "EC": {
-        "dairy_vaccinated": 67576,
-        "commercial_beef_vaccinated": 16640,
-        "pigs_vaccinated": 0,
-        "communal_vaccinated": 84279
+  "mpo": {
+    "weekly": [
+      {
+        "date": "2026-05-01",
+        "EC": 168142,
+        "FS": 15104,
+        "GP": 14832,
+        "KZN": 360159,
+        "LP": 5475,
+        "MP": 9863,
+        "NW": 6342,
+        "NC": 0,
+        "WC": 167124,
+        "national": 747041
       },
-      "WC": {
-        "dairy_vaccinated": 121183,
-        "commercial_beef_vaccinated": 0,
-        "pigs_vaccinated": 0,
-        "communal_vaccinated": 0
-      },
-      "NC": {
-        "dairy_vaccinated": 99,
-        "commercial_beef_vaccinated": 10427,
-        "pigs_vaccinated": 0,
-        "communal_vaccinated": 5553
-      },
-      "NW": {
-        "dairy_vaccinated": 5662,
-        "commercial_beef_vaccinated": 0,
-        "pigs_vaccinated": 0,
-        "communal_vaccinated": 0
-      },
-      "LP": {
-        "dairy_vaccinated": 5475,
-        "commercial_beef_vaccinated": 36022,
-        "pigs_vaccinated": 0,
-        "communal_vaccinated": 58514
-      },
-      "MP": {
-        "dairy_vaccinated": 9341,
-        "commercial_beef_vaccinated": 49948,
-        "pigs_vaccinated": 0,
-        "communal_vaccinated": 73796
-      },
-      "KZN": {
-        "dairy_vaccinated": 265942,
-        "commercial_beef_vaccinated": 20000,
-        "pigs_vaccinated": 16000,
-        "communal_vaccinated": 0
-      },
-      "FS": {
-        "dairy_vaccinated": 13554,
-        "commercial_beef_vaccinated": 135446,
-        "pigs_vaccinated": 3000,
-        "communal_vaccinated": 0
-      },
-      "GP": {
-        "dairy_vaccinated": 25278,
-        "commercial_beef_vaccinated": 21427,
-        "pigs_vaccinated": 0,
-        "communal_vaccinated": 58588
+      {
+        "date": "2026-05-08",
+        "EC": 177130,
+        "FS": 15104,
+        "GP": 14832,
+        "KZN": 360200,
+        "LP": 5475,
+        "MP": 9863,
+        "NW": 6342,
+        "NC": 0,
+        "WC": 140746,
+        "national": 729692
       }
-    },
-    "national_total": 1214088
-  },
-  "cross_source": {
-    "agrisa_received": 2828860,
-    "agrisa_administered": 2148494,
-    "rpo_received": 2532849,
-    "rpo_administered": 1214088
+    ],
+    "latest_date": "2026-05-08",
+    "provinces": [
+      {
+        "code": "EC",
+        "name": "Eastern Cape",
+        "current": 177130,
+        "previous": 168142,
+        "change": 8988
+      },
+      {
+        "code": "FS",
+        "name": "Free State",
+        "current": 15104,
+        "previous": 15104,
+        "change": 0
+      },
+      {
+        "code": "GP",
+        "name": "Gauteng",
+        "current": 14832,
+        "previous": 14832,
+        "change": 0
+      },
+      {
+        "code": "KZN",
+        "name": "KwaZulu-Natal",
+        "current": 360200,
+        "previous": 360159,
+        "change": 41
+      },
+      {
+        "code": "LP",
+        "name": "Limpopo",
+        "current": 5475,
+        "previous": 5475,
+        "change": 0
+      },
+      {
+        "code": "MP",
+        "name": "Mpumalanga",
+        "current": 9863,
+        "previous": 9863,
+        "change": 0
+      },
+      {
+        "code": "NW",
+        "name": "North West",
+        "current": 6342,
+        "previous": 6342,
+        "change": 0
+      },
+      {
+        "code": "NC",
+        "name": "Northern Cape",
+        "current": 0,
+        "previous": 0,
+        "change": 0
+      },
+      {
+        "code": "WC",
+        "name": "Western Cape",
+        "current": 140746,
+        "previous": 167124,
+        "change": -26378
+      }
+    ],
+    "farms_confirmed": 171,
+    "farms_confirmed_date": "2026-05-08",
+    "farms_active": 124,
+    "farms_active_date": "2026-05-08",
+    "national_current": 729692,
+    "national_previous": 747041
   },
   "ministerial": {
     "doses_procured": 6000000,
@@ -932,12 +973,12 @@ const DASHBOARD_DATA = {
       {
         "date": "2026-05-04",
         "title": "Section 10 Routine Vaccination Scheme gazetted",
-        "detail": "Farmers may now vaccinate voluntarily under private vet supervision without waiting for the national rollout. Animals must be individually traceable and digitally recorded."
+        "detail": "Farmers may now vaccinate voluntarily under private vet supervision."
       },
       {
-        "date": "2026-05-05",
-        "title": "KwaZulu-Natal DMA formally lifted",
-        "detail": "The KZN Disease Management Area restrictions have been rescinded. Movement controls will transition to a unified province-wide protocol replacing the localised DMA rules."
+        "date": "2026-05-15",
+        "title": "KwaZulu-Natal DMA formally rescinded by gazette",
+        "detail": "Government Gazette No. 54686, GN 7484, 15 May 2026. Repeals GN 5997 of 17 March 2025."
       }
     ],
     "incoming_supply": [
@@ -1053,90 +1094,34 @@ const DASHBOARD_DATA = {
     {
       "severity": "critical",
       "province": "EC",
-      "title": "Eastern Cape: Animals vaccinated exceeds doses received",
-      "detail": "JOC reports 332,182 animals vaccinated but only 304,600 doses received in province. Likely a cumulative vs period reporting mismatch, or draw on pre-rollout stock.",
-      "action": "Confirm whether provincial figures are cumulative from rollout start or period-only. Request reconciliation of receipt and administration logs.",
-      "owner": "Eastern Cape AgriSA affiliate / JOC"
+      "title": "Eastern Cape: Vaccinated exceeds received",
+      "detail": "332,182 vaccinated vs 304,600 received.",
+      "action": "Confirm cumulative vs period reporting.",
+      "owner": "Eastern Cape affiliate"
     },
     {
       "severity": "critical",
       "province": "LP",
-      "title": "Limpopo: Animals vaccinated exceeds doses received",
-      "detail": "JOC reports 128,937 animals vaccinated but only 126,720 doses received in province. Likely a cumulative vs period reporting mismatch, or draw on pre-rollout stock.",
-      "action": "Confirm whether provincial figures are cumulative from rollout start or period-only. Request reconciliation of receipt and administration logs.",
-      "owner": "Limpopo AgriSA affiliate / JOC"
+      "title": "Limpopo: Vaccinated exceeds received",
+      "detail": "128,937 vaccinated vs 126,720 received.",
+      "action": "Confirm cumulative vs period reporting.",
+      "owner": "Limpopo affiliate"
     },
     {
       "severity": "critical",
       "province": "NW",
-      "title": "North West: Animals vaccinated exceeds doses received",
-      "detail": "JOC reports 168,748 animals vaccinated but only 161,420 doses received in province. Likely a cumulative vs period reporting mismatch, or draw on pre-rollout stock.",
-      "action": "Confirm whether provincial figures are cumulative from rollout start or period-only. Request reconciliation of receipt and administration logs.",
-      "owner": "North West AgriSA affiliate / JOC"
-    },
-    {
-      "severity": "critical",
-      "province": "EC",
-      "title": "Eastern Cape: JOC figure lower than ministerial briefing",
-      "detail": "Ministerial (2026-04-23) reported 376,122 cattle vaccinated; current JOC/AgriSA figure is 332,182 \u2014 gap of 43,940. Impossible if both are cumulative.",
-      "action": "Reconcile AgriSA provincial return against ministerial figure. Determine whether ministerial count includes additional species (pigs, sheep) beyond cattle only.",
-      "owner": "Eastern Cape AgriSA affiliate"
-    },
-    {
-      "severity": "critical",
-      "province": "FS",
-      "title": "Free State: JOC figure lower than ministerial briefing",
-      "detail": "Ministerial (2026-04-23) reported 446,527 cattle vaccinated; current JOC/AgriSA figure is 353,447 \u2014 gap of 93,080. Impossible if both are cumulative.",
-      "action": "Reconcile AgriSA provincial return against ministerial figure. Determine whether ministerial count includes additional species (pigs, sheep) beyond cattle only.",
-      "owner": "Free State AgriSA affiliate"
-    },
-    {
-      "severity": "critical",
-      "province": "KZN",
-      "title": "KwaZulu-Natal: JOC figure lower than ministerial briefing",
-      "detail": "Ministerial (2026-04-23) reported 766,508 cattle vaccinated; current JOC/AgriSA figure is 648,609 \u2014 gap of 117,899. Impossible if both are cumulative.",
-      "action": "Reconcile AgriSA provincial return against ministerial figure. Determine whether ministerial count includes additional species (pigs, sheep) beyond cattle only.",
-      "owner": "KwaZulu-Natal AgriSA affiliate"
-    },
-    {
-      "severity": "critical",
-      "province": "LP",
-      "title": "Limpopo: JOC figure lower than ministerial briefing",
-      "detail": "Ministerial (2026-04-23) reported 183,770 cattle vaccinated; current JOC/AgriSA figure is 128,937 \u2014 gap of 54,833. Impossible if both are cumulative.",
-      "action": "Reconcile AgriSA provincial return against ministerial figure. Determine whether ministerial count includes additional species (pigs, sheep) beyond cattle only.",
-      "owner": "Limpopo AgriSA affiliate"
-    },
-    {
-      "severity": "critical",
-      "province": "MP",
-      "title": "Mpumalanga: JOC figure lower than ministerial briefing",
-      "detail": "Ministerial (2026-04-23) reported 233,510 cattle vaccinated; current JOC/AgriSA figure is 176,811 \u2014 gap of 56,699. Impossible if both are cumulative.",
-      "action": "Reconcile AgriSA provincial return against ministerial figure. Determine whether ministerial count includes additional species (pigs, sheep) beyond cattle only.",
-      "owner": "Mpumalanga AgriSA affiliate"
-    },
-    {
-      "severity": "critical",
-      "province": "NW",
-      "title": "North West: JOC figure lower than ministerial briefing",
-      "detail": "Ministerial (2026-04-23) reported 188,073 cattle vaccinated; current JOC/AgriSA figure is 168,748 \u2014 gap of 19,325. Impossible if both are cumulative.",
-      "action": "Reconcile AgriSA provincial return against ministerial figure. Determine whether ministerial count includes additional species (pigs, sheep) beyond cattle only.",
-      "owner": "North West AgriSA affiliate"
-    },
-    {
-      "severity": "critical",
-      "province": "NC",
-      "title": "Northern Cape: JOC figure lower than ministerial briefing",
-      "detail": "Ministerial (2026-04-23) reported 46,996 cattle vaccinated; current JOC/AgriSA figure is 28,054 \u2014 gap of 18,942. Impossible if both are cumulative.",
-      "action": "Reconcile AgriSA provincial return against ministerial figure. Determine whether ministerial count includes additional species (pigs, sheep) beyond cattle only.",
-      "owner": "Northern Cape AgriSA affiliate"
+      "title": "North West: Vaccinated exceeds received",
+      "detail": "168,748 vaccinated vs 161,420 received.",
+      "action": "Confirm cumulative vs period reporting.",
+      "owner": "North West affiliate"
     },
     {
       "severity": "critical",
       "province": "national",
-      "title": "National: Spoilage data absent across all provinces",
-      "detail": "No province has reported non-zero vaccine spoilage in any submission. Cold chain failures and near-expiry stock are almost certainly occurring.",
-      "action": "Add spoilage/wastage field to all provincial JOC templates. Request immediate ad-hoc return from all provinces on doses spoiled to date.",
-      "owner": "FMD ICC Secretariat"
+      "title": "Spoilage data absent",
+      "detail": "No province has reported vaccine spoilage.",
+      "action": "Add spoilage field to JOC templates.",
+      "owner": "ICC Secretariat"
     }
   ],
   "sources_used": [
@@ -1356,7 +1341,7 @@ try {
 let chartJsReady = (typeof Chart !== 'undefined');
 if (!chartJsReady) {
   console.warn('[FMD] Chart.js did not load — charts will be skipped');
-  ['hotspotChart','caseTrend','vaxTrend','provVax','sourceChart','coverageChart','rpoClassChart']
+  ['hotspotChart','caseTrend','vaxTrend','provVax','sourceChart','coverageChart','mpoDairyChart']
     .forEach(id => showError(id, 'Chart (Chart.js failed to load)', new Error('CDN unavailable')));
 }
 
@@ -1476,37 +1461,79 @@ if (chartJsReady) try {
     `Full herd coverage at two doses per animal requires <strong>${fmt(N.herd_cattle*2)} doses</strong>. To date, ${fmt(N.received)} doses have been received in country, leaving an outstanding need of <strong>roughly ${((N.herd_cattle*2-N.received)/1e6).toFixed(1)} million doses</strong>.`;
 } catch(e) { showError('coverageChart', 'Coverage chart', e); }
 
-// ── RPO classification chart ─────────────────────────────────────────────────
-if (chartJsReady && data.rpo) try {
-  const rpoTotals = data.rpo.totals;
-  new Chart(safeEl('rpoClassChart'), {
-    type:'doughnut',
-    data:{ labels:['Dairy','Commercial Beef','Pigs','Communal'],
-      datasets:[{ data:[rpoTotals.dairy_vaccinated, rpoTotals.commercial_beef_vaccinated, rpoTotals.pigs_vaccinated, rpoTotals.communal_vaccinated],
-        backgroundColor:[BRAND.pine, BRAND.olive, BRAND.sage, BRAND.paleSage],
-        borderWidth:2, borderColor:BRAND.white }]},
-    options:{ responsive:true, maintainAspectRatio:false,
-      plugins:{legend:{position:'bottom', labels:{boxWidth:12, padding:10}}},
-      cutout:'62%' }
-  });
-} catch(e) { showError('rpoClassChart', 'RPO classification chart', e); }
+// ── MPO dairy section ─────────────────────────────────────────────────────────
+if (data.mpo) try {
+  const mpo = data.mpo;
+  const fmtDate = d => d ? new Date(d+'T12:00:00').toLocaleDateString('en-ZA',{day:'numeric',month:'short',year:'numeric'}) : '—';
 
-// ── Cross-source comparison table ─────────────────────────────────────────────
-if (data.cross_source) try {
-  const cs = data.cross_source;
-  const csRows = [
-    ['Vaccines received',  cs.agrisa_received,    cs.rpo_received],
-    ['Animals vaccinated', cs.agrisa_administered, cs.rpo_administered],
-  ];
-  const csEl = safeEl('crossSourceTable');
-  if (csEl) csEl.innerHTML = csRows.map(([label, a, r]) => `
-    <tr>
-      <td>${label}</td>
-      <td class="num">${fmt(a)}</td>
-      <td class="num">${fmt(r)}</td>
-      <td class="num">${fmt(a - r)}</td>
-    </tr>`).join('');
-} catch(e) { showError('crossSourceTable', 'Cross-source table', e); }
+  // KPI cards
+  const kpiDairy = safeEl('mpoDairyCowsKpi');
+  if (kpiDairy) kpiDairy.innerHTML = `
+    <div class="kpi-label">Dairy cows vaccinated</div>
+    <div class="kpi-value">${fmt(mpo.national_current)}</div>
+    <div class="kpi-delta ${mpo.national_current - mpo.national_previous >= 0 ? 'pos' : 'neg'}">
+      ${mpo.national_current - mpo.national_previous >= 0 ? '+' : ''}${fmt(mpo.national_current - mpo.national_previous)} vs prior week
+    </div>
+    <div class="kpi-sub">As at ${fmtDate(mpo.latest_date)}</div>`;
+
+  const kpiFarmsConf = safeEl('mpoFarmsConfirmedKpi');
+  if (kpiFarmsConf) kpiFarmsConf.innerHTML = `
+    <div class="kpi-label">Dairy farms — FMD confirmed</div>
+    <div class="kpi-value">${mpo.farms_confirmed ?? '—'}</div>
+    <div class="kpi-sub">As at ${fmtDate(mpo.farms_confirmed_date)}</div>`;
+
+  const kpiFarmsAct = safeEl('mpoFarmsActiveKpi');
+  if (kpiFarmsAct) kpiFarmsAct.innerHTML = `
+    <div class="kpi-label">Dairy farms — currently active</div>
+    <div class="kpi-value">${mpo.farms_active ?? '—'}</div>
+    <div class="kpi-sub">Farms still showing clinical signs</div>`;
+
+  // Bar chart — latest vs prior week per province
+  const provLabels  = mpo.provinces.map(p => p.name.replace(' ','\n'));
+  const provCurrent = mpo.provinces.map(p => p.current);
+  const provPrev    = mpo.provinces.map(p => p.previous);
+  if (chartJsReady) new Chart(safeEl('mpoDairyChart'), {
+    type: 'bar',
+    data: {
+      labels: mpo.provinces.map(p => p.name),
+      datasets: [
+        { label: 'Latest week', data: provCurrent,
+          backgroundColor: BRAND.pine, borderRadius: 3 },
+        { label: 'Prior week',  data: provPrev,
+          backgroundColor: BRAND.mist, borderRadius: 3 },
+      ]
+    },
+    options: { responsive:true, maintainAspectRatio:false,
+      plugins:{ legend:{position:'top', labels:{boxWidth:12}}},
+      scales:{ y:{beginAtZero:true, grid:{color:BRAND.mist},
+                  ticks:{callback:v=>fmt(v)}},
+               x:{grid:{display:false}} } }
+  });
+
+  // Table — week on week
+  const tbl = safeEl('mpoDairyTable');
+  if (tbl) tbl.innerHTML = mpo.provinces.map(p => {
+    const chg = p.change;
+    const chgCls = chg > 0 ? 'pos' : chg < 0 ? 'neg' : '';
+    const chgStr = chg > 0 ? `+${fmt(chg)}` : fmt(chg);
+    return `<tr>
+      <td>${p.name}</td>
+      <td class="num">${fmt(p.current)}</td>
+      <td class="num">${fmt(p.previous)}</td>
+      <td class="num ${chgCls}">${chgStr}</td>
+    </tr>`;
+  }).join('');
+
+  // Footer totals
+  const foot = safeEl('mpoDairyFoot');
+  const totChg = mpo.national_current - mpo.national_previous;
+  if (foot) foot.innerHTML = `<tr style="font-weight:600">
+    <td>National</td>
+    <td class="num">${fmt(mpo.national_current)}</td>
+    <td class="num">${fmt(mpo.national_previous)}</td>
+    <td class="num ${totChg >= 0 ? 'pos' : 'neg'}">${totChg >= 0 ? '+' : ''}${fmt(totChg)}</td>
+  </tr>`;
+} catch(e) { console.error('MPO section error:', e); }
 
 // ── Sources used list ─────────────────────────────────────────────────────────
 if (data.sources_used) try {
@@ -1620,41 +1647,43 @@ if (chartJsReady && data.ministerial_comparison) try {
         : '<span style="color:var(--charcoal)">N/A</span>';
       return `<tr>
         <td><strong>${p.code}</strong><br><small style="color:var(--charcoal);font-size:11px">${p.joc_date || ''}</small></td>
-        <td class="num">${p.ministerial ? fmt(p.ministerial) : '<span style="color:var(--charcoal)">—</span>'}</td>
-        <td class="num">${p.joc ? fmt(p.joc) : '<span style="color:var(--charcoal)">—</span>'}</td>
+        <td class="num">${p.ministerial !== null ? fmt(p.ministerial) : '&mdash;'}</td>
+        <td class="num">${p.joc !== null ? fmt(p.joc) : '&mdash;'}</td>
         <td class="num">${diffFmt}</td>
-        <td style="${flagStyle};font-size:12px">${flagText}</td>
+        <td><span style="${flagStyle}">${flagText}</span></td>
       </tr>`;
-    }).join('') + `<tr style="border-top:2px solid #ccc;font-weight:700;background:var(--mist)">
-        <td>TOTAL</td>
-        <td class="num">${fmt(totalMin)}</td>
-        <td class="num">${fmt(totalJoc)}</td>
-        <td class="num"><span style="${totalDiff < 0 ? 'color:#c0392b' : 'color:#27ae60'}">${totalDiff >= 0 ? '+' : ''}${fmt(totalDiff)}</span></td>
-        <td style="font-size:12px;color:var(--charcoal)">${diffCount} of ${mc.length} provinces</td>
-      </tr>`;
+    }).join('');
+    const tblFoot = tableEl.closest('table').querySelector('tfoot');
+    if (tblFoot) tblFoot.innerHTML = `<tr style="font-weight:600;border-top:2px solid var(--mist)">
+      <td>Total</td>
+      <td class="num">${fmt(totalMin)}</td>
+      <td class="num">${fmt(totalJoc)}</td>
+      <td class="num"><span style="${totalDiff>=0?'color:#27ae60':'color:#c0392b'}">${totalDiff>=0?'+':''}${fmt(totalDiff)}</span></td>
+      <td>&mdash;</td>
+    </tr>`;
   }
-} catch(e) { showError('minJocChart', 'Ministerial vs JOC chart', e); }
+} catch(e) { console.error('Ministerial comparison error:', e); }
 
-// ── Dynamic quality flags / action items ──────────────────────────────────────
+// ── Quality flags ─────────────────────────────────────────────────────────────
 if (data.quality_flags) try {
   const qfEl = safeEl('qualityFlagsList');
-  if (qfEl) {
-    if (data.quality_flags.length === 0) {
-      qfEl.innerHTML = '<li style="color:#27ae60;font-size:13px">&#10003; No data quality issues detected in this build.</li>';
-    } else {
-      qfEl.innerHTML = data.quality_flags.map(f => `
-        <li class="${f.severity === 'critical' ? 'critical' : ''}">
-          <strong>${f.province !== 'national' ? '[' + f.province + '] ' : ''}${f.title}</strong>
-          <span style="display:block;margin-top:4px;font-size:13px;color:var(--charcoal)">${f.detail}</span>
-          <span style="display:block;margin-top:6px;font-size:12px;background:rgba(0,0,0,0.04);padding:7px 10px;border-radius:4px;line-height:1.5">
-            <strong>Action:</strong> ${f.action}<br>
-            <strong>Owner:</strong> <em>${f.owner}</em>
-          </span>
-        </li>`).join('');
-    }
-  }
-} catch(e) { showError('qualityFlagsList', 'Quality flags', e); }
+  const flags = data.quality_flags;
+  if (qfEl) qfEl.innerHTML = flags.map(f => `
+    <li style="margin-bottom:var(--sp-5);padding:var(--sp-4);border-radius:var(--r-card);
+               border-left:4px solid ${f.severity==='critical'?'#c0392b':'#e67e22'}">
+      <strong style="font-size:13px">[${f.province}] ${f.title}</strong>
+      <p style="font-size:12px;color:var(--charcoal);margin:var(--sp-2) 0 var(--sp-1)">${f.detail}</p>
+      <p style="font-size:12px;color:var(--pine);margin:0"><strong>Action:</strong> ${f.action}</p>
+      <p style="font-size:11px;color:var(--charcoal);margin:var(--sp-1) 0 0"><strong>Owner:</strong> ${f.owner}</p>
+    </li>`).join('');
+} catch(e) { console.error('Quality flags error:', e); }
 
+// ── Sources used list ─────────────────────────────────────────────────────────
+if (data.sources_used) try {
+  const slEl = safeEl('sourceList');
+  if (slEl) slEl.innerHTML =
+    data.sources_used.map(s => `<li style="font-size:12px;font-family:monospace;word-break:break-all">${s}</li>`).join('');
+} catch(e) { console.error('Sources list error:', e); }
 
 </script>
 </body>
