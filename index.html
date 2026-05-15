@@ -919,6 +919,53 @@ const DASHBOARD_DATA = {
     "farms_active_date": "2026-05-08",
     "national_current": 729692,
     "national_previous": 747041,
+    "active_by_province": [
+      {
+        "code": "EC",
+        "name": "Eastern Cape",
+        "active": 18
+      },
+      {
+        "code": "FS",
+        "name": "Free State",
+        "active": 17
+      },
+      {
+        "code": "GP",
+        "name": "Gauteng",
+        "active": 3
+      },
+      {
+        "code": "KZN",
+        "name": "KwaZulu-Natal",
+        "active": 62
+      },
+      {
+        "code": "LP",
+        "name": "Limpopo",
+        "active": 1
+      },
+      {
+        "code": "MP",
+        "name": "Mpumalanga",
+        "active": 10
+      },
+      {
+        "code": "NW",
+        "name": "North West",
+        "active": 6
+      },
+      {
+        "code": "NC",
+        "name": "Northern Cape",
+        "active": 0
+      },
+      {
+        "code": "WC",
+        "name": "Western Cape",
+        "active": 7
+      }
+    ],
     "ec_milestone": 313890
   },
   "ministerial": {
@@ -1161,7 +1208,9 @@ const DASHBOARD_DATA = {
     "inbox/Media Statement More vaccines arrive to strengthen war against foot and mouth disease_22042026_.pdf",
     "inbox/Ministerial Updates/2026.05.15 Reg No 7484 of 15 May 2026 - Rescinding FMD management Area in KZN.pdf",
     "inbox/Ministerial Updates/Media statement-Minister Steenhuisen announces arrival of additional 2 million doses of FMD vaccine.pdf",
-    "inbox/Western Cape/Screenshot 2026-05-04 084158.png"
+    "inbox/Western Cape/Screenshot 2026-05-04 084158.png",
+    "uploads/Week 28- Update on the state of FMD and vaccine rollouts in the dairy industry.pdf",
+    "uploads/Week 29- Update on the state of FMD and vaccine rollouts in the dairy industry.pdf"
   ]
 };
 
@@ -1497,14 +1546,14 @@ if (data.mpo) try {
         scales:{x:{beginAtZero:true,grid:{color:BRAND.mist},ticks:{callback:v=>fmt(v)}},y:{grid:{display:false}}}}
     });
   }
-  if (chartJsReady && data.provinces) {
-    const caseProv = data.provinces.filter(p=>p.positive>0).sort((a,b)=>b.positive-a.positive);
+  if (chartJsReady && mpo.active_by_province) {
+    const actProv = mpo.active_by_province.filter(p=>p.active>0).sort((a,b)=>b.active-a.active);
     new Chart(safeEl('mpoCasesChart'), {
       type:'bar',
-      data:{labels:caseProv.map(p=>p.name),
-        datasets:[{label:'Positive cases',data:caseProv.map(p=>p.positive),backgroundColor:BRAND.pine,borderRadius:3}]},
+      data:{labels:actProv.map(p=>p.name),
+        datasets:[{label:'Active dairy FMD farms',data:actProv.map(p=>p.active),backgroundColor:BRAND.pine,borderRadius:3}]},
       options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,
-        plugins:{legend:{display:false}},
+        plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>`${ctx.formattedValue} active dairy farms`}}},
         scales:{x:{beginAtZero:true,grid:{color:BRAND.mist}},y:{grid:{display:false}}}}
     });
   }
