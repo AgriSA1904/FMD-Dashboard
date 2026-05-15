@@ -460,29 +460,24 @@
   </section>
 
   <section>
-    <div class="kicker">Dairy industry — MPO</div>
-    <h2>Dairy herd vaccination progress.</h2>
-    <p style="color:var(--charcoal);font-size:14px;margin-top:calc(-1 * var(--sp-6));margin-bottom:var(--sp-6)">Submitted by the Milk Producers' Organisation. Tracks dairy cows vaccinated and FMD farm status across provinces. Data as at the most recent MPO weekly report.</p>
-    <div class="grid-3c" style="margin-bottom:var(--sp-6)">
+    <div class="kicker">Dairy industry view</div>
+    <h2>MPO: Dairy herd vaccination and FMD case burden.</h2>
+    <p style="color:var(--charcoal);font-size:14px;margin-top:calc(-1 * var(--sp-6));margin-bottom:var(--sp-6)" id="mpoSubtitle">Submitted by the Milk Producers&#x2019; Organisation (MPO). Covers dairy cattle only.</p>
+    <div class="grid-2" style="margin-bottom:var(--sp-6)">
       <div class="card" id="mpoDairyCowsKpi"></div>
       <div class="card" id="mpoFarmsConfirmedKpi"></div>
-      <div class="card" id="mpoFarmsActiveKpi"></div>
+    </div>
+    <div style="margin-bottom:var(--sp-6)">
+      <div class="card" style="max-width:520px" id="mpoFarmsActiveKpi"></div>
     </div>
     <div class="grid-2">
       <div class="card">
-        <h3>Dairy cows vaccinated per province.</h3>
+        <h3>Dairy cows vaccinated by province.</h3>
         <div class="chart-wrap tall"><canvas id="mpoDairyChart"></canvas></div>
       </div>
       <div class="card">
-        <h3>Week-on-week change.</h3>
-        <table>
-          <thead>
-            <tr><th>Province</th><th class="num">Latest</th><th class="num">Prior week</th><th class="num">Change</th></tr>
-          </thead>
-          <tbody id="mpoDairyTable"></tbody>
-          <tfoot id="mpoDairyFoot"></tfoot>
-        </table>
-        <p style="font-size:12px;color:var(--charcoal);margin-top:var(--sp-4);font-style:italic">WC Week 29 decrease (167,124 → 140,746) likely reflects a methodology correction from total cattle to dairy-only. Both figures held in master and flagged for MPO confirmation.</p>
+        <h3>Active dairy FMD cases by province.</h3>
+        <div class="chart-wrap tall"><canvas id="mpoCasesChart"></canvas></div>
       </div>
     </div>
   </section>
@@ -623,7 +618,7 @@ const DASHBOARD_DATA = {
     {
       "code": "EC",
       "name": "Eastern Cape",
-      "as_of": "2026-05-08",
+      "as_of": "2026-05-15",
       "herd": 2895096,
       "positive": 166,
       "suspected": 258,
@@ -923,7 +918,8 @@ const DASHBOARD_DATA = {
     "farms_active": 124,
     "farms_active_date": "2026-05-08",
     "national_current": 729692,
-    "national_previous": 747041
+    "national_previous": 747041,
+    "ec_milestone": 313890
   },
   "ministerial": {
     "doses_procured": 6000000,
@@ -977,7 +973,7 @@ const DASHBOARD_DATA = {
       },
       {
         "date": "2026-05-15",
-        "title": "KwaZulu-Natal DMA formally rescinded by gazette",
+        "title": "KwaZulu-Natal DMA formally rescinded",
         "detail": "Government Gazette No. 54686, GN 7484, 15 May 2026. Repeals GN 5997 of 17 March 2025."
       }
     ],
@@ -1003,7 +999,7 @@ const DASHBOARD_DATA = {
       "code": "EC",
       "name": "Eastern Cape",
       "joc": 332182,
-      "joc_date": "2026-05-08",
+      "joc_date": "2026-05-15",
       "ministerial": 376122,
       "ministerial_date": "2026-04-23",
       "diff": -43940,
@@ -1137,6 +1133,7 @@ const DASHBOARD_DATA = {
     "ICC FMD_VaccineRollout_20March2026.pdf",
     "MEDIA BRIEFING BY MINISTER OF AGRICULTURE_LATIN AMERICA OUTCOMES_SECTION 10_FMD_05MAY2026.pdf",
     "MPO Info/Copy of FMD Vaccination Data 17 April 2026.xlsx",
+    "MPO direct communication \u2014 15 May 2026",
     "RPO Info/Vaccine Rollout Stats.xlsx",
     "archive/2026-04-28/04-10-2026_FMD ICC Update.pdf",
     "inbox/01042026_FMD Graphics_V2.pdf",
@@ -1244,8 +1241,8 @@ try {
   const coverage = (N.administered / N.herd_cattle * 100);
   const fullCoverageNeed = N.herd_cattle * 2;
   const kpis = [
-    { label:'Confirmed positive cases', value: fmt(N.positive),
-      sub:`Δ ${N.delta_positive>=0?'+':''}${N.delta_positive} since prior week` },
+    { label:'Confirmed outbreaks (ICC national)', value: fmt(N.positive),
+      sub:N.delta_positive===0?'ICC figure unchanged from prior period — likely understated':`Δ ${N.delta_positive>=0?'+':''}${N.delta_positive} since prior week` },
     { label:'Suspected and pending', value: fmt(N.suspected + N.pending),
       sub:`${fmt(N.suspected)} suspected, ${fmt(N.pending)} pending` },
     { label:'Vaccines received', value: fmt(N.received),
@@ -1341,7 +1338,7 @@ try {
 let chartJsReady = (typeof Chart !== 'undefined');
 if (!chartJsReady) {
   console.warn('[FMD] Chart.js did not load — charts will be skipped');
-  ['hotspotChart','caseTrend','vaxTrend','provVax','sourceChart','coverageChart','mpoDairyChart']
+  ['hotspotChart','caseTrend','vaxTrend','provVax','sourceChart','coverageChart','mpoDairyChart','mpoCasesChart']
     .forEach(id => showError(id, 'Chart (Chart.js failed to load)', new Error('CDN unavailable')));
 }
 
@@ -1465,74 +1462,52 @@ if (chartJsReady) try {
 if (data.mpo) try {
   const mpo = data.mpo;
   const fmtDate = d => d ? new Date(d+'T12:00:00').toLocaleDateString('en-ZA',{day:'numeric',month:'short',year:'numeric'}) : '—';
-
-  // KPI cards
+  const sub = safeEl('mpoSubtitle');
+  if (sub) sub.textContent = `Submitted by the Milk Producers' Organisation (MPO). Covers dairy cattle only. Snapshot as of ${fmtDate(mpo.latest_date)}.`;
   const kpiDairy = safeEl('mpoDairyCowsKpi');
+  const wcProv = mpo.provinces.find(p=>p.code==='WC');
+  const natExclWC = mpo.national_current - (wcProv ? wcProv.current : 0);
   if (kpiDairy) kpiDairy.innerHTML = `
     <div class="kpi-label">Dairy cows vaccinated</div>
     <div class="kpi-value">${fmt(mpo.national_current)}</div>
-    <div class="kpi-delta ${mpo.national_current - mpo.national_previous >= 0 ? 'pos' : 'neg'}">
-      ${mpo.national_current - mpo.national_previous >= 0 ? '+' : ''}${fmt(mpo.national_current - mpo.national_previous)} vs prior week
-    </div>
-    <div class="kpi-sub">As at ${fmtDate(mpo.latest_date)}</div>`;
-
+    <div class="kpi-sub">national total &nbsp;·&nbsp; excl. WC: ${fmt(natExclWC)}</div>
+    <div class="kpi-delta ${mpo.national_current-mpo.national_previous>=0?'pos':'neg'}" style="margin-top:var(--sp-3)">
+      ${mpo.national_current-mpo.national_previous>=0?'+':''}${fmt(mpo.national_current-mpo.national_previous)} vs prior week</div>`;
   const kpiFarmsConf = safeEl('mpoFarmsConfirmedKpi');
   if (kpiFarmsConf) kpiFarmsConf.innerHTML = `
-    <div class="kpi-label">Dairy farms — FMD confirmed</div>
-    <div class="kpi-value">${mpo.farms_confirmed ?? '—'}</div>
-    <div class="kpi-sub">As at ${fmtDate(mpo.farms_confirmed_date)}</div>`;
-
+    <div class="kpi-label">Confirmed dairy farms</div>
+    <div class="kpi-value">${mpo.farms_confirmed ?? '&mdash;'}</div>
+    <div class="kpi-sub">farms with confirmed FMD cases</div>`;
   const kpiFarmsAct = safeEl('mpoFarmsActiveKpi');
   if (kpiFarmsAct) kpiFarmsAct.innerHTML = `
-    <div class="kpi-label">Dairy farms — currently active</div>
-    <div class="kpi-value">${mpo.farms_active ?? '—'}</div>
-    <div class="kpi-sub">Farms still showing clinical signs</div>`;
-
-  // Bar chart — latest vs prior week per province
-  const provLabels  = mpo.provinces.map(p => p.name.replace(' ','\n'));
-  const provCurrent = mpo.provinces.map(p => p.current);
-  const provPrev    = mpo.provinces.map(p => p.previous);
-  if (chartJsReady) new Chart(safeEl('mpoDairyChart'), {
-    type: 'bar',
-    data: {
-      labels: mpo.provinces.map(p => p.name),
-      datasets: [
-        { label: 'Latest week', data: provCurrent,
-          backgroundColor: BRAND.pine, borderRadius: 3 },
-        { label: 'Prior week',  data: provPrev,
-          backgroundColor: BRAND.mist, borderRadius: 3 },
-      ]
-    },
-    options: { responsive:true, maintainAspectRatio:false,
-      plugins:{ legend:{position:'top', labels:{boxWidth:12}}},
-      scales:{ y:{beginAtZero:true, grid:{color:BRAND.mist},
-                  ticks:{callback:v=>fmt(v)}},
-               x:{grid:{display:false}} } }
-  });
-
-  // Table — week on week
-  const tbl = safeEl('mpoDairyTable');
-  if (tbl) tbl.innerHTML = mpo.provinces.map(p => {
-    const chg = p.change;
-    const chgCls = chg > 0 ? 'pos' : chg < 0 ? 'neg' : '';
-    const chgStr = chg > 0 ? `+${fmt(chg)}` : fmt(chg);
-    return `<tr>
-      <td>${p.name}</td>
-      <td class="num">${fmt(p.current)}</td>
-      <td class="num">${fmt(p.previous)}</td>
-      <td class="num ${chgCls}">${chgStr}</td>
-    </tr>`;
-  }).join('');
-
-  // Footer totals
-  const foot = safeEl('mpoDairyFoot');
-  const totChg = mpo.national_current - mpo.national_previous;
-  if (foot) foot.innerHTML = `<tr style="font-weight:600">
-    <td>National</td>
-    <td class="num">${fmt(mpo.national_current)}</td>
-    <td class="num">${fmt(mpo.national_previous)}</td>
-    <td class="num ${totChg >= 0 ? 'pos' : 'neg'}">${totChg >= 0 ? '+' : ''}${fmt(totChg)}</td>
-  </tr>`;
+    <div class="kpi-label">Active dairy farms</div>
+    <div class="kpi-value">${mpo.farms_active ?? '&mdash;'}</div>
+    <div class="kpi-sub">currently showing clinical signs</div>`;
+  if (chartJsReady) {
+    const sorted = mpo.provinces.filter(p=>p.current>0).sort((a,b)=>b.current-a.current);
+    new Chart(safeEl('mpoDairyChart'), {
+      type:'bar',
+      data:{labels:sorted.map(p=>p.name),
+        datasets:[
+          {label:'Latest week',data:sorted.map(p=>p.current),backgroundColor:BRAND.pine,borderRadius:3},
+          {label:'Prior week', data:sorted.map(p=>p.previous),backgroundColor:BRAND.sage,borderRadius:3}
+        ]},
+      options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,
+        plugins:{legend:{position:'top',labels:{boxWidth:10,font:{size:11}}}},
+        scales:{x:{beginAtZero:true,grid:{color:BRAND.mist},ticks:{callback:v=>fmt(v)}},y:{grid:{display:false}}}}
+    });
+  }
+  if (chartJsReady && data.provinces) {
+    const caseProv = data.provinces.filter(p=>p.positive>0).sort((a,b)=>b.positive-a.positive);
+    new Chart(safeEl('mpoCasesChart'), {
+      type:'bar',
+      data:{labels:caseProv.map(p=>p.name),
+        datasets:[{label:'Positive cases',data:caseProv.map(p=>p.positive),backgroundColor:BRAND.pine,borderRadius:3}]},
+      options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,
+        plugins:{legend:{display:false}},
+        scales:{x:{beginAtZero:true,grid:{color:BRAND.mist}},y:{grid:{display:false}}}}
+    });
+  }
 } catch(e) { console.error('MPO section error:', e); }
 
 // ── Sources used list ─────────────────────────────────────────────────────────
