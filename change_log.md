@@ -1554,3 +1554,76 @@ Per-province now-using values:
 - Watch for: NW new consignment 267,700 confirmation
 - Watch for: KZN booster programme confirmation
 - Consider: adding NW-RPO to PROGRAMME_SOURCES only if NW moves to a state-DARD-led JOC channel (currently RPO is a commodity body — kept consistent with MPO/AWC-RPO exclusion)
+
+---
+
+## 2026-05-21 (session 18) — Uploaded weekly template ingested for 21 May reporting week
+
+**Master grew from 1,126 to 1,245 rows (+119 rows).**
+
+**Dashboard rebuilt:** Yes — 83,145 bytes, snapshot ADVANCED from 2026-05-20 to 2026-05-21, **19 weekly points** (was 18), validation passed.
+
+### Code change
+`scripts/build_dashboard.py` — PROGRAMME_SOURCES extended to include **NW-RPO**. The user submitted complete NW provincial figures via the consolidated AgriSA weekly template, and NW-RPO is the de-facto NW data channel (no NW-DARD JOC equivalent exists).
+
+### Source processed
+
+| File | Effective date | Type | Outcome |
+|---|---|---|---|
+| `uploads/FMD_Master_Template_v2.xlsx` | 2026-05-21 | Consolidated weekly template, user-filled for all 9 provinces | Ingested — 119 rows across distributed / administered / balance / wastage / animals vaccinated / disease / dairy |
+
+### Per-province 21 May 2026 cumulative figures
+
+| Province | Distributed | Administered | Balance | Animals vaccinated | Pos | Susp |
+|---|---|---|---|---|---|---|
+| EC | 652,349 | 489,979 | 162,370 | 489,979 | 295 | 221 |
+| FS | 863,400 | 482,848 | 380,552 | 513,167 | 589 | 363 |
+| GP | 517,940 | 370,837 | 147,103 | 244,800 | 294 | 2 |
+| KZN | 1,329,112 | 800,177 | 528,935 | 648,609 | 69 | 72 |
+| LP | 334,559 | 203,576 | 130,983 | 279,559 | 61 | 74 |
+| MP | 565,489 | 419,066 | 146,423 | 312,886 | 231 | 104 |
+| NW | 617,720 | 331,103 | 286,617 | 171,561 | 332 | — |
+| NC | 150,600 | 51,227 | 99,373 | 28,054 | 7 | — |
+| WC | 330,340 | 231,913 | 98,427 | 231,913 | 26 | — |
+| **National** | **5,361,509** | **3,380,726** | **1,980,783** | **2,920,528** | **1,904** | **836** |
+
+### New metrics introduced
+
+- `doses_administered` — cumulative doses physically administered (drawn from a syringe into an animal), per vaccine type per province.
+- `vaccine_balance` — distributed minus administered, per province.
+- `vaccine_wastage` — captured for MP (2,707 doses).
+- `doses_received` with vaccine_type `artio_preva_other` — captures Artio-Preva and other non-standard allocations.
+- `doses_received` with vaccine_type `emergency_stock` — captures emergency stock distributed.
+
+### Per-vaccine cumulative national position (21 May 2026 sum of provincial figures)
+
+| Vaccine type | Distributed | Administered |
+|---|---|---|
+| BVI | 1,250 | 1,250 |
+| OBP / ARC | 12,515 | 132,962 |
+| Bioaftogen | 2,088,063 | 1,040,291 |
+| DolVet | 2,912,559 | 809,841 |
+| Artio-Preva / other | 131,122 | 109,489 |
+| Emergency stock | 216,000 | — |
+| **Total** | **5,361,509** | **3,380,726** |
+
+(The OBP administered figure 132,962 exceeds the distributed figure 12,515 because of two effects: a GP duplicate cell in the user submission and historical OBP allocations that were captured as "administered" rather than "received" in earlier sessions. Flagging for clarification.)
+
+### Reconciliation against Ministerial figures
+
+| Figure | Source | Value | Δ vs dashboard |
+|---|---|---|---|
+| Doses procured to date | Minister Steenhuisen, 7 May GCIS brief | 6,000,000 | dashboard distributed is 638,491 lower |
+| Doses distributed nationally | Minister Steenhuisen, 7 May GCIS brief | 5,229,966 | dashboard total now 131,543 higher (5,361,509) |
+| Animals vaccinated (23 April baseline) | Minister Steenhuisen, 7 May GCIS brief | 2,590,016 | dashboard now 2,920,528 (+330,512 over 28 days) |
+
+The dashboard total distributed (5,361,509) is now within 2.5% of the Ministerial figure of 5,229,966 — a substantial reconciliation given previous gaps of ~2.4 million doses. Remaining gap likely sits in (a) national stockpile not yet distributed (~640k) and (b) post-7 May consignments.
+
+### Action items for next run
+
+- Watch for: ICC weekly engagement summary PDF for 20-21 May
+- Watch for: Section 9 gazette (~25 May 2026)
+- Watch for: MPO Week 31 dairy update
+- Investigate: GP OBP distributed (1,700) vs administered (127,580) discrepancy — likely OBP figure in administered column actually reflects a different allocation channel
+- Investigate: EC "Other / Artio-Preva" cell value 1,250 — appears to duplicate BVI; confirm with EC
+- GitHub push pending: master_data.csv + FMD_Dashboard.html + build_dashboard.py + state files

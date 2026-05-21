@@ -4,34 +4,32 @@ description: Latest master_data.csv row count, dashboard snapshot date, and run 
 type: project
 ---
 
-As of 2026-05-21 (session 17 — NW + LP 20 May + RMIS + EC 14 May receipts; PROGRAMME_SOURCES extended):
-- Master: 1,126 rows (1085 after session 16b + 41 added today)
-- Dashboard snapshot: **20 May 2026** (advanced from 19 May — driven by LP-LDARD 20 May data, now a programme source)
-- Dashboard rebuilt: Yes — FMD_Dashboard.html updated (82,367 bytes, 18 weekly points, validation passed)
+As of 2026-05-21 (session 18 — uploaded weekly template ingested for 21 May):
+- Master: 1,245 rows (1,126 after session 17 + 119 added from uploaded template)
+- Dashboard snapshot: **21 May 2026** (advanced from 20 May)
+- Dashboard rebuilt: Yes — FMD_Dashboard.html updated (83,145 bytes, 19 weekly points, validation passed)
 
 **Key code change:**
-- `scripts/build_dashboard.py` PROGRAMME_SOURCES now includes **LP-LDARD** and **MP-DVS** alongside EC-DRDAR / GP-GDARD / WC-GIS / FS-JOC etc. These are provincial state JOC equivalents. NW-RPO remains excluded (commodity body, parallel to MPO and AWC-RPO).
+- `scripts/build_dashboard.py` PROGRAMME_SOURCES now also includes **NW-RPO**. The user submitted complete NW provincial figures via the consolidated AgriSA weekly template; NW-RPO is the de-facto NW data channel since there is no NW-DARD JOC equivalent.
 
 **Key highlights this run:**
-- **NW 19 May 2026 RPO JIC update ingested**: 19 new cases week 11-15 May. 171,561 doses used of 176,000 (98%). Distribution: DRSM 15,436 Bio + 43,676 Aftodoll; NMM 11,684 + 20,111; Bojanala 11,819 + 13,886; DKK 11,527 + 12,766. Feedlot Aftodoll 17,237. 267,700 new consignment incoming.
-- **LP 20 May 2026 SAKELYS pack ingested**: 300,644 animals vaccinated (Capricorn 51,105 / Mopani 40,010 / Sekhukhune 33,391 / Vhembe 55,804 / Waterberg 120,334). Week 25 disease: 68 pos / 82 suspect / 27 day0 / 52 neg.
-- **EC 14 May 2026 doses_received row added** (489,979 dose-count proxy per xlsx convention) so dashboard reflects 14 May receipts as well as vaccinations.
-- **RMIS 06 May 2026 feedlot orders ingested**: 3,000 doses total across 40 orders, 8 provinces (Gauteng 1,059 / Free State 870 / Mpumalanga 519 / North West 278 / Limpopo 171 / KZN 64 / EC 20 / NC 19).
-- **National totals now**: doses received 3,622,508 (up from 3,253,995); animals vaccinated 2,938,800 (up from 2,631,018).
-- **Snapshot advanced to 20 May 2026** (was 19 May); 18 weekly time-series points (was 12).
-- **GitHub push complete** for session 17 — see change_log.
+- **User filled FMD_Master_Template_v2.xlsx with 21 May figures across all 9 provinces** and uploaded it back. Ingested as cumulative position effective 2026-05-21.
+- **All provinces now using 21 May data.** Snapshot advanced 20 May → 21 May 2026.
+- **National doses distributed: 5,361,509** (was 3,622,508 in session 17 — +1,738,001).
+- **National animals vaccinated: 2,920,528** (was 2,938,800 in session 17; slight downward correction in LP and minor methodology shifts).
+- **New per-vaccine distribution figures** captured for every province (BVI, OBP/ARC, Bioaftogen, DolVet, Artio-Preva/other, Emergency stock).
+- **New doses_administered metric** introduced — per-vaccine cumulative administration figures for all provinces.
+- **New vaccine_balance and vaccine_wastage** rows for every province.
+- **New disease counts** for KZN (Pos 69, Susp 72), NC (Pos 7), NW (Pos 332), FS Suspect 363, GP dairy cows 40,000.
+- **Doses distributed total (5,361,509) now within ~130k of the Ministerial figure** (5,229,966 distributed per GCIS 7 May brief).
 
-**How to apply:** Next run should watch for: (1) consolidated AgriSA weekly xlsx (still not received); (2) 20 May ICC weekly engagement summary PDF; (3) Section 9 gazette (~25 May 2026); (4) NW new consignment 267,700 confirmation; (5) KZN booster programme confirmation.
+**How to apply:** Next run should watch for: (1) 20-21 May ICC weekly engagement summary PDF; (2) Section 9 gazette (~25 May 2026); (3) further weekly template uploads; (4) MPO Week 31 dairy update.
 
 **Parked/outstanding:**
-- Consolidated AgriSA weekly xlsx — still not received; LDARD/MP-DVS/WC-GIS submissions are now driving the dashboard instead
-- 20 May ICC weekly engagement summary PDF — meeting held 19-20 May
-- NW-RPO is NOT a PROGRAMME_SOURCE (commodity body); NW dashboard headline still uses AgriSA-NAT 24 Apr (177,400 received, 168,748 vaccinated). NW-RPO 19 May figures held in master for province-level analysis. If NW JIC moves to a DARD-led JOC source in future, consider including it.
-- KZN and NC still on AgriSA-NAT 24 Apr / 1 May respectively — no fresh provincial submissions
+- ICC weekly engagement summary PDF for 20-21 May — not yet in inbox
+- Section 9 gazette — target ~25 May 2026
 - KZN: new suspected FMD case in vaccinated herd (MPO Week 30) — monitor for confirmation and booster rollout
-- EC 14 May 489,979 figure is dose-count (sum-of-doses); unique animals likely lower. Pending corrected provincial figure from EC-DRDAR
-- WC GIS portal vs AWC/RPO methodology gap unchanged (330,140 vs 449,370)
-- MP discrepancy in Ehlanzeni suspects (12 in district summary vs 2 in municipality detail) — flagged in notes
-- FS vaccine receipt 8 May DolVet 466,100 misclassified as Bioaftogen — flagged but original row not corrected (version management pending)
-- LP DolVet 150,000 doses: stated at 7 May PCM as "to be issued soon" — confirm receipt in next LP report
-- LP Biogenesis discrepancy: LDARD 99,020 vs AgriSA-NAT 100,020 — minor; flagged
+- LP 20 May LDARD detailed per-municipality per-vaccine-sub-type figures are not captured in main master schema (district level only)
+- Source classification reminder: NW-RPO now elevated to PROGRAMME_SOURCE because no NW-DARD JOC channel exists; revisit if a state-vet-led NW JOC begins reporting
+- Dose-count vs unique-animals: EC 489,979 administered is still a sum-of-doses (double-counts dose1+dose2); EC has not yet published an updated unique-animals figure since 7 May 2026
+- GitHub push status: pending in this session

@@ -37,7 +37,7 @@ PROGRAMME_SOURCES = frozenset({
     "AgriSA-NAT", "ICC", "FMD-ICC", "Ministry",
     "FS-JOC", "FS-DRDAR", "FS-DARDLEA", "FS-Landbou",
     "EC-DRDAR", "GP-GDARD", "WC-GIS",
-    "LP-LDARD", "MP-DVS",
+    "LP-LDARD", "MP-DVS", "NW-RPO",
 })
 
 # Metrics that indicate real vaccination or disease data (not policy or metadata)
@@ -656,4 +656,4 @@ def build_dashboard():
 
 
 if __name__ == "__main__":
-    build_dashboard()
+    build_da
