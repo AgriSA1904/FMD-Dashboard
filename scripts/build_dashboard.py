@@ -31,6 +31,21 @@ PROVINCES = [
     ("WC", "Western Cape"),
 ]
 
+# Sources that represent actual vaccination programme data (national or provincial JOC).
+# RPO, MPO and administrative/metadata rows are excluded from driving the weekly axis.
+PROGRAMME_SOURCES = frozenset({
+    "AgriSA-NAT", "ICC", "FMD-ICC", "Ministry",
+    "FS-JOC", "FS-DRDAR", "FS-DARDLEA", "FS-Landbou",
+    "EC-DRDAR", "GP-GDARD", "WC-GIS",
+    "LP-LDARD", "MP-DVS",
+})
+
+# Metrics that indicate real vaccination or disease data (not policy or metadata)
+_ANCHOR_METRICS = frozenset({
+    "doses_received", "animals_vaccinated", "animals_vaccinated_total",
+    "animals_vaccinated_dose1", "positive_cases",
+})
+
 def load_master():
     if not os.path.exists(MASTER):
         return []
@@ -76,16 +91,69 @@ def latest_value(rows, *, effective_date, province, metric,
     return val
 
 def latest_dates(rows):
-    """All effective dates from canonical (AgriSA / ICC) sources only — used for the
-    weekly time series. RPO and MPO commodity submissions don't drive the weekly axis."""
-    return sorted(set(r["effective_date"] for r in rows
-                      if r["source_org"] in ("AgriSA-NAT", "ICC")))
+    """All weekly snapshot dates for the time series.
+    A date qualifies if at least one province has programme-level data
+    (JOC, AgriSA-NAT, or equivalent) for a key vaccine or disease metric.
+    RPO and MPO commodity rows do not drive the weekly axis.
+    Provincial district-level breakdown rows (positive_cases_district etc.) are
+    also excluded — only province-level anchor metrics count."""
+    return sorted(set(
+        r["effective_date"] for r in rows
+        if r["source_org"] in PROGRAMME_SOURCES
+        and r["metric"] in _ANCHOR_METRICS
+        and r["province"] not in ("", "national")
+        and r["superseded_by"] == ""
+    ))
 
 def latest_province_date(rows, code):
     """Most recent effective_date with any non-superseded data for this province."""
     dates = sorted(set(r["effective_date"] for r in rows
                        if r["province"] == code and r["superseded_by"] == ""))
     return dates[-1] if dates else None
+
+def _best_received(rows_as_of, province):
+    """Latest total doses received for a province.
+    Collects ALL rows with metric=doses_received and vaccine_type=all (regardless of
+    vet_channel) and returns the most recent non-zero value.  This avoids an early-exit
+    bug where the older AgriSA-NAT all/all row would be returned before checking the
+    more recent FS-JOC all/state row."""
+    candidates = [r for r in rows_as_of
+                  if r["province"] == province
+                  and r["metric"] == "doses_received"
+                  and r["vaccine_type"] == "all"
+                  and r["superseded_by"] == ""
+                  and (num(r["value"]) or 0) > 0]
+    if not candidates:
+        return 0
+    candidates.sort(key=lambda r: (r["effective_date"], int(r["version"])), reverse=True)
+    return num(candidates[0]["value"]) or 0
+
+def _best_vaccinated(rows_as_of, province):
+    """Latest total animals vaccinated for a province.
+    Collects ALL aggregate rows (animals_vaccinated or animals_vaccinated_total,
+    vaccine_type all/empty, any vet_channel) and returns the most recent non-zero
+    value.  Falls back to dose1+dose2 sum if no aggregate row exists."""
+    candidates = [r for r in rows_as_of
+                  if r["province"] == province
+                  and r["metric"] in ("animals_vaccinated", "animals_vaccinated_total")
+                  and r["vaccine_type"] in ("all", "")
+                  and r["superseded_by"] == ""
+                  and (num(r["value"]) or 0) > 0]
+    if candidates:
+        candidates.sort(key=lambda r: (r["effective_date"], int(r["version"])), reverse=True)
+        return num(candidates[0]["value"]) or 0
+    # Fallback: dose1 + dose2
+    d1c = [r for r in rows_as_of if r["province"] == province
+           and r["metric"] == "animals_vaccinated_dose1"
+           and r["vaccine_type"] in ("all", "") and r["superseded_by"] == ""
+           and (num(r["value"]) or 0) > 0]
+    d2c = [r for r in rows_as_of if r["province"] == province
+           and r["metric"] == "animals_vaccinated_dose2"
+           and r["vaccine_type"] in ("all", "") and r["superseded_by"] == ""
+           and (num(r["value"]) or 0) > 0]
+    d1 = num(max(d1c, key=lambda r: r["effective_date"])["value"]) if d1c else 0
+    d2 = num(max(d2c, key=lambda r: r["effective_date"])["value"]) if d2c else 0
+    return (d1 + d2) if (d1 or d2) else 0
 
 def latest_metric(rows, *, province, metric, vaccine_type="", vet_channel="",
                   prefer_org=None, skip_zero=True):
@@ -123,55 +191,65 @@ def latest_metric(rows, *, province, metric, vaccine_type="", vet_channel="",
     return pick_best(matches)
 
 def build_provinces(rows, snapshot_date):
+    # Filter to programme sources only — same as national_view — so RPO/MPO
+    # commodity submissions don't overwrite JOC figures in the province table.
+    prog = [r for r in rows
+            if r["source_org"] in PROGRAMME_SOURCES and r["superseded_by"] == ""]
     out = []
     for code, name in PROVINCES:
-        # Each metric falls back to its most recent available value, independently.
-        # This handles cases like the RPO submission supplying receipts but not cases.
-        ed = latest_province_date(rows, code) or snapshot_date
+        ed = latest_province_date(prog, code) or snapshot_date
         out.append({
             "code": code, "name": name,
             "as_of": ed,
-            "herd": int(latest_metric(rows, province=code, metric="herd_cattle",
-                                      prefer_org=["AgriSA-NAT", "ICC", "WC-GIS", "LDARD", "EC-DARD", "EC-DRDAR", "FS-DARD"]) or 0),
-            "positive": int(latest_metric(rows, province=code, metric="positive_cases",
-                                          prefer_org=["AgriSA-NAT", "ICC", "WC-GIS", "LDARD", "EC-DARD", "EC-DRDAR", "FS-DARD"]) or 0),
-            "suspected": int(latest_metric(rows, province=code, metric="suspected_cases",
-                                           prefer_org=["AgriSA-NAT", "ICC", "WC-GIS", "LDARD", "EC-DARD", "EC-DRDAR", "FS-DARD"]) or 0),
-            "negative": int(latest_metric(rows, province=code, metric="negative_cases",
-                                          prefer_org=["AgriSA-NAT", "ICC", "WC-GIS", "LDARD", "EC-DARD", "EC-DRDAR", "FS-DARD"]) or 0),
-            "pending": int(latest_metric(rows, province=code, metric="pending_cases",
-                                         prefer_org=["AgriSA-NAT", "ICC", "WC-GIS", "LDARD", "EC-DARD", "EC-DRDAR", "FS-DARD"]) or 0),
-            "received": int(latest_metric(rows, province=code, metric="doses_received",
-                                          vaccine_type="all", vet_channel="all",
-                                          prefer_org=["AgriSA-NAT", "ICC", "WC-GIS", "LDARD", "EC-DARD", "EC-DRDAR", "FS-DARD"]) or 0),
-            "vaccinated": int(latest_metric(rows, province=code, metric="animals_vaccinated",
-                                            vaccine_type="all", vet_channel="all",
-                                            prefer_org=["AgriSA-NAT", "ICC", "WC-GIS", "GDARD", "LDARD", "EC-DARD", "EC-DRDAR", "FS-DARD"]) or 0),
+            # herd_cattle is static reference data — AgriSA-NAT is canonical
+            "herd": int(latest_metric(prog, province=code, metric="herd_cattle",
+                                      prefer_org=["AgriSA-NAT", "ICC"]) or 0),
+            # Disease counts: most recent from any programme source (no prefer_org)
+            # so JOC submissions (GP-GDARD, EC-DRDAR, etc.) beat a stale AgriSA-NAT value.
+            "positive":  int(latest_metric(prog, province=code, metric="positive_cases") or 0),
+            "suspected": int(latest_metric(prog, province=code, metric="suspected_cases") or 0),
+            "negative":  int(latest_metric(prog, province=code, metric="negative_cases",
+                                           skip_zero=False) or 0),
+            "pending":   int(latest_metric(prog, province=code, metric="pending_cases",
+                                           skip_zero=False) or 0),
+            # Vaccine figures: use the _best_* helpers (consistent with national_view)
+            "received":  int(_best_received(prog, code)),
+            "vaccinated": int(_best_vaccinated(prog, code)),
         })
     return out
 
 def build_weekly(rows):
+    """Build the weekly time series by summing per-province carry-forward values.
+
+    For each snapshot date, we take only rows up to that date and pick the most
+    recent value per province per metric (carry-forward). This means a weekly point
+    for 15 May will show FS's 15 May figures alongside 01 May carry-forwards for
+    provinces that have not yet submitted — giving the best available national picture
+    rather than waiting for the consolidated AgriSA xlsx to arrive.
+    """
     out = []
+    prog_rows = [r for r in rows
+                 if r["source_org"] in PROGRAMME_SOURCES and r["superseded_by"] == ""]
     for ed in latest_dates(rows):
-        recv = latest_value(rows, effective_date=ed, province="national",
-                            metric="doses_received",
-                            vaccine_type="all", vet_channel="all")
-        adm = latest_value(rows, effective_date=ed, province="national",
-                           metric="animals_vaccinated",
-                           vaccine_type="all", vet_channel="all")
-        pos = latest_value(rows, effective_date=ed, province="national",
-                           metric="positive_cases")
-        sus = latest_value(rows, effective_date=ed, province="national",
-                           metric="suspected_cases")
-        pend = latest_value(rows, effective_date=ed, province="national",
-                            metric="pending_cases")
+        rows_as_of = [r for r in prog_rows if r["effective_date"] <= ed]
+
+        total_recv = sum(_best_received(rows_as_of, code)    for code, _ in PROVINCES)
+        total_adm  = sum(_best_vaccinated(rows_as_of, code)  for code, _ in PROVINCES)
+        total_pos  = sum(
+            latest_metric(rows_as_of, province=code, metric="positive_cases") or 0
+            for code, _ in PROVINCES
+        )
+        total_sus  = sum(
+            latest_metric(rows_as_of, province=code, metric="suspected_cases") or 0
+            for code, _ in PROVINCES
+        )
         out.append({
-            "date": ed,
-            "received": int(recv) if recv else None,
-            "administered": int(adm) if adm else None,
-            "positive": int(pos) if pos is not None else None,
-            "suspected": int(sus) if sus is not None else None,
-            "pending": int(pend) if pend is not None else None,
+            "date":         ed,
+            "received":     int(total_recv) if total_recv else None,
+            "administered": int(total_adm)  if total_adm  else None,
+            "positive":     int(total_pos),
+            "suspected":    int(total_sus),
+            "pending":      None,
         })
     return out
 
@@ -195,107 +273,127 @@ def build_source_mix(rows, snapshot_date):
         out[vt] = int(total)
     nat_total = latest_metric(rows, province="national", metric="doses_received",
                               vaccine_type="all", vet_channel="all",
-                              prefer_org=["AgriSA-NAT", "ICC", "WC-GIS", "LDARD", "EC-DARD", "EC-DRDAR", "FS-DARD"]) or 0
+                              prefer_org=["AgriSA-NAT", "ICC", "WC-GIS"]) or 0
     sum_mfg = sum(out.values())
     out["unallocated"] = max(0, int(nat_total) - sum_mfg)
     return out
 
-def build_rpo_classification(rows):
-    """RPO commodity-level breakdown: Dairy / Commercial Beef / Pigs / Communal."""
-    metrics = {
-        "commercial_beef_vaccinated": 0,
-        "pigs_vaccinated": 0,
-        "communal_vaccinated": 0,
-    }
-    rpo_rows = [r for r in rows if r["source_org"] == "RPO" and r["superseded_by"] == ""
-                and r["metric"] in metrics and r["province"] != "national"]
-    by_prov = {}
-    for r in rpo_rows:
-        prov = r["province"]
-        m = r["metric"]
-        v = num(r["value"]) or 0
-        by_prov.setdefault(prov, dict.fromkeys(metrics, 0))[m] = int(v)
-        metrics[m] += int(v)
-    # Province order matches the standard PROVINCES list for consistent display
-    ordered_prov = {code: by_prov[code] for code, _ in PROVINCES if code in by_prov}
-    return {"totals": metrics, "by_province": ordered_prov,
-            "national_total": int(latest_value(rows, effective_date="2026-04-28",
-                                               province="national",
-                                               metric="animals_vaccinated",
-                                               vaccine_type="all", vet_channel="all") or 0)}
+def build_mpo(rows):
+    """MPO dairy tracking: weekly dairy cows vaccinated per province and national farm stats."""
+    mpo_rows = [r for r in rows if r["source_org"] == "MPO" and r["superseded_by"] == ""]
 
+    # All dates with dairy_cows_vaccinated data
+    dairy_dates = sorted(set(r["effective_date"] for r in mpo_rows
+                             if r["metric"] == "dairy_cows_vaccinated"))
 
-def build_mpo_classification(rows):
-    """MPO dairy-specific breakdown: dairy cows vaccinated and active FMD cases by province."""
-    mpo_rows = [r for r in rows if r["source_org"] == "MPO" and r["superseded_by"] == ""
-                and r["province"] != "national"]
-    PROV_NAMES = dict(PROVINCES)
-    by_prov = {}
-    for r in mpo_rows:
-        p = r["province"]
-        by_prov.setdefault(p, {"name": PROV_NAMES.get(p, p),
-                                "dairy_vaccinated": 0, "active_cases": 0})
-        VACC_METRICS  = {"dairy_vaccinated", "dairy_cows_vaccinated"}
-        ACTIVE_METRICS = {"dairy_active_cases", "dairy_farms_active_fmd",
-                          "dairy_active_farms"}
-        if r["metric"] in VACC_METRICS:
-            by_prov[p]["dairy_vaccinated"] = int(num(r["value"]) or 0)
-        elif r["metric"] in ACTIVE_METRICS:
-            by_prov[p]["active_cases"] = int(num(r["value"]) or 0)
+    prov_codes = [c for c, _ in PROVINCES]
 
-    def mpo_nat(metric):
-        METRIC_ALIASES = {
-            "dairy_vaccinated":    {"dairy_vaccinated","dairy_cows_vaccinated"},
-            "dairy_active_farms":  {"dairy_active_farms","dairy_farms_active_fmd","dairy_active_cases"},
-            "dairy_confirmed_farms":{"dairy_confirmed_farms","dairy_farms_confirmed_fmd"},
-        }
-        aliases = METRIC_ALIASES.get(metric, {metric})
-        matches = [r for r in rows if r["source_org"] == "MPO"
-                   and r["province"] == "national" and r["metric"] in aliases
-                   and r["superseded_by"] == ""]
+    weekly = []
+    for ed in dairy_dates:
+        week_data = {"date": ed}
+        total = 0
+        for code in prov_codes:
+            matches = [r for r in mpo_rows if r["effective_date"] == ed
+                       and r["province"] == code and r["metric"] == "dairy_cows_vaccinated"]
+            val = int(num(matches[0]["value"]) or 0) if matches else 0
+            week_data[code] = val
+            total += val
+        week_data["national"] = total
+        weekly.append(week_data)
+
+    latest_w = weekly[-1] if weekly else {}
+    prev_w   = weekly[-2] if len(weekly) >= 2 else {}
+
+    def get_nat_mpo(metric):
+        matches = [r for r in mpo_rows
+                   if r["province"] == "national" and r["metric"] == metric]
         if not matches:
-            return None
+            return None, None
         matches.sort(key=lambda r: r["effective_date"], reverse=True)
-        return int(num(matches[0]["value"]) or 0)
+        return int(num(matches[0]["value"]) or 0), matches[0]["effective_date"]
 
-    mpo_dates = [r["effective_date"] for r in rows if r["source_org"] == "MPO"
-                 and r["superseded_by"] == ""]
-    snapshot = max(mpo_dates) if mpo_dates else ""
+    farms_confirmed, farms_confirmed_date = get_nat_mpo("dairy_farms_confirmed_fmd")
+    farms_active,    farms_active_date    = get_nat_mpo("dairy_farms_active_fmd")
+
+    provinces = []
+    for code, name in PROVINCES:
+        cur = latest_w.get(code, 0)
+        prv = prev_w.get(code, 0)
+        provinces.append({"code": code, "name": name,
+                          "current": cur, "previous": prv, "change": cur - prv})
+
+    # Per-province active dairy farm counts — most recent available per province.
+    # Stored in master as dairy_farms_active_fmd_prov; carry-forward if Week 30
+    # had no per-province breakdown.
+    active_by_province = []
+    for code, name in PROVINCES:
+        prov_rows = [r for r in mpo_rows
+                     if r["province"] == code
+                     and r["metric"] == "dairy_farms_active_fmd_prov"
+                     and r["superseded_by"] == ""]
+        if prov_rows:
+            prov_rows.sort(key=lambda r: r["effective_date"], reverse=True)
+            val = int(num(prov_rows[0]["value"]) or 0)
+        else:
+            val = 0
+        active_by_province.append({"code": code, "name": name, "active": val})
 
     return {
-        "national_dairy_vaccinated": mpo_nat("dairy_vaccinated"),
-        "confirmed_farms":           mpo_nat("dairy_confirmed_farms"),
-        "active_farms":              mpo_nat("dairy_active_farms"),
-        "snapshot_date":             snapshot,
-        "source_label":              "MPO Week 28 — dairy industry update",
-        "wc_note":                   "Western Cape: 167,124 animals vaccinated — not exclusively dairy; excluded from national total.",
-        "kzn_note":                  "KwaZulu-Natal: All dairy cows have received their first round of FMD vaccine.",
-        "by_province":               by_prov,
+        "weekly":                  weekly,
+        "latest_date":             dairy_dates[-1] if dairy_dates else None,
+        "provinces":               provinces,
+        "farms_confirmed":         farms_confirmed,
+        "farms_confirmed_date":    farms_confirmed_date,
+        "farms_active":            farms_active,
+        "farms_active_date":       farms_active_date,
+        "national_current":        latest_w.get("national", 0),
+        "national_previous":       prev_w.get("national", 0),
+        "active_by_province":      active_by_province,
     }
 
 def national_view(rows, snapshot):
-    # Legacy: pull national-level rows (used for delta comparisons only).
-    def nat_legacy(metric, vaccine_type="", vet_channel=""):
-        return latest_metric(rows, province="national", metric=metric,
-                             vaccine_type=vaccine_type, vet_channel=vet_channel,
-                             prefer_org=["AgriSA-NAT", "ICC", "WC-GIS", "LDARD", "EC-DARD", "EC-DRDAR", "FS-DARD"]) or 0
-    return {
-        "_legacy_received":     int(nat_legacy("doses_received", "all", "all")),
-        "_legacy_administered": int(nat_legacy("animals_vaccinated", "all", "all")),
-        "_legacy_positive":     int(nat_legacy("positive_cases")),
-    }
+    """Compute the headline national figures by summing the most recent per-province
+    values from any PROGRAMME_SOURCES (carry-forward). This replaces the prior approach
+    of looking up province='national' ICC rows, which only updated when the consolidated
+    AgriSA xlsx arrived. The dashboard now synthesises the national picture from
+    individual provincial JOC submissions, which is the whole point of the system."""
+    prog_rows = [r for r in rows
+                 if r["source_org"] in PROGRAMME_SOURCES and r["superseded_by"] == ""]
 
-def national_view_from_provinces(province_list, rows):
-    """Compute national totals by summing province card values.
-    This guarantees national KPIs always equal the sum shown on province cards."""
+    total_recv = sum(_best_received(prog_rows, code)   for code, _ in PROVINCES)
+    total_adm  = sum(_best_vaccinated(prog_rows, code) for code, _ in PROVINCES)
+    total_pos  = sum(
+        latest_metric(prog_rows, province=code, metric="positive_cases") or 0
+        for code, _ in PROVINCES
+    )
+    total_sus  = sum(
+        latest_metric(prog_rows, province=code, metric="suspected_cases") or 0
+        for code, _ in PROVINCES
+    )
+    total_neg  = sum(
+        latest_metric(prog_rows, province=code, metric="negative_cases",
+                      skip_zero=False) or 0
+        for code, _ in PROVINCES
+    )
+    total_pend = sum(
+        latest_metric(prog_rows, province=code, metric="pending_cases",
+                      skip_zero=False) or 0
+        for code, _ in PROVINCES
+    )
+    herd = sum(
+        latest_metric(prog_rows, province=code, metric="herd_cattle",
+                      prefer_org=["AgriSA-NAT", "ICC", "WC-GIS"]) or 0
+        for code, _ in PROVINCES
+    )
+
     out = {
-        "positive":     sum(p["positive"]   for p in province_list),
-        "suspected":    sum(p["suspected"]  for p in province_list),
-        "negative":     sum(p["negative"]   for p in province_list),
-        "pending":      sum(p["pending"]    for p in province_list),
-        "received":     sum(p["received"]   for p in province_list),
-        "administered": sum(p["vaccinated"] for p in province_list),
-        "herd_cattle":  sum(p["herd"]       for p in province_list),
+        "positive":     int(total_pos),
+        "suspected":    int(total_sus),
+        "negative":     int(total_neg),
+        "pending":      int(total_pend),
+        "received":     int(total_recv),
+        "administered": int(total_adm),
+        "herd_cattle":  int(herd),
     }
     out["balance"] = out["received"] - out["administered"]
     return out
@@ -308,7 +406,7 @@ def build_ministerial_comparison(rows):
     for code, name in PROVINCES:
         joc = latest_metric(rows, province=code, metric="animals_vaccinated",
                             vaccine_type="all", vet_channel="all",
-                            prefer_org=["AgriSA-NAT", "ICC", "WC-GIS", "GDARD", "LDARD", "EC-DARD", "EC-DRDAR", "FS-DARD"])
+                            prefer_org=["AgriSA-NAT", "ICC", "WC-GIS", "GDARD"])
         joc_date = latest_province_date(rows, code)
 
         min_rows = [r for r in rows if r["source_org"] == "Ministry"
@@ -349,10 +447,10 @@ def build_quality_flags(rows, snapshot, min_comparison):
     for code, name in PROVINCES:
         received = latest_metric(rows, province=code, metric="doses_received",
                                  vaccine_type="all", vet_channel="all",
-                                 prefer_org=["AgriSA-NAT", "ICC", "LDARD", "EC-DARD", "EC-DRDAR", "FS-DARD"])
+                                 prefer_org=["AgriSA-NAT", "ICC"])
         vaccinated = latest_metric(rows, province=code, metric="animals_vaccinated",
                                    vaccine_type="all", vet_channel="all",
-                                   prefer_org=["AgriSA-NAT", "ICC", "WC-GIS", "GDARD", "LDARD", "EC-DARD", "EC-DRDAR", "FS-DARD"])
+                                   prefer_org=["AgriSA-NAT", "ICC", "WC-GIS", "GDARD"])
         if received and vaccinated and vaccinated > received:
             flags.append({
                 "severity": "critical", "province": code,
@@ -441,48 +539,31 @@ def build_dashboard():
     snapshot = dates[-1]
     print(f"Building dashboard from snapshot {snapshot}; {len(dates)} weekly points.")
 
-    provinces = build_provinces(rows, snapshot)
-    nat       = national_view_from_provinces(provinces, rows)
-    legacy    = national_view(rows, snapshot)   # for delta computation only
-
-    # snapshot_date = most recent as_of date across any province (shows true data currency)
-    live_snapshot = max((p["as_of"] for p in provinces), default=snapshot)
-
+    nat = national_view(rows, snapshot)
     payload = {
-        "snapshot_date": live_snapshot,
+        "snapshot_date": snapshot,
         "build_date": str(date.today()),
-        "provinces": provinces,
+        "provinces": build_provinces(rows, snapshot),
         "weekly": build_weekly(rows),
-        "sources": build_source_mix(rows, live_snapshot),
+        "sources": build_source_mix(rows, snapshot),
         "national": nat,
-        "mpo": build_mpo_classification(rows),
+        "mpo": build_mpo(rows),
     }
 
-    # Week-on-week deltas vs prior weekly snapshot at national level
-    # Deltas: current summed-province total vs prior AgriSA-NAT weekly snapshot.
-    # Using AgriSA-NAT as the prior baseline gives a stable week-on-week comparison
-    # even when the current figure comes from more recent per-province submissions.
-    prior = dates[-2] if len(dates) >= 2 else None
-    prior_snap = dates[-1]   # last AgriSA-NAT date (used as prior when provinces are newer)
-    if prior:
-        prior_recv = latest_value(rows, effective_date=prior, province="national",
-                                  metric="doses_received",
-                                  vaccine_type="all", vet_channel="all") or 0
-        prior_adm  = latest_value(rows, effective_date=prior, province="national",
-                                  metric="animals_vaccinated",
-                                  vaccine_type="all", vet_channel="all") or 0
-        prior_pos  = latest_value(rows, effective_date=prior, province="national",
-                                  metric="positive_cases") or 0
-        payload["national"]["delta_received"]     = int(nat["received"]     - prior_recv)
-        payload["national"]["delta_administered"] = int(nat["administered"] - prior_adm)
-        payload["national"]["delta_positive"]     = int(nat["positive"]     - prior_pos)
+    # Week-on-week deltas — derived from the already-computed weekly series so that
+    # deltas are always consistent with what the chart shows, even when the prior
+    # week has no province="national" ICC row (JOC-only dates).
+    weekly_series = payload["weekly"]
+    if len(weekly_series) >= 2:
+        cur  = weekly_series[-1]
+        prev = weekly_series[-2]
+        payload["national"]["delta_received"]     = int((cur["received"]     or 0) - (prev["received"]     or 0))
+        payload["national"]["delta_administered"] = int((cur["administered"] or 0) - (prev["administered"] or 0))
+        payload["national"]["delta_positive"]     = int((cur["positive"]     or 0) - (prev["positive"]     or 0))
     else:
         payload["national"]["delta_received"] = 0
         payload["national"]["delta_administered"] = 0
         payload["national"]["delta_positive"] = 0
-    # Store the prior-week baseline date for display
-    payload["national"]["prior_snapshot"] = prior if prior else ""
-    payload["national"]["live_snapshot"]  = live_snapshot
 
     # Ministerial / DAFF figures — most recent Ministry-sourced totals
     def min_nat(metric, vaccine_type="", vet_channel=""):
@@ -498,20 +579,21 @@ def build_dashboard():
     min_dist = min_nat("doses_distributed", "all", "all")
     min_adm  = min_nat("animals_vaccinated_ministerial", "all", "all")
 
-    # Provincial ministerial cattle vaccinated (23 Apr)
     prov_ministerial = {}
     for code, name in PROVINCES:
         m = [r for r in rows if r["source_org"] == "Ministry"
-             and r["province"] == code and r["metric"] == "cattle_vaccinated_ministerial"
+             and r["province"] == code
+             and r["metric"] == "cattle_vaccinated_ministerial"
              and r["superseded_by"] == ""]
         if m:
             m.sort(key=lambda r: r["effective_date"], reverse=True)
-            prov_ministerial[code] = {"value": int(num(m[0]["value"]) or 0),
-                                      "as_of": m[0]["effective_date"]}
+            prov_ministerial[code] = {
+                "value": int(num(m[0]["value"]) or 0),
+                "as_of": m[0]["effective_date"],
+            }
 
-    # Policy events
     policy_events = []
-    if any(r for r in rows if r["metric"] == "section10_scheme_published"):
+    if any(r["metric"] == "section10_scheme_published" for r in rows):
         policy_events.append({
             "date": "2026-05-04",
             "title": "Section 10 Routine Vaccination Scheme gazetted",
@@ -519,7 +601,7 @@ def build_dashboard():
                        "without waiting for the national rollout. Animals must be individually "
                        "traceable and digitally recorded.")
         })
-    if any(r for r in rows if r["metric"] == "dma_lifted" and r["province"] == "KZN"):
+    if any(r["metric"] == "dma_lifted" and r["province"] == "KZN" for r in rows):
         policy_events.append({
             "date": "2026-05-05",
             "title": "KwaZulu-Natal DMA formally lifted",
@@ -528,14 +610,15 @@ def build_dashboard():
                        "replacing the localised DMA rules.")
         })
 
-    # Incoming supply pipeline
     incoming = []
     for r in rows:
         if r["metric"] == "doses_incoming" and r["superseded_by"] == "":
-            incoming.append({"vaccine": r["vaccine_type"],
-                             "doses": int(num(r["value"]) or 0),
-                             "expected": r["effective_date"],
-                             "notes": r["notes"]})
+            incoming.append({
+                "vaccine":  r["vaccine_type"],
+                "doses":    int(num(r["value"]) or 0),
+                "expected": r["effective_date"],
+                "notes":    r["notes"],
+            })
     incoming.sort(key=lambda x: x["expected"])
 
     payload["ministerial"] = {
@@ -553,9 +636,8 @@ def build_dashboard():
 
     min_comparison = build_ministerial_comparison(rows)
     payload["ministerial_comparison"] = min_comparison
-    payload["quality_flags"] = build_quality_flags(rows, live_snapshot, min_comparison)
+    payload["quality_flags"] = build_quality_flags(rows, snapshot, min_comparison)
 
-    # Source attribution: every source file contributing to the current view
     payload["sources_used"] = sorted(set(r["source_file"] for r in rows
                                          if r["superseded_by"] == ""))
 
