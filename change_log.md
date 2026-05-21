@@ -1627,3 +1627,41 @@ The dashboard total distributed (5,361,509) is now within 2.5% of the Ministeria
 - Investigate: GP OBP distributed (1,700) vs administered (127,580) discrepancy — likely OBP figure in administered column actually reflects a different allocation channel
 - Investigate: EC "Other / Artio-Preva" cell value 1,250 — appears to duplicate BVI; confirm with EC
 - GitHub push pending: master_data.csv + FMD_Dashboard.html + build_dashboard.py + state files
+
+---
+
+## 2026-05-21 (session 18b) — WC positive cases correction
+
+**Master grew from 1,245 to 1,246 rows** (one superseding row added).
+
+**Dashboard rebuilt:** Yes — 83,225 bytes, snapshot 2026-05-21, validation passed.
+
+### Change
+
+User verified that WC cumulative positive cases as at 21 May 2026 should be **22, not 26**.
+NW confirmed at **332** (no change needed).
+
+- WC `positive_cases` row dated 2026-05-21 with value 26 (source WC-GIS) marked **superseded_by = v2-corrected-2026-05-21**.
+- New WC `positive_cases` row added at value **22**, version 2, same effective date and source, with note explaining the correction.
+- Historical WC positive_cases rows (9 May, 19 May, both at 26) retained unchanged — they were correct at the time and the figure has since been revised downward by WC-GIS.
+
+### Per-province positive cases as at 21 May 2026
+
+| Province | Positive | Δ |
+|---|---|---|
+| EC | 295 | — |
+| FS | 589 | — |
+| GP | 294 | — |
+| KZN | 69 | — |
+| LP | 61 | — |
+| MP | 231 | — |
+| NW | 332 | — |
+| NC | 7 | — |
+| WC | **22** | corrected from 26 |
+| **National** | **1,900** | was 1,904 (–4) |
+
+### Action items for next run
+
+- Watch for: ICC weekly engagement summary PDF for 20-21 May
+- Watch for: Section 9 gazette (~25 May 2026)
+- GitHub push: complete this session
