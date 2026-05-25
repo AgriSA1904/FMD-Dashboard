@@ -386,16 +386,29 @@ def national_view(rows, snapshot):
         for code, _ in PROVINCES
     )
 
+    # National doses procured into South Africa from manufacturers (Ministerial figure)
+    procured_rows = [r for r in rows
+                     if r["province"] == "national"
+                     and r["metric"] == "doses_procured"
+                     and r["source_org"] == "Ministry"
+                     and r["superseded_by"] == ""]
+    procured = 0
+    if procured_rows:
+        procured_rows.sort(key=lambda r: r["effective_date"], reverse=True)
+        procured = int(num(procured_rows[0]["value"]) or 0)
+
     out = {
         "positive":     int(total_pos),
         "suspected":    int(total_sus),
         "negative":     int(total_neg),
         "pending":      int(total_pend),
-        "received":     int(total_recv),
+        "procured":     int(procured),
+        "distributed":  int(total_recv),
+        "received":     int(total_recv),  # legacy alias retained for backwards compatibility
         "administered": int(total_adm),
         "herd_cattle":  int(herd),
     }
-    out["balance"] = out["received"] - out["administered"]
+    out["balance"] = out["distributed"] - out["administered"]
     return out
 
 
@@ -558,10 +571,12 @@ def build_dashboard():
         cur  = weekly_series[-1]
         prev = weekly_series[-2]
         payload["national"]["delta_received"]     = int((cur["received"]     or 0) - (prev["received"]     or 0))
+        payload["national"]["delta_distributed"]  = int((cur["received"]     or 0) - (prev["received"]     or 0))
         payload["national"]["delta_administered"] = int((cur["administered"] or 0) - (prev["administered"] or 0))
         payload["national"]["delta_positive"]     = int((cur["positive"]     or 0) - (prev["positive"]     or 0))
     else:
         payload["national"]["delta_received"] = 0
+        payload["national"]["delta_distributed"] = 0
         payload["national"]["delta_administered"] = 0
         payload["national"]["delta_positive"] = 0
 
@@ -656,4 +671,4 @@ def build_dashboard():
 
 
 if __name__ == "__main__":
-    build_da
+    build_dashboard()

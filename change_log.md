@@ -1808,3 +1808,71 @@ NW confirmed at **332** (no change needed).
 6. **Investigate:** EC Other/Artio-Preva 1,250 cell flagged in session 18
 7. **GitHub push:** master_data.csv + FMD_Dashboard.html + change_log.md + memory_update.md + scripts/append_mp_19may_dvs.py
 
+
+---
+
+## 2026-05-25 (session 20) — GDARD GP JOC 22 May 2026 ingested (automated daily run)
+
+**Master grew from 1,301 to 1,308 rows (+7 new rows).**
+
+**Dashboard rebuilt:** Yes — FMD_Dashboard.html updated (84,026 bytes, **20 weekly points**, validation passed). **Snapshot date advanced from 21 May 2026 to 22 May 2026.**
+
+**GitHub push:** Pending this session.
+
+### Inbox scan summary
+
+| Folder | Files checked | New since last run? |
+|---|---|---|
+| Root — "25 May 2026" dated weekly folder | None | No new AgriSA consolidated xlsx |
+| inbox/Gauteng/ | GDARD FMD JOC Meeting 22.05.26.pdf | **YES — ingested** |
+| inbox/Free State/ | No new files | No |
+| inbox/Eastern Cape/ | No new files | No |
+| inbox/Limpopo/ | No new files | No |
+| inbox/Mpumalanga/ | No new files | No |
+| inbox/North West/ | No new files | No |
+| inbox/MPO/ | No MPO Week 31 found | No |
+| inbox/ICC Reports/ | No new ICC summary | No |
+| inbox/Ministerial Updates/ | No Section 9 gazette yet | No |
+| inbox/AgriSA Summary and Outcomes/ | No 20–21 May summary | No |
+
+### Sources processed
+
+| File | Effective Date | Source Org | Outcome |
+|---|---|---|---|
+| `inbox/Gauteng/GDARD FMD JOC Meeting 22.05.26.pdf` | 2026-05-22 | GP-GDARD | Ingested — 7 rows |
+
+### Key figures added (GP as at 22 May 2026)
+
+| Metric | Previous (21 May) | New (22 May) | Change |
+|---|---|---|---|
+| Animals vaccinated (total, 2026) | 244,800 | 266,121 | +21,321 |
+| Animals vaccinated — Biogenesis Bago | — | 142,341 | New breakdown |
+| Animals vaccinated — Aftodoll | — | 123,780 | New breakdown |
+| Doses received/allocated (total) | 517,940 | 518,500 | +560 |
+| Positive cases | 294 | 296 | +2 |
+| Suspected cases | 2 | 0 | -2 (none active) |
+| Controlled slaughter (depopulation) | — | 231,244 | New row |
+
+**District breakdown (from GDARD JOC report):**
+- Biogenesis Bago by district: Pretoria 45,476 / Randfontein 18,139 / Germiston 78,726
+- Aftodoll by district: Pretoria 46,075 / Randfontein 16,812 / Germiston 60,893
+- 4,853 movement permits issued; at least R32 million allocated for vaccines; 38 new animal health technicians and veterinarians appointed
+
+### Data quality flags
+
+1. **GP doses_received discrepancy:** GDARD reports 518,500 "at least allocated" vs 517,940 in the 21 May consolidated template — difference of 560 doses. GDARD also notes "124,800 Dollvet x2 not received yet" as a separate allocation. Both figures are now in master with source context. The 124,800 pending will advance the distributed total materially once confirmed received.
+2. **GP animals vaccinated vs doses administered:** GDARD reports 266,121 animals vaccinated (2026 only) but the 21 May template shows 370,837 doses administered. These measure different things: the template doses_administered likely includes 2025 baseline vaccinations and counts each dose (not each animal). The GDARD figure is 2026 animals vaccinated only. No conflict — different metrics, flagged in notes.
+3. **GP OBP/ARC discrepancy (carry forward from session 18):** GDARD confirms 1,700 ARC-OVR received; the 127,580 doses_administered row for obp_arc in the 21 May template remains flagged as a likely column-mapping error in the submitted template. Still unresolved.
+4. **GP positive cases period:** GDARD reports 296 total confirmed outbreaks for the period 1 April 2025–25 May 2026. The 21 May template showed 294. The 296 includes outbreaks recorded since the outbreak started in April 2025, not just the current 2026 intensive response period.
+
+### Action items for next run
+
+1. **Watch for:** 25 May 2026 (or later) consolidated AgriSA weekly xlsx — priority to advance national headline
+2. **Watch for:** Section 9 gazette — expected ~25 May 2026 (today); not yet in inbox at time of this run
+3. **Watch for:** ICC weekly engagement summary PDF for 20–21 May 2026
+4. **Watch for:** MPO Week 31 dairy update
+5. **Watch for:** KZN submission — no JOC data since late March; booster programme confirmation outstanding
+6. **Investigate:** GP 124,800 Dollvet x2 not yet received — confirm receipt in next GP report
+7. **Investigate:** GP OBP column-mapping discrepancy (session 18 flag — still unresolved)
+8. **GitHub push:** master_data.csv + FMD_Dashboard.html + change_log.md + memory_update.md
+

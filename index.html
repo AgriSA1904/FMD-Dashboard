@@ -353,8 +353,8 @@
         <p class="subtitle">A weekly view of vaccine rollout, disease status and provincial coverage. Compiled by AgriCulture South Africa from provincial Joint Operations Committee submissions.</p>
       </div>
       <div class="badge-block">
-        <span class="pill-status">As at 2026-05-21</span>
-        <span class="last-updated">Built 2026-05-22</span>
+        <span class="pill-status">As at 2026-05-22</span>
+        <span class="last-updated">Built 2026-05-25</span>
       </div>
     </div>
   </div>
@@ -612,8 +612,8 @@
 
 <script>
 const DASHBOARD_DATA = {
-  "snapshot_date": "2026-05-21",
-  "build_date": "2026-05-22",
+  "snapshot_date": "2026-05-22",
+  "build_date": "2026-05-25",
   "provinces": [
     {
       "code": "EC",
@@ -642,14 +642,14 @@ const DASHBOARD_DATA = {
     {
       "code": "GP",
       "name": "Gauteng",
-      "as_of": "2026-05-21",
+      "as_of": "2026-05-22",
       "herd": 474928,
-      "positive": 294,
+      "positive": 296,
       "suspected": 2,
       "negative": 0,
       "pending": 0,
-      "received": 517940,
-      "vaccinated": 244800
+      "received": 518500,
+      "vaccinated": 266121
     },
     {
       "code": "KZN",
@@ -876,6 +876,14 @@ const DASHBOARD_DATA = {
       "positive": 1900,
       "suspected": 855,
       "pending": null
+    },
+    {
+      "date": "2026-05-22",
+      "received": 5362069,
+      "administered": 2941849,
+      "positive": 1902,
+      "suspected": 855,
+      "pending": null
     }
   ],
   "sources": {
@@ -886,17 +894,20 @@ const DASHBOARD_DATA = {
     "unallocated": 358480
   },
   "national": {
-    "positive": 1900,
+    "positive": 1902,
     "suspected": 855,
     "negative": 65,
     "pending": 237,
-    "received": 5361509,
-    "administered": 2920528,
+    "procured": 6000000,
+    "distributed": 5362069,
+    "received": 5362069,
+    "administered": 2941849,
     "herd_cattle": 12496199,
-    "balance": 2440981,
-    "delta_received": 1833910,
-    "delta_administered": -52736,
-    "delta_positive": 167
+    "balance": 2420220,
+    "delta_received": 560,
+    "delta_distributed": 560,
+    "delta_administered": 21321,
+    "delta_positive": 2
   },
   "mpo": {
     "weekly": [
@@ -1158,7 +1169,7 @@ const DASHBOARD_DATA = {
       "code": "GP",
       "name": "Gauteng",
       "joc": 184036,
-      "joc_date": "2026-05-21",
+      "joc_date": "2026-05-22",
       "ministerial": 184036,
       "ministerial_date": "2026-04-23",
       "diff": 0,
@@ -1335,6 +1346,7 @@ const DASHBOARD_DATA = {
     "FMD_Master_Template_v2.xlsx (uploaded 2026-05-21)",
     "FMD_Master_Template_v2.xlsx (uploaded 2026-05-21) \u2014 user correction",
     "FOOT AND MOUTH PRESENTATION TO MINMEC (7 MAY 2026).pptx",
+    "GDARD FMD JOC Meeting 22.05.26.pdf",
     "ICC FMD_VaccineRollout_20March2026.pdf",
     "MEDIA BRIEFING BY MINISTER OF AGRICULTURE_LATIN AMERICA OUTCOMES_SECTION 10_FMD_05MAY2026.pdf",
     "MPO Info/Copy of FMD Vaccination Data 17 April 2026.xlsx",
@@ -1443,7 +1455,9 @@ try {
 try {
   const dosesPerAnimal = 2;
   const fullCoverageNeed = N.herd_cattle * dosesPerAnimal;
-  const shortfall = fullCoverageNeed - N.received;
+  const procured = N.procured || N.received;
+  const distributed = N.distributed || N.received;
+  const shortfall = fullCoverageNeed - procured;
   const shortfallM = (shortfall / 1e6).toFixed(1);
   safeEl('alertBanner').innerHTML = `
     <div>
@@ -1452,9 +1466,10 @@ try {
     </div>
     <div>
       <p class="alert-headline">
-        We have received <span class="accent">${fmt(N.received)} doses</span> against a national herd of ${fmt(N.herd_cattle)} cattle.
+        South Africa has received <span class="accent">${fmt(procured)} doses</span> from manufacturers, of which <span class="accent">${fmt(distributed)} doses</span> have been distributed to the provinces.
+        We measure against a national herd of ${fmt(N.herd_cattle)} cattle.
         Full coverage at two doses per animal requires roughly ${(fullCoverageNeed/1e6).toFixed(1)} million doses.
-        The most recent week added ${fmt(N.delta_administered)} animals vaccinated and ${fmt(N.delta_received)} fresh doses.
+        The most recent week added ${fmt(N.delta_administered)} animals vaccinated to the provincial total.
       </p>
     </div>
   `;
@@ -1469,14 +1484,16 @@ try {
       sub:N.delta_positive===0?'No change from prior consolidated period — awaiting updated provincial JOC submissions':`Δ ${N.delta_positive>=0?'+':''}${N.delta_positive} since prior week` },
     { label:'Suspected and pending', value: fmt(N.suspected + N.pending),
       sub:`${fmt(N.suspected)} suspected, ${fmt(N.pending)} pending` },
-    { label:'Vaccines received', value: fmt(N.received),
+    { label:'Doses received in South Africa', value: fmt(N.procured || N.received),
+      sub:'Procured from manufacturers (Ministerial figure)' },
+    { label:'Doses distributed to provinces', value: fmt(N.distributed || N.received),
       sub:'Cumulative since rollout start',
       trend:`+${fmt(N.delta_received)} this week` },
     { label:'Animals vaccinated', value: fmt(N.administered),
       sub:`+${fmt(N.delta_administered)} this week`,
       trend: N.delta_administered<100000?'Pace slowing':'Pace holding' },
     { label:'Vaccine balance', value: fmt(N.balance),
-      sub:'Plus 75 000 emergency stock',
+      sub:'Distributed less administered, plus 75 000 emergency stock',
       trend:'Spoilage not tracked' },
     { label:'Herd coverage', value: coverage.toFixed(1)+'%',
       sub:'Share of national cattle herd vaccinated',
