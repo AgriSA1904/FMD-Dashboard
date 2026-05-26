@@ -4,50 +4,50 @@ description: Latest master_data.csv row count, dashboard snapshot date, and run 
 type: project
 ---
 
-As at 2026-05-25 (session 20 — automated daily ingest, GDARD GP JOC 22 May 2026):
-- Master: 1,308 rows (1,301 before this session + 7 added from GDARD FMD JOC Meeting 22.05.26.pdf)
-- Dashboard snapshot: **22 May 2026** (advanced from 21 May 2026)
-- Dashboard rebuilt: Yes — FMD_Dashboard.html updated (84,026 bytes, 20 weekly points, validation passed)
+As at 2026-05-26 (session 21 — automated daily ingest, MPO Week 31):
+- Master: 1,322 rows (1,308 before this session + 14 added from MPO Week 31 PDF)
+- Dashboard snapshot: **22 May 2026** (unchanged — MPO is commodity-body source, does not advance programme snapshot)
+- Dashboard rebuilt: Yes — FMD_Dashboard.html updated (84,390 bytes, 20 weekly points, validation passed)
 
 **Key highlights this run:**
-- **GP GDARD JOC 22 May 2026 ingested** — 7 new rows for GP effective 2026-05-22.
-- **GP animals vaccinated advanced 244,800 → 266,121** (+21,321). Biogenesis Bago: 142,341 / Aftodoll: 123,780. Includes 1,533 ARC-OVR.
-- **GP positive cases advanced 294 → 296** (293 open, 3 closed; period 1 April 2025–25 May 2026).
-- **GP suspected cases reduced 2 → 0** — no suspects under investigation and no new cases in past week.
-- **GP doses received/allocated: 518,500** (slight advance on 21 May template 517,940). Note: 124,800 Dollvet x2 listed as not yet received.
-- **GP controlled slaughter: 231,244 cattle** under depopulation control measures; 4,853 permits issued.
-- **Dashboard snapshot date advanced to 22 May 2026** — 20 weekly time-series points.
+- **MPO Week 31 ingested** (snapshot 22 May 2026) — 14 new rows.
+- **National dairy cows vaccinated advanced 769,159 (Week 30) → 831,143 (Week 31)** (+61,984).
+- **EC dairy cows advanced 216,597 → 269,211** (+52,614). All EC dairy animals expected fully vaccinated by end of week of 22 May. Note: MPO direct communication on 15 May stated milestone of 313,890 (all EC dairy vaccinated) — Week 31 table figure of 269,211 is lower; methodology difference flagged in notes.
+- **WC dairy cows advanced 140,746 → 150,116** (+9,370). Now 150,116 of ~240,000 WC dairy animals have received first vaccination.
+- **KZN: 3 dairy farms reported FMD reinfection post-vaccination** — symptoms significantly less severe than pre-vaccination. All KZN dairy still fully vaccinated.
+- **NW Lichtenburg reinfection confirmed** (1 farm) — confirms Week 30 suspected case.
+- **No new consolidated AgriSA weekly xlsx received** — snapshot date remains 22 May 2026.
 
-**Inbox scan summary (25 May 2026):**
+**Inbox scan summary (26 May 2026):**
 
 | Folder | Status |
 |---|---|
-| Root — "25 May 2026" dated weekly folder | Not found — no new AgriSA consolidated xlsx yet |
-| inbox/Gauteng/ | **GDARD FMD JOC Meeting 22.05.26.pdf — ingested** |
-| inbox/Free State/ | No new files since 22 May |
-| inbox/Eastern Cape/ | No new files since 22 May |
-| inbox/Limpopo/ | No new files since 22 May |
-| inbox/Mpumalanga/ | No new files since 22 May |
-| inbox/North West/ | No new files since 22 May |
-| inbox/MPO/ | No MPO Week 31 found |
+| Root — "26 May 2026" dated weekly folder | Not found — no new AgriSA consolidated xlsx yet |
+| inbox/MPO/ | **Week 31 PDF ingested** (arrived 2026-05-25 09:31, after session 20) |
+| inbox/Mpumalanga/ | MP xlsx (19 May data) already in master from session 19/22; email PDF (Robert, 21 May) confirms same figures — no new rows needed |
+| inbox/Gauteng/ | No new files since session 20 |
+| inbox/Free State/ | No new files since session 22 |
+| inbox/Eastern Cape/ | No new files since session 22 |
+| inbox/Limpopo/ | No new files since session 20 |
+| inbox/North West/ | No new files |
 | inbox/ICC Reports/ | No new ICC weekly summary |
-| inbox/Ministerial Updates/ | No Section 9 gazette yet |
-| inbox/AgriSA Summary and Outcomes/ | No 20-21 May ICC summary |
+| inbox/Ministerial Updates/ | No Section 9 gazette found |
+| inbox/AgriSA Summary and Outcomes/ | No new ICC engagement summary |
 
-**GP data quality notes carried forward:**
-- GP OBP/ARC distributed (1,700 in template) vs administered (127,580 in template) discrepancy: GDARD confirms 1,700 ARC-OVR received; the 127,580 "administered" row for obp_arc in master from 21 May template remains flagged as likely a column-mapping error.
-- GP doses_received 518,500 (GDARD) vs 517,940 (template) — minor +560 difference; GDARD notes 124,800 Dollvet x2 not yet received separately, so full context needs monitoring.
+**Data quality notes:**
+- EC Week 31 MPO figure (269,211) vs EC milestone communication (313,890 on 15 May): discrepancy likely reflects MPO table methodology vs milestone count. Both held in master. Monitor for resolution.
+- Automated xlsx ingest script (ingest.py) is finding the MP xlsx in inbox each morning and assigning today's date as effective_date — this is a script bug; master_data.csv is unaffected as rows are deduplicated correctly. The MP xlsx should be archived once confirmed no further updates expected.
 
 **Parked/outstanding:**
-- ICC weekly engagement summary PDF for 20-21 May 2026 — still not in inbox
-- Section 9 gazette — target ~25 May 2026 (today); not yet found in inbox
-- MPO Week 31 dairy update — expected this week
-- 25 May 2026 (or later) consolidated AgriSA weekly xlsx — not yet available
-- 144,000 new batch received MP this week — confirm allocation in next MP submission
+- ICC weekly engagement summary PDF for 19-20 May 2026 — still not in inbox
+- Section 9 gazette — expected ~25 May (now overdue); watch Ministerial Updates
+- 26 May 2026 (or later) consolidated AgriSA weekly xlsx — not yet available
+- 144,000 new batch received MP week of 19 May — confirm allocation in next MP submission
 - GP OBP distributed (1,700) vs administered (127,580) column-mapping discrepancy — ongoing
 - EC "Other / Artio-Preva" 1,250 cell duplication — still pending EC confirmation
 - EC unique-animals figure for 14 May / 21 May — still pending from EC-DRDAR
-- KZN suspected FMD case in vaccinated herd (MPO Week 30) — monitor for confirmation
-- KZN booster programme confirmation
+- EC Week 31 MPO dairy count vs milestone figure — pending clarification
+- KZN booster programme confirmation (following reinfection reports)
 - LP DolVet 150,000 receipt confirmation
-- GitHub push: pending this session
+- MP xlsx in inbox: automated script re-scanning daily with wrong effective dates — archive after confirmation
+- GitHub push: **completed this session**

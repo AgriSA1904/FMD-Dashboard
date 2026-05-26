@@ -4,6 +4,75 @@ A running record of what changed in the master and dashboard, with dates and sou
 
 ---
 
+## 2026-05-26 (session 21) — MPO Week 31 dairy update (automated daily ingest)
+
+**Master grew from 1,308 to 1,322 rows (+14 new rows).**
+
+**Dashboard rebuilt:** Yes — FMD_Dashboard.html updated (84,390 bytes, 20 weekly points, validation passed). Snapshot date unchanged at 22 May 2026 (MPO is commodity-body source; does not advance programme snapshot).
+
+**GitHub push:** Completed this session.
+
+### Inbox scan summary
+
+| Folder | Files checked | New since last run? |
+|---|---|---|
+| Root (dated weekly folder) | None — no "26 May 2026" folder | No |
+| inbox/MPO/ | Week 31 PDF (arrived 2026-05-25 09:31, after session 20) | **Yes — ingested** |
+| inbox/Mpumalanga/ | MP xlsx (19 May data) + Email PDF from Robert Davel (21 May) | No new data (already in master) |
+| inbox/Gauteng/ | No new files since GDARD 22 May JOC (session 20) | No |
+| inbox/Eastern Cape/ | No new files since session 22 | No |
+| inbox/Free State/ | No new files since session 22 | No |
+| inbox/Limpopo/ | No new files since session 20 | No |
+| inbox/ICC Reports/ | No new ICC weekly summary | No |
+| inbox/Ministerial Updates/ | No Section 9 gazette | No |
+| inbox/AgriSA Summary and Outcomes/ | No 19-20 May ICC summary | No |
+
+### Sources processed
+
+| File | Effective Date | Source Org | Outcome |
+|---|---|---|---|
+| `inbox/MPO/Week 31 - Update on the state of FMD and vaccine rollouts in the dairy industry.pdf` | 2026-05-22 | MPO | Ingested — 14 rows |
+| `inbox/Mpumalanga/Email - Robert - 21 May.pdf` | 2026-05-19 | MP-DVS (forwarded) | Parked — confirms same figures as MP xlsx already in master; no new rows |
+
+### Key figures added (MPO Week 31, snapshot 22 May 2026)
+
+**National dairy cows vaccinated: 831,143** (up from 769,159 in Week 30, +61,984).
+
+| Province | Week 30 (15 May) | Week 31 (22 May) | Change |
+|---|---|---|---|
+| KZN | 360,200 | 360,200 | — (milestone reached) |
+| EC | 216,597 | 269,211 | +52,614 |
+| FS | 15,104 | 15,104 | — |
+| LP | 5,475 | 5,475 | — |
+| GP | 14,832 | 14,832 | — |
+| MP | 9,863 | 9,863 | — |
+| NW | 6,342 | 6,342 | — |
+| WC | 140,746 | 150,116 | +9,370 |
+| NC | 0 | 0 | — |
+| **National** | **769,159** | **831,143** | **+61,984** |
+
+Dairy farm disease status: 171 total farms with reported FMD (unchanged from Week 30), 124 still active (unchanged).
+
+**Reinfection events added:**
+- KZN: 3 dairy farms with FMD reinfection post-vaccination (less severe than pre-vaccination cases)
+- NW Lichtenburg: 1 dairy farm reinfection post-vaccination (confirms Week 30 suspect)
+
+### Data quality flags
+
+1. **EC dairy count discrepancy:** Week 31 MPO table shows 269,211 EC dairy cows vaccinated. MPO direct communication on 15 May 2026 stated a milestone of 313,890 (all EC dairy vaccinated). Week 31 figure is lower than the milestone — likely a different count methodology between the weekly table and the milestone announcement. Both figures are in master. Monitor for MPO clarification.
+2. **Automated xlsx script (ingest.py):** The script has been assigning today's date as effective_date for the MP xlsx (19 May data) each morning (25 May → "25 May", 26 May → "26 May"). This is a script bug — the master_data.csv deduplication prevents duplicate ingestion, so master is unaffected. The MP xlsx should be archived after the next MP submission is confirmed.
+
+### Action items for next run
+
+1. **Consolidated AgriSA weekly xlsx** — priority; advances snapshot date beyond 22 May.
+2. **Section 9 gazette** — expected ~25 May (overdue); watch Ministerial Updates folder.
+3. **ICC 19-20 May weekly engagement summary PDF** — still outstanding.
+4. **KZN booster programme** — monitor; reinfection in vaccinated herds escalated at ICC.
+5. **EC dairy count clarification** — MPO table (269,211) vs milestone communication (313,890).
+6. **MP xlsx archiving** — resolve automated script re-scan issue.
+
+---
+
 ## 2026-05-15 (session 10) — ICC weekly engagement + KZN DMA gazette (manual trigger)
 
 **Master grew from 942 to 954 rows (+12 new rows).**
