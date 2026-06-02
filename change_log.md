@@ -4,6 +4,51 @@ A running record of what changed in the master and dashboard, with dates and sou
 
 ---
 
+## 2026-06-02 (session 24) — No new data (automated daily ingest)
+
+**Master unchanged at 1,322 rows. No new rows added.**
+
+**Dashboard rebuilt:** No — no new data; FMD_Dashboard.html unchanged (22 May 2026 snapshot).
+
+**GitHub push:** State files only (memory_update.md, change_log.md).
+
+### Inbox scan summary
+
+| Folder | Files checked | New since last run? |
+|---|---|---|
+| Root (dated weekly folder) | None — no "02 Jun 2026" folder found | No |
+| inbox/MPO/ | Weeks 28–31 present; no Week 32 PDF | No |
+| inbox/Mpumalanga/ | Last modified 20 May | No |
+| inbox/Gauteng/ | Last modified 4 May | No |
+| inbox/Eastern Cape/ | Last modified 4 May | No |
+| inbox/Free State/ | Last modified 18 May (FMD STATS subfolder) | No |
+| inbox/Limpopo/ | Last modified 21 May (FMD PCM 21 MAY subfolder) | No |
+| inbox/North West/ | Last modified 21 May | No |
+| inbox/ICC Reports/ | Last modified 6 May | No |
+| inbox/Ministerial Updates/ | Last modified 7 May | No |
+| inbox/AgriSA Summary and Outcomes/ | Last modified 4 May | No |
+| inbox/Western Cape/ | Last modified 20 May | No |
+| inbox/RMIS/ | Last modified 21 May | No |
+
+### Key figures added
+
+None — no new sources processed.
+
+### Data quality flags
+
+No new flags. All carry-forward items from sessions 21–23 remain open.
+
+### Action items for next run
+
+1. **Consolidated AgriSA weekly xlsx** — now significantly overdue; last snapshot 22 May 2026 (11 days old).
+2. **MPO Week 32 dairy update** — not yet received; usual Friday cadence suggests now overdue.
+3. **Section 9 gazette** — expected ~25 May, now 8 days overdue. Urgent follow-up required.
+4. **ICC 19-20 May weekly engagement summary PDF** — still outstanding.
+5. **KZN booster programme** — monitor for confirmation following vaccinated-herd reinfections.
+6. **MP xlsx in inbox** — automated ingest script re-processing old file with incorrect effective dates; archive once confirmed no further updates expected.
+
+---
+
 ## 2026-06-01 (session 23) — No new data (automated daily ingest)
 
 **Master unchanged at 1,322 rows. No new rows added.**
@@ -2019,19 +2064,4 @@ NW confirmed at **332** (no change needed).
 
 ### Data quality flags
 
-1. **GP doses_received discrepancy:** GDARD reports 518,500 "at least allocated" vs 517,940 in the 21 May consolidated template — difference of 560 doses. GDARD also notes "124,800 Dollvet x2 not received yet" as a separate allocation. Both figures are now in master with source context. The 124,800 pending will advance the distributed total materially once confirmed received.
-2. **GP animals vaccinated vs doses administered:** GDARD reports 266,121 animals vaccinated (2026 only) but the 21 May template shows 370,837 doses administered. These measure different things: the template doses_administered likely includes 2025 baseline vaccinations and counts each dose (not each animal). The GDARD figure is 2026 animals vaccinated only. No conflict — different metrics, flagged in notes.
-3. **GP OBP/ARC discrepancy (carry forward from session 18):** GDARD confirms 1,700 ARC-OVR received; the 127,580 doses_administered row for obp_arc in the 21 May template remains flagged as a likely column-mapping error in the submitted template. Still unresolved.
-4. **GP positive cases period:** GDARD reports 296 total confirmed outbreaks for the period 1 April 2025–25 May 2026. The 21 May template showed 294. The 296 includes outbreaks recorded since the outbreak started in April 2025, not just the current 2026 intensive response period.
-
-### Action items for next run
-
-1. **Watch for:** 25 May 2026 (or later) consolidated AgriSA weekly xlsx — priority to advance national headline
-2. **Watch for:** Section 9 gazette — expected ~25 May 2026 (today); not yet in inbox at time of this run
-3. **Watch for:** ICC weekly engagement summary PDF for 20–21 May 2026
-4. **Watch for:** MPO Week 31 dairy update
-5. **Watch for:** KZN submission — no JOC data since late March; booster programme confirmation outstanding
-6. **Investigate:** GP 124,800 Dollvet x2 not yet received — confirm receipt in next GP report
-7. **Investigate:** GP OBP column-mapping discrepancy (session 18 flag — still unresolved)
-8. **GitHub push:** master_data.csv + FMD_Dashboard.html + change_log.md + memory_update.md
-
+1. **GP doses_received discrepancy:** GDARD reports 518,500 "at least allocated" vs 517,940 in the 21 May consolidated template — difference of 560 

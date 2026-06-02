@@ -4,41 +4,43 @@ description: Latest master_data.csv row count, dashboard snapshot date, and run 
 type: project
 ---
 
-As at 2026-06-01 (session 23 — automated daily ingest, no new data):
+As at 2026-06-02 (session 24 — automated daily ingest, no new data):
 - Master: 1,322 rows (unchanged — no new inbox files found)
 - Dashboard snapshot: **22 May 2026** (unchanged — no new programme data)
 - Dashboard rebuilt: No — no new data; FMD_Dashboard.html unchanged
 
 **Key highlights this run:**
-- **No new files in inbox** since session 22 (29 May 2026). All inbox folders remain unchanged from prior scans.
-- No new dated weekly folder found ("30 May 2026", "31 May 2026", "01 June 2026" all absent).
-- No MPO Week 32 PDF received yet (MPO folder last modified 25 May — Week 31 only).
-- Section 9 gazette remains outstanding (expected ~25 May, now 7 days overdue).
-- No ICC weekly engagement summary for 19-20 May received.
-- Automated ingest script continues running (log updated 2026-05-30) but only re-processing old MP xlsx with updated effective dates — this is the known bug flagged previously.
+- **No new files in inbox** since session 23 (01 June 2026). All inbox folders remain unchanged.
+- No new dated weekly folder found ("02 Jun 2026" absent).
+- MPO folder confirmed to contain only weeks 28–31; no Week 32 PDF.
+- Section 9 gazette remains outstanding (expected ~25 May, now 8 days overdue).
+- No ICC weekly engagement summary for 19–20 May received.
+- Automated ingest script continues running but only re-processing old MP xlsx — known bug, unchanged.
 - State files updated; no dashboard rebuild or GitHub push of dashboard needed this session.
 
-**Inbox scan summary (01 June 2026):**
+**Inbox scan summary (02 June 2026):**
 
 | Folder | Status |
 |---|---|
-| Root — "30/31 May, 01 June 2026" dated weekly folder | Not found — no new AgriSA consolidated xlsx |
-| inbox/MPO/ | No new files (last modified 25 May — Week 31 already ingested) |
-| inbox/Mpumalanga/ | No new files since session 22 (automated script re-scanning old file with new dates) |
-| inbox/Gauteng/ | No new files |
-| inbox/Free State/ | No new files |
-| inbox/Eastern Cape/ | No new files |
-| inbox/Limpopo/ | No new files |
-| inbox/North West/ | No new files |
-| inbox/ICC Reports/ | No new ICC weekly summary |
-| inbox/Ministerial Updates/ | No Section 9 gazette found |
-| inbox/AgriSA Summary and Outcomes/ | No new ICC engagement summary |
+| Root — "02 Jun 2026" dated weekly folder | Not found — no new AgriSA consolidated xlsx |
+| inbox/MPO/ | Weeks 28–31 only; no Week 32 PDF |
+| inbox/Mpumalanga/ | Last modified 20 May — no new files |
+| inbox/Gauteng/ | Last modified 4 May — no new files |
+| inbox/Free State/ | Last modified 18 May — no new files |
+| inbox/Eastern Cape/ | Last modified 4 May — no new files |
+| inbox/Limpopo/ | Last modified 21 May — no new files |
+| inbox/North West/ | Last modified 21 May — no new files |
+| inbox/ICC Reports/ | Last modified 6 May — no new ICC weekly summary |
+| inbox/Ministerial Updates/ | Last modified 7 May — no Section 9 gazette found |
+| inbox/AgriSA Summary and Outcomes/ | Last modified 4 May — no new ICC engagement summary |
+| inbox/Western Cape/ | Last modified 20 May — no new files |
+| inbox/RMIS/ | Last modified 21 May — no new files |
 
 **Parked/outstanding (carried forward):**
 - ICC weekly engagement summary PDF for 19-20 May 2026 — still not in inbox
-- Section 9 gazette — expected ~25 May (now 7 days overdue); urgent follow-up recommended
-- Consolidated AgriSA weekly xlsx (week of 29 May or later) — not yet available (expected overdue)
-- MPO Week 32 dairy update — expected this week (usual Friday delivery)
+- Section 9 gazette — expected ~25 May (now 8 days overdue); urgent follow-up recommended
+- Consolidated AgriSA weekly xlsx (week of 29 May or later) — not yet available (now significantly overdue; dashboard is 11 days behind)
+- MPO Week 32 dairy update — expected by Friday cadence; now overdue
 - 144,000 new batch received MP week of 19 May — confirm allocation in next MP submission
 - GP OBP distributed (1,700) vs administered (127,580) column-mapping discrepancy — ongoing
 - EC "Other / Artio-Preva" 1,250 cell duplication — still pending EC confirmation
@@ -97,5 +99,4 @@ As at 2026-05-26 (session 21 — automated daily ingest, MPO Week 31):
 - EC Week 31 MPO dairy count vs milestone figure — pending clarification
 - KZN booster programme confirmation (following reinfection reports)
 - LP DolVet 150,000 receipt confirmation
-- MP xlsx in inbox: automated script re-scanning daily with wrong effective dates — archive after confirmation
-- GitHub push: **completed this session**
+- MP xlsx in inbox: automated scr
