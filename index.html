@@ -605,11 +605,6 @@
         </ul>
       </div>
     </div>
-    <div class="card" style="margin-top:var(--sp-6)">
-      <h3>Action items — data quality to-do list.</h3>
-      <p style="font-size:13px;color:var(--charcoal);margin-bottom:var(--sp-4)">Issues detected automatically from the current dataset. Each item identifies the responsible party and the corrective action required.</p>
-      <ul class="flag-list" id="qualityFlagsList"><li style="color:var(--charcoal);font-size:13px">Loading action items...</li></ul>
-    </div>
   </section>
 
 </main>
@@ -639,10 +634,6 @@
       </div>
       <p>Compiled by AgriCulture South Africa for the Foot and Mouth Disease Industry Coordination Council. Data is drawn from weekly provincial Joint Operations Committee meetings and submitted by the provincial affiliates of AgriCulture South Africa, with commodity organisation contributions from MPO, RPO, and where available NWGA and SAPPO.</p>
       <p style="margin-top:var(--sp-4)">Master record at <code>master_data.csv</code>. Build script at <code>scripts/build_dashboard.py</code>.</p>
-    </div>
-    <div>
-      <h4>Sources used in this build</h4>
-      <ul id="sourceList"></ul>
     </div>
     <div>
       <h4>Refresh process</h4>
@@ -1984,12 +1975,7 @@ if (data.rmis) try {
 } catch(e) { console.error('RMIS section error:', e); }
 
 
-// ── Sources used list ─────────────────────────────────────────────────────────
-if (data.sources_used) try {
-  const slEl = safeEl('sourceList');
-  if (slEl) slEl.innerHTML =
-    data.sources_used.map(s => `<li style="font-size:12px;font-family:monospace;word-break:break-all">${s}</li>`).join('');
-} catch(e) { showError('sourceList', 'Sources list', e); }
+
 
 // ── Ministerial section ───────────────────────────────────────────────────────
 if (data.ministerial) try {
@@ -2114,25 +2100,9 @@ if (chartJsReady && data.ministerial_comparison) try {
 } catch(e) { console.error('Ministerial comparison error:', e); }
 
 // ── Quality flags ─────────────────────────────────────────────────────────────
-if (data.quality_flags) try {
-  const qfEl = safeEl('qualityFlagsList');
-  const flags = data.quality_flags;
-  if (qfEl) qfEl.innerHTML = flags.map(f => `
-    <li style="margin-bottom:var(--sp-5);padding:var(--sp-4);border-radius:var(--r-card);
-               border-left:4px solid ${f.severity==='critical'?'#c0392b':'#e67e22'}">
-      <strong style="font-size:13px">[${f.province}] ${f.title}</strong>
-      <p style="font-size:12px;color:var(--charcoal);margin:var(--sp-2) 0 var(--sp-1)">${f.detail}</p>
-      <p style="font-size:12px;color:var(--pine);margin:0"><strong>Action:</strong> ${f.action}</p>
-      <p style="font-size:11px;color:var(--charcoal);margin:var(--sp-1) 0 0"><strong>Owner:</strong> ${f.owner}</p>
-    </li>`).join('');
-} catch(e) { console.error('Quality flags error:', e); }
 
-// ── Sources used list ─────────────────────────────────────────────────────────
-if (data.sources_used) try {
-  const slEl = safeEl('sourceList');
-  if (slEl) slEl.innerHTML =
-    data.sources_used.map(s => `<li style="font-size:12px;font-family:monospace;word-break:break-all">${s}</li>`).join('');
-} catch(e) { console.error('Sources list error:', e); }
+
+
 
 </script>
 </body>
