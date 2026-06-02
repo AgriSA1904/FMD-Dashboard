@@ -353,41 +353,54 @@ def build_mpo(rows):
 
 def build_rmis(rows):
     """RMIS feedlot vaccine order tracking.
-    Each RMIS export is stored as a single cumulative feedlot_vaccine_orders row
-    (province='all', source_org='RMIS', vet_channel='feedlot').
-    Returns a time series of export snapshots plus the latest headline figures.
+    Reads rmis_orders.json for rich per-order breakdown.
+    Falls back to master_data.csv aggregates if JSON absent.
     """
+    import json as _json
+    from collections import defaultdict
+    rmis_json = os.path.join(ROOT, "rmis_orders.json")
+
+    # Timeline: one cumulative total per export date from master
     rmis_rows = [r for r in rows
                  if r["source_org"] == "RMIS"
                  and r["metric"] == "feedlot_vaccine_orders"
                  and r["superseded_by"] == ""]
-
-    if not rmis_rows:
+    if not rmis_rows and not os.path.exists(rmis_json):
         return None
 
-    rmis_rows.sort(key=lambda r: r["effective_date"])
-
-    # Aggregate per-province rows into one national total per export date.
-    # Earlier exports were stored with per-province rows; later ones as province='all'.
-    from collections import defaultdict
     totals = defaultdict(int)
     for r in rmis_rows:
         totals[r["effective_date"]] += int(num(r["value"]) or 0)
+    timeline = [{"date": d, "doses": totals[d]} for d in sorted(totals)]
+    latest_t = timeline[-1] if timeline else {}
+    prev_t   = timeline[-2] if len(timeline) >= 2 else {}
 
-    timeline = [{"date": d, "doses": totals[d], "vaccine_type": "dolvet"}
-                for d in sorted(totals)]
-
-    latest = timeline[-1] if timeline else {}
-    prev   = timeline[-2] if len(timeline) >= 2 else {}
+    # Rich breakdown from JSON (latest export)
+    detail = {}
+    if os.path.exists(rmis_json):
+        with open(rmis_json, "r", encoding="utf-8") as f:
+            jdata = _json.load(f)
+        exports = jdata.get("exports", [])
+        if exports:
+            exports.sort(key=lambda x: x["export_date"])
+            detail = exports[-1]
 
     return {
-        "timeline":       timeline,
-        "latest_date":    latest.get("date"),
-        "latest_doses":   latest.get("doses", 0),
-        "previous_doses": prev.get("doses", 0),
-        "vaccine_type":   latest.get("vaccine_type", "dolvet"),
+        "timeline":            timeline,
+        "latest_date":         detail.get("export_date") or latest_t.get("date"),
+        "latest_doses":        detail.get("total_doses") or latest_t.get("doses", 0),
+        "previous_doses":      prev_t.get("doses", 0),
+        "total_orders":        detail.get("total_orders", 0),
+        "unique_vets":         detail.get("unique_vets", 0),
+        "unique_destinations": detail.get("unique_destinations", 0),
+        "by_province":         detail.get("by_province", {}),
+        "by_district":         detail.get("by_district", {}),
+        "by_location_type":    detail.get("by_location_type", {}),
+        "by_commodity":        detail.get("by_commodity", {}),
+        "by_supplier":         detail.get("by_supplier", {}),
+        "by_vaccine_type":     detail.get("by_vaccine_type", {}),
+        "by_vet":              detail.get("by_vet", {}),
     }
-
 
 def national_view(rows, snapshot):
     """Compute the headline national figures by summing the most recent per-province

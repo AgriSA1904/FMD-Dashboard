@@ -485,14 +485,52 @@
   <section id="rmisSection">
     <div class="kicker">Feedlot sector view</div>
     <h2>RMIS: Feedlot vaccine orders.</h2>
-    <p style="color:var(--charcoal);font-size:14px;margin-top:calc(-1 * var(--sp-6));margin-bottom:var(--sp-6)" id="rmisSubtitle">Submitted by the Red Meat Industry Service (RMIS). Covers feedlot and private-vet-channelled DolVet orders only. Cumulative from rollout start.</p>
-    <div class="grid-2" style="margin-bottom:var(--sp-6)">
-      <div class="card" id="rmisOrdersKpi"></div>
-      <div class="card" id="rmisGrowthKpi"></div>
+    <p style="color:var(--charcoal);font-size:14px;margin-top:calc(-1 * var(--sp-6));margin-bottom:var(--sp-6)" id="rmisSubtitle">Submitted by the Red Meat Industry Service (RMIS). Covers feedlot and private-vet-channelled DolVet Biotech Trivalent orders. Cumulative from rollout start.</p>
+
+    <!-- KPI row -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:var(--sp-4);margin-bottom:var(--sp-6)">
+      <div class="card" id="rmisKpiDoses"></div>
+      <div class="card" id="rmisKpiOrders"></div>
+      <div class="card" id="rmisKpiVets"></div>
+      <div class="card" id="rmisKpiDest"></div>
     </div>
-    <div class="card">
-      <h3>Cumulative feedlot vaccine doses ordered over time.</h3>
-      <div class="chart-wrap tall"><canvas id="rmisTimelineChart"></canvas></div>
+
+    <!-- Province + Timeline -->
+    <div class="grid-2" style="margin-bottom:var(--sp-6)">
+      <div class="card">
+        <h3>Doses ordered by province.</h3>
+        <div class="chart-wrap tall"><canvas id="rmisProvinceChart"></canvas></div>
+      </div>
+      <div class="card">
+        <h3>Cumulative doses ordered over time.</h3>
+        <div class="chart-wrap tall"><canvas id="rmisTimelineChart"></canvas></div>
+      </div>
+    </div>
+
+    <!-- Commodity + Location type -->
+    <div class="grid-2" style="margin-bottom:var(--sp-6)">
+      <div class="card">
+        <h3>Doses by animal commodity.</h3>
+        <div class="chart-wrap tall"><canvas id="rmisCommodityChart"></canvas></div>
+      </div>
+      <div class="card">
+        <h3>Feedlot vs farm split.</h3>
+        <div style="display:flex;justify-content:center;align-items:center;height:100%">
+          <div style="width:260px;height:260px"><canvas id="rmisLocationChart"></canvas></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Vet practices + Supplier -->
+    <div class="grid-2">
+      <div class="card">
+        <h3>Top vet practices by doses ordered.</h3>
+        <div class="chart-wrap tall"><canvas id="rmisVetChart"></canvas></div>
+      </div>
+      <div class="card">
+        <h3>Supplier split.</h3>
+        <div style="display:flex;flex-direction:column;justify-content:center;height:100%" id="rmisSupplierPanel"></div>
+      </div>
     </div>
   </section>
 
@@ -1118,19 +1156,88 @@ const DASHBOARD_DATA = {
     "timeline": [
       {
         "date": "2026-05-06",
-        "doses": 3000,
-        "vaccine_type": "dolvet"
+        "doses": 3000
       },
       {
         "date": "2026-06-02",
-        "doses": 199752,
-        "vaccine_type": "dolvet"
+        "doses": 199752
       }
     ],
     "latest_date": "2026-06-02",
     "latest_doses": 199752,
     "previous_doses": 3000,
-    "vaccine_type": "dolvet"
+    "total_orders": 46,
+    "unique_vets": 16,
+    "unique_destinations": 46,
+    "by_province": {
+      "Mpumalanga": 57120,
+      "North West": 40930,
+      "Free State": 39356,
+      "Gauteng": 31950,
+      "KwaZulu-Natal": 18000,
+      "Limpopo": 7600,
+      "Northern Cape": 4000,
+      "Eastern Cape": 796
+    },
+    "by_district": {
+      "Mpumalanga \u2014 Nkangala": 57000,
+      "Gauteng \u2014 Ekurhuleni": 31000,
+      "Free State \u2014 Thabo Mofutsanyane": 20000,
+      "KwaZulu-Natal \u2014 Uthukela": 16000,
+      "North West \u2014 Doctor Kenneth Kaunda": 15410,
+      "North West \u2014 Ngaka Modiri Molema": 13900,
+      "Free State \u2014 Fezile Dabi": 12500,
+      "North West \u2014 Dr Ruth Segomotsi Mompati": 11620,
+      "Free State \u2014 Lejweleputswa": 6701,
+      "Limpopo \u2014 Waterberg": 4150,
+      "Northern Cape \u2014 ZF Mgcawu": 4000,
+      "KwaZulu-Natal \u2014 Umgungundlovu": 2000,
+      "Limpopo \u2014 Sekhukhune": 1950,
+      "Limpopo \u2014 Vhembe": 1500,
+      "Gauteng \u2014 City of Tshwane": 800,
+      "Eastern Cape \u2014 Joe Gqabi": 796,
+      "Free State \u2014 Xhariep": 155,
+      "Gauteng \u2014 West Rand": 150,
+      "Mpumalanga \u2014 Gert Sibande": 120
+    },
+    "by_location_type": {
+      "Feedlot": 192000,
+      "Farm": 7752
+    },
+    "by_commodity": {
+      "Cattle": 85990,
+      "Cattle & Grain": 69500,
+      "Cattle & Sheep": 41016,
+      "Cattle & Game": 2971,
+      "Cattle, Sheep & Grain": 150,
+      "Cattle & Goats": 70,
+      "Cattle, Sheep & Game": 55
+    },
+    "by_supplier": {
+      "Onderstepoort Biological Products (OBP)": 195270,
+      "Boksburg Animal Hospital": 4482
+    },
+    "by_vaccine_type": {
+      "Dollvet Biotech Trivalent": 199752
+    },
+    "by_vet": {
+      "Agrifarmacy": 84400,
+      "Octavoscene": 51450,
+      "Rynfield Vet": 31000,
+      "Tugela Veterinary Clinic": 13000,
+      "Valsrivier Vet": 9200,
+      "Noordkaap Repro Veeartsenydiens": 4000,
+      "Savannah Veterinary Services": 1950,
+      "Vaalfontein Veeartseny": 1950,
+      "Klerksdorp Animal Hospital": 910,
+      "EG VETS": 796,
+      "Schweizer Dierekliniek": 400,
+      "Boksburg Animal Hospital": 200,
+      "Dr S Wessels": 156,
+      "Bovivet Inc": 150,
+      "M\u00f4regloed Veeartseny": 120,
+      "BOS Veterinary Services": 70
+    }
   },
   "ministerial": {
     "doses_procured": 6000000,
@@ -1606,7 +1713,7 @@ try {
 let chartJsReady = (typeof Chart !== 'undefined');
 if (!chartJsReady) {
   console.warn('[FMD] Chart.js did not load — charts will be skipped');
-  ['hotspotChart','caseTrend','vaxTrend','provVax','sourceChart','coverageChart','mpoDairyChart','mpoCasesChart','rmisTimelineChart']
+  ['hotspotChart','caseTrend','vaxTrend','provVax','sourceChart','coverageChart','mpoDairyChart','mpoCasesChart','rmisTimelineChart','rmisProvinceChart','rmisCommodityChart','rmisLocationChart','rmisVetChart']
     .forEach(id => showError(id, 'Chart (Chart.js failed to load)', new Error('CDN unavailable')));
 }
 
@@ -1781,53 +1888,98 @@ if (data.mpo) try {
 // ── RMIS feedlot section ──────────────────────────────────────────────────────
 if (data.rmis) try {
   const rmis = data.rmis;
-  const fmtDate = d => d ? new Date(d+'T12:00:00').toLocaleDateString('en-ZA',{day:'numeric',month:'short',year:'numeric'}) : '—';
+  const fmtD = d => d ? new Date(d+'T12:00:00').toLocaleDateString('en-ZA',{day:'numeric',month:'short',year:'numeric'}) : '—';
   const sub = document.getElementById('rmisSubtitle');
-  if (sub) sub.textContent = `Submitted by the Red Meat Industry Service (RMIS). Covers feedlot and private-vet-channelled DolVet orders only. Cumulative from rollout start. Latest export: ${fmtDate(rmis.latest_date)}.`;
-  const kpiOrders = document.getElementById('rmisOrdersKpi');
-  if (kpiOrders) kpiOrders.innerHTML = `
-    <div class="kpi-label">Cumulative feedlot doses ordered</div>
-    <div class="kpi-value">${fmt(rmis.latest_doses)}</div>
-    <div class="kpi-sub">DolVet Biotech Trivalent &nbsp;·&nbsp; as at ${fmtDate(rmis.latest_date)}</div>`;
-  const kpiGrowth = document.getElementById('rmisGrowthKpi');
-  const growth = rmis.latest_doses - rmis.previous_doses;
-  if (kpiGrowth) kpiGrowth.innerHTML = rmis.previous_doses > 0 ? `
-    <div class="kpi-label">New doses ordered since prior export</div>
-    <div class="kpi-value">${fmt(growth)}</div>
-    <div class="kpi-sub">+${((growth / rmis.previous_doses) * 100).toFixed(1)}% growth in feedlot orders</div>` : `
-    <div class="kpi-label">Data coverage</div>
-    <div class="kpi-value">1</div>
-    <div class="kpi-sub">export snapshot received to date &nbsp;·&nbsp; trend builds with each update</div>`;
-  if (chartJsReady && rmis.timeline && rmis.timeline.length > 0) {
-    new Chart(document.getElementById('rmisTimelineChart'), {
-      type: rmis.timeline.length === 1 ? 'bar' : 'line',
-      data: {
-        labels: rmis.timeline.map(t => fmtDate(t.date)),
-        datasets: [{
-          label: 'Cumulative doses ordered',
-          data: rmis.timeline.map(t => t.doses),
-          backgroundColor: BRAND.pine,
-          borderColor: BRAND.pine,
-          borderWidth: 2,
-          fill: rmis.timeline.length > 1,
-          tension: 0.3,
-          pointRadius: 5,
-          pointBackgroundColor: BRAND.pine,
-          borderRadius: rmis.timeline.length === 1 ? 3 : undefined,
-        }]
-      },
-      options: {
-        responsive: true, maintainAspectRatio: false,
-        plugins: {
-          legend: { display: false },
-          tooltip: { callbacks: { label: ctx => `${fmt(ctx.raw)} doses ordered (cumulative)` } }
-        },
-        scales: {
-          x: { grid: { display: false } },
-          y: { beginAtZero: true, grid: { color: BRAND.mist }, ticks: { callback: v => fmt(v) } }
-        }
-      }
+  if (sub) sub.textContent = `Submitted by the Red Meat Industry Service (RMIS). Covers feedlot and private-vet-channelled DolVet Biotech Trivalent orders. Cumulative from rollout start. Latest export: ${fmtD(rmis.latest_date)}.`;
+
+  // KPI cards
+  const kpiDoses = document.getElementById('rmisKpiDoses');
+  if (kpiDoses) kpiDoses.innerHTML = `<div class="kpi-label">Total doses ordered</div><div class="kpi-value">${fmt(rmis.latest_doses)}</div><div class="kpi-sub">DolVet Biotech Trivalent &nbsp;·&nbsp; as at ${fmtD(rmis.latest_date)}</div>`;
+  const kpiOrds = document.getElementById('rmisKpiOrders');
+  if (kpiOrds) kpiOrds.innerHTML = `<div class="kpi-label">Orders placed</div><div class="kpi-value">${rmis.total_orders}</div><div class="kpi-sub">individual vaccine orders to date</div>`;
+  const kpiVets = document.getElementById('rmisKpiVets');
+  if (kpiVets) kpiVets.innerHTML = `<div class="kpi-label">Vet practices ordering</div><div class="kpi-value">${rmis.unique_vets}</div><div class="kpi-sub">private practices placing orders</div>`;
+  const kpiDest = document.getElementById('rmisKpiDest');
+  if (kpiDest) kpiDest.innerHTML = `<div class="kpi-label">Destinations receiving</div><div class="kpi-value">${rmis.unique_destinations}</div><div class="kpi-sub">feedlots and farms receiving vaccine</div>`;
+
+  if (chartJsReady) {
+    const pine = BRAND.pine, sage = BRAND.sage, mist = BRAND.mist;
+
+    // Province bar chart
+    const provEntries = Object.entries(rmis.by_province||{}).sort((a,b)=>b[1]-a[1]);
+    new Chart(document.getElementById('rmisProvinceChart'), {
+      type:'bar',
+      data:{labels:provEntries.map(e=>e[0]),datasets:[{label:'Doses',data:provEntries.map(e=>e[1]),backgroundColor:pine,borderRadius:3}]},
+      options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,
+        plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>`${fmt(ctx.raw)} doses`}}},
+        scales:{x:{beginAtZero:true,grid:{color:mist},ticks:{callback:v=>fmt(v)}},y:{grid:{display:false}}}}
     });
+
+    // Timeline chart
+    if (rmis.timeline && rmis.timeline.length > 0) {
+      const tl = rmis.timeline;
+      new Chart(document.getElementById('rmisTimelineChart'), {
+        type: tl.length === 1 ? 'bar' : 'line',
+        data:{labels:tl.map(t=>fmtD(t.date)),datasets:[{label:'Cumulative doses',data:tl.map(t=>t.doses),
+          backgroundColor:pine,borderColor:pine,borderWidth:2,fill:tl.length>1,tension:0.3,
+          pointRadius:5,pointBackgroundColor:pine,borderRadius:tl.length===1?3:undefined}]},
+        options:{responsive:true,maintainAspectRatio:false,
+          plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>`${fmt(ctx.raw)} doses (cumulative)`}}},
+          scales:{x:{grid:{display:false}},y:{beginAtZero:true,grid:{color:mist},ticks:{callback:v=>fmt(v)}}}}
+      });
+    }
+
+    // Commodity bar chart
+    const commEntries = Object.entries(rmis.by_commodity||{}).sort((a,b)=>b[1]-a[1]);
+    const commColours = commEntries.map((_,i)=>[pine,'#1a4a4a','#2d6b6b','#4a8f8f','#7fbfbf','#b0d9d9','#d6ecec'][i]||mist);
+    new Chart(document.getElementById('rmisCommodityChart'), {
+      type:'bar',
+      data:{labels:commEntries.map(e=>e[0]),datasets:[{label:'Doses',data:commEntries.map(e=>e[1]),backgroundColor:commColours,borderRadius:3}]},
+      options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,
+        plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>`${fmt(ctx.raw)} doses`}}},
+        scales:{x:{beginAtZero:true,grid:{color:mist},ticks:{callback:v=>fmt(v)}},y:{grid:{display:false}}}}
+    });
+
+    // Location donut chart
+    const locEntries = Object.entries(rmis.by_location_type||{}).sort((a,b)=>b[1]-a[1]);
+    new Chart(document.getElementById('rmisLocationChart'), {
+      type:'doughnut',
+      data:{labels:locEntries.map(e=>e[0]),datasets:[{data:locEntries.map(e=>e[1]),backgroundColor:[pine,'#7fbfbf'],borderWidth:2,borderColor:'#fff'}]},
+      options:{responsive:true,maintainAspectRatio:false,cutout:'65%',
+        plugins:{legend:{position:'bottom',labels:{boxWidth:12,font:{size:12}}},
+        tooltip:{callbacks:{label:ctx=>`${ctx.label}: ${fmt(ctx.raw)} doses (${((ctx.raw/rmis.latest_doses)*100).toFixed(1)}%)`}}}}
+    });
+
+    // Vet practices bar chart (top 8)
+    const vetEntries = Object.entries(rmis.by_vet||{}).sort((a,b)=>b[1]-a[1]).slice(0,8);
+    new Chart(document.getElementById('rmisVetChart'), {
+      type:'bar',
+      data:{labels:vetEntries.map(e=>e[0]),datasets:[{label:'Doses',data:vetEntries.map(e=>e[1]),backgroundColor:pine,borderRadius:3}]},
+      options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,
+        plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>`${fmt(ctx.raw)} doses ordered`}}},
+        scales:{x:{beginAtZero:true,grid:{color:mist},ticks:{callback:v=>fmt(v)}},y:{grid:{display:false}}}}
+    });
+  }
+
+  // Supplier panel (text-based — clean and readable)
+  const suppPanel = document.getElementById('rmisSupplierPanel');
+  if (suppPanel && rmis.by_supplier) {
+    const total = rmis.latest_doses;
+    const rows = Object.entries(rmis.by_supplier).sort((a,b)=>b[1]-a[1]);
+    suppPanel.innerHTML = rows.map(([name,doses])=>{
+      const pct = ((doses/total)*100).toFixed(1);
+      const short = name.replace('Onderstepoort Biological Products (OBP)','OBP (Onderstepoort)');
+      return `<div style="margin-bottom:var(--sp-5)">
+        <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+          <span style="font-size:13px;color:var(--charcoal);font-weight:600">${short}</span>
+          <span style="font-size:13px;color:var(--charcoal)">${fmt(doses)} doses</span>
+        </div>
+        <div style="background:var(--mist);border-radius:4px;height:8px;overflow:hidden">
+          <div style="background:var(--pine);height:100%;width:${pct}%;border-radius:4px"></div>
+        </div>
+        <div style="font-size:11px;color:#888;margin-top:3px">${pct}% of total orders</div>
+      </div>`;
+    }).join('');
   }
 } catch(e) { console.error('RMIS section error:', e); }
 
