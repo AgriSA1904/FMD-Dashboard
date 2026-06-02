@@ -4,51 +4,58 @@ description: Latest master_data.csv row count, dashboard snapshot date, and run 
 type: project
 ---
 
-As at 2026-06-02 (session 24 — automated daily ingest, no new data):
-- Master: 1,322 rows (unchanged — no new inbox files found)
-- Dashboard snapshot: **22 May 2026** (unchanged — no new programme data)
-- Dashboard rebuilt: No — no new data; FMD_Dashboard.html unchanged
+As at 2026-06-02 (session 25 — automated daily ingest, three new sources):
+- Master: **1,352 rows** (+30 new rows from 1,322)
+- Dashboard snapshot: **29 May 2026** (advanced from 22 May — FS 29 May xlsx is programme source)
+- Dashboard rebuilt: Yes — FMD_Dashboard.html updated (84,857 bytes, 22 weekly points, validation passed)
 
 **Key highlights this run:**
-- **No new files in inbox** since session 23 (01 June 2026). All inbox folders remain unchanged.
-- No new dated weekly folder found ("02 Jun 2026" absent).
-- MPO folder confirmed to contain only weeks 28–31; no Week 32 PDF.
-- Section 9 gazette remains outstanding (expected ~25 May, now 8 days overdue).
-- No ICC weekly engagement summary for 19–20 May received.
-- Automated ingest script continues running but only re-processing old MP xlsx — known bug, unchanged.
-- State files updated; no dashboard rebuild or GitHub push of dashboard needed this session.
+- **Three new sources ingested:** FS provincial xlsx (29 May), LP PCM meeting pack (4 Jun, containing 28 May minutes), RMIS feedlot orders export (2 Jun).
+- **FS positive cases advanced 589 → 604** (+15 new cases, effective 29 May). Fezile Dabi remains the highest-burden district (339 cases).
+- **FS animals vaccinated advanced 513,167 → 609,915** (+96,748). Significant acceleration.
+- **LP animals vaccinated advanced 279,559 → 357,045** (+77,486, as at 27 May). LP-LDARD direct source; new LP total doses received = 611,680 — significantly higher than AgriSA-NAT 334,559 (methodology/timing difference; LDARD figure is authoritative).
+- **LP doses administered = 359,327** (vs 203,576 AgriSA-NAT 21 May — methodology discrepancy flagged).
+- **LP vaccine balance ~254,000 doses** (~4.5 weeks at current pace of 56,500/week). URGENT: Agri Limpopo flagged only 4.5 weeks of supply; 3.5M national consignment arrived 25 May but LP allocation not yet received as at 28 May.
+- **Section 9 directive still unpublished** as at 28 May (confirmed in LP PCM minutes — Agri Limpopo and TLU flagged urgency; Minister expected to sign that week but not yet gazetted).
+- **Mokolo auction suspect FMD case 28 May** — auction halted, samples submitted, animals quarantined.
+- **Vaalwater game farm (Waterberg): FMD positive in Sable antelope**; ~54 buffalo on property to be tested.
+- **RMIS: 199,752 cumulative feedlot DolVet doses ordered** across 46 orders (3 May–1 Jun 2026).
+- **New Argentine vaccine consignment expected shortly** (confirmed by RMIS at 28 May PCM).
+- **SA/Botswana Binational Commission 27 May**: Transboundary Animal Disease Plan by Jan 2027, coordinated vaccination/fence plan by Dec 2026.
 
-**Inbox scan summary (02 June 2026):**
+**Inbox scan summary (02 June 2026 — re-scan):**
 
-| Folder | Status |
-|---|---|
-| Root — "02 Jun 2026" dated weekly folder | Not found — no new AgriSA consolidated xlsx |
-| inbox/MPO/ | Weeks 28–31 only; no Week 32 PDF |
-| inbox/Mpumalanga/ | Last modified 20 May — no new files |
-| inbox/Gauteng/ | Last modified 4 May — no new files |
-| inbox/Free State/ | Last modified 18 May — no new files |
-| inbox/Eastern Cape/ | Last modified 4 May — no new files |
-| inbox/Limpopo/ | Last modified 21 May — no new files |
-| inbox/North West/ | Last modified 21 May — no new files |
-| inbox/ICC Reports/ | Last modified 6 May — no new ICC weekly summary |
-| inbox/Ministerial Updates/ | Last modified 7 May — no Section 9 gazette found |
-| inbox/AgriSA Summary and Outcomes/ | Last modified 4 May — no new ICC engagement summary |
-| inbox/Western Cape/ | Last modified 20 May — no new files |
-| inbox/RMIS/ | Last modified 21 May — no new files |
+| Folder | New files found | Outcome |
+|---|---|---|
+| inbox/Free State/02 June/ | FS FMD Vaccine Data - 29.05.2026.xlsx + 4 WhatsApp images | **Ingested — 14 data rows** |
+| inbox/Limpopo/ | FMD PCM MEETING PACK 20260604.pdf | **Ingested — 15 data rows** |
+| inbox/RMIS/ | Vaccine Orders Export (2026-06-02).xlsx | **Ingested — 1 data row** |
+| Root — "02 Jun 2026" dated weekly folder | Not found | No |
+| inbox/MPO/ | Weeks 28–31 only; no Week 32 | No |
+| All other folders | No new files | No |
 
-**Parked/outstanding (carried forward):**
-- ICC weekly engagement summary PDF for 19-20 May 2026 — still not in inbox
-- Section 9 gazette — expected ~25 May (now 8 days overdue); urgent follow-up recommended
-- Consolidated AgriSA weekly xlsx (week of 29 May or later) — not yet available (now significantly overdue; dashboard is 11 days behind)
-- MPO Week 32 dairy update — expected by Friday cadence; now overdue
-- 144,000 new batch received MP week of 19 May — confirm allocation in next MP submission
-- GP OBP distributed (1,700) vs administered (127,580) column-mapping discrepancy — ongoing
-- EC "Other / Artio-Preva" 1,250 cell duplication — still pending EC confirmation
-- EC unique-animals figure for 14 May / 21 May — still pending from EC-DRDAR
-- EC Week 31 MPO dairy count (269,211) vs milestone communication (313,890) — pending clarification
-- KZN booster programme confirmation (following reinfection reports in vaccinated herds)
-- LP DolVet 150,000 receipt confirmation
-- MP xlsx in inbox: automated script re-scanning daily with wrong effective dates — archive after confirmation (persistence flag)
+**Data quality notes (new):**
+- LP total received (611,680 LP-LDARD) vs AgriSA-NAT (334,559 as at 21 May): large discrepancy. LP-LDARD figure is authoritative — includes consignments not yet reflected in national template. Monitor for reconciliation.
+- LP vaccine balance conflict: main LDARD presentation ~254,000; Decision Matrix item 260157 cites ~70,000. Both held in notes; 254,000 used as primary (internally consistent with doses received minus doses used).
+- FS DolVet 466,100 data quality flag from 8 May persists — 29 May FS-JOC submission explicitly labels this as DolVet (not Bioaftogen). Original flag in master notes maintained.
+- FS 29 May district positive cases sum (339+181+63+15 = 598) vs provincial total 604 — likely Mangaung Metro cases not broken down in submission.
+
+**Parked/outstanding (updated):**
+- Consolidated AgriSA weekly xlsx — still outstanding (no root dated folder found for 29 May or later)
+- MPO Week 32 dairy update — not yet received
+- Section 9 gazette — confirmed still unpublished as at 28 May; now ~9 days overdue. Urgent.
+- ICC weekly engagement summary PDF for 19-20 May 2026 — still outstanding
+- FS WhatsApp images (4 images, 02 Jun 08:43) — not yet parsed; may contain additional data
+- LP 3.5M national Bioaftogen consignment arrived 25 May — LP allocation outstanding; monitor for receipt
+- LP: 18 AHT positions closing 29 May — await appointment outcome
+- LP: Vaalwater Sable FMD positive + 54 buffalo to be tested — monitor
+- LP: Mokolo auction suspect case 28 May — results pending
+- LP: Hoedspruit SAAF buffalo matter — unresolved at political level
+- KZN booster programme confirmation — ongoing
+- EC "Other / Artio-Preva" 1,250 duplication — still pending
+- EC unique-animals figures (14 May / 21 May) — still pending
+- GP OBP column-mapping discrepancy — ongoing
+- MP xlsx in inbox — automated script re-scanning; archive recommended
 
 ---
 
@@ -99,4 +106,5 @@ As at 2026-05-26 (session 21 — automated daily ingest, MPO Week 31):
 - EC Week 31 MPO dairy count vs milestone figure — pending clarification
 - KZN booster programme confirmation (following reinfection reports)
 - LP DolVet 150,000 receipt confirmation
-- MP xlsx in inbox: automated scr
+- MP xlsx in inbox: automated script re-scanning daily with wrong effective dates — archive after confirmation
+- GitHub push: **completed this session**

@@ -4,6 +4,71 @@ A running record of what changed in the master and dashboard, with dates and sou
 
 ---
 
+## 2026-06-02 (session 25) — FS, LP and RMIS new data ingested
+
+**Master grew from 1,322 to 1,352 rows (+30 new rows).**
+
+**Dashboard rebuilt:** Yes — snapshot advanced to 29 May 2026 (was 22 May). 22 weekly points. 84,857 bytes. Validation passed.
+
+**GitHub push:** Dashboard, master, state files.
+
+### Sources processed
+
+| File | Effective date | Source org | Rows added | Outcome |
+|---|---|---|---|---|
+| FS FMD Vaccine Data - 29.05.2026.xlsx | 2026-05-29 | FS-JOC | 14 | Ingested — disease and vaccination |
+| FMD PCM MEETING PACK 20260604.pdf | 2026-05-27 | LP-LDARD | 15 | Ingested — disease, vaccination, vaccine receipt |
+| Vaccine Orders Export (2026-06-02).xlsx | 2026-06-02 | RMIS | 1 | Ingested — cumulative feedlot orders |
+
+### Key figures added
+
+**Free State (29 May 2026):**
+- Positive cases: 604 (was 589 — +15)
+- Suspected cases: 412
+- Animals vaccinated: 609,915 (was 513,167 — +96,748)
+- Bioaftogen received: 370,000 | DolVet received: 466,100 | OBP received: 199,899
+- District breakdown added: Fezile Dabi 339, Thabo Mofutsanyana 181, Lejweleputswa 63, Xhariep 15
+
+**Limpopo (27 May 2026 — Week 25):**
+- Positive cases: 70 (was 61 — +9)
+- Suspected: 90 | Negative: 55 | Pending: 258 (54% of investigations)
+- Animals vaccinated: 357,045 (was 279,559 — +77,486). 56,401 vaccinated in Week 25 alone.
+- Doses administered: 359,327 | Spillage: 2,282 (0.64%)
+- Vaccine balance: ~254,000 doses (~4.5 weeks supply)
+- Total received: 611,680 (ARC 1,700 + BioAftogen 199,980 + DolVet 410,000) — significant uplift from AgriSA-NAT 334,559
+- District disease rows: Waterberg 25+, Capricorn 20, Vhembe 14, Sekhukhune 8, Mopani (68 pending)
+
+**RMIS (2 June 2026):**
+- Cumulative feedlot DolVet orders: 199,752 doses across 46 orders (3 May–1 Jun 2026)
+
+### Data quality flags
+
+1. **LP received discrepancy**: LP-LDARD 611,680 vs AgriSA-NAT 334,559. LDARD figure is authoritative — includes consignments not yet reflected nationally. Both held in master with source attribution.
+2. **LP balance conflict**: LDARD presentation ~254,000 vs Decision Matrix item 260157 ~70,000. Both flagged in notes; 254,000 treated as primary (internally consistent).
+3. **FS DolVet 466,100 label resolved**: 29 May FS-JOC submission explicitly labels 466,100 as DolVet, consistent with our session 18b data quality flag.
+4. **FS district positive cases sum 598 vs provincial total 604**: Mangaung Metro not broken down. Flagged in notes.
+5. **Section 9 directive**: Confirmed still unpublished as at 28 May PCM (now ~9 days overdue).
+
+### Notable intelligence (non-numeric, not in master)
+- Mokolo auction FMD suspect case 28 May — protocols followed, quarantine in place
+- Vaalwater game farm: FMD positive in Sable antelope; 54 buffalo to be tested
+- New Argentine vaccine consignment expected shortly (RMIS confirmed at PCM)
+- SA/Botswana Binational Commission 27 May: Transboundary Animal Disease Plan agreed (Jan 2027)
+- LP: SAAF Hoedspruit buffalo matter unresolved; escalation to Minister of Defence level proposed
+- LP procurement: 250,000 RFID ear tags + 200 applicators (~R9M) in progress
+
+### Action items for next run
+
+1. **Consolidated AgriSA weekly xlsx** — still outstanding; no root dated folder found.
+2. **MPO Week 32** — not yet received.
+3. **Section 9 gazette** — now ~9 days overdue. Urgent.
+4. **FS WhatsApp images** (inbox/Free State/02 June/ — 4 images from 08:43 today) — parse for any additional data.
+5. **LP 3.5M Bioaftogen national consignment** — arrived 25 May nationally; LP allocation outstanding. Monitor.
+6. **LP Vaalwater buffalo test results** — monitor at next LP PCM (11 Jun).
+7. **ICC 19-20 May engagement summary** — still outstanding.
+
+---
+
 ## 2026-06-02 (session 24) — No new data (automated daily ingest)
 
 **Master unchanged at 1,322 rows. No new rows added.**
@@ -2064,4 +2129,19 @@ NW confirmed at **332** (no change needed).
 
 ### Data quality flags
 
-1. **GP doses_received discrepancy:** GDARD reports 518,500 "at least allocated" vs 517,940 in the 21 May consolidated template — difference of 560 
+1. **GP doses_received discrepancy:** GDARD reports 518,500 "at least allocated" vs 517,940 in the 21 May consolidated template — difference of 560 doses. GDARD also notes "124,800 Dollvet x2 not received yet" as a separate allocation. Both figures are now in master with source context. The 124,800 pending will advance the distributed total materially once confirmed received.
+2. **GP animals vaccinated vs doses administered:** GDARD reports 266,121 animals vaccinated (2026 only) but the 21 May template shows 370,837 doses administered. These measure different things: the template doses_administered likely includes 2025 baseline vaccinations and counts each dose (not each animal). The GDARD figure is 2026 animals vaccinated only. No conflict — different metrics, flagged in notes.
+3. **GP OBP/ARC discrepancy (carry forward from session 18):** GDARD confirms 1,700 ARC-OVR received; the 127,580 doses_administered row for obp_arc in the 21 May template remains flagged as a likely column-mapping error in the submitted template. Still unresolved.
+4. **GP positive cases period:** GDARD reports 296 total confirmed outbreaks for the period 1 April 2025–25 May 2026. The 21 May template showed 294. The 296 includes outbreaks recorded since the outbreak started in April 2025, not just the current 2026 intensive response period.
+
+### Action items for next run
+
+1. **Watch for:** 25 May 2026 (or later) consolidated AgriSA weekly xlsx — priority to advance national headline
+2. **Watch for:** Section 9 gazette — expected ~25 May 2026 (today); not yet in inbox at time of this run
+3. **Watch for:** ICC weekly engagement summary PDF for 20–21 May 2026
+4. **Watch for:** MPO Week 31 dairy update
+5. **Watch for:** KZN submission — no JOC data since late March; booster programme confirmation outstanding
+6. **Investigate:** GP 124,800 Dollvet x2 not yet received — confirm receipt in next GP report
+7. **Investigate:** GP OBP column-mapping discrepancy (session 18 flag — still unresolved)
+8. **GitHub push:** master_data.csv + FMD_Dashboard.html + change_log.md + memory_update.md
+
