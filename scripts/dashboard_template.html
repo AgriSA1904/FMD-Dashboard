@@ -129,10 +129,15 @@
     color: var(--pine); letter-spacing: -0.5px; line-height: 1;
   }
   .kpi-sub { font-size: 13px; color: var(--charcoal); }
+  .kpi-delta { font-size: 12px; font-weight: 600; margin: var(--sp-2) 0 var(--sp-2); }
   .kpi-trend { font-size: 12px; font-weight: 600; margin-top: var(--sp-3); }
   .trend-up { color: var(--olive); }
   .trend-down { color: var(--charcoal); }
   .trend-flat { color: var(--charcoal); opacity: 0.7; }
+  .pos { color: var(--olive); }
+  .neg { color: #c0392b; }
+  .grid-3c { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: var(--sp-6); }
+  @media (max-width: 900px) { .grid-3c { grid-template-columns: 1fr; } }
 
   /* Layout */
   .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-6); }
@@ -159,10 +164,8 @@
   th {
     background: var(--bone); font-size: 11px; font-weight: 600;
     color: var(--charcoal); text-transform: uppercase; letter-spacing: 0.4px;
-    text-align: center;
   }
-  th:first-child { text-align: left; }
-  td.num { text-align: center; font-variant-numeric: tabular-nums; }
+  td.num { text-align: right; font-variant-numeric: tabular-nums; }
   tr:hover td { background: var(--bone); }
   tfoot td {
     font-weight: 600; background: var(--bone);
@@ -456,47 +459,40 @@
     </div>
   </section>
 
-
-
   <section>
     <div class="kicker">Dairy industry view</div>
     <h2>MPO: Dairy herd vaccination and FMD case burden.</h2>
-    <p style="color:var(--charcoal);font-size:14px;margin-top:calc(-1 * var(--sp-6));margin-bottom:var(--sp-6)">
-      Submitted by the Milk Producers' Organisation (MPO). Covers dairy cattle only.
-      Snapshot as of <span id="mpoSnapshotDate">—</span>.
-    </p>
-
-    <!-- KPI row -->
-    <div class="grid-3" style="margin-bottom:var(--sp-6)">
-      <div class="card" style="text-align:center">
-        <div style="font-size:13px;font-weight:600;color:var(--pine);text-transform:uppercase;letter-spacing:.05em;margin-bottom:var(--sp-2)">Dairy cows vaccinated</div>
-        <div id="mpoDairyVaccTotal" style="font-size:2.2rem;font-weight:700;color:var(--pine);line-height:1">—</div>
-        <div style="font-size:12px;color:var(--charcoal);margin-top:var(--sp-2)">national total (excl. WC)</div>
-      </div>
-      <div class="card" style="text-align:center">
-        <div style="font-size:13px;font-weight:600;color:var(--rust);text-transform:uppercase;letter-spacing:.05em;margin-bottom:var(--sp-2)">Confirmed dairy farms</div>
-        <div id="mpoDairyConfirmed" style="font-size:2.2rem;font-weight:700;color:var(--rust);line-height:1">—</div>
-        <div style="font-size:12px;color:var(--charcoal);margin-top:var(--sp-2)">farms with confirmed FMD cases</div>
-      </div>
-      <div class="card" style="text-align:center">
-        <div style="font-size:13px;font-weight:600;color:var(--amber);text-transform:uppercase;letter-spacing:.05em;margin-bottom:var(--sp-2)">Active dairy farms</div>
-        <div id="mpoDairyActive" style="font-size:2.2rem;font-weight:700;color:var(--amber);line-height:1">—</div>
-        <div style="font-size:12px;color:var(--charcoal);margin-top:var(--sp-2)">currently showing clinical signs</div>
-      </div>
+    <p style="color:var(--charcoal);font-size:14px;margin-top:calc(-1 * var(--sp-6));margin-bottom:var(--sp-6)" id="mpoSubtitle">Submitted by the Milk Producers&#x2019; Organisation (MPO). Covers dairy cattle only.</p>
+    <div class="grid-2" style="margin-bottom:var(--sp-6)">
+      <div class="card" id="mpoDairyCowsKpi"></div>
+      <div class="card" id="mpoFarmsConfirmedKpi"></div>
     </div>
-
-    <!-- Charts row -->
+    <div style="margin-bottom:var(--sp-6)">
+      <div class="card" style="max-width:520px" id="mpoFarmsActiveKpi"></div>
+    </div>
     <div class="grid-2">
       <div class="card">
         <h3>Dairy cows vaccinated by province.</h3>
-        <div class="chart-wrap" style="height:260px"><canvas id="mpoDairyVaxChart"></canvas></div>
-        <p style="font-size:12px;color:var(--charcoal);margin-top:var(--sp-3);font-style:italic" id="mpoWcNote"></p>
+        <div class="chart-wrap tall"><canvas id="mpoDairyChart"></canvas></div>
       </div>
       <div class="card">
         <h3>Active dairy FMD cases by province.</h3>
-        <div class="chart-wrap" style="height:260px"><canvas id="mpoActiveCasesChart"></canvas></div>
-        <p style="font-size:12px;color:var(--charcoal);margin-top:var(--sp-3);font-style:italic" id="mpoKznNote"></p>
+        <div class="chart-wrap tall"><canvas id="mpoCasesChart"></canvas></div>
       </div>
+    </div>
+  </section>
+
+  <section id="rmisSection">
+    <div class="kicker">Feedlot sector view</div>
+    <h2>RMIS: Feedlot vaccine orders.</h2>
+    <p style="color:var(--charcoal);font-size:14px;margin-top:calc(-1 * var(--sp-6));margin-bottom:var(--sp-6)" id="rmisSubtitle">Submitted by the Red Meat Industry Service (RMIS). Covers feedlot and private-vet-channelled DolVet orders only. Cumulative from rollout start.</p>
+    <div class="grid-2" style="margin-bottom:var(--sp-6)">
+      <div class="card" id="rmisOrdersKpi"></div>
+      <div class="card" id="rmisGrowthKpi"></div>
+    </div>
+    <div class="card">
+      <h3>Cumulative feedlot vaccine doses ordered over time.</h3>
+      <div class="chart-wrap tall"><canvas id="rmisTimelineChart"></canvas></div>
     </div>
   </section>
 
@@ -567,7 +563,7 @@
           <li><strong>No batch, expiry or cold chain data.</strong>Cumulative receipts only. The current balance could be ageing toward spoilage with no visibility.</li>
           <li><strong>The reporting schema changed mid-period.</strong>Reports before 1 April 2026 use a simpler schema. Later weeks add State and Private Vet and Commercial and Communal columns.</li>
           <li><strong>The national herd denominator changed silently.</strong>From 12 470 648 on 1 April 2026 to 12 496 199 from 17 April 2026 onwards, with no annotation.</li>
-          <li><strong>Commodity submissions partial.</strong>MPO has submitted to date. NWGA (wool growers) and SAPPO (pork producers) returns are not yet in the dataset.</li>
+          <li><strong>Commodity submissions partial.</strong>MPO and RPO have submitted to date. NWGA (wool growers) and SAPPO (pork producers) returns are not yet in the dataset.</li>
         </ul>
       </div>
     </div>
@@ -685,7 +681,9 @@ try {
 try {
   const dosesPerAnimal = 2;
   const fullCoverageNeed = N.herd_cattle * dosesPerAnimal;
-  const shortfall = fullCoverageNeed - N.received;
+  const procured = N.procured || N.received;
+  const distributed = N.distributed || N.received;
+  const shortfall = fullCoverageNeed - procured;
   const shortfallM = (shortfall / 1e6).toFixed(1);
   safeEl('alertBanner').innerHTML = `
     <div>
@@ -694,9 +692,10 @@ try {
     </div>
     <div>
       <p class="alert-headline">
-        We have received <span class="accent">${fmt(N.received)} doses</span> against a national herd of ${fmt(N.herd_cattle)} cattle.
+        South Africa has received <span class="accent">${fmt(procured)} doses</span> from manufacturers, of which <span class="accent">${fmt(distributed)} doses</span> have been distributed to the provinces.
+        We measure against a national herd of ${fmt(N.herd_cattle)} cattle.
         Full coverage at two doses per animal requires roughly ${(fullCoverageNeed/1e6).toFixed(1)} million doses.
-        The most recent week added ${fmt(N.delta_administered)} animals vaccinated and ${fmt(N.delta_received)} fresh doses.
+        The most recent week added ${fmt(N.delta_administered)} animals vaccinated to the provincial total.
       </p>
     </div>
   `;
@@ -707,18 +706,20 @@ try {
   const coverage = (N.administered / N.herd_cattle * 100);
   const fullCoverageNeed = N.herd_cattle * 2;
   const kpis = [
-    { label:'Confirmed positive cases', value: fmt(N.positive),
-      sub:`Δ ${N.delta_positive>=0?'+':''}${N.delta_positive} since prior week` },
+    { label:'Confirmed outbreaks', value: fmt(N.positive),
+      sub:N.delta_positive===0?'No change from prior consolidated period — awaiting updated provincial JOC submissions':`Δ ${N.delta_positive>=0?'+':''}${N.delta_positive} since prior week` },
     { label:'Suspected and pending', value: fmt(N.suspected + N.pending),
       sub:`${fmt(N.suspected)} suspected, ${fmt(N.pending)} pending` },
-    { label:'Vaccines received', value: fmt(N.received),
+    { label:'Doses received in South Africa', value: fmt(N.procured || N.received),
+      sub:'Procured from manufacturers (Ministerial figure)' },
+    { label:'Doses distributed to provinces', value: fmt(N.distributed || N.received),
       sub:'Cumulative since rollout start',
       trend:`+${fmt(N.delta_received)} this week` },
     { label:'Animals vaccinated', value: fmt(N.administered),
       sub:`+${fmt(N.delta_administered)} this week`,
       trend: N.delta_administered<100000?'Pace slowing':'Pace holding' },
     { label:'Vaccine balance', value: fmt(N.balance),
-      sub:'Plus 75 000 emergency stock',
+      sub:'Distributed less administered, plus 75 000 emergency stock',
       trend:'Spoilage not tracked' },
     { label:'Herd coverage', value: coverage.toFixed(1)+'%',
       sub:'Share of national cattle herd vaccinated',
@@ -804,7 +805,7 @@ try {
 let chartJsReady = (typeof Chart !== 'undefined');
 if (!chartJsReady) {
   console.warn('[FMD] Chart.js did not load — charts will be skipped');
-  ['hotspotChart','caseTrend','vaxTrend','provVax','sourceChart','coverageChart','mpoDairyVaxChart','mpoActiveCasesChart']
+  ['hotspotChart','caseTrend','vaxTrend','provVax','sourceChart','coverageChart','mpoDairyChart','mpoCasesChart','rmisTimelineChart']
     .forEach(id => showError(id, 'Chart (Chart.js failed to load)', new Error('CDN unavailable')));
 }
 
@@ -924,105 +925,110 @@ if (chartJsReady) try {
     `Full herd coverage at two doses per animal requires <strong>${fmt(N.herd_cattle*2)} doses</strong>. To date, ${fmt(N.received)} doses have been received in country, leaving an outstanding need of <strong>roughly ${((N.herd_cattle*2-N.received)/1e6).toFixed(1)} million doses</strong>.`;
 } catch(e) { showError('coverageChart', 'Coverage chart', e); }
 
-// ── RPO classification chart ─────────────────────────────────────────────────
-if (chartJsReady && data.rpo) try {
-  const rpoTotals = data.rpo.totals;
-  new Chart(safeEl('rpoClassChart'), {
-    type:'doughnut',
-    data:{ labels:['Commercial Beef','Pigs','Communal'],
-      datasets:[{ data:[rpoTotals.commercial_beef_vaccinated, rpoTotals.pigs_vaccinated, rpoTotals.communal_vaccinated],
-        backgroundColor:[BRAND.pine, BRAND.olive, BRAND.sage, BRAND.paleSage],
-        borderWidth:2, borderColor:BRAND.white }]},
-    options:{ responsive:true, maintainAspectRatio:false,
-      plugins:{legend:{position:'bottom', labels:{boxWidth:12, padding:10}}},
-      cutout:'62%' }
-  });
-} catch(e) { showError( 'RPO classification chart', e); }
-
-
 // ── MPO dairy section ─────────────────────────────────────────────────────────
 if (data.mpo) try {
   const mpo = data.mpo;
-  const byProv = mpo.by_province || {};
+  const fmtDate = d => d ? new Date(d+'T12:00:00').toLocaleDateString('en-ZA',{day:'numeric',month:'short',year:'numeric'}) : '—';
+  const sub = safeEl('mpoSubtitle');
+  if (sub) sub.textContent = `Submitted by the Milk Producers' Organisation (MPO). Covers dairy cattle only. Snapshot as of ${fmtDate(mpo.latest_date)}.`;
+  const kpiDairy = safeEl('mpoDairyCowsKpi');
+  const wcProv = mpo.provinces.find(p=>p.code==='WC');
+  const natExclWC = mpo.national_current - (wcProv ? wcProv.current : 0);
+  if (kpiDairy) kpiDairy.innerHTML = `
+    <div class="kpi-label">Dairy cows vaccinated</div>
+    <div class="kpi-value">${fmt(mpo.national_current)}</div>
+    <div class="kpi-sub">national total &nbsp;·&nbsp; excl. WC: ${fmt(natExclWC)}</div>
+    <div class="kpi-delta ${mpo.national_current-mpo.national_previous>=0?'pos':'neg'}" style="margin-top:var(--sp-3)">
+      ${mpo.national_current-mpo.national_previous>=0?'+':''}${fmt(mpo.national_current-mpo.national_previous)} vs prior week</div>`;
+  const kpiFarmsConf = safeEl('mpoFarmsConfirmedKpi');
+  if (kpiFarmsConf) kpiFarmsConf.innerHTML = `
+    <div class="kpi-label">Confirmed dairy farms</div>
+    <div class="kpi-value">${mpo.farms_confirmed ?? '&mdash;'}</div>
+    <div class="kpi-sub">farms with confirmed FMD cases</div>`;
+  const kpiFarmsAct = safeEl('mpoFarmsActiveKpi');
+  if (kpiFarmsAct) kpiFarmsAct.innerHTML = `
+    <div class="kpi-label">Active dairy farms</div>
+    <div class="kpi-value">${mpo.farms_active ?? '&mdash;'}</div>
+    <div class="kpi-sub">currently showing clinical signs</div>`;
+  if (chartJsReady) {
+    const sorted = mpo.provinces.filter(p=>p.current>0).sort((a,b)=>b.current-a.current);
+    new Chart(safeEl('mpoDairyChart'), {
+      type:'bar',
+      data:{labels:sorted.map(p=>p.name),
+        datasets:[
+          {label:'Latest week',data:sorted.map(p=>p.current),backgroundColor:BRAND.pine,borderRadius:3},
+          {label:'Prior week', data:sorted.map(p=>p.previous),backgroundColor:BRAND.sage,borderRadius:3}
+        ]},
+      options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,
+        plugins:{legend:{position:'top',labels:{boxWidth:10,font:{size:11}}}},
+        scales:{x:{beginAtZero:true,grid:{color:BRAND.mist},ticks:{callback:v=>fmt(v)}},y:{grid:{display:false}}}}
+    });
+  }
+  if (chartJsReady && mpo.active_by_province) {
+    const actProv = mpo.active_by_province.filter(p=>p.active>0).sort((a,b)=>b.active-a.active);
+    new Chart(safeEl('mpoCasesChart'), {
+      type:'bar',
+      data:{labels:actProv.map(p=>p.name),
+        datasets:[{label:'Active dairy FMD farms',data:actProv.map(p=>p.active),backgroundColor:BRAND.pine,borderRadius:3}]},
+      options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,
+        plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>`${ctx.formattedValue} active dairy farms`}}},
+        scales:{x:{beginAtZero:true,grid:{color:BRAND.mist}},y:{grid:{display:false}}}}
+    });
+  }
+} catch(e) { console.error('MPO section error:', e); }
 
-  // KPI cards
-  const mpoVaccEl = safeEl('mpoDairyVaccTotal');
-  if (mpoVaccEl) mpoVaccEl.textContent = fmt(mpo.national_dairy_vaccinated);
-  const mpoConfEl = safeEl('mpoDairyConfirmed');
-  if (mpoConfEl) mpoConfEl.textContent = fmt(mpo.confirmed_farms);
-  const mpoActEl = safeEl('mpoDairyActive');
-  if (mpoActEl) mpoActEl.textContent = fmt(mpo.active_farms);
-
-  // Snapshot date
-  const mpoSnap = safeEl('mpoSnapshotDate');
-  if (mpoSnap) mpoSnap.textContent = mpo.snapshot_date || '—';
-
-  // Notes
-  const wcNote = safeEl('mpoWcNote');
-  if (wcNote) wcNote.textContent = mpo.wc_note || '';
-  const kznNote = safeEl('mpoKznNote');
-  if (kznNote) kznNote.textContent = mpo.kzn_note || '';
-
-  // Province order (sorted by dairy vaccinated descending for chart readability)
-  const provOrder = Object.entries(byProv)
-    .sort((a,b) => b[1].dairy_vaccinated - a[1].dairy_vaccinated);
-  const provLabels  = provOrder.map(([,p]) => p.name);
-  const vaccValues  = provOrder.map(([,p]) => p.dairy_vaccinated);
-  const casesValues = provOrder.map(([,p]) => p.active_cases);
-
-  // Dairy vaccinated — horizontal bar
-  if (chartJsReady) new Chart(safeEl('mpoDairyVaxChart'), {
-    type: 'bar',
-    data: {
-      labels: provLabels,
-      datasets: [{
-        label: 'Dairy cows vaccinated',
-        data: vaccValues,
-        backgroundColor: vaccValues.map(v => v === Math.max(...vaccValues) ? BRAND.pine : BRAND.sage),
-        borderRadius: 3,
-      }]
-    },
-    options: {
-      indexAxis: 'y',
-      responsive: true, maintainAspectRatio: false,
-      plugins: { legend: { display: false },
-        tooltip: { callbacks: { label: ctx => ' ' + fmt(ctx.raw) + ' dairy cows' }}},
-      scales: {
-        x: { ticks: { callback: v => fmt(v) }, grid: { color: 'rgba(0,0,0,.05)' }},
-        y: { ticks: { font: { size: 12 }}}
+// ── RMIS feedlot section ──────────────────────────────────────────────────────
+if (data.rmis) try {
+  const rmis = data.rmis;
+  const fmtDate = d => d ? new Date(d+'T12:00:00').toLocaleDateString('en-ZA',{day:'numeric',month:'short',year:'numeric'}) : '—';
+  const sub = document.getElementById('rmisSubtitle');
+  if (sub) sub.textContent = `Submitted by the Red Meat Industry Service (RMIS). Covers feedlot and private-vet-channelled DolVet orders only. Cumulative from rollout start. Latest export: ${fmtDate(rmis.latest_date)}.`;
+  const kpiOrders = document.getElementById('rmisOrdersKpi');
+  if (kpiOrders) kpiOrders.innerHTML = `
+    <div class="kpi-label">Cumulative feedlot doses ordered</div>
+    <div class="kpi-value">${fmt(rmis.latest_doses)}</div>
+    <div class="kpi-sub">DolVet Biotech Trivalent &nbsp;·&nbsp; as at ${fmtDate(rmis.latest_date)}</div>`;
+  const kpiGrowth = document.getElementById('rmisGrowthKpi');
+  const growth = rmis.latest_doses - rmis.previous_doses;
+  if (kpiGrowth) kpiGrowth.innerHTML = rmis.previous_doses > 0 ? `
+    <div class="kpi-label">New doses ordered since prior export</div>
+    <div class="kpi-value">${fmt(growth)}</div>
+    <div class="kpi-sub">+${((growth / rmis.previous_doses) * 100).toFixed(1)}% growth in feedlot orders</div>` : `
+    <div class="kpi-label">Data coverage</div>
+    <div class="kpi-value">1</div>
+    <div class="kpi-sub">export snapshot received to date &nbsp;·&nbsp; trend builds with each update</div>`;
+  if (chartJsReady && rmis.timeline && rmis.timeline.length > 0) {
+    new Chart(document.getElementById('rmisTimelineChart'), {
+      type: rmis.timeline.length === 1 ? 'bar' : 'line',
+      data: {
+        labels: rmis.timeline.map(t => fmtDate(t.date)),
+        datasets: [{
+          label: 'Cumulative doses ordered',
+          data: rmis.timeline.map(t => t.doses),
+          backgroundColor: BRAND.pine,
+          borderColor: BRAND.pine,
+          borderWidth: 2,
+          fill: rmis.timeline.length > 1,
+          tension: 0.3,
+          pointRadius: 5,
+          pointBackgroundColor: BRAND.pine,
+          borderRadius: rmis.timeline.length === 1 ? 3 : undefined,
+        }]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: {
+          legend: { display: false },
+          tooltip: { callbacks: { label: ctx => `${fmt(ctx.raw)} doses ordered (cumulative)` } }
+        },
+        scales: {
+          x: { grid: { display: false } },
+          y: { beginAtZero: true, grid: { color: BRAND.mist }, ticks: { callback: v => fmt(v) } }
+        }
       }
-    }
-  });
-
-  // Active cases — horizontal bar, sorted by cases
-  const caseOrder = Object.entries(byProv)
-    .sort((a,b) => b[1].active_cases - a[1].active_cases);
-  const caseLabels = caseOrder.map(([,p]) => p.name);
-  const caseVals   = caseOrder.map(([,p]) => p.active_cases);
-
-  if (chartJsReady) new Chart(safeEl('mpoActiveCasesChart'), {
-    type: 'bar',
-    data: {
-      labels: caseLabels,
-      datasets: [{
-        label: 'Active dairy FMD farms',
-        data: caseVals,
-        backgroundColor: caseVals.map(v => v === Math.max(...caseVals) ? BRAND.rust : BRAND.amber),
-        borderRadius: 3,
-      }]
-    },
-    options: {
-      indexAxis: 'y',
-      responsive: true, maintainAspectRatio: false,
-      plugins: { legend: { display: false },
-        tooltip: { callbacks: { label: ctx => ' ' + ctx.raw + ' active dairy farms' }}},
-      scales: {
-        x: { ticks: { stepSize: 10 }, grid: { color: 'rgba(0,0,0,.05)' }},
-        y: { ticks: { font: { size: 12 }}}
-      }
-    }
-  });
-} catch(e) { showError('mpoDairyVaxChart', 'MPO dairy section', e); }
+    });
+  }
+} catch(e) { console.error('RMIS section error:', e); }
 
 
 // ── Sources used list ─────────────────────────────────────────────────────────
@@ -1137,41 +1143,43 @@ if (chartJsReady && data.ministerial_comparison) try {
         : '<span style="color:var(--charcoal)">N/A</span>';
       return `<tr>
         <td><strong>${p.code}</strong><br><small style="color:var(--charcoal);font-size:11px">${p.joc_date || ''}</small></td>
-        <td class="num">${p.ministerial ? fmt(p.ministerial) : '<span style="color:var(--charcoal)">—</span>'}</td>
-        <td class="num">${p.joc ? fmt(p.joc) : '<span style="color:var(--charcoal)">—</span>'}</td>
+        <td class="num">${p.ministerial !== null ? fmt(p.ministerial) : '&mdash;'}</td>
+        <td class="num">${p.joc !== null ? fmt(p.joc) : '&mdash;'}</td>
         <td class="num">${diffFmt}</td>
-        <td style="${flagStyle};font-size:12px">${flagText}</td>
+        <td><span style="${flagStyle}">${flagText}</span></td>
       </tr>`;
-    }).join('') + `<tr style="border-top:2px solid #ccc;font-weight:700;background:var(--mist)">
-        <td>TOTAL</td>
-        <td class="num">${fmt(totalMin)}</td>
-        <td class="num">${fmt(totalJoc)}</td>
-        <td class="num"><span style="${totalDiff < 0 ? 'color:#c0392b' : 'color:#27ae60'}">${totalDiff >= 0 ? '+' : ''}${fmt(totalDiff)}</span></td>
-        <td style="font-size:12px;color:var(--charcoal)">${diffCount} of ${mc.length} provinces</td>
-      </tr>`;
+    }).join('');
+    const tblFoot = tableEl.closest('table').querySelector('tfoot');
+    if (tblFoot) tblFoot.innerHTML = `<tr style="font-weight:600;border-top:2px solid var(--mist)">
+      <td>Total</td>
+      <td class="num">${fmt(totalMin)}</td>
+      <td class="num">${fmt(totalJoc)}</td>
+      <td class="num"><span style="${totalDiff>=0?'color:#27ae60':'color:#c0392b'}">${totalDiff>=0?'+':''}${fmt(totalDiff)}</span></td>
+      <td>&mdash;</td>
+    </tr>`;
   }
-} catch(e) { showError('minJocChart', 'Ministerial vs JOC chart', e); }
+} catch(e) { console.error('Ministerial comparison error:', e); }
 
-// ── Dynamic quality flags / action items ──────────────────────────────────────
+// ── Quality flags ─────────────────────────────────────────────────────────────
 if (data.quality_flags) try {
   const qfEl = safeEl('qualityFlagsList');
-  if (qfEl) {
-    if (data.quality_flags.length === 0) {
-      qfEl.innerHTML = '<li style="color:#27ae60;font-size:13px">&#10003; No data quality issues detected in this build.</li>';
-    } else {
-      qfEl.innerHTML = data.quality_flags.map(f => `
-        <li class="${f.severity === 'critical' ? 'critical' : ''}">
-          <strong>${f.province !== 'national' ? '[' + f.province + '] ' : ''}${f.title}</strong>
-          <span style="display:block;margin-top:4px;font-size:13px;color:var(--charcoal)">${f.detail}</span>
-          <span style="display:block;margin-top:6px;font-size:12px;background:rgba(0,0,0,0.04);padding:7px 10px;border-radius:4px;line-height:1.5">
-            <strong>Action:</strong> ${f.action}<br>
-            <strong>Owner:</strong> <em>${f.owner}</em>
-          </span>
-        </li>`).join('');
-    }
-  }
-} catch(e) { showError('qualityFlagsList', 'Quality flags', e); }
+  const flags = data.quality_flags;
+  if (qfEl) qfEl.innerHTML = flags.map(f => `
+    <li style="margin-bottom:var(--sp-5);padding:var(--sp-4);border-radius:var(--r-card);
+               border-left:4px solid ${f.severity==='critical'?'#c0392b':'#e67e22'}">
+      <strong style="font-size:13px">[${f.province}] ${f.title}</strong>
+      <p style="font-size:12px;color:var(--charcoal);margin:var(--sp-2) 0 var(--sp-1)">${f.detail}</p>
+      <p style="font-size:12px;color:var(--pine);margin:0"><strong>Action:</strong> ${f.action}</p>
+      <p style="font-size:11px;color:var(--charcoal);margin:var(--sp-1) 0 0"><strong>Owner:</strong> ${f.owner}</p>
+    </li>`).join('');
+} catch(e) { console.error('Quality flags error:', e); }
 
+// ── Sources used list ─────────────────────────────────────────────────────────
+if (data.sources_used) try {
+  const slEl = safeEl('sourceList');
+  if (slEl) slEl.innerHTML =
+    data.sources_used.map(s => `<li style="font-size:12px;font-family:monospace;word-break:break-all">${s}</li>`).join('');
+} catch(e) { console.error('Sources list error:', e); }
 
 </script>
 </body>

@@ -351,6 +351,42 @@ def build_mpo(rows):
         "active_by_province":      active_by_province,
     }
 
+def build_rmis(rows):
+    """RMIS feedlot vaccine order tracking.
+    Each RMIS export is stored as a single cumulative feedlot_vaccine_orders row
+    (province='all', source_org='RMIS', vet_channel='feedlot').
+    Returns a time series of export snapshots plus the latest headline figures.
+    """
+    rmis_rows = [r for r in rows
+                 if r["source_org"] == "RMIS"
+                 and r["metric"] == "feedlot_vaccine_orders"
+                 and r["superseded_by"] == ""]
+
+    if not rmis_rows:
+        return None
+
+    rmis_rows.sort(key=lambda r: r["effective_date"])
+
+    timeline = []
+    for r in rmis_rows:
+        timeline.append({
+            "date":  r["effective_date"],
+            "doses": int(num(r["value"]) or 0),
+            "vaccine_type": r["vaccine_type"],
+        })
+
+    latest = timeline[-1] if timeline else {}
+    prev   = timeline[-2] if len(timeline) >= 2 else {}
+
+    return {
+        "timeline":       timeline,
+        "latest_date":    latest.get("date"),
+        "latest_doses":   latest.get("doses", 0),
+        "previous_doses": prev.get("doses", 0),
+        "vaccine_type":   latest.get("vaccine_type", "dolvet"),
+    }
+
+
 def national_view(rows, snapshot):
     """Compute the headline national figures by summing the most recent per-province
     values from any PROGRAMME_SOURCES (carry-forward). This replaces the prior approach
@@ -560,7 +596,8 @@ def build_dashboard():
         "weekly": build_weekly(rows),
         "sources": build_source_mix(rows, snapshot),
         "national": nat,
-        "mpo": build_mpo(rows),
+        "mpo":  build_mpo(rows),
+        "rmis": build_rmis(rows),
     }
 
     # Week-on-week deltas — derived from the already-computed weekly series so that
@@ -643,32 +680,4 @@ def build_dashboard():
         "animals_vaccinated":      int(min_adm[0]) if min_adm else None,
         "animals_vaccinated_asof": min_adm[1] if min_adm else None,
         "provincial_cattle":       prov_ministerial,
-        "policy_events":           policy_events,
-        "incoming_supply":         incoming,
-        "source_date":             "2026-05-05",
-        "source_label":            "Minister Steenhuisen media briefing, 5 May 2026",
-    }
-
-    min_comparison = build_ministerial_comparison(rows)
-    payload["ministerial_comparison"] = min_comparison
-    payload["quality_flags"] = build_quality_flags(rows, snapshot, min_comparison)
-
-    payload["sources_used"] = sorted(set(r["source_file"] for r in rows
-                                         if r["superseded_by"] == ""))
-
-    with open(TEMPLATE, "r", encoding="utf-8") as f:
-        template = f.read()
-    json_block = json.dumps(payload, indent=2)
-    out_html = template.replace("/* DATA_PLACEHOLDER */",
-                                "const DASHBOARD_DATA = " + json_block + ";")
-    out_html = out_html.replace("__SNAPSHOT_DATE__", snapshot)
-    out_html = out_html.replace("__BUILD_DATE__", str(date.today()))
-
-    validate_output(out_html, DASHBOARD)
-    with open(DASHBOARD, "w", encoding="utf-8") as f:
-        f.write(out_html)
-    print(f"Wrote {DASHBOARD} ({len(out_html)} bytes) — validation passed")
-
-
-if __name__ == "__main__":
-    build_dashboard()
+        "policy_ev
