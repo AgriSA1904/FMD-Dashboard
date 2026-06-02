@@ -367,13 +367,15 @@ def build_rmis(rows):
 
     rmis_rows.sort(key=lambda r: r["effective_date"])
 
-    timeline = []
+    # Aggregate per-province rows into one national total per export date.
+    # Earlier exports were stored with per-province rows; later ones as province='all'.
+    from collections import defaultdict
+    totals = defaultdict(int)
     for r in rmis_rows:
-        timeline.append({
-            "date":  r["effective_date"],
-            "doses": int(num(r["value"]) or 0),
-            "vaccine_type": r["vaccine_type"],
-        })
+        totals[r["effective_date"]] += int(num(r["value"]) or 0)
+
+    timeline = [{"date": d, "doses": totals[d], "vaccine_type": "dolvet"}
+                for d in sorted(totals)]
 
     latest = timeline[-1] if timeline else {}
     prev   = timeline[-2] if len(timeline) >= 2 else {}
@@ -679,5 +681,32 @@ def build_dashboard():
         "doses_distributed":       int(min_dist[0]) if min_dist else None,
         "animals_vaccinated":      int(min_adm[0]) if min_adm else None,
         "animals_vaccinated_asof": min_adm[1] if min_adm else None,
-        "provincial_cattle":       prov_ministerial,
-        "policy_ev
+        "policy_events":           policy_events,
+        "incoming_supply":         incoming,
+        "source_date":             "2026-05-05",
+        "source_label":            "Minister Steenhuisen media briefing, 5 May 2026",
+    }
+
+    min_comparison = build_ministerial_comparison(rows)
+    payload["ministerial_comparison"] = min_comparison
+    payload["quality_flags"] = build_quality_flags(rows, snapshot, min_comparison)
+
+    payload["sources_used"] = sorted(set(r["source_file"] for r in rows
+                                         if r["superseded_by"] == ""))
+
+    with open(TEMPLATE, "r", encoding="utf-8") as f:
+        template = f.read()
+    json_block = json.dumps(payload, indent=2)
+    out_html = template.replace("/* DATA_PLACEHOLDER */",
+                                "const DASHBOARD_DATA = " + json_block + ";")
+    out_html = out_html.replace("__SNAPSHOT_DATE__", snapshot)
+    out_html = out_html.replace("__BUILD_DATE__", str(date.today()))
+
+    validate_output(out_html, DASHBOARD)
+    with open(DASHBOARD, "w", encoding="utf-8") as f:
+        f.write(out_html)
+    print(f"Wrote {DASHBOARD} ({len(out_html)} bytes) — validation passed")
+
+
+if __name__ == "__main__":
+    build_dashboard()
