@@ -4,6 +4,51 @@ description: Latest master_data.csv row count, dashboard snapshot date, and run 
 type: project
 ---
 
+As at 2026-06-03 (session 26 — automated daily ingest, two new sources):
+- Master: **1,375 rows** (+23 new rows from 1,352)
+- Dashboard snapshot: **2 June 2026** (advanced from 29 May — FS-DRDAR media release is programme source)
+- Dashboard rebuilt: Yes — FMD_Dashboard.html updated (93,574 bytes, 23 weekly points, validation passed)
+
+**Key highlights this run:**
+- **FS-DRDAR public media release (2 June 2026) parsed from 4 WhatsApp images.** Official government confirmation: 604 total FS confirmed cases, 609,915 animals vaccinated. Adds a new state vet area (SVA) level breakdown across 15 areas.
+- **New SVA breakdown for FS (15 rows):** Kroonstad 111, Heilbron 93, Frankfort 74, Bethlehem 67, Sasolburg 61, Welkom 43, Warden 40, Qwa-Qwa 28, Ladybrand 46, Bultfontein 10, Boshof 10, Fauresmith 8, Smithfield 7, Bloemfontein 4, Thaba Nchu 2 (total = 604 ✓).
+- **FMD-Vaccine_Imported.xlsx (RMIS) added — national vaccine import tracker.** Total YTD imports = 8,012,900 doses. Breakdown: ARC Trivalent 12,900 (Feb), Biogenesis Bivalent 1,000,000 (Feb), DolVet Trivalent 1,500,000 (Feb), Biogenesis Trivalent 1,500,000 (Apr), DolVet Trivalent 2,000,000 (Apr), DolVet Trivalent 2,000,000 (May). Two June deliveries (DolVet + Biogenesis Trivalent) are listed without quantities — planned/pending.
+- **Media release confirms Section 9 not yet applied** — references Government Gazette No. 51512 of 13 June 2025 (existing legislation), not a new Section 9 directive. Movement restrictions enforced under Section 11 of the Animal Diseases Act (Act 35 of 1984).
+- **LP PCM meeting scheduled 4 June 2026 at 08:00 (Microsoft Teams)** — meeting pack was already ingested in session 25 (effective date 27 May). Attend for new figures or minutes.
+
+**Inbox scan summary (03 June 2026):**
+
+| Folder | New files found | Outcome |
+|---|---|---|
+| Root — "03 Jun 2026" dated weekly folder | Not found | No |
+| inbox/Free State/02 June/ (WhatsApp images) | 4 JPEG images (parked from session 25) | **Ingested — 17 data rows** |
+| inbox/RMIS/ | FMD-Vaccine_Imported.xlsx (parked from session 25) | **Ingested — 6 data rows** |
+| inbox/MPO/ | No Week 32 | No |
+| All other folders | No new files | No |
+
+**Data quality notes (new):**
+- FS SVA total (604) confirms FS-JOC 29 May province total; no new cases announced.
+- Boshof SVA (10) and Bultfontein SVA (10) share the same case count but are distinct geographic areas; both held in master with SVA name in notes.
+- National import total (8,012,900) exceeds current national distributed total (5,361,509) — delta (~2.65M) represents national stockpile not yet distributed.
+
+**Parked/outstanding (updated):**
+- Consolidated AgriSA weekly xlsx — still outstanding
+- MPO Week 32 dairy update — not yet received
+- Section 9 gazette — still unpublished (now ~12 days overdue). Urgent.
+- ICC weekly engagement summary PDF for 19-20 May — still outstanding
+- LP 4 June PCM: monitor for minutes and updated LP figures
+- LP 3.5M Bioaftogen national consignment (arrived 25 May nationally): LP allocation outstanding
+- June vaccine deliveries (DolVet + Biogenesis Trivalent): quantities not yet confirmed in import tracker
+- LP: Vaalwater Sable FMD positive + 54 buffalo test results — monitor
+- LP: Mokolo auction suspect case 28 May — results pending
+- KZN booster programme confirmation — ongoing
+- EC "Other / Artio-Preva" 1,250 duplication — pending
+- GP OBP column-mapping discrepancy — ongoing
+
+---
+
+*Prior session record below (session 25, 02 June 2026):*
+
 As at 2026-06-02 (session 25 — automated daily ingest, three new sources):
 - Master: **1,352 rows** (+30 new rows from 1,322)
 - Dashboard snapshot: **29 May 2026** (advanced from 22 May — FS 29 May xlsx is programme source)
@@ -63,48 +108,4 @@ As at 2026-06-02 (session 25 — automated daily ingest, three new sources):
 
 As at 2026-05-26 (session 21 — automated daily ingest, MPO Week 31):
 - Master: 1,322 rows (1,308 before this session + 14 added from MPO Week 31 PDF)
-- Dashboard snapshot: **22 May 2026** (unchanged — MPO is commodity-body source, does not advance programme snapshot)
-- Dashboard rebuilt: Yes — FMD_Dashboard.html updated (84,390 bytes, 20 weekly points, validation passed)
-
-**Key highlights this run:**
-- **MPO Week 31 ingested** (snapshot 22 May 2026) — 14 new rows.
-- **National dairy cows vaccinated advanced 769,159 (Week 30) → 831,143 (Week 31)** (+61,984).
-- **EC dairy cows advanced 216,597 → 269,211** (+52,614). All EC dairy animals expected fully vaccinated by end of week of 22 May. Note: MPO direct communication on 15 May stated milestone of 313,890 (all EC dairy vaccinated) — Week 31 table figure of 269,211 is lower; methodology difference flagged in notes.
-- **WC dairy cows advanced 140,746 → 150,116** (+9,370). Now 150,116 of ~240,000 WC dairy animals have received first vaccination.
-- **KZN: 3 dairy farms reported FMD reinfection post-vaccination** — symptoms significantly less severe than pre-vaccination. All KZN dairy still fully vaccinated.
-- **NW Lichtenburg reinfection confirmed** (1 farm) — confirms Week 30 suspected case.
-- **No new consolidated AgriSA weekly xlsx received** — snapshot date remains 22 May 2026.
-
-**Inbox scan summary (26 May 2026):**
-
-| Folder | Status |
-|---|---|
-| Root — "26 May 2026" dated weekly folder | Not found — no new AgriSA consolidated xlsx yet |
-| inbox/MPO/ | **Week 31 PDF ingested** (arrived 2026-05-25 09:31, after session 20) |
-| inbox/Mpumalanga/ | MP xlsx (19 May data) already in master from session 19/22; email PDF (Robert, 21 May) confirms same figures — no new rows needed |
-| inbox/Gauteng/ | No new files since session 20 |
-| inbox/Free State/ | No new files since session 22 |
-| inbox/Eastern Cape/ | No new files since session 22 |
-| inbox/Limpopo/ | No new files since session 20 |
-| inbox/North West/ | No new files |
-| inbox/ICC Reports/ | No new ICC weekly summary |
-| inbox/Ministerial Updates/ | No Section 9 gazette found |
-| inbox/AgriSA Summary and Outcomes/ | No new ICC engagement summary |
-
-**Data quality notes:**
-- EC Week 31 MPO figure (269,211) vs EC milestone communication (313,890 on 15 May): discrepancy likely reflects MPO table methodology vs milestone count. Both held in master. Monitor for resolution.
-- Automated xlsx ingest script (ingest.py) is finding the MP xlsx in inbox each morning and assigning today's date as effective_date — this is a script bug; master_data.csv is unaffected as rows are deduplicated correctly. The MP xlsx should be archived once confirmed no further updates expected.
-
-**Parked/outstanding:**
-- ICC weekly engagement summary PDF for 19-20 May 2026 — still not in inbox
-- Section 9 gazette — expected ~25 May (now overdue); watch Ministerial Updates
-- 26 May 2026 (or later) consolidated AgriSA weekly xlsx — not yet available
-- 144,000 new batch received MP week of 19 May — confirm allocation in next MP submission
-- GP OBP distributed (1,700) vs administered (127,580) column-mapping discrepancy — ongoing
-- EC "Other / Artio-Preva" 1,250 cell duplication — still pending EC confirmation
-- EC unique-animals figure for 14 May / 21 May — still pending from EC-DRDAR
-- EC Week 31 MPO dairy count vs milestone figure — pending clarification
-- KZN booster programme confirmation (following reinfection reports)
-- LP DolVet 150,000 receipt confirmation
-- MP xlsx in inbox: automated script re-scanning daily with wrong effective dates — archive after confirmation
-- GitHub push: **completed this session**
+- Das
