@@ -518,22 +518,47 @@
     <div class="kicker">Dairy industry view</div>
     <h2>MPO: Dairy herd vaccination and FMD case burden.</h2>
     <p style="color:var(--charcoal);font-size:14px;margin-top:calc(-1 * var(--sp-6));margin-bottom:var(--sp-6)" id="mpoSubtitle">Submitted by the Milk Producers&#x2019; Organisation (MPO). Covers dairy cattle only.</p>
-    <div class="grid-2" style="margin-bottom:var(--sp-6)">
+
+    <!-- KPI row: vaccination + farm status -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:var(--sp-4);margin-bottom:var(--sp-6)">
       <div class="card" id="mpoDairyCowsKpi"></div>
       <div class="card" id="mpoFarmsConfirmedKpi"></div>
+      <div class="card" id="mpoFarmsActiveKpi"></div>
+      <div class="card" id="mpoFarmsResolvedKpi"></div>
+      <div class="card" id="mpoReinfectionKpi"></div>
     </div>
-    <div style="margin-bottom:var(--sp-6)">
-      <div class="card" style="max-width:520px" id="mpoFarmsActiveKpi"></div>
-    </div>
-    <div class="grid-2">
+
+    <!-- Vaccination + active cases by province -->
+    <div class="grid-2" style="margin-bottom:var(--sp-6)">
       <div class="card">
         <h3>Dairy cows vaccinated by province.</h3>
         <div class="chart-wrap tall"><canvas id="mpoDairyChart"></canvas></div>
       </div>
       <div class="card">
-        <h3>Active dairy FMD cases by province.</h3>
+        <h3>Active dairy FMD farms by province.</h3>
         <div class="chart-wrap tall"><canvas id="mpoCasesChart"></canvas></div>
       </div>
+    </div>
+
+    <!-- Farm status trend + reinfection detail -->
+    <div class="grid-2" style="margin-bottom:var(--sp-6)">
+      <div class="card">
+        <h3>Farm status over time.</h3>
+        <p style="font-size:13px;color:var(--charcoal);margin:0 0 var(--sp-4)">Weekly count of dairy farms with confirmed and active FMD nationally.</p>
+        <div class="chart-wrap tall"><canvas id="mpoFarmsTrendChart"></canvas></div>
+      </div>
+      <div class="card" id="mpoReinfectionCard">
+        <h3>Post-vaccination reinfections.</h3>
+        <p style="font-size:13px;color:var(--charcoal);margin:0 0 var(--sp-4)">Farms that reported FMD reinfection after receiving vaccine. Clinical signs in reinfected herds have been significantly less severe than pre-vaccination outbreaks — consistent with vaccine protection moderating disease severity.</p>
+        <div id="mpoReinfectionBody"></div>
+      </div>
+    </div>
+
+    <!-- Per-province active farms detail table -->
+    <div class="card" style="margin-bottom:var(--sp-6)">
+      <h3>Active dairy FMD farms and vaccination progress by province.</h3>
+      <p style="font-size:13px;color:var(--charcoal);margin:0 0 var(--sp-4)" id="mpoTableNote"></p>
+      <div id="mpoProvTableBody"></div>
     </div>
   </section>
 
@@ -1186,6 +1211,49 @@ const DASHBOARD_DATA = {
     "farms_confirmed_date": "2026-05-08",
     "farms_active": 124,
     "farms_active_date": "2026-05-22",
+    "farms_resolved": 47,
+    "farms_trend": [
+      {
+        "date": "2026-05-01",
+        "active": 122,
+        "confirmed": 169,
+        "resolved": 47
+      },
+      {
+        "date": "2026-05-08",
+        "active": 124,
+        "confirmed": 171,
+        "resolved": 47
+      },
+      {
+        "date": "2026-05-15",
+        "active": 124,
+        "confirmed": 171,
+        "resolved": 47
+      },
+      {
+        "date": "2026-05-22",
+        "active": 124,
+        "confirmed": 171,
+        "resolved": 47
+      }
+    ],
+    "reinfections": [
+      {
+        "code": "KZN",
+        "name": "KwaZulu-Natal",
+        "farms": 3,
+        "date": "2026-05-22",
+        "note": "MPO Week 31 (22 May 2026): 3 KZN dairy farms reported FMD reinfection after vaccination over past 2 weeks. Symptoms significantly less severe than pre-vaccination cases \u2014 consistent with vaccine protection moderating severity."
+      },
+      {
+        "code": "NW",
+        "name": "North West",
+        "farms": 1,
+        "date": "2026-05-22",
+        "note": "MPO Week 31 (22 May 2026): 1 NW dairy farm reported FMD reinfection after vaccination \u2014 Lichtenburg. Confirms Week 30 suspected case."
+      }
+    ],
     "national_current": 867736,
     "national_previous": 831143,
     "active_by_province": [
@@ -3603,7 +3671,7 @@ try {
 let chartJsReady = (typeof Chart !== 'undefined');
 if (!chartJsReady) {
   console.warn('[FMD] Chart.js did not load — charts will be skipped');
-  ['hotspotChart','caseTrend','vaxTrend','provVax','sourceChart','coverageChart','mpoDairyChart','mpoCasesChart','rmisTimelineChart','rmisProvinceChart','rmisCommodityChart','rmisLocationChart','rmisVetChart']
+  ['hotspotChart','caseTrend','vaxTrend','provVax','sourceChart','coverageChart','mpoDairyChart','mpoCasesChart','mpoFarmsTrendChart','rmisTimelineChart','rmisProvinceChart','rmisCommodityChart','rmisLocationChart','rmisVetChart']
     .forEach(id => showError(id, 'Chart (Chart.js failed to load)', new Error('CDN unavailable')));
 }
 
@@ -3727,28 +3795,57 @@ if (chartJsReady) try {
 if (data.mpo) try {
   const mpo = data.mpo;
   const fmtDate = d => d ? new Date(d+'T12:00:00').toLocaleDateString('en-ZA',{day:'numeric',month:'short',year:'numeric'}) : '—';
+
+  // Subtitle
   const sub = safeEl('mpoSubtitle');
   if (sub) sub.textContent = `Submitted by the Milk Producers' Organisation (MPO). Covers dairy cattle only. Snapshot as of ${fmtDate(mpo.latest_date)}.`;
-  const kpiDairy = safeEl('mpoDairyCowsKpi');
+
+  // KPI: Dairy cows vaccinated
   const wcProv = mpo.provinces.find(p=>p.code==='WC');
   const natExclWC = mpo.national_current - (wcProv ? wcProv.current : 0);
+  const delta = mpo.national_current - mpo.national_previous;
+  const kpiDairy = safeEl('mpoDairyCowsKpi');
   if (kpiDairy) kpiDairy.innerHTML = `
     <div class="kpi-label">Dairy cows vaccinated</div>
     <div class="kpi-value">${fmt(mpo.national_current)}</div>
-    <div class="kpi-sub">national total &nbsp;·&nbsp; excl. WC: ${fmt(natExclWC)}</div>
-    <div class="kpi-delta ${mpo.national_current-mpo.national_previous>=0?'pos':'neg'}" style="margin-top:var(--sp-3)">
-      ${mpo.national_current-mpo.national_previous>=0?'+':''}${fmt(mpo.national_current-mpo.national_previous)} vs prior week</div>`;
+    <div class="kpi-sub">national total</div>
+    <div class="kpi-delta ${delta>=0?'pos':'neg'}" style="margin-top:var(--sp-3)">${delta>=0?'+':''}${fmt(delta)} this week</div>`;
+
+  // KPI: Confirmed farms
   const kpiFarmsConf = safeEl('mpoFarmsConfirmedKpi');
   if (kpiFarmsConf) kpiFarmsConf.innerHTML = `
     <div class="kpi-label">Confirmed dairy farms</div>
     <div class="kpi-value">${mpo.farms_confirmed ?? '&mdash;'}</div>
-    <div class="kpi-sub">farms with confirmed FMD cases</div>`;
+    <div class="kpi-sub">farms with confirmed FMD</div>
+    <div class="kpi-trend" style="font-size:12px;color:var(--charcoal);margin-top:var(--sp-2)">${fmtDate(mpo.farms_confirmed_date)}</div>`;
+
+  // KPI: Active farms
   const kpiFarmsAct = safeEl('mpoFarmsActiveKpi');
   if (kpiFarmsAct) kpiFarmsAct.innerHTML = `
     <div class="kpi-label">Active dairy farms</div>
     <div class="kpi-value">${mpo.farms_active ?? '&mdash;'}</div>
-    <div class="kpi-sub">currently showing clinical signs</div>`;
+    <div class="kpi-sub">currently showing clinical signs</div>
+    <div class="kpi-trend" style="font-size:12px;color:var(--charcoal);margin-top:var(--sp-2)">${fmtDate(mpo.farms_active_date)}</div>`;
+
+  // KPI: Resolved farms
+  const kpiFarmsRes = safeEl('mpoFarmsResolvedKpi');
+  if (kpiFarmsRes && mpo.farms_resolved != null) kpiFarmsRes.innerHTML = `
+    <div class="kpi-label">Farms resolved</div>
+    <div class="kpi-value" style="color:var(--olive)">${mpo.farms_resolved}</div>
+    <div class="kpi-sub">no longer showing clinical signs</div>
+    <div class="kpi-trend pos" style="margin-top:var(--sp-2)">${mpo.farms_confirmed > 0 ? ((mpo.farms_resolved/mpo.farms_confirmed)*100).toFixed(0)+'% of confirmed' : ''}</div>`;
+
+  // KPI: Reinfections
+  const totalReinfections = (mpo.reinfections||[]).reduce((a,r)=>a+r.farms,0);
+  const kpiReinfect = safeEl('mpoReinfectionKpi');
+  if (kpiReinfect) kpiReinfect.innerHTML = `
+    <div class="kpi-label">Post-vaccination reinfections</div>
+    <div class="kpi-value">${totalReinfections}</div>
+    <div class="kpi-sub">farms reinfected after vaccination</div>
+    <div class="kpi-trend" style="font-size:11px;color:var(--charcoal);margin-top:var(--sp-2)">Symptoms significantly less severe than pre-vaccination</div>`;
+
   if (chartJsReady) {
+    // Dairy cows vaccinated by province (latest vs prior week)
     const sorted = mpo.provinces.filter(p=>p.current>0).sort((a,b)=>b.current-a.current);
     new Chart(safeEl('mpoDairyChart'), {
       type:'bar',
@@ -3758,20 +3855,95 @@ if (data.mpo) try {
           {label:'Prior week', data:sorted.map(p=>p.previous),backgroundColor:BRAND.sage,borderRadius:3}
         ]},
       options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,
-        plugins:{legend:{position:'top',labels:{boxWidth:10,font:{size:11}}}},
+        plugins:{legend:{position:'top',labels:{boxWidth:10,font:{size:11}}},datalabels:{display:false}},
         scales:{x:{beginAtZero:true,grid:{color:BRAND.mist},ticks:{callback:v=>fmt(v)}},y:{grid:{display:false}}}}
     });
+
+    // Active dairy FMD farms by province
+    if (mpo.active_by_province) {
+      const actProv = mpo.active_by_province.filter(p=>p.active>0).sort((a,b)=>b.active-a.active);
+      new Chart(safeEl('mpoCasesChart'), {
+        type:'bar',
+        data:{labels:actProv.map(p=>p.name),
+          datasets:[{label:'Active dairy FMD farms',data:actProv.map(p=>p.active),
+            backgroundColor:actProv.map(p=>p.active>30?BRAND.pine:p.active>10?BRAND.olive:BRAND.sage),borderRadius:3}]},
+        options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,
+          plugins:{legend:{display:false},datalabels:{anchor:'end',align:'end',font:{size:11,weight:'600'},color:BRAND.pine,formatter:v=>v}},
+          scales:{x:{beginAtZero:true,grid:{color:BRAND.mist}},y:{grid:{display:false}}}}
+      });
+    }
+
+    // Farm status trend (confirmed vs active over time)
+    if (mpo.farms_trend && mpo.farms_trend.length) {
+      const ft = mpo.farms_trend;
+      new Chart(safeEl('mpoFarmsTrendChart'), {
+        type:'line',
+        data:{labels:ft.map(p=>p.date),
+          datasets:[
+            {label:'Confirmed (cumulative)',data:ft.map(p=>p.confirmed),
+              borderColor:BRAND.pine,backgroundColor:'transparent',tension:0.3,pointRadius:4,pointBackgroundColor:BRAND.pine},
+            {label:'Active (clinical signs)',data:ft.map(p=>p.active),
+              borderColor:'#c0392b',backgroundColor:'rgba(192,57,43,0.08)',tension:0.3,fill:true,pointRadius:4,pointBackgroundColor:'#c0392b'},
+            {label:'Resolved',data:ft.map(p=>p.resolved),
+              borderColor:BRAND.olive,backgroundColor:'rgba(91,126,61,0.08)',tension:0.3,fill:true,pointRadius:4,pointBackgroundColor:BRAND.olive},
+          ]},
+        options:{responsive:true,maintainAspectRatio:false,
+          plugins:{legend:{position:'top',labels:{boxWidth:10,font:{size:11}}},datalabels:{display:false}},
+          scales:{x:{grid:{display:false},ticks:{font:{size:10}}},y:{beginAtZero:true,grid:{color:BRAND.mist}}}}
+      });
+    }
   }
-  if (chartJsReady && mpo.active_by_province) {
-    const actProv = mpo.active_by_province.filter(p=>p.active>0).sort((a,b)=>b.active-a.active);
-    new Chart(safeEl('mpoCasesChart'), {
-      type:'bar',
-      data:{labels:actProv.map(p=>p.name),
-        datasets:[{label:'Active dairy FMD farms',data:actProv.map(p=>p.active),backgroundColor:BRAND.pine,borderRadius:3}]},
-      options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,
-        plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>`${ctx.formattedValue} active dairy farms`}}},
-        scales:{x:{beginAtZero:true,grid:{color:BRAND.mist}},y:{grid:{display:false}}}}
-    });
+
+  // Reinfection detail
+  const reinfEl = safeEl('mpoReinfectionBody');
+  if (reinfEl) {
+    if (mpo.reinfections && mpo.reinfections.length) {
+      const rows = mpo.reinfections.map(r=>
+        `<tr><td>${r.name}</td><td class="num">${r.farms}</td><td style="font-size:12px;color:var(--charcoal)">${fmtDate(r.date)}</td></tr>`
+      ).join('');
+      reinfEl.innerHTML = `<table>
+        <thead><tr><th>Province</th><th class="num">Farms</th><th>As of</th></tr></thead>
+        <tbody>${rows}</tbody>
+        <tfoot><tr><td>Total</td><td class="num">${totalReinfections}</td><td></td></tr></tfoot>
+      </table>`;
+    } else {
+      reinfEl.innerHTML = '<p style="color:var(--charcoal);font-size:13px">No post-vaccination reinfections recorded.</p>';
+    }
+  }
+
+  // Per-province detail table
+  const tblEl = safeEl('mpoProvTableBody');
+  const noteEl = safeEl('mpoTableNote');
+  if (tblEl && mpo.provinces) {
+    if (noteEl) noteEl.textContent = `Latest available data per province as at ${fmtDate(mpo.latest_date)}. Active dairy FMD farms reflect the most recent MPO provincial submission.`;
+    const actMap = {};
+    (mpo.active_by_province||[]).forEach(p=>{ actMap[p.code]=p.active; });
+    const reinfMap = {};
+    (mpo.reinfections||[]).forEach(r=>{ reinfMap[r.code]=r.farms; });
+    const rows = mpo.provinces.map(p=>{
+      const active = actMap[p.code] != null ? actMap[p.code] : '—';
+      const reinfect = reinfMap[p.code] != null ? reinfMap[p.code] : '—';
+      const change = p.change > 0 ? `<span class="pos">+${fmt(p.change)}</span>`
+                   : p.change < 0 ? `<span class="neg">${fmt(p.change)}</span>`
+                   : '<span style="color:var(--charcoal)">—</span>';
+      return `<tr>
+        <td><strong>${p.name}</strong></td>
+        <td class="num">${fmt(p.current)}</td>
+        <td class="num">${change}</td>
+        <td class="num">${active}</td>
+        <td class="num">${reinfect}</td>
+      </tr>`;
+    }).join('');
+    tblEl.innerHTML = `<table>
+      <thead><tr>
+        <th>Province</th>
+        <th class="num">Dairy cows vaccinated</th>
+        <th class="num">Change this week</th>
+        <th class="num">Active dairy FMD farms</th>
+        <th class="num">Post-vaccination reinfections</th>
+      </tr></thead>
+      <tbody>${rows}</tbody>
+    </table>`;
   }
 } catch(e) { console.error('MPO section error:', e); }
 

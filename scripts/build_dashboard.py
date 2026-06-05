@@ -363,6 +363,49 @@ def build_mpo(rows):
             val = 0
         active_by_province.append({"code": code, "name": name, "active": val})
 
+    # Weekly trend of confirmed and active farms (national)
+    farms_trend = []
+    farm_dates = sorted(set(
+        r["effective_date"] for r in mpo_rows
+        if r["metric"] in ("dairy_farms_active_fmd", "dairy_farms_confirmed_fmd",
+                           "dairy_farms_total_fmd")
+        and r["province"] == "national"
+    ))
+    for fd in farm_dates:
+        active_m  = [r for r in mpo_rows if r["effective_date"] == fd
+                     and r["province"] == "national"
+                     and r["metric"] == "dairy_farms_active_fmd"]
+        conf_m    = [r for r in mpo_rows if r["effective_date"] == fd
+                     and r["province"] == "national"
+                     and r["metric"] in ("dairy_farms_confirmed_fmd", "dairy_farms_total_fmd")]
+        a = int(num(active_m[0]["value"])  or 0) if active_m else None
+        c = int(num(conf_m[0]["value"])    or 0) if conf_m  else None
+        farms_trend.append({
+            "date": fd,
+            "active": a,
+            "confirmed": c,
+            "resolved": (c - a) if (c is not None and a is not None) else None,
+        })
+
+    # Post-vaccination reinfections per province
+    reinfections = []
+    for code, name in PROVINCES:
+        ri_rows = [r for r in mpo_rows
+                   if r["province"] == code
+                   and r["metric"] == "reinfection_post_vaccination"
+                   and r["superseded_by"] == ""]
+        if ri_rows:
+            ri_rows.sort(key=lambda r: r["effective_date"], reverse=True)
+            val  = int(num(ri_rows[0]["value"]) or 0)
+            note = ri_rows[0].get("notes", "")
+            reinfections.append({"code": code, "name": name, "farms": val,
+                                  "date": ri_rows[0]["effective_date"], "note": note})
+    reinfections.sort(key=lambda x: -x["farms"])
+
+    farms_resolved = None
+    if farms_confirmed is not None and farms_active is not None:
+        farms_resolved = farms_confirmed - farms_active
+
     return {
         "weekly":                  weekly,
         "latest_date":             dairy_dates[-1] if dairy_dates else None,
@@ -371,6 +414,9 @@ def build_mpo(rows):
         "farms_confirmed_date":    farms_confirmed_date,
         "farms_active":            farms_active,
         "farms_active_date":       farms_active_date,
+        "farms_resolved":          farms_resolved,
+        "farms_trend":             farms_trend,
+        "reinfections":            reinfections,
         "national_current":        latest_w.get("national", 0),
         "national_previous":       prev_w.get("national", 0),
         "active_by_province":      active_by_province,
