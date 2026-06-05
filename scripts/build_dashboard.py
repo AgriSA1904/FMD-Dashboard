@@ -632,10 +632,14 @@ CHANNEL_LABELS = {
     "emerging": "Emerging", "total": "Total",
 }
 CLASS_LABELS = {
-    "commercial_vaccinated": "Commercial cattle", "communal_vaccinated": "Communal cattle",
-    "dairy_vaccinated": "Dairy cattle", "commercial_beef_vaccinated": "Commercial beef",
-    "pigs_vaccinated": "Pigs", "emerging_vaccinated": "Emerging farmers",
+    "commercial_vaccinated": "Commercial cattle",
+    "communal_vaccinated": "Communal cattle",
+    "dairy_vaccinated": "Dairy cattle",
+    "pigs_vaccinated": "Pigs",
+    "emerging_vaccinated": "Emerging farmers",
 }
+# commercial_beef_vaccinated is a subset of commercial_vaccinated reported by some provinces.
+# It is merged into the "Commercial cattle" bucket below to avoid double-counting.
 EXTRA_LABELS = {
     "vaccine_wastage": "Vaccine wastage", "primary_vaccinations": "Primary vaccinations",
     "booster_vaccinations": "Booster vaccinations", "private_vet_vaccinations": "Private vet vaccinations",
@@ -701,10 +705,14 @@ def build_provincial_detail(rows):
                     channels[key] = {"label": label, **entry}
         chan_list = [{"key": k, **v} for k, v in channels.items()]
 
-        # Animal classification
+        # Animal classification — merge commercial_beef_vaccinated into commercial_vaccinated
+        # to avoid double-counting when both metrics appear for the same province.
         cls_list = []
         for metric, label in CLASS_LABELS.items():
             v, dt = latest_prov(code, metric)
+            # If commercial_vaccinated is missing, fall back to commercial_beef_vaccinated
+            if metric == "commercial_vaccinated" and not v:
+                v, dt = latest_prov(code, "commercial_beef_vaccinated")
             if v:
                 cls_list.append({"category": metric, "label": label,
                                   "value": int(v), "date": dt})
