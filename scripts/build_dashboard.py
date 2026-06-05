@@ -764,34 +764,80 @@ def build_provincial_detail(rows):
                                   "value": int(v), "date": dt})
         cls_list.sort(key=lambda x: -x["value"])
 
-        # District breakdown
-        dist_rows = [r for r in prov_rows if r["metric"] in (
+        # District breakdown — include vaccinated, cases, suspected, pending and reported_outbreaks.
+        # Notes field often contains rich context including embedded case counts
+        # in the pattern "X positive / Y suspect / Z negative" (e.g. EC district rows).
+        import re as _re
+
+        def _parse_district_name(note, metric):
+            """Extract a clean district name from the notes field."""
+            # Pattern: "EC district [NAME] as at ..." or "district=[NAME]" or "District: [NAME] | ..."
+            m = _re.search(r'district=([^;,\n]+)', note)
+            if m: return m.group(1).strip()
+            m = _re.search(r'[A-Z]{2,3} district ([A-Za-z\s]+?) (?:as at|dated|–|-)', note)
+            if m: return m.group(1).strip()
+            m = _re.search(r'(?:District|State Vet Area):\s*([^|;,\n]+?)(?:\s*\||\.|$)', note)
+            if m: return m.group(1).strip()
+            # Fallback: first segment before pipe, period or 50 chars
+            seg = note.split(" | ")[0] if " | " in note else note.split(".")[0]
+            seg = _re.sub(r'\b(District|State Vet Area|SVA|LM|Local Municipality):\s*', '', seg)
+            return seg[:45].strip()
+
+        def _parse_embedded_cases(note):
+            """Extract 'X positive / Y suspect / Z negative' from a notes string."""
+            m = _re.search(r'(\d+)\s+positive\s*/\s*(\d+)\s+suspect\s*/\s*(\d+)\s+negative', note, _re.IGNORECASE)
+            if m:
+                return int(m.group(1)), int(m.group(2)), int(m.group(3))
+            return None, None, None
+
+        dist_metrics = (
             "animals_vaccinated_district", "positive_cases_district",
             "suspected_cases_district", "pending_cases_district",
-        )]
-        # Group by (date, name-fragment)
+            "reported_outbreaks",
+        )
+        dist_rows = [r for r in prov_rows if r["metric"] in dist_metrics]
+
         dist_map = {}
         for r in dist_rows:
-            note = r.get("notes", "")
-            # Extract district name: text before first " | " or first 50 chars
-            name_raw = note.split(" | ")[0] if " | " in note else note[:50]
-            name_raw = name_raw.replace("District: ", "").replace("State Vet Area: ", "").strip()
-            key = (r["effective_date"], name_raw[:40])
+            note  = r.get("notes", "")
+            dname = _parse_district_name(note, r["metric"])
+            if not dname or len(dname) < 2:
+                continue
+            key = (r["effective_date"], dname[:45])
             if key not in dist_map:
-                dist_map[key] = {"name": name_raw[:40], "date": r["effective_date"],
+                dist_map[key] = {"name": dname[:45], "date": r["effective_date"],
                                   "vaccinated": None, "cases": None,
-                                  "suspected": None, "pending": None}
+                                  "suspected": None, "pending": None,
+                                  "outbreaks": None, "negative": None,
+                                  "notes": note}
             metric = r["metric"]
             val = int(num(r["value"]) or 0)
             if metric == "animals_vaccinated_district":
                 dist_map[key]["vaccinated"] = val
+                # Parse embedded case counts from notes (common in EC rows)
+                pos, sus, neg = _parse_embedded_cases(note)
+                if pos is not None and dist_map[key]["cases"] is None:
+                    dist_map[key]["cases"]    = pos
+                    dist_map[key]["suspected"] = sus
+                    dist_map[key]["negative"]  = neg
             elif metric == "positive_cases_district":
                 dist_map[key]["cases"] = val
             elif metric == "suspected_cases_district":
                 dist_map[key]["suspected"] = val
             elif metric == "pending_cases_district":
                 dist_map[key]["pending"] = val
-        dist_list = sorted(dist_map.values(), key=lambda x: (x["date"], -(x["vaccinated"] or x["cases"] or 0)), reverse=True)
+            elif metric == "reported_outbreaks":
+                dist_map[key]["outbreaks"] = val
+
+        # Prefer the most recent date per district name
+        latest_by_name = {}
+        for (dt, nm), entry in sorted(dist_map.items()):
+            latest_by_name[nm] = entry
+
+        dist_list = sorted(
+            latest_by_name.values(),
+            key=lambda x: (-(x["vaccinated"] or 0), -(x["cases"] or x["outbreaks"] or 0))
+        )
 
         # Extra indicators
         extra = {}

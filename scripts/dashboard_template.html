@@ -1022,16 +1022,35 @@ try {
     const distCard = safeEl('provDistrictCard');
     if (distCard) {
       if (d.districts && d.districts.length) {
-        const rows = d.districts.map(dist =>
-          `<tr><td>${dist.name}</td>
-           <td class="num">${dist.cases != null ? fmt2(dist.cases) : '—'}</td>
-           <td class="num">${dist.suspected != null ? fmt2(dist.suspected) : '—'}</td>
-           <td class="num">${dist.vaccinated != null ? fmt2(dist.vaccinated) : '—'}</td>
-           <td style="font-size:11px;color:var(--charcoal)">${dist.date}</td></tr>`
-        ).join('');
+        const hasOutbreaks = d.districts.some(x => x.outbreaks != null);
+        const hasNeg       = d.districts.some(x => x.negative != null);
+        const hasPending   = d.districts.some(x => x.pending != null);
+        const rows = d.districts.map(dist => {
+          const caseTd = dist.cases != null
+            ? `<td class="num" style="color:#c0392b;font-weight:600">${fmt2(dist.cases)}</td>`
+            : (dist.outbreaks != null
+              ? `<td class="num" style="color:#c0392b">${fmt2(dist.outbreaks)}<span style="font-size:10px;color:var(--charcoal)"> rep.</span></td>`
+              : '<td class="num">—</td>');
+          return `<tr>
+            <td style="font-weight:500">${dist.name}</td>
+            ${caseTd}
+            <td class="num">${dist.suspected != null ? fmt2(dist.suspected) : '—'}</td>
+            ${hasNeg   ? `<td class="num">${dist.negative  != null ? fmt2(dist.negative)  : '—'}</td>` : ''}
+            ${hasPending ? `<td class="num">${dist.pending != null ? fmt2(dist.pending)   : '—'}</td>` : ''}
+            <td class="num">${dist.vaccinated != null ? fmt2(dist.vaccinated) : '—'}</td>
+            <td style="font-size:11px;color:var(--charcoal)">${dist.date}</td>
+          </tr>`;
+        }).join('');
         distCard.innerHTML = `<h3>District and municipal breakdown.</h3>
-          <table><thead><tr><th>District / Area</th><th class="num">Cases</th><th class="num">Suspected</th><th class="num">Vaccinated</th><th>Date</th></tr></thead>
-          <tbody>${rows}</tbody></table>`;
+          <table><thead><tr>
+            <th>District / Area</th>
+            <th class="num">Positive</th>
+            <th class="num">Suspected</th>
+            ${hasNeg     ? '<th class="num">Negative</th>' : ''}
+            ${hasPending ? '<th class="num">Pending</th>'  : ''}
+            <th class="num">Vaccinated</th>
+            <th>Date</th>
+          </tr></thead><tbody>${rows}</tbody></table>`;
       } else {
         distCard.innerHTML = '<h3>District and municipal breakdown.</h3><p style="color:var(--charcoal);font-size:13px">No district-level data recorded for this province. Submit district breakdown via the JOC template to populate this section.</p>';
       }
