@@ -318,6 +318,32 @@
     color: var(--white); font-weight: 600; font-size: 16px;
     margin-bottom: var(--sp-4);
   }
+
+  /* Tab navigation */
+  .tab-nav {
+    position: sticky; top: 0; z-index: 100;
+    background: var(--pine);
+    display: flex; overflow-x: auto; scrollbar-width: none;
+    border-bottom: 2px solid rgba(255,255,255,0.12);
+    -webkit-overflow-scrolling: touch;
+    margin: 0 calc(-1 * var(--sp-9));
+    padding: 0 var(--sp-9);
+  }
+  .tab-nav::-webkit-scrollbar { display: none; }
+  .tab-btn {
+    background: none; border: none; cursor: pointer;
+    color: rgba(255,255,255,0.6);
+    font-family: inherit; font-size: 12px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.6px;
+    padding: 16px 24px; white-space: nowrap;
+    border-bottom: 3px solid transparent; margin-bottom: -2px;
+    transition: color 0.15s, border-color 0.15s;
+    flex-shrink: 0;
+  }
+  .tab-btn:hover { color: rgba(255,255,255,0.9); }
+  .tab-btn.tab-active { color: var(--lime); border-bottom-color: var(--lime); }
+  .tab-section { display: none; }
+  .tab-section.tab-active { display: block; }
 </style>
 </head>
 <body>
@@ -362,15 +388,24 @@
 
 <main>
 
-  <div class="alert-banner" id="alertBanner"></div>
+<nav class="tab-nav" id="tabNav" aria-label="Dashboard sections">
+  <button class="tab-btn tab-active" data-target="national">National overview</button>
+  <button class="tab-btn" data-target="provincial">Provincial data</button>
+  <button class="tab-btn" data-target="progression">Disease and vaccine progression</button>
+  <button class="tab-btn" data-target="mpo">MPO</button>
+  <button class="tab-btn" data-target="rmis">RMIS</button>
+  <button class="tab-btn" data-target="ministerial">Ministerial updates</button>
+</nav>
 
-  <section>
+  <div class="alert-banner tab-section tab-active" data-tab="national" id="alertBanner"></div>
+
+  <section class="tab-section tab-active" data-tab="national">
     <div class="kicker">National headline indicators</div>
     <h2>What we know this week.</h2>
     <div class="kpi-grid" id="kpiGrid"></div>
   </section>
 
-  <section>
+  <section class="tab-section tab-active" data-tab="national">
     <div class="kicker">Provincial snapshot</div>
     <h2>Active cases and vaccine coverage by province.</h2>
     <div class="grid-3">
@@ -394,7 +429,7 @@
     </div>
   </section>
 
-  <section>
+  <section class="tab-section" data-tab="progression">
     <div class="kicker">Trends over time</div>
     <h2>Disease and vaccine progression.</h2>
     <div class="grid-2">
@@ -409,7 +444,7 @@
     </div>
   </section>
 
-  <section>
+  <section class="tab-section tab-active" data-tab="national">
     <div class="kicker">Vaccine flow</div>
     <h2>Doses by province and by manufacturer.</h2>
     <div class="grid-3">
@@ -425,7 +460,7 @@
     </div>
   </section>
 
-  <section>
+  <section class="tab-section" data-tab="provincial">
     <div class="kicker">Provincial detail</div>
     <h2>Per province as at the latest available submission.</h2>
     <div class="card">
@@ -449,7 +484,7 @@
     </div>
   </section>
 
-  <section>
+  <section class="tab-section" data-tab="provincial">
     <div class="kicker">Coverage gap</div>
     <h2>Herd coverage against the two dose protocol.</h2>
     <div class="card">
@@ -459,7 +494,7 @@
     </div>
   </section>
 
-  <section>
+  <section class="tab-section" data-tab="mpo">
     <div class="kicker">Dairy industry view</div>
     <h2>MPO: Dairy herd vaccination and FMD case burden.</h2>
     <p style="color:var(--charcoal);font-size:14px;margin-top:calc(-1 * var(--sp-6));margin-bottom:var(--sp-6)" id="mpoSubtitle">Submitted by the Milk Producers&#x2019; Organisation (MPO). Covers dairy cattle only.</p>
@@ -482,7 +517,7 @@
     </div>
   </section>
 
-  <section id="rmisSection">
+  <section class="tab-section" data-tab="rmis" id="rmisSection">
     <div class="kicker">Feedlot sector view</div>
     <h2>RMIS: Feedlot vaccine orders.</h2>
     <p style="color:var(--charcoal);font-size:14px;margin-top:calc(-1 * var(--sp-6));margin-bottom:var(--sp-6)" id="rmisSubtitle">Submitted by the Red Meat Industry Service (RMIS). Covers feedlot and private-vet-channelled DolVet Biotech Trivalent orders. Cumulative from rollout start.</p>
@@ -534,7 +569,7 @@
     </div>
   </section>
 
-  <section id="ministerialSection">
+  <section class="tab-section" data-tab="ministerial" id="ministerialSection">
     <div class="kicker">Ministerial update — 5 May 2026</div>
     <h2>Updated figures from the Minister of Agriculture.</h2>
     <div id="ministerialBanner" style="margin-bottom:var(--sp-6)"></div>
@@ -552,7 +587,7 @@
   </section>
 
 
-  <section>
+  <section class="tab-section" data-tab="ministerial">
     <div class="kicker">Data validation</div>
     <h2>Ministerial briefing vs JOC provincial returns.</h2>
     <p style="color:var(--charcoal);font-size:14px;margin-top:calc(-1 * var(--sp-6));margin-bottom:var(--sp-6)">Comparing DAFF ministerial figures (23 April 2026) against AgriSA JOC provincial returns (latest available). A positive difference means JOC reports more vaccinations than the ministerial figure — expected given the later date. A negative difference flags a data quality issue for investigation.</p>
@@ -580,7 +615,7 @@
     </div>
   </section>
 
-  <section>
+  <section class="tab-section" data-tab="ministerial">
     <div class="kicker">Data quality</div>
     <h2>Where the data still needs work.</h2>
     <div class="grid-2">
@@ -1234,6 +1269,24 @@ if (chartJsReady && data.ministerial_comparison) try {
 
 
 
+</script>
+<script>
+(function () {
+  var btns = document.querySelectorAll('.tab-btn');
+  function switchTab(target) {
+    btns.forEach(function (b) {
+      b.classList.toggle('tab-active', b.dataset.target === target);
+    });
+    document.querySelectorAll('.tab-section').forEach(function (s) {
+      s.classList.toggle('tab-active', s.dataset.tab === target);
+    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  btns.forEach(function (b) {
+    b.addEventListener('click', function () { switchTab(b.dataset.target); });
+  });
+  switchTab('national');
+}());
 </script>
 </body>
 </html>
