@@ -2076,12 +2076,13 @@ if (data.ministerial) try {
       return `<span style="display:inline-block;padding:2px 10px;border-radius:99px;font-size:11px;font-weight:600;letter-spacing:0.3px;${cfg[s]||''}">${s}</span>`;
     };
     const totalProcured = m.incoming_supply.filter(i=>i.status==='Arrived').reduce((a,i)=>a+i.doses,0);
+    const totalAll = m.incoming_supply.reduce((a,i)=>a+i.doses,0);
     const rows = m.incoming_supply.map(i =>
       `<tr><td>${i.vaccine}</td><td class="num">${i.doses>=1000?fmt(i.doses):'—'}</td><td>${i.date||''}</td><td>${statusBadge(i.status)}</td><td style="font-size:12px;color:var(--charcoal)">${i.notes||''}</td></tr>`
     ).join('');
     supplyEl.innerHTML = `
       <p style="font-size:13px;color:var(--charcoal);margin:0 0 var(--sp-4)">Total doses procured as at 1 June 2026: <strong style="color:var(--pine)">${fmt(13500000)}</strong> &nbsp;|&nbsp; Confirmed arrived: <strong style="color:var(--pine)">${fmt(totalProcured)}</strong> &nbsp;|&nbsp; Pipeline: <strong style="color:var(--pine)">${fmt(14000000)}</strong> additional (SAHPRA Section 21 approved)</p>
-      <table><thead><tr><th>Vaccine</th><th class="num">Doses</th><th>Date</th><th>Status</th><th>Notes</th></tr></thead><tbody>${rows}</tbody></table>`;
+      <table><thead><tr><th>Vaccine</th><th class="num">Doses</th><th>Date</th><th>Status</th><th>Notes</th></tr></thead><tbody>${rows}</tbody><tfoot><tr><td>Total</td><td class="num">${fmt(totalAll)}</td><td></td><td></td><td></td></tr></tfoot></table>`;
   }
 } catch(e) { showError('ministerialBanner', 'Ministerial section', e); }
 
