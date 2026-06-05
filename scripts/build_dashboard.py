@@ -162,14 +162,39 @@ def latest_metric(rows, *, province, metric, vaccine_type="", vet_channel="",
     back to other organisations when the preferred source has no value at all.
     skip_zero=True (default): treat 0 as 'not reported' and carry forward the most
     recent non-zero value. This prevents blank/unfilled cells in source spreadsheets
-    (ingested as 0) from wiping out the last known figure on the dashboard."""
-    matches = [r for r in rows if (
-        r["province"] == province and
-        r["metric"] == metric and
-        r["vaccine_type"] == vaccine_type and
-        r["vet_channel"] == vet_channel and
-        r["superseded_by"] == ""
-    )]
+    (ingested as 0) from wiping out the last known figure on the dashboard.
+
+    Fallback: if vaccine_type="" is requested and no matches are found, the lookup
+    is retried with vaccine_type="all" (and vet_channel="all" if vet_channel="" was
+    requested). This handles rows ingested with explicit "all" markers for metrics
+    such as positive_cases where vaccine_type is semantically irrelevant."""
+    # When no specific vaccine_type is requested, merge rows with vaccine_type in
+    # ("", "all") so that newer rows ingested with explicit "all" markers are not
+    # hidden behind older rows ingested with empty strings.
+    if vaccine_type == "" and vet_channel == "":
+        matches = [r for r in rows if (
+            r["province"] == province and
+            r["metric"] == metric and
+            r["vaccine_type"] in ("", "all") and
+            r["vet_channel"] in ("", "all", "total") and
+            r["superseded_by"] == ""
+        )]
+    elif vaccine_type == "":
+        matches = [r for r in rows if (
+            r["province"] == province and
+            r["metric"] == metric and
+            r["vaccine_type"] in ("", "all") and
+            r["vet_channel"] == vet_channel and
+            r["superseded_by"] == ""
+        )]
+    else:
+        matches = [r for r in rows if (
+            r["province"] == province and
+            r["metric"] == metric and
+            r["vaccine_type"] == vaccine_type and
+            r["vet_channel"] == vet_channel and
+            r["superseded_by"] == ""
+        )]
     if not matches:
         return None
 
