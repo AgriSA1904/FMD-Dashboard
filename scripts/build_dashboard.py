@@ -935,28 +935,36 @@ def build_dashboard():
 
     payload["provincial_detail"] = build_provincial_detail(rows)
 
-    # SAPPO pork-sector dispatch data — static from email 3 June 2026 (Thandi Chiappero)
+    # SAPPO pork-sector dispatch data — updated from email 5 June 2026 (Thandi Chiappero)
+    # 5 new rows vs 3 June email: LP +345 (13 May), KZN +20 (18 May) +6 (3 Jun),
+    # FS +56 (4 Jun), and 62 bottles on 25 May with no province listed.
     payload["sappo"] = {
-        "source": "Email — Dr Thandi Chiappero, SAPPO Head: Consumer Assurance, 3 June 2026",
+        "source": "Email — Dr Thandi Chiappero, SAPPO Head: Consumer Assurance, 5 June 2026",
         "vaccine": "Aftodoll (Dollvet)",
         "note": ("Some bottles were used for cattle on the same farms to reduce FMD risk to pigs. "
                  "The cattle/pig split is not available at dispatch level. "
-                 "KZN volume is elevated because KZN state veterinary services were not allocating vaccine to pig producers."),
-        "total_bottles": 1586,
+                 "KZN volume is elevated because KZN state veterinary services were not allocating vaccine to pig producers. "
+                 "62 bottles dispatched on 25 May 2026 have no province recorded — excluded from provincial totals."),
+        "total_bottles": 2075,
         "dispatches": [
-            {"date": "2026-04-30", "rep": "ML", "bottles": 600, "province": "LP", "province_name": "Limpopo"},
-            {"date": "2026-05-05", "rep": "TC", "bottles": 80,  "province": "NW", "province_name": "North West"},
-            {"date": "2026-05-05", "rep": "TC", "bottles": 37,  "province": "NW", "province_name": "North West"},
-            {"date": "2026-05-07", "rep": "TC", "bottles": 130, "province": "LP", "province_name": "Limpopo"},
-            {"date": "2026-05-12", "rep": "ML", "bottles": 8,   "province": "FS", "province_name": "Free State"},
-            {"date": "2026-05-13", "rep": "TC", "bottles": 508, "province": "KZN","province_name": "KwaZulu-Natal"},
-            {"date": "2026-05-14", "rep": "ML", "bottles": 74,  "province": "EC", "province_name": "Eastern Cape"},
-            {"date": "2026-05-22", "rep": "TC", "bottles": 15,  "province": "WC", "province_name": "Western Cape"},
-            {"date": "2026-05-27", "rep": "ML", "bottles": 34,  "province": "MP", "province_name": "Mpumalanga"},
-            {"date": "2026-06-03", "rep": "TC", "bottles": 100, "province": "KZN","province_name": "KwaZulu-Natal"},
+            {"date": "2026-04-30", "rep": "ML", "bottles": 600, "province": "LP",  "province_name": "Limpopo"},
+            {"date": "2026-05-05", "rep": "TC", "bottles": 80,  "province": "NW",  "province_name": "North West"},
+            {"date": "2026-05-05", "rep": "TC", "bottles": 37,  "province": "NW",  "province_name": "North West"},
+            {"date": "2026-05-07", "rep": "TC", "bottles": 130, "province": "LP",  "province_name": "Limpopo"},
+            {"date": "2026-05-12", "rep": "ML", "bottles": 8,   "province": "FS",  "province_name": "Free State"},
+            {"date": "2026-05-13", "rep": "TC", "bottles": 508, "province": "KZN", "province_name": "KwaZulu-Natal"},
+            {"date": "2026-05-13", "rep": "ML", "bottles": 345, "province": "LP",  "province_name": "Limpopo"},
+            {"date": "2026-05-14", "rep": "ML", "bottles": 74,  "province": "EC",  "province_name": "Eastern Cape"},
+            {"date": "2026-05-18", "rep": "TC", "bottles": 20,  "province": "KZN", "province_name": "KwaZulu-Natal"},
+            {"date": "2026-05-22", "rep": "TC", "bottles": 15,  "province": "WC",  "province_name": "Western Cape"},
+            {"date": "2026-05-25", "rep": "ML", "bottles": 62,  "province": "?",   "province_name": "Unspecified"},
+            {"date": "2026-05-27", "rep": "ML", "bottles": 34,  "province": "MP",  "province_name": "Mpumalanga"},
+            {"date": "2026-06-03", "rep": "TC", "bottles": 100, "province": "KZN", "province_name": "KwaZulu-Natal"},
+            {"date": "2026-06-03", "rep": "ML", "bottles": 6,   "province": "KZN", "province_name": "KwaZulu-Natal"},
+            {"date": "2026-06-04", "rep": "TC", "bottles": 56,  "province": "FS",  "province_name": "Free State"},
         ],
-        "by_province": {"LP": 730, "KZN": 608, "NW": 117, "EC": 74, "MP": 34, "WC": 15, "FS": 8},
-        "by_rep": {"TC": 870, "ML": 716},
+        "by_province": {"LP": 1075, "KZN": 634, "NW": 117, "EC": 74, "FS": 64, "MP": 34, "WC": 15},
+        "by_rep": {"TC": 1404, "ML": 609},
     }
 
     payload["sources_used"] = sorted(set(r["source_file"] for r in rows
