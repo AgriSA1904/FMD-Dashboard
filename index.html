@@ -590,7 +590,7 @@
   <section class="tab-section" data-tab="ministerial">
     <div class="kicker">Data validation</div>
     <h2>Ministerial briefing vs JOC provincial returns.</h2>
-    <p style="color:var(--charcoal);font-size:14px;margin-top:calc(-1 * var(--sp-6));margin-bottom:var(--sp-6)">Comparing ministerial floor estimates from the 1 June 2026 media briefing against AgriSA JOC provincial returns (latest available). Ministerial figures are stated as "more than X" and cover all cloven-hoofed animals. JOC returns may be cattle-only in some provinces. A large negative difference may reflect species coverage differences rather than a data quality issue.</p>
+    <p style="color:var(--charcoal);font-size:14px;margin-top:calc(-1 * var(--sp-6));margin-bottom:var(--sp-6)">Comparing DAFF ministerial figures (23 April 2026) against AgriSA JOC provincial returns (latest available). A positive difference means JOC reports more vaccinations than the ministerial figure — expected given the later date. A negative difference flags a data quality issue for investigation.</p>
     <div class="grid-2">
       <div class="card">
         <h3>Animals vaccinated: ministerial vs JOC per province.</h3>
@@ -1353,92 +1353,92 @@ const DASHBOARD_DATA = {
     {
       "code": "EC",
       "name": "Eastern Cape",
-      "joc": 489979,
-      "joc_date": "2026-05-21",
-      "ministerial": 720000,
-      "ministerial_date": "2026-06-01",
-      "diff": -230021,
+      "joc": 332182,
+      "joc_date": "2026-05-22",
+      "ministerial": 376122,
+      "ministerial_date": "2026-04-23",
+      "diff": -43940,
       "flag": "critical"
     },
     {
       "code": "FS",
       "name": "Free State",
-      "joc": 609915,
+      "joc": 353447,
       "joc_date": "2026-06-02",
-      "ministerial": 600000,
-      "ministerial_date": "2026-06-01",
-      "diff": 9915,
-      "flag": null
+      "ministerial": 446527,
+      "ministerial_date": "2026-04-23",
+      "diff": -93080,
+      "flag": "critical"
     },
     {
       "code": "GP",
       "name": "Gauteng",
-      "joc": 266121,
+      "joc": 184036,
       "joc_date": "2026-05-22",
-      "ministerial": 270000,
-      "ministerial_date": "2026-06-01",
-      "diff": -3879,
-      "flag": null
+      "ministerial": 184036,
+      "ministerial_date": "2026-04-23",
+      "diff": 0,
+      "flag": "warning"
     },
     {
       "code": "KZN",
       "name": "KwaZulu-Natal",
       "joc": 648609,
-      "joc_date": "2026-05-21",
-      "ministerial": 1100000,
-      "ministerial_date": "2026-06-01",
-      "diff": -451391,
+      "joc_date": "2026-06-03",
+      "ministerial": 766508,
+      "ministerial_date": "2026-04-23",
+      "diff": -117899,
       "flag": "critical"
     },
     {
       "code": "LP",
       "name": "Limpopo",
-      "joc": 357045,
-      "joc_date": "2026-05-27",
-      "ministerial": 350000,
-      "ministerial_date": "2026-06-01",
-      "diff": 7045,
-      "flag": null
+      "joc": 128937,
+      "joc_date": "2026-06-01",
+      "ministerial": 183770,
+      "ministerial_date": "2026-04-23",
+      "diff": -54833,
+      "flag": "critical"
     },
     {
       "code": "MP",
       "name": "Mpumalanga",
-      "joc": 312886,
-      "joc_date": "2026-05-21",
-      "ministerial": 430000,
-      "ministerial_date": "2026-06-01",
-      "diff": -117114,
+      "joc": 176811,
+      "joc_date": "2026-05-27",
+      "ministerial": 233510,
+      "ministerial_date": "2026-04-23",
+      "diff": -56699,
       "flag": "critical"
     },
     {
       "code": "NW",
       "name": "North West",
-      "joc": 171561,
-      "joc_date": "2026-05-21",
-      "ministerial": 430000,
-      "ministerial_date": "2026-06-01",
-      "diff": -258439,
+      "joc": 168748,
+      "joc_date": "2026-05-22",
+      "ministerial": 188073,
+      "ministerial_date": "2026-04-23",
+      "diff": -19325,
       "flag": "critical"
     },
     {
       "code": "NC",
       "name": "Northern Cape",
       "joc": 28054,
-      "joc_date": "2026-05-21",
-      "ministerial": 87000,
-      "ministerial_date": "2026-06-01",
-      "diff": -58946,
+      "joc_date": "2026-05-22",
+      "ministerial": 46996,
+      "ministerial_date": "2026-04-23",
+      "diff": -18942,
       "flag": "critical"
     },
     {
       "code": "WC",
       "name": "Western Cape",
       "joc": 231913,
-      "joc_date": "2026-05-21",
-      "ministerial": 260000,
-      "ministerial_date": "2026-06-01",
-      "diff": -28087,
-      "flag": "critical"
+      "joc_date": "2026-05-22",
+      "ministerial": 164474,
+      "ministerial_date": "2026-04-23",
+      "diff": 67439,
+      "flag": null
     }
   ],
   "quality_flags": [
@@ -2110,7 +2110,7 @@ if (chartJsReady && data.ministerial_comparison) try {
     data: {
       labels: mc.map(p => p.code),
       datasets: [
-        { label: 'Ministerial (1 Jun)',
+        { label: 'Ministerial (23 Apr)',
           data: mc.map(p => p.ministerial || 0),
           backgroundColor: BRAND.sage, borderRadius: 3 },
         { label: 'JOC / AgriSA (latest)',
