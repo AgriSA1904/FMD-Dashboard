@@ -705,6 +705,30 @@ def build_dashboard():
     payload["ministerial_comparison"] = min_comparison
     payload["quality_flags"] = build_quality_flags(rows, snapshot, min_comparison)
 
+    # SAPPO pork-sector dispatch data — static from email 3 June 2026 (Thandi Chiappero)
+    payload["sappo"] = {
+        "source": "Email — Dr Thandi Chiappero, SAPPO Head: Consumer Assurance, 3 June 2026",
+        "vaccine": "Aftodoll (Dollvet)",
+        "note": ("Some bottles were used for cattle on the same farms to reduce FMD risk to pigs. "
+                 "The cattle/pig split is not available at dispatch level. "
+                 "KZN volume is elevated because KZN state veterinary services were not allocating vaccine to pig producers."),
+        "total_bottles": 1586,
+        "dispatches": [
+            {"date": "2026-04-30", "rep": "ML", "bottles": 600, "province": "LP", "province_name": "Limpopo"},
+            {"date": "2026-05-05", "rep": "TC", "bottles": 80,  "province": "NW", "province_name": "North West"},
+            {"date": "2026-05-05", "rep": "TC", "bottles": 37,  "province": "NW", "province_name": "North West"},
+            {"date": "2026-05-07", "rep": "TC", "bottles": 130, "province": "LP", "province_name": "Limpopo"},
+            {"date": "2026-05-12", "rep": "ML", "bottles": 8,   "province": "FS", "province_name": "Free State"},
+            {"date": "2026-05-13", "rep": "TC", "bottles": 508, "province": "KZN","province_name": "KwaZulu-Natal"},
+            {"date": "2026-05-14", "rep": "ML", "bottles": 74,  "province": "EC", "province_name": "Eastern Cape"},
+            {"date": "2026-05-22", "rep": "TC", "bottles": 15,  "province": "WC", "province_name": "Western Cape"},
+            {"date": "2026-05-27", "rep": "ML", "bottles": 34,  "province": "MP", "province_name": "Mpumalanga"},
+            {"date": "2026-06-03", "rep": "TC", "bottles": 100, "province": "KZN","province_name": "KwaZulu-Natal"},
+        ],
+        "by_province": {"LP": 730, "KZN": 608, "NW": 117, "EC": 74, "MP": 34, "WC": 15, "FS": 8},
+        "by_rep": {"TC": 870, "ML": 716},
+    }
+
     payload["sources_used"] = sorted(set(r["source_file"] for r in rows
                                          if r["superseded_by"] == ""))
 
