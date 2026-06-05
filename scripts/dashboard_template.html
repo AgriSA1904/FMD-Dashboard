@@ -395,6 +395,7 @@
   <button class="tab-btn" data-target="progression">Disease and vaccine progression</button>
   <button class="tab-btn" data-target="mpo">MPO</button>
   <button class="tab-btn" data-target="rmis">RMIS</button>
+  <button class="tab-btn" data-target="sappo">SAPPO</button>
   <button class="tab-btn" data-target="ministerial">Ministerial updates</button>
 </nav>
 
@@ -567,6 +568,31 @@
         <h3>Supplier split.</h3>
         <div style="display:flex;flex-direction:column;justify-content:center;height:100%" id="rmisSupplierPanel"></div>
       </div>
+    </div>
+  </section>
+
+  <section class="tab-section" data-tab="sappo" id="sappoSection">
+    <div class="kicker">Pork industry view</div>
+    <h2>SAPPO: Pig sector vaccine dispatches.</h2>
+    <p style="color:var(--charcoal);font-size:14px;margin-top:calc(-1 * var(--sp-6));margin-bottom:var(--sp-6)">Submitted by the South African Pork Producers' Organisation (SAPPO). Covers Aftodoll (Dollvet) vaccine dispatched by SAPPO representatives to pig producers across South Africa. Some bottles were also used for cattle on the same farms to reduce cross-species FMD risk — the cattle/pig split is not available at dispatch level. Source: email from Dr Thandi Chiappero, SAPPO Head: Consumer Assurance, 3 June 2026.</p>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:var(--sp-4);margin-bottom:var(--sp-6)" id="sappoKpiRow"></div>
+
+    <div class="grid-2" style="margin-bottom:var(--sp-6)">
+      <div class="card">
+        <h3>Bottles dispatched by province.</h3>
+        <div class="chart-wrap tall"><canvas id="sappoProvinceChart"></canvas></div>
+      </div>
+      <div class="card">
+        <h3>Cumulative bottles dispatched over time.</h3>
+        <div class="chart-wrap tall"><canvas id="sappoTimelineChart"></canvas></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Dispatch log.</h3>
+      <p style="font-size:13px;color:var(--charcoal);margin:0 0 var(--sp-4)">All dispatches are Aftodoll (Dollvet). TC = Dr Thandi Chiappero. ML = Marlene. KZN volume is high because KZN state veterinary services were not allocating vaccine to pig producers — SAPPO filled the gap directly.</p>
+      <div id="sappoDispatchTable"></div>
     </div>
   </section>
 
@@ -1110,6 +1136,88 @@ if (data.rmis) try {
 
 
 
+
+// ── SAPPO section ─────────────────────────────────────────────────────────────
+if (data.sappo) try {
+  const S = data.sappo;
+  const provOrder = Object.entries(S.by_province).sort((a,b)=>b[1]-a[1]);
+
+  const kpiRow = safeEl('sappoKpiRow');
+  if (kpiRow) {
+    const kpis = [
+      { label: 'Total bottles dispatched', value: fmt(S.total_bottles), sub: 'Aftodoll (Dollvet)' },
+      { label: 'Provinces reached', value: Object.keys(S.by_province).length, sub: 'of 9 provinces' },
+      { label: 'Dispatches recorded', value: S.dispatches.length, sub: 'Apr to Jun 2026' },
+      { label: 'Largest single dispatch', value: fmt(Math.max(...S.dispatches.map(d=>d.bottles))), sub: 'bottles (KZN, 13 May)' },
+    ];
+    kpiRow.innerHTML = kpis.map(k => `
+      <div class="card">
+        <div class="kpi-label">${k.label}</div>
+        <div class="kpi-value">${k.value}</div>
+        <div class="kpi-sub">${k.sub}</div>
+      </div>`).join('');
+  }
+
+  if (chartJsReady) {
+    new Chart(safeEl('sappoProvinceChart'), {
+      type: 'bar',
+      data: {
+        labels: provOrder.map(([p])=>p),
+        datasets: [{ label: 'Bottles dispatched', data: provOrder.map(([,v])=>v),
+          backgroundColor: BRAND.olive, borderRadius: 4 }]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false, indexAxis: 'y',
+        plugins: {
+          legend: { display: false },
+          datalabels: { anchor:'end', align:'end', font:{size:11,weight:'600'},
+            color: BRAND.pine, formatter: v => fmt(v) }
+        },
+        scales: { x: { beginAtZero: true, grid:{color:BRAND.mist} }, y: { grid:{display:false} } }
+      }
+    });
+
+    const sorted = [...S.dispatches].sort((a,b)=>a.date.localeCompare(b.date));
+    let cum = 0;
+    const timePoints = sorted.map(d => { cum += d.bottles; return { date: d.date, cum }; });
+    new Chart(safeEl('sappoTimelineChart'), {
+      type: 'line',
+      data: {
+        labels: timePoints.map(p=>p.date),
+        datasets: [{ label: 'Cumulative bottles', data: timePoints.map(p=>p.cum),
+          borderColor: BRAND.olive, backgroundColor: 'rgba(91,126,61,0.1)',
+          tension: 0.3, fill: true, pointRadius: 5, pointBackgroundColor: BRAND.olive }]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend:{display:false}, datalabels:{display:false} },
+        scales: {
+          x: { grid:{display:false}, ticks:{font:{size:10}} },
+          y: { beginAtZero:true, grid:{color:BRAND.mist} }
+        }
+      }
+    });
+  }
+
+  const tbl = safeEl('sappoDispatchTable');
+  if (tbl) {
+    const rows = S.dispatches.map(d => `
+      <tr>
+        <td>${d.date}</td>
+        <td>${d.province_name}</td>
+        <td>${d.province}</td>
+        <td>${d.rep}</td>
+        <td class="num">${fmt(d.bottles)}</td>
+      </tr>`).join('');
+    const total = S.dispatches.reduce((a,d)=>a+d.bottles,0);
+    tbl.innerHTML = `
+      <table>
+        <thead><tr><th>Date</th><th>Province</th><th>Code</th><th>Rep</th><th class="num">Bottles</th></tr></thead>
+        <tbody>${rows}</tbody>
+        <tfoot><tr><td colspan="4">Total</td><td class="num">${fmt(total)}</td></tr></tfoot>
+      </table>`;
+  }
+} catch(e) { showError('sappoSection', 'SAPPO section', e); }
 
 // ── Ministerial section ───────────────────────────────────────────────────────
 if (data.ministerial) try {
