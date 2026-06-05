@@ -3476,8 +3476,9 @@ try {
 
     // Update selector chips
     document.querySelectorAll('.prov-chip').forEach(b => {
-      b.style.background = b.dataset.code === code ? 'var(--lime)' : 'rgba(255,255,255,0.12)';
-      b.style.color = b.dataset.code === code ? 'var(--pine)' : 'rgba(255,255,255,0.75)';
+      b.style.background = b.dataset.code === code ? 'var(--lime)' : 'transparent';
+      b.style.color = b.dataset.code === code ? 'var(--pine)' : 'var(--pine)';
+      b.style.borderColor = b.dataset.code === code ? 'var(--lime)' : 'rgba(16,45,45,0.25)';
     });
 
     // Header
