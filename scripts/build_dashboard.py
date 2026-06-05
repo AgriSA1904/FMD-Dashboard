@@ -667,7 +667,7 @@ def build_dashboard():
         matches.sort(key=lambda r: r["effective_date"], reverse=True)
         return num(matches[0]["value"]), matches[0]["effective_date"]
 
-    min_recv = min_nat("doses_received", "all", "all")
+    min_recv = min_nat("doses_procured", "all", "all")
     min_dist = min_nat("doses_distributed", "all", "all")
     min_adm  = min_nat("animals_vaccinated_ministerial", "all", "all")
 
@@ -703,15 +703,20 @@ def build_dashboard():
         })
 
     incoming = []
-    for r in rows:
-        if r["metric"] == "doses_incoming" and r["superseded_by"] == "":
-            incoming.append({
-                "vaccine":  r["vaccine_type"],
-                "doses":    int(num(r["value"]) or 0),
-                "expected": r["effective_date"],
-                "notes":    r["notes"],
-            })
-    incoming.sort(key=lambda x: x["expected"])
+    # Vaccine supply pipeline — hardcoded from ministerial briefings and RMIS import tracker.
+    # Updated as at 1 June 2026 (Minister Steenhuisen, Parliament).
+    # Do not regenerate from doses_incoming rows (stale format). Update here manually.
+    incoming = [
+        {"vaccine": "ARC Trivalent",        "doses": 12900,    "date": "2026-02-01", "status": "Arrived",  "notes": "Initial emergency stock."},
+        {"vaccine": "Biogenesis Bivalent",  "doses": 1000000,  "date": "2026-02-01", "status": "Arrived",  "notes": ""},
+        {"vaccine": "DolVet Trivalent",     "doses": 1500000,  "date": "2026-02-01", "status": "Arrived",  "notes": ""},
+        {"vaccine": "Biogenesis Trivalent", "doses": 1500000,  "date": "2026-04-01", "status": "Arrived",  "notes": ""},
+        {"vaccine": "DolVet Trivalent",     "doses": 2000000,  "date": "2026-04-01", "status": "Arrived",  "notes": ""},
+        {"vaccine": "DolVet Trivalent",     "doses": 2000000,  "date": "2026-05-01", "status": "Arrived",  "notes": ""},
+        {"vaccine": "Biogenesis Bago",      "doses": 3500000,  "date": "2026-05-28", "status": "Arrived",  "notes": "Distributed: 1.5M feedlots; 500 000 RMPO; 200 000 MPO; 100 000 stud breeders; 1.05M provinces; balance for border vaccination."},
+        {"vaccine": "DolVet (Dunevax)",     "doses": 4000000,  "date": "2026-06-30", "status": "Expected", "notes": "First consignment of 14M SAHPRA Section 21-approved Dollvet doses. Enables booster programme."},
+        {"vaccine": "DolVet (Dunevax)",     "doses": 10000000, "date": "2026",       "status": "Pipeline", "notes": "Remaining balance of 14M SAHPRA Section 21 approval. Delivery schedule to be confirmed."},
+    ]
 
     payload["ministerial"] = {
         "doses_procured":          int(min_recv[0]) if min_recv else None,
