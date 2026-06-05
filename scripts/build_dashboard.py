@@ -790,18 +790,28 @@ def build_provincial_detail(rows):
                 return int(m.group(1)), int(m.group(2)), int(m.group(3))
             return None, None, None
 
+        # Only include metrics that are definitively district/municipal breakdowns.
+        # reported_outbreaks is excluded — it contains provincial totals from MinMEC,
+        # GDARD infographics etc. that are not district-level and pollute this section.
         dist_metrics = (
             "animals_vaccinated_district", "positive_cases_district",
             "suspected_cases_district", "pending_cases_district",
-            "reported_outbreaks",
         )
         dist_rows = [r for r in prov_rows if r["metric"] in dist_metrics]
 
         dist_map = {}
+        # Keywords that indicate a row is a source reference, not a geographic district
+        _source_noise = ("infographic", "slide", "minmec", "pcm", "joc", "via whatsapp",
+                         "cumulative", "briefing", "presentation", "report", "template",
+                         "email", "media statement", "ministerial", "gdard", "drdar")
+
         for r in dist_rows:
             note  = r.get("notes", "")
             dname = _parse_district_name(note, r["metric"])
             if not dname or len(dname) < 2:
+                continue
+            # Reject rows where the parsed name looks like a source reference
+            if any(kw in dname.lower() for kw in _source_noise):
                 continue
             key = (r["effective_date"], dname[:45])
             if key not in dist_map:
