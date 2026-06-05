@@ -2088,7 +2088,6 @@ if (data.sappo) try {
   const S = data.sappo;
   const provOrder = Object.entries(S.by_province).sort((a,b)=>b[1]-a[1]);
 
-  // KPI cards
   const kpiRow = safeEl('sappoKpiRow');
   if (kpiRow) {
     const kpis = [
@@ -2105,7 +2104,6 @@ if (data.sappo) try {
       </div>`).join('');
   }
 
-  // Province bar chart
   if (chartJsReady) {
     new Chart(safeEl('sappoProvinceChart'), {
       type: 'bar',
@@ -2125,7 +2123,6 @@ if (data.sappo) try {
       }
     });
 
-    // Timeline — cumulative
     const sorted = [...S.dispatches].sort((a,b)=>a.date.localeCompare(b.date));
     let cum = 0;
     const timePoints = sorted.map(d => { cum += d.bottles; return { date: d.date, cum }; });
@@ -2148,7 +2145,6 @@ if (data.sappo) try {
     });
   }
 
-  // Dispatch table
   const tbl = safeEl('sappoDispatchTable');
   if (tbl) {
     const rows = S.dispatches.map(d => `
