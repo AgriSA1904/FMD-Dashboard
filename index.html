@@ -318,33 +318,6 @@
     color: var(--white); font-weight: 600; font-size: 16px;
     margin-bottom: var(--sp-4);
   }
-
-  /* Tab navigation */
-  .tab-nav {
-    position: sticky; top: 0; z-index: 100;
-    background: var(--pine);
-    display: flex; overflow-x: auto; scrollbar-width: none;
-    border-bottom: 2px solid rgba(255,255,255,0.12);
-    -webkit-overflow-scrolling: touch;
-    margin: 0 calc(-1 * var(--sp-9));
-    padding: 0 var(--sp-9);
-  }
-  .tab-nav::-webkit-scrollbar { display: none; }
-  .tab-btn {
-    background: none; border: none; cursor: pointer;
-    color: rgba(255,255,255,0.6);
-    font-family: inherit; font-size: 12px; font-weight: 600;
-    text-transform: uppercase; letter-spacing: 0.6px;
-    padding: 16px 24px; white-space: nowrap;
-    border-bottom: 3px solid transparent; margin-bottom: -2px;
-    transition: color 0.15s, border-color 0.15s;
-    flex-shrink: 0;
-  }
-  .tab-btn:hover { color: rgba(255,255,255,0.9); }
-  .tab-btn.tab-active { color: var(--lime); border-bottom-color: var(--lime); }
-  .tab-section { display: none; }
-  .tab-section.tab-active { display: block; padding-top: var(--sp-9); }
-  .alert-banner.tab-section.tab-active { padding-top: 0; margin-top: var(--sp-9); }
 </style>
 </head>
 <body>
@@ -389,25 +362,15 @@
 
 <main>
 
-<nav class="tab-nav" id="tabNav" aria-label="Dashboard sections">
-  <button class="tab-btn tab-active" data-target="national">National overview</button>
-  <button class="tab-btn" data-target="provincial">Provincial data</button>
-  <button class="tab-btn" data-target="progression">Disease and vaccine progression</button>
-  <button class="tab-btn" data-target="mpo">MPO</button>
-  <button class="tab-btn" data-target="rmis">RMIS</button>
-  <button class="tab-btn" data-target="sappo">SAPPO</button>
-  <button class="tab-btn" data-target="ministerial">Ministerial updates</button>
-</nav>
+  <div class="alert-banner" id="alertBanner"></div>
 
-  <div class="alert-banner tab-section tab-active" data-tab="national" id="alertBanner"></div>
-
-  <section class="tab-section tab-active" data-tab="national">
+  <section>
     <div class="kicker">National headline indicators</div>
     <h2>What we know this week.</h2>
     <div class="kpi-grid" id="kpiGrid"></div>
   </section>
 
-  <section class="tab-section tab-active" data-tab="national">
+  <section>
     <div class="kicker">Provincial snapshot</div>
     <h2>Active cases and vaccine coverage by province.</h2>
     <div class="grid-3">
@@ -431,7 +394,7 @@
     </div>
   </section>
 
-  <section class="tab-section" data-tab="progression">
+  <section>
     <div class="kicker">Trends over time</div>
     <h2>Disease and vaccine progression.</h2>
     <div class="grid-2">
@@ -446,7 +409,7 @@
     </div>
   </section>
 
-  <section class="tab-section tab-active" data-tab="national">
+  <section>
     <div class="kicker">Vaccine flow</div>
     <h2>Doses by province and by manufacturer.</h2>
     <div class="grid-3">
@@ -462,7 +425,7 @@
     </div>
   </section>
 
-  <section class="tab-section" data-tab="provincial">
+  <section>
     <div class="kicker">Provincial detail</div>
     <h2>Per province as at the latest available submission.</h2>
     <div class="card">
@@ -486,7 +449,7 @@
     </div>
   </section>
 
-  <section class="tab-section" data-tab="provincial">
+  <section>
     <div class="kicker">Coverage gap</div>
     <h2>Herd coverage against the two dose protocol.</h2>
     <div class="card">
@@ -496,7 +459,7 @@
     </div>
   </section>
 
-  <section class="tab-section" data-tab="mpo">
+  <section>
     <div class="kicker">Dairy industry view</div>
     <h2>MPO: Dairy herd vaccination and FMD case burden.</h2>
     <p style="color:var(--charcoal);font-size:14px;margin-top:calc(-1 * var(--sp-6));margin-bottom:var(--sp-6)" id="mpoSubtitle">Submitted by the Milk Producers&#x2019; Organisation (MPO). Covers dairy cattle only.</p>
@@ -519,7 +482,7 @@
     </div>
   </section>
 
-  <section class="tab-section" data-tab="rmis" id="rmisSection">
+  <section id="rmisSection">
     <div class="kicker">Feedlot sector view</div>
     <h2>RMIS: Feedlot vaccine orders.</h2>
     <p style="color:var(--charcoal);font-size:14px;margin-top:calc(-1 * var(--sp-6));margin-bottom:var(--sp-6)" id="rmisSubtitle">Submitted by the Red Meat Industry Service (RMIS). Covers feedlot and private-vet-channelled DolVet Biotech Trivalent orders. Cumulative from rollout start.</p>
@@ -571,33 +534,8 @@
     </div>
   </section>
 
-  <section class="tab-section" data-tab="sappo" id="sappoSection">
-    <div class="kicker">Pork industry view</div>
-    <h2>SAPPO: Pig sector vaccine dispatches.</h2>
-    <p style="color:var(--charcoal);font-size:14px;margin-top:calc(-1 * var(--sp-6));margin-bottom:var(--sp-6)">Submitted by the South African Pork Producers' Organisation (SAPPO). Covers Aftodoll (Dollvet) vaccine dispatched by SAPPO representatives to pig producers across South Africa. Some bottles were also used for cattle on the same farms to reduce cross-species FMD risk — the cattle/pig split is not available at dispatch level. Source: email from Dr Thandi Chiappero, SAPPO Head: Consumer Assurance, 3 June 2026.</p>
-
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:var(--sp-4);margin-bottom:var(--sp-6)" id="sappoKpiRow"></div>
-
-    <div class="grid-2" style="margin-bottom:var(--sp-6)">
-      <div class="card">
-        <h3>Bottles dispatched by province.</h3>
-        <div class="chart-wrap tall"><canvas id="sappoProvinceChart"></canvas></div>
-      </div>
-      <div class="card">
-        <h3>Cumulative bottles dispatched over time.</h3>
-        <div class="chart-wrap tall"><canvas id="sappoTimelineChart"></canvas></div>
-      </div>
-    </div>
-
-    <div class="card">
-      <h3>Dispatch log.</h3>
-      <p style="font-size:13px;color:var(--charcoal);margin:0 0 var(--sp-4)">All dispatches are Aftodoll (Dollvet). TC = Dr Thandi Chiappero. ML = Marlene. KZN volume is high because KZN state veterinary services were not allocating vaccine to pig producers — SAPPO filled the gap directly.</p>
-      <div id="sappoDispatchTable"></div>
-    </div>
-  </section>
-
-  <section class="tab-section" data-tab="ministerial" id="ministerialSection">
-    <div class="kicker">Ministerial update — 1 June 2026</div>
+  <section id="ministerialSection">
+    <div class="kicker">Ministerial update — 5 May 2026</div>
     <h2>Updated figures from the Minister of Agriculture.</h2>
     <div id="ministerialBanner" style="margin-bottom:var(--sp-6)"></div>
     <div class="grid-2">
@@ -614,7 +552,7 @@
   </section>
 
 
-  <section class="tab-section" data-tab="ministerial">
+  <section>
     <div class="kicker">Data validation</div>
     <h2>Ministerial briefing vs JOC provincial returns.</h2>
     <p style="color:var(--charcoal);font-size:14px;margin-top:calc(-1 * var(--sp-6));margin-bottom:var(--sp-6)">Comparing DAFF ministerial figures (23 April 2026) against AgriSA JOC provincial returns (latest available). A positive difference means JOC reports more vaccinations than the ministerial figure — expected given the later date. A negative difference flags a data quality issue for investigation.</p>
@@ -642,6 +580,32 @@
     </div>
   </section>
 
+  <section>
+    <div class="kicker">Data quality</div>
+    <h2>Where the data still needs work.</h2>
+    <div class="grid-2">
+      <div class="card">
+        <h3>Reconciliation issues.</h3>
+        <ul class="flag-list">
+          <li class="critical"><strong>Spoilage is not tracked nationally.</strong>The national total is reported as zero or blank in every weekly submission. Only KZN reports percentages. True wastage remains unknown.</li>
+          <li class="critical"><strong>About 988 000 doses without a manufacturer breakdown.</strong>KZN's bulk allocation is reported only as a Total figure, with no Bioaftogen, DolVet, OBP or BVI split.</li>
+          <li><strong>State and Private Vet figures do not reconcile to Total.</strong>Suggests Total is the planned allocation while State and Private Vet are recorded receipts.</li>
+          <li><strong>Animals Vaccinated by type does not reconcile to TOTAL Animals Vaccinated.</strong>Free State and Limpopo subtotals do not match the stated totals.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Reporting gaps and ambiguities.</h3>
+        <ul class="flag-list">
+          <li class="critical"><strong>Mpumalanga reporting is sparse.</strong>Limited spoilage and channel split data despite being a top five outbreak province.</li>
+          <li><strong>KZN allocation rationale is undocumented.</strong>Largest provincial allocation but minimal cases. The pattern suggests pre-emptive ring vaccination, but the policy is not stated in any source file.</li>
+          <li><strong>No batch, expiry or cold chain data.</strong>Cumulative receipts only. The current balance could be ageing toward spoilage with no visibility.</li>
+          <li><strong>The reporting schema changed mid-period.</strong>Reports before 1 April 2026 use a simpler schema. Later weeks add State and Private Vet and Commercial and Communal columns.</li>
+          <li><strong>The national herd denominator changed silently.</strong>From 12 470 648 on 1 April 2026 to 12 496 199 from 17 April 2026 onwards, with no annotation.</li>
+          <li><strong>Commodity submissions partial.</strong>MPO and RPO have submitted to date. NWGA (wool growers) and SAPPO (pork producers) returns are not yet in the dataset.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
 </main>
 
@@ -669,6 +633,12 @@
         </svg>
       </div>
       <p>Compiled by AgriCulture South Africa for the Foot and Mouth Disease Industry Coordination Council. Data is drawn from weekly provincial Joint Operations Committee meetings and submitted by the provincial affiliates of AgriCulture South Africa, with commodity organisation contributions from MPO, RPO, and where available NWGA and SAPPO.</p>
+      <p style="margin-top:var(--sp-4)">Master record at <code>master_data.csv</code>. Build script at <code>scripts/build_dashboard.py</code>.</p>
+    </div>
+    <div>
+      <h4>Refresh process</h4>
+      <p>New submissions go into the <code>inbox/</code> folder. The Friday scheduled task ingests them, supersedes prior versions where the same period and metric are restated, archives the source, and rebuilds this dashboard.</p>
+      <p style="margin-top:var(--sp-4)">Backdated submissions are supported. The effective date places observations on the timeline. The version column tracks supersedes.</p>
     </div>
     <div>
       <h4>External live sources</h4>
@@ -1011,7 +981,7 @@ const DASHBOARD_DATA = {
     "suspected": 855,
     "negative": 65,
     "pending": 237,
-    "procured": 13500000,
+    "procured": 6000000,
     "distributed": 5639190,
     "received": 5639190,
     "administered": 3136522,
@@ -1285,22 +1255,11 @@ const DASHBOARD_DATA = {
     }
   },
   "ministerial": {
-    "doses_procured": 13500000,
-    "doses_procured_asof": "2026-06-01",
-    "doses_distributed": null,
-    "animals_vaccinated": 4400000,
-    "animals_vaccinated_asof": "2026-05-28",
-    "provincial_cattle": {
-      "EC":  { "value": 720000,  "as_of": "2026-05-28" },
-      "FS":  { "value": 600000,  "as_of": "2026-05-28" },
-      "GP":  { "value": 270000,  "as_of": "2026-05-28" },
-      "KZN": { "value": 1100000, "as_of": "2026-05-28" },
-      "LP":  { "value": 350000,  "as_of": "2026-05-28" },
-      "MP":  { "value": 430000,  "as_of": "2026-05-28" },
-      "NW":  { "value": 430000,  "as_of": "2026-05-28" },
-      "NC":  { "value": 87000,   "as_of": "2026-05-28" },
-      "WC":  { "value": 260000,  "as_of": "2026-05-28" }
-    },
+    "doses_procured": 6000000,
+    "doses_procured_asof": "2026-05-05",
+    "doses_distributed": 5229966,
+    "animals_vaccinated": 2590016,
+    "animals_vaccinated_asof": "2026-04-23",
     "policy_events": [
       {
         "date": "2026-05-04",
@@ -1311,41 +1270,24 @@ const DASHBOARD_DATA = {
         "date": "2026-05-05",
         "title": "KwaZulu-Natal DMA formally lifted",
         "detail": "The KZN Disease Management Area restrictions have been rescinded. Movement controls will transition to a unified province-wide protocol replacing the localised DMA rules."
-      },
-      {
-        "date": "2026-05-25",
-        "title": "High Court judgment — self-vaccination permitted",
-        "detail": "Sakeliga NPC, SAAI and Free State Agriculture v Minister of Agriculture (Case 2026-047152). Livestock owners may procure and administer lawfully imported FMD vaccines subject to 5-day advance notice to the state vet and sworn affidavit within 14 days. State may not interfere in commercial vaccine import relations."
-      },
-      {
-        "date": "2026-05-28",
-        "title": "3.5 million Biogenesis Bago doses arrived",
-        "detail": "Distributed as follows: 1.5 million to the feedlot industry; 500 000 to RMPO; 200 000 to MPO; 100 000 to the stud breeders industry; 1.05 million to provinces; reserve set aside for regional border vaccination."
-      },
-      {
-        "date": "2026-06-01",
-        "title": "SAHPRA Section 21 approval — 14 million Dunevax doses",
-        "detail": "SAHPRA approved the Section 21 application for Dunevax to import 14 million Dollvet doses. First consignment of 4 million doses expected during June 2026. This pipeline will enable booster vaccinations at scale."
-      },
-      {
-        "date": "2026-06-01",
-        "title": "SADC Regional Coordination Framework agreed",
-        "detail": "SADC Ministerial Meeting in Zimbabwe agreed to develop a Regional Coordination Framework for FMD control, including progressive buffer zoning, compartmentalisation models, regional biosecurity corridors and coordinated vaccination across borders."
       }
     ],
     "incoming_supply": [
-      { "vaccine": "ARC Trivalent",        "doses": 12900,    "date": "2026-02-01", "status": "Arrived",  "notes": "Initial emergency stock." },
-      { "vaccine": "Biogenesis Bivalent",  "doses": 1000000,  "date": "2026-02-01", "status": "Arrived",  "notes": "" },
-      { "vaccine": "DolVet Trivalent",     "doses": 1500000,  "date": "2026-02-01", "status": "Arrived",  "notes": "" },
-      { "vaccine": "Biogenesis Trivalent", "doses": 1500000,  "date": "2026-04-01", "status": "Arrived",  "notes": "" },
-      { "vaccine": "DolVet Trivalent",     "doses": 2000000,  "date": "2026-04-01", "status": "Arrived",  "notes": "" },
-      { "vaccine": "DolVet Trivalent",     "doses": 2000000,  "date": "2026-05-01", "status": "Arrived",  "notes": "" },
-      { "vaccine": "Biogenesis Bago",      "doses": 3500000,  "date": "2026-05-28", "status": "Arrived",  "notes": "Distributed: 1.5M feedlots; 500 000 RMPO; 200 000 MPO; 100 000 stud breeders; 1.05M provinces; balance for border vaccination." },
-      { "vaccine": "DolVet (Dunevax)",     "doses": 4000000,  "date": "2026-06-30", "status": "Expected", "notes": "First consignment of 14M SAHPRA Section 21-approved Dollvet doses. Enables booster programme." },
-      { "vaccine": "DolVet (Dunevax)",     "doses": 10000000, "date": "2026",       "status": "Pipeline", "notes": "Remaining balance of 14M SAHPRA Section 21 approval. Delivery schedule to be confirmed." }
+      {
+        "vaccine": "dollvet",
+        "doses": 4000000,
+        "expected": "2026-05-15",
+        "notes": "4M Dollvet in transit; expected mid-May 2026; ministerial briefing 05 May"
+      },
+      {
+        "vaccine": "biogenesis_bago",
+        "doses": 5000000,
+        "expected": "2026-05-20",
+        "notes": "5M BB doses; import procedures underway post-Argentina visit; expected shortly after mid-May"
+      }
     ],
-    "source_date": "2026-06-01",
-    "source_label": "Minister Steenhuisen media briefing, 1 June 2026"
+    "source_date": "2026-05-05",
+    "source_label": "Minister Steenhuisen media briefing, 5 May 2026"
   },
   "ministerial_comparison": [
     {
@@ -1537,26 +1479,6 @@ const DASHBOARD_DATA = {
       "owner": "FMD ICC Secretariat"
     }
   ],
-  "sappo": {
-    "source": "Email — Dr Thandi Chiappero, SAPPO Head: Consumer Assurance, 3 June 2026",
-    "vaccine": "Aftodoll (Dollvet)",
-    "note": "Some bottles were used for cattle on the same farms to reduce FMD risk to pigs. The cattle/pig split is not available at dispatch level. KZN volume is elevated because KZN state veterinary services were not allocating vaccine to pig producers.",
-    "total_bottles": 1586,
-    "dispatches": [
-      { "date": "2026-04-30", "rep": "ML", "bottles": 600, "province": "LP", "province_name": "Limpopo" },
-      { "date": "2026-05-05", "rep": "TC", "bottles": 80,  "province": "NW", "province_name": "North West" },
-      { "date": "2026-05-05", "rep": "TC", "bottles": 37,  "province": "NW", "province_name": "North West" },
-      { "date": "2026-05-07", "rep": "TC", "bottles": 130, "province": "LP", "province_name": "Limpopo" },
-      { "date": "2026-05-12", "rep": "ML", "bottles": 8,   "province": "FS", "province_name": "Free State" },
-      { "date": "2026-05-13", "rep": "TC", "bottles": 508, "province": "KZN","province_name": "KwaZulu-Natal" },
-      { "date": "2026-05-14", "rep": "ML", "bottles": 74,  "province": "EC", "province_name": "Eastern Cape" },
-      { "date": "2026-05-22", "rep": "TC", "bottles": 15,  "province": "WC", "province_name": "Western Cape" },
-      { "date": "2026-05-27", "rep": "ML", "bottles": 34,  "province": "MP", "province_name": "Mpumalanga" },
-      { "date": "2026-06-03", "rep": "TC", "bottles": 100, "province": "KZN","province_name": "KwaZulu-Natal" }
-    ],
-    "by_province": { "LP": 730, "KZN": 608, "NW": 117, "EC": 74, "MP": 34, "WC": 15, "FS": 8 },
-    "by_rep": { "TC": 870, "ML": 716 }
-  },
   "sources_used": [
     "01 May 2026/AgriSA - FMD Vaccination Data - 01.05.26.xlsx",
     "04-10-2026_FMD ICC Update.pdf",
@@ -1697,10 +1619,10 @@ try {
     </div>
     <div>
       <p class="alert-headline">
-        Government has procured <span class="accent">${fmt(procured)} doses</span> (Ministerial briefing, 1 June 2026).
-        Provinces have reported receiving <span class="accent">${fmt(distributed)} doses</span> via JOC returns — the balance is in national stockpile or in transit.
+        South Africa has received <span class="accent">${fmt(procured)} doses</span> from manufacturers, of which <span class="accent">${fmt(distributed)} doses</span> have been distributed to the provinces.
         We measure against a national herd of ${fmt(N.herd_cattle)} cattle.
         Full coverage at two doses per animal requires roughly ${(fullCoverageNeed/1e6).toFixed(1)} million doses.
+        The most recent week added ${fmt(N.delta_administered)} animals vaccinated to the provincial total.
       </p>
     </div>
   `;
@@ -2083,88 +2005,6 @@ if (data.rmis) try {
 
 
 
-// ── SAPPO section ─────────────────────────────────────────────────────────────
-if (data.sappo) try {
-  const S = data.sappo;
-  const provOrder = Object.entries(S.by_province).sort((a,b)=>b[1]-a[1]);
-
-  const kpiRow = safeEl('sappoKpiRow');
-  if (kpiRow) {
-    const kpis = [
-      { label: 'Total bottles dispatched', value: fmt(S.total_bottles), sub: 'Aftodoll (Dollvet)' },
-      { label: 'Provinces reached', value: Object.keys(S.by_province).length, sub: 'of 9 provinces' },
-      { label: 'Dispatches recorded', value: S.dispatches.length, sub: 'Apr to Jun 2026' },
-      { label: 'Largest single dispatch', value: fmt(Math.max(...S.dispatches.map(d=>d.bottles))), sub: 'bottles (KZN, 13 May)' },
-    ];
-    kpiRow.innerHTML = kpis.map(k => `
-      <div class="card">
-        <div class="kpi-label">${k.label}</div>
-        <div class="kpi-value">${k.value}</div>
-        <div class="kpi-sub">${k.sub}</div>
-      </div>`).join('');
-  }
-
-  if (chartJsReady) {
-    new Chart(safeEl('sappoProvinceChart'), {
-      type: 'bar',
-      data: {
-        labels: provOrder.map(([p])=>p),
-        datasets: [{ label: 'Bottles dispatched', data: provOrder.map(([,v])=>v),
-          backgroundColor: BRAND.olive, borderRadius: 4 }]
-      },
-      options: {
-        responsive: true, maintainAspectRatio: false, indexAxis: 'y',
-        plugins: {
-          legend: { display: false },
-          datalabels: { anchor:'end', align:'end', font:{size:11,weight:'600'},
-            color: BRAND.pine, formatter: v => fmt(v) }
-        },
-        scales: { x: { beginAtZero: true, grid:{color:BRAND.mist} }, y: { grid:{display:false} } }
-      }
-    });
-
-    const sorted = [...S.dispatches].sort((a,b)=>a.date.localeCompare(b.date));
-    let cum = 0;
-    const timePoints = sorted.map(d => { cum += d.bottles; return { date: d.date, cum }; });
-    new Chart(safeEl('sappoTimelineChart'), {
-      type: 'line',
-      data: {
-        labels: timePoints.map(p=>p.date),
-        datasets: [{ label: 'Cumulative bottles', data: timePoints.map(p=>p.cum),
-          borderColor: BRAND.olive, backgroundColor: 'rgba(91,126,61,0.1)',
-          tension: 0.3, fill: true, pointRadius: 5, pointBackgroundColor: BRAND.olive }]
-      },
-      options: {
-        responsive: true, maintainAspectRatio: false,
-        plugins: { legend:{display:false}, datalabels:{display:false} },
-        scales: {
-          x: { grid:{display:false}, ticks:{font:{size:10}} },
-          y: { beginAtZero:true, grid:{color:BRAND.mist} }
-        }
-      }
-    });
-  }
-
-  const tbl = safeEl('sappoDispatchTable');
-  if (tbl) {
-    const rows = S.dispatches.map(d => `
-      <tr>
-        <td>${d.date}</td>
-        <td>${d.province_name}</td>
-        <td>${d.province}</td>
-        <td>${d.rep}</td>
-        <td class="num">${fmt(d.bottles)}</td>
-      </tr>`).join('');
-    const total = S.dispatches.reduce((a,d)=>a+d.bottles,0);
-    tbl.innerHTML = `
-      <table>
-        <thead><tr><th>Date</th><th>Province</th><th>Code</th><th>Rep</th><th class="num">Bottles</th></tr></thead>
-        <tbody>${rows}</tbody>
-        <tfoot><tr><td colspan="4">Total</td><td class="num">${fmt(total)}</td></tr></tfoot>
-      </table>`;
-  }
-} catch(e) { showError('sappoSection', 'SAPPO section', e); }
-
 // ── Ministerial section ───────────────────────────────────────────────────────
 if (data.ministerial) try {
   const m = data.ministerial;
@@ -2184,9 +2024,9 @@ if (data.ministerial) try {
     if (m.provincial_cattle && Object.keys(m.provincial_cattle).length) {
       const rows = Object.entries(m.provincial_cattle)
         .sort((a,b)=>b[1].value-a[1].value)
-        .map(([code, d]) => `<tr><td style="text-align:center">${code}</td><td style="text-align:center;font-variant-numeric:tabular-nums">${fmt(d.value)}</td><td style="text-align:center;font-size:12px;color:var(--charcoal)">${d.as_of}</td></tr>`)
+        .map(([code, d]) => `<tr><td>${code}</td><td class="num">${fmt(d.value)}</td><td style="font-size:12px;color:var(--charcoal)">${d.as_of}</td></tr>`)
         .join('');
-      kpiCard.innerHTML += `<table><thead><tr><th style="text-align:center">Province</th><th style="text-align:center">Cattle vaccinated</th><th style="text-align:center">As of</th></tr></thead><tbody>${rows}</tbody></table>`;
+      kpiCard.innerHTML += `<table><thead><tr><th>Province</th><th class="num">Cattle vaccinated</th><th>As of</th></tr></thead><tbody>${rows}</tbody></table>`;
     }
   }
   const policyEl = safeEl('policyEventsList');
@@ -2196,22 +2036,9 @@ if (data.ministerial) try {
   }
   const supplyEl = safeEl('incomingSupplyBody');
   if (supplyEl && m.incoming_supply && m.incoming_supply.length) {
-    const statusBadge = s => {
-      const cfg = {
-        'Arrived':  'background:#d7e1d1;color:#102D2D',
-        'Expected': 'background:#CBD929;color:#102D2D',
-        'Pipeline': 'background:rgba(16,45,45,0.08);color:#58595B',
-      };
-      return `<span style="display:inline-block;padding:2px 10px;border-radius:99px;font-size:11px;font-weight:600;letter-spacing:0.3px;${cfg[s]||''}">${s}</span>`;
-    };
-    const totalProcured = m.incoming_supply.filter(i=>i.status==='Arrived').reduce((a,i)=>a+i.doses,0);
-    const totalAll = m.incoming_supply.reduce((a,i)=>a+i.doses,0);
-    const rows = m.incoming_supply.map(i =>
-      `<tr><td>${i.vaccine}</td><td class="num">${i.doses>=1000?fmt(i.doses):'—'}</td><td>${i.date||''}</td><td>${statusBadge(i.status)}</td><td style="font-size:12px;color:var(--charcoal)">${i.notes||''}</td></tr>`
-    ).join('');
-    supplyEl.innerHTML = `
-      <p style="font-size:13px;color:var(--charcoal);margin:0 0 var(--sp-4)">Total doses procured as at 1 June 2026: <strong style="color:var(--pine)">${fmt(13500000)}</strong> &nbsp;|&nbsp; Confirmed arrived: <strong style="color:var(--pine)">${fmt(totalProcured)}</strong> &nbsp;|&nbsp; Pipeline: <strong style="color:var(--pine)">${fmt(14000000)}</strong> additional (SAHPRA Section 21 approved)</p>
-      <table><thead><tr><th>Vaccine</th><th class="num">Doses</th><th>Date</th><th>Status</th><th>Notes</th></tr></thead><tbody>${rows}</tbody><tfoot><tr><td>Total</td><td class="num">${fmt(totalAll)}</td><td></td><td></td><td></td></tr></tfoot></table>`;
+    supplyEl.innerHTML = `<table><thead><tr><th>Vaccine</th><th class="num">Doses</th><th>Expected</th><th>Notes</th></tr></thead><tbody>`
+      + m.incoming_supply.map(i => `<tr><td>${i.vaccine}</td><td class="num">${fmt(i.doses)}</td><td>${i.expected}</td><td style="font-size:12px">${i.notes||''}</td></tr>`).join('')
+      + '</tbody></table>';
   }
 } catch(e) { showError('ministerialBanner', 'Ministerial section', e); }
 
@@ -2305,24 +2132,6 @@ if (chartJsReady && data.ministerial_comparison) try {
 
 
 
-</script>
-<script>
-(function () {
-  var btns = document.querySelectorAll('.tab-btn');
-  function switchTab(target) {
-    btns.forEach(function (b) {
-      b.classList.toggle('tab-active', b.dataset.target === target);
-    });
-    document.querySelectorAll('.tab-section').forEach(function (s) {
-      s.classList.toggle('tab-active', s.dataset.tab === target);
-    });
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-  btns.forEach(function (b) {
-    b.addEventListener('click', function () { switchTab(b.dataset.target); });
-  });
-  switchTab('national');
-}());
 </script>
 </body>
 </html>
