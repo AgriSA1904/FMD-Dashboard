@@ -1290,11 +1290,22 @@ const DASHBOARD_DATA = {
     }
   },
   "ministerial": {
-    "doses_procured": 6000000,
-    "doses_procured_asof": "2026-05-05",
-    "doses_distributed": 5229966,
-    "animals_vaccinated": 2590016,
-    "animals_vaccinated_asof": "2026-04-23",
+    "doses_procured": 13500000,
+    "doses_procured_asof": "2026-06-01",
+    "doses_distributed": null,
+    "animals_vaccinated": 4400000,
+    "animals_vaccinated_asof": "2026-05-28",
+    "provincial_cattle": {
+      "EC":  { "value": 720000,  "as_of": "2026-05-28" },
+      "FS":  { "value": 600000,  "as_of": "2026-05-28" },
+      "GP":  { "value": 270000,  "as_of": "2026-05-28" },
+      "KZN": { "value": 1100000, "as_of": "2026-05-28" },
+      "LP":  { "value": 350000,  "as_of": "2026-05-28" },
+      "MP":  { "value": 430000,  "as_of": "2026-05-28" },
+      "NW":  { "value": 430000,  "as_of": "2026-05-28" },
+      "NC":  { "value": 87000,   "as_of": "2026-05-28" },
+      "WC":  { "value": 260000,  "as_of": "2026-05-28" }
+    },
     "policy_events": [
       {
         "date": "2026-05-04",
@@ -1305,24 +1316,38 @@ const DASHBOARD_DATA = {
         "date": "2026-05-05",
         "title": "KwaZulu-Natal DMA formally lifted",
         "detail": "The KZN Disease Management Area restrictions have been rescinded. Movement controls will transition to a unified province-wide protocol replacing the localised DMA rules."
+      },
+      {
+        "date": "2026-05-25",
+        "title": "High Court judgment — self-vaccination permitted",
+        "detail": "Sakeliga NPC, SAAI and Free State Agriculture v Minister of Agriculture (Case 2026-047152). Livestock owners may procure and administer lawfully imported FMD vaccines subject to 5-day advance notice to the state vet and sworn affidavit within 14 days. State may not interfere in commercial vaccine import relations."
+      },
+      {
+        "date": "2026-05-28",
+        "title": "3.5 million Biogenesis Bago doses arrived",
+        "detail": "Distributed as follows: 1.5 million to the feedlot industry; 500 000 to RMPO; 200 000 to MPO; 100 000 to the stud breeders industry; 1.05 million to provinces; reserve set aside for regional border vaccination."
+      },
+      {
+        "date": "2026-06-01",
+        "title": "SAHPRA Section 21 approval — 14 million Dunevax doses",
+        "detail": "SAHPRA approved the Section 21 application for Dunevax to import 14 million Dollvet doses. First consignment of 4 million doses expected during June 2026. This pipeline will enable booster vaccinations at scale."
+      },
+      {
+        "date": "2026-06-01",
+        "title": "SADC Regional Coordination Framework agreed",
+        "detail": "SADC Ministerial Meeting in Zimbabwe agreed to develop a Regional Coordination Framework for FMD control, including progressive buffer zoning, compartmentalisation models, regional biosecurity corridors and coordinated vaccination across borders."
       }
     ],
     "incoming_supply": [
       {
-        "vaccine": "dollvet",
+        "vaccine": "Dunevax (Dollvet)",
         "doses": 4000000,
-        "expected": "2026-05-15",
-        "notes": "4M Dollvet in transit; expected mid-May 2026; ministerial briefing 05 May"
-      },
-      {
-        "vaccine": "biogenesis_bago",
-        "doses": 5000000,
-        "expected": "2026-05-20",
-        "notes": "5M BB doses; import procedures underway post-Argentina visit; expected shortly after mid-May"
+        "expected": "2026-06-30",
+        "notes": "First consignment of 14 million SAHPRA Section 21-approved Dollvet doses. SAHPRA approval granted 1 June 2026. Enables booster programme."
       }
     ],
-    "source_date": "2026-05-05",
-    "source_label": "Minister Steenhuisen media briefing, 5 May 2026"
+    "source_date": "2026-06-01",
+    "source_label": "Minister Steenhuisen media briefing, 1 June 2026"
   },
   "ministerial_comparison": [
     {

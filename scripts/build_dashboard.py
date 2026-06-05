@@ -694,10 +694,11 @@ def build_dashboard():
         "doses_distributed":       int(min_dist[0]) if min_dist else None,
         "animals_vaccinated":      int(min_adm[0]) if min_adm else None,
         "animals_vaccinated_asof": min_adm[1] if min_adm else None,
+        "provincial_cattle":       prov_ministerial,
         "policy_events":           policy_events,
         "incoming_supply":         incoming,
-        "source_date":             "2026-05-05",
-        "source_label":            "Minister Steenhuisen media briefing, 5 May 2026",
+        "source_date":             "2026-06-01",
+        "source_label":            "Minister Steenhuisen media briefing, 1 June 2026",
     }
 
     min_comparison = build_ministerial_comparison(rows)

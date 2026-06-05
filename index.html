@@ -590,7 +590,7 @@
   <section class="tab-section" data-tab="ministerial">
     <div class="kicker">Data validation</div>
     <h2>Ministerial briefing vs JOC provincial returns.</h2>
-    <p style="color:var(--charcoal);font-size:14px;margin-top:calc(-1 * var(--sp-6));margin-bottom:var(--sp-6)">Comparing DAFF ministerial figures (23 April 2026) against AgriSA JOC provincial returns (latest available). A positive difference means JOC reports more vaccinations than the ministerial figure — expected given the later date. A negative difference flags a data quality issue for investigation.</p>
+    <p style="color:var(--charcoal);font-size:14px;margin-top:calc(-1 * var(--sp-6));margin-bottom:var(--sp-6)">Comparing ministerial floor estimates from the 1 June 2026 media briefing against AgriSA JOC provincial returns (latest available). Ministerial figures are stated as "more than X" and cover all cloven-hoofed animals. JOC returns may be cattle-only in some provinces. A large negative difference may reflect species coverage differences rather than a data quality issue.</p>
     <div class="grid-2">
       <div class="card">
         <h3>Animals vaccinated: ministerial vs JOC per province.</h3>
@@ -1290,11 +1290,22 @@ const DASHBOARD_DATA = {
     }
   },
   "ministerial": {
-    "doses_procured": 6000000,
-    "doses_procured_asof": "2026-05-05",
-    "doses_distributed": 5229966,
-    "animals_vaccinated": 2590016,
-    "animals_vaccinated_asof": "2026-04-23",
+    "doses_procured": 13500000,
+    "doses_procured_asof": "2026-06-01",
+    "doses_distributed": null,
+    "animals_vaccinated": 4400000,
+    "animals_vaccinated_asof": "2026-05-28",
+    "provincial_cattle": {
+      "EC":  { "value": 720000,  "as_of": "2026-05-28" },
+      "FS":  { "value": 600000,  "as_of": "2026-05-28" },
+      "GP":  { "value": 270000,  "as_of": "2026-05-28" },
+      "KZN": { "value": 1100000, "as_of": "2026-05-28" },
+      "LP":  { "value": 350000,  "as_of": "2026-05-28" },
+      "MP":  { "value": 430000,  "as_of": "2026-05-28" },
+      "NW":  { "value": 430000,  "as_of": "2026-05-28" },
+      "NC":  { "value": 87000,   "as_of": "2026-05-28" },
+      "WC":  { "value": 260000,  "as_of": "2026-05-28" }
+    },
     "policy_events": [
       {
         "date": "2026-05-04",
@@ -1305,115 +1316,129 @@ const DASHBOARD_DATA = {
         "date": "2026-05-05",
         "title": "KwaZulu-Natal DMA formally lifted",
         "detail": "The KZN Disease Management Area restrictions have been rescinded. Movement controls will transition to a unified province-wide protocol replacing the localised DMA rules."
+      },
+      {
+        "date": "2026-05-25",
+        "title": "High Court judgment — self-vaccination permitted",
+        "detail": "Sakeliga NPC, SAAI and Free State Agriculture v Minister of Agriculture (Case 2026-047152). Livestock owners may procure and administer lawfully imported FMD vaccines subject to 5-day advance notice to the state vet and sworn affidavit within 14 days. State may not interfere in commercial vaccine import relations."
+      },
+      {
+        "date": "2026-05-28",
+        "title": "3.5 million Biogenesis Bago doses arrived",
+        "detail": "Distributed as follows: 1.5 million to the feedlot industry; 500 000 to RMPO; 200 000 to MPO; 100 000 to the stud breeders industry; 1.05 million to provinces; reserve set aside for regional border vaccination."
+      },
+      {
+        "date": "2026-06-01",
+        "title": "SAHPRA Section 21 approval — 14 million Dunevax doses",
+        "detail": "SAHPRA approved the Section 21 application for Dunevax to import 14 million Dollvet doses. First consignment of 4 million doses expected during June 2026. This pipeline will enable booster vaccinations at scale."
+      },
+      {
+        "date": "2026-06-01",
+        "title": "SADC Regional Coordination Framework agreed",
+        "detail": "SADC Ministerial Meeting in Zimbabwe agreed to develop a Regional Coordination Framework for FMD control, including progressive buffer zoning, compartmentalisation models, regional biosecurity corridors and coordinated vaccination across borders."
       }
     ],
     "incoming_supply": [
       {
-        "vaccine": "dollvet",
+        "vaccine": "Dunevax (Dollvet)",
         "doses": 4000000,
-        "expected": "2026-05-15",
-        "notes": "4M Dollvet in transit; expected mid-May 2026; ministerial briefing 05 May"
-      },
-      {
-        "vaccine": "biogenesis_bago",
-        "doses": 5000000,
-        "expected": "2026-05-20",
-        "notes": "5M BB doses; import procedures underway post-Argentina visit; expected shortly after mid-May"
+        "expected": "2026-06-30",
+        "notes": "First consignment of 14 million SAHPRA Section 21-approved Dollvet doses. SAHPRA approval granted 1 June 2026. Enables booster programme."
       }
     ],
-    "source_date": "2026-05-05",
-    "source_label": "Minister Steenhuisen media briefing, 5 May 2026"
+    "source_date": "2026-06-01",
+    "source_label": "Minister Steenhuisen media briefing, 1 June 2026"
   },
   "ministerial_comparison": [
     {
       "code": "EC",
       "name": "Eastern Cape",
-      "joc": 332182,
-      "joc_date": "2026-05-22",
-      "ministerial": 376122,
-      "ministerial_date": "2026-04-23",
-      "diff": -43940,
+      "joc": 489979,
+      "joc_date": "2026-05-21",
+      "ministerial": 720000,
+      "ministerial_date": "2026-06-01",
+      "diff": -230021,
       "flag": "critical"
     },
     {
       "code": "FS",
       "name": "Free State",
-      "joc": 353447,
+      "joc": 609915,
       "joc_date": "2026-06-02",
-      "ministerial": 446527,
-      "ministerial_date": "2026-04-23",
-      "diff": -93080,
-      "flag": "critical"
+      "ministerial": 600000,
+      "ministerial_date": "2026-06-01",
+      "diff": 9915,
+      "flag": null
     },
     {
       "code": "GP",
       "name": "Gauteng",
-      "joc": 184036,
+      "joc": 266121,
       "joc_date": "2026-05-22",
-      "ministerial": 184036,
-      "ministerial_date": "2026-04-23",
-      "diff": 0,
-      "flag": "warning"
+      "ministerial": 270000,
+      "ministerial_date": "2026-06-01",
+      "diff": -3879,
+      "flag": null
     },
     {
       "code": "KZN",
       "name": "KwaZulu-Natal",
       "joc": 648609,
-      "joc_date": "2026-06-03",
-      "ministerial": 766508,
-      "ministerial_date": "2026-04-23",
-      "diff": -117899,
+      "joc_date": "2026-05-21",
+      "ministerial": 1100000,
+      "ministerial_date": "2026-06-01",
+      "diff": -451391,
       "flag": "critical"
     },
     {
       "code": "LP",
       "name": "Limpopo",
-      "joc": 128937,
-      "joc_date": "2026-06-01",
-      "ministerial": 183770,
-      "ministerial_date": "2026-04-23",
-      "diff": -54833,
-      "flag": "critical"
+      "joc": 357045,
+      "joc_date": "2026-05-27",
+      "ministerial": 350000,
+      "ministerial_date": "2026-06-01",
+      "diff": 7045,
+      "flag": null
     },
     {
       "code": "MP",
       "name": "Mpumalanga",
-      "joc": 176811,
-      "joc_date": "2026-05-27",
-      "ministerial": 233510,
-      "ministerial_date": "2026-04-23",
-      "diff": -56699,
+      "joc": 312886,
+      "joc_date": "2026-05-21",
+      "ministerial": 430000,
+      "ministerial_date": "2026-06-01",
+      "diff": -117114,
       "flag": "critical"
     },
     {
       "code": "NW",
       "name": "North West",
-      "joc": 168748,
-      "joc_date": "2026-05-22",
-      "ministerial": 188073,
-      "ministerial_date": "2026-04-23",
-      "diff": -19325,
+      "joc": 171561,
+      "joc_date": "2026-05-21",
+      "ministerial": 430000,
+      "ministerial_date": "2026-06-01",
+      "diff": -258439,
       "flag": "critical"
     },
     {
       "code": "NC",
       "name": "Northern Cape",
       "joc": 28054,
-      "joc_date": "2026-05-22",
-      "ministerial": 46996,
-      "ministerial_date": "2026-04-23",
-      "diff": -18942,
+      "joc_date": "2026-05-21",
+      "ministerial": 87000,
+      "ministerial_date": "2026-06-01",
+      "diff": -58946,
       "flag": "critical"
     },
     {
       "code": "WC",
       "name": "Western Cape",
       "joc": 231913,
-      "joc_date": "2026-05-22",
-      "ministerial": 164474,
-      "ministerial_date": "2026-04-23",
-      "diff": 67439,
-      "flag": null
+      "joc_date": "2026-05-21",
+      "ministerial": 260000,
+      "ministerial_date": "2026-06-01",
+      "diff": -28087,
+      "flag": "critical"
     }
   ],
   "quality_flags": [
@@ -2085,7 +2110,7 @@ if (chartJsReady && data.ministerial_comparison) try {
     data: {
       labels: mc.map(p => p.code),
       datasets: [
-        { label: 'Ministerial (23 Apr)',
+        { label: 'Ministerial (1 Jun)',
           data: mc.map(p => p.ministerial || 0),
           backgroundColor: BRAND.sage, borderRadius: 3 },
         { label: 'JOC / AgriSA (latest)',
