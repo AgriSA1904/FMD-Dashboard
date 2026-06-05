@@ -487,6 +487,24 @@
   </section>
 
   <section class="tab-section" data-tab="provincial">
+    <div class="kicker">Province explorer</div>
+    <h2>Select a province for the full breakdown.</h2>
+    <div id="provSelector" style="display:flex;flex-wrap:wrap;gap:var(--sp-2);margin-bottom:var(--sp-7)"></div>
+    <div id="provDetail" style="display:none">
+      <div id="provDetailHeader" class="alert-banner" style="margin-bottom:var(--sp-6);border-radius:var(--r-card)"></div>
+      <div class="grid-2" style="margin-bottom:var(--sp-6)">
+        <div class="card" id="provVaxTypeCard"></div>
+        <div class="card" id="provChannelCard"></div>
+      </div>
+      <div class="grid-2" style="margin-bottom:var(--sp-6)">
+        <div class="card" id="provClassCard"></div>
+        <div class="card" id="provExtraCard"></div>
+      </div>
+      <div class="card" id="provDistrictCard" style="margin-bottom:var(--sp-6)"></div>
+    </div>
+  </section>
+
+  <section class="tab-section" data-tab="provincial">
     <div class="kicker">Coverage gap</div>
     <h2>Herd coverage against the two dose protocol.</h2>
     <div class="card">
@@ -857,6 +875,176 @@ try {
       <td>${(N.administered/N.herd_cattle*100).toFixed(1)}%</td>
     </tr>`;
 } catch(e) { showError('provTable', 'Provincial table', e); }
+
+// ── Province explorer ─────────────────────────────────────────────────────────
+(function () {
+  const PD = data.provincial_detail || {};
+  const prov = data.provinces || [];
+
+  function fmt2(n) { return n == null ? '—' : fmt(n); }
+
+  function bar(val, max, color) {
+    const pct = max > 0 ? Math.min(100, (val / max) * 100) : 0;
+    return `<div style="background:var(--mist);border-radius:99px;height:8px;overflow:hidden;min-width:80px">
+      <div style="width:${pct.toFixed(1)}%;height:100%;background:${color || 'var(--olive)'}"></div></div>`;
+  }
+
+  function showProvDetail(code) {
+    const d = PD[code];
+    if (!d) return;
+    const pv = prov.find(p => p.code === code) || {};
+
+    // Update selector chips
+    document.querySelectorAll('.prov-chip').forEach(b => {
+      b.style.background = b.dataset.code === code ? 'var(--lime)' : 'rgba(255,255,255,0.12)';
+      b.style.color = b.dataset.code === code ? 'var(--pine)' : 'rgba(255,255,255,0.75)';
+    });
+
+    // Header
+    const hdr = safeEl('provDetailHeader');
+    if (hdr) {
+      const cov = pv.herd > 0 ? ((pv.vaccinated / pv.herd) * 100).toFixed(1) : '—';
+      hdr.innerHTML = `
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:var(--sp-6);align-items:start">
+          <div><div style="font-size:13px;opacity:0.6;text-transform:uppercase;letter-spacing:0.6px">${d.name}</div>
+            <div style="font-size:42px;font-weight:300;color:var(--lime);letter-spacing:-1px">${fmt2(pv.positive)}</div>
+            <div style="font-size:13px;opacity:0.8">Confirmed cases</div></div>
+          <div><div style="font-size:13px;opacity:0.6;text-transform:uppercase;letter-spacing:0.6px">Animals vaccinated</div>
+            <div style="font-size:32px;font-weight:300;color:var(--white)">${fmt2(pv.vaccinated)}</div>
+            <div style="font-size:13px;opacity:0.8">${cov}% of herd · ${fmt2(pv.herd)} cattle</div></div>
+          <div><div style="font-size:13px;opacity:0.6;text-transform:uppercase;letter-spacing:0.6px">Doses received</div>
+            <div style="font-size:32px;font-weight:300;color:var(--white)">${fmt2(pv.received)}</div>
+            <div style="font-size:13px;opacity:0.8">Balance: ${fmt2((pv.received||0)-(pv.vaccinated||0))}</div></div>
+          <div><div style="font-size:13px;opacity:0.6;text-transform:uppercase;letter-spacing:0.6px">Suspect / pending</div>
+            <div style="font-size:32px;font-weight:300;color:var(--white)">${fmt2(pv.suspected)}</div>
+            <div style="font-size:13px;opacity:0.8">As at ${d.latest_date || '—'}</div></div>
+        </div>`;
+    }
+
+    // Vaccine type breakdown
+    const vaxCard = safeEl('provVaxTypeCard');
+    if (vaxCard) {
+      if (d.vaccine_types && d.vaccine_types.length) {
+        const maxDoses = d.vaccine_types[0].doses;
+        const rows = d.vaccine_types.map(v =>
+          `<tr><td>${v.label}</td><td class="num">${fmt2(v.doses)}</td>
+           <td style="padding-left:8px;min-width:100px">${bar(v.doses, maxDoses)}</td>
+           <td style="font-size:11px;color:var(--charcoal)">${v.date}</td></tr>`
+        ).join('');
+        vaxCard.innerHTML = `<h3>Vaccine mix (doses received).</h3>
+          <table><thead><tr><th>Vaccine</th><th class="num">Doses</th><th></th><th>Date</th></tr></thead>
+          <tbody>${rows}</tbody></table>`;
+      } else {
+        vaxCard.innerHTML = '<h3>Vaccine mix.</h3><p style="color:var(--charcoal);font-size:13px">No manufacturer breakdown available for this province.</p>';
+      }
+    }
+
+    // Vet channel split
+    const chanCard = safeEl('provChannelCard');
+    if (chanCard) {
+      if (d.vet_channels && d.vet_channels.length) {
+        const rows = d.vet_channels.map(c =>
+          `<tr><td>${c.label}</td>
+           <td class="num">${c.doses_received != null ? fmt2(c.doses_received) : '—'}</td>
+           <td class="num">${c.animals_vaccinated != null ? fmt2(c.animals_vaccinated) : '—'}</td>
+           <td style="font-size:11px;color:var(--charcoal)">${c.date || ''}</td></tr>`
+        ).join('');
+        chanCard.innerHTML = `<h3>State vs private vet channel.</h3>
+          <table><thead><tr><th>Channel</th><th class="num">Doses received</th><th class="num">Animals vaccinated</th><th>Date</th></tr></thead>
+          <tbody>${rows}</tbody></table>`;
+      } else {
+        chanCard.innerHTML = '<h3>State vs private vet channel.</h3><p style="color:var(--charcoal);font-size:13px">No channel split available for this province.</p>';
+      }
+    }
+
+    // Classification
+    const clsCard = safeEl('provClassCard');
+    if (clsCard) {
+      if (d.classification && d.classification.length) {
+        const total = d.classification.reduce((a, c) => a + c.value, 0);
+        const rows = d.classification.map(c =>
+          `<tr><td>${c.label}</td><td class="num">${fmt2(c.value)}</td>
+           <td style="padding-left:8px;min-width:80px">${bar(c.value, total, 'var(--olive)')}</td>
+           <td style="font-size:11px;color:var(--charcoal)">${(c.value/total*100).toFixed(1)}%</td></tr>`
+        ).join('');
+        clsCard.innerHTML = `<h3>Animal classification.</h3>
+          <table><thead><tr><th>Category</th><th class="num">Count</th><th></th><th>Share</th></tr></thead>
+          <tbody>${rows}</tbody></table>`;
+      } else {
+        clsCard.innerHTML = '<h3>Animal classification.</h3><p style="color:var(--charcoal);font-size:13px">No classification breakdown available for this province.</p>';
+      }
+    }
+
+    // Extra indicators
+    const extCard = safeEl('provExtraCard');
+    if (extCard) {
+      const items = Object.values(d.extra || {});
+      if (items.length) {
+        const rows = items.map(e =>
+          `<tr><td>${e.label}</td><td class="num">${fmt2(e.value)}</td>
+           <td style="font-size:11px;color:var(--charcoal)">${e.date || ''}</td></tr>`
+        ).join('');
+        extCard.innerHTML = `<h3>Additional indicators.</h3>
+          <table><thead><tr><th>Indicator</th><th class="num">Value</th><th>Date</th></tr></thead>
+          <tbody>${rows}</tbody></table>`;
+      } else {
+        extCard.innerHTML = '<h3>Additional indicators.</h3><p style="color:var(--charcoal);font-size:13px">No additional indicators recorded for this province.</p>';
+      }
+    }
+
+    // District breakdown
+    const distCard = safeEl('provDistrictCard');
+    if (distCard) {
+      if (d.districts && d.districts.length) {
+        const rows = d.districts.map(dist =>
+          `<tr><td>${dist.name}</td>
+           <td class="num">${dist.cases != null ? fmt2(dist.cases) : '—'}</td>
+           <td class="num">${dist.suspected != null ? fmt2(dist.suspected) : '—'}</td>
+           <td class="num">${dist.vaccinated != null ? fmt2(dist.vaccinated) : '—'}</td>
+           <td style="font-size:11px;color:var(--charcoal)">${dist.date}</td></tr>`
+        ).join('');
+        distCard.innerHTML = `<h3>District and municipal breakdown.</h3>
+          <table><thead><tr><th>District / Area</th><th class="num">Cases</th><th class="num">Suspected</th><th class="num">Vaccinated</th><th>Date</th></tr></thead>
+          <tbody>${rows}</tbody></table>`;
+      } else {
+        distCard.innerHTML = '<h3>District and municipal breakdown.</h3><p style="color:var(--charcoal);font-size:13px">No district-level data recorded for this province. Submit district breakdown via the JOC template to populate this section.</p>';
+      }
+    }
+
+    // Show panel and scroll to it
+    const panel = safeEl('provDetail');
+    if (panel) {
+      panel.style.display = 'block';
+      panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+
+  // Render province selector chips
+  const sel = safeEl('provSelector');
+  if (sel && data.provinces) {
+    sel.innerHTML = data.provinces.map(p =>
+      `<button class="prov-chip" data-code="${p.code}"
+         style="background:rgba(16,45,45,0.08);border:1px solid rgba(16,45,45,0.15);
+                border-radius:var(--r-pill);padding:8px 20px;cursor:pointer;
+                font-family:inherit;font-size:13px;font-weight:600;color:var(--pine);
+                transition:background 0.15s,color 0.15s"
+         onclick="window._showProvDetail && window._showProvDetail('${p.code}')">
+         ${p.code} — ${p.name}
+       </button>`
+    ).join('');
+  }
+
+  // Expose globally and wire up provTable row clicks
+  window._showProvDetail = showProvDetail;
+  setTimeout(function () {
+    document.querySelectorAll('#provTable tr').forEach(function (tr, i) {
+      if (data.provinces && data.provinces[i]) {
+        tr.style.cursor = 'pointer';
+        tr.addEventListener('click', function () { showProvDetail(data.provinces[i].code); });
+      }
+    });
+  }, 200);
+}());
 
 // ── Chart.js global defaults ─────────────────────────────────────────────────
 // Chart.js is loaded from CDN. If it fails to load, chart sections will show

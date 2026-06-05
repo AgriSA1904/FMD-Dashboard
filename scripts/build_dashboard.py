@@ -619,6 +619,150 @@ def validate_output(html, path):
         raise ValueError(f"Dashboard output validation FAILED for {path}:\n  " + "\n  ".join(errors))
     return True
 
+VAX_LABELS = {
+    "bioaftogen": "Bioaftogen", "dolvet": "DolVet", "obp_arc": "OBP / ARC",
+    "bvi": "BVI", "artio_preva": "Artio-PREVA", "artio_preva_other": "Artio-PREVA",
+    "emergency_stock": "Emergency stock", "bioaftogen_biv1": "Bioaftogen Bivalent",
+    "bioaftogen_triv2": "Bioaftogen Trivalent", "dolvet_emergency": "DolVet (emergency)",
+    "aftodoll1": "Aftodoll dose 1", "aftodoll2": "Aftodoll dose 2",
+}
+CHANNEL_LABELS = {
+    "state": "State vet", "private": "Private vet", "state_vet": "State vet",
+    "feedlot": "Feedlot", "communal": "Communal", "commercial": "Commercial",
+    "emerging": "Emerging", "total": "Total",
+}
+CLASS_LABELS = {
+    "commercial_vaccinated": "Commercial cattle", "communal_vaccinated": "Communal cattle",
+    "dairy_vaccinated": "Dairy cattle", "commercial_beef_vaccinated": "Commercial beef",
+    "pigs_vaccinated": "Pigs", "emerging_vaccinated": "Emerging farmers",
+}
+EXTRA_LABELS = {
+    "vaccine_wastage": "Vaccine wastage", "primary_vaccinations": "Primary vaccinations",
+    "booster_vaccinations": "Booster vaccinations", "private_vet_vaccinations": "Private vet vaccinations",
+    "state_vet_vaccinations": "State vet vaccinations", "vaccination_sites": "Vaccination sites",
+    "private_vets_active": "Private vets active", "controlled_slaughter": "Controlled slaughter",
+    "animals_vaccinated_dose1": "Dose 1 animals", "animals_vaccinated_dose2": "Dose 2 animals",
+    "vaccine_balance": "Vaccine balance on hand", "rfid_tags_received": "RFID tags received",
+    "animals_eartagged_district": "Animals eartagged",
+}
+
+def build_provincial_detail(rows):
+    prog = [r for r in rows if r["superseded_by"] == ""]
+    detail = {}
+
+    def latest_prov(prov, metric, vt="", vc=""):
+        cands = [r for r in prog if r["province"] == prov and r["metric"] == metric
+                 and r["vaccine_type"] in ([vt] if vt else ("", "all", "total"))
+                 and r["vet_channel"] in ([vc] if vc else ("", "all", "total"))
+                 and (num(r["value"]) or 0) > 0]
+        if not cands: return None, None
+        cands.sort(key=lambda r: (r["effective_date"], int(r["version"])), reverse=True)
+        return num(cands[0]["value"]), cands[0]["effective_date"]
+
+    for code, name in PROVINCES:
+        prov_rows = [r for r in prog if r["province"] == code]
+        if not prov_rows:
+            continue
+
+        # Vaccine type breakdown
+        vax_types = {}
+        for r in prov_rows:
+            vt = r["vaccine_type"]
+            if (r["metric"] == "doses_received"
+                    and vt not in ("", "all", "total")
+                    and not vt[0].isupper()           # skip raw-label duplicates
+                    and r["vet_channel"] in ("", "all", "total")):
+                val = num(r["value"]) or 0
+                if val > 0:
+                    cur = vax_types.get(vt)
+                    if cur is None or r["effective_date"] > cur["date"]:
+                        vax_types[vt] = {"type": vt, "label": VAX_LABELS.get(vt, vt),
+                                          "doses": int(val), "date": r["effective_date"]}
+        vax_list = sorted(vax_types.values(), key=lambda x: -x["doses"])
+
+        # Vet channel split
+        channels = {}
+        for vc in ("state", "private", "state_vet", "communal", "commercial", "emerging"):
+            entry = {}
+            for metric in ("doses_received", "animals_vaccinated"):
+                v, dt = latest_prov(code, metric, vc=vc)
+                if v:
+                    entry[metric] = int(v)
+                    entry["date"] = dt
+            if entry:
+                label = CHANNEL_LABELS.get(vc, vc)
+                # Merge state and state_vet
+                key = "state" if vc == "state_vet" else vc
+                if key in channels:
+                    for k, v2 in entry.items():
+                        if k not in channels[key]:
+                            channels[key][k] = v2
+                else:
+                    channels[key] = {"label": label, **entry}
+        chan_list = [{"key": k, **v} for k, v in channels.items()]
+
+        # Animal classification
+        cls_list = []
+        for metric, label in CLASS_LABELS.items():
+            v, dt = latest_prov(code, metric)
+            if v:
+                cls_list.append({"category": metric, "label": label,
+                                  "value": int(v), "date": dt})
+        cls_list.sort(key=lambda x: -x["value"])
+
+        # District breakdown
+        dist_rows = [r for r in prov_rows if r["metric"] in (
+            "animals_vaccinated_district", "positive_cases_district",
+            "suspected_cases_district", "pending_cases_district",
+        )]
+        # Group by (date, name-fragment)
+        dist_map = {}
+        for r in dist_rows:
+            note = r.get("notes", "")
+            # Extract district name: text before first " | " or first 50 chars
+            name_raw = note.split(" | ")[0] if " | " in note else note[:50]
+            name_raw = name_raw.replace("District: ", "").replace("State Vet Area: ", "").strip()
+            key = (r["effective_date"], name_raw[:40])
+            if key not in dist_map:
+                dist_map[key] = {"name": name_raw[:40], "date": r["effective_date"],
+                                  "vaccinated": None, "cases": None,
+                                  "suspected": None, "pending": None}
+            metric = r["metric"]
+            val = int(num(r["value"]) or 0)
+            if metric == "animals_vaccinated_district":
+                dist_map[key]["vaccinated"] = val
+            elif metric == "positive_cases_district":
+                dist_map[key]["cases"] = val
+            elif metric == "suspected_cases_district":
+                dist_map[key]["suspected"] = val
+            elif metric == "pending_cases_district":
+                dist_map[key]["pending"] = val
+        dist_list = sorted(dist_map.values(), key=lambda x: (x["date"], -(x["vaccinated"] or x["cases"] or 0)), reverse=True)
+
+        # Extra indicators
+        extra = {}
+        for metric, label in EXTRA_LABELS.items():
+            v, dt = latest_prov(code, metric)
+            if v:
+                extra[metric] = {"label": label, "value": int(v) if v == int(v) else round(v, 2), "date": dt}
+
+        # Sources
+        sources = sorted(set(r["source_org"] for r in prov_rows))
+
+        detail[code] = {
+            "name": name,
+            "latest_date": latest_province_date(prog, code),
+            "vaccine_types": vax_list,
+            "vet_channels": chan_list,
+            "classification": cls_list,
+            "districts": dist_list[:30],
+            "extra": extra,
+            "sources": sources,
+        }
+
+    return detail
+
+
 def build_dashboard():
     rows = load_master()
     if not rows:
@@ -734,6 +878,8 @@ def build_dashboard():
     min_comparison = build_ministerial_comparison(rows)
     payload["ministerial_comparison"] = min_comparison
     payload["quality_flags"] = build_quality_flags(rows, snapshot, min_comparison)
+
+    payload["provincial_detail"] = build_provincial_detail(rows)
 
     # SAPPO pork-sector dispatch data — static from email 3 June 2026 (Thandi Chiappero)
     payload["sappo"] = {
