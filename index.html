@@ -984,7 +984,7 @@ const DASHBOARD_DATA = {
     "suspected": 855,
     "negative": 65,
     "pending": 237,
-    "procured": 6000000,
+    "procured": 13500000,
     "distributed": 5639190,
     "received": 5639190,
     "administered": 3136522,
@@ -1650,10 +1650,10 @@ try {
     </div>
     <div>
       <p class="alert-headline">
-        South Africa has received <span class="accent">${fmt(procured)} doses</span> from manufacturers, of which <span class="accent">${fmt(distributed)} doses</span> have been distributed to the provinces.
+        Government has procured <span class="accent">${fmt(procured)} doses</span> (Ministerial briefing, 1 June 2026).
+        Provinces have reported receiving <span class="accent">${fmt(distributed)} doses</span> via JOC returns — the balance is in national stockpile or in transit.
         We measure against a national herd of ${fmt(N.herd_cattle)} cattle.
         Full coverage at two doses per animal requires roughly ${(fullCoverageNeed/1e6).toFixed(1)} million doses.
-        The most recent week added ${fmt(N.delta_administered)} animals vaccinated to the provincial total.
       </p>
     </div>
   `;
