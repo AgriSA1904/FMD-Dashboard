@@ -158,14 +158,14 @@
   /* Tables */
   table { width: 100%; border-collapse: collapse; font-size: 14px; }
   th, td {
-    text-align: center; padding: var(--sp-3) var(--sp-4);
+    text-align: left; padding: var(--sp-3) var(--sp-4);
     border-bottom: 1px solid var(--mist);
   }
   th {
     background: var(--bone); font-size: 11px; font-weight: 600;
     color: var(--charcoal); text-transform: uppercase; letter-spacing: 0.4px;
   }
-  td.num { text-align: center; font-variant-numeric: tabular-nums; }
+  td.num { text-align: right; font-variant-numeric: tabular-nums; }
   tr:hover td { background: var(--bone); }
   tfoot td {
     font-weight: 600; background: var(--bone);
@@ -318,33 +318,6 @@
     color: var(--white); font-weight: 600; font-size: 16px;
     margin-bottom: var(--sp-4);
   }
-
-  /* Tab navigation */
-  .tab-nav {
-    position: sticky; top: 0; z-index: 100;
-    background: var(--pine);
-    display: flex; overflow-x: auto; scrollbar-width: none;
-    border-bottom: 2px solid rgba(255,255,255,0.12);
-    -webkit-overflow-scrolling: touch;
-    margin: 0 calc(-1 * var(--sp-9));
-    padding: 0 var(--sp-9);
-  }
-  .tab-nav::-webkit-scrollbar { display: none; }
-  .tab-btn {
-    background: none; border: none; cursor: pointer;
-    color: rgba(255,255,255,0.6);
-    font-family: inherit; font-size: 12px; font-weight: 600;
-    text-transform: uppercase; letter-spacing: 0.6px;
-    padding: 16px 24px; white-space: nowrap;
-    border-bottom: 3px solid transparent; margin-bottom: -2px;
-    transition: color 0.15s, border-color 0.15s;
-    flex-shrink: 0;
-  }
-  .tab-btn:hover { color: rgba(255,255,255,0.9); }
-  .tab-btn.tab-active { color: var(--lime); border-bottom-color: var(--lime); }
-  .tab-section { display: none; }
-  .tab-section.tab-active { display: block; padding-top: var(--sp-9); }
-  .alert-banner.tab-section.tab-active { padding-top: 0; margin-top: var(--sp-9); }
 </style>
 </head>
 <body>
@@ -380,8 +353,8 @@
         <p class="subtitle">A weekly view of vaccine rollout, disease status and provincial coverage. Compiled by AgriCulture South Africa from provincial Joint Operations Committee submissions.</p>
       </div>
       <div class="badge-block">
-        <span class="pill-status">As at 2026-06-04</span>
-        <span class="last-updated">Built 2026-06-05</span>
+        <span class="pill-status">As at 2026-06-03</span>
+        <span class="last-updated">Built 2026-06-07</span>
       </div>
     </div>
   </div>
@@ -389,25 +362,15 @@
 
 <main>
 
-<nav class="tab-nav" id="tabNav" aria-label="Dashboard sections">
-  <button class="tab-btn tab-active" data-target="national">National overview</button>
-  <button class="tab-btn" data-target="provincial">Provincial data</button>
-  <button class="tab-btn" data-target="progression">Disease and vaccine progression</button>
-  <button class="tab-btn" data-target="mpo">MPO</button>
-  <button class="tab-btn" data-target="rmis">RMIS</button>
-  <button class="tab-btn" data-target="sappo">SAPPO</button>
-  <button class="tab-btn" data-target="ministerial">Ministerial updates</button>
-</nav>
+  <div class="alert-banner" id="alertBanner"></div>
 
-  <div class="alert-banner tab-section tab-active" data-tab="national" id="alertBanner"></div>
-
-  <section class="tab-section tab-active" data-tab="national">
+  <section>
     <div class="kicker">National headline indicators</div>
     <h2>What we know this week.</h2>
     <div class="kpi-grid" id="kpiGrid"></div>
   </section>
 
-  <section class="tab-section tab-active" data-tab="national">
+  <section>
     <div class="kicker">Provincial snapshot</div>
     <h2>Active cases and vaccine coverage by province.</h2>
     <div class="grid-3">
@@ -431,7 +394,7 @@
     </div>
   </section>
 
-  <section class="tab-section" data-tab="progression">
+  <section>
     <div class="kicker">Trends over time</div>
     <h2>Disease and vaccine progression.</h2>
     <div class="grid-2">
@@ -446,7 +409,7 @@
     </div>
   </section>
 
-  <section class="tab-section tab-active" data-tab="national">
+  <section>
     <div class="kicker">Vaccine flow</div>
     <h2>Doses by province and by manufacturer.</h2>
     <div class="grid-3">
@@ -462,7 +425,7 @@
     </div>
   </section>
 
-  <section class="tab-section" data-tab="provincial">
+  <section>
     <div class="kicker">Provincial detail</div>
     <h2>Per province as at the latest available submission.</h2>
     <div class="card">
@@ -486,25 +449,7 @@
     </div>
   </section>
 
-  <section class="tab-section" data-tab="provincial">
-    <div class="kicker">Province explorer</div>
-    <h2>Select a province for the full breakdown.</h2>
-    <div id="provSelector" style="display:flex;flex-wrap:wrap;gap:var(--sp-2);margin-bottom:var(--sp-7)"></div>
-    <div id="provDetail" style="display:none">
-      <div id="provDetailHeader" class="alert-banner" style="margin-bottom:var(--sp-6);border-radius:var(--r-card)"></div>
-      <div class="grid-2" style="margin-bottom:var(--sp-6)">
-        <div class="card" id="provVaxTypeCard"></div>
-        <div class="card" id="provChannelCard"></div>
-      </div>
-      <div class="grid-2" style="margin-bottom:var(--sp-6)">
-        <div class="card" id="provClassCard"></div>
-        <div class="card" id="provExtraCard"></div>
-      </div>
-      <div class="card" id="provDistrictCard" style="margin-bottom:var(--sp-6)"></div>
-    </div>
-  </section>
-
-  <section class="tab-section" data-tab="provincial">
+  <section>
     <div class="kicker">Coverage gap</div>
     <h2>Herd coverage against the two dose protocol.</h2>
     <div class="card">
@@ -514,55 +459,30 @@
     </div>
   </section>
 
-  <section class="tab-section" data-tab="mpo">
+  <section>
     <div class="kicker">Dairy industry view</div>
     <h2>MPO: Dairy herd vaccination and FMD case burden.</h2>
     <p style="color:var(--charcoal);font-size:14px;margin-top:calc(-1 * var(--sp-6));margin-bottom:var(--sp-6)" id="mpoSubtitle">Submitted by the Milk Producers&#x2019; Organisation (MPO). Covers dairy cattle only.</p>
-
-    <!-- KPI row: vaccination + farm status -->
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:var(--sp-4);margin-bottom:var(--sp-6)">
+    <div class="grid-2" style="margin-bottom:var(--sp-6)">
       <div class="card" id="mpoDairyCowsKpi"></div>
       <div class="card" id="mpoFarmsConfirmedKpi"></div>
-      <div class="card" id="mpoFarmsActiveKpi"></div>
-      <div class="card" id="mpoFarmsResolvedKpi"></div>
-      <div class="card" id="mpoReinfectionKpi"></div>
     </div>
-
-    <!-- Vaccination + active cases by province -->
-    <div class="grid-2" style="margin-bottom:var(--sp-6)">
+    <div style="margin-bottom:var(--sp-6)">
+      <div class="card" style="max-width:520px" id="mpoFarmsActiveKpi"></div>
+    </div>
+    <div class="grid-2">
       <div class="card">
         <h3>Dairy cows vaccinated by province.</h3>
         <div class="chart-wrap tall"><canvas id="mpoDairyChart"></canvas></div>
       </div>
       <div class="card">
-        <h3>Active dairy FMD farms by province.</h3>
+        <h3>Active dairy FMD cases by province.</h3>
         <div class="chart-wrap tall"><canvas id="mpoCasesChart"></canvas></div>
       </div>
     </div>
-
-    <!-- Farm status trend + reinfection detail -->
-    <div class="grid-2" style="margin-bottom:var(--sp-6)">
-      <div class="card">
-        <h3>Farm status over time.</h3>
-        <p style="font-size:13px;color:var(--charcoal);margin:0 0 var(--sp-4)">Weekly count of dairy farms with confirmed and active FMD nationally.</p>
-        <div class="chart-wrap tall"><canvas id="mpoFarmsTrendChart"></canvas></div>
-      </div>
-      <div class="card" id="mpoReinfectionCard">
-        <h3>Post-vaccination reinfections.</h3>
-        <p style="font-size:13px;color:var(--charcoal);margin:0 0 var(--sp-4)">Farms that reported FMD reinfection after receiving vaccine. Clinical signs in reinfected herds have been significantly less severe than pre-vaccination outbreaks — consistent with vaccine protection moderating disease severity.</p>
-        <div id="mpoReinfectionBody"></div>
-      </div>
-    </div>
-
-    <!-- Per-province active farms detail table -->
-    <div class="card" style="margin-bottom:var(--sp-6)">
-      <h3>Active dairy FMD farms and vaccination progress by province.</h3>
-      <p style="font-size:13px;color:var(--charcoal);margin:0 0 var(--sp-4)" id="mpoTableNote"></p>
-      <div id="mpoProvTableBody"></div>
-    </div>
   </section>
 
-  <section class="tab-section" data-tab="rmis" id="rmisSection">
+  <section id="rmisSection">
     <div class="kicker">Feedlot sector view</div>
     <h2>RMIS: Feedlot vaccine orders.</h2>
     <p style="color:var(--charcoal);font-size:14px;margin-top:calc(-1 * var(--sp-6));margin-bottom:var(--sp-6)" id="rmisSubtitle">Submitted by the Red Meat Industry Service (RMIS). Covers feedlot and private-vet-channelled DolVet Biotech Trivalent orders. Cumulative from rollout start.</p>
@@ -614,33 +534,8 @@
     </div>
   </section>
 
-  <section class="tab-section" data-tab="sappo" id="sappoSection">
-    <div class="kicker">Pork industry view</div>
-    <h2>SAPPO: Pig sector vaccine dispatches.</h2>
-    <p style="color:var(--charcoal);font-size:14px;margin-top:calc(-1 * var(--sp-6));margin-bottom:var(--sp-6)">Submitted by the South African Pork Producers' Organisation (SAPPO). Covers Aftodoll (Dollvet) vaccine dispatched by SAPPO representatives to pig producers across South Africa. Some bottles were also used for cattle on the same farms to reduce cross-species FMD risk — the cattle/pig split is not available at dispatch level. Source: email from Dr Thandi Chiappero, SAPPO Head: Consumer Assurance, 3 June 2026.</p>
-
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:var(--sp-4);margin-bottom:var(--sp-6)" id="sappoKpiRow"></div>
-
-    <div class="grid-2" style="margin-bottom:var(--sp-6)">
-      <div class="card">
-        <h3>Bottles dispatched by province.</h3>
-        <div class="chart-wrap tall"><canvas id="sappoProvinceChart"></canvas></div>
-      </div>
-      <div class="card">
-        <h3>Cumulative bottles dispatched over time.</h3>
-        <div class="chart-wrap tall"><canvas id="sappoTimelineChart"></canvas></div>
-      </div>
-    </div>
-
-    <div class="card">
-      <h3>Dispatch log.</h3>
-
-      <div id="sappoDispatchTable"></div>
-    </div>
-  </section>
-
-  <section class="tab-section" data-tab="ministerial" id="ministerialSection">
-    <div class="kicker">Ministerial update — 1 June 2026</div>
+  <section id="ministerialSection">
+    <div class="kicker">Ministerial update — 5 May 2026</div>
     <h2>Updated figures from the Minister of Agriculture.</h2>
     <div id="ministerialBanner" style="margin-bottom:var(--sp-6)"></div>
     <div class="grid-2">
@@ -657,7 +552,7 @@
   </section>
 
 
-  <section class="tab-section" data-tab="ministerial">
+  <section>
     <div class="kicker">Data validation</div>
     <h2>Ministerial briefing vs JOC provincial returns.</h2>
     <p style="color:var(--charcoal);font-size:14px;margin-top:calc(-1 * var(--sp-6));margin-bottom:var(--sp-6)">Comparing DAFF ministerial figures (23 April 2026) against AgriSA JOC provincial returns (latest available). A positive difference means JOC reports more vaccinations than the ministerial figure — expected given the later date. A negative difference flags a data quality issue for investigation.</p>
@@ -685,6 +580,32 @@
     </div>
   </section>
 
+  <section>
+    <div class="kicker">Data quality</div>
+    <h2>Where the data still needs work.</h2>
+    <div class="grid-2">
+      <div class="card">
+        <h3>Reconciliation issues.</h3>
+        <ul class="flag-list">
+          <li class="critical"><strong>Spoilage is not tracked nationally.</strong>The national total is reported as zero or blank in every weekly submission. Only KZN reports percentages. True wastage remains unknown.</li>
+          <li class="critical"><strong>About 988 000 doses without a manufacturer breakdown.</strong>KZN's bulk allocation is reported only as a Total figure, with no Bioaftogen, DolVet, OBP or BVI split.</li>
+          <li><strong>State and Private Vet figures do not reconcile to Total.</strong>Suggests Total is the planned allocation while State and Private Vet are recorded receipts.</li>
+          <li><strong>Animals Vaccinated by type does not reconcile to TOTAL Animals Vaccinated.</strong>Free State and Limpopo subtotals do not match the stated totals.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Reporting gaps and ambiguities.</h3>
+        <ul class="flag-list">
+          <li class="critical"><strong>Mpumalanga reporting is sparse.</strong>Limited spoilage and channel split data despite being a top five outbreak province.</li>
+          <li><strong>KZN allocation rationale is undocumented.</strong>Largest provincial allocation but minimal cases. The pattern suggests pre-emptive ring vaccination, but the policy is not stated in any source file.</li>
+          <li><strong>No batch, expiry or cold chain data.</strong>Cumulative receipts only. The current balance could be ageing toward spoilage with no visibility.</li>
+          <li><strong>The reporting schema changed mid-period.</strong>Reports before 1 April 2026 use a simpler schema. Later weeks add State and Private Vet and Commercial and Communal columns.</li>
+          <li><strong>The national herd denominator changed silently.</strong>From 12 470 648 on 1 April 2026 to 12 496 199 from 17 April 2026 onwards, with no annotation.</li>
+          <li><strong>Commodity submissions partial.</strong>MPO and RPO have submitted to date. NWGA (wool growers) and SAPPO (pork producers) returns are not yet in the dataset.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
 </main>
 
@@ -712,6 +633,12 @@
         </svg>
       </div>
       <p>Compiled by AgriCulture South Africa for the Foot and Mouth Disease Industry Coordination Council. Data is drawn from weekly provincial Joint Operations Committee meetings and submitted by the provincial affiliates of AgriCulture South Africa, with commodity organisation contributions from MPO, RPO, and where available NWGA and SAPPO.</p>
+      <p style="margin-top:var(--sp-4)">Master record at <code>master_data.csv</code>. Build script at <code>scripts/build_dashboard.py</code>.</p>
+    </div>
+    <div>
+      <h4>Refresh process</h4>
+      <p>New submissions go into the <code>inbox/</code> folder. The Friday scheduled task ingests them, supersedes prior versions where the same period and metric are restated, archives the source, and rebuilds this dashboard.</p>
+      <p style="margin-top:var(--sp-4)">Backdated submissions are supported. The effective date places observations on the timeline. The version column tracks supersedes.</p>
     </div>
     <div>
       <h4>External live sources</h4>
@@ -728,32 +655,32 @@
 
 <script>
 const DASHBOARD_DATA = {
-  "snapshot_date": "2026-06-04",
-  "build_date": "2026-06-05",
+  "snapshot_date": "2026-06-03",
+  "build_date": "2026-06-07",
   "provinces": [
     {
       "code": "EC",
       "name": "Eastern Cape",
-      "as_of": "2026-05-28",
+      "as_of": "2026-06-03",
       "herd": 2895096,
       "positive": 295,
       "suspected": 221,
       "negative": 14,
       "pending": 0,
       "received": 652349,
-      "vaccinated": 489979
+      "vaccinated": 738614
     },
     {
       "code": "FS",
       "name": "Free State",
-      "as_of": "2026-06-02",
+      "as_of": "2026-06-03",
       "herd": 1928862,
-      "positive": 604,
-      "suspected": 412,
+      "positive": 589,
+      "suspected": 363,
       "negative": 0,
       "pending": 0,
-      "received": 863400,
-      "vaccinated": 609915
+      "received": 1100000,
+      "vaccinated": 609900
     },
     {
       "code": "GP",
@@ -782,31 +709,31 @@ const DASHBOARD_DATA = {
     {
       "code": "LP",
       "name": "Limpopo",
-      "as_of": "2026-06-01",
+      "as_of": "2026-06-03",
       "herd": 1007316,
-      "positive": 74,
-      "suspected": 90,
-      "negative": 54,
-      "pending": 258,
+      "positive": 61,
+      "suspected": 74,
+      "negative": 51,
+      "pending": 237,
       "received": 611680,
       "vaccinated": 377484
     },
     {
       "code": "MP",
       "name": "Mpumalanga",
-      "as_of": "2026-05-28",
+      "as_of": "2026-06-03",
       "herd": 1177420,
       "positive": 231,
       "suspected": 104,
       "negative": 0,
       "pending": 0,
       "received": 565489,
-      "vaccinated": 312886
+      "vaccinated": 344629
     },
     {
       "code": "NW",
       "name": "North West",
-      "as_of": "2026-05-28",
+      "as_of": "2026-06-03",
       "herd": 1383919,
       "positive": 332,
       "suspected": 0,
@@ -830,14 +757,14 @@ const DASHBOARD_DATA = {
     {
       "code": "WC",
       "name": "Western Cape",
-      "as_of": "2026-06-04",
+      "as_of": "2026-06-03",
       "herd": 458457,
-      "positive": 33,
+      "positive": 22,
       "suspected": 17,
       "negative": 0,
       "pending": 0,
-      "received": 430140,
-      "vaccinated": 279301
+      "received": 330340,
+      "vaccinated": 231913
     }
   ],
   "weekly": [
@@ -1005,48 +932,48 @@ const DASHBOARD_DATA = {
       "date": "2026-05-27",
       "received": 5639190,
       "administered": 3019335,
-      "positive": 1911,
-      "suspected": 871,
+      "positive": 1902,
+      "suspected": 855,
       "pending": null
     },
     {
       "date": "2026-05-28",
       "received": 5639190,
       "administered": 3019335,
-      "positive": 1915,
-      "suspected": 871,
+      "positive": 1902,
+      "suspected": 855,
       "pending": null
     },
     {
       "date": "2026-05-29",
       "received": 5639190,
       "administered": 3116083,
-      "positive": 1930,
-      "suspected": 920,
+      "positive": 1902,
+      "suspected": 855,
       "pending": null
     },
     {
       "date": "2026-06-01",
       "received": 5639190,
       "administered": 3136522,
-      "positive": 1930,
-      "suspected": 920,
+      "positive": 1902,
+      "suspected": 855,
       "pending": null
     },
     {
       "date": "2026-06-02",
       "received": 5639190,
       "administered": 3136522,
-      "positive": 1930,
-      "suspected": 920,
+      "positive": 1902,
+      "suspected": 855,
       "pending": null
     },
     {
-      "date": "2026-06-04",
-      "received": 5738990,
-      "administered": 3183910,
-      "positive": 1941,
-      "suspected": 920,
+      "date": "2026-06-03",
+      "received": 5875790,
+      "administered": 3416885,
+      "positive": 1902,
+      "suspected": 855,
       "pending": null
     }
   ],
@@ -1058,20 +985,20 @@ const DASHBOARD_DATA = {
     "unallocated": 358480
   },
   "national": {
-    "positive": 1941,
-    "suspected": 920,
-    "negative": 68,
-    "pending": 258,
+    "positive": 1902,
+    "suspected": 855,
+    "negative": 65,
+    "pending": 237,
     "procured": 13500000,
-    "distributed": 5738990,
-    "received": 5738990,
-    "administered": 3183910,
+    "distributed": 5875790,
+    "received": 5875790,
+    "administered": 3416885,
     "herd_cattle": 12496199,
-    "balance": 2555080,
-    "delta_received": 99800,
-    "delta_distributed": 99800,
-    "delta_administered": 47388,
-    "delta_positive": 11
+    "balance": 2458905,
+    "delta_received": 236600,
+    "delta_distributed": 236600,
+    "delta_administered": 280363,
+    "delta_positive": 0
   },
   "mpo": {
     "weekly": [
@@ -1126,29 +1053,16 @@ const DASHBOARD_DATA = {
         "NC": 0,
         "WC": 150116,
         "national": 831143
-      },
-      {
-        "date": "2026-06-05",
-        "EC": 297793,
-        "FS": 15104,
-        "GP": 14832,
-        "KZN": 360200,
-        "LP": 5475,
-        "MP": 9863,
-        "NW": 6342,
-        "NC": 0,
-        "WC": 158127,
-        "national": 867736
       }
     ],
-    "latest_date": "2026-06-05",
+    "latest_date": "2026-05-22",
     "provinces": [
       {
         "code": "EC",
         "name": "Eastern Cape",
-        "current": 297793,
-        "previous": 269211,
-        "change": 28582
+        "current": 269211,
+        "previous": 216597,
+        "change": 52614
       },
       {
         "code": "FS",
@@ -1202,60 +1116,17 @@ const DASHBOARD_DATA = {
       {
         "code": "WC",
         "name": "Western Cape",
-        "current": 158127,
-        "previous": 150116,
-        "change": 8011
+        "current": 150116,
+        "previous": 140746,
+        "change": 9370
       }
     ],
     "farms_confirmed": 171,
     "farms_confirmed_date": "2026-05-08",
     "farms_active": 124,
     "farms_active_date": "2026-05-22",
-    "farms_resolved": 47,
-    "farms_trend": [
-      {
-        "date": "2026-05-01",
-        "active": 122,
-        "confirmed": 169,
-        "resolved": 47
-      },
-      {
-        "date": "2026-05-08",
-        "active": 124,
-        "confirmed": 171,
-        "resolved": 47
-      },
-      {
-        "date": "2026-05-15",
-        "active": 124,
-        "confirmed": 171,
-        "resolved": 47
-      },
-      {
-        "date": "2026-05-22",
-        "active": 124,
-        "confirmed": 171,
-        "resolved": 47
-      }
-    ],
-    "reinfections": [
-      {
-        "code": "KZN",
-        "name": "KwaZulu-Natal",
-        "farms": 3,
-        "date": "2026-05-22",
-        "note": "MPO Week 31 (22 May 2026): 3 KZN dairy farms reported FMD reinfection after vaccination over past 2 weeks. Symptoms significantly less severe than pre-vaccination cases \u2014 consistent with vaccine protection moderating severity."
-      },
-      {
-        "code": "NW",
-        "name": "North West",
-        "farms": 1,
-        "date": "2026-05-22",
-        "note": "MPO Week 31 (22 May 2026): 1 NW dairy farm reported FMD reinfection after vaccination \u2014 Lichtenburg. Confirms Week 30 suspected case."
-      }
-    ],
-    "national_current": 867736,
-    "national_previous": 831143,
+    "national_current": 831143,
+    "national_previous": 769159,
     "active_by_province": [
       {
         "code": "EC",
@@ -1392,49 +1263,11 @@ const DASHBOARD_DATA = {
     }
   },
   "ministerial": {
-    "doses_procured": 13500000,
-    "doses_procured_asof": "2026-06-01",
+    "doses_procured": 6000000,
+    "doses_procured_asof": "2026-05-05",
     "doses_distributed": 5229966,
     "animals_vaccinated": 4400000,
     "animals_vaccinated_asof": "2026-05-28",
-    "provincial_cattle": {
-      "EC": {
-        "value": 720000,
-        "as_of": "2026-05-28"
-      },
-      "FS": {
-        "value": 600000,
-        "as_of": "2026-05-28"
-      },
-      "GP": {
-        "value": 270000,
-        "as_of": "2026-05-28"
-      },
-      "KZN": {
-        "value": 1100000,
-        "as_of": "2026-05-28"
-      },
-      "LP": {
-        "value": 350000,
-        "as_of": "2026-05-28"
-      },
-      "MP": {
-        "value": 430000,
-        "as_of": "2026-05-28"
-      },
-      "NW": {
-        "value": 430000,
-        "as_of": "2026-05-28"
-      },
-      "NC": {
-        "value": 87000,
-        "as_of": "2026-05-28"
-      },
-      "WC": {
-        "value": 260000,
-        "as_of": "2026-05-28"
-      }
-    },
     "policy_events": [
       {
         "date": "2026-05-04",
@@ -1449,161 +1282,116 @@ const DASHBOARD_DATA = {
     ],
     "incoming_supply": [
       {
-        "vaccine": "ARC Trivalent",
-        "doses": 12900,
-        "date": "2026-02-01",
-        "status": "Arrived",
-        "notes": "Initial emergency stock."
-      },
-      {
-        "vaccine": "Biogenesis Bivalent",
-        "doses": 1000000,
-        "date": "2026-02-01",
-        "status": "Arrived",
-        "notes": ""
-      },
-      {
-        "vaccine": "DolVet Trivalent",
-        "doses": 1500000,
-        "date": "2026-02-01",
-        "status": "Arrived",
-        "notes": ""
-      },
-      {
-        "vaccine": "Biogenesis Trivalent",
-        "doses": 1500000,
-        "date": "2026-04-01",
-        "status": "Arrived",
-        "notes": ""
-      },
-      {
-        "vaccine": "DolVet Trivalent",
-        "doses": 2000000,
-        "date": "2026-04-01",
-        "status": "Arrived",
-        "notes": ""
-      },
-      {
-        "vaccine": "DolVet Trivalent",
-        "doses": 2000000,
-        "date": "2026-05-01",
-        "status": "Arrived",
-        "notes": ""
-      },
-      {
-        "vaccine": "Biogenesis Bago",
-        "doses": 3500000,
-        "date": "2026-05-28",
-        "status": "Arrived",
-        "notes": "Distributed: 1.5M feedlots; 500 000 RMPO; 200 000 MPO; 100 000 stud breeders; 1.05M provinces; balance for border vaccination."
-      },
-      {
-        "vaccine": "DolVet (Dunevax)",
+        "vaccine": "dollvet",
         "doses": 4000000,
-        "date": "2026-06-30",
-        "status": "Expected",
-        "notes": "First consignment of 14M SAHPRA Section 21-approved Dollvet doses. Enables booster programme."
+        "expected": "2026-05-15",
+        "notes": "4M Dollvet in transit; expected mid-May 2026; ministerial briefing 05 May"
       },
       {
-        "vaccine": "DolVet (Dunevax)",
-        "doses": 10000000,
-        "date": "2026",
-        "status": "Pipeline",
-        "notes": "Remaining balance of 14M SAHPRA Section 21 approval. Delivery schedule to be confirmed."
+        "vaccine": "biogenesis_bago",
+        "doses": 5000000,
+        "expected": "2026-05-20",
+        "notes": "5M BB doses; import procedures underway post-Argentina visit; expected shortly after mid-May"
+      },
+      {
+        "vaccine": "dolvet",
+        "doses": 4000000,
+        "expected": "2026-06-01",
+        "notes": "First consignment 4 million DolVet doses arriving June 2026 under SAHPRA Section 21 approval. Monitor RMIS for receipt confirmation"
       }
     ],
-    "source_date": "2026-06-01",
-    "source_label": "Minister Steenhuisen media briefing, 1 June 2026"
+    "source_date": "2026-05-05",
+    "source_label": "Minister Steenhuisen media briefing, 5 May 2026"
   },
   "ministerial_comparison": [
     {
       "code": "EC",
       "name": "Eastern Cape",
-      "joc": 332182,
-      "joc_date": "2026-06-05",
-      "ministerial": 720000,
-      "ministerial_date": "2026-05-28",
-      "diff": -387818,
-      "flag": "critical"
+      "joc": 738614,
+      "joc_date": "2026-06-03",
+      "ministerial": 376122,
+      "ministerial_date": "2026-04-23",
+      "diff": 362492,
+      "flag": null
     },
     {
       "code": "FS",
       "name": "Free State",
-      "joc": 353447,
-      "joc_date": "2026-06-05",
-      "ministerial": 600000,
-      "ministerial_date": "2026-05-28",
-      "diff": -246553,
-      "flag": "critical"
+      "joc": 609900,
+      "joc_date": "2026-06-04",
+      "ministerial": 446527,
+      "ministerial_date": "2026-04-23",
+      "diff": 163373,
+      "flag": null
     },
     {
       "code": "GP",
       "name": "Gauteng",
       "joc": 184036,
-      "joc_date": "2026-06-05",
-      "ministerial": 270000,
-      "ministerial_date": "2026-05-28",
-      "diff": -85964,
-      "flag": "critical"
+      "joc_date": "2026-05-28",
+      "ministerial": 184036,
+      "ministerial_date": "2026-04-23",
+      "diff": 0,
+      "flag": "warning"
     },
     {
       "code": "KZN",
       "name": "KwaZulu-Natal",
       "joc": 648609,
-      "joc_date": "2026-06-09",
-      "ministerial": 1100000,
-      "ministerial_date": "2026-05-28",
-      "diff": -451391,
+      "joc_date": "2026-06-03",
+      "ministerial": 766508,
+      "ministerial_date": "2026-04-23",
+      "diff": -117899,
       "flag": "critical"
     },
     {
       "code": "LP",
       "name": "Limpopo",
       "joc": 128937,
-      "joc_date": "2026-06-05",
-      "ministerial": 350000,
-      "ministerial_date": "2026-05-28",
-      "diff": -221063,
+      "joc_date": "2026-06-03",
+      "ministerial": 183770,
+      "ministerial_date": "2026-04-23",
+      "diff": -54833,
       "flag": "critical"
     },
     {
       "code": "MP",
       "name": "Mpumalanga",
-      "joc": 176811,
-      "joc_date": "2026-06-05",
-      "ministerial": 430000,
-      "ministerial_date": "2026-05-28",
-      "diff": -253189,
-      "flag": "critical"
+      "joc": 344629,
+      "joc_date": "2026-06-03",
+      "ministerial": 233510,
+      "ministerial_date": "2026-04-23",
+      "diff": 111119,
+      "flag": null
     },
     {
       "code": "NW",
       "name": "North West",
       "joc": 168748,
-      "joc_date": "2026-06-05",
-      "ministerial": 430000,
-      "ministerial_date": "2026-05-28",
-      "diff": -261252,
+      "joc_date": "2026-06-03",
+      "ministerial": 188073,
+      "ministerial_date": "2026-04-23",
+      "diff": -19325,
       "flag": "critical"
     },
     {
       "code": "NC",
       "name": "Northern Cape",
       "joc": 28054,
-      "joc_date": "2026-06-05",
-      "ministerial": 87000,
-      "ministerial_date": "2026-05-28",
-      "diff": -58946,
+      "joc_date": "2026-05-28",
+      "ministerial": 46996,
+      "ministerial_date": "2026-04-23",
+      "diff": -18942,
       "flag": "critical"
     },
     {
       "code": "WC",
       "name": "Western Cape",
-      "joc": 279301,
-      "joc_date": "2026-06-05",
-      "ministerial": 260000,
-      "ministerial_date": "2026-05-28",
-      "diff": 19301,
+      "joc": 231913,
+      "joc_date": "2026-06-03",
+      "ministerial": 164474,
+      "ministerial_date": "2026-04-23",
+      "diff": 67439,
       "flag": null
     }
   ],
@@ -1612,7 +1400,7 @@ const DASHBOARD_DATA = {
       "severity": "critical",
       "province": "EC",
       "title": "Eastern Cape: Animals vaccinated exceeds doses received",
-      "detail": "JOC reports 332,182 animals vaccinated but only 304,600 doses received in province. Likely a cumulative vs period reporting mismatch, or draw on pre-rollout stock.",
+      "detail": "JOC reports 738,614 animals vaccinated but only 304,600 doses received in province. Likely a cumulative vs period reporting mismatch, or draw on pre-rollout stock.",
       "action": "Confirm whether provincial figures are cumulative from rollout start or period-only. Request reconciliation of receipt and administration logs.",
       "owner": "Eastern Cape AgriSA affiliate / JOC"
     },
@@ -1626,6 +1414,14 @@ const DASHBOARD_DATA = {
     },
     {
       "severity": "critical",
+      "province": "MP",
+      "title": "Mpumalanga: Animals vaccinated exceeds doses received",
+      "detail": "JOC reports 344,629 animals vaccinated but only 197,000 doses received in province. Likely a cumulative vs period reporting mismatch, or draw on pre-rollout stock.",
+      "action": "Confirm whether provincial figures are cumulative from rollout start or period-only. Request reconciliation of receipt and administration logs.",
+      "owner": "Mpumalanga AgriSA affiliate / JOC"
+    },
+    {
+      "severity": "critical",
       "province": "NW",
       "title": "North West: Animals vaccinated exceeds doses received",
       "detail": "JOC reports 168,748 animals vaccinated but only 161,420 doses received in province. Likely a cumulative vs period reporting mismatch, or draw on pre-rollout stock.",
@@ -1636,39 +1432,15 @@ const DASHBOARD_DATA = {
       "severity": "critical",
       "province": "WC",
       "title": "Western Cape: Animals vaccinated exceeds doses received",
-      "detail": "JOC reports 279,301 animals vaccinated but only 230,140 doses received in province. Likely a cumulative vs period reporting mismatch, or draw on pre-rollout stock.",
+      "detail": "JOC reports 231,913 animals vaccinated but only 230,140 doses received in province. Likely a cumulative vs period reporting mismatch, or draw on pre-rollout stock.",
       "action": "Confirm whether provincial figures are cumulative from rollout start or period-only. Request reconciliation of receipt and administration logs.",
       "owner": "Western Cape AgriSA affiliate / JOC"
     },
     {
       "severity": "critical",
-      "province": "EC",
-      "title": "Eastern Cape: JOC figure lower than ministerial briefing",
-      "detail": "Ministerial (2026-05-28) reported 720,000 cattle vaccinated; current JOC/AgriSA figure is 332,182 \u2014 gap of 387,818. Impossible if both are cumulative.",
-      "action": "Reconcile AgriSA provincial return against ministerial figure. Determine whether ministerial count includes additional species (pigs, sheep) beyond cattle only.",
-      "owner": "Eastern Cape AgriSA affiliate"
-    },
-    {
-      "severity": "critical",
-      "province": "FS",
-      "title": "Free State: JOC figure lower than ministerial briefing",
-      "detail": "Ministerial (2026-05-28) reported 600,000 cattle vaccinated; current JOC/AgriSA figure is 353,447 \u2014 gap of 246,553. Impossible if both are cumulative.",
-      "action": "Reconcile AgriSA provincial return against ministerial figure. Determine whether ministerial count includes additional species (pigs, sheep) beyond cattle only.",
-      "owner": "Free State AgriSA affiliate"
-    },
-    {
-      "severity": "critical",
-      "province": "GP",
-      "title": "Gauteng: JOC figure lower than ministerial briefing",
-      "detail": "Ministerial (2026-05-28) reported 270,000 cattle vaccinated; current JOC/AgriSA figure is 184,036 \u2014 gap of 85,964. Impossible if both are cumulative.",
-      "action": "Reconcile AgriSA provincial return against ministerial figure. Determine whether ministerial count includes additional species (pigs, sheep) beyond cattle only.",
-      "owner": "Gauteng AgriSA affiliate"
-    },
-    {
-      "severity": "critical",
       "province": "KZN",
       "title": "KwaZulu-Natal: JOC figure lower than ministerial briefing",
-      "detail": "Ministerial (2026-05-28) reported 1,100,000 cattle vaccinated; current JOC/AgriSA figure is 648,609 \u2014 gap of 451,391. Impossible if both are cumulative.",
+      "detail": "Ministerial (2026-04-23) reported 766,508 cattle vaccinated; current JOC/AgriSA figure is 648,609 \u2014 gap of 117,899. Impossible if both are cumulative.",
       "action": "Reconcile AgriSA provincial return against ministerial figure. Determine whether ministerial count includes additional species (pigs, sheep) beyond cattle only.",
       "owner": "KwaZulu-Natal AgriSA affiliate"
     },
@@ -1676,23 +1448,15 @@ const DASHBOARD_DATA = {
       "severity": "critical",
       "province": "LP",
       "title": "Limpopo: JOC figure lower than ministerial briefing",
-      "detail": "Ministerial (2026-05-28) reported 350,000 cattle vaccinated; current JOC/AgriSA figure is 128,937 \u2014 gap of 221,063. Impossible if both are cumulative.",
+      "detail": "Ministerial (2026-04-23) reported 183,770 cattle vaccinated; current JOC/AgriSA figure is 128,937 \u2014 gap of 54,833. Impossible if both are cumulative.",
       "action": "Reconcile AgriSA provincial return against ministerial figure. Determine whether ministerial count includes additional species (pigs, sheep) beyond cattle only.",
       "owner": "Limpopo AgriSA affiliate"
     },
     {
       "severity": "critical",
-      "province": "MP",
-      "title": "Mpumalanga: JOC figure lower than ministerial briefing",
-      "detail": "Ministerial (2026-05-28) reported 430,000 cattle vaccinated; current JOC/AgriSA figure is 176,811 \u2014 gap of 253,189. Impossible if both are cumulative.",
-      "action": "Reconcile AgriSA provincial return against ministerial figure. Determine whether ministerial count includes additional species (pigs, sheep) beyond cattle only.",
-      "owner": "Mpumalanga AgriSA affiliate"
-    },
-    {
-      "severity": "critical",
       "province": "NW",
       "title": "North West: JOC figure lower than ministerial briefing",
-      "detail": "Ministerial (2026-05-28) reported 430,000 cattle vaccinated; current JOC/AgriSA figure is 168,748 \u2014 gap of 261,252. Impossible if both are cumulative.",
+      "detail": "Ministerial (2026-04-23) reported 188,073 cattle vaccinated; current JOC/AgriSA figure is 168,748 \u2014 gap of 19,325. Impossible if both are cumulative.",
       "action": "Reconcile AgriSA provincial return against ministerial figure. Determine whether ministerial count includes additional species (pigs, sheep) beyond cattle only.",
       "owner": "North West AgriSA affiliate"
     },
@@ -1700,7 +1464,7 @@ const DASHBOARD_DATA = {
       "severity": "critical",
       "province": "NC",
       "title": "Northern Cape: JOC figure lower than ministerial briefing",
-      "detail": "Ministerial (2026-05-28) reported 87,000 cattle vaccinated; current JOC/AgriSA figure is 28,054 \u2014 gap of 58,946. Impossible if both are cumulative.",
+      "detail": "Ministerial (2026-04-23) reported 46,996 cattle vaccinated; current JOC/AgriSA figure is 28,054 \u2014 gap of 18,942. Impossible if both are cumulative.",
       "action": "Reconcile AgriSA provincial return against ministerial figure. Determine whether ministerial count includes additional species (pigs, sheep) beyond cattle only.",
       "owner": "Northern Cape AgriSA affiliate"
     },
@@ -1713,1578 +1477,10 @@ const DASHBOARD_DATA = {
       "owner": "FMD ICC Secretariat"
     }
   ],
-  "provincial_detail": {
-    "EC": {
-      "name": "Eastern Cape",
-      "latest_date": "2026-06-05",
-      "vaccine_types": [
-        {
-          "type": "dolvet",
-          "label": "DolVet",
-          "doses": 326350,
-          "date": "2026-05-21"
-        },
-        {
-          "type": "bioaftogen",
-          "label": "Bioaftogen",
-          "doses": 300899,
-          "date": "2026-05-21"
-        },
-        {
-          "type": "emergency_stock",
-          "label": "Emergency stock",
-          "doses": 20000,
-          "date": "2026-05-21"
-        },
-        {
-          "type": "obp_arc",
-          "label": "OBP / ARC",
-          "doses": 2600,
-          "date": "2026-05-21"
-        },
-        {
-          "type": "bvi",
-          "label": "BVI",
-          "doses": 1250,
-          "date": "2026-05-21"
-        },
-        {
-          "type": "artio_preva_other",
-          "label": "Artio-PREVA",
-          "doses": 1250,
-          "date": "2026-05-21"
-        }
-      ],
-      "vet_channels": [
-        {
-          "key": "private",
-          "label": "Private vet",
-          "animals_vaccinated": 161988,
-          "date": "2026-05-07"
-        }
-      ],
-      "classification": [
-        {
-          "category": "dairy_vaccinated",
-          "label": "Dairy cattle",
-          "value": 67576,
-          "date": "2026-04-28"
-        },
-        {
-          "category": "communal_vaccinated",
-          "label": "Communal cattle",
-          "value": 52689,
-          "date": "2026-05-07"
-        },
-        {
-          "category": "commercial_vaccinated",
-          "label": "Commercial cattle",
-          "value": 39311,
-          "date": "2026-05-07"
-        }
-      ],
-      "districts": [
-        {
-          "name": "Amathole",
-          "date": "2026-05-14",
-          "vaccinated": 91231,
-          "cases": 148,
-          "suspected": 96,
-          "pending": null,
-          "outbreaks": null,
-          "negative": 4,
-          "notes": "EC district Amathole as at 14 May 2026. BVI 800 + OBP 965 + Bioaftogen 37185 + DollVet 52281 = 91231. 148 positive / 96 suspect / 4 negative. Up from 81,490 on 7 May (+9,741)."
-        },
-        {
-          "name": "Alfred Nzo",
-          "date": "2026-05-14",
-          "vaccinated": 88158,
-          "cases": 46,
-          "suspected": 30,
-          "pending": null,
-          "outbreaks": null,
-          "negative": 7,
-          "notes": "EC district Alfred Nzo as at 14 May 2026. BVI 450 + Bioaftogen 66864 + DollVet 20844 = 88158. 46 positive / 30 suspect / 7 negative. Up from 87,965 on 7 May."
-        },
-        {
-          "name": "Chris Hani",
-          "date": "2026-05-14",
-          "vaccinated": 60591,
-          "cases": 38,
-          "suspected": 16,
-          "pending": null,
-          "outbreaks": null,
-          "negative": 2,
-          "notes": "EC district Chris Hani as at 14 May 2026. Bioaftogen 41617 + DollVet 18974 = 60591. 38 positive / 16 suspect / 2 negative. Unchanged from 7 May."
-        },
-        {
-          "name": "OR Tambo",
-          "date": "2026-05-14",
-          "vaccinated": 46086,
-          "cases": 13,
-          "suspected": 72,
-          "pending": null,
-          "outbreaks": null,
-          "negative": 0,
-          "notes": "EC district OR Tambo as at 14 May 2026. Bioaftogen 16833 + DollVet 29253 = 46086. 13 positive / 72 suspect / 0 negative. Up from 23,389 on 7 May (+22,697 \u2014 biggest district gain)."
-        },
-        {
-          "name": "Joe Gqabi",
-          "date": "2026-05-14",
-          "vaccinated": 31343,
-          "cases": 45,
-          "suspected": 6,
-          "pending": null,
-          "outbreaks": null,
-          "negative": 0,
-          "notes": "EC district Joe Gqabi as at 14 May 2026. Bioaftogen 16677 + DollVet 14666 = 31343. 45 positive / 6 suspect / 0 negative. Up from 18,368 on 7 May."
-        },
-        {
-          "name": "Sarah Baartman",
-          "date": "2026-05-14",
-          "vaccinated": 5200,
-          "cases": 4,
-          "suspected": 1,
-          "pending": null,
-          "outbreaks": null,
-          "negative": 1,
-          "notes": "EC district Sarah Baartman as at 14 May 2026. Bioaftogen 2815 + DollVet 1173 + OBP 1212 = 5200. 4 positive / 1 suspect / 1 negative."
-        },
-        {
-          "name": "Nelson Mandela Bay Metropolitan",
-          "date": "2026-05-14",
-          "vaccinated": null,
-          "cases": 1,
-          "suspected": null,
-          "pending": null,
-          "outbreaks": null,
-          "negative": null,
-          "notes": "EC district Nelson Mandela Bay Metropolitan as at 14 May 2026. 1 positive case; vaccinations included in Sarah Baartman total."
-        }
-      ],
-      "extra": {
-        "vaccine_balance": {
-          "label": "Vaccine balance on hand",
-          "value": 162370,
-          "date": "2026-05-21"
-        }
-      },
-      "sources": [
-        "AgriSA-NAT",
-        "EC-DRDAR",
-        "FMD-ICC",
-        "MPO",
-        "Ministry",
-        "RMIS",
-        "RPO",
-        "SAPPO"
-      ]
-    },
-    "FS": {
-      "name": "Free State",
-      "latest_date": "2026-06-05",
-      "vaccine_types": [
-        {
-          "type": "dolvet",
-          "label": "DolVet",
-          "doses": 466100,
-          "date": "2026-05-29"
-        },
-        {
-          "type": "bioaftogen",
-          "label": "Bioaftogen",
-          "doses": 370000,
-          "date": "2026-05-29"
-        },
-        {
-          "type": "obp_arc",
-          "label": "OBP / ARC",
-          "doses": 199899,
-          "date": "2026-05-29"
-        },
-        {
-          "type": "emergency_stock",
-          "label": "Emergency stock",
-          "doses": 25000,
-          "date": "2026-05-21"
-        }
-      ],
-      "vet_channels": [
-        {
-          "key": "state",
-          "label": "State vet",
-          "doses_received": 838400,
-          "date": "2026-05-08"
-        },
-        {
-          "key": "private",
-          "label": "Private vet",
-          "doses_received": 199899,
-          "date": "2026-05-08"
-        }
-      ],
-      "classification": [
-        {
-          "category": "commercial_vaccinated",
-          "label": "Commercial cattle",
-          "value": 135446,
-          "date": "2026-04-28"
-        },
-        {
-          "category": "dairy_vaccinated",
-          "label": "Dairy cattle",
-          "value": 13554,
-          "date": "2026-04-28"
-        },
-        {
-          "category": "pigs_vaccinated",
-          "label": "Pigs",
-          "value": 3000,
-          "date": "2026-04-28"
-        }
-      ],
-      "districts": [
-        {
-          "name": "Fezile Dabi district",
-          "date": "2026-05-29",
-          "vaccinated": null,
-          "cases": 339,
-          "suspected": null,
-          "pending": null,
-          "outbreaks": null,
-          "negative": null,
-          "notes": "Fezile Dabi district. Breakdown: Mafube 74, Metsimaholo 61, Moqhaka 111, Ngwathe 93."
-        },
-        {
-          "name": "Fezile Dabi",
-          "date": "2026-05-08",
-          "vaccinated": null,
-          "cases": 256,
-          "suspected": null,
-          "pending": null,
-          "outbreaks": null,
-          "negative": null,
-          "notes": "District: Fezile Dabi | LMs: Mafube 37|Metsimaholo 46|Moqhaka 98|Ngwathe 75. Up from 249 (FS-JOC 24Apr). Moqhaka dominant at 98."
-        },
-        {
-          "name": "Thabo Mofutsanyana district",
-          "date": "2026-05-29",
-          "vaccinated": null,
-          "cases": 181,
-          "suspected": null,
-          "pending": null,
-          "outbreaks": null,
-          "negative": null,
-          "notes": "Thabo Mofutsanyana district. Breakdown: Dihlabeng 67, Maluti-A-Phofung 28, Mantsopa 46, Phumelela 40."
-        },
-        {
-          "name": "Thabo Mofutsanyana",
-          "date": "2026-05-08",
-          "vaccinated": null,
-          "cases": 158,
-          "suspected": null,
-          "pending": null,
-          "outbreaks": null,
-          "negative": null,
-          "notes": "District: Thabo Mofutsanyana | LMs: Dihlabeng 15|Maluti-A-Phofung 27|Mantsopa 3|Nketoana 30|Phumelela 40|Setsoto 43. Up from 147 (FS-JOC 24Apr)."
-        },
-        {
-          "name": "Kroonstad SVA",
-          "date": "2026-06-02",
-          "vaccinated": null,
-          "cases": 111,
-          "suspected": null,
-          "pending": null,
-          "outbreaks": null,
-          "negative": null,
-          "notes": "State Vet Area: Kroonstad SVA | Local municipality/ies: Moqhaka | FS-DRDAR media release 2 Jun 2026. Total SVA breakdown sums to 604."
-        },
-        {
-          "name": "Heilbron SVA",
-          "date": "2026-06-02",
-          "vaccinated": null,
-          "cases": 93,
-          "suspected": null,
-          "pending": null,
-          "outbreaks": null,
-          "negative": null,
-          "notes": "State Vet Area: Heilbron SVA | Local municipality/ies: Ngwathe | FS-DRDAR media release 2 Jun 2026. Total SVA breakdown sums to 604."
-        },
-        {
-          "name": "Frankfort SVA",
-          "date": "2026-06-02",
-          "vaccinated": null,
-          "cases": 74,
-          "suspected": null,
-          "pending": null,
-          "outbreaks": null,
-          "negative": null,
-          "notes": "State Vet Area: Frankfort SVA | Local municipality/ies: Mafube | FS-DRDAR media release 2 Jun 2026. Total SVA breakdown sums to 604."
-        },
-        {
-          "name": "Bethlehem SVA",
-          "date": "2026-06-02",
-          "vaccinated": null,
-          "cases": 67,
-          "suspected": null,
-          "pending": null,
-          "outbreaks": null,
-          "negative": null,
-          "notes": "State Vet Area: Bethlehem SVA | Local municipality/ies: Dihlabeng and Nketoana | FS-DRDAR media release 2 Jun 2026. Total SVA breakdown sums to 604."
-        },
-        {
-          "name": "Lejweleputswa district",
-          "date": "2026-05-29",
-          "vaccinated": null,
-          "cases": 63,
-          "suspected": null,
-          "pending": null,
-          "outbreaks": null,
-          "negative": null,
-          "notes": "Lejweleputswa district. Breakdown includes Matjhabeng 43, Tokologo 10, Tswelopele 10."
-        },
-        {
-          "name": "Sasolburg SVA",
-          "date": "2026-06-02",
-          "vaccinated": null,
-          "cases": 61,
-          "suspected": null,
-          "pending": null,
-          "outbreaks": null,
-          "negative": null,
-          "notes": "State Vet Area: Sasolburg SVA | Local municipality/ies: Metsimaholo | FS-DRDAR media release 2 Jun 2026. Total SVA breakdown sums to 604."
-        },
-        {
-          "name": "Ladybrand SVA",
-          "date": "2026-06-02",
-          "vaccinated": null,
-          "cases": 46,
-          "suspected": null,
-          "pending": null,
-          "outbreaks": null,
-          "negative": null,
-          "notes": "State Vet Area: Ladybrand SVA | Local municipality/ies: Mantsopa and Setsoto | FS-DRDAR media release 2 Jun 2026. Total SVA breakdown sums to 604."
-        },
-        {
-          "name": "Welkom SVA",
-          "date": "2026-06-02",
-          "vaccinated": null,
-          "cases": 43,
-          "suspected": null,
-          "pending": null,
-          "outbreaks": null,
-          "negative": null,
-          "notes": "State Vet Area: Welkom SVA | Local municipality/ies: Matjhabeng and Nala | FS-DRDAR media release 2 Jun 2026. Total SVA breakdown sums to 604."
-        },
-        {
-          "name": "Lejweleputswa",
-          "date": "2026-05-08",
-          "vaccinated": null,
-          "cases": 41,
-          "suspected": null,
-          "pending": null,
-          "outbreaks": null,
-          "negative": null,
-          "notes": "District: Lejweleputswa | LMs: Masilonyana 3|Matjhabeng 17|Nala 9|Tokologo 5|Tswelopele 7. Up from 39 (FS-JOC 24Apr)."
-        },
-        {
-          "name": "Warden SVA",
-          "date": "2026-06-02",
-          "vaccinated": null,
-          "cases": 40,
-          "suspected": null,
-          "pending": null,
-          "outbreaks": null,
-          "negative": null,
-          "notes": "State Vet Area: Warden SVA | Local municipality/ies: Phumelela | FS-DRDAR media release 2 Jun 2026. Total SVA breakdown sums to 604."
-        },
-        {
-          "name": "Qwa-Qwa SVA",
-          "date": "2026-06-02",
-          "vaccinated": null,
-          "cases": 28,
-          "suspected": null,
-          "pending": null,
-          "outbreaks": null,
-          "negative": null,
-          "notes": "State Vet Area: Qwa-Qwa SVA | Local municipality/ies: Maluti-a-Phofung | FS-DRDAR media release 2 Jun 2026. Total SVA breakdown sums to 604."
-        },
-        {
-          "name": "Xhariep district",
-          "date": "2026-05-29",
-          "vaccinated": null,
-          "cases": 15,
-          "suspected": null,
-          "pending": null,
-          "outbreaks": null,
-          "negative": null,
-          "notes": "Xhariep district. Breakdown: Kopanong 8, Mohokare 7."
-        },
-        {
-          "name": "Xhariep",
-          "date": "2026-05-08",
-          "vaccinated": null,
-          "cases": 11,
-          "suspected": null,
-          "pending": null,
-          "outbreaks": null,
-          "negative": null,
-          "notes": "District: Xhariep | LMs: Kopanong 7|Letsemeng 1|Mohokare 3. Unchanged from 24Apr."
-        },
-        {
-          "name": "Boshof SVA",
-          "date": "2026-06-02",
-          "vaccinated": null,
-          "cases": 10,
-          "suspected": null,
-          "pending": null,
-          "outbreaks": null,
-          "negative": null,
-          "notes": "State Vet Area: Boshof SVA | Local municipality/ies: Tokologo | FS-DRDAR media release 2 Jun 2026. Total SVA breakdown sums to 604. (Note: Bultfontein SVA also = 10; both are distinct SVAs.)"
-        },
-        {
-          "name": "Bultfontein SVA",
-          "date": "2026-06-02",
-          "vaccinated": null,
-          "cases": 10,
-          "suspected": null,
-          "pending": null,
-          "outbreaks": null,
-          "negative": null,
-          "notes": "State Vet Area: Bultfontein SVA | Local municipality/ies: Tswelopele and Masilonyana | FS-DRDAR media release 2 Jun 2026. Total SVA breakdown sums to 604."
-        },
-        {
-          "name": "Fauresmith SVA",
-          "date": "2026-06-02",
-          "vaccinated": null,
-          "cases": 8,
-          "suspected": null,
-          "pending": null,
-          "outbreaks": null,
-          "negative": null,
-          "notes": "State Vet Area: Fauresmith SVA | Local municipality/ies: Kopanong and Letsemeng | FS-DRDAR media release 2 Jun 2026. Total SVA breakdown sums to 604."
-        },
-        {
-          "name": "Smithfield SVA",
-          "date": "2026-06-02",
-          "vaccinated": null,
-          "cases": 7,
-          "suspected": null,
-          "pending": null,
-          "outbreaks": null,
-          "negative": null,
-          "notes": "State Vet Area: Smithfield SVA | Local municipality/ies: Mohokare and Mangaung | FS-DRDAR media release 2 Jun 2026. Total SVA breakdown sums to 604."
-        },
-        {
-          "name": "Bloemfontein SVA",
-          "date": "2026-06-02",
-          "vaccinated": null,
-          "cases": 4,
-          "suspected": null,
-          "pending": null,
-          "outbreaks": null,
-          "negative": null,
-          "notes": "State Vet Area: Bloemfontein SVA | Local municipality/ies: Mangaung Metro | FS-DRDAR media release 2 Jun 2026. Total SVA breakdown sums to 604."
-        },
-        {
-          "name": "Thaba Nchu SVA",
-          "date": "2026-06-02",
-          "vaccinated": null,
-          "cases": 2,
-          "suspected": null,
-          "pending": null,
-          "outbreaks": null,
-          "negative": null,
-          "notes": "State Vet Area: Thaba Nchu SVA | Local municipality/ies: Mangaung Metro | FS-DRDAR media release 2 Jun 2026. Total SVA breakdown sums to 604."
-        }
-      ],
-      "extra": {
-        "animals_vaccinated_dose1": {
-          "label": "Dose 1 animals",
-          "value": 399397,
-          "date": "2026-05-15"
-        },
-        "animals_vaccinated_dose2": {
-          "label": "Dose 2 animals",
-          "value": 63007,
-          "date": "2026-05-15"
-        },
-        "vaccine_balance": {
-          "label": "Vaccine balance on hand",
-          "value": 380552,
-          "date": "2026-05-21"
-        }
-      },
-      "sources": [
-        "AgriSA-NAT",
-        "EC-DRDAR",
-        "FS-DARDLEA",
-        "FS-DRDAR",
-        "FS-JOC",
-        "FS-Landbou",
-        "MPO",
-        "Ministry",
-        "RMIS",
-        "RPO",
-        "SAPPO",
-        "Vrystaat_Landbou"
-      ]
-    },
-    "GP": {
-      "name": "Gauteng",
-      "latest_date": "2026-06-05",
-      "vaccine_types": [
-        {
-          "type": "dolvet",
-          "label": "DolVet",
-          "doses": 337800,
-          "date": "2026-05-21"
-        },
-        {
-          "type": "bioaftogen",
-          "label": "Bioaftogen",
-          "doses": 178440,
-          "date": "2026-05-21"
-        },
-        {
-          "type": "obp_arc",
-          "label": "OBP / ARC",
-          "doses": 1700,
-          "date": "2026-05-21"
-        }
-      ],
-      "vet_channels": [],
-      "classification": [
-        {
-          "category": "communal_vaccinated",
-          "label": "Communal cattle",
-          "value": 58588,
-          "date": "2026-04-28"
-        },
-        {
-          "category": "dairy_vaccinated",
-          "label": "Dairy cattle",
-          "value": 25278,
-          "date": "2026-04-28"
-        },
-        {
-          "category": "commercial_vaccinated",
-          "label": "Commercial cattle",
-          "value": 127,
-          "date": "2026-04-24"
-        }
-      ],
-      "districts": [],
-      "extra": {
-        "controlled_slaughter": {
-          "label": "Controlled slaughter",
-          "value": 231244,
-          "date": "2026-05-22"
-        },
-        "vaccine_balance": {
-          "label": "Vaccine balance on hand",
-          "value": 147103,
-          "date": "2026-05-21"
-        }
-      },
-      "sources": [
-        "AgriSA-NAT",
-        "FMD-ICC",
-        "GDARD",
-        "GDART",
-        "GP-GDARD",
-        "MPO",
-        "Ministry",
-        "RMIS",
-        "RPO"
-      ]
-    },
-    "KZN": {
-      "name": "KwaZulu-Natal",
-      "latest_date": "2026-06-09",
-      "vaccine_types": [
-        {
-          "type": "dolvet",
-          "label": "DolVet",
-          "doses": 752000,
-          "date": "2026-05-21"
-        },
-        {
-          "type": "bioaftogen",
-          "label": "Bioaftogen",
-          "doses": 557112,
-          "date": "2026-05-21"
-        },
-        {
-          "type": "emergency_stock",
-          "label": "Emergency stock",
-          "doses": 20000,
-          "date": "2026-05-21"
-        }
-      ],
-      "vet_channels": [],
-      "classification": [
-        {
-          "category": "dairy_vaccinated",
-          "label": "Dairy cattle",
-          "value": 265942,
-          "date": "2026-04-28"
-        },
-        {
-          "category": "pigs_vaccinated",
-          "label": "Pigs",
-          "value": 16000,
-          "date": "2026-04-28"
-        },
-        {
-          "category": "commercial_vaccinated",
-          "label": "Commercial cattle",
-          "value": 82,
-          "date": "2026-04-24"
-        },
-        {
-          "category": "communal_vaccinated",
-          "label": "Communal cattle",
-          "value": 63,
-          "date": "2026-04-24"
-        }
-      ],
-      "districts": [
-        {
-          "name": "uMgungundlovu District total",
-          "date": "2026-06-04",
-          "vaccinated": 84175,
-          "cases": null,
-          "suspected": null,
-          "pending": null,
-          "outbreaks": null,
-          "negative": null,
-          "notes": "uMgungundlovu District total. KZN DARD media statement 4 Jun 2026. uMgungundlovu is the 5th KZN district completed (after Ugu, Harry Gwala, uMkhanyakude, Zululand). 197 dip tanks. 77 commercial farms. Next: eThekwini Metropolitan \u2014 70 dip tanks, 9-16 June 2026."
-        },
-        {
-          "name": "uMgungundlovu District \u2014 Impendle 19660 anima",
-          "date": "2026-06-04",
-          "vaccinated": 19660,
-          "cases": null,
-          "suspected": null,
-          "pending": null,
-          "outbreaks": null,
-          "negative": null,
-          "notes": "uMgungundlovu District \u2014 Impendle LM: 19660 animals vaccinated, 9307 eartagged. 4 Jun 2026."
-        },
-        {
-          "name": "uMgungundlovu District \u2014 Mpofana 16169 animal",
-          "date": "2026-06-04",
-          "vaccinated": 16169,
-          "cases": null,
-          "suspected": null,
-          "pending": null,
-          "outbreaks": null,
-          "negative": null,
-          "notes": "uMgungundlovu District \u2014 Mpofana LM: 16169 animals vaccinated, 3876 eartagged. 4 Jun 2026."
-        },
-        {
-          "name": "uMgungundlovu District \u2014 uMsunduzi 15802 anim",
-          "date": "2026-06-04",
-          "vaccinated": 15802,
-          "cases": null,
-          "suspected": null,
-          "pending": null,
-          "outbreaks": null,
-          "negative": null,
-          "notes": "uMgungundlovu District \u2014 uMsunduzi LM: 15802 animals vaccinated, 4719 eartagged. 4 Jun 2026."
-        },
-        {
-          "name": "uMgungundlovu District \u2014 uMshwathi 10217 anim",
-          "date": "2026-06-04",
-          "vaccinated": 10217,
-          "cases": null,
-          "suspected": null,
-          "pending": null,
-          "outbreaks": null,
-          "negative": null,
-          "notes": "uMgungundlovu District \u2014 uMshwathi LM: 10217 animals vaccinated, 2557 eartagged. 4 Jun 2026."
-        },
-        {
-          "name": "uMgungundlovu District \u2014 Richmond 7951 animal",
-          "date": "2026-06-04",
-          "vaccinated": 7951,
-          "cases": null,
-          "suspected": null,
-          "pending": null,
-          "outbreaks": null,
-          "negative": null,
-          "notes": "uMgungundlovu District \u2014 Richmond LM: 7951 animals vaccinated, 3527 eartagged. 4 Jun 2026."
-        },
-        {
-          "name": "uMgungundlovu District \u2014 uMgeni 7234 animals",
-          "date": "2026-06-04",
-          "vaccinated": 7234,
-          "cases": null,
-          "suspected": null,
-          "pending": null,
-          "outbreaks": null,
-          "negative": null,
-          "notes": "uMgungundlovu District \u2014 uMgeni LM: 7234 animals vaccinated, 1762 eartagged. 4 Jun 2026."
-        },
-        {
-          "name": "uMgungundlovu District \u2014 Mkhambathini 7142 an",
-          "date": "2026-06-04",
-          "vaccinated": 7142,
-          "cases": null,
-          "suspected": null,
-          "pending": null,
-          "outbreaks": null,
-          "negative": null,
-          "notes": "uMgungundlovu District \u2014 Mkhambathini LM: 7142 animals vaccinated, 3616 eartagged. 4 Jun 2026."
-        }
-      ],
-      "extra": {
-        "vaccine_balance": {
-          "label": "Vaccine balance on hand",
-          "value": 528935,
-          "date": "2026-05-21"
-        },
-        "animals_eartagged_district": {
-          "label": "Animals eartagged",
-          "value": 29364,
-          "date": "2026-06-04"
-        }
-      },
-      "sources": [
-        "AgriSA-ICC",
-        "AgriSA-NAT",
-        "FMD-ICC",
-        "KZN-DARD",
-        "MPO",
-        "Ministry",
-        "RMIS",
-        "RPO",
-        "SAPPO"
-      ]
-    },
-    "LP": {
-      "name": "Limpopo",
-      "latest_date": "2026-06-05",
-      "vaccine_types": [
-        {
-          "type": "dolvet",
-          "label": "DolVet",
-          "doses": 410000,
-          "date": "2026-05-27"
-        },
-        {
-          "type": "bioaftogen",
-          "label": "Bioaftogen",
-          "doses": 199980,
-          "date": "2026-05-27"
-        },
-        {
-          "type": "emergency_stock",
-          "label": "Emergency stock",
-          "doses": 55000,
-          "date": "2026-05-21"
-        },
-        {
-          "type": "artio_preva_other",
-          "label": "Artio-PREVA",
-          "doses": 20383,
-          "date": "2026-05-21"
-        },
-        {
-          "type": "obp_arc",
-          "label": "OBP / ARC",
-          "doses": 1315,
-          "date": "2026-05-21"
-        }
-      ],
-      "vet_channels": [
-        {
-          "key": "communal",
-          "label": "Communal",
-          "animals_vaccinated": 71138,
-          "date": "2026-04-22"
-        },
-        {
-          "key": "commercial",
-          "label": "Commercial",
-          "animals_vaccinated": 76249,
-          "date": "2026-04-22"
-        },
-        {
-          "key": "emerging",
-          "label": "Emerging",
-          "animals_vaccinated": 10960,
-          "date": "2026-04-22"
-        }
-      ],
-      "classification": [
-        {
-          "category": "commercial_vaccinated",
-          "label": "Commercial cattle",
-          "value": 174915,
-          "date": "2026-05-20"
-        },
-        {
-          "category": "communal_vaccinated",
-          "label": "Communal cattle",
-          "value": 106886,
-          "date": "2026-05-20"
-        },
-        {
-          "category": "emerging_vaccinated",
-          "label": "Emerging farmers",
-          "value": 18843,
-          "date": "2026-05-20"
-        },
-        {
-          "category": "dairy_vaccinated",
-          "label": "Dairy cattle",
-          "value": 5475,
-          "date": "2026-04-28"
-        }
-      ],
-      "districts": [
-        {
-          "name": "Waterberg",
-          "date": "2026-06-01",
-          "vaccinated": 158072,
-          "cases": null,
-          "suspected": null,
-          "pending": null,
-          "outbreaks": null,
-          "negative": null,
-          "notes": "district=Waterberg; commercial+communal+emerging breakdown in source"
-        },
-        {
-          "name": "Vhembe",
-          "date": "2026-06-01",
-          "vaccinated": 70577,
-          "cases": null,
-          "suspected": null,
-          "pending": null,
-          "outbreaks": null,
-          "negative": null,
-          "notes": "district=Vhembe; commercial+communal+emerging breakdown in source"
-        },
-        {
-          "name": "Capricorn",
-          "date": "2026-06-01",
-          "vaccinated": 57042,
-          "cases": null,
-          "suspected": null,
-          "pending": null,
-          "outbreaks": null,
-          "negative": null,
-          "notes": "district=Capricorn; commercial+communal+emerging breakdown in source"
-        },
-        {
-          "name": "Mopani",
-          "date": "2026-06-01",
-          "vaccinated": 50657,
-          "cases": null,
-          "suspected": null,
-          "pending": null,
-          "outbreaks": null,
-          "negative": null,
-          "notes": "district=Mopani; commercial+communal+emerging breakdown in source"
-        },
-        {
-          "name": "Sekhukhune",
-          "date": "2026-06-01",
-          "vaccinated": 41136,
-          "cases": null,
-          "suspected": null,
-          "pending": null,
-          "outbreaks": null,
-          "negative": null,
-          "notes": "district=Sekhukhune; commercial+communal+emerging breakdown in source"
-        },
-        {
-          "name": "Waterberg district",
-          "date": "2026-05-27",
-          "vaccinated": null,
-          "cases": 25,
-          "suspected": null,
-          "pending": null,
-          "outbreaks": null,
-          "negative": null,
-          "notes": "Waterberg district. 215 total investigations; 33 suspect; 127 pending."
-        },
-        {
-          "name": "Capricorn district",
-          "date": "2026-05-27",
-          "vaccinated": null,
-          "cases": 20,
-          "suspected": null,
-          "pending": null,
-          "outbreaks": null,
-          "negative": null,
-          "notes": "Capricorn district. 75 total investigations."
-        },
-        {
-          "name": "Vhembe district (concentrated in Makhado muni",
-          "date": "2026-05-27",
-          "vaccinated": null,
-          "cases": 14,
-          "suspected": null,
-          "pending": null,
-          "outbreaks": null,
-          "negative": null,
-          "notes": "Vhembe district (concentrated in Makhado municipality). 31 suspected."
-        },
-        {
-          "name": "Sekhukhune district",
-          "date": "2026-05-27",
-          "vaccinated": null,
-          "cases": 8,
-          "suspected": null,
-          "pending": null,
-          "outbreaks": null,
-          "negative": null,
-          "notes": "Sekhukhune district. 41 total investigations."
-        },
-        {
-          "name": "Mopani district",
-          "date": "2026-05-27",
-          "vaccinated": null,
-          "cases": null,
-          "suspected": null,
-          "pending": 68,
-          "outbreaks": null,
-          "negative": null,
-          "notes": "Mopani district. 74 total investigations; majority pending (newest outbreaks)."
-        }
-      ],
-      "extra": {
-        "vaccine_wastage": {
-          "label": "Vaccine wastage",
-          "value": 1987,
-          "date": "2026-06-01"
-        },
-        "vaccine_balance": {
-          "label": "Vaccine balance on hand",
-          "value": 254000,
-          "date": "2026-05-27"
-        },
-        "rfid_tags_received": {
-          "label": "RFID tags received",
-          "value": 20000,
-          "date": "2026-03-25"
-        }
-      },
-      "sources": [
-        "AgriSA-ICC",
-        "AgriSA-NAT",
-        "FMD-ICC",
-        "LDARD",
-        "LP-LDARD",
-        "MPO",
-        "Ministry",
-        "RMIS",
-        "RPO",
-        "SAPPO"
-      ]
-    },
-    "MP": {
-      "name": "Mpumalanga",
-      "latest_date": "2026-06-05",
-      "vaccine_types": [
-        {
-          "type": "dolvet",
-          "label": "DolVet",
-          "doses": 239000,
-          "date": "2026-05-21"
-        },
-        {
-          "type": "bioaftogen",
-          "label": "Bioaftogen",
-          "doses": 195000,
-          "date": "2026-05-21"
-        },
-        {
-          "type": "aftodoll2",
-          "label": "Aftodoll dose 2",
-          "doses": 144000,
-          "date": "2026-05-17"
-        },
-        {
-          "type": "artio_preva",
-          "label": "Artio-PREVA",
-          "doses": 109489,
-          "date": "2026-05-17"
-        },
-        {
-          "type": "artio_preva_other",
-          "label": "Artio-PREVA",
-          "doses": 109489,
-          "date": "2026-05-21"
-        },
-        {
-          "type": "bioaftogen_biv1",
-          "label": "Bioaftogen Bivalent",
-          "doses": 100020,
-          "date": "2026-05-17"
-        },
-        {
-          "type": "aftodoll1",
-          "label": "Aftodoll dose 1",
-          "doses": 95000,
-          "date": "2026-05-17"
-        },
-        {
-          "type": "bioaftogen_triv2",
-          "label": "Bioaftogen Trivalent",
-          "doses": 94980,
-          "date": "2026-05-17"
-        },
-        {
-          "type": "dolvet_emergency",
-          "label": "DolVet (emergency)",
-          "doses": 40000,
-          "date": "2026-05-19"
-        },
-        {
-          "type": "emergency_stock",
-          "label": "Emergency stock",
-          "doses": 20000,
-          "date": "2026-05-21"
-        },
-        {
-          "type": "obp_arc",
-          "label": "OBP / ARC",
-          "doses": 2000,
-          "date": "2026-05-21"
-        }
-      ],
-      "vet_channels": [
-        {
-          "key": "state",
-          "label": "State vet",
-          "animals_vaccinated": 194629,
-          "date": "2026-05-19"
-        },
-        {
-          "key": "private",
-          "label": "Private vet",
-          "animals_vaccinated": 149908,
-          "date": "2026-05-19"
-        }
-      ],
-      "classification": [
-        {
-          "category": "communal_vaccinated",
-          "label": "Communal cattle",
-          "value": 73796,
-          "date": "2026-04-28"
-        },
-        {
-          "category": "commercial_vaccinated",
-          "label": "Commercial cattle",
-          "value": 31284,
-          "date": "2026-04-24"
-        },
-        {
-          "category": "dairy_vaccinated",
-          "label": "Dairy cattle",
-          "value": 9341,
-          "date": "2026-04-28"
-        }
-      ],
-      "districts": [
-        {
-          "name": "Gert Sibande",
-          "date": "2026-05-17",
-          "vaccinated": 132600,
-          "cases": null,
-          "suspected": null,
-          "pending": null,
-          "outbreaks": null,
-          "negative": null,
-          "notes": "MP district Gert Sibande as at 17 May 2026. 137 outbreaks / 78 suspects (dominant district). Municipalities: Chief Albert Luthuli 31661 / Msukaligwa 14898 / Govan Mbeki 16144 / Dipaleseng 14178 / Lekwa 24781 / Dr Pixley kaIsaka Seme 16717 / Mkhondo 14221."
-        },
-        {
-          "name": "Ehlanzeni",
-          "date": "2026-05-17",
-          "vaccinated": 96387,
-          "cases": null,
-          "suspected": null,
-          "pending": null,
-          "outbreaks": null,
-          "negative": null,
-          "notes": "MP district Ehlanzeni as at 17 May 2026. 24 outbreaks / 12 suspects. Municipalities: Mbombela 17924 / Nkomazi 27501 / Bushbuckridge 44205 / Thaba Chweu 6757."
-        },
-        {
-          "name": "Nkangala",
-          "date": "2026-05-17",
-          "vaccinated": 83879,
-          "cases": null,
-          "suspected": null,
-          "pending": null,
-          "outbreaks": null,
-          "negative": null,
-          "notes": "MP district Nkangala as at 17 May 2026. 70 outbreaks / 31 suspects. Municipalities: Dr JS Moroka 9723 / Thembisile Hani 12285 / Victor Khanye 4577 / Emalahleni 8586 / Steve Tshwete 37454 / Emakhazeni 11254."
-        },
-        {
-          "name": "MP-DVS (Dr Cele) 19 May 2026",
-          "date": "2026-05-19",
-          "vaccinated": 11350,
-          "cases": 5,
-          "suspected": 17,
-          "pending": null,
-          "outbreaks": null,
-          "negative": null,
-          "notes": "MP-DVS (Dr Cele) 19 May 2026. Ehlanzeni - Bushbuckridge: 0 confirmed outbreaks."
-        }
-      ],
-      "extra": {
-        "vaccine_wastage": {
-          "label": "Vaccine wastage",
-          "value": 2707,
-          "date": "2026-05-21"
-        },
-        "controlled_slaughter": {
-          "label": "Controlled slaughter",
-          "value": 24291,
-          "date": "2026-05-17"
-        },
-        "vaccine_balance": {
-          "label": "Vaccine balance on hand",
-          "value": 146423,
-          "date": "2026-05-21"
-        }
-      },
-      "sources": [
-        "AgriSA-NAT",
-        "FMD-ICC",
-        "MP-DVS",
-        "MPO",
-        "Ministry",
-        "RMIS",
-        "RPO",
-        "SAPPO"
-      ]
-    },
-    "NW": {
-      "name": "North West",
-      "latest_date": "2026-06-05",
-      "vaccine_types": [
-        {
-          "type": "dolvet",
-          "label": "DolVet",
-          "doses": 408400,
-          "date": "2026-05-21"
-        },
-        {
-          "type": "bioaftogen",
-          "label": "Bioaftogen",
-          "doses": 161920,
-          "date": "2026-05-21"
-        },
-        {
-          "type": "emergency_stock",
-          "label": "Emergency stock",
-          "doses": 46000,
-          "date": "2026-05-21"
-        },
-        {
-          "type": "dolvet_emergency",
-          "label": "DolVet (emergency)",
-          "doses": 26000,
-          "date": "2026-05-19"
-        },
-        {
-          "type": "obp_arc",
-          "label": "OBP / ARC",
-          "doses": 1400,
-          "date": "2026-05-21"
-        }
-      ],
-      "vet_channels": [],
-      "classification": [
-        {
-          "category": "dairy_vaccinated",
-          "label": "Dairy cattle",
-          "value": 5662,
-          "date": "2026-04-28"
-        }
-      ],
-      "districts": [
-        {
-          "name": "DRSM",
-          "date": "2026-04-30",
-          "vaccinated": 43676,
-          "cases": null,
-          "suspected": null,
-          "pending": null,
-          "outbreaks": null,
-          "negative": null,
-          "notes": "NW Aftodoll used as at 19 May 2026 (consignment 30 Apr). District: DRSM. Allocated 58100; used 43676; balance 14424."
-        },
-        {
-          "name": "NMM",
-          "date": "2026-04-30",
-          "vaccinated": 20111,
-          "cases": null,
-          "suspected": null,
-          "pending": null,
-          "outbreaks": null,
-          "negative": null,
-          "notes": "NW Aftodoll used as at 19 May 2026. District: NMM. Allocated 58100; used 20111; balance 37989."
-        },
-        {
-          "name": "DRSM (Dr Ruth S Mompati)",
-          "date": "2026-04-13",
-          "vaccinated": 15436,
-          "cases": null,
-          "suspected": null,
-          "pending": null,
-          "outbreaks": null,
-          "negative": null,
-          "notes": "NW Bioaftogen used as at 19 May 2026 report (allocation dated 13 Apr). District: DRSM (Dr Ruth S Mompati). Allocated 15480; used 15436; balance 44."
-        },
-        {
-          "name": "Bojanala",
-          "date": "2026-04-30",
-          "vaccinated": 13886,
-          "cases": null,
-          "suspected": null,
-          "pending": null,
-          "outbreaks": null,
-          "negative": null,
-          "notes": "NW Aftodoll used as at 19 May 2026. District: Bojanala. Allocated 58100; used 13886; balance 44214."
-        },
-        {
-          "name": "DKK",
-          "date": "2026-04-30",
-          "vaccinated": 12766,
-          "cases": null,
-          "suspected": null,
-          "pending": null,
-          "outbreaks": null,
-          "negative": null,
-          "notes": "NW Aftodoll used as at 19 May 2026. District: DKK. Allocated 58100; used 12766; balance 45334."
-        },
-        {
-          "name": "Bojanala (BPD)",
-          "date": "2026-04-13",
-          "vaccinated": 11819,
-          "cases": null,
-          "suspected": null,
-          "pending": null,
-          "outbreaks": null,
-          "negative": null,
-          "notes": "NW Bioaftogen used. District: Bojanala (BPD). Allocated 15480; used 11819; balance 3661."
-        },
-        {
-          "name": "Ngaka Modiri Molema (NMM)",
-          "date": "2026-04-13",
-          "vaccinated": 11684,
-          "cases": null,
-          "suspected": null,
-          "pending": null,
-          "outbreaks": null,
-          "negative": null,
-          "notes": "NW Bioaftogen used. District: Ngaka Modiri Molema (NMM). Allocated 15480; used 11684; balance 3796."
-        },
-        {
-          "name": "Dr Kenneth Kaunda (DKK)",
-          "date": "2026-04-13",
-          "vaccinated": 11527,
-          "cases": null,
-          "suspected": null,
-          "pending": null,
-          "outbreaks": null,
-          "negative": null,
-          "notes": "NW Bioaftogen used. District: Dr Kenneth Kaunda (DKK). Allocated 15480; used 11527; balance 3953."
-        }
-      ],
-      "extra": {
-        "vaccine_balance": {
-          "label": "Vaccine balance on hand",
-          "value": 286617,
-          "date": "2026-05-21"
-        }
-      },
-      "sources": [
-        "AgriSA-NAT",
-        "FMD-ICC",
-        "MPO",
-        "Ministry",
-        "NW-RPO",
-        "RMIS",
-        "RPO",
-        "SAPPO"
-      ]
-    },
-    "NC": {
-      "name": "Northern Cape",
-      "latest_date": "2026-06-05",
-      "vaccine_types": [
-        {
-          "type": "dolvet",
-          "label": "DolVet",
-          "doses": 85000,
-          "date": "2026-05-21"
-        },
-        {
-          "type": "bioaftogen",
-          "label": "Bioaftogen",
-          "doses": 65000,
-          "date": "2026-05-21"
-        },
-        {
-          "type": "obp_arc",
-          "label": "OBP / ARC",
-          "doses": 600,
-          "date": "2026-05-21"
-        }
-      ],
-      "vet_channels": [],
-      "classification": [
-        {
-          "category": "commercial_vaccinated",
-          "label": "Commercial cattle",
-          "value": 10427,
-          "date": "2026-04-28"
-        },
-        {
-          "category": "communal_vaccinated",
-          "label": "Communal cattle",
-          "value": 5553,
-          "date": "2026-04-28"
-        },
-        {
-          "category": "dairy_vaccinated",
-          "label": "Dairy cattle",
-          "value": 99,
-          "date": "2026-04-28"
-        }
-      ],
-      "districts": [],
-      "extra": {
-        "vaccine_balance": {
-          "label": "Vaccine balance on hand",
-          "value": 99373,
-          "date": "2026-05-21"
-        }
-      },
-      "sources": [
-        "AgriSA-NAT",
-        "FMD-ICC",
-        "MPO",
-        "Ministry",
-        "RMIS",
-        "RPO"
-      ]
-    },
-    "WC": {
-      "name": "Western Cape",
-      "latest_date": "2026-06-05",
-      "vaccine_types": [
-        {
-          "type": "dolvet",
-          "label": "DolVet",
-          "doses": 200000,
-          "date": "2026-05-21"
-        },
-        {
-          "type": "bioaftogen",
-          "label": "Bioaftogen",
-          "doses": 99740,
-          "date": "2026-05-21"
-        },
-        {
-          "type": "emergency_stock",
-          "label": "Emergency stock",
-          "doses": 30000,
-          "date": "2026-05-21"
-        },
-        {
-          "type": "obp_arc",
-          "label": "OBP / ARC",
-          "doses": 600,
-          "date": "2026-05-21"
-        }
-      ],
-      "vet_channels": [],
-      "classification": [
-        {
-          "category": "dairy_vaccinated",
-          "label": "Dairy cattle",
-          "value": 121183,
-          "date": "2026-04-28"
-        }
-      ],
-      "districts": [],
-      "extra": {
-        "primary_vaccinations": {
-          "label": "Primary vaccinations",
-          "value": 219790,
-          "date": "2026-05-19"
-        },
-        "booster_vaccinations": {
-          "label": "Booster vaccinations",
-          "value": 12123,
-          "date": "2026-05-19"
-        },
-        "vaccination_sites": {
-          "label": "Vaccination sites",
-          "value": 1204,
-          "date": "2026-06-04"
-        },
-        "private_vets_active": {
-          "label": "Private vets active",
-          "value": 29,
-          "date": "2026-06-04"
-        },
-        "vaccine_balance": {
-          "label": "Vaccine balance on hand",
-          "value": 98427,
-          "date": "2026-05-21"
-        }
-      },
-      "sources": [
-        "AWC-RPO",
-        "AgriSA-NAT",
-        "FMD-ICC",
-        "MPO",
-        "Ministry",
-        "RPO",
-        "SAPPO",
-        "WC-GIS"
-      ]
-    }
-  },
-  "sappo": {
-    "source": "Email \u2014 Dr Thandi Chiappero, SAPPO Head: Consumer Assurance, 5 June 2026",
-    "vaccine": "Aftodoll (Dollvet)",
-    "note": "Some bottles were used for cattle on the same farms to reduce FMD risk to pigs. The cattle/pig split is not available at dispatch level. KZN volume is elevated because KZN state veterinary services were not allocating vaccine to pig producers. 62 bottles dispatched on 25 May 2026 have no province recorded \u2014 excluded from provincial totals.",
-    "total_bottles": 2075,
-    "dispatches": [
-      {
-        "date": "2026-04-30",
-        "rep": "ML",
-        "bottles": 600,
-        "province": "LP",
-        "province_name": "Limpopo"
-      },
-      {
-        "date": "2026-05-05",
-        "rep": "TC",
-        "bottles": 80,
-        "province": "NW",
-        "province_name": "North West"
-      },
-      {
-        "date": "2026-05-05",
-        "rep": "TC",
-        "bottles": 37,
-        "province": "NW",
-        "province_name": "North West"
-      },
-      {
-        "date": "2026-05-07",
-        "rep": "TC",
-        "bottles": 130,
-        "province": "LP",
-        "province_name": "Limpopo"
-      },
-      {
-        "date": "2026-05-12",
-        "rep": "ML",
-        "bottles": 8,
-        "province": "FS",
-        "province_name": "Free State"
-      },
-      {
-        "date": "2026-05-13",
-        "rep": "TC",
-        "bottles": 508,
-        "province": "KZN",
-        "province_name": "KwaZulu-Natal"
-      },
-      {
-        "date": "2026-05-13",
-        "rep": "ML",
-        "bottles": 345,
-        "province": "LP",
-        "province_name": "Limpopo"
-      },
-      {
-        "date": "2026-05-14",
-        "rep": "ML",
-        "bottles": 74,
-        "province": "EC",
-        "province_name": "Eastern Cape"
-      },
-      {
-        "date": "2026-05-18",
-        "rep": "TC",
-        "bottles": 20,
-        "province": "KZN",
-        "province_name": "KwaZulu-Natal"
-      },
-      {
-        "date": "2026-05-22",
-        "rep": "TC",
-        "bottles": 15,
-        "province": "WC",
-        "province_name": "Western Cape"
-      },
-      {
-        "date": "2026-05-25",
-        "rep": "ML",
-        "bottles": 62,
-        "province": "?",
-        "province_name": "Unspecified"
-      },
-      {
-        "date": "2026-05-27",
-        "rep": "ML",
-        "bottles": 34,
-        "province": "MP",
-        "province_name": "Mpumalanga"
-      },
-      {
-        "date": "2026-06-03",
-        "rep": "TC",
-        "bottles": 100,
-        "province": "KZN",
-        "province_name": "KwaZulu-Natal"
-      },
-      {
-        "date": "2026-06-03",
-        "rep": "ML",
-        "bottles": 6,
-        "province": "KZN",
-        "province_name": "KwaZulu-Natal"
-      },
-      {
-        "date": "2026-06-04",
-        "rep": "TC",
-        "bottles": 56,
-        "province": "FS",
-        "province_name": "Free State"
-      }
-    ],
-    "by_province": {
-      "LP": 1075,
-      "KZN": 634,
-      "NW": 117,
-      "EC": 74,
-      "FS": 64,
-      "MP": 34,
-      "WC": 15
-    },
-    "by_rep": {
-      "TC": 1404,
-      "ML": 609
-    }
-  },
   "sources_used": [
     "01 May 2026/AgriSA - FMD Vaccination Data - 01.05.26.xlsx",
     "04-10-2026_FMD ICC Update.pdf",
+    "05-29-2026_FMD ICC Update.pdf",
     "17 April 2026/2. AgriSA - FMD Vaccination Data - 17.04.26.pdf",
     "24 April 2026/AgriSA - FMD Vaccination Data - 24.04.26.xlsx",
     "26 March 2026/AgriSA - FMD Vaccination Data - 26.03.26.pdf",
@@ -3292,6 +1488,7 @@ const DASHBOARD_DATA = {
     "AWC and RPO FMD update 4 Mei 2026.pdf",
     "AgriSA FMD Data - ICC Update - 01.04.2026.pdf",
     "Email - SAPPO.pdf",
+    "Email -SAPPO - 05 June.pdf",
     "FMD PCM MEETING PACK 20260604.pdf",
     "FMD-Vaccine_Imported.xlsx",
     "FMD_Master_Template_v2.xlsx (uploaded 2026-05-21)",
@@ -3300,17 +1497,15 @@ const DASHBOARD_DATA = {
     "FS FMD Vaccine Data - 29.05.2026.xlsx",
     "GDARD FMD JOC Meeting 22.05.26.pdf",
     "ICC FMD_VaccineRollout_20March2026.pdf",
-    "KZN DARD Facebook media statement 4 June 2026 - uMgungundlovu district completion",
     "MEDIA BRIEFING BY MINISTER OF AGRICULTURE_LATIN AMERICA OUTCOMES_SECTION 10_FMD_05MAY2026.pdf",
     "MPO Info/Copy of FMD Vaccination Data 17 April 2026.xlsx",
     "MPO direct communication \u2014 15 May 2026",
-    "Minister_Steenhuisen_1Jun2026_press_statement.pdf",
     "Presentation LIMPOPO FMD OUTBREAK CURRENT STATUS PRIORATY MEETING 2026-06-04.pdf",
+    "Press Statement by Minister John Steenhuisen on Foot and Mouth Disease vaccination and vaccine acquisition 1 June 2026.pdf",
     "RPO Info/Vaccine Rollout Stats.xlsx",
+    "Summary and Outcomes_FMD Weekly Engagement_2026.06.03.pdf",
     "Vaccine Orders Export (2026-06-02).xlsx",
-    "WC GIS Portal (gis.westerncape.gov.za) \u2014 Claude in Chrome live read, 5 Jun 2026",
     "WhatsApp Image 2026-06-02 at 08.43.23.jpeg",
-    "WhatsApp MPO Week 32 - 5 June 2026",
     "archive/2026-04-28/04-10-2026_FMD ICC Update.pdf",
     "archive/2026-05-14/FMD PCM MEETING PACK 20260514 REV0.pdf",
     "inbox/01042026_FMD Graphics_V2.pdf",
@@ -3426,10 +1621,10 @@ try {
     </div>
     <div>
       <p class="alert-headline">
-        Government has procured <span class="accent">${fmt(procured)} doses</span> (Ministerial briefing, 1 June 2026).
-        Provinces have reported receiving <span class="accent">${fmt(distributed)} doses</span> via JOC returns — the balance is in national stockpile or in transit.
+        South Africa has received <span class="accent">${fmt(procured)} doses</span> from manufacturers, of which <span class="accent">${fmt(distributed)} doses</span> have been distributed to the provinces.
         We measure against a national herd of ${fmt(N.herd_cattle)} cattle.
         Full coverage at two doses per animal requires roughly ${(fullCoverageNeed/1e6).toFixed(1)} million doses.
+        The most recent week added ${fmt(N.delta_administered)} animals vaccinated to the provincial total.
       </p>
     </div>
   `;
@@ -3533,203 +1728,13 @@ try {
     </tr>`;
 } catch(e) { showError('provTable', 'Provincial table', e); }
 
-// ── Province explorer ─────────────────────────────────────────────────────────
-(function () {
-  const PD = data.provincial_detail || {};
-  const prov = data.provinces || [];
-
-  function fmt2(n) { return n == null ? '—' : fmt(n); }
-
-  function bar(val, max, color) {
-    const pct = max > 0 ? Math.min(100, (val / max) * 100) : 0;
-    return `<div style="background:var(--mist);border-radius:99px;height:8px;overflow:hidden;min-width:80px">
-      <div style="width:${pct.toFixed(1)}%;height:100%;background:${color || 'var(--olive)'}"></div></div>`;
-  }
-
-  function showProvDetail(code) {
-    const d = PD[code];
-    if (!d) return;
-    const pv = prov.find(p => p.code === code) || {};
-
-    // Update selector chips
-    document.querySelectorAll('.prov-chip').forEach(b => {
-      b.style.background = b.dataset.code === code ? 'var(--lime)' : 'transparent';
-      b.style.color = b.dataset.code === code ? 'var(--pine)' : 'var(--pine)';
-      b.style.borderColor = b.dataset.code === code ? 'var(--lime)' : 'rgba(16,45,45,0.25)';
-    });
-
-    // Header
-    const hdr = safeEl('provDetailHeader');
-    if (hdr) {
-      const cov = pv.herd > 0 ? ((pv.vaccinated / pv.herd) * 100).toFixed(1) : '—';
-      hdr.innerHTML = `
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:var(--sp-6);align-items:start">
-          <div><div style="font-size:13px;opacity:0.6;text-transform:uppercase;letter-spacing:0.6px">${d.name}</div>
-            <div style="font-size:42px;font-weight:300;color:var(--lime);letter-spacing:-1px">${fmt2(pv.positive)}</div>
-            <div style="font-size:13px;opacity:0.8">Confirmed cases</div></div>
-          <div><div style="font-size:13px;opacity:0.6;text-transform:uppercase;letter-spacing:0.6px">Animals vaccinated</div>
-            <div style="font-size:32px;font-weight:300;color:var(--white)">${fmt2(pv.vaccinated)}</div>
-            <div style="font-size:13px;opacity:0.8">${cov}% of herd · ${fmt2(pv.herd)} cattle</div></div>
-          <div><div style="font-size:13px;opacity:0.6;text-transform:uppercase;letter-spacing:0.6px">Doses received</div>
-            <div style="font-size:32px;font-weight:300;color:var(--white)">${fmt2(pv.received)}</div>
-            <div style="font-size:13px;opacity:0.8">Balance: ${fmt2((pv.received||0)-(pv.vaccinated||0))}</div></div>
-          <div><div style="font-size:13px;opacity:0.6;text-transform:uppercase;letter-spacing:0.6px">Suspect / pending</div>
-            <div style="font-size:32px;font-weight:300;color:var(--white)">${fmt2(pv.suspected)}</div>
-            <div style="font-size:13px;opacity:0.8">As at ${d.latest_date || '—'}</div></div>
-        </div>`;
-    }
-
-    // Vaccine type breakdown
-    const vaxCard = safeEl('provVaxTypeCard');
-    if (vaxCard) {
-      if (d.vaccine_types && d.vaccine_types.length) {
-        const maxDoses = d.vaccine_types[0].doses;
-        const rows = d.vaccine_types.map(v =>
-          `<tr><td>${v.label}</td><td class="num">${fmt2(v.doses)}</td>
-           <td style="padding-left:8px;min-width:100px">${bar(v.doses, maxDoses)}</td>
-           <td style="font-size:11px;color:var(--charcoal)">${v.date}</td></tr>`
-        ).join('');
-        vaxCard.innerHTML = `<h3>Vaccine mix (doses received).</h3>
-          <table><thead><tr><th>Vaccine</th><th class="num">Doses</th><th></th><th>Date</th></tr></thead>
-          <tbody>${rows}</tbody></table>`;
-      } else {
-        vaxCard.innerHTML = '<h3>Vaccine mix.</h3><p style="color:var(--charcoal);font-size:13px">No manufacturer breakdown available for this province.</p>';
-      }
-    }
-
-    // Vet channel split
-    const chanCard = safeEl('provChannelCard');
-    if (chanCard) {
-      if (d.vet_channels && d.vet_channels.length) {
-        const rows = d.vet_channels.map(c =>
-          `<tr><td>${c.label}</td>
-           <td class="num">${c.doses_received != null ? fmt2(c.doses_received) : '—'}</td>
-           <td class="num">${c.animals_vaccinated != null ? fmt2(c.animals_vaccinated) : '—'}</td>
-           <td style="font-size:11px;color:var(--charcoal)">${c.date || ''}</td></tr>`
-        ).join('');
-        chanCard.innerHTML = `<h3>State vs private vet channel.</h3>
-          <table><thead><tr><th>Channel</th><th class="num">Doses received</th><th class="num">Animals vaccinated</th><th>Date</th></tr></thead>
-          <tbody>${rows}</tbody></table>`;
-      } else {
-        chanCard.innerHTML = '<h3>State vs private vet channel.</h3><p style="color:var(--charcoal);font-size:13px">No channel split available for this province.</p>';
-      }
-    }
-
-    // Classification
-    const clsCard = safeEl('provClassCard');
-    if (clsCard) {
-      if (d.classification && d.classification.length) {
-        const total = d.classification.reduce((a, c) => a + c.value, 0);
-        const rows = d.classification.map(c =>
-          `<tr><td>${c.label}</td><td class="num">${fmt2(c.value)}</td>
-           <td style="padding-left:8px;min-width:80px">${bar(c.value, total, 'var(--olive)')}</td>
-           <td style="font-size:11px;color:var(--charcoal)">${(c.value/total*100).toFixed(1)}%</td></tr>`
-        ).join('');
-        clsCard.innerHTML = `<h3>Animal classification.</h3>
-          <table><thead><tr><th>Category</th><th class="num">Count</th><th></th><th>Share</th></tr></thead>
-          <tbody>${rows}</tbody></table>`;
-      } else {
-        clsCard.innerHTML = '<h3>Animal classification.</h3><p style="color:var(--charcoal);font-size:13px">No classification breakdown available for this province.</p>';
-      }
-    }
-
-    // Extra indicators
-    const extCard = safeEl('provExtraCard');
-    if (extCard) {
-      const items = Object.values(d.extra || {});
-      if (items.length) {
-        const rows = items.map(e =>
-          `<tr><td>${e.label}</td><td class="num">${fmt2(e.value)}</td>
-           <td style="font-size:11px;color:var(--charcoal)">${e.date || ''}</td></tr>`
-        ).join('');
-        extCard.innerHTML = `<h3>Additional indicators.</h3>
-          <table><thead><tr><th>Indicator</th><th class="num">Value</th><th>Date</th></tr></thead>
-          <tbody>${rows}</tbody></table>`;
-      } else {
-        extCard.innerHTML = '<h3>Additional indicators.</h3><p style="color:var(--charcoal);font-size:13px">No additional indicators recorded for this province.</p>';
-      }
-    }
-
-    // District breakdown
-    const distCard = safeEl('provDistrictCard');
-    if (distCard) {
-      if (d.districts && d.districts.length) {
-        const hasOutbreaks = d.districts.some(x => x.outbreaks != null);
-        const hasNeg       = d.districts.some(x => x.negative != null);
-        const hasPending   = d.districts.some(x => x.pending != null);
-        const rows = d.districts.map(dist => {
-          const caseTd = dist.cases != null
-            ? `<td class="num" style="color:#c0392b;font-weight:600">${fmt2(dist.cases)}</td>`
-            : (dist.outbreaks != null
-              ? `<td class="num" style="color:#c0392b">${fmt2(dist.outbreaks)}<span style="font-size:10px;color:var(--charcoal)"> rep.</span></td>`
-              : '<td class="num">—</td>');
-          return `<tr>
-            <td style="font-weight:500">${dist.name}</td>
-            ${caseTd}
-            <td class="num">${dist.suspected != null ? fmt2(dist.suspected) : '—'}</td>
-            ${hasNeg   ? `<td class="num">${dist.negative  != null ? fmt2(dist.negative)  : '—'}</td>` : ''}
-            ${hasPending ? `<td class="num">${dist.pending != null ? fmt2(dist.pending)   : '—'}</td>` : ''}
-            <td class="num">${dist.vaccinated != null ? fmt2(dist.vaccinated) : '—'}</td>
-            <td style="font-size:11px;color:var(--charcoal)">${dist.date}</td>
-          </tr>`;
-        }).join('');
-        distCard.innerHTML = `<h3>District and municipal breakdown.</h3>
-          <table><thead><tr>
-            <th>District / Area</th>
-            <th class="num">Positive</th>
-            <th class="num">Suspected</th>
-            ${hasNeg     ? '<th class="num">Negative</th>' : ''}
-            ${hasPending ? '<th class="num">Pending</th>'  : ''}
-            <th class="num">Vaccinated</th>
-            <th>Date</th>
-          </tr></thead><tbody>${rows}</tbody></table>`;
-      } else {
-        distCard.innerHTML = '<h3>District and municipal breakdown.</h3><p style="color:var(--charcoal);font-size:13px">No district-level data recorded for this province. Submit district breakdown via the JOC template to populate this section.</p>';
-      }
-    }
-
-    // Show panel and scroll to it
-    const panel = safeEl('provDetail');
-    if (panel) {
-      panel.style.display = 'block';
-      panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  }
-
-  // Render province selector chips
-  const sel = safeEl('provSelector');
-  if (sel && data.provinces) {
-    sel.innerHTML = data.provinces.map(p =>
-      `<button class="prov-chip" data-code="${p.code}"
-         style="background:rgba(16,45,45,0.08);border:1px solid rgba(16,45,45,0.15);
-                border-radius:var(--r-pill);padding:8px 20px;cursor:pointer;
-                font-family:inherit;font-size:13px;font-weight:600;color:var(--pine);
-                transition:background 0.15s,color 0.15s"
-         onclick="window._showProvDetail && window._showProvDetail('${p.code}')">
-         ${p.code} — ${p.name}
-       </button>`
-    ).join('');
-  }
-
-  // Expose globally and wire up provTable row clicks
-  window._showProvDetail = showProvDetail;
-  setTimeout(function () {
-    document.querySelectorAll('#provTable tr').forEach(function (tr, i) {
-      if (data.provinces && data.provinces[i]) {
-        tr.style.cursor = 'pointer';
-        tr.addEventListener('click', function () { showProvDetail(data.provinces[i].code); });
-      }
-    });
-  }, 200);
-}());
-
 // ── Chart.js global defaults ─────────────────────────────────────────────────
 // Chart.js is loaded from CDN. If it fails to load, chart sections will show
 // a clear error rather than blanking the whole page.
 let chartJsReady = (typeof Chart !== 'undefined');
 if (!chartJsReady) {
   console.warn('[FMD] Chart.js did not load — charts will be skipped');
-  ['hotspotChart','caseTrend','vaxTrend','provVax','sourceChart','coverageChart','mpoDairyChart','mpoCasesChart','mpoFarmsTrendChart','rmisTimelineChart','rmisProvinceChart','rmisCommodityChart','rmisLocationChart','rmisVetChart']
+  ['hotspotChart','caseTrend','vaxTrend','provVax','sourceChart','coverageChart','mpoDairyChart','mpoCasesChart','rmisTimelineChart','rmisProvinceChart','rmisCommodityChart','rmisLocationChart','rmisVetChart']
     .forEach(id => showError(id, 'Chart (Chart.js failed to load)', new Error('CDN unavailable')));
 }
 
@@ -3853,57 +1858,28 @@ if (chartJsReady) try {
 if (data.mpo) try {
   const mpo = data.mpo;
   const fmtDate = d => d ? new Date(d+'T12:00:00').toLocaleDateString('en-ZA',{day:'numeric',month:'short',year:'numeric'}) : '—';
-
-  // Subtitle
   const sub = safeEl('mpoSubtitle');
   if (sub) sub.textContent = `Submitted by the Milk Producers' Organisation (MPO). Covers dairy cattle only. Snapshot as of ${fmtDate(mpo.latest_date)}.`;
-
-  // KPI: Dairy cows vaccinated
+  const kpiDairy = safeEl('mpoDairyCowsKpi');
   const wcProv = mpo.provinces.find(p=>p.code==='WC');
   const natExclWC = mpo.national_current - (wcProv ? wcProv.current : 0);
-  const delta = mpo.national_current - mpo.national_previous;
-  const kpiDairy = safeEl('mpoDairyCowsKpi');
   if (kpiDairy) kpiDairy.innerHTML = `
     <div class="kpi-label">Dairy cows vaccinated</div>
     <div class="kpi-value">${fmt(mpo.national_current)}</div>
-    <div class="kpi-sub">national total</div>
-    <div class="kpi-delta ${delta>=0?'pos':'neg'}" style="margin-top:var(--sp-3)">${delta>=0?'+':''}${fmt(delta)} this week</div>`;
-
-  // KPI: Confirmed farms
+    <div class="kpi-sub">national total &nbsp;·&nbsp; excl. WC: ${fmt(natExclWC)}</div>
+    <div class="kpi-delta ${mpo.national_current-mpo.national_previous>=0?'pos':'neg'}" style="margin-top:var(--sp-3)">
+      ${mpo.national_current-mpo.national_previous>=0?'+':''}${fmt(mpo.national_current-mpo.national_previous)} vs prior week</div>`;
   const kpiFarmsConf = safeEl('mpoFarmsConfirmedKpi');
   if (kpiFarmsConf) kpiFarmsConf.innerHTML = `
     <div class="kpi-label">Confirmed dairy farms</div>
     <div class="kpi-value">${mpo.farms_confirmed ?? '&mdash;'}</div>
-    <div class="kpi-sub">farms with confirmed FMD</div>
-    <div class="kpi-trend" style="font-size:12px;color:var(--charcoal);margin-top:var(--sp-2)">${fmtDate(mpo.farms_confirmed_date)}</div>`;
-
-  // KPI: Active farms
+    <div class="kpi-sub">farms with confirmed FMD cases</div>`;
   const kpiFarmsAct = safeEl('mpoFarmsActiveKpi');
   if (kpiFarmsAct) kpiFarmsAct.innerHTML = `
     <div class="kpi-label">Active dairy farms</div>
     <div class="kpi-value">${mpo.farms_active ?? '&mdash;'}</div>
-    <div class="kpi-sub">currently showing clinical signs</div>
-    <div class="kpi-trend" style="font-size:12px;color:var(--charcoal);margin-top:var(--sp-2)">${fmtDate(mpo.farms_active_date)}</div>`;
-
-  // KPI: Resolved farms
-  const kpiFarmsRes = safeEl('mpoFarmsResolvedKpi');
-  if (kpiFarmsRes && mpo.farms_resolved != null) kpiFarmsRes.innerHTML = `
-    <div class="kpi-label">Farms resolved</div>
-    <div class="kpi-value" style="color:var(--olive)">${mpo.farms_resolved}</div>
-    <div class="kpi-sub">no longer showing clinical signs</div>
-    <div class="kpi-trend pos" style="margin-top:var(--sp-2)">${mpo.farms_confirmed > 0 ? ((mpo.farms_resolved/mpo.farms_confirmed)*100).toFixed(0)+'% of confirmed' : ''}</div>`;
-
-  // KPI: Reinfections
-  const totalReinfections = (mpo.reinfections||[]).reduce((a,r)=>a+r.farms,0);
-  const kpiReinfect = safeEl('mpoReinfectionKpi');
-  if (kpiReinfect) kpiReinfect.innerHTML = `
-    <div class="kpi-label">Post-vaccination reinfections</div>
-    <div class="kpi-value">${totalReinfections}</div>
-    <div class="kpi-sub">farms reinfected after vaccination</div>
-    <div class="kpi-trend" style="font-size:11px;color:var(--charcoal);margin-top:var(--sp-2)">Symptoms significantly less severe than pre-vaccination</div>`;
-
+    <div class="kpi-sub">currently showing clinical signs</div>`;
   if (chartJsReady) {
-    // Dairy cows vaccinated by province (latest vs prior week)
     const sorted = mpo.provinces.filter(p=>p.current>0).sort((a,b)=>b.current-a.current);
     new Chart(safeEl('mpoDairyChart'), {
       type:'bar',
@@ -3913,95 +1889,20 @@ if (data.mpo) try {
           {label:'Prior week', data:sorted.map(p=>p.previous),backgroundColor:BRAND.sage,borderRadius:3}
         ]},
       options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,
-        plugins:{legend:{position:'top',labels:{boxWidth:10,font:{size:11}}},datalabels:{display:false}},
+        plugins:{legend:{position:'top',labels:{boxWidth:10,font:{size:11}}}},
         scales:{x:{beginAtZero:true,grid:{color:BRAND.mist},ticks:{callback:v=>fmt(v)}},y:{grid:{display:false}}}}
     });
-
-    // Active dairy FMD farms by province
-    if (mpo.active_by_province) {
-      const actProv = mpo.active_by_province.filter(p=>p.active>0).sort((a,b)=>b.active-a.active);
-      new Chart(safeEl('mpoCasesChart'), {
-        type:'bar',
-        data:{labels:actProv.map(p=>p.name),
-          datasets:[{label:'Active dairy FMD farms',data:actProv.map(p=>p.active),
-            backgroundColor:actProv.map(p=>p.active>30?BRAND.pine:p.active>10?BRAND.olive:BRAND.sage),borderRadius:3}]},
-        options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,
-          plugins:{legend:{display:false},datalabels:{anchor:'end',align:'end',font:{size:11,weight:'600'},color:BRAND.pine,formatter:v=>v}},
-          scales:{x:{beginAtZero:true,grid:{color:BRAND.mist}},y:{grid:{display:false}}}}
-      });
-    }
-
-    // Farm status trend (confirmed vs active over time)
-    if (mpo.farms_trend && mpo.farms_trend.length) {
-      const ft = mpo.farms_trend;
-      new Chart(safeEl('mpoFarmsTrendChart'), {
-        type:'line',
-        data:{labels:ft.map(p=>p.date),
-          datasets:[
-            {label:'Confirmed (cumulative)',data:ft.map(p=>p.confirmed),
-              borderColor:BRAND.pine,backgroundColor:'transparent',tension:0.3,pointRadius:4,pointBackgroundColor:BRAND.pine},
-            {label:'Active (clinical signs)',data:ft.map(p=>p.active),
-              borderColor:'#c0392b',backgroundColor:'rgba(192,57,43,0.08)',tension:0.3,fill:true,pointRadius:4,pointBackgroundColor:'#c0392b'},
-            {label:'Resolved',data:ft.map(p=>p.resolved),
-              borderColor:BRAND.olive,backgroundColor:'rgba(91,126,61,0.08)',tension:0.3,fill:true,pointRadius:4,pointBackgroundColor:BRAND.olive},
-          ]},
-        options:{responsive:true,maintainAspectRatio:false,
-          plugins:{legend:{position:'top',labels:{boxWidth:10,font:{size:11}}},datalabels:{display:false}},
-          scales:{x:{grid:{display:false},ticks:{font:{size:10}}},y:{beginAtZero:true,grid:{color:BRAND.mist}}}}
-      });
-    }
   }
-
-  // Reinfection detail
-  const reinfEl = safeEl('mpoReinfectionBody');
-  if (reinfEl) {
-    if (mpo.reinfections && mpo.reinfections.length) {
-      const rows = mpo.reinfections.map(r=>
-        `<tr><td>${r.name}</td><td class="num">${r.farms}</td><td style="font-size:12px;color:var(--charcoal)">${fmtDate(r.date)}</td></tr>`
-      ).join('');
-      reinfEl.innerHTML = `<table>
-        <thead><tr><th>Province</th><th class="num">Farms</th><th>As of</th></tr></thead>
-        <tbody>${rows}</tbody>
-        <tfoot><tr><td>Total</td><td class="num">${totalReinfections}</td><td></td></tr></tfoot>
-      </table>`;
-    } else {
-      reinfEl.innerHTML = '<p style="color:var(--charcoal);font-size:13px">No post-vaccination reinfections recorded.</p>';
-    }
-  }
-
-  // Per-province detail table
-  const tblEl = safeEl('mpoProvTableBody');
-  const noteEl = safeEl('mpoTableNote');
-  if (tblEl && mpo.provinces) {
-    if (noteEl) noteEl.textContent = `Latest available data per province as at ${fmtDate(mpo.latest_date)}. Active dairy FMD farms reflect the most recent MPO provincial submission.`;
-    const actMap = {};
-    (mpo.active_by_province||[]).forEach(p=>{ actMap[p.code]=p.active; });
-    const reinfMap = {};
-    (mpo.reinfections||[]).forEach(r=>{ reinfMap[r.code]=r.farms; });
-    const rows = mpo.provinces.map(p=>{
-      const active = actMap[p.code] != null ? actMap[p.code] : '—';
-      const reinfect = reinfMap[p.code] != null ? reinfMap[p.code] : '—';
-      const change = p.change > 0 ? `<span class="pos">+${fmt(p.change)}</span>`
-                   : p.change < 0 ? `<span class="neg">${fmt(p.change)}</span>`
-                   : '<span style="color:var(--charcoal)">—</span>';
-      return `<tr>
-        <td><strong>${p.name}</strong></td>
-        <td class="num">${fmt(p.current)}</td>
-        <td class="num">${change}</td>
-        <td class="num">${active}</td>
-        <td class="num">${reinfect}</td>
-      </tr>`;
-    }).join('');
-    tblEl.innerHTML = `<table>
-      <thead><tr>
-        <th>Province</th>
-        <th class="num">Dairy cows vaccinated</th>
-        <th class="num">Change this week</th>
-        <th class="num">Active dairy FMD farms</th>
-        <th class="num">Post-vaccination reinfections</th>
-      </tr></thead>
-      <tbody>${rows}</tbody>
-    </table>`;
+  if (chartJsReady && mpo.active_by_province) {
+    const actProv = mpo.active_by_province.filter(p=>p.active>0).sort((a,b)=>b.active-a.active);
+    new Chart(safeEl('mpoCasesChart'), {
+      type:'bar',
+      data:{labels:actProv.map(p=>p.name),
+        datasets:[{label:'Active dairy FMD farms',data:actProv.map(p=>p.active),backgroundColor:BRAND.pine,borderRadius:3}]},
+      options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,
+        plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>`${ctx.formattedValue} active dairy farms`}}},
+        scales:{x:{beginAtZero:true,grid:{color:BRAND.mist}},y:{grid:{display:false}}}}
+    });
   }
 } catch(e) { console.error('MPO section error:', e); }
 
@@ -4106,88 +2007,6 @@ if (data.rmis) try {
 
 
 
-// ── SAPPO section ─────────────────────────────────────────────────────────────
-if (data.sappo) try {
-  const S = data.sappo;
-  const provOrder = Object.entries(S.by_province).sort((a,b)=>b[1]-a[1]);
-
-  const kpiRow = safeEl('sappoKpiRow');
-  if (kpiRow) {
-    const kpis = [
-      { label: 'Total bottles dispatched', value: fmt(S.total_bottles), sub: 'Aftodoll (Dollvet)' },
-      { label: 'Provinces reached', value: Object.keys(S.by_province).length, sub: 'of 9 provinces' },
-      { label: 'Dispatches recorded', value: S.dispatches.length, sub: 'Apr to Jun 2026' },
-      { label: 'Largest single dispatch', value: fmt(Math.max(...S.dispatches.map(d=>d.bottles))), sub: 'bottles (KZN, 13 May)' },
-    ];
-    kpiRow.innerHTML = kpis.map(k => `
-      <div class="card">
-        <div class="kpi-label">${k.label}</div>
-        <div class="kpi-value">${k.value}</div>
-        <div class="kpi-sub">${k.sub}</div>
-      </div>`).join('');
-  }
-
-  if (chartJsReady) {
-    new Chart(safeEl('sappoProvinceChart'), {
-      type: 'bar',
-      data: {
-        labels: provOrder.map(([p])=>p),
-        datasets: [{ label: 'Bottles dispatched', data: provOrder.map(([,v])=>v),
-          backgroundColor: BRAND.olive, borderRadius: 4 }]
-      },
-      options: {
-        responsive: true, maintainAspectRatio: false, indexAxis: 'y',
-        plugins: {
-          legend: { display: false },
-          datalabels: { anchor:'end', align:'end', font:{size:11,weight:'600'},
-            color: BRAND.pine, formatter: v => fmt(v) }
-        },
-        scales: { x: { beginAtZero: true, grid:{color:BRAND.mist} }, y: { grid:{display:false} } }
-      }
-    });
-
-    const sorted = [...S.dispatches].sort((a,b)=>a.date.localeCompare(b.date));
-    let cum = 0;
-    const timePoints = sorted.map(d => { cum += d.bottles; return { date: d.date, cum }; });
-    new Chart(safeEl('sappoTimelineChart'), {
-      type: 'line',
-      data: {
-        labels: timePoints.map(p=>p.date),
-        datasets: [{ label: 'Cumulative bottles', data: timePoints.map(p=>p.cum),
-          borderColor: BRAND.olive, backgroundColor: 'rgba(91,126,61,0.1)',
-          tension: 0.3, fill: true, pointRadius: 5, pointBackgroundColor: BRAND.olive }]
-      },
-      options: {
-        responsive: true, maintainAspectRatio: false,
-        plugins: { legend:{display:false}, datalabels:{display:false} },
-        scales: {
-          x: { grid:{display:false}, ticks:{font:{size:10}} },
-          y: { beginAtZero:true, grid:{color:BRAND.mist} }
-        }
-      }
-    });
-  }
-
-  const tbl = safeEl('sappoDispatchTable');
-  if (tbl) {
-    const rows = S.dispatches.map(d => `
-      <tr>
-        <td>${d.date}</td>
-        <td>${d.province_name}</td>
-        <td>${d.province}</td>
-        <td>${d.rep}</td>
-        <td class="num">${fmt(d.bottles)}</td>
-      </tr>`).join('');
-    const total = S.dispatches.reduce((a,d)=>a+d.bottles,0);
-    tbl.innerHTML = `
-      <table>
-        <thead><tr><th>Date</th><th>Province</th><th>Code</th><th>Rep</th><th class="num">Bottles</th></tr></thead>
-        <tbody>${rows}</tbody>
-        <tfoot><tr><td colspan="4">Total</td><td class="num">${fmt(total)}</td></tr></tfoot>
-      </table>`;
-  }
-} catch(e) { showError('sappoSection', 'SAPPO section', e); }
-
 // ── Ministerial section ───────────────────────────────────────────────────────
 if (data.ministerial) try {
   const m = data.ministerial;
@@ -4207,9 +2026,9 @@ if (data.ministerial) try {
     if (m.provincial_cattle && Object.keys(m.provincial_cattle).length) {
       const rows = Object.entries(m.provincial_cattle)
         .sort((a,b)=>b[1].value-a[1].value)
-        .map(([code, d]) => `<tr><td style="text-align:center">${code}</td><td style="text-align:center;font-variant-numeric:tabular-nums">${fmt(d.value)}</td><td style="text-align:center;font-size:12px;color:var(--charcoal)">${d.as_of}</td></tr>`)
+        .map(([code, d]) => `<tr><td>${code}</td><td class="num">${fmt(d.value)}</td><td style="font-size:12px;color:var(--charcoal)">${d.as_of}</td></tr>`)
         .join('');
-      kpiCard.innerHTML += `<table><thead><tr><th style="text-align:center">Province</th><th style="text-align:center">Cattle vaccinated</th><th style="text-align:center">As of</th></tr></thead><tbody>${rows}</tbody></table>`;
+      kpiCard.innerHTML += `<table><thead><tr><th>Province</th><th class="num">Cattle vaccinated</th><th>As of</th></tr></thead><tbody>${rows}</tbody></table>`;
     }
   }
   const policyEl = safeEl('policyEventsList');
@@ -4219,22 +2038,9 @@ if (data.ministerial) try {
   }
   const supplyEl = safeEl('incomingSupplyBody');
   if (supplyEl && m.incoming_supply && m.incoming_supply.length) {
-    const statusBadge = s => {
-      const cfg = {
-        'Arrived':  'background:#d7e1d1;color:#102D2D',
-        'Expected': 'background:#CBD929;color:#102D2D',
-        'Pipeline': 'background:rgba(16,45,45,0.08);color:#58595B',
-      };
-      return `<span style="display:inline-block;padding:2px 10px;border-radius:99px;font-size:11px;font-weight:600;letter-spacing:0.3px;${cfg[s]||''}">${s}</span>`;
-    };
-    const totalProcured = m.incoming_supply.filter(i=>i.status==='Arrived').reduce((a,i)=>a+i.doses,0);
-    const totalAll = m.incoming_supply.reduce((a,i)=>a+i.doses,0);
-    const rows = m.incoming_supply.map(i =>
-      `<tr><td>${i.vaccine}</td><td class="num">${i.doses>=1000?fmt(i.doses):'—'}</td><td>${i.date||''}</td><td>${statusBadge(i.status)}</td><td style="font-size:12px;color:var(--charcoal)">${i.notes||''}</td></tr>`
-    ).join('');
-    supplyEl.innerHTML = `
-      <p style="font-size:13px;color:var(--charcoal);margin:0 0 var(--sp-4)">Total doses procured as at 1 June 2026: <strong style="color:var(--pine)">${fmt(13500000)}</strong> &nbsp;|&nbsp; Confirmed arrived: <strong style="color:var(--pine)">${fmt(totalProcured)}</strong> &nbsp;|&nbsp; Pipeline: <strong style="color:var(--pine)">${fmt(14000000)}</strong> additional (SAHPRA Section 21 approved)</p>
-      <table><thead><tr><th>Vaccine</th><th class="num">Doses</th><th>Date</th><th>Status</th><th>Notes</th></tr></thead><tbody>${rows}</tbody><tfoot><tr><td>Total</td><td class="num">${fmt(totalAll)}</td><td></td><td></td><td></td></tr></tfoot></table>`;
+    supplyEl.innerHTML = `<table><thead><tr><th>Vaccine</th><th class="num">Doses</th><th>Expected</th><th>Notes</th></tr></thead><tbody>`
+      + m.incoming_supply.map(i => `<tr><td>${i.vaccine}</td><td class="num">${fmt(i.doses)}</td><td>${i.expected}</td><td style="font-size:12px">${i.notes||''}</td></tr>`).join('')
+      + '</tbody></table>';
   }
 } catch(e) { showError('ministerialBanner', 'Ministerial section', e); }
 
@@ -4246,7 +2052,7 @@ if (chartJsReady && data.ministerial_comparison) try {
     data: {
       labels: mc.map(p => p.code),
       datasets: [
-        { label: 'Ministerial (1 Jun)',
+        { label: 'Ministerial (23 Apr)',
           data: mc.map(p => p.ministerial || 0),
           backgroundColor: BRAND.sage, borderRadius: 3 },
         { label: 'JOC / AgriSA (latest)',
@@ -4328,24 +2134,6 @@ if (chartJsReady && data.ministerial_comparison) try {
 
 
 
-</script>
-<script>
-(function () {
-  var btns = document.querySelectorAll('.tab-btn');
-  function switchTab(target) {
-    btns.forEach(function (b) {
-      b.classList.toggle('tab-active', b.dataset.target === target);
-    });
-    document.querySelectorAll('.tab-section').forEach(function (s) {
-      s.classList.toggle('tab-active', s.dataset.tab === target);
-    });
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-  btns.forEach(function (b) {
-    b.addEventListener('click', function () { switchTab(b.dataset.target); });
-  });
-  switchTab('national');
-}());
 </script>
 </body>
 </html>
