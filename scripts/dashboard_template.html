@@ -158,14 +158,14 @@
   /* Tables */
   table { width: 100%; border-collapse: collapse; font-size: 14px; }
   th, td {
-    text-align: center; padding: var(--sp-3) var(--sp-4);
+    text-align: left; padding: var(--sp-3) var(--sp-4);
     border-bottom: 1px solid var(--mist);
   }
   th {
     background: var(--bone); font-size: 11px; font-weight: 600;
     color: var(--charcoal); text-transform: uppercase; letter-spacing: 0.4px;
   }
-  td.num { text-align: center; font-variant-numeric: tabular-nums; }
+  td.num { text-align: right; font-variant-numeric: tabular-nums; }
   tr:hover td { background: var(--bone); }
   tfoot td {
     font-weight: 600; background: var(--bone);
@@ -318,33 +318,6 @@
     color: var(--white); font-weight: 600; font-size: 16px;
     margin-bottom: var(--sp-4);
   }
-
-  /* Tab navigation */
-  .tab-nav {
-    position: sticky; top: 0; z-index: 100;
-    background: var(--pine);
-    display: flex; overflow-x: auto; scrollbar-width: none;
-    border-bottom: 2px solid rgba(255,255,255,0.12);
-    -webkit-overflow-scrolling: touch;
-    margin: 0 calc(-1 * var(--sp-9));
-    padding: 0 var(--sp-9);
-  }
-  .tab-nav::-webkit-scrollbar { display: none; }
-  .tab-btn {
-    background: none; border: none; cursor: pointer;
-    color: rgba(255,255,255,0.6);
-    font-family: inherit; font-size: 12px; font-weight: 600;
-    text-transform: uppercase; letter-spacing: 0.6px;
-    padding: 16px 24px; white-space: nowrap;
-    border-bottom: 3px solid transparent; margin-bottom: -2px;
-    transition: color 0.15s, border-color 0.15s;
-    flex-shrink: 0;
-  }
-  .tab-btn:hover { color: rgba(255,255,255,0.9); }
-  .tab-btn.tab-active { color: var(--lime); border-bottom-color: var(--lime); }
-  .tab-section { display: none; }
-  .tab-section.tab-active { display: block; padding-top: var(--sp-9); }
-  .alert-banner.tab-section.tab-active { padding-top: 0; margin-top: var(--sp-9); }
 </style>
 </head>
 <body>
@@ -380,8 +353,8 @@
         <p class="subtitle">A weekly view of vaccine rollout, disease status and provincial coverage. Compiled by AgriCulture South Africa from provincial Joint Operations Committee submissions.</p>
       </div>
       <div class="badge-block">
-        <span class="pill-status">As at __SNAPSHOT_DATE__</span>
-        <span class="last-updated">Built __BUILD_DATE__</span>
+        <span class="pill-status">As at 2026-06-03</span>
+        <span class="last-updated">Built 2026-06-08</span>
       </div>
     </div>
   </div>
@@ -389,25 +362,15 @@
 
 <main>
 
-<nav class="tab-nav" id="tabNav" aria-label="Dashboard sections">
-  <button class="tab-btn tab-active" data-target="national">National overview</button>
-  <button class="tab-btn" data-target="provincial">Provincial data</button>
-  <button class="tab-btn" data-target="progression">Disease and vaccine progression</button>
-  <button class="tab-btn" data-target="mpo">MPO</button>
-  <button class="tab-btn" data-target="rmis">RMIS</button>
-  <button class="tab-btn" data-target="sappo">SAPPO</button>
-  <button class="tab-btn" data-target="ministerial">Ministerial updates</button>
-</nav>
+  <div class="alert-banner" id="alertBanner"></div>
 
-  <div class="alert-banner tab-section tab-active" data-tab="national" id="alertBanner"></div>
-
-  <section class="tab-section tab-active" data-tab="national">
+  <section>
     <div class="kicker">National headline indicators</div>
     <h2>What we know this week.</h2>
     <div class="kpi-grid" id="kpiGrid"></div>
   </section>
 
-  <section class="tab-section tab-active" data-tab="national">
+  <section>
     <div class="kicker">Provincial snapshot</div>
     <h2>Active cases and vaccine coverage by province.</h2>
     <div class="grid-3">
@@ -431,7 +394,7 @@
     </div>
   </section>
 
-  <section class="tab-section" data-tab="progression">
+  <section>
     <div class="kicker">Trends over time</div>
     <h2>Disease and vaccine progression.</h2>
     <div class="grid-2">
@@ -446,7 +409,7 @@
     </div>
   </section>
 
-  <section class="tab-section tab-active" data-tab="national">
+  <section>
     <div class="kicker">Vaccine flow</div>
     <h2>Doses by province and by manufacturer.</h2>
     <div class="grid-3">
@@ -462,7 +425,7 @@
     </div>
   </section>
 
-  <section class="tab-section" data-tab="provincial">
+  <section>
     <div class="kicker">Provincial detail</div>
     <h2>Per province as at the latest available submission.</h2>
     <div class="card">
@@ -486,25 +449,7 @@
     </div>
   </section>
 
-  <section class="tab-section" data-tab="provincial">
-    <div class="kicker">Province explorer</div>
-    <h2>Select a province for the full breakdown.</h2>
-    <div id="provSelector" style="display:flex;flex-wrap:wrap;gap:var(--sp-2);margin-bottom:var(--sp-7)"></div>
-    <div id="provDetail" style="display:none">
-      <div id="provDetailHeader" class="alert-banner" style="margin-bottom:var(--sp-6);border-radius:var(--r-card)"></div>
-      <div class="grid-2" style="margin-bottom:var(--sp-6)">
-        <div class="card" id="provVaxTypeCard"></div>
-        <div class="card" id="provChannelCard"></div>
-      </div>
-      <div class="grid-2" style="margin-bottom:var(--sp-6)">
-        <div class="card" id="provClassCard"></div>
-        <div class="card" id="provExtraCard"></div>
-      </div>
-      <div class="card" id="provDistrictCard" style="margin-bottom:var(--sp-6)"></div>
-    </div>
-  </section>
-
-  <section class="tab-section" data-tab="provincial">
+  <section>
     <div class="kicker">Coverage gap</div>
     <h2>Herd coverage against the two dose protocol.</h2>
     <div class="card">
@@ -514,55 +459,30 @@
     </div>
   </section>
 
-  <section class="tab-section" data-tab="mpo">
+  <section>
     <div class="kicker">Dairy industry view</div>
     <h2>MPO: Dairy herd vaccination and FMD case burden.</h2>
     <p style="color:var(--charcoal);font-size:14px;margin-top:calc(-1 * var(--sp-6));margin-bottom:var(--sp-6)" id="mpoSubtitle">Submitted by the Milk Producers&#x2019; Organisation (MPO). Covers dairy cattle only.</p>
-
-    <!-- KPI row: vaccination + farm status -->
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:var(--sp-4);margin-bottom:var(--sp-6)">
+    <div class="grid-2" style="margin-bottom:var(--sp-6)">
       <div class="card" id="mpoDairyCowsKpi"></div>
       <div class="card" id="mpoFarmsConfirmedKpi"></div>
-      <div class="card" id="mpoFarmsActiveKpi"></div>
-      <div class="card" id="mpoFarmsResolvedKpi"></div>
-      <div class="card" id="mpoReinfectionKpi"></div>
     </div>
-
-    <!-- Vaccination + active cases by province -->
-    <div class="grid-2" style="margin-bottom:var(--sp-6)">
+    <div style="margin-bottom:var(--sp-6)">
+      <div class="card" style="max-width:520px" id="mpoFarmsActiveKpi"></div>
+    </div>
+    <div class="grid-2">
       <div class="card">
         <h3>Dairy cows vaccinated by province.</h3>
         <div class="chart-wrap tall"><canvas id="mpoDairyChart"></canvas></div>
       </div>
       <div class="card">
-        <h3>Active dairy FMD farms by province.</h3>
+        <h3>Active dairy FMD cases by province.</h3>
         <div class="chart-wrap tall"><canvas id="mpoCasesChart"></canvas></div>
       </div>
     </div>
-
-    <!-- Farm status trend + reinfection detail -->
-    <div class="grid-2" style="margin-bottom:var(--sp-6)">
-      <div class="card">
-        <h3>Farm status over time.</h3>
-        <p style="font-size:13px;color:var(--charcoal);margin:0 0 var(--sp-4)">Weekly count of dairy farms with confirmed and active FMD nationally.</p>
-        <div class="chart-wrap tall"><canvas id="mpoFarmsTrendChart"></canvas></div>
-      </div>
-      <div class="card" id="mpoReinfectionCard">
-        <h3>Post-vaccination reinfections.</h3>
-        <p style="font-size:13px;color:var(--charcoal);margin:0 0 var(--sp-4)">Farms that reported FMD reinfection after receiving vaccine. Clinical signs in reinfected herds have been significantly less severe than pre-vaccination outbreaks — consistent with vaccine protection moderating disease severity.</p>
-        <div id="mpoReinfectionBody"></div>
-      </div>
-    </div>
-
-    <!-- Per-province active farms detail table -->
-    <div class="card" style="margin-bottom:var(--sp-6)">
-      <h3>Active dairy FMD farms and vaccination progress by province.</h3>
-      <p style="font-size:13px;color:var(--charcoal);margin:0 0 var(--sp-4)" id="mpoTableNote"></p>
-      <div id="mpoProvTableBody"></div>
-    </div>
   </section>
 
-  <section class="tab-section" data-tab="rmis" id="rmisSection">
+  <section id="rmisSection">
     <div class="kicker">Feedlot sector view</div>
     <h2>RMIS: Feedlot vaccine orders.</h2>
     <p style="color:var(--charcoal);font-size:14px;margin-top:calc(-1 * var(--sp-6));margin-bottom:var(--sp-6)" id="rmisSubtitle">Submitted by the Red Meat Industry Service (RMIS). Covers feedlot and private-vet-channelled DolVet Biotech Trivalent orders. Cumulative from rollout start.</p>
@@ -614,33 +534,8 @@
     </div>
   </section>
 
-  <section class="tab-section" data-tab="sappo" id="sappoSection">
-    <div class="kicker">Pork industry view</div>
-    <h2>SAPPO: Pig sector vaccine dispatches.</h2>
-    <p style="color:var(--charcoal);font-size:14px;margin-top:calc(-1 * var(--sp-6));margin-bottom:var(--sp-6)">Submitted by the South African Pork Producers' Organisation (SAPPO). Covers Aftodoll (Dollvet) vaccine dispatched by SAPPO representatives to pig producers across South Africa. Some bottles were also used for cattle on the same farms to reduce cross-species FMD risk — the cattle/pig split is not available at dispatch level. Source: email from Dr Thandi Chiappero, SAPPO Head: Consumer Assurance, 3 June 2026.</p>
-
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:var(--sp-4);margin-bottom:var(--sp-6)" id="sappoKpiRow"></div>
-
-    <div class="grid-2" style="margin-bottom:var(--sp-6)">
-      <div class="card">
-        <h3>Bottles dispatched by province.</h3>
-        <div class="chart-wrap tall"><canvas id="sappoProvinceChart"></canvas></div>
-      </div>
-      <div class="card">
-        <h3>Cumulative bottles dispatched over time.</h3>
-        <div class="chart-wrap tall"><canvas id="sappoTimelineChart"></canvas></div>
-      </div>
-    </div>
-
-    <div class="card">
-      <h3>Dispatch log.</h3>
-
-      <div id="sappoDispatchTable"></div>
-    </div>
-  </section>
-
-  <section class="tab-section" data-tab="ministerial" id="ministerialSection">
-    <div class="kicker">Ministerial update — 1 June 2026</div>
+  <section id="ministerialSection">
+    <div class="kicker">Ministerial update — 5 May 2026</div>
     <h2>Updated figures from the Minister of Agriculture.</h2>
     <div id="ministerialBanner" style="margin-bottom:var(--sp-6)"></div>
     <div class="grid-2">
@@ -657,7 +552,7 @@
   </section>
 
 
-  <section class="tab-section" data-tab="ministerial">
+  <section>
     <div class="kicker">Data validation</div>
     <h2>Ministerial briefing vs JOC provincial returns.</h2>
     <p style="color:var(--charcoal);font-size:14px;margin-top:calc(-1 * var(--sp-6));margin-bottom:var(--sp-6)">Comparing DAFF ministerial figures (23 April 2026) against AgriSA JOC provincial returns (latest available). A positive difference means JOC reports more vaccinations than the ministerial figure — expected given the later date. A negative difference flags a data quality issue for investigation.</p>
@@ -685,6 +580,32 @@
     </div>
   </section>
 
+  <section>
+    <div class="kicker">Data quality</div>
+    <h2>Where the data still needs work.</h2>
+    <div class="grid-2">
+      <div class="card">
+        <h3>Reconciliation issues.</h3>
+        <ul class="flag-list">
+          <li class="critical"><strong>Spoilage is not tracked nationally.</strong>The national total is reported as zero or blank in every weekly submission. Only KZN reports percentages. True wastage remains unknown.</li>
+          <li class="critical"><strong>About 988 000 doses without a manufacturer breakdown.</strong>KZN's bulk allocation is reported only as a Total figure, with no Bioaftogen, DolVet, OBP or BVI split.</li>
+          <li><strong>State and Private Vet figures do not reconcile to Total.</strong>Suggests Total is the planned allocation while State and Private Vet are recorded receipts.</li>
+          <li><strong>Animals Vaccinated by type does not reconcile to TOTAL Animals Vaccinated.</strong>Free State and Limpopo subtotals do not match the stated totals.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Reporting gaps and ambiguities.</h3>
+        <ul class="flag-list">
+          <li class="critical"><strong>Mpumalanga reporting is sparse.</strong>Limited spoilage and channel split data despite being a top five outbreak province.</li>
+          <li><strong>KZN allocation rationale is undocumented.</strong>Largest provincial allocation but minimal cases. The pattern suggests pre-emptive ring vaccination, but the policy is not stated in any source file.</li>
+          <li><strong>No batch, expiry or cold chain data.</strong>Cumulative receipts only. The current balance could be ageing toward spoilage with no visibility.</li>
+          <li><strong>The reporting schema changed mid-period.</strong>Reports before 1 April 2026 use a simpler schema. Later weeks add State and Private Vet and Commercial and Communal columns.</li>
+          <li><strong>The national herd denominator changed silently.</strong>From 12 470 648 on 1 April 2026 to 12 496 199 from 17 April 2026 onwards, with no annotation.</li>
+          <li><strong>Commodity submissions partial.</strong>MPO and RPO have submitted to date. NWGA (wool growers) and SAPPO (pork producers) returns are not yet in the dataset.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
 </main>
 
@@ -712,6 +633,12 @@
         </svg>
       </div>
       <p>Compiled by AgriCulture South Africa for the Foot and Mouth Disease Industry Coordination Council. Data is drawn from weekly provincial Joint Operations Committee meetings and submitted by the provincial affiliates of AgriCulture South Africa, with commodity organisation contributions from MPO, RPO, and where available NWGA and SAPPO.</p>
+      <p style="margin-top:var(--sp-4)">Master record at <code>master_data.csv</code>. Build script at <code>scripts/build_dashboard.py</code>.</p>
+    </div>
+    <div>
+      <h4>Refresh process</h4>
+      <p>New submissions go into the <code>inbox/</code> folder. The Friday scheduled task ingests them, supersedes prior versions where the same period and metric are restated, archives the source, and rebuilds this dashboard.</p>
+      <p style="margin-top:var(--sp-4)">Backdated submissions are supported. The effective date places observations on the timeline. The version column tracks supersedes.</p>
     </div>
     <div>
       <h4>External live sources</h4>
@@ -794,10 +721,10 @@ try {
     </div>
     <div>
       <p class="alert-headline">
-        Government has procured <span class="accent">${fmt(procured)} doses</span> (Ministerial briefing, 1 June 2026).
-        Provinces have reported receiving <span class="accent">${fmt(distributed)} doses</span> via JOC returns — the balance is in national stockpile or in transit.
+        South Africa has received <span class="accent">${fmt(procured)} doses</span> from manufacturers, of which <span class="accent">${fmt(distributed)} doses</span> have been distributed to the provinces.
         We measure against a national herd of ${fmt(N.herd_cattle)} cattle.
         Full coverage at two doses per animal requires roughly ${(fullCoverageNeed/1e6).toFixed(1)} million doses.
+        The most recent week added ${fmt(N.delta_administered)} animals vaccinated to the provincial total.
       </p>
     </div>
   `;
@@ -901,203 +828,13 @@ try {
     </tr>`;
 } catch(e) { showError('provTable', 'Provincial table', e); }
 
-// ── Province explorer ─────────────────────────────────────────────────────────
-(function () {
-  const PD = data.provincial_detail || {};
-  const prov = data.provinces || [];
-
-  function fmt2(n) { return n == null ? '—' : fmt(n); }
-
-  function bar(val, max, color) {
-    const pct = max > 0 ? Math.min(100, (val / max) * 100) : 0;
-    return `<div style="background:var(--mist);border-radius:99px;height:8px;overflow:hidden;min-width:80px">
-      <div style="width:${pct.toFixed(1)}%;height:100%;background:${color || 'var(--olive)'}"></div></div>`;
-  }
-
-  function showProvDetail(code) {
-    const d = PD[code];
-    if (!d) return;
-    const pv = prov.find(p => p.code === code) || {};
-
-    // Update selector chips
-    document.querySelectorAll('.prov-chip').forEach(b => {
-      b.style.background = b.dataset.code === code ? 'var(--lime)' : 'transparent';
-      b.style.color = b.dataset.code === code ? 'var(--pine)' : 'var(--pine)';
-      b.style.borderColor = b.dataset.code === code ? 'var(--lime)' : 'rgba(16,45,45,0.25)';
-    });
-
-    // Header
-    const hdr = safeEl('provDetailHeader');
-    if (hdr) {
-      const cov = pv.herd > 0 ? ((pv.vaccinated / pv.herd) * 100).toFixed(1) : '—';
-      hdr.innerHTML = `
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:var(--sp-6);align-items:start">
-          <div><div style="font-size:13px;opacity:0.6;text-transform:uppercase;letter-spacing:0.6px">${d.name}</div>
-            <div style="font-size:42px;font-weight:300;color:var(--lime);letter-spacing:-1px">${fmt2(pv.positive)}</div>
-            <div style="font-size:13px;opacity:0.8">Confirmed cases</div></div>
-          <div><div style="font-size:13px;opacity:0.6;text-transform:uppercase;letter-spacing:0.6px">Animals vaccinated</div>
-            <div style="font-size:32px;font-weight:300;color:var(--white)">${fmt2(pv.vaccinated)}</div>
-            <div style="font-size:13px;opacity:0.8">${cov}% of herd · ${fmt2(pv.herd)} cattle</div></div>
-          <div><div style="font-size:13px;opacity:0.6;text-transform:uppercase;letter-spacing:0.6px">Doses received</div>
-            <div style="font-size:32px;font-weight:300;color:var(--white)">${fmt2(pv.received)}</div>
-            <div style="font-size:13px;opacity:0.8">Balance: ${fmt2((pv.received||0)-(pv.vaccinated||0))}</div></div>
-          <div><div style="font-size:13px;opacity:0.6;text-transform:uppercase;letter-spacing:0.6px">Suspect / pending</div>
-            <div style="font-size:32px;font-weight:300;color:var(--white)">${fmt2(pv.suspected)}</div>
-            <div style="font-size:13px;opacity:0.8">As at ${d.latest_date || '—'}</div></div>
-        </div>`;
-    }
-
-    // Vaccine type breakdown
-    const vaxCard = safeEl('provVaxTypeCard');
-    if (vaxCard) {
-      if (d.vaccine_types && d.vaccine_types.length) {
-        const maxDoses = d.vaccine_types[0].doses;
-        const rows = d.vaccine_types.map(v =>
-          `<tr><td>${v.label}</td><td class="num">${fmt2(v.doses)}</td>
-           <td style="padding-left:8px;min-width:100px">${bar(v.doses, maxDoses)}</td>
-           <td style="font-size:11px;color:var(--charcoal)">${v.date}</td></tr>`
-        ).join('');
-        vaxCard.innerHTML = `<h3>Vaccine mix (doses received).</h3>
-          <table><thead><tr><th>Vaccine</th><th class="num">Doses</th><th></th><th>Date</th></tr></thead>
-          <tbody>${rows}</tbody></table>`;
-      } else {
-        vaxCard.innerHTML = '<h3>Vaccine mix.</h3><p style="color:var(--charcoal);font-size:13px">No manufacturer breakdown available for this province.</p>';
-      }
-    }
-
-    // Vet channel split
-    const chanCard = safeEl('provChannelCard');
-    if (chanCard) {
-      if (d.vet_channels && d.vet_channels.length) {
-        const rows = d.vet_channels.map(c =>
-          `<tr><td>${c.label}</td>
-           <td class="num">${c.doses_received != null ? fmt2(c.doses_received) : '—'}</td>
-           <td class="num">${c.animals_vaccinated != null ? fmt2(c.animals_vaccinated) : '—'}</td>
-           <td style="font-size:11px;color:var(--charcoal)">${c.date || ''}</td></tr>`
-        ).join('');
-        chanCard.innerHTML = `<h3>State vs private vet channel.</h3>
-          <table><thead><tr><th>Channel</th><th class="num">Doses received</th><th class="num">Animals vaccinated</th><th>Date</th></tr></thead>
-          <tbody>${rows}</tbody></table>`;
-      } else {
-        chanCard.innerHTML = '<h3>State vs private vet channel.</h3><p style="color:var(--charcoal);font-size:13px">No channel split available for this province.</p>';
-      }
-    }
-
-    // Classification
-    const clsCard = safeEl('provClassCard');
-    if (clsCard) {
-      if (d.classification && d.classification.length) {
-        const total = d.classification.reduce((a, c) => a + c.value, 0);
-        const rows = d.classification.map(c =>
-          `<tr><td>${c.label}</td><td class="num">${fmt2(c.value)}</td>
-           <td style="padding-left:8px;min-width:80px">${bar(c.value, total, 'var(--olive)')}</td>
-           <td style="font-size:11px;color:var(--charcoal)">${(c.value/total*100).toFixed(1)}%</td></tr>`
-        ).join('');
-        clsCard.innerHTML = `<h3>Animal classification.</h3>
-          <table><thead><tr><th>Category</th><th class="num">Count</th><th></th><th>Share</th></tr></thead>
-          <tbody>${rows}</tbody></table>`;
-      } else {
-        clsCard.innerHTML = '<h3>Animal classification.</h3><p style="color:var(--charcoal);font-size:13px">No classification breakdown available for this province.</p>';
-      }
-    }
-
-    // Extra indicators
-    const extCard = safeEl('provExtraCard');
-    if (extCard) {
-      const items = Object.values(d.extra || {});
-      if (items.length) {
-        const rows = items.map(e =>
-          `<tr><td>${e.label}</td><td class="num">${fmt2(e.value)}</td>
-           <td style="font-size:11px;color:var(--charcoal)">${e.date || ''}</td></tr>`
-        ).join('');
-        extCard.innerHTML = `<h3>Additional indicators.</h3>
-          <table><thead><tr><th>Indicator</th><th class="num">Value</th><th>Date</th></tr></thead>
-          <tbody>${rows}</tbody></table>`;
-      } else {
-        extCard.innerHTML = '<h3>Additional indicators.</h3><p style="color:var(--charcoal);font-size:13px">No additional indicators recorded for this province.</p>';
-      }
-    }
-
-    // District breakdown
-    const distCard = safeEl('provDistrictCard');
-    if (distCard) {
-      if (d.districts && d.districts.length) {
-        const hasOutbreaks = d.districts.some(x => x.outbreaks != null);
-        const hasNeg       = d.districts.some(x => x.negative != null);
-        const hasPending   = d.districts.some(x => x.pending != null);
-        const rows = d.districts.map(dist => {
-          const caseTd = dist.cases != null
-            ? `<td class="num" style="color:#c0392b;font-weight:600">${fmt2(dist.cases)}</td>`
-            : (dist.outbreaks != null
-              ? `<td class="num" style="color:#c0392b">${fmt2(dist.outbreaks)}<span style="font-size:10px;color:var(--charcoal)"> rep.</span></td>`
-              : '<td class="num">—</td>');
-          return `<tr>
-            <td style="font-weight:500">${dist.name}</td>
-            ${caseTd}
-            <td class="num">${dist.suspected != null ? fmt2(dist.suspected) : '—'}</td>
-            ${hasNeg   ? `<td class="num">${dist.negative  != null ? fmt2(dist.negative)  : '—'}</td>` : ''}
-            ${hasPending ? `<td class="num">${dist.pending != null ? fmt2(dist.pending)   : '—'}</td>` : ''}
-            <td class="num">${dist.vaccinated != null ? fmt2(dist.vaccinated) : '—'}</td>
-            <td style="font-size:11px;color:var(--charcoal)">${dist.date}</td>
-          </tr>`;
-        }).join('');
-        distCard.innerHTML = `<h3>District and municipal breakdown.</h3>
-          <table><thead><tr>
-            <th>District / Area</th>
-            <th class="num">Positive</th>
-            <th class="num">Suspected</th>
-            ${hasNeg     ? '<th class="num">Negative</th>' : ''}
-            ${hasPending ? '<th class="num">Pending</th>'  : ''}
-            <th class="num">Vaccinated</th>
-            <th>Date</th>
-          </tr></thead><tbody>${rows}</tbody></table>`;
-      } else {
-        distCard.innerHTML = '<h3>District and municipal breakdown.</h3><p style="color:var(--charcoal);font-size:13px">No district-level data recorded for this province. Submit district breakdown via the JOC template to populate this section.</p>';
-      }
-    }
-
-    // Show panel and scroll to it
-    const panel = safeEl('provDetail');
-    if (panel) {
-      panel.style.display = 'block';
-      panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  }
-
-  // Render province selector chips
-  const sel = safeEl('provSelector');
-  if (sel && data.provinces) {
-    sel.innerHTML = data.provinces.map(p =>
-      `<button class="prov-chip" data-code="${p.code}"
-         style="background:rgba(16,45,45,0.08);border:1px solid rgba(16,45,45,0.15);
-                border-radius:var(--r-pill);padding:8px 20px;cursor:pointer;
-                font-family:inherit;font-size:13px;font-weight:600;color:var(--pine);
-                transition:background 0.15s,color 0.15s"
-         onclick="window._showProvDetail && window._showProvDetail('${p.code}')">
-         ${p.code} — ${p.name}
-       </button>`
-    ).join('');
-  }
-
-  // Expose globally and wire up provTable row clicks
-  window._showProvDetail = showProvDetail;
-  setTimeout(function () {
-    document.querySelectorAll('#provTable tr').forEach(function (tr, i) {
-      if (data.provinces && data.provinces[i]) {
-        tr.style.cursor = 'pointer';
-        tr.addEventListener('click', function () { showProvDetail(data.provinces[i].code); });
-      }
-    });
-  }, 200);
-}());
-
 // ── Chart.js global defaults ─────────────────────────────────────────────────
 // Chart.js is loaded from CDN. If it fails to load, chart sections will show
 // a clear error rather than blanking the whole page.
 let chartJsReady = (typeof Chart !== 'undefined');
 if (!chartJsReady) {
   console.warn('[FMD] Chart.js did not load — charts will be skipped');
-  ['hotspotChart','caseTrend','vaxTrend','provVax','sourceChart','coverageChart','mpoDairyChart','mpoCasesChart','mpoFarmsTrendChart','rmisTimelineChart','rmisProvinceChart','rmisCommodityChart','rmisLocationChart','rmisVetChart']
+  ['hotspotChart','caseTrend','vaxTrend','provVax','sourceChart','coverageChart','mpoDairyChart','mpoCasesChart','rmisTimelineChart','rmisProvinceChart','rmisCommodityChart','rmisLocationChart','rmisVetChart']
     .forEach(id => showError(id, 'Chart (Chart.js failed to load)', new Error('CDN unavailable')));
 }
 
@@ -1221,57 +958,28 @@ if (chartJsReady) try {
 if (data.mpo) try {
   const mpo = data.mpo;
   const fmtDate = d => d ? new Date(d+'T12:00:00').toLocaleDateString('en-ZA',{day:'numeric',month:'short',year:'numeric'}) : '—';
-
-  // Subtitle
   const sub = safeEl('mpoSubtitle');
   if (sub) sub.textContent = `Submitted by the Milk Producers' Organisation (MPO). Covers dairy cattle only. Snapshot as of ${fmtDate(mpo.latest_date)}.`;
-
-  // KPI: Dairy cows vaccinated
+  const kpiDairy = safeEl('mpoDairyCowsKpi');
   const wcProv = mpo.provinces.find(p=>p.code==='WC');
   const natExclWC = mpo.national_current - (wcProv ? wcProv.current : 0);
-  const delta = mpo.national_current - mpo.national_previous;
-  const kpiDairy = safeEl('mpoDairyCowsKpi');
   if (kpiDairy) kpiDairy.innerHTML = `
     <div class="kpi-label">Dairy cows vaccinated</div>
     <div class="kpi-value">${fmt(mpo.national_current)}</div>
-    <div class="kpi-sub">national total</div>
-    <div class="kpi-delta ${delta>=0?'pos':'neg'}" style="margin-top:var(--sp-3)">${delta>=0?'+':''}${fmt(delta)} this week</div>`;
-
-  // KPI: Confirmed farms
+    <div class="kpi-sub">national total &nbsp;·&nbsp; excl. WC: ${fmt(natExclWC)}</div>
+    <div class="kpi-delta ${mpo.national_current-mpo.national_previous>=0?'pos':'neg'}" style="margin-top:var(--sp-3)">
+      ${mpo.national_current-mpo.national_previous>=0?'+':''}${fmt(mpo.national_current-mpo.national_previous)} vs prior week</div>`;
   const kpiFarmsConf = safeEl('mpoFarmsConfirmedKpi');
   if (kpiFarmsConf) kpiFarmsConf.innerHTML = `
     <div class="kpi-label">Confirmed dairy farms</div>
     <div class="kpi-value">${mpo.farms_confirmed ?? '&mdash;'}</div>
-    <div class="kpi-sub">farms with confirmed FMD</div>
-    <div class="kpi-trend" style="font-size:12px;color:var(--charcoal);margin-top:var(--sp-2)">${fmtDate(mpo.farms_confirmed_date)}</div>`;
-
-  // KPI: Active farms
+    <div class="kpi-sub">farms with confirmed FMD cases</div>`;
   const kpiFarmsAct = safeEl('mpoFarmsActiveKpi');
   if (kpiFarmsAct) kpiFarmsAct.innerHTML = `
     <div class="kpi-label">Active dairy farms</div>
     <div class="kpi-value">${mpo.farms_active ?? '&mdash;'}</div>
-    <div class="kpi-sub">currently showing clinical signs</div>
-    <div class="kpi-trend" style="font-size:12px;color:var(--charcoal);margin-top:var(--sp-2)">${fmtDate(mpo.farms_active_date)}</div>`;
-
-  // KPI: Resolved farms
-  const kpiFarmsRes = safeEl('mpoFarmsResolvedKpi');
-  if (kpiFarmsRes && mpo.farms_resolved != null) kpiFarmsRes.innerHTML = `
-    <div class="kpi-label">Farms resolved</div>
-    <div class="kpi-value" style="color:var(--olive)">${mpo.farms_resolved}</div>
-    <div class="kpi-sub">no longer showing clinical signs</div>
-    <div class="kpi-trend pos" style="margin-top:var(--sp-2)">${mpo.farms_confirmed > 0 ? ((mpo.farms_resolved/mpo.farms_confirmed)*100).toFixed(0)+'% of confirmed' : ''}</div>`;
-
-  // KPI: Reinfections
-  const totalReinfections = (mpo.reinfections||[]).reduce((a,r)=>a+r.farms,0);
-  const kpiReinfect = safeEl('mpoReinfectionKpi');
-  if (kpiReinfect) kpiReinfect.innerHTML = `
-    <div class="kpi-label">Post-vaccination reinfections</div>
-    <div class="kpi-value">${totalReinfections}</div>
-    <div class="kpi-sub">farms reinfected after vaccination</div>
-    <div class="kpi-trend" style="font-size:11px;color:var(--charcoal);margin-top:var(--sp-2)">Symptoms significantly less severe than pre-vaccination</div>`;
-
+    <div class="kpi-sub">currently showing clinical signs</div>`;
   if (chartJsReady) {
-    // Dairy cows vaccinated by province (latest vs prior week)
     const sorted = mpo.provinces.filter(p=>p.current>0).sort((a,b)=>b.current-a.current);
     new Chart(safeEl('mpoDairyChart'), {
       type:'bar',
@@ -1281,95 +989,20 @@ if (data.mpo) try {
           {label:'Prior week', data:sorted.map(p=>p.previous),backgroundColor:BRAND.sage,borderRadius:3}
         ]},
       options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,
-        plugins:{legend:{position:'top',labels:{boxWidth:10,font:{size:11}}},datalabels:{display:false}},
+        plugins:{legend:{position:'top',labels:{boxWidth:10,font:{size:11}}}},
         scales:{x:{beginAtZero:true,grid:{color:BRAND.mist},ticks:{callback:v=>fmt(v)}},y:{grid:{display:false}}}}
     });
-
-    // Active dairy FMD farms by province
-    if (mpo.active_by_province) {
-      const actProv = mpo.active_by_province.filter(p=>p.active>0).sort((a,b)=>b.active-a.active);
-      new Chart(safeEl('mpoCasesChart'), {
-        type:'bar',
-        data:{labels:actProv.map(p=>p.name),
-          datasets:[{label:'Active dairy FMD farms',data:actProv.map(p=>p.active),
-            backgroundColor:actProv.map(p=>p.active>30?BRAND.pine:p.active>10?BRAND.olive:BRAND.sage),borderRadius:3}]},
-        options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,
-          plugins:{legend:{display:false},datalabels:{anchor:'end',align:'end',font:{size:11,weight:'600'},color:BRAND.pine,formatter:v=>v}},
-          scales:{x:{beginAtZero:true,grid:{color:BRAND.mist}},y:{grid:{display:false}}}}
-      });
-    }
-
-    // Farm status trend (confirmed vs active over time)
-    if (mpo.farms_trend && mpo.farms_trend.length) {
-      const ft = mpo.farms_trend;
-      new Chart(safeEl('mpoFarmsTrendChart'), {
-        type:'line',
-        data:{labels:ft.map(p=>p.date),
-          datasets:[
-            {label:'Confirmed (cumulative)',data:ft.map(p=>p.confirmed),
-              borderColor:BRAND.pine,backgroundColor:'transparent',tension:0.3,pointRadius:4,pointBackgroundColor:BRAND.pine},
-            {label:'Active (clinical signs)',data:ft.map(p=>p.active),
-              borderColor:'#c0392b',backgroundColor:'rgba(192,57,43,0.08)',tension:0.3,fill:true,pointRadius:4,pointBackgroundColor:'#c0392b'},
-            {label:'Resolved',data:ft.map(p=>p.resolved),
-              borderColor:BRAND.olive,backgroundColor:'rgba(91,126,61,0.08)',tension:0.3,fill:true,pointRadius:4,pointBackgroundColor:BRAND.olive},
-          ]},
-        options:{responsive:true,maintainAspectRatio:false,
-          plugins:{legend:{position:'top',labels:{boxWidth:10,font:{size:11}}},datalabels:{display:false}},
-          scales:{x:{grid:{display:false},ticks:{font:{size:10}}},y:{beginAtZero:true,grid:{color:BRAND.mist}}}}
-      });
-    }
   }
-
-  // Reinfection detail
-  const reinfEl = safeEl('mpoReinfectionBody');
-  if (reinfEl) {
-    if (mpo.reinfections && mpo.reinfections.length) {
-      const rows = mpo.reinfections.map(r=>
-        `<tr><td>${r.name}</td><td class="num">${r.farms}</td><td style="font-size:12px;color:var(--charcoal)">${fmtDate(r.date)}</td></tr>`
-      ).join('');
-      reinfEl.innerHTML = `<table>
-        <thead><tr><th>Province</th><th class="num">Farms</th><th>As of</th></tr></thead>
-        <tbody>${rows}</tbody>
-        <tfoot><tr><td>Total</td><td class="num">${totalReinfections}</td><td></td></tr></tfoot>
-      </table>`;
-    } else {
-      reinfEl.innerHTML = '<p style="color:var(--charcoal);font-size:13px">No post-vaccination reinfections recorded.</p>';
-    }
-  }
-
-  // Per-province detail table
-  const tblEl = safeEl('mpoProvTableBody');
-  const noteEl = safeEl('mpoTableNote');
-  if (tblEl && mpo.provinces) {
-    if (noteEl) noteEl.textContent = `Latest available data per province as at ${fmtDate(mpo.latest_date)}. Active dairy FMD farms reflect the most recent MPO provincial submission.`;
-    const actMap = {};
-    (mpo.active_by_province||[]).forEach(p=>{ actMap[p.code]=p.active; });
-    const reinfMap = {};
-    (mpo.reinfections||[]).forEach(r=>{ reinfMap[r.code]=r.farms; });
-    const rows = mpo.provinces.map(p=>{
-      const active = actMap[p.code] != null ? actMap[p.code] : '—';
-      const reinfect = reinfMap[p.code] != null ? reinfMap[p.code] : '—';
-      const change = p.change > 0 ? `<span class="pos">+${fmt(p.change)}</span>`
-                   : p.change < 0 ? `<span class="neg">${fmt(p.change)}</span>`
-                   : '<span style="color:var(--charcoal)">—</span>';
-      return `<tr>
-        <td><strong>${p.name}</strong></td>
-        <td class="num">${fmt(p.current)}</td>
-        <td class="num">${change}</td>
-        <td class="num">${active}</td>
-        <td class="num">${reinfect}</td>
-      </tr>`;
-    }).join('');
-    tblEl.innerHTML = `<table>
-      <thead><tr>
-        <th>Province</th>
-        <th class="num">Dairy cows vaccinated</th>
-        <th class="num">Change this week</th>
-        <th class="num">Active dairy FMD farms</th>
-        <th class="num">Post-vaccination reinfections</th>
-      </tr></thead>
-      <tbody>${rows}</tbody>
-    </table>`;
+  if (chartJsReady && mpo.active_by_province) {
+    const actProv = mpo.active_by_province.filter(p=>p.active>0).sort((a,b)=>b.active-a.active);
+    new Chart(safeEl('mpoCasesChart'), {
+      type:'bar',
+      data:{labels:actProv.map(p=>p.name),
+        datasets:[{label:'Active dairy FMD farms',data:actProv.map(p=>p.active),backgroundColor:BRAND.pine,borderRadius:3}]},
+      options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,
+        plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>`${ctx.formattedValue} active dairy farms`}}},
+        scales:{x:{beginAtZero:true,grid:{color:BRAND.mist}},y:{grid:{display:false}}}}
+    });
   }
 } catch(e) { console.error('MPO section error:', e); }
 
@@ -1474,88 +1107,6 @@ if (data.rmis) try {
 
 
 
-// ── SAPPO section ─────────────────────────────────────────────────────────────
-if (data.sappo) try {
-  const S = data.sappo;
-  const provOrder = Object.entries(S.by_province).sort((a,b)=>b[1]-a[1]);
-
-  const kpiRow = safeEl('sappoKpiRow');
-  if (kpiRow) {
-    const kpis = [
-      { label: 'Total bottles dispatched', value: fmt(S.total_bottles), sub: 'Aftodoll (Dollvet)' },
-      { label: 'Provinces reached', value: Object.keys(S.by_province).length, sub: 'of 9 provinces' },
-      { label: 'Dispatches recorded', value: S.dispatches.length, sub: 'Apr to Jun 2026' },
-      { label: 'Largest single dispatch', value: fmt(Math.max(...S.dispatches.map(d=>d.bottles))), sub: 'bottles (KZN, 13 May)' },
-    ];
-    kpiRow.innerHTML = kpis.map(k => `
-      <div class="card">
-        <div class="kpi-label">${k.label}</div>
-        <div class="kpi-value">${k.value}</div>
-        <div class="kpi-sub">${k.sub}</div>
-      </div>`).join('');
-  }
-
-  if (chartJsReady) {
-    new Chart(safeEl('sappoProvinceChart'), {
-      type: 'bar',
-      data: {
-        labels: provOrder.map(([p])=>p),
-        datasets: [{ label: 'Bottles dispatched', data: provOrder.map(([,v])=>v),
-          backgroundColor: BRAND.olive, borderRadius: 4 }]
-      },
-      options: {
-        responsive: true, maintainAspectRatio: false, indexAxis: 'y',
-        plugins: {
-          legend: { display: false },
-          datalabels: { anchor:'end', align:'end', font:{size:11,weight:'600'},
-            color: BRAND.pine, formatter: v => fmt(v) }
-        },
-        scales: { x: { beginAtZero: true, grid:{color:BRAND.mist} }, y: { grid:{display:false} } }
-      }
-    });
-
-    const sorted = [...S.dispatches].sort((a,b)=>a.date.localeCompare(b.date));
-    let cum = 0;
-    const timePoints = sorted.map(d => { cum += d.bottles; return { date: d.date, cum }; });
-    new Chart(safeEl('sappoTimelineChart'), {
-      type: 'line',
-      data: {
-        labels: timePoints.map(p=>p.date),
-        datasets: [{ label: 'Cumulative bottles', data: timePoints.map(p=>p.cum),
-          borderColor: BRAND.olive, backgroundColor: 'rgba(91,126,61,0.1)',
-          tension: 0.3, fill: true, pointRadius: 5, pointBackgroundColor: BRAND.olive }]
-      },
-      options: {
-        responsive: true, maintainAspectRatio: false,
-        plugins: { legend:{display:false}, datalabels:{display:false} },
-        scales: {
-          x: { grid:{display:false}, ticks:{font:{size:10}} },
-          y: { beginAtZero:true, grid:{color:BRAND.mist} }
-        }
-      }
-    });
-  }
-
-  const tbl = safeEl('sappoDispatchTable');
-  if (tbl) {
-    const rows = S.dispatches.map(d => `
-      <tr>
-        <td>${d.date}</td>
-        <td>${d.province_name}</td>
-        <td>${d.province}</td>
-        <td>${d.rep}</td>
-        <td class="num">${fmt(d.bottles)}</td>
-      </tr>`).join('');
-    const total = S.dispatches.reduce((a,d)=>a+d.bottles,0);
-    tbl.innerHTML = `
-      <table>
-        <thead><tr><th>Date</th><th>Province</th><th>Code</th><th>Rep</th><th class="num">Bottles</th></tr></thead>
-        <tbody>${rows}</tbody>
-        <tfoot><tr><td colspan="4">Total</td><td class="num">${fmt(total)}</td></tr></tfoot>
-      </table>`;
-  }
-} catch(e) { showError('sappoSection', 'SAPPO section', e); }
-
 // ── Ministerial section ───────────────────────────────────────────────────────
 if (data.ministerial) try {
   const m = data.ministerial;
@@ -1575,9 +1126,9 @@ if (data.ministerial) try {
     if (m.provincial_cattle && Object.keys(m.provincial_cattle).length) {
       const rows = Object.entries(m.provincial_cattle)
         .sort((a,b)=>b[1].value-a[1].value)
-        .map(([code, d]) => `<tr><td style="text-align:center">${code}</td><td style="text-align:center;font-variant-numeric:tabular-nums">${fmt(d.value)}</td><td style="text-align:center;font-size:12px;color:var(--charcoal)">${d.as_of}</td></tr>`)
+        .map(([code, d]) => `<tr><td>${code}</td><td class="num">${fmt(d.value)}</td><td style="font-size:12px;color:var(--charcoal)">${d.as_of}</td></tr>`)
         .join('');
-      kpiCard.innerHTML += `<table><thead><tr><th style="text-align:center">Province</th><th style="text-align:center">Cattle vaccinated</th><th style="text-align:center">As of</th></tr></thead><tbody>${rows}</tbody></table>`;
+      kpiCard.innerHTML += `<table><thead><tr><th>Province</th><th class="num">Cattle vaccinated</th><th>As of</th></tr></thead><tbody>${rows}</tbody></table>`;
     }
   }
   const policyEl = safeEl('policyEventsList');
@@ -1587,22 +1138,9 @@ if (data.ministerial) try {
   }
   const supplyEl = safeEl('incomingSupplyBody');
   if (supplyEl && m.incoming_supply && m.incoming_supply.length) {
-    const statusBadge = s => {
-      const cfg = {
-        'Arrived':  'background:#d7e1d1;color:#102D2D',
-        'Expected': 'background:#CBD929;color:#102D2D',
-        'Pipeline': 'background:rgba(16,45,45,0.08);color:#58595B',
-      };
-      return `<span style="display:inline-block;padding:2px 10px;border-radius:99px;font-size:11px;font-weight:600;letter-spacing:0.3px;${cfg[s]||''}">${s}</span>`;
-    };
-    const totalProcured = m.incoming_supply.filter(i=>i.status==='Arrived').reduce((a,i)=>a+i.doses,0);
-    const totalAll = m.incoming_supply.reduce((a,i)=>a+i.doses,0);
-    const rows = m.incoming_supply.map(i =>
-      `<tr><td>${i.vaccine}</td><td class="num">${i.doses>=1000?fmt(i.doses):'—'}</td><td>${i.date||''}</td><td>${statusBadge(i.status)}</td><td style="font-size:12px;color:var(--charcoal)">${i.notes||''}</td></tr>`
-    ).join('');
-    supplyEl.innerHTML = `
-      <p style="font-size:13px;color:var(--charcoal);margin:0 0 var(--sp-4)">Total doses procured as at 1 June 2026: <strong style="color:var(--pine)">${fmt(13500000)}</strong> &nbsp;|&nbsp; Confirmed arrived: <strong style="color:var(--pine)">${fmt(totalProcured)}</strong> &nbsp;|&nbsp; Pipeline: <strong style="color:var(--pine)">${fmt(14000000)}</strong> additional (SAHPRA Section 21 approved)</p>
-      <table><thead><tr><th>Vaccine</th><th class="num">Doses</th><th>Date</th><th>Status</th><th>Notes</th></tr></thead><tbody>${rows}</tbody><tfoot><tr><td>Total</td><td class="num">${fmt(totalAll)}</td><td></td><td></td><td></td></tr></tfoot></table>`;
+    supplyEl.innerHTML = `<table><thead><tr><th>Vaccine</th><th class="num">Doses</th><th>Expected</th><th>Notes</th></tr></thead><tbody>`
+      + m.incoming_supply.map(i => `<tr><td>${i.vaccine}</td><td class="num">${fmt(i.doses)}</td><td>${i.expected}</td><td style="font-size:12px">${i.notes||''}</td></tr>`).join('')
+      + '</tbody></table>';
   }
 } catch(e) { showError('ministerialBanner', 'Ministerial section', e); }
 
@@ -1614,7 +1152,7 @@ if (chartJsReady && data.ministerial_comparison) try {
     data: {
       labels: mc.map(p => p.code),
       datasets: [
-        { label: 'Ministerial (1 Jun)',
+        { label: 'Ministerial (23 Apr)',
           data: mc.map(p => p.ministerial || 0),
           backgroundColor: BRAND.sage, borderRadius: 3 },
         { label: 'JOC / AgriSA (latest)',
@@ -1696,24 +1234,6 @@ if (chartJsReady && data.ministerial_comparison) try {
 
 
 
-</script>
-<script>
-(function () {
-  var btns = document.querySelectorAll('.tab-btn');
-  function switchTab(target) {
-    btns.forEach(function (b) {
-      b.classList.toggle('tab-active', b.dataset.target === target);
-    });
-    document.querySelectorAll('.tab-section').forEach(function (s) {
-      s.classList.toggle('tab-active', s.dataset.tab === target);
-    });
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-  btns.forEach(function (b) {
-    b.addEventListener('click', function () { switchTab(b.dataset.target); });
-  });
-  switchTab('national');
-}());
 </script>
 </body>
 </html>
