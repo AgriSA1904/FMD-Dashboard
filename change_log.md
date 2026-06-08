@@ -4,6 +4,74 @@ A running record of what changed in the master and dashboard, with dates and sou
 
 ---
 
+## 2026-06-08 (session 30) -- No new source data; FS-JOC column-mapping correction
+
+**Master grew from 1,450 to 1,455 rows (+5 rows; 3 rows superseded).**
+
+**Dashboard rebuilt:** Yes -- snapshot unchanged at 3 June 2026 (26 weekly points). 93,631 bytes. Validation passed. Corrections did not affect dashboard-facing headline figures.
+
+**GitHub push:** master_data.csv, memory_update.md, change_log.md.
+
+### Sources processed
+
+| File | Effective date | Source org | Rows added | Outcome |
+|---|---|---|---|---|
+| (none) | -- | -- | 0 | No new source files; agenda only in inbox |
+
+### Inbox scan
+
+| Folder | Status |
+|---|---|
+| AgriSA Summary and Outcomes | AgriSA Weekly FMD Engagement 2026.06.10.pdf found -- agenda only; meeting on 10 June; no data |
+| All provincial folders | No new files since session 29 (2026-06-07) |
+| ICC Reports | No new files |
+| Ministerial Updates | No new files; Section 9 gazette still outstanding |
+| MPO | No new files; Weeks 32+33 still outstanding |
+| RMIS | No new files |
+
+### Data quality correction
+
+Prior ingest (session ~24-25) of FS FMD Vaccine Data - 29.05.2026.xlsx had a 3-column offset error in reading the Section 3/4 columns. Detected during session 30 inbox review by cross-referencing xlsx raw cell values against master entries.
+
+**Rows superseded (session30-2026-06-08-col-mapping-correction):**
+
+| Master row (file line) | Metric | Vaccine type | Prior value | Correct value | Error |
+|---|---|---|---|---|---|
+| 1350 | doses_received | obp_arc | 199,899 | 2,300 | Read xlsx col[22] (Bioaftogen Dose 1 Total) instead of col[17] (OBP Received Total) |
+| 1351 | animals_vaccinated_dose1 | bioaftogen | 193,164 | 199,899 | Read xlsx col[30] (DolVet Dose 1 Total) instead of col[22] (Bioaftogen Dose 1 Total) |
+| 1352 | animals_vaccinated_dose1 | dolvet | 2,231 | 193,164 | Read xlsx col[38] (OBP Dose 1 Total) instead of col[30] (DolVet Dose 1 Total) |
+
+**New rows added:**
+
+| Metric | Vaccine type | Value | Notes |
+|---|---|---|---|
+| doses_received | obp_arc | 2,300 | Correct OBP/ARC doses received; version 2 |
+| animals_vaccinated_dose1 | bioaftogen | 199,899 | Correct Bioaftogen Dose 1; version 2 |
+| animals_vaccinated_dose1 | dolvet | 193,164 | Correct DolVet Dose 1; version 2 |
+| animals_vaccinated_dose1 | obp_arc | 2,231 | OBP Dose 1; new row (missed in prior ingest) |
+| animals_vaccinated_dose2 | bioaftogen | 116,900 | Bioaftogen Dose 2; new row (missed in prior ingest). Confirms second-dose programme is active in FS as at 29 May. |
+
+Dashboard impact: none. The build script uses vaccine_type=all for headline distributed and administered figures; component-level rows (vaccine_type=bioaftogen/dolvet/obp_arc) are not aggregated by the dashboard.
+
+### Data quality flags
+
+1. FS Bioaftogen Dose 2 = 116,900 (29 May 2026): second-dose campaign active in FS. Useful context for absorption-rate analysis.
+2. FS OBP Dose 1 = 2,231: OBP vaccine use in FS is minimal but non-zero.
+
+### Action items for next run
+
+- FMD Weekly Engagement 10 June 2026 -- summary expected after the meeting on 10 June. Check inbox on 11 June.
+- Consolidated AgriSA weekly xlsx -- now 17 days outstanding. Urgent.
+- MPO Weeks 32 and 33 -- not yet received.
+- Section 9 gazette -- now approximately 14 days overdue. Urgent.
+- LP Biogenesis allocation -- depot at 0; urgent.
+- NW DDG Serage engagement outcome.
+- EC: confirm 566 cases qualifier with EC-DRDAR.
+- SAPPO province follow-up (Dr Chiappero).
+- Dollvet 4M first consignment -- expected June 2026; monitor RMIS.
+
+---
+
 ## 2026-06-07 (session 29) -- 3 June weekly engagement summary + SAPPO update
 
 **Master grew from 1,433 to 1,450 rows (+17 new rows).**

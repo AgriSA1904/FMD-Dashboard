@@ -4,18 +4,24 @@ description: Latest master_data.csv row count and dashboard snapshot
 type: project
 ---
 
-As at 2026-06-07 (session 29 -- automated daily ingest, two new sources):
-- Master: **1,450 rows** (+17 new rows from 1,433)
-- Dashboard snapshot: **3 June 2026** (advanced from 2 June; 26 weekly points, validation passed)
-- Dashboard rebuilt: Yes -- FMD_Dashboard.html (93,631 bytes)
+As at 2026-06-08 (session 30 -- automated daily ingest, no new sources; data quality correction):
+- Master: **1,455 rows** (+5 rows from 1,450; 3 rows superseded with versioned corrections)
+- Dashboard snapshot: **3 June 2026** (unchanged; corrections did not affect dashboard-facing calculations)
+- Dashboard rebuilt: Yes -- FMD_Dashboard.html (93,631 bytes), validation passed
 
 **Key highlights:**
 
-- 3 June AgriSA FMD Weekly Engagement summary ingested (12 rows). FS positive_cases 589->604; EC positive_cases 295->566 (qualifier ambiguous -- cross-check EC-DRDAR required); FS animals vaccinated 513,167->609,900 (approx); EC animals vaccinated 489,979->738,614; MP 312,886->344,629 (commercial+communal; excludes private vet channel). LP weekly rate to ~56,000/week. NW only 13% of Biogenesis allocation used -- escalated to DDG Serage.
-- SAPPO updated email 5 June 2026 (5 new rows): 2026-05-13 LP 345 bottles ML; 2026-05-18 KZN 20 TC; 2026-05-25 unknown province 62 ML; 2026-06-03 KZN 6 ML; 2026-06-04 FS 56 TC.
-- Session 28 row-count correction: memory_update.md stated 1,413 but actual was 1,433 (ministerial rows added in session 28 not counted). Corrected.
+- No new source data in inbox today. The file AgriSA Weekly FMD Engagement 2026.06.10.pdf is the agenda for the 10 June meeting (meeting date 10 June; today is 8 June). No data to extract.
+- Data quality correction: FS-JOC 29 May xlsx had a 3-column offset error in its prior ingest. Three rows superseded and five corrected/new rows added. Corrections affect component-level breakdown only; dashboard headline figures unaffected (build script uses vaccine_type=all).
 
-**National dashboard (3 June 2026 snapshot):**
+Correction detail:
+- Row superseded: doses_received obp_arc val=199899 (was Bioaftogen Dose 1 Total from col[22]); corrected to val=2300.
+- Row superseded: animals_vaccinated_dose1 bioaftogen val=193164 (was DolVet Dose 1 col[30]); corrected to val=199899.
+- Row superseded: animals_vaccinated_dose1 dolvet val=2231 (was OBP Dose 1 col[38]); corrected to val=193164.
+- New row: animals_vaccinated_dose1 obp_arc val=2231 (missed in prior ingest).
+- New row: animals_vaccinated_dose2 bioaftogen val=116900 (Bioaftogen second doses; missed in prior ingest).
+
+**National dashboard (3 June 2026 snapshot -- unchanged):**
 - Doses distributed: 5,875,790
 - Doses administered: 3,556,621
 - Animals vaccinated: 3,416,885
@@ -37,27 +43,28 @@ As at 2026-06-07 (session 29 -- automated daily ingest, two new sources):
 | WC | 330,340 | 231,913 | 231,913 | 22 |
 
 **Data quality notes:**
-1. EC positive_cases 566: stated without confirmed/suspected qualifier; cross-check with EC-DRDAR JOC required.
+1. EC positive_cases 566: stated without confirmed/suspected qualifier; cross-check with EC-DRDAR required.
 2. FS doses_received 1,100,000 and animals_vaccinated 609,900: approximate verbal-report figures.
 3. MP 344,629 (commercial+communal): lower than ministerial floor >430,000 -- excludes private vet channel.
 4. SAPPO rep corrections: 2026-05-05 NW 37 ML->TC; 2026-05-12 FS 8 TC->ML (no dashboard impact).
 5. SAPPO 2026-05-25 unknown province -- follow up with Dr Chiappero.
+6. FS-JOC 29 May: corrected component-level dose breakdown. Bioaftogen Dose 2 = 116,900 confirmed (second-dose programme under way). OBP Dose 1 = 2,231. No dashboard impact.
 
 **Parked/outstanding:**
-- Consolidated AgriSA weekly xlsx: 16 days outstanding (last 22 May). Urgent.
+- Consolidated AgriSA weekly xlsx: 17 days outstanding (last 22 May). Urgent.
 - MPO Weeks 32+33 -- not received.
-- Section 9 gazette: ~13 days overdue. Urgent.
+- Section 9 gazette: ~14 days overdue. Urgent.
 - LP DolVet 150,000 receipt -- outstanding.
 - LP Biogenesis allocation -- depot at 0; urgent.
 - NW: DDG Serage engagement + Biogenesis reinfection investigation.
 - EC: confirm 566 cases qualifier with EC-DRDAR.
 - SAPPO: bottles-to-doses conversion + unknown province follow-up.
 - Dollvet 4M first consignment -- expected June 2026; monitor RMIS.
-- Next FMD Weekly Engagement: 10 June 2026.
+- FMD Weekly Engagement summary: 10 June meeting (agenda received; summary expected after meeting).
 - KZN booster -- ongoing.
 - EC Artio-Preva duplication -- pending.
 - GP OBP column-mapping -- ongoing.
 
 ---
 
-*Session 28 (05 June 2026): 1,433 rows (stated 1,413; ministerial rows not counted); dashboard 2 June 2026 (25 weekly points). Sources: LP PCM presentation + SAPPO first email + ministerial press statement.*
+*Session 29 (07 June 2026): 1,450 rows; dashboard 3 June 2026 (26 weekly points). Sources: 3 June weekly engagement summary + SAPPO 5 June email.*
