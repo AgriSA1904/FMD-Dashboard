@@ -162,14 +162,39 @@ def latest_metric(rows, *, province, metric, vaccine_type="", vet_channel="",
     back to other organisations when the preferred source has no value at all.
     skip_zero=True (default): treat 0 as 'not reported' and carry forward the most
     recent non-zero value. This prevents blank/unfilled cells in source spreadsheets
-    (ingested as 0) from wiping out the last known figure on the dashboard."""
-    matches = [r for r in rows if (
-        r["province"] == province and
-        r["metric"] == metric and
-        r["vaccine_type"] == vaccine_type and
-        r["vet_channel"] == vet_channel and
-        r["superseded_by"] == ""
-    )]
+    (ingested as 0) from wiping out the last known figure on the dashboard.
+
+    Fallback: if vaccine_type="" is requested and no matches are found, the lookup
+    is retried with vaccine_type="all" (and vet_channel="all" if vet_channel="" was
+    requested). This handles rows ingested with explicit "all" markers for metrics
+    such as positive_cases where vaccine_type is semantically irrelevant."""
+    # When no specific vaccine_type is requested, merge rows with vaccine_type in
+    # ("", "all") so that newer rows ingested with explicit "all" markers are not
+    # hidden behind older rows ingested with empty strings.
+    if vaccine_type == "" and vet_channel == "":
+        matches = [r for r in rows if (
+            r["province"] == province and
+            r["metric"] == metric and
+            r["vaccine_type"] in ("", "all") and
+            r["vet_channel"] in ("", "all", "total") and
+            r["superseded_by"] == ""
+        )]
+    elif vaccine_type == "":
+        matches = [r for r in rows if (
+            r["province"] == province and
+            r["metric"] == metric and
+            r["vaccine_type"] in ("", "all") and
+            r["vet_channel"] == vet_channel and
+            r["superseded_by"] == ""
+        )]
+    else:
+        matches = [r for r in rows if (
+            r["province"] == province and
+            r["metric"] == metric and
+            r["vaccine_type"] == vaccine_type and
+            r["vet_channel"] == vet_channel and
+            r["superseded_by"] == ""
+        )]
     if not matches:
         return None
 
@@ -338,6 +363,49 @@ def build_mpo(rows):
             val = 0
         active_by_province.append({"code": code, "name": name, "active": val})
 
+    # Weekly trend of confirmed and active farms (national)
+    farms_trend = []
+    farm_dates = sorted(set(
+        r["effective_date"] for r in mpo_rows
+        if r["metric"] in ("dairy_farms_active_fmd", "dairy_farms_confirmed_fmd",
+                           "dairy_farms_total_fmd")
+        and r["province"] == "national"
+    ))
+    for fd in farm_dates:
+        active_m  = [r for r in mpo_rows if r["effective_date"] == fd
+                     and r["province"] == "national"
+                     and r["metric"] == "dairy_farms_active_fmd"]
+        conf_m    = [r for r in mpo_rows if r["effective_date"] == fd
+                     and r["province"] == "national"
+                     and r["metric"] in ("dairy_farms_confirmed_fmd", "dairy_farms_total_fmd")]
+        a = int(num(active_m[0]["value"])  or 0) if active_m else None
+        c = int(num(conf_m[0]["value"])    or 0) if conf_m  else None
+        farms_trend.append({
+            "date": fd,
+            "active": a,
+            "confirmed": c,
+            "resolved": (c - a) if (c is not None and a is not None) else None,
+        })
+
+    # Post-vaccination reinfections per province
+    reinfections = []
+    for code, name in PROVINCES:
+        ri_rows = [r for r in mpo_rows
+                   if r["province"] == code
+                   and r["metric"] == "reinfection_post_vaccination"
+                   and r["superseded_by"] == ""]
+        if ri_rows:
+            ri_rows.sort(key=lambda r: r["effective_date"], reverse=True)
+            val  = int(num(ri_rows[0]["value"]) or 0)
+            note = ri_rows[0].get("notes", "")
+            reinfections.append({"code": code, "name": name, "farms": val,
+                                  "date": ri_rows[0]["effective_date"], "note": note})
+    reinfections.sort(key=lambda x: -x["farms"])
+
+    farms_resolved = None
+    if farms_confirmed is not None and farms_active is not None:
+        farms_resolved = farms_confirmed - farms_active
+
     return {
         "weekly":                  weekly,
         "latest_date":             dairy_dates[-1] if dairy_dates else None,
@@ -346,6 +414,9 @@ def build_mpo(rows):
         "farms_confirmed_date":    farms_confirmed_date,
         "farms_active":            farms_active,
         "farms_active_date":       farms_active_date,
+        "farms_resolved":          farms_resolved,
+        "farms_trend":             farms_trend,
+        "reinfections":            reinfections,
         "national_current":        latest_w.get("national", 0),
         "national_previous":       prev_w.get("national", 0),
         "active_by_province":      active_by_province,
@@ -594,6 +665,214 @@ def validate_output(html, path):
         raise ValueError(f"Dashboard output validation FAILED for {path}:\n  " + "\n  ".join(errors))
     return True
 
+VAX_LABELS = {
+    "bioaftogen": "Bioaftogen", "dolvet": "DolVet", "obp_arc": "OBP / ARC",
+    "bvi": "BVI", "artio_preva": "Artio-PREVA", "artio_preva_other": "Artio-PREVA",
+    "emergency_stock": "Emergency stock", "bioaftogen_biv1": "Bioaftogen Bivalent",
+    "bioaftogen_triv2": "Bioaftogen Trivalent", "dolvet_emergency": "DolVet (emergency)",
+    "aftodoll1": "Aftodoll dose 1", "aftodoll2": "Aftodoll dose 2",
+}
+CHANNEL_LABELS = {
+    "state": "State vet", "private": "Private vet", "state_vet": "State vet",
+    "feedlot": "Feedlot", "communal": "Communal", "commercial": "Commercial",
+    "emerging": "Emerging", "total": "Total",
+}
+CLASS_LABELS = {
+    "commercial_vaccinated": "Commercial cattle",
+    "communal_vaccinated": "Communal cattle",
+    "dairy_vaccinated": "Dairy cattle",
+    "pigs_vaccinated": "Pigs",
+    "emerging_vaccinated": "Emerging farmers",
+}
+# commercial_beef_vaccinated is a subset of commercial_vaccinated reported by some provinces.
+# It is merged into the "Commercial cattle" bucket below to avoid double-counting.
+EXTRA_LABELS = {
+    "vaccine_wastage": "Vaccine wastage", "primary_vaccinations": "Primary vaccinations",
+    "booster_vaccinations": "Booster vaccinations", "private_vet_vaccinations": "Private vet vaccinations",
+    "state_vet_vaccinations": "State vet vaccinations", "vaccination_sites": "Vaccination sites",
+    "private_vets_active": "Private vets active", "controlled_slaughter": "Controlled slaughter",
+    "animals_vaccinated_dose1": "Dose 1 animals", "animals_vaccinated_dose2": "Dose 2 animals",
+    "vaccine_balance": "Vaccine balance on hand", "rfid_tags_received": "RFID tags received",
+    "animals_eartagged_district": "Animals eartagged",
+}
+
+def build_provincial_detail(rows):
+    prog = [r for r in rows if r["superseded_by"] == ""]
+    detail = {}
+
+    def latest_prov(prov, metric, vt="", vc=""):
+        cands = [r for r in prog if r["province"] == prov and r["metric"] == metric
+                 and r["vaccine_type"] in ([vt] if vt else ("", "all", "total"))
+                 and r["vet_channel"] in ([vc] if vc else ("", "all", "total"))
+                 and (num(r["value"]) or 0) > 0]
+        if not cands: return None, None
+        cands.sort(key=lambda r: (r["effective_date"], int(r["version"])), reverse=True)
+        return num(cands[0]["value"]), cands[0]["effective_date"]
+
+    for code, name in PROVINCES:
+        prov_rows = [r for r in prog if r["province"] == code]
+        if not prov_rows:
+            continue
+
+        # Vaccine type breakdown
+        vax_types = {}
+        for r in prov_rows:
+            vt = r["vaccine_type"]
+            if (r["metric"] == "doses_received"
+                    and vt not in ("", "all", "total")
+                    and not vt[0].isupper()           # skip raw-label duplicates
+                    and r["vet_channel"] in ("", "all", "total")):
+                val = num(r["value"]) or 0
+                if val > 0:
+                    cur = vax_types.get(vt)
+                    if cur is None or r["effective_date"] > cur["date"]:
+                        vax_types[vt] = {"type": vt, "label": VAX_LABELS.get(vt, vt),
+                                          "doses": int(val), "date": r["effective_date"]}
+        vax_list = sorted(vax_types.values(), key=lambda x: -x["doses"])
+
+        # Vet channel split
+        channels = {}
+        for vc in ("state", "private", "state_vet", "communal", "commercial", "emerging"):
+            entry = {}
+            for metric in ("doses_received", "animals_vaccinated"):
+                v, dt = latest_prov(code, metric, vc=vc)
+                if v:
+                    entry[metric] = int(v)
+                    entry["date"] = dt
+            if entry:
+                label = CHANNEL_LABELS.get(vc, vc)
+                # Merge state and state_vet
+                key = "state" if vc == "state_vet" else vc
+                if key in channels:
+                    for k, v2 in entry.items():
+                        if k not in channels[key]:
+                            channels[key][k] = v2
+                else:
+                    channels[key] = {"label": label, **entry}
+        chan_list = [{"key": k, **v} for k, v in channels.items()]
+
+        # Animal classification — merge commercial_beef_vaccinated into commercial_vaccinated
+        # to avoid double-counting when both metrics appear for the same province.
+        cls_list = []
+        for metric, label in CLASS_LABELS.items():
+            v, dt = latest_prov(code, metric)
+            # If commercial_vaccinated is missing, fall back to commercial_beef_vaccinated
+            if metric == "commercial_vaccinated" and not v:
+                v, dt = latest_prov(code, "commercial_beef_vaccinated")
+            if v:
+                cls_list.append({"category": metric, "label": label,
+                                  "value": int(v), "date": dt})
+        cls_list.sort(key=lambda x: -x["value"])
+
+        # District breakdown — include vaccinated, cases, suspected, pending and reported_outbreaks.
+        # Notes field often contains rich context including embedded case counts
+        # in the pattern "X positive / Y suspect / Z negative" (e.g. EC district rows).
+        import re as _re
+
+        def _parse_district_name(note, metric):
+            """Extract a clean district name from the notes field."""
+            # Pattern: "EC district [NAME] as at ..." or "district=[NAME]" or "District: [NAME] | ..."
+            m = _re.search(r'district=([^;,\n]+)', note)
+            if m: return m.group(1).strip()
+            m = _re.search(r'[A-Z]{2,3} district ([A-Za-z\s]+?) (?:as at|dated|–|-)', note)
+            if m: return m.group(1).strip()
+            m = _re.search(r'(?:District|State Vet Area):\s*([^|;,\n]+?)(?:\s*\||\.|$)', note)
+            if m: return m.group(1).strip()
+            # Fallback: first segment before pipe, period or 50 chars
+            seg = note.split(" | ")[0] if " | " in note else note.split(".")[0]
+            seg = _re.sub(r'\b(District|State Vet Area|SVA|LM|Local Municipality):\s*', '', seg)
+            return seg[:45].strip()
+
+        def _parse_embedded_cases(note):
+            """Extract 'X positive / Y suspect / Z negative' from a notes string."""
+            m = _re.search(r'(\d+)\s+positive\s*/\s*(\d+)\s+suspect\s*/\s*(\d+)\s+negative', note, _re.IGNORECASE)
+            if m:
+                return int(m.group(1)), int(m.group(2)), int(m.group(3))
+            return None, None, None
+
+        # Only include metrics that are definitively district/municipal breakdowns.
+        # reported_outbreaks is excluded — it contains provincial totals from MinMEC,
+        # GDARD infographics etc. that are not district-level and pollute this section.
+        dist_metrics = (
+            "animals_vaccinated_district", "positive_cases_district",
+            "suspected_cases_district", "pending_cases_district",
+        )
+        dist_rows = [r for r in prov_rows if r["metric"] in dist_metrics]
+
+        dist_map = {}
+        # Keywords that indicate a row is a source reference, not a geographic district
+        _source_noise = ("infographic", "slide", "minmec", "pcm", "joc", "via whatsapp",
+                         "cumulative", "briefing", "presentation", "report", "template",
+                         "email", "media statement", "ministerial", "gdard", "drdar")
+
+        for r in dist_rows:
+            note  = r.get("notes", "")
+            dname = _parse_district_name(note, r["metric"])
+            if not dname or len(dname) < 2:
+                continue
+            # Reject rows where the parsed name looks like a source reference
+            if any(kw in dname.lower() for kw in _source_noise):
+                continue
+            key = (r["effective_date"], dname[:45])
+            if key not in dist_map:
+                dist_map[key] = {"name": dname[:45], "date": r["effective_date"],
+                                  "vaccinated": None, "cases": None,
+                                  "suspected": None, "pending": None,
+                                  "outbreaks": None, "negative": None,
+                                  "notes": note}
+            metric = r["metric"]
+            val = int(num(r["value"]) or 0)
+            if metric == "animals_vaccinated_district":
+                dist_map[key]["vaccinated"] = val
+                # Parse embedded case counts from notes (common in EC rows)
+                pos, sus, neg = _parse_embedded_cases(note)
+                if pos is not None and dist_map[key]["cases"] is None:
+                    dist_map[key]["cases"]    = pos
+                    dist_map[key]["suspected"] = sus
+                    dist_map[key]["negative"]  = neg
+            elif metric == "positive_cases_district":
+                dist_map[key]["cases"] = val
+            elif metric == "suspected_cases_district":
+                dist_map[key]["suspected"] = val
+            elif metric == "pending_cases_district":
+                dist_map[key]["pending"] = val
+            elif metric == "reported_outbreaks":
+                dist_map[key]["outbreaks"] = val
+
+        # Prefer the most recent date per district name
+        latest_by_name = {}
+        for (dt, nm), entry in sorted(dist_map.items()):
+            latest_by_name[nm] = entry
+
+        dist_list = sorted(
+            latest_by_name.values(),
+            key=lambda x: (-(x["vaccinated"] or 0), -(x["cases"] or x["outbreaks"] or 0))
+        )
+
+        # Extra indicators
+        extra = {}
+        for metric, label in EXTRA_LABELS.items():
+            v, dt = latest_prov(code, metric)
+            if v:
+                extra[metric] = {"label": label, "value": int(v) if v == int(v) else round(v, 2), "date": dt}
+
+        # Sources
+        sources = sorted(set(r["source_org"] for r in prov_rows))
+
+        detail[code] = {
+            "name": name,
+            "latest_date": latest_province_date(prog, code),
+            "vaccine_types": vax_list,
+            "vet_channels": chan_list,
+            "classification": cls_list,
+            "districts": dist_list[:30],
+            "extra": extra,
+            "sources": sources,
+        }
+
+    return detail
+
+
 def build_dashboard():
     rows = load_master()
     if not rows:
@@ -642,7 +921,7 @@ def build_dashboard():
         matches.sort(key=lambda r: r["effective_date"], reverse=True)
         return num(matches[0]["value"]), matches[0]["effective_date"]
 
-    min_recv = min_nat("doses_received", "all", "all")
+    min_recv = min_nat("doses_procured", "all", "all")
     min_dist = min_nat("doses_distributed", "all", "all")
     min_adm  = min_nat("animals_vaccinated_ministerial", "all", "all")
 
@@ -678,15 +957,20 @@ def build_dashboard():
         })
 
     incoming = []
-    for r in rows:
-        if r["metric"] == "doses_incoming" and r["superseded_by"] == "":
-            incoming.append({
-                "vaccine":  r["vaccine_type"],
-                "doses":    int(num(r["value"]) or 0),
-                "expected": r["effective_date"],
-                "notes":    r["notes"],
-            })
-    incoming.sort(key=lambda x: x["expected"])
+    # Vaccine supply pipeline — hardcoded from ministerial briefings and RMIS import tracker.
+    # Updated as at 1 June 2026 (Minister Steenhuisen, Parliament).
+    # Do not regenerate from doses_incoming rows (stale format). Update here manually.
+    incoming = [
+        {"vaccine": "ARC Trivalent",        "doses": 12900,    "date": "2026-02-01", "status": "Arrived",  "notes": "Initial emergency stock."},
+        {"vaccine": "Biogenesis Bivalent",  "doses": 1000000,  "date": "2026-02-01", "status": "Arrived",  "notes": ""},
+        {"vaccine": "DolVet Trivalent",     "doses": 1500000,  "date": "2026-02-01", "status": "Arrived",  "notes": ""},
+        {"vaccine": "Biogenesis Trivalent", "doses": 1500000,  "date": "2026-04-01", "status": "Arrived",  "notes": ""},
+        {"vaccine": "DolVet Trivalent",     "doses": 2000000,  "date": "2026-04-01", "status": "Arrived",  "notes": ""},
+        {"vaccine": "DolVet Trivalent",     "doses": 2000000,  "date": "2026-05-01", "status": "Arrived",  "notes": ""},
+        {"vaccine": "Biogenesis Bago",      "doses": 3500000,  "date": "2026-05-28", "status": "Arrived",  "notes": "Distributed: 1.5M feedlots; 500 000 RMPO; 200 000 MPO; 100 000 stud breeders; 1.05M provinces; balance for border vaccination."},
+        {"vaccine": "DolVet (Dunevax)",     "doses": 4000000,  "date": "2026-06-30", "status": "Expected", "notes": "First consignment of 14M SAHPRA Section 21-approved Dollvet doses. Enables booster programme."},
+        {"vaccine": "DolVet (Dunevax)",     "doses": 10000000, "date": "2026",       "status": "Pipeline", "notes": "Remaining balance of 14M SAHPRA Section 21 approval. Delivery schedule to be confirmed."},
+    ]
 
     payload["ministerial"] = {
         "doses_procured":          int(min_recv[0]) if min_recv else None,
@@ -694,15 +978,50 @@ def build_dashboard():
         "doses_distributed":       int(min_dist[0]) if min_dist else None,
         "animals_vaccinated":      int(min_adm[0]) if min_adm else None,
         "animals_vaccinated_asof": min_adm[1] if min_adm else None,
+        "provincial_cattle":       prov_ministerial,
         "policy_events":           policy_events,
         "incoming_supply":         incoming,
-        "source_date":             "2026-05-05",
-        "source_label":            "Minister Steenhuisen media briefing, 5 May 2026",
+        "source_date":             "2026-06-01",
+        "source_label":            "Minister Steenhuisen media briefing, 1 June 2026",
     }
 
     min_comparison = build_ministerial_comparison(rows)
     payload["ministerial_comparison"] = min_comparison
     payload["quality_flags"] = build_quality_flags(rows, snapshot, min_comparison)
+
+    payload["provincial_detail"] = build_provincial_detail(rows)
+
+    # SAPPO pork-sector dispatch data — updated from email 5 June 2026 (Thandi Chiappero)
+    # 5 new rows vs 3 June email: LP +345 (13 May), KZN +20 (18 May) +6 (3 Jun),
+    # FS +56 (4 Jun), and 62 bottles on 25 May with no province listed.
+    payload["sappo"] = {
+        "source": "Email — Dr Thandi Chiappero, SAPPO Head: Consumer Assurance, 5 June 2026",
+        "vaccine": "Aftodoll (Dollvet)",
+        "note": ("Some bottles were used for cattle on the same farms to reduce FMD risk to pigs. "
+                 "The cattle/pig split is not available at dispatch level. "
+                 "KZN volume is elevated because KZN state veterinary services were not allocating vaccine to pig producers. "
+                 "62 bottles dispatched on 25 May 2026 have no province recorded — excluded from provincial totals."),
+        "total_bottles": 2075,
+        "dispatches": [
+            {"date": "2026-04-30", "rep": "ML", "bottles": 600, "province": "LP",  "province_name": "Limpopo"},
+            {"date": "2026-05-05", "rep": "TC", "bottles": 80,  "province": "NW",  "province_name": "North West"},
+            {"date": "2026-05-05", "rep": "TC", "bottles": 37,  "province": "NW",  "province_name": "North West"},
+            {"date": "2026-05-07", "rep": "TC", "bottles": 130, "province": "LP",  "province_name": "Limpopo"},
+            {"date": "2026-05-12", "rep": "ML", "bottles": 8,   "province": "FS",  "province_name": "Free State"},
+            {"date": "2026-05-13", "rep": "TC", "bottles": 508, "province": "KZN", "province_name": "KwaZulu-Natal"},
+            {"date": "2026-05-13", "rep": "ML", "bottles": 345, "province": "LP",  "province_name": "Limpopo"},
+            {"date": "2026-05-14", "rep": "ML", "bottles": 74,  "province": "EC",  "province_name": "Eastern Cape"},
+            {"date": "2026-05-18", "rep": "TC", "bottles": 20,  "province": "KZN", "province_name": "KwaZulu-Natal"},
+            {"date": "2026-05-22", "rep": "TC", "bottles": 15,  "province": "WC",  "province_name": "Western Cape"},
+            {"date": "2026-05-25", "rep": "ML", "bottles": 62,  "province": "?",   "province_name": "Unspecified"},
+            {"date": "2026-05-27", "rep": "ML", "bottles": 34,  "province": "MP",  "province_name": "Mpumalanga"},
+            {"date": "2026-06-03", "rep": "TC", "bottles": 100, "province": "KZN", "province_name": "KwaZulu-Natal"},
+            {"date": "2026-06-03", "rep": "ML", "bottles": 6,   "province": "KZN", "province_name": "KwaZulu-Natal"},
+            {"date": "2026-06-04", "rep": "TC", "bottles": 56,  "province": "FS",  "province_name": "Free State"},
+        ],
+        "by_province": {"LP": 1075, "KZN": 634, "NW": 117, "EC": 74, "FS": 64, "MP": 34, "WC": 15},
+        "by_rep": {"TC": 1404, "ML": 609},
+    }
 
     payload["sources_used"] = sorted(set(r["source_file"] for r in rows
                                          if r["superseded_by"] == ""))
