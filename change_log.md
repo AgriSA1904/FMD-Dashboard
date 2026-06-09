@@ -4,6 +4,85 @@ A running record of what changed in the master and dashboard, with dates and sou
 
 ---
 
+## 2026-06-09 (session 32) -- FS 5 June JOC + MPO Week 33 ingest
+
+**Master grew from 1,468 to 1,500 rows (+32 new rows).**
+
+**Dashboard rebuilt:** Yes -- snapshot advanced to 5 June 2026 (27 weekly points, up from 26). 162,794 bytes. Validation passed.
+
+**GitHub push:** master_data.csv, FMD_Dashboard.html, memory_update.md, change_log.md.
+
+### Sources processed
+
+| File | Effective date | Source org | Rows added | Outcome |
+|---|---|---|---|---|
+| inbox/Free State/FMD STATS 08 june.zip → FS FMD Vaccine Data - 05.06.2026.xlsx | 2026-06-05 | FS-JOC | 17 | Ingested -- disease, vaccine receipt, animals vaccinated, district breakdown |
+| inbox/Free State/FMD STATS 08 june.zip → WhatsApp Image 2026-06-06 at 20.37.21.jpeg | 2026-06-05 | FS-DARDEA | (merged) | Media release confirming 608 cases; district breakdown by state vet area |
+| inbox/Free State/FMD STATS 08 june.zip → WhatsApp Image 2026-06-06 at 20.37.22.jpeg | 2026-06-04 | FS-DARDEA | 1 | 707,986 cattle vaccinated (Biogenesis Bago + DolVet); map dated 4 June 2026 |
+| inbox/MPO/Week 33 - Update on the state of FMD and vaccine rollouts in the dairy industry.pdf | 2026-06-05 | MPO | 14 | Dairy cows vaccinated per province + farms data + KZN booster + EC reinfection |
+| FMD_Membership_Report_08June2026.pdf (root folder) | 2026-06-03 | AgriSA-NAT | 0 | Generated AgriSA membership report; no new primary data -- figures already in master |
+| inbox/MPO/Week 31 - ... .pdf | 2026-05-22 | MPO | 0 | Snapshot 22 May -- data already ingested in prior session |
+
+### Key figures added
+
+**FS disease (5 June 2026 -- FS-JOC formal submission):**
+- positive_cases = 608 (up 4 from 604 at 29 May; 4 new cases in Warden, Bultfontein and Qwa-Qwa SVAs)
+- suspected_cases = 412 (unchanged)
+- District breakdown: Mangaung Metro 6 (Bloemfontein SV 4 + Thaba Nchu SV 2); Fezile Dabi 339 (Mafube 74; Metsimaholo 61; Moqhaka 111; Ngwathe 93); Lejweleputswa 65 (Matjhabeng 43; Tokologo 10; Tswelopele 12); Thabo Mofutsanyana 183 (Dihlabeng 67; Maluti-A-Phofung 29; Mantsopa 46; Phumelela 41); Xhariep 15 (Kopanong 8; Mohokare 7)
+
+**FS vaccine receipt (5 June -- formally confirmed):**
+- doses_received bioaftogen: 370,000
+- doses_received dolvet: 466,100
+- doses_received obp_arc: 2,300
+- doses_received total: 838,400
+- NOTE: CONFLICT with AgriSA-NAT verbal 1,100,000 at 3 June ICC meeting. Formal FS-JOC 838,400 is authoritative.
+
+**FS animals vaccinated:**
+- 707,986 cattle vaccinated (FS-DARDEA media release, map dated 4 June 2026) -- significant uplift from prior verbal estimate of 609,900.
+- Component breakdown from Mangaung xlsx: Bioaftogen Dose 1: 199,899; Bioaftogen Dose 2: 116,900; DolVet Dose 1: 193,164; OBP Dose 1: 2,231.
+
+**MPO Week 33 dairy cows vaccinated (snapshot 5 June 2026):**
+
+| Province | Week 29 (22 May) | Week 33 (5 June) | Change |
+|---|---|---|---|
+| KZN | 360,200 | 360,200 | +0 |
+| EC | 269,211 | 307,266 | +38,055 |
+| FS | 15,104 | 15,104 | +0 |
+| LP | 5,475 | 5,475 | +0 |
+| GP | 14,832 | 14,832 | +0 |
+| MP | 9,863 | 9,863 | +0 |
+| NW | 6,342 | 6,342 | +0 |
+| WC | 150,116 | 185,868 | +35,752 |
+| NC | 0 | 0 | +0 |
+| Total | 831,143 | 904,950 | +73,807 |
+
+**MPO Week 33 operational highlights:**
+- 171 dairy farms have reported FMD cases nationally; 124 remain active.
+- KZN: 6 dairy reinfection cases after vaccination; booster programme started 8 June 2026.
+- EC: First round of dairy vaccination completed; 4 reinfection cases after vaccination.
+- WC: No new dairy FMD cases; first round expected complete by end of 5 June week.
+- Northern provinces (GP, FS, LP, NW, MP, NC): No new dairy FMD cases.
+
+### Data quality flags
+
+1. FS doses_received conflict: formal JOC submission 838,400 vs AgriSA-NAT verbal 1,100,000 at 3 June ICC meeting. Both held. FS-JOC formal submission is authoritative. The verbal figure may include national stockpile or future allocations.
+2. FS animals_vaccinated 707,986 (FS-DARDEA 4 June) vs component breakdown sum 512,194 (Mangaung district only from xlsx). The media release figure (707,986) covers all districts and is the authoritative provincial total.
+3. MPO Week 32 still not received -- gap in diary dairy time series between 22 May and 5 June.
+4. KZN dairy cows vaccinated unchanged at 360,200 since 8 May -- MPO note says "all dairy animals in KZN have been vaccinated" (confirmed at Week 31, 22 May).
+
+### Action items for next run
+
+- FMD Weekly Engagement meeting: 10 June 2026 (tomorrow). Monitor for summary PDF and updated figures.
+- Consolidated AgriSA weekly xlsx: now ~18 days outstanding. Urgent.
+- Section 9 gazette: ~15 days overdue. Urgent.
+- MPO Week 32 -- follow up; gap in dairy time series.
+- LP DolVet 150,000 receipt -- outstanding.
+- LP Biogenesis depot at 0 -- urgent.
+- NW DDG Serage engagement outcome.
+- EC cases: confirm 361 (EC-DRDAR confirmed) vs 566 (AgriSA-NAT) qualifier.
+
+---
+
 ## 2026-06-08 (session 31) -- EC 3 June JOC ingest + dashboard restore + EC duplication fix
 
 **Master grew from 1,455 to 1,468 rows (+13 new rows).**
@@ -2521,4 +2600,40 @@ NW confirmed at **332** (no change needed).
 
 | File | Effective Date | Source Org | Outcome |
 |---|---|---|---|
-| `inbox/Gauteng/GDARD FMD JOC Meeting 22.05.
+| `inbox/Gauteng/GDARD FMD JOC Meeting 22.05.26.pdf` | 2026-05-22 | GP-GDARD | Ingested — 7 rows |
+
+### Key figures added (GP as at 22 May 2026)
+
+| Metric | Previous (21 May) | New (22 May) | Change |
+|---|---|---|---|
+| Animals vaccinated (total, 2026) | 244,800 | 266,121 | +21,321 |
+| Animals vaccinated — Biogenesis Bago | — | 142,341 | New breakdown |
+| Animals vaccinated — Aftodoll | — | 123,780 | New breakdown |
+| Doses received/allocated (total) | 517,940 | 518,500 | +560 |
+| Positive cases | 294 | 296 | +2 |
+| Suspected cases | 2 | 0 | -2 (none active) |
+| Controlled slaughter (depopulation) | — | 231,244 | New row |
+
+**District breakdown (from GDARD JOC report):**
+- Biogenesis Bago by district: Pretoria 45,476 / Randfontein 18,139 / Germiston 78,726
+- Aftodoll by district: Pretoria 46,075 / Randfontein 16,812 / Germiston 60,893
+- 4,853 movement permits issued; at least R32 million allocated for vaccines; 38 new animal health technicians and veterinarians appointed
+
+### Data quality flags
+
+1. **GP doses_received discrepancy:** GDARD reports 518,500 "at least allocated" vs 517,940 in the 21 May consolidated template — difference of 560 doses. GDARD also notes "124,800 Dollvet x2 not received yet" as a separate allocation. Both figures are now in master with source context. The 124,800 pending will advance the distributed total materially once confirmed received.
+2. **GP animals vaccinated vs doses administered:** GDARD reports 266,121 animals vaccinated (2026 only) but the 21 May template shows 370,837 doses administered. These measure different things: the template doses_administered likely includes 2025 baseline vaccinations and counts each dose (not each animal). The GDARD figure is 2026 animals vaccinated only. No conflict — different metrics, flagged in notes.
+3. **GP OBP/ARC discrepancy (carry forward from session 18):** GDARD confirms 1,700 ARC-OVR received; the 127,580 doses_administered row for obp_arc in the 21 May template remains flagged as a likely column-mapping error in the submitted template. Still unresolved.
+4. **GP positive cases period:** GDARD reports 296 total confirmed outbreaks for the period 1 April 2025–25 May 2026. The 21 May template showed 294. The 296 includes outbreaks recorded since the outbreak started in April 2025, not just the current 2026 intensive response period.
+
+### Action items for next run
+
+1. **Watch for:** 25 May 2026 (or later) consolidated AgriSA weekly xlsx — priority to advance national headline
+2. **Watch for:** Section 9 gazette — expected ~25 May 2026 (today); not yet in inbox at time of this run
+3. **Watch for:** ICC weekly engagement summary PDF for 20–21 May 2026
+4. **Watch for:** MPO Week 31 dairy update
+5. **Watch for:** KZN submission — no JOC data since late March; booster programme confirmation outstanding
+6. **Investigate:** GP 124,800 Dollvet x2 not yet received — confirm receipt in next GP report
+7. **Investigate:** GP OBP column-mapping discrepancy (session 18 flag — still unresolved)
+8. **GitHub push:** master_data.csv + FMD_Dashboard.html + change_log.md + memory_update.md
+
