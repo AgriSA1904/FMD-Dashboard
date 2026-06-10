@@ -4,6 +4,58 @@ description: Latest master_data.csv row count and dashboard snapshot
 type: project
 ---
 
+As at 2026-06-10 (session 34 -- NW RPO JIC 1+9 June + Portfolio Committee 9 June ingest):
+- Master: **1,579 rows** (+78 new rows from 1,501)
+- Dashboard snapshot: **9 June 2026** (advanced from 5 June; 28 weekly points, validation passed)
+- Dashboard rebuilt: Yes -- FMD_Dashboard.html (163,496 bytes)
+
+**Key highlights (session 34):**
+- NW RPO JIC 1 June: 361 confirmed cases, 527,337 animals vaccinated, 524,839 total doses used. First NW data since 21 May 2026.
+- NW RPO JIC 9 June: 375 confirmed cases (+14), 642,745 total doses used. New Bioaftogen 117,000 received 8 June (Biogenesis Bago 3).
+- Portfolio Committee 9 June: DoA case table (5 June status + new cases since). National cumulative at 9 June = 2,338 (up from 2,205 at 5 June). EC +71 new cases is notable.
+- DoA per-province allocation and animals vaccinated figures stored as doses_allocated_doa and animals_vaccinated_doa (to avoid overriding provincial JOC data; DoA allocation methodology differs from provincial received figures).
+- Biogenesis Bago 3 per-province allocations confirmed: total 1.35M to provinces (EC 217k, FS 170k, KZN 217k, MP 267k, LP 164k, NW 117k confirmed, NC 67k, GP 64k, WC 67k).
+- Sakeliga court ruling confirmed: private farmers may procure and use FMD vaccine subject to State Vet reporting.
+
+**National dashboard (9 June 2026 snapshot):**
+- Doses distributed: 5,962,501
+- Doses administered: 3,868,263
+- Animals vaccinated: 3,965,246
+- Positive cases: 2,348 (EC 396; FS 595; GP 275; KZN 336; LP 81; MP 251; NW 375; NC 17; WC 22)
+
+**Per-province (9 June 2026):**
+
+| Province | Distributed | Administered | Animals vaccinated | Positive |
+|---|---|---|---|---|
+| EC | 1,000,660 | 833,113 | 833,113 | 396 |
+| FS | 838,400 | 482,848 | 707,986 | 595 |
+| GP | 518,500 | 370,837 | 266,121 | 275 |
+| KZN | 1,329,112 | 800,177 | 648,609 | 336 |
+| LP | 611,680 | 379,471 | 377,484 | 81 |
+| MP | 565,489 | 419,066 | 344,629 | 251 |
+| NW | 617,720 | 642,745 | 527,337 | 375 |
+| NC | 150,600 | 51,227 | 28,054 | 17 |
+| WC | 330,340 | 231,913 | 231,913 | 22 |
+
+**Parked/outstanding:**
+- 10 June FMD Weekly Engagement post-meeting summary -- not yet in inbox.
+- Section 9 gazette: approximately 16 days overdue. Urgent.
+- Consolidated AgriSA weekly xlsx: approximately 19 days outstanding. Urgent.
+- MPO Week 32 -- not received; gap in dairy time series.
+- LP Biogenesis Bago ~147,000 dose receipt -- expected; not yet confirmed.
+- EC: 396 cases (+71 since 5 June) -- confirm not a backlog.
+- WC: George case confirmed in narrative but not in new_cases table -- confirm.
+- KZN: animals vaccinated gap (DoA 1.16M vs master 648k) -- next submission.
+- GP OBP column-mapping -- ongoing.
+- Dollvet 4M first consignment -- expected June 2026; monitor RMIS.
+- Next LP PCM meeting: 18 June 2026.
+
+---
+
+*Session 33 (10 June 2026): 1,501 rows; dashboard 5 June 2026 (27 weekly points). LP RPO Blouberg allocation from 4 June LP PCM minutes.*
+
+---
+
 As at 2026-06-10 (session 33 -- LP RPO Blouberg allocation + 11 June LP PCM pack review):
 - Master: **1,501 rows** (+1 new row from 1,500)
 - Dashboard snapshot: **5 June 2026** (unchanged; 27 weekly points, validation passed)

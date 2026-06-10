@@ -4,6 +4,77 @@ A running record of what changed in the master and dashboard, with dates and sou
 
 ---
 
+## 2026-06-10 (session 34) -- NW RPO JIC 1 June + 9 June + Portfolio Committee 9 June ingest
+
+**Master grew from 1,501 to 1,579 rows (+78 new rows).**
+
+**Dashboard rebuilt:** Yes -- snapshot advanced to 9 June 2026 (28 weekly points, up from 27). 163,496 bytes. Validation passed.
+
+**GitHub push:** master_data.csv, FMD_Dashboard.html, memory_update.md, change_log.md.
+
+### Sources processed
+
+| File | Effective date | Source org | Rows added | Outcome |
+|---|---|---|---|---|
+| inbox/North West/01 JUNE 2026- RPO JIC FMD UPDATE.pdf | 2026-06-01 | NW-RPO | 19 | Disease + full vaccine breakdown; 361 confirmed cases; 527,337 animals vaccinated |
+| inbox/North West/09 JUNE 2026- RPO JIC FMD UPDATE.pdf | 2026-06-09 | NW-RPO | 6 | 375 confirmed cases (+14); 642,745 total doses administered; 117,000 new Bioaftogen received 8 June |
+| inbox/Portfolio Committee Presentations/PRESENTATION TO PORTFOLIO COMMITTEE 9 JUNE Final ((003).pdf | 2026-06-04/05/09 | Ministry | 53 | Per-province DoA allocation + animals_vaccinated_doa (4 June); case table 5 June + new cases 9 June; Biogenesis Bago 3 per-province allocations |
+
+### Key figures added
+
+**NW 1 June 2026:**
+- Cumulative confirmed cases: 361 (DKK 86, Bojanala 77, DRSM 120, NMM 78). New cases week 18--22 May: 21.
+- Animals vaccinated: 527,337 (1,203 areas; target 1.1M by end August).
+- Total vaccine usage: 524,839. Breakdown: Bioaftogen 1185 99,678 / Bioaftogen 1186 59,935 / Aftodoll15 47,712 / AftodollEmerg 24,171 / Aftodoll03 Gov 152,858 / Aftodoll03 Feed 27,311 / Aftodoll05 43,539.
+
+**NW 9 June 2026:**
+- Cumulative confirmed cases: 375 (+14: DRSM 130, NMM 82).
+- New Bioaftogen allocation received 8 June 2026: 117,000 doses (Biogenesis Bago 3).
+- Total vaccine usage: 642,745 (+117,906 from 1 June). Aftodoll03 Gov 201,688 / Aftodoll03 Feed 50,527 / Aftodoll05 157,743.
+
+**Portfolio Committee 9 June 2026:**
+- DoA case table as at 5 June: national total 2,250 (EC 325, FS 591, GP 275, KZN 336, LP 80, MP 247, NW 358, NC 16, WC 22).
+- New cases reported since 5 June: 88 national (EC +71, FS +4, LP +1, MP +4, NW +7, NC +1). Cumulative at 9 June: 2,338.
+- DoA per-province animals vaccinated as at 4 June (stored as animals_vaccinated_doa to avoid overriding provincial JOC figures): national DoA total 4,709,529 (70% of 6,769,160 allocated).
+- Biogenesis Bago 3 provincial allocations: EC 217,000 / FS 170,000 / GP 64,000 / KZN 217,000 / LP 164,000 / MP 267,000 / NW 117,000 / NC 67,000 / WC 67,000.
+- Total vaccines imported to date per DoA: Biogenesis Bago 6M; DolVet 5.5M; 2M more DolVet expected early June; total ordered 13.5M.
+- Sakeliga vs DoA court ruling: private farmers may procure and use FMD vaccines but must report to State Vet Services.
+
+### Dashboard headline changes (5 June → 9 June snapshot)
+
+| Metric | Previous (5 June) | Updated (9 June) | Change |
+|---|---|---|---|
+| Doses distributed | 5,875,790 | 5,962,501 | +86,711 |
+| Doses administered | 3,556,621 | 3,868,263 | +311,642 |
+| Animals vaccinated | 3,416,885 | 3,965,246 | +548,361 |
+| Positive cases | 2,205 | 2,348 | +143 |
+| NW animals vaccinated | 171,561 | 527,337 | +355,776 |
+| NW positive cases | 332 | 375 | +43 |
+| Weekly time-series points | 27 | 28 | +1 |
+
+### Data quality flags
+
+1. Ministry per-province doses_received and animals_vaccinated rows renamed to doses_allocated_doa and animals_vaccinated_doa to prevent overriding provincial JOC figures. DoA allocation (769,556 EC) conflicts with EC-DRDAR received (1,000,660) because DoA tracks formal allocation only; provincial channels may draw on national stockpile outside this allocation.
+2. KZN: DoA 4 June animals_vaccinated_doa = 1,163,193 vs master 648,609 (AgriSA-NAT 21 May). Large gap likely reflects feedlot channel + booster programme started 8 June. Monitor next KZN submission.
+3. NC: DoA shows 16 confirmed at 5 June (+1 to 17 at 9 June), with narrative noting 55 total clinical cases (suspected + unconfirmed). Master NC positive_cases now advanced to 17.
+4. EC: DoA 9 June cumulative 396 (325 + 71 new). Higher than EC-DRDAR 3 June 361. DoA now drives EC positive_cases on dashboard. 71 new cases in 4 days is a sharp increase; flag for confirmation.
+5. WC: Page 4 of PC presentation notes new confirmed case in George area, but new_cases table shows 0 for WC. May be an unresolved lag. Monitor next WC-GIS update.
+6. GP: DoA 5 June status 275 -- same as prior; no new cases since 24 April per DoA table.
+
+### Action items
+
+- EC: confirm 396 cases (71 new in 4 days is unusual; may include backlog).
+- WC: confirm George case -- new_cases_week may be understated.
+- KZN: next submission to confirm animals vaccinated figures including feedlot + booster.
+- Section 9 gazette: ~16 days overdue. Urgent.
+- Consolidated AgriSA weekly xlsx: ~19 days outstanding. Urgent.
+- 10 June FMD Weekly Engagement post-meeting summary: not yet in inbox.
+- LP Biogenesis ~147,000 receipt: carry forward.
+- MPO Week 32: still missing.
+- Next LP PCM: 18 June 2026.
+
+---
+
 ## 2026-06-10 (session 33) -- LP RPO Blouberg allocation from 11 June LP PCM meeting pack
 
 **Master grew from 1,500 to 1,501 rows (+1 new row).**
