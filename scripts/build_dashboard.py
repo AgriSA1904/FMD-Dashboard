@@ -1034,6 +1034,27 @@ def build_dashboard():
     out_html = out_html.replace("__SNAPSHOT_DATE__", snapshot)
     out_html = out_html.replace("__BUILD_DATE__", str(date.today()))
 
+    # Ministerial comparison date — derived from the latest cattle_vaccinated_ministerial row
+    # Ministerial comparison date — derived from the latest cattle_vaccinated_ministerial row
+    min_dates = [r["effective_date"] for r in rows
+                 if r["metric"] == "cattle_vaccinated_ministerial"
+                 and r["source_org"] == "Ministry" and r["superseded_by"] == ""]
+    if min_dates:
+        latest_min_date = max(min_dates)
+        try:
+            from datetime import datetime as _dt
+            _d = _dt.strptime(latest_min_date, "%Y-%m-%d")
+            _long  = _d.strftime("%-d %B %Y")
+            _short = _d.strftime("%-d %b")
+        except Exception:
+            _long  = latest_min_date
+            _short = latest_min_date
+    else:
+        _long  = "n/a"
+        _short = "n/a"
+    out_html = out_html.replace("__MINISTERIAL_DATE_LONG__",  _long)
+    out_html = out_html.replace("__MINISTERIAL_DATE_SHORT__", _short)
+
     validate_output(out_html, DASHBOARD)
     with open(DASHBOARD, "w", encoding="utf-8") as f:
         f.write(out_html)
@@ -1041,3 +1062,4 @@ def build_dashboard():
 
 
 if __name__ == "__main__":
+    build_dashboard()
