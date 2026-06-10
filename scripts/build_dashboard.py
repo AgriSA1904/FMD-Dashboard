@@ -981,8 +981,8 @@ def build_dashboard():
         "provincial_cattle":       prov_ministerial,
         "policy_events":           policy_events,
         "incoming_supply":         incoming,
-        "source_date":             "2026-06-01",
-        "source_label":            "Minister Steenhuisen media briefing, 1 June 2026",
+        "source_date":             "2026-06-04",
+        "source_label":            "DoA Portfolio Committee briefing, 9 June 2026 (data as at 4 June 2026)",
     }
 
     min_comparison = build_ministerial_comparison(rows)
@@ -1041,4 +1041,3 @@ def build_dashboard():
 
 
 if __name__ == "__main__":
-    build_dashboard()
