@@ -1592,3 +1592,11 @@ effective_date,province,metric_category,metric,vaccine_type,vet_channel,value,un
 2026-06-09,MP,vaccine_admin,doses_administered,all,all,486818,doses,AgriMP_WhatsApp_20260609.txt,AgriMP,2026-06-09,2026-06-09,1,,Total doses administered as reported by AgriMP 9 Jun 2026
 2026-06-09,MP,logistics,doses_allocated_doa,all,all,680000,doses,AgriMP_WhatsApp_20260609.txt,AgriMP,2026-06-09,2026-06-09,1,,"580,000 prior allocation + 100,000 additional; confirmed by AgriMP 9 Jun 2026"
 2026-06-09,MP,logistics,doses_allocated_doa,all,private,61000,doses,AgriMP_WhatsApp_20260609.txt,AgriMP,2026-06-09,2026-06-09,1,,Allocated to RPO Mpumalanga (private/commodity channel)
+
+2026-06-09,WC,disease,positive_cases,,,35,count,WC-GIS portal live dashboard 2026-06-09,WC-GIS,2026-06-09,2026-06-10,1,,WC GIS portal 9 June 2026. Total confirmed cases: 35 (up from 22 on 21 May 2026). Last Updated: 9 June 2026.
+2026-06-09,WC,vaccine_receipt,doses_received,all,all,497100,doses,WC-GIS portal live dashboard 2026-06-09,WC-GIS,2026-06-09,2026-06-10,1,,WC GIS portal 9 June 2026. Vaccines received: 497100 (up from 330140 on 19 May 2026).
+2026-06-09,WC,vaccine_admin,animals_vaccinated_total,all,all,299969,count,WC-GIS portal live dashboard 2026-06-09,WC-GIS,2026-06-09,2026-06-10,1,,WC GIS portal 9 June 2026. Total vaccinations: 299969 (up from 231913 on 19 May 2026). Primary/booster split not available from main dashboard view.
+2026-06-09,WC,animals_vaccinated,animals_vaccinated,all,all,299969,animals,WC-GIS portal live dashboard 2026-06-09,WC-GIS,2026-06-09,2026-06-10,1,,WC GIS portal 9 June 2026. Cumulative animals vaccinated: 299969.
+2026-06-09,WC,vaccine_admin,doses_administered,all,all,299969,doses,WC-GIS portal live dashboard 2026-06-09,WC-GIS,2026-06-09,2026-06-10,1,,WC GIS portal 9 June 2026. Total doses administered: 299969.
+2026-06-09,WC,vaccine_admin,vaccine_balance,all,all,197131,doses,WC-GIS portal live dashboard 2026-06-09,WC-GIS,2026-06-09,2026-06-10,1,,WC GIS portal 9 June 2026. Balance on hand: 497100 received minus 299969 administered = 197131.
+2026-06-09,WC,operations,vaccination_sites,all,all,1307,count,WC-GIS portal live dashboard 2026-06-09,WC-GIS,2026-06-09,2026-06-10,1,,WC GIS portal 9 June 2026. 1307 vaccination sites (up from 954 on 19 May 2026). 29 private vets vaccinating.

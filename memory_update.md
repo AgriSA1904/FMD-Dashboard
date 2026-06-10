@@ -4,6 +4,40 @@ description: Latest master_data.csv row count and dashboard snapshot
 type: project
 ---
 
+As at 2026-06-10 (session 36 -- WC GIS portal 9 June 2026 ingested):
+- Master: **1,601 rows** (+7 WC GIS rows from session 34b total of 1,593 + 1 blank line artefact)
+- Dashboard snapshot: **9 June 2026** (30 weekly points)
+- Dashboard rebuilt: Yes
+
+**New data ingested (WC-GIS, effective 2026-06-09):**
+- WC positive_cases: 35 (up from 22 on 21 May 2026)
+- WC doses_received: 497,100 (up from 330,140 on 19 May 2026)
+- WC animals_vaccinated: 299,969 (up from 231,913 on 19 May 2026)
+- WC doses_administered: 299,969
+- WC vaccine_balance: 197,131
+- WC vaccination_sites: 1,307
+- Source: WC Government GIS portal live dashboard (Last Updated: 9 June 2026). Primary/booster split not available from main dashboard view.
+
+**National headlines (dashboard 9 June 2026):**
+- Distributed: 6,573,661
+- Administered: 4,033,302
+- Positive cases: 2,361
+
+**Parked/outstanding (carry forward):**
+- WC primary/booster split -- Vaccinations tab not accessible from main dashboard view. Retry next session.
+- 10 June FMD Weekly Engagement post-meeting summary -- not yet in inbox.
+- Section 9 gazette: approximately 17 days overdue. Urgent.
+- Consolidated AgriSA weekly xlsx: approximately 20 days outstanding. Urgent.
+- MPO Week 32 -- not received; gap in dairy time series.
+- LP Biogenesis Bago ~147,000 dose receipt -- expected; not yet confirmed.
+- MP animals_vaccinated not updated (AgriMP reported doses_administered only; unique animals pending MP-DVS confirmation).
+- EC: 396 cases (+71 since 5 June) -- confirm not a backlog.
+- KZN: animals vaccinated gap (DoA 1.16M vs master 648k) -- next submission.
+- Dollvet 4M first consignment -- expected June 2026; monitor RMIS.
+- Next LP PCM meeting: 18 June 2026.
+
+---
+
 As at 2026-06-10 (session 34b -- AgriMP Mpumalanga WhatsApp update; ministerial comparison fix):
 - Master: **1,593 rows** (+4 from session 34 total of 1,589)
 - Dashboard snapshot: **9 June 2026** (30 weekly points)
@@ -185,30 +219,4 @@ As at 2026-06-09 (session 32 -- FS 5 June JOC + MPO Week 33 ingest):
 - Doses distributed: 5,875,790 (unchanged; next update pending consolidated weekly xlsx)
 - Doses administered: 3,556,621
 - Animals vaccinated: 3,416,885
-- FS animals vaccinated updated to 707,986 (FS-DARDEA 4 June) — dashboard may use 513,167 (last formal FS-JOC dose-level total); check build script logic
-- Positive cases: 2,205 (EC 361; FS 608; GP 296; KZN 69; LP 74; MP 231; NW 332; NC 7; WC 22) — FS up 4 from 604
-- Suspected cases: 920
-
-**Per-province (5 June 2026 where updated; others unchanged from 3 June):**
-
-| Province | Distributed | Administered | Animals vaccinated | Positive |
-|---|---|---|---|---|
-| EC | 1,000,660 | 833,113 (dose-count) | 833,113 | 361 (EC-DRDAR) / 566 (AgriSA-NAT) |
-| FS | 838,400 (formal) | 482,848 | 707,986 (FS-DARDEA 4 Jun) | 608 |
-| GP | 518,500 | 370,837 | 266,121 | 296 |
-| KZN | 1,329,112 | 800,177 | 648,609 | 69 |
-| LP | 611,680 | 379,471 | 377,484 | 74 |
-| MP | 565,489 | 419,066 | 344,629 | 231 |
-| NW | 617,720 | 331,103 | 171,561 | 332 |
-| NC | 150,600 | 51,227 | 28,054 | 7 |
-| WC | 330,340 | 231,913 | 231,913 | 22 |
-
-**Data quality notes:**
-1. FS doses_received conflict: formal JOC 838,400 vs AgriSA-NAT verbal 1,100,000 (3 June). FS-JOC authoritative.
-2. FS animals_vaccinated 707,986 (FS-DARDEA media release, map 4 June) covers all cattle vaccinated with Biogenesis Bago + DolVet. Component breakdown from Mangaung district (xlsx) sums to 512,194 -- remainder from other districts not captured in xlsx detail rows.
-3. EC positive_cases conflict: EC-DRDAR 361 (confirmed only) vs AgriSA-NAT 566 (qualifier ambiguous). Both rows held.
-4. MPO Week 32 still missing from inbox -- gap in dairy data between 22 May and 5 June.
-5. FS-DARDEA media release references Government Gazette No. 51512 of 13 June 2025 for quarantine regulations -- distinct from Section 9 gazette still outstanding.
-
-**Parked/outstanding:**
-- Consolidated AgriSA weekly xlsx: 
+- FS animals vaccinated updated to 707,9

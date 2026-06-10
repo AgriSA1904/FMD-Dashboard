@@ -4,6 +4,32 @@ A running record of what changed in the master and dashboard, with dates and sou
 
 ---
 
+## 2026-06-10 (session 36) -- WC GIS portal 9 June 2026
+
+**Master: 1,601 rows (+7 WC-GIS rows). Source: WC Government GIS portal live dashboard, Last Updated 9 June 2026.**
+
+| effective_date | province | metric | value | unit | notes |
+|---|---|---|---|---|---|
+| 2026-06-09 | WC | positive_cases | 35 | count | Up from 22 on 21 May 2026 |
+| 2026-06-09 | WC | doses_received | 497,100 | doses | Up from 330,140 on 19 May 2026 |
+| 2026-06-09 | WC | animals_vaccinated_total | 299,969 | count | Up from 231,913 on 19 May 2026 |
+| 2026-06-09 | WC | animals_vaccinated | 299,969 | animals | Cumulative |
+| 2026-06-09 | WC | doses_administered | 299,969 | doses | |
+| 2026-06-09 | WC | vaccine_balance | 197,131 | doses | Calculated: 497,100 minus 299,969 |
+| 2026-06-09 | WC | vaccination_sites | 1,307 | count | Up from 954 on 19 May 2026; 29 private vets |
+
+**Dashboard rebuilt:** Yes (30 weekly points; snapshot 2026-06-09).
+
+**Data quality note:** WC primary/booster split not available from main dashboard view. The Vaccinations tab in the ArcGIS Experience Builder app could not be navigated to from the main page. Total vaccinations (299,969) recorded as both animals_vaccinated and doses_administered, consistent with prior WC GIS methodology. Primary/booster split to be captured on next portal visit.
+
+**Next-run action items:**
+- Retry WC Vaccinations tab for primary/booster/district split.
+- Await consolidated AgriSA weekly xlsx (~20 days outstanding).
+- Await 10 June FMD Weekly Engagement post-meeting summary.
+- Monitor Section 9 gazette (~17 days overdue).
+
+---
+
 ## 2026-06-10 (session 34b) -- AgriMP Mpumalanga update; dashboard fixes
 
 **Master: 1,593 rows (+4). Source: Robert Davel, Agri Mpumalanga (WhatsApp, 9 June 2026).**
@@ -2731,39 +2757,4 @@ NW confirmed at **332** (no change needed).
 2. **Per-municipality positive_cases:** The xlsx uses the heading "Otbreaks" (sic, typo for "Outbreaks") and "Suspects". We map the former to `positive_cases_district` to stay consistent with the existing MP master schema. Subtotal-row checks: Ehlanzeni 26 (sum 26 - includes Bohlabela which has 0 outbreaks but 4 suspects), Gert Sibande 137 (sum of municipalities 137), Nkangala 70 (sum 70). Province total 233 matches.
 3. **Bohlabela:** Present in this xlsx as a separate municipality under Ehlanzeni district. Not in the 17 May MP pptx municipality list. Captured as a new entry for completeness.
 4. **Suspect total cross-check:** Province-level row says 121 but sum of municipalities is 9 + 83 + 33 = 125. The 121 is treated as authoritative (matches the provincial total cell in the xlsx). Flagged in notes.
-5. **Animals vaccinated subtotal cross-check:** Per-municipality sum is exactly 344,537 (matches province total cell). No discrepancy.
-
-### Action items for next run
-
-1. **Watch for:** 22 May or later consolidated AgriSA weekly xlsx
-2. **Watch for:** ICC weekly engagement summary PDF for 20-21 May
-3. **Watch for:** Section 9 gazette (~25 May 2026, three days away)
-4. **Watch for:** MPO Week 31 dairy update
-5. **Investigate:** GP OBP distributed (1,700) vs administered (127,580) discrepancy from session 18
-6. **Investigate:** EC Other/Artio-Preva 1,250 cell flagged in session 18
-7. **GitHub push:** master_data.csv + FMD_Dashboard.html + change_log.md + memory_update.md + scripts/append_mp_19may_dvs.py
-
-
----
-
-## 2026-05-25 (session 20) — GDARD GP JOC 22 May 2026 ingested (automated daily run)
-
-**Master grew from 1,301 to 1,308 rows (+7 new rows).**
-
-**Dashboard rebuilt:** Yes — FMD_Dashboard.html updated (84,026 bytes, **20 weekly points**, validation passed). **Snapshot date advanced from 21 May 2026 to 22 May 2026.**
-
-**GitHub push:** Pending this session.
-
-### Inbox scan summary
-
-| Folder | Files checked | New since last run? |
-|---|---|---|
-| Root — "25 May 2026" dated weekly folder | None | No new AgriSA consolidated xlsx |
-| inbox/Gauteng/ | GDARD FMD JOC Meeting 22.05.26.pdf | **YES — ingested** |
-| inbox/Free State/ | No new files | No |
-| inbox/Eastern Cape/ | No new files | No |
-| inbox/Limpopo/ | No new files | No |
-| inbox/Mpumalanga/ | No new files | No |
-| inbox/North West/ | No new files | No |
-| inbox/MPO/ | No MPO Week 31 found | No |
-| inbox/ICC 
+5. **Animals vaccinated subt
