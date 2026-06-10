@@ -4,6 +4,41 @@ A running record of what changed in the master and dashboard, with dates and sou
 
 ---
 
+## 2026-06-10 (session 33) -- LP RPO Blouberg allocation from 11 June LP PCM meeting pack
+
+**Master grew from 1,500 to 1,501 rows (+1 new row).**
+
+**Dashboard rebuilt:** Yes -- snapshot unchanged at 5 June 2026 (27 weekly points). 163,030 bytes. Validation passed.
+
+**GitHub push:** master_data.csv, FMD_Dashboard.html, memory_update.md, change_log.md.
+
+### Sources processed
+
+| File | Source org | Rows | Outcome |
+|---|---|---|---|
+| FMD PCM MEETINGPACK 20260611.pdf (4 June minutes) | RPO | 1 | RPO LP Blouberg 23,000 dose allocation confirmed |
+| AgriSA Weekly FMD Engagement 2026.06.10.pdf | AgriSA-NAT | 0 | Agenda only; post-meeting summary not yet in inbox |
+
+### Key figures added
+
+**LP RPO private vet allocation (4 June 2026):** doses_received private/all = 23,000 (from RPO national 500,000-dose tranche). Confirmed by Mr Douw Pelser at 4 June LP PCM meeting. To be administered via private vets in Blouberg; facilitated by Buffalo Analytics. NOT a programme-source figure.
+
+### Data quality flags
+
+1. LP expected Biogenesis Bago ~147,000 doses: not yet received as at 4 June; not added pending confirmation.
+2. Biogenesis 3.5M shipment confirmed as final approved import (Dr Danie Odendaal). No new Section 21 permits; no private vaccine market expected.
+3. 10 June FMD Weekly Engagement: agenda only; summary not yet in inbox.
+
+### Action items
+
+- 10 June post-meeting summary: check inbox 11 June.
+- LP Biogenesis ~147,000 receipt: carry forward.
+- Section 9 gazette: ~16 days overdue. Urgent.
+- Consolidated AgriSA xlsx: ~19 days outstanding. Urgent.
+- Next LP PCM: 18 June 2026.
+
+---
+
 ## 2026-06-09 (session 32) -- FS 5 June JOC + MPO Week 33 ingest
 
 **Master grew from 1,468 to 1,500 rows (+32 new rows).**

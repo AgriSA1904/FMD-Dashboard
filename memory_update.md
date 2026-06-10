@@ -4,6 +4,61 @@ description: Latest master_data.csv row count and dashboard snapshot
 type: project
 ---
 
+As at 2026-06-10 (session 33 -- LP RPO Blouberg allocation + 11 June LP PCM pack review):
+- Master: **1,501 rows** (+1 new row from 1,500)
+- Dashboard snapshot: **5 June 2026** (unchanged; 27 weekly points, validation passed)
+- Dashboard rebuilt: Yes -- FMD_Dashboard.html (163,030 bytes)
+
+**Key highlights (session 33):**
+- Two new inbox files identified: AgriSA Weekly FMD Engagement 10 June agenda (agenda only, no data) and LP PCM Meeting Pack 20260611 (4 June 2026 LP PCM full minutes + 11 June agenda).
+- 10 June FMD Weekly Engagement post-meeting summary not yet in inbox.
+- LP PCM 4 June 2026 minutes confirm RPO LP Blouberg allocation of approximately 23,000 doses; to be administered via private vets in Blouberg, facilitated by Buffalo Analytics. Added as 1 row (source_org: RPO; NOT a programme-source figure).
+- LP PCM minutes confirm Biogenesis 3.5M shipment was the final approved import; no new Section 21 permits submitted (Dr Danie Odendaal).
+- LP expected approximately 147,000 doses from Biogenesis Bago national consignment (not yet received as at 4 June; not added pending confirmation).
+- Next LP PCM meeting: 18 June 2026.
+
+**National dashboard (5 June 2026 snapshot -- unchanged):**
+- Doses distributed: 5,875,790
+- Doses administered: 3,556,621
+- Animals vaccinated: 3,416,885
+- Positive cases: 2,205 (EC 361; FS 608; GP 296; KZN 69; LP 74; MP 231; NW 332; NC 7; WC 22)
+- Suspected cases: 920
+
+**Per-province (5 June 2026):**
+
+| Province | Distributed | Administered | Animals vaccinated | Positive |
+|---|---|---|---|---|
+| EC | 1,000,660 | 833,113 | 833,113 | 361 / 566 conflict |
+| FS | 838,400 | 482,848 | 707,986 | 608 |
+| GP | 518,500 | 370,837 | 266,121 | 296 |
+| KZN | 1,329,112 | 800,177 | 648,609 | 69 |
+| LP | 611,680 | 379,471 | 377,484 | 74 |
+| MP | 565,489 | 419,066 | 344,629 | 231 |
+| NW | 617,720 | 331,103 | 171,561 | 332 |
+| NC | 150,600 | 51,227 | 28,054 | 7 |
+| WC | 330,340 | 231,913 | 231,913 | 22 |
+
+**Parked/outstanding:**
+- 10 June FMD Weekly Engagement post-meeting summary -- not yet in inbox.
+- Section 9 gazette: approximately 16 days overdue. Urgent.
+- Consolidated AgriSA weekly xlsx: approximately 19 days outstanding. Urgent.
+- MPO Week 32 -- not received; gap in dairy time series.
+- LP Biogenesis Bago ~147,000 dose receipt -- expected; not yet confirmed.
+- LP Biogenesis depot at 0 -- urgent.
+- NW: DDG Serage outcome + reinfection investigation.
+- EC: confirm 361 vs 566; confirm 18,730 doses gap.
+- KZN booster programme -- monitor.
+- GP OBP column-mapping -- ongoing.
+- SAPPO: bottles-to-doses conversion + unknown province follow-up.
+- Dollvet 4M first consignment -- expected June 2026; monitor RMIS.
+- Next LP PCM meeting: 18 June 2026.
+
+---
+
+*Session 32 (09 June 2026): 1,500 rows; dashboard 5 June 2026 (27 weekly points). FS 5 June JOC + MPO Week 33 ingest.*
+
+---
+
 As at 2026-06-09 (session 32 -- FS 5 June JOC + MPO Week 33 ingest):
 - Master: **1,500 rows** (+32 new rows from 1,468)
 - Dashboard snapshot: **5 June 2026** (advanced from 3 June; 27 weekly points, validation passed)
