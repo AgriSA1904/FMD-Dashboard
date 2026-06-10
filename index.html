@@ -753,7 +753,7 @@ const DASHBOARD_DATA = {
       "negative": 0,
       "pending": 0,
       "received": 838400,
-      "vaccinated": 609900
+      "vaccinated": 707986
     },
     {
       "code": "GP",
@@ -1050,9 +1050,17 @@ const DASHBOARD_DATA = {
       "pending": null
     },
     {
+      "date": "2026-06-04",
+      "received": 6501501,
+      "administered": 3965246,
+      "positive": 2025,
+      "suspected": 936,
+      "pending": null
+    },
+    {
       "date": "2026-06-05",
       "received": 6239901,
-      "administered": 3867160,
+      "administered": 3965246,
       "positive": 2267,
       "suspected": 936,
       "pending": null
@@ -1060,7 +1068,7 @@ const DASHBOARD_DATA = {
     {
       "date": "2026-06-09",
       "received": 6239901,
-      "administered": 3867160,
+      "administered": 3965246,
       "positive": 2348,
       "suspected": 936,
       "pending": null
@@ -1081,9 +1089,9 @@ const DASHBOARD_DATA = {
     "procured": 13500000,
     "distributed": 6239901,
     "received": 6239901,
-    "administered": 3867160,
+    "administered": 3965246,
     "herd_cattle": 12496199,
-    "balance": 2372741,
+    "balance": 2274655,
     "delta_received": 0,
     "delta_distributed": 0,
     "delta_administered": 0,
@@ -1535,31 +1543,31 @@ const DASHBOARD_DATA = {
     {
       "code": "EC",
       "name": "Eastern Cape",
-      "joc": 332182,
+      "joc": 833113,
       "joc_date": "2026-06-09",
       "ministerial": 725632,
       "ministerial_date": "2026-06-04",
-      "diff": -393450,
-      "flag": "critical"
+      "diff": 107481,
+      "flag": null
     },
     {
       "code": "FS",
       "name": "Free State",
-      "joc": 609900,
+      "joc": 707986,
       "joc_date": "2026-06-09",
       "ministerial": 707986,
       "ministerial_date": "2026-06-04",
-      "diff": -98086,
-      "flag": "critical"
+      "diff": 0,
+      "flag": "warning"
     },
     {
       "code": "GP",
       "name": "Gauteng",
-      "joc": 184036,
+      "joc": 266121,
       "joc_date": "2026-06-09",
       "ministerial": 325216,
       "ministerial_date": "2026-06-04",
-      "diff": -141180,
+      "diff": -59095,
       "flag": "critical"
     },
     {
@@ -1575,12 +1583,12 @@ const DASHBOARD_DATA = {
     {
       "code": "LP",
       "name": "Limpopo",
-      "joc": 128937,
+      "joc": 377484,
       "joc_date": "2026-06-09",
       "ministerial": 357045,
       "ministerial_date": "2026-06-04",
-      "diff": -228108,
-      "flag": "critical"
+      "diff": 20439,
+      "flag": null
     },
     {
       "code": "MP",
@@ -1595,11 +1603,11 @@ const DASHBOARD_DATA = {
     {
       "code": "NW",
       "name": "North West",
-      "joc": 168748,
+      "joc": 527337,
       "joc_date": "2026-06-09",
       "ministerial": 600331,
       "ministerial_date": "2026-06-04",
-      "diff": -431583,
+      "diff": -72994,
       "flag": "critical"
     },
     {
@@ -1666,25 +1674,9 @@ const DASHBOARD_DATA = {
     },
     {
       "severity": "critical",
-      "province": "EC",
-      "title": "Eastern Cape: JOC figure lower than ministerial briefing",
-      "detail": "Ministerial (2026-06-04) reported 725,632 cattle vaccinated; current JOC/AgriSA figure is 332,182 \u2014 gap of 393,450. Impossible if both are cumulative.",
-      "action": "Reconcile AgriSA provincial return against ministerial figure. Determine whether ministerial count includes additional species (pigs, sheep) beyond cattle only.",
-      "owner": "Eastern Cape AgriSA affiliate"
-    },
-    {
-      "severity": "critical",
-      "province": "FS",
-      "title": "Free State: JOC figure lower than ministerial briefing",
-      "detail": "Ministerial (2026-06-04) reported 707,986 cattle vaccinated; current JOC/AgriSA figure is 609,900 \u2014 gap of 98,086. Impossible if both are cumulative.",
-      "action": "Reconcile AgriSA provincial return against ministerial figure. Determine whether ministerial count includes additional species (pigs, sheep) beyond cattle only.",
-      "owner": "Free State AgriSA affiliate"
-    },
-    {
-      "severity": "critical",
       "province": "GP",
       "title": "Gauteng: JOC figure lower than ministerial briefing",
-      "detail": "Ministerial (2026-06-04) reported 325,216 cattle vaccinated; current JOC/AgriSA figure is 184,036 \u2014 gap of 141,180. Impossible if both are cumulative.",
+      "detail": "Ministerial (2026-06-04) reported 325,216 cattle vaccinated; current JOC/AgriSA figure is 266,121 \u2014 gap of 59,095. Impossible if both are cumulative.",
       "action": "Reconcile AgriSA provincial return against ministerial figure. Determine whether ministerial count includes additional species (pigs, sheep) beyond cattle only.",
       "owner": "Gauteng AgriSA affiliate"
     },
@@ -1698,14 +1690,6 @@ const DASHBOARD_DATA = {
     },
     {
       "severity": "critical",
-      "province": "LP",
-      "title": "Limpopo: JOC figure lower than ministerial briefing",
-      "detail": "Ministerial (2026-06-04) reported 357,045 cattle vaccinated; current JOC/AgriSA figure is 128,937 \u2014 gap of 228,108. Impossible if both are cumulative.",
-      "action": "Reconcile AgriSA provincial return against ministerial figure. Determine whether ministerial count includes additional species (pigs, sheep) beyond cattle only.",
-      "owner": "Limpopo AgriSA affiliate"
-    },
-    {
-      "severity": "critical",
       "province": "MP",
       "title": "Mpumalanga: JOC figure lower than ministerial briefing",
       "detail": "Ministerial (2026-06-04) reported 465,105 cattle vaccinated; current JOC/AgriSA figure is 344,629 \u2014 gap of 120,476. Impossible if both are cumulative.",
@@ -1716,7 +1700,7 @@ const DASHBOARD_DATA = {
       "severity": "critical",
       "province": "NW",
       "title": "North West: JOC figure lower than ministerial briefing",
-      "detail": "Ministerial (2026-06-04) reported 600,331 cattle vaccinated; current JOC/AgriSA figure is 168,748 \u2014 gap of 431,583. Impossible if both are cumulative.",
+      "detail": "Ministerial (2026-06-04) reported 600,331 cattle vaccinated; current JOC/AgriSA figure is 527,337 \u2014 gap of 72,994. Impossible if both are cumulative.",
       "action": "Reconcile AgriSA provincial return against ministerial figure. Determine whether ministerial count includes additional species (pigs, sheep) beyond cattle only.",
       "owner": "North West AgriSA affiliate"
     },

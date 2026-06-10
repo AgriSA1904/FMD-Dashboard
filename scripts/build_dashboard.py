@@ -35,7 +35,7 @@ PROVINCES = [
 # RPO, MPO and administrative/metadata rows are excluded from driving the weekly axis.
 PROGRAMME_SOURCES = frozenset({
     "AgriSA-NAT", "ICC", "FMD-ICC", "Ministry",
-    "FS-JOC", "FS-DRDAR", "FS-DARDLEA", "FS-Landbou",
+    "FS-JOC", "FS-DRDAR", "FS-DARDLEA", "FS-DARDEA", "FS-Landbou",
     "EC-DRDAR", "GP-GDARD", "WC-GIS",
     "LP-LDARD", "MP-DVS", "NW-RPO",
 })
@@ -541,7 +541,7 @@ def build_ministerial_comparison(rows):
     for code, name in PROVINCES:
         joc = latest_metric(rows, province=code, metric="animals_vaccinated",
                             vaccine_type="all", vet_channel="all",
-                            prefer_org=["AgriSA-NAT", "ICC", "WC-GIS", "GDARD"])
+                            prefer_org=list(PROGRAMME_SOURCES))
         joc_date = latest_province_date(rows, code)
 
         min_rows = [r for r in rows if r["source_org"] == "Ministry"
