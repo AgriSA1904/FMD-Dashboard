@@ -4,6 +4,94 @@ A running record of what changed in the master and dashboard, with dates and sou
 
 ---
 
+## 2026-06-11 (session 37) -- AHGEN WOAH report + VL BKS FS-Landbou + template fix
+
+**Master: 1,621 rows (+21 new rows from clean 1,600). Dashboard: 9 June 2026 snapshot unchanged (30 weekly points). Template duplicate-tail bug fixed.**
+
+**GitHub push:** master_data.csv, FMD_Dashboard.html, scripts/dashboard_template.html, memory_update.md, change_log.md.
+
+### Inbox scan
+
+| File | Status |
+|---|---|
+| inbox/AHGEN112 FMD Outbreak Report, 29 May 2026.pdf | New -- ingested (20 WOAH rows) |
+| inbox/Free State/VL BKS JOC verslag 260605.pdf | New -- ingested (4 rows; FS-Landbou non-programme source) |
+| inbox/Free State/WhatsApp Image 2026-06-10 at 10.59.11.jpeg | Duplicate of FS-DARDEA 5 June media release (session 32); no rows added |
+| All other inbox subfolders | No new files |
+| Root dated folders | No new consolidated AgriSA weekly xlsx |
+
+### Sources processed
+
+| File | Effective date | Source org | Rows added | Outcome |
+|---|---|---|---|---|
+| AHGEN112 FMD Outbreak Report, 29 May 2026.pdf | 2026-05-29 | Ministry | 17 | WOAH outbreak counts (10 open + 7 closed non-zero) per province |
+| VL BKS JOC verslag 260605.pdf | 2026-06-05 | FS-Landbou | 4 | FS vaccine component breakdown; total received 1,110,500 (conflict noted) |
+| WhatsApp Image 2026-06-10 at 10.59.11.jpeg | 2026-06-05 | FS-DARDEA | 0 | Confirmed duplicate of session 32 data |
+
+### Key figures added
+
+**WOAH outbreak counts (29 May 2026, Directorate Animal Health -- AHGEN report):**
+
+| Province | Open outbreaks | Closed outbreaks | Total |
+|---|---|---|---|
+| EC | 256 | 0 | 256 |
+| FS | 581 | 4 | 585 |
+| GP | 272 | 3 | 275 |
+| KZN | 316 | 20 | 336 |
+| LP | 76 | 3 | 79 |
+| MP | 242 | 1 | 243 |
+| NW | 350 | 1 | 351 |
+| NC | 15 | 0 | 15 |
+| WC | 22 | 0 | 22 |
+| **National** | **2,130** | **32** | **2,162** |
+
+Epidemiological notes from AHGEN report (intelligence only; not added to master):
+- SAT2: KZN 2021 origin; spread to EC, MP, GP, NW, FS.
+- SAT1: identified Gauteng Oct 2025; same strain isolated in WC, FS, NW, MP, GP, KZN, EC, NC. Different from KZN Feb 2025 SAT1.
+- EC East London SAT2 controlled slaughter ongoing (serologically positive; depopulation in progress).
+- WC: Drakenstein, Mossel Bay, Swartland Municipalities (22 outbreaks, SAT1).
+
+**FS vaccine component breakdown (5 June 2026, VL BKS JOC / Vrystaat Landbou):**
+
+| Metric | Vaccine type | Value | Notes |
+|---|---|---|---|
+| animals_vaccinated_dose1 | bioaftogen | 318,649 | Of ~370,000 Biogenesis received |
+| animals_vaccinated_dose1 | dolvet | 389,337 | Of 732,200 DolVet received per VL BKS |
+| doses_received | dolvet | 732,200 | CONFLICT: FS-JOC formal 466,100 -- gap 266,100 may be 19 May batch |
+| doses_received | all | 1,110,500 | CONFLICT: FS-JOC formal 838,400 (programme-authoritative) |
+
+Total animals vaccinated (318,649 + 389,337 = 707,986) confirms FS-DARDEA 4 June figure already in master.
+
+### Template fix
+
+`scripts/dashboard_template.html` had a duplicated closing block at lines 1720-1723:
+```
+}());
+</script>
+</body>
+</html>
+```
+This duplicate caused `validate_output()` to fail with "Mismatched script tags: 4 open vs 5 close". Removed. Template now has 4 open/4 close script tags.
+
+The previous build (session 36) may have succeeded because it ran against a different template state, or the session 36 template was subsequently re-generated with the bug. Template is now clean.
+
+### Data quality flags
+
+1. FS doses_received (VL BKS vs FS-JOC): VL BKS Vrystaat Landbou shows 1,110,500 total received (DolVet 732,200); FS-JOC formal submission shows 838,400 (DolVet 466,100). Both held. FS-JOC is programme-authoritative. The additional 266,100 doses in VL BKS corresponds exactly to one Aftodoll batch (received 19 May 2026 per VL BKS receipt list) that may not have been formally submitted in the JOC xlsx. Confirm with FS-JOC.
+2. WOAH outbreak counts vs positive_cases: WOAH counts are premises/locations formally notified to WOAH; positive_cases in master tracks all confirmed disease events (faster reporting cycle). At 29 May: WOAH FS 581 vs JOC FS 608 (5 June) -- WOAH is lower due to lag in formal notification. These are distinct metrics; both valid.
+3. KZN WOAH total: 316 open + 20 closed = 336 total (table in PDF showed 316 for Total column, likely OCR/formatting error; correct value is 336 per narrative text).
+
+### Action items
+
+- FS-JOC: confirm whether 266,100 Aftodoll batch (19 May) is included in formal doses_received figure.
+- WC: Retry Vaccinations tab in GIS portal for primary/booster split.
+- 10 June FMD Weekly Engagement summary: check inbox.
+- Section 9 gazette: ~18 days overdue. Urgent.
+- Consolidated AgriSA weekly xlsx: ~21 days outstanding. Urgent.
+- LP PCM 18 June 2026: monitor for meeting pack.
+
+---
+
 ## 2026-06-10 (session 36) -- WC GIS portal 9 June 2026
 
 **Master: 1,601 rows (+7 WC-GIS rows). Source: WC Government GIS portal live dashboard, Last Updated 9 June 2026.**
@@ -2757,4 +2845,83 @@ NW confirmed at **332** (no change needed).
 2. **Per-municipality positive_cases:** The xlsx uses the heading "Otbreaks" (sic, typo for "Outbreaks") and "Suspects". We map the former to `positive_cases_district` to stay consistent with the existing MP master schema. Subtotal-row checks: Ehlanzeni 26 (sum 26 - includes Bohlabela which has 0 outbreaks but 4 suspects), Gert Sibande 137 (sum of municipalities 137), Nkangala 70 (sum 70). Province total 233 matches.
 3. **Bohlabela:** Present in this xlsx as a separate municipality under Ehlanzeni district. Not in the 17 May MP pptx municipality list. Captured as a new entry for completeness.
 4. **Suspect total cross-check:** Province-level row says 121 but sum of municipalities is 9 + 83 + 33 = 125. The 121 is treated as authoritative (matches the provincial total cell in the xlsx). Flagged in notes.
-5. **Animals vaccinated subt
+5. **Animals vaccinated subtotal cross-check:** Per-municipality sum is exactly 344,537 (matches province total cell). No discrepancy.
+
+### Action items for next run
+
+1. **Watch for:** 22 May or later consolidated AgriSA weekly xlsx
+2. **Watch for:** ICC weekly engagement summary PDF for 20-21 May
+3. **Watch for:** Section 9 gazette (~25 May 2026, three days away)
+4. **Watch for:** MPO Week 31 dairy update
+5. **Investigate:** GP OBP distributed (1,700) vs administered (127,580) discrepancy from session 18
+6. **Investigate:** EC Other/Artio-Preva 1,250 cell flagged in session 18
+7. **GitHub push:** master_data.csv + FMD_Dashboard.html + change_log.md + memory_update.md + scripts/append_mp_19may_dvs.py
+
+
+---
+
+## 2026-05-25 (session 20) — GDARD GP JOC 22 May 2026 ingested (automated daily run)
+
+**Master grew from 1,301 to 1,308 rows (+7 new rows).**
+
+**Dashboard rebuilt:** Yes — FMD_Dashboard.html updated (84,026 bytes, **20 weekly points**, validation passed). **Snapshot date advanced from 21 May 2026 to 22 May 2026.**
+
+**GitHub push:** Pending this session.
+
+### Inbox scan summary
+
+| Folder | Files checked | New since last run? |
+|---|---|---|
+| Root — "25 May 2026" dated weekly folder | None | No new AgriSA consolidated xlsx |
+| inbox/Gauteng/ | GDARD FMD JOC Meeting 22.05.26.pdf | **YES — ingested** |
+| inbox/Free State/ | No new files | No |
+| inbox/Eastern Cape/ | No new files | No |
+| inbox/Limpopo/ | No new files | No |
+| inbox/Mpumalanga/ | No new files | No |
+| inbox/North West/ | No new files | No |
+| inbox/MPO/ | No MPO Week 31 found | No |
+| inbox/ICC Reports/ | No new ICC summary | No |
+| inbox/Ministerial Updates/ | No Section 9 gazette yet | No |
+| inbox/AgriSA Summary and Outcomes/ | No 20–21 May summary | No |
+
+### Sources processed
+
+| File | Effective Date | Source Org | Outcome |
+|---|---|---|---|
+| `inbox/Gauteng/GDARD FMD JOC Meeting 22.05.26.pdf` | 2026-05-22 | GP-GDARD | Ingested — 7 rows |
+
+### Key figures added (GP as at 22 May 2026)
+
+| Metric | Previous (21 May) | New (22 May) | Change |
+|---|---|---|---|
+| Animals vaccinated (total, 2026) | 244,800 | 266,121 | +21,321 |
+| Animals vaccinated — Biogenesis Bago | — | 142,341 | New breakdown |
+| Animals vaccinated — Aftodoll | — | 123,780 | New breakdown |
+| Doses received/allocated (total) | 517,940 | 518,500 | +560 |
+| Positive cases | 294 | 296 | +2 |
+| Suspected cases | 2 | 0 | -2 (none active) |
+| Controlled slaughter (depopulation) | — | 231,244 | New row |
+
+**District breakdown (from GDARD JOC report):**
+- Biogenesis Bago by district: Pretoria 45,476 / Randfontein 18,139 / Germiston 78,726
+- Aftodoll by district: Pretoria 46,075 / Randfontein 16,812 / Germiston 60,893
+- 4,853 movement permits issued; at least R32 million allocated for vaccines; 38 new animal health technicians and veterinarians appointed
+
+### Data quality flags
+
+1. **GP doses_received discrepancy:** GDARD reports 518,500 "at least allocated" vs 517,940 in the 21 May consolidated template — difference of 560 doses. GDARD also notes "124,800 Dollvet x2 not received yet" as a separate allocation. Both figures are now in master with source context. The 124,800 pending will advance the distributed total materially once confirmed received.
+2. **GP animals vaccinated vs doses administered:** GDARD reports 266,121 animals vaccinated (2026 only) but the 21 May template shows 370,837 doses administered. These measure different things: the template doses_administered likely includes 2025 baseline vaccinations and counts each dose (not each animal). The GDARD figure is 2026 animals vaccinated only. No conflict — different metrics, flagged in notes.
+3. **GP OBP/ARC discrepancy (carry forward from session 18):** GDARD confirms 1,700 ARC-OVR received; the 127,580 doses_administered row for obp_arc in the 21 May template remains flagged as a likely column-mapping error in the submitted template. Still unresolved.
+4. **GP positive cases period:** GDARD reports 296 total confirmed outbreaks for the period 1 April 2025–25 May 2026. The 21 May template showed 294. The 296 includes outbreaks recorded since the outbreak started in April 2025, not just the current 2026 intensive response period.
+
+### Action items for next run
+
+1. **Watch for:** 25 May 2026 (or later) consolidated AgriSA weekly xlsx — priority to advance national headline
+2. **Watch for:** Section 9 gazette — expected ~25 May 2026 (today); not yet in inbox at time of this run
+3. **Watch for:** ICC weekly engagement summary PDF for 20–21 May 2026
+4. **Watch for:** MPO Week 31 dairy update
+5. **Watch for:** KZN submission — no JOC data since late March; booster programme confirmation outstanding
+6. **Investigate:** GP 124,800 Dollvet x2 not yet received — confirm receipt in next GP report
+7. **Investigate:** GP OBP column-mapping discrepancy (session 18 flag — still unresolved)
+8. **GitHub push:** master_data.csv + FMD_Dashboard.html + change_log.md + memory_update.md
+
