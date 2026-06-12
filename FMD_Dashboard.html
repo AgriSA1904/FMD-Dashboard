@@ -728,20 +728,20 @@
 
 <script>
 const DASHBOARD_DATA = {
-  "snapshot_date": "2026-06-09",
-  "build_date": "2026-06-11",
+  "snapshot_date": "2026-06-11",
+  "build_date": "2026-06-12",
   "provinces": [
     {
       "code": "EC",
       "name": "Eastern Cape",
-      "as_of": "2026-06-09",
+      "as_of": "2026-06-11",
       "herd": 2895096,
-      "positive": 396,
+      "positive": 381,
       "suspected": 237,
-      "negative": 14,
+      "negative": 15,
       "pending": 0,
       "received": 1000660,
-      "vaccinated": 833113
+      "vaccinated": 926233
     },
     {
       "code": "FS",
@@ -1080,6 +1080,14 @@ const DASHBOARD_DATA = {
       "positive": 2361,
       "suspected": 936,
       "pending": null
+    },
+    {
+      "date": "2026-06-11",
+      "received": 6573661,
+      "administered": 4126422,
+      "positive": 2346,
+      "suspected": 936,
+      "pending": null
     }
   ],
   "sources": {
@@ -1090,20 +1098,20 @@ const DASHBOARD_DATA = {
     "unallocated": 358480
   },
   "national": {
-    "positive": 2361,
+    "positive": 2346,
     "suspected": 936,
-    "negative": 68,
+    "negative": 69,
     "pending": 258,
     "procured": 13500000,
     "distributed": 6573661,
     "received": 6573661,
-    "administered": 4033302,
+    "administered": 4126422,
     "herd_cattle": 12496199,
-    "balance": 2540359,
-    "delta_received": 166760,
-    "delta_distributed": 166760,
-    "delta_administered": 68056,
-    "delta_positive": 94
+    "balance": 2447239,
+    "delta_received": 0,
+    "delta_distributed": 0,
+    "delta_administered": 93120,
+    "delta_positive": -15
   },
   "mpo": {
     "weekly": [
@@ -1551,11 +1559,11 @@ const DASHBOARD_DATA = {
     {
       "code": "EC",
       "name": "Eastern Cape",
-      "joc": 833113,
-      "joc_date": "2026-06-09",
+      "joc": 926233,
+      "joc_date": "2026-06-11",
       "ministerial": 725632,
       "ministerial_date": "2026-06-04",
-      "diff": 107481,
+      "diff": 200601,
       "flag": null
     },
     {
@@ -1732,7 +1740,7 @@ const DASHBOARD_DATA = {
   "provincial_detail": {
     "EC": {
       "name": "Eastern Cape",
-      "latest_date": "2026-06-09",
+      "latest_date": "2026-06-11",
       "vaccine_types": [
         {
           "type": "dolvet",
@@ -1766,6 +1774,12 @@ const DASHBOARD_DATA = {
         }
       ],
       "vet_channels": [
+        {
+          "key": "state",
+          "label": "State vet",
+          "animals_vaccinated": 626951,
+          "date": "2026-06-11"
+        },
         {
           "key": "private",
           "label": "Private vet",
@@ -1875,8 +1889,8 @@ const DASHBOARD_DATA = {
       "extra": {
         "vaccine_balance": {
           "label": "Vaccine balance on hand",
-          "value": 162370,
-          "date": "2026-05-21"
+          "value": 74427,
+          "date": "2026-06-11"
         }
       },
       "sources": [
@@ -3232,6 +3246,7 @@ const DASHBOARD_DATA = {
     "AWC and RPO FMD update 4 Mei 2026.pdf",
     "AgriMP_WhatsApp_20260609.txt",
     "AgriSA FMD Data - ICC Update - 01.04.2026.pdf",
+    "EC FMD Update - 11.06.2026 Final.pptx",
     "Email - SAPPO.pdf",
     "Email -SAPPO - 05 June.pdf",
     "FMD PCM MEETING PACK 20260604.pdf",

@@ -4,6 +4,64 @@ description: Latest master_data.csv row count and dashboard snapshot
 type: project
 ---
 
+As at 2026-06-12 (session 38 -- EC FMD Update 11 June 2026):
+- Master: **1,635 rows** (+14 new rows from 1,621)
+- Dashboard snapshot: **11 June 2026** (31 weekly points; advanced from 9 June)
+- Dashboard rebuilt: Yes (164,418 bytes; validation passed)
+
+**New data ingested (session 38):**
+- EC FMD Update - 11.06.2026 Final.pptx (EC-DRDAR, effective 2026-06-11): 14 rows. Full EC provincial JOC update.
+- archive/2026-06-12/Reporting of cases & vaccines - 11.06.2026.xlsx: EC-only consolidated template confirming same figures. No additional rows.
+
+**National headlines (dashboard 11 June 2026):**
+- Distributed: 6,573,661 (unchanged -- EC received confirmed at 1,000,660)
+- Animals vaccinated: 4,126,422 (+93,120 from EC update; EC 833,113 to 926,233)
+- Positive cases: 2,346 (NOTE: apparent decrease from 2,361 due to methodology change -- EC-DRDAR outbreak premises 381 vs Ministry individual cases 396 at 9 June; both valid metrics held in master)
+
+**EC figures as at 11 June 2026 (EC-DRDAR):**
+- Confirmed outbreaks (premises): 381 (+20 from 361 at 3 June)
+- Suspected outbreaks: 237
+- Animals vaccinated (all incl. MPO 299,282): 926,233
+- Animals vaccinated (state channel only): 626,951
+- Doses received (state/dept): 1,000,660 (unchanged)
+- Vaccine usage: 92.5%
+- Breakdown: BVI 1,250 | ARC 2,177 | Biogenesis state 246,824 + MPO 131,499 | DolVet state 376,700 + MPO 167,783
+- Balance: 74,427
+
+**Data quality flags (session 38):**
+1. EC positive_cases methodology conflict: EC-DRDAR 11 Jun = 381 confirmed outbreak premises; Ministry 9 Jun = 396 individual cases. Dashboard uses EC-DRDAR (more recent programme source). Both rows in master.
+2. EC state Biogenesis on 11 Jun (246,824) lower than previous combined all (367,694 on 3 Jun) because 11 Jun template splits state/private. State+MPO total = 378,323 (+10,629 from 367,694). Consistent.
+
+**Per-province (11 June 2026 snapshot):**
+
+| Province | Received | Animals vaccinated | Positive cases | As at |
+|---|---|---|---|---|
+| EC | 1,000,660 | 926,233 | 381 (EC-DRDAR) | 2026-06-11 |
+| FS | 838,400 | 707,986 | 595 | 2026-06-09 |
+| GP | 518,500 | 266,121 | 275 | 2026-06-09 |
+| KZN | 1,329,112 | 648,609 | 336 | 2026-06-09 |
+| LP | 611,680 | 377,484 | 81 | 2026-06-09 |
+| MP | 732,489 | 344,629 | 251 | 2026-06-09 |
+| NW | 895,120 | 527,337 | 375 | 2026-06-09 |
+| NC | 150,600 | 28,054 | 17 | 2026-06-09 |
+| WC | 497,100 | 299,969 | 35 | 2026-06-09 |
+
+**Parked/outstanding (carry forward):**
+- 10 June FMD Weekly Engagement post-meeting summary -- still not in inbox.
+- Section 9 gazette: approximately 19 days overdue. Urgent.
+- Consolidated AgriSA weekly xlsx: approximately 22 days outstanding. Urgent.
+- MPO Week 32 -- not received; gap in dairy time series.
+- LP DolVet 150,000 receipt -- expected; not yet confirmed.
+- LP Biogenesis Bago ~147,000 dose receipt -- expected; not yet confirmed.
+- MP animals_vaccinated not updated (pending MP-DVS confirmation).
+- EC methodology reconciliation: EC-DRDAR 381 outbreak premises vs Ministry 396 individual cases at 9 June.
+- KZN: animals vaccinated gap (DoA 1.16M vs master 648k).
+- FS doses_received conflict: VL BKS 1,110,500 vs FS-JOC formal 838,400.
+- Dollvet 4M first consignment -- expected June 2026; monitor RMIS.
+- Next LP PCM meeting: 18 June 2026.
+
+---
+
 As at 2026-06-11 (session 37 -- AHGEN WOAH report 29 May + VL BKS FS-Landbou 5 June + template fix):
 - Master: **1,621 rows** (+21 new rows from clean 1,600)
 - Dashboard snapshot: **9 June 2026** (30 weekly points; unchanged -- new data backdated or non-programme source)

@@ -4,6 +4,74 @@ A running record of what changed in the master and dashboard, with dates and sou
 
 ---
 
+## 2026-06-12 (session 38) -- EC FMD Update 11 June 2026
+
+**Master: 1,635 rows (+14). Dashboard: 11 June 2026 (31 weekly points; 164,418 bytes; validation passed).**
+
+**GitHub push:** master_data.csv, FMD_Dashboard.html, memory_update.md, change_log.md.
+
+### Inbox scan
+
+| File | Status |
+|---|---|
+| inbox/Eastern Cape/EC FMD Update - 11.06.2026 Final.pptx | New -- ingested 14 rows |
+| archive/2026-06-12/Reporting of cases & vaccines - 11.06.2026.xlsx | EC-only template; confirms pptx; 0 rows added |
+| All other inbox subfolders | No new files since session 37 |
+
+### Key figures (EC as at 11 June 2026, source EC-DRDAR)
+
+| Metric | Value |
+|---|---|
+| positive_cases (confirmed outbreak premises) | 381 (+20 from 361 at 3 June) |
+| suspected_cases | 237 |
+| animals_vaccinated all/all (incl MPO 299282) | 926,233 (+93,120 from 833,113) |
+| animals_vaccinated all/state | 626,951 |
+| doses_received all/all (state/dept) | 1,000,660 (unchanged) |
+| vaccine_balance | 74,427 |
+| doses_administered bioaftogen/state | 246,824 |
+| doses_administered bioaftogen/private (MPO) | 131,499 |
+| doses_administered dolvet/state | 376,700 |
+| doses_administered dolvet/private (MPO) | 167,783 |
+| doses_administered obp_arc/state | 2,177 |
+| doses_administered bvi/state | 1,250 |
+
+**EC district breakdown (11 June 2026):**
+
+| District | Confirmed outbreaks | Suspected | Animals vaccinated |
+|---|---|---|---|
+| Alfred Nzo | 46 | 31 | 122,842 |
+| Amathole (incl NMB 2) | 192 | 105 | 233,908 |
+| Chris Hani | 62 | 19 | 106,810 |
+| Joe Gqabi | 62 | 8 | 71,486 |
+| OR Tambo | 13 | 73 | 85,562 |
+| Sarah Baartman | 6 | 1 | 6,343 |
+| MPO (all districts) | -- | -- | 299,282 |
+| TOTAL | 381 | 237 | 926,233 |
+
+**National dashboard (11 June 2026):**
+- Doses distributed: 6,573,661 (unchanged)
+- Animals vaccinated: 4,126,422 (up from 4,033,302)
+- Positive cases: 2,346 (EC-DRDAR 381 replaces Ministry 396; methodology note below)
+
+### Data quality flags
+
+1. EC positive_cases conflict: EC-DRDAR outbreak premises (381) vs Ministry individual cases (396 at 9 June). Dashboard uses EC-DRDAR (more recent, programme source). Apparent 15-case national decrease is a methodology shift. Both rows in master.
+2. EC state Biogenesis (246,824 on 11 Jun) lower than 3 Jun combined (367,694): 11 Jun template splits state/private. Total state+MPO = 378,323 (+10,629). Consistent.
+3. EC usage 92.5% = all vaccinations (926,233) / dept received (1,000,660). Cross-channel methodology from EC-DRDAR template.
+
+### Action items
+
+- EC: confirm canonical positive_cases metric for national dashboard (outbreak premises vs individual cases).
+- FS-JOC: confirm 266,100 Aftodoll batch (19 May) in formal received figure.
+- 10 June FMD Engagement post-meeting summary: check inbox.
+- Section 9 gazette: 19 days overdue. Urgent.
+- Consolidated AgriSA weekly xlsx: 22 days outstanding. Urgent.
+- LP PCM 18 June 2026: monitor for meeting pack.
+- Clean up ec_11june_slides folder in inbox/Eastern Cape.
+
+---
+
+
 ## 2026-06-11 (session 37) -- AHGEN WOAH report + VL BKS FS-Landbou + template fix
 
 **Master: 1,621 rows (+21 new rows from clean 1,600). Dashboard: 9 June 2026 snapshot unchanged (30 weekly points). Template duplicate-tail bug fixed.**
