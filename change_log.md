@@ -4,6 +4,83 @@ A running record of what changed in the master and dashboard, with dates and sou
 
 ---
 
+## 2026-06-17 (session 40b) -- MPO Week 34 ingest
+
+**Master: 1,661 rows (+23). Dashboard: 11 June 2026 (31 weekly points; 164,948 bytes; validation passed). Snapshot unchanged -- MPO is not a programme source.**
+
+**GitHub push:** master_data.csv, FMD_Dashboard.html, memory_update.md, change_log.md.
+
+### Inbox scan
+
+| Folder | Last modified | Status |
+|---|---|---|
+| inbox/MPO/ | 2026-06-17 | Week 34 new -- ingested |
+| inbox/Limpopo/ | 2026-06-08 | No LP PCM 18 June outcomes yet |
+| inbox/AgriSA Summary and Outcomes/ | 2026-06-05 | No 17 June engagement summary yet |
+| All other inbox subfolders | 2026-06-12 or earlier | No new files |
+
+### Sources processed
+
+| File | Effective date | Source org | Rows added | Outcome |
+|---|---|---|---|---|
+| inbox/MPO/Week 34 - Update on the state of FMD and vaccine rollouts in the dairy industry.pdf | 2026-06-12 | MPO | 23 | Dairy cows vaccinated per province (1st dose) + KZN booster + farm stats + per-province active dairy FMD cases |
+
+### Key figures added
+
+**Dairy cows vaccinated 1st dose (12 June 2026):**
+
+| Province | Week 33 (5 Jun) | Week 34 (12 Jun) | Change |
+|---|---|---|---|
+| KZN | 360,200 | 360,200 | 0 |
+| EC | 307,266 | 311,038 | +3,772 |
+| FS | 15,104 | 15,104 | 0 |
+| LP | 5,475 | 5,475 | 0 |
+| GP | 14,832 | 14,832 | 0 |
+| MP | 9,863 | 9,863 | 0 |
+| NW | 6,342 | 6,342 | 0 |
+| WC | 185,868 | 189,396 | +3,528 |
+| NC | 0 | 0 | 0 |
+| **National** | **904,950** | **912,250** | **+7,300** |
+
+**KZN booster (2nd dose, 12 June 2026):** 240,000 dairy cows vaccinated with booster over the past week. Approximately 100,000 dairy cows in Harry Gwala district still awaiting booster vaccine.
+
+**Active dairy FMD cases map (12 June 2026):**
+
+| Province | Active dairy FMD farms |
+|---|---|
+| LP | 1 |
+| NW | 6 |
+| GP | 3 |
+| FS | 10 |
+| MP | 17 |
+| KZN | 62 |
+| EC | 18 |
+| WC | 7 |
+| NC | 0 |
+| **National** | **124** |
+
+**EC note:** 18 total active dairy cases under EC management; 10 are actual EC farms; 8 are KZN border farms placed under EC surveillance for management purposes. (map shows 18 of which 8 are KZN border farms)
+
+**Farm status (unchanged from Week 33):** 171 dairy farms have reported FMD cases; 124 remain active.
+
+### Data quality notes
+
+1. MPO Week 34 snapshot date is 12 June 2026; dashboard programme-source snapshot remains at 11 June 2026 (EC-DRDAR). No headline change.
+2. MPO Week 32 remains missing; dairy time-series has a gap between Week 31 (22 May) and Week 33 (5 June).
+3. KZN Harry Gwala booster gap: approximately 100,000 dairy cows still awaiting 2nd dose as at 12 June. Monitor for completion.
+4. EC first-round dairy vaccination confirmed complete as at 12 June 2026 (all EC dairy animals received 1st round).
+
+### Action items
+
+- LP PCM 18 June 2026 outcomes -- meeting was 17 June; check inbox.
+- 17 June FMD Weekly Engagement summary -- check inbox.
+- MPO Week 32 -- still missing; gap in dairy time series.
+- Section 9 gazette: approximately 33 days overdue. Urgent.
+- Consolidated AgriSA weekly xlsx: approximately 36 days outstanding. Urgent.
+- KZN Harry Gwala booster: approximately 100,000 cows pending; monitor next MPO update.
+
+---
+
 ## 2026-06-17 (session 40) -- null run, no new inbox files
 
 **Master: 1,638 rows (unchanged). Dashboard: 11 June 2026 (31 weekly points; unchanged).**
@@ -3014,4 +3091,18 @@ NW confirmed at **332** (no change needed).
 ### Data quality flags
 
 1. **GP doses_received discrepancy:** GDARD reports 518,500 "at least allocated" vs 517,940 in the 21 May consolidated template — difference of 560 doses. GDARD also notes "124,800 Dollvet x2 not received yet" as a separate allocation. Both figures are now in master with source context. The 124,800 pending will advance the distributed total materially once confirmed received.
-2. **GP animals vaccinated vs doses administered:** GDARD reports 266,121 animals vaccinated (2026 only) but the 21 May template shows 370,837 dose
+2. **GP animals vaccinated vs doses administered:** GDARD reports 266,121 animals vaccinated (2026 only) but the 21 May template shows 370,837 doses administered. These measure different things: the template doses_administered likely includes 2025 baseline vaccinations and counts each dose (not each animal). The GDARD figure is 2026 animals vaccinated only. No conflict — different metrics, flagged in notes.
+3. **GP OBP/ARC discrepancy (carry forward from session 18):** GDARD confirms 1,700 ARC-OVR received; the 127,580 doses_administered row for obp_arc in the 21 May template remains flagged as a likely column-mapping error in the submitted template. Still unresolved.
+4. **GP positive cases period:** GDARD reports 296 total confirmed outbreaks for the period 1 April 2025–25 May 2026. The 21 May template showed 294. The 296 includes outbreaks recorded since the outbreak started in April 2025, not just the current 2026 intensive response period.
+
+### Action items for next run
+
+1. **Watch for:** 25 May 2026 (or later) consolidated AgriSA weekly xlsx — priority to advance national headline
+2. **Watch for:** Section 9 gazette — expected ~25 May 2026 (today); not yet in inbox at time of this run
+3. **Watch for:** ICC weekly engagement summary PDF for 20–21 May 2026
+4. **Watch for:** MPO Week 31 dairy update
+5. **Watch for:** KZN submission — no JOC data since late March; booster programme confirmation outstanding
+6. **Investigate:** GP 124,800 Dollvet x2 not yet received — confirm receipt in next GP report
+7. **Investigate:** GP OBP column-mapping discrepancy (session 18 flag — still unresolved)
+8. **GitHub push:** master_data.csv + FMD_Dashboard.html + change_log.md + memory_update.md
+

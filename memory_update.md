@@ -4,6 +4,47 @@ description: Latest master_data.csv row count and dashboard snapshot
 type: project
 ---
 
+As at 2026-06-17 (session 40b -- MPO Week 34 ingest):
+- Master: **1,661 rows** (+23 new rows from 1,638)
+- Dashboard snapshot: **11 June 2026** (31 weekly points; unchanged -- MPO is not a programme source)
+- Dashboard rebuilt: Yes (164,948 bytes; validation passed)
+
+**New data ingested (session 40b):**
+- MPO Week 34 (snapshot 12 June 2026): 23 rows. Dairy cows vaccinated per province (1st dose) + KZN 2nd dose booster + farm stats + per-province active dairy FMD cases from map.
+
+**Key MPO Week 34 figures (12 June 2026):**
+- National dairy cows vaccinated 1st dose: 912,250 (up from 904,950 at Week 33)
+- KZN booster (2nd dose): 240,000 dairy cows vaccinated; ~100,000 in Harry Gwala still awaiting booster
+- EC: 311,038 1st dose (up from 307,266); all first-round dairy vaccinations confirmed complete
+- WC: 189,396 1st dose (up from 185,868); first round nearing completion
+- Active dairy farms with FMD: 124 (of 171 total; unchanged from Week 33)
+- Per-province active dairy FMD cases: LP 1 | NW 6 | GP 3 | FS 10 | MP 17 | KZN 62 | EC 18** | WC 7 | NC 0
+
+**EC note (Week 34):** 18 active dairy cases in EC total; 10 actual EC cases; 8 farms on KZN border placed under EC surveillance for management purposes.
+
+**National headlines (dashboard 11 June 2026 -- unchanged):**
+- Distributed: 6,573,661
+- Animals vaccinated: 4,126,422
+- Positive cases: 2,346
+
+**Parked/outstanding (carry forward):**
+- LP PCM 18 June 2026 outcomes -- meeting was yesterday; pack expected imminently.
+- 17 June FMD Weekly Engagement summary -- meeting was today; outcomes expected.
+- 10 June FMD Weekly Engagement post-meeting summary -- still not in inbox.
+- Section 9 gazette: approximately 33 days overdue. Urgent.
+- Consolidated AgriSA weekly xlsx: approximately 36 days outstanding. Urgent.
+- MPO Week 32 -- not received; gap in dairy time series between Week 31 (22 May) and Week 33 (5 June).
+- LP DolVet 150,000 receipt -- expected; not yet confirmed.
+- LP Biogenesis Bago approximately 164,000 dose receipt -- expected; not yet confirmed.
+- MP animals_vaccinated not updated (pending MP-DVS confirmation).
+- KZN: animals vaccinated gap (DoA 1.16 million vs master 648,609).
+- FS doses_received conflict: VL BKS 1,110,500 vs FS-JOC formal 838,400.
+- Dollvet 4 million first consignment -- expected June 2026; monitor RMIS.
+- SAPPO 2026-05-25 unknown province (62 bottles) -- follow up with Dr Chiappero.
+- KZN Harry Gwala district: ~100,000 dairy cows still awaiting booster vaccine.
+
+---
+
 As at 2026-06-17 (session 40 -- null run, no new inbox files):
 - Master: **1,638 rows** (unchanged)
 - Dashboard snapshot: **11 June 2026** (31 weekly points; unchanged -- no new programme-source data)
@@ -445,4 +486,41 @@ As at 2026-06-08 (session 31 -- EC 3 June JOC ingest + dashboard restore):
 - Dashboard rebuilt: Yes -- FMD_Dashboard.html (161,323 bytes); full visual restoration (tabs, MPO, SAPPO, RMIS, drill-down)
 
 **Key highlights (session 31):**
-- EC 3 June EC-DRDAR JOC ingested (13 rows): positive_cases 361 (conflicts with AgriSA-NAT 566 -- both held); suspected 237; doses_received tot
+- EC 3 June EC-DRDAR JOC ingested (13 rows): positive_cases 361 (conflicts with AgriSA-NAT 566 -- both held); suspected 237; doses_received total 1,000,660 (breakdown gap 18,730 flagged); doses_administered total 833,113.
+- EC Artio-PREVA 1,250 duplication (21 May) superseded.
+- Dashboard visual regression from sessions 29--30 fixed: build_dashboard.py and dashboard_template.html restored from commit fe5dc99.
+
+**National dashboard (3 June 2026 snapshot):**
+- Doses distributed: 5,875,790
+- Doses administered: 3,556,621
+- Animals vaccinated: 3,416,885
+- Positive cases: 2,201 (EC 361 per EC-DRDAR confirmed / 566 per AgriSA-NAT; FS 604; GP 296; KZN 69; LP 74; MP 231; NW 332; NC 7; WC 22)
+- Suspected cases: 920
+
+**Per-province (3 June 2026):**
+
+| Province | Distributed | Administered | Animals vaccinated | Positive |
+|---|---|---|---|---|
+| EC | 1,000,660 | 833,113 (dose-count) | 833,113 | 361 (EC-DRDAR) / 566 (AgriSA-NAT) |
+| FS | 1,100,000 | 482,848 | 609,900 | 604 |
+| GP | 518,500 | 370,837 | 266,121 | 296 |
+| KZN | 1,329,112 | 800,177 | 648,609 | 69 |
+| LP | 611,680 | 379,471 | 377,484 | 74 |
+| MP | 565,489 | 419,066 | 344,629 | 231 |
+| NW | 617,720 | 331,103 | 171,561 | 332 |
+| NC | 150,600 | 51,227 | 28,054 | 7 |
+| WC | 330,340 | 231,913 | 231,913 | 22 |
+
+**Parked/outstanding:**
+- Consolidated AgriSA weekly xlsx: 17 days outstanding. Urgent.
+- Section 9 gazette: ~14 days overdue. Urgent.
+- MPO Weeks 32+33 -- not received.
+- LP DolVet 150,000 receipt -- outstanding.
+- LP Biogenesis allocation -- depot at 0; urgent.
+- NW: DDG Serage engagement + Biogenesis reinfection investigation.
+- EC: confirm 361 vs 566 cases; confirm 18,730 doses gap.
+- SAPPO: bottles-to-doses conversion + unknown province (2026-05-25) follow-up.
+- Dollvet 4M first consignment -- expected June 2026; monitor RMIS.
+- Next FMD Weekly Engagement: 10 June 2026.
+- KZN booster -- ongoing.
+- GP OBP column-mapping -- ongoing.
