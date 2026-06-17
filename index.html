@@ -660,7 +660,7 @@
   <section class="tab-section" data-tab="ministerial">
     <div class="kicker">Data validation</div>
     <h2>Ministerial briefing vs JOC provincial returns.</h2>
-    <p style="color:var(--charcoal);font-size:14px;margin-top:calc(-1 * var(--sp-6));margin-bottom:var(--sp-6)">Comparing DAFF ministerial figures (2026-06-04) against AgriSA JOC provincial returns (latest available). A positive difference means JOC reports more vaccinations than the ministerial figure — expected given the later date. A negative difference flags a data quality issue for investigation.</p>
+    <p style="color:var(--charcoal);font-size:14px;margin-top:calc(-1 * var(--sp-6));margin-bottom:var(--sp-6)">Comparing DAFF ministerial figures (4 June 2026) against AgriSA JOC provincial returns (latest available). A positive difference means JOC reports more vaccinations than the ministerial figure — expected given the later date. A negative difference flags a data quality issue for investigation.</p>
     <div class="grid-2">
       <div class="card">
         <h3>Animals vaccinated: ministerial vs JOC per province.</h3>
@@ -672,7 +672,7 @@
           <thead>
             <tr>
               <th>Province</th>
-              <th class="num">Ministerial<br><small style="font-weight:400">2026-06-04</small></th>
+              <th class="num">Ministerial<br><small style="font-weight:400">4 Jun</small></th>
               <th class="num">JOC / AgriSA<br><small style="font-weight:400">Latest</small></th>
               <th class="num">Difference</th>
               <th>Status</th>
@@ -728,7 +728,7 @@
 
 <script>
 const DASHBOARD_DATA = {
-  "snapshot_date": "2026-06-11",
+  "snapshot_date": "2026-06-15",
   "build_date": "2026-06-17",
   "provinces": [
     {
@@ -746,14 +746,14 @@ const DASHBOARD_DATA = {
     {
       "code": "FS",
       "name": "Free State",
-      "as_of": "2026-06-09",
+      "as_of": "2026-06-12",
       "herd": 1928862,
-      "positive": 595,
-      "suspected": 412,
+      "positive": 620,
+      "suspected": 428,
       "negative": 0,
       "pending": 0,
       "received": 838400,
-      "vaccinated": 707986
+      "vaccinated": 935809
     },
     {
       "code": "GP",
@@ -786,10 +786,10 @@ const DASHBOARD_DATA = {
       "herd": 1007316,
       "positive": 81,
       "suspected": 90,
-      "negative": 54,
-      "pending": 258,
-      "received": 611680,
-      "vaccinated": 377484
+      "negative": 62,
+      "pending": 259,
+      "received": 611000,
+      "vaccinated": 427959
     },
     {
       "code": "MP",
@@ -830,9 +830,9 @@ const DASHBOARD_DATA = {
     {
       "code": "WC",
       "name": "Western Cape",
-      "as_of": "2026-06-09",
+      "as_of": "2026-06-15",
       "herd": 458457,
-      "positive": 35,
+      "positive": 37,
       "suspected": 17,
       "negative": 0,
       "pending": 0,
@@ -1059,34 +1059,50 @@ const DASHBOARD_DATA = {
     },
     {
       "date": "2026-06-05",
-      "received": 6239901,
-      "administered": 3965246,
+      "received": 6239221,
+      "administered": 4015721,
       "positive": 2267,
       "suspected": 936,
       "pending": null
     },
     {
       "date": "2026-06-08",
-      "received": 6406901,
-      "administered": 3965246,
+      "received": 6406221,
+      "administered": 4015721,
       "positive": 2267,
       "suspected": 936,
       "pending": null
     },
     {
       "date": "2026-06-09",
-      "received": 6573661,
-      "administered": 4033302,
+      "received": 6572981,
+      "administered": 4083777,
       "positive": 2361,
       "suspected": 936,
       "pending": null
     },
     {
       "date": "2026-06-11",
-      "received": 6573661,
-      "administered": 4126422,
+      "received": 6572981,
+      "administered": 4176897,
       "positive": 2346,
       "suspected": 936,
+      "pending": null
+    },
+    {
+      "date": "2026-06-12",
+      "received": 6572981,
+      "administered": 4404720,
+      "positive": 2371,
+      "suspected": 952,
+      "pending": null
+    },
+    {
+      "date": "2026-06-15",
+      "received": 6572981,
+      "administered": 4404720,
+      "positive": 2373,
+      "suspected": 952,
       "pending": null
     }
   ],
@@ -1098,20 +1114,20 @@ const DASHBOARD_DATA = {
     "unallocated": 358480
   },
   "national": {
-    "positive": 2346,
-    "suspected": 936,
-    "negative": 69,
-    "pending": 258,
+    "positive": 2373,
+    "suspected": 952,
+    "negative": 77,
+    "pending": 259,
     "procured": 13500000,
-    "distributed": 6573661,
-    "received": 6573661,
-    "administered": 4126422,
+    "distributed": 6572981,
+    "received": 6572981,
+    "administered": 4404720,
     "herd_cattle": 12496199,
-    "balance": 2447239,
+    "balance": 2168261,
     "delta_received": 0,
     "delta_distributed": 0,
-    "delta_administered": 93120,
-    "delta_positive": -15
+    "delta_administered": 0,
+    "delta_positive": 2
   },
   "mpo": {
     "weekly": [
@@ -1318,7 +1334,7 @@ const DASHBOARD_DATA = {
       {
         "code": "FS",
         "name": "Free State",
-        "active": 10
+        "active": 17
       },
       {
         "code": "GP",
@@ -1338,7 +1354,7 @@ const DASHBOARD_DATA = {
       {
         "code": "MP",
         "name": "Mpumalanga",
-        "active": 17
+        "active": 10
       },
       {
         "code": "NW",
@@ -1353,7 +1369,7 @@ const DASHBOARD_DATA = {
       {
         "code": "WC",
         "name": "Western Cape",
-        "active": 7
+        "active": 171
       }
     ]
   },
@@ -1582,12 +1598,12 @@ const DASHBOARD_DATA = {
     {
       "code": "FS",
       "name": "Free State",
-      "joc": 707986,
+      "joc": 935809,
       "joc_date": "2026-06-12",
       "ministerial": 707986,
       "ministerial_date": "2026-06-04",
-      "diff": 0,
-      "flag": "warning"
+      "diff": 227823,
+      "flag": null
     },
     {
       "code": "GP",
@@ -1612,11 +1628,11 @@ const DASHBOARD_DATA = {
     {
       "code": "LP",
       "name": "Limpopo",
-      "joc": 377484,
+      "joc": 427959,
       "joc_date": "2026-06-12",
       "ministerial": 357045,
       "ministerial_date": "2026-06-04",
-      "diff": 20439,
+      "diff": 70914,
       "flag": null
     },
     {
@@ -1653,7 +1669,7 @@ const DASHBOARD_DATA = {
       "code": "WC",
       "name": "Western Cape",
       "joc": 299969,
-      "joc_date": "2026-06-12",
+      "joc_date": "2026-06-15",
       "ministerial": 265379,
       "ministerial_date": "2026-06-04",
       "diff": 34590,
@@ -1982,6 +1998,17 @@ const DASHBOARD_DATA = {
       ],
       "districts": [
         {
+          "name": "Fezile Dabi (Mafube 74",
+          "date": "2026-06-12",
+          "vaccinated": null,
+          "cases": 348,
+          "suspected": null,
+          "pending": null,
+          "outbreaks": null,
+          "negative": null,
+          "notes": "district=Fezile Dabi (Mafube 74; Metsimaholo 64; Moqhaka 117; Ngwathe 93)"
+        },
+        {
           "name": "Fezile Dabi",
           "date": "2026-06-05",
           "vaccinated": null,
@@ -2002,6 +2029,17 @@ const DASHBOARD_DATA = {
           "outbreaks": null,
           "negative": null,
           "notes": "Fezile Dabi district. Breakdown: Mafube 74, Metsimaholo 61, Moqhaka 111, Ngwathe 93."
+        },
+        {
+          "name": "Thabo Mofutsanyana (Dihlabeng 67",
+          "date": "2026-06-12",
+          "vaccinated": null,
+          "cases": 185,
+          "suspected": null,
+          "pending": null,
+          "outbreaks": null,
+          "negative": null,
+          "notes": "district=Thabo Mofutsanyana (Dihlabeng 67; Maluti-A-Phofung 29; Mantsopa 46; Phumelela 43)"
         },
         {
           "name": "Thabo Mofutsanyana",
@@ -2079,6 +2117,17 @@ const DASHBOARD_DATA = {
           "outbreaks": null,
           "negative": null,
           "notes": "District: Lejweleputswa. Breakdown: Matjhabeng: 43; Tokologo: 10; Tswelopele: 12"
+        },
+        {
+          "name": "Lejweleputswa (Matjhabeng 43",
+          "date": "2026-06-12",
+          "vaccinated": null,
+          "cases": 65,
+          "suspected": null,
+          "pending": null,
+          "outbreaks": null,
+          "negative": null,
+          "notes": "district=Lejweleputswa (Matjhabeng 43; Tokologo 10; Tswelopele 12)"
         },
         {
           "name": "Lejweleputswa district",
@@ -2169,6 +2218,17 @@ const DASHBOARD_DATA = {
           "notes": "Xhariep district. Breakdown: Kopanong 8, Mohokare 7."
         },
         {
+          "name": "Xhariep (Kopanong 8",
+          "date": "2026-06-12",
+          "vaccinated": null,
+          "cases": 15,
+          "suspected": null,
+          "pending": null,
+          "outbreaks": null,
+          "negative": null,
+          "notes": "district=Xhariep (Kopanong 8; Mohokare 7)"
+        },
+        {
           "name": "Boshof SVA",
           "date": "2026-06-02",
           "vaccinated": null,
@@ -2214,14 +2274,14 @@ const DASHBOARD_DATA = {
         },
         {
           "name": "Mangaung Metropolitan",
-          "date": "2026-06-05",
+          "date": "2026-06-12",
           "vaccinated": null,
-          "cases": 6,
+          "cases": 7,
           "suspected": null,
           "pending": null,
           "outbreaks": null,
           "negative": null,
-          "notes": "District: Mangaung Metropolitan. Breakdown: Bloemfontein SV: 4; Thaba Nchu SV: 2"
+          "notes": "district=Mangaung Metropolitan"
         },
         {
           "name": "Bloemfontein SVA",
@@ -2624,8 +2684,13 @@ const DASHBOARD_DATA = {
       "extra": {
         "vaccine_wastage": {
           "label": "Vaccine wastage",
-          "value": 1987,
-          "date": "2026-06-01"
+          "value": 2197,
+          "date": "2026-06-05"
+        },
+        "vaccination_sites": {
+          "label": "Vaccination sites",
+          "value": 1892,
+          "date": "2026-06-05"
         },
         "vaccine_balance": {
           "label": "Vaccine balance on hand",
@@ -3053,7 +3118,7 @@ const DASHBOARD_DATA = {
     },
     "WC": {
       "name": "Western Cape",
-      "latest_date": "2026-06-12",
+      "latest_date": "2026-06-15",
       "vaccine_types": [
         {
           "type": "dolvet",
@@ -3103,8 +3168,8 @@ const DASHBOARD_DATA = {
         },
         "vaccination_sites": {
           "label": "Vaccination sites",
-          "value": 1307,
-          "date": "2026-06-09"
+          "value": 1443,
+          "date": "2026-06-15"
         },
         "vaccine_balance": {
           "label": "Vaccine balance on hand",
@@ -3269,11 +3334,13 @@ const DASHBOARD_DATA = {
     "Email - SAPPO.pdf",
     "Email -SAPPO - 05 June.pdf",
     "FMD PCM MEETING PACK 20260604.pdf",
+    "FMD PCM MEETINGPACK 20260622 REV0.pdf",
     "FMD-Vaccine_Imported.xlsx",
     "FMD_Master_Template_v2.xlsx (uploaded 2026-05-21)",
     "FMD_Master_Template_v2.xlsx (uploaded 2026-05-21) \u2014 user correction",
     "FOOT AND MOUTH PRESENTATION TO MINMEC (7 MAY 2026).pptx",
     "FS FMD Vaccine Data - 05.06.2026.xlsx (in FMD STATS 08 june.zip)",
+    "FS FMD Vaccine Data - 12.06.2026.xlsx",
     "FS FMD Vaccine Data - 29.05.2026.xlsx",
     "GDARD FMD JOC Meeting 22.05.26.pdf",
     "ICC FMD_VaccineRollout_20March2026.pdf",
@@ -3287,6 +3354,7 @@ const DASHBOARD_DATA = {
     "Summary and Outcomes_FMD Weekly Engagement_2026.06.03.pdf",
     "VL BKS JOC verslag 260605.pdf",
     "Vaccine Orders Export (2026-06-02).xlsx",
+    "WC GIS portal (gis.westerncape.gov.za)",
     "WC-GIS portal live dashboard 2026-06-09",
     "Week 33 - Update on the state of FMD and vaccine rollouts in the dairy industry.pdf",
     "Week 34 - Update on the state of FMD and vaccine rollouts in the dairy industry.pdf",
