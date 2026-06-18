@@ -660,7 +660,7 @@
   <section class="tab-section" data-tab="ministerial">
     <div class="kicker">Data validation</div>
     <h2>Ministerial briefing vs JOC provincial returns.</h2>
-    <p style="color:var(--charcoal);font-size:14px;margin-top:calc(-1 * var(--sp-6));margin-bottom:var(--sp-6)">Comparing DAFF ministerial figures (4 June 2026) against AgriSA JOC provincial returns (latest available). A positive difference means JOC reports more vaccinations than the ministerial figure — expected given the later date. A negative difference flags a data quality issue for investigation.</p>
+    <p style="color:var(--charcoal);font-size:14px;margin-top:calc(-1 * var(--sp-6));margin-bottom:var(--sp-6)">Comparing DAFF ministerial figures (2026-06-04) against AgriSA JOC provincial returns (latest available). A positive difference means JOC reports more vaccinations than the ministerial figure — expected given the later date. A negative difference flags a data quality issue for investigation.</p>
     <div class="grid-2">
       <div class="card">
         <h3>Animals vaccinated: ministerial vs JOC per province.</h3>
@@ -672,7 +672,7 @@
           <thead>
             <tr>
               <th>Province</th>
-              <th class="num">Ministerial<br><small style="font-weight:400">4 Jun</small></th>
+              <th class="num">Ministerial<br><small style="font-weight:400">2026-06-04</small></th>
               <th class="num">JOC / AgriSA<br><small style="font-weight:400">Latest</small></th>
               <th class="num">Difference</th>
               <th>Status</th>
@@ -729,7 +729,7 @@
 <script>
 const DASHBOARD_DATA = {
   "snapshot_date": "2026-06-15",
-  "build_date": "2026-06-17",
+  "build_date": "2026-06-18",
   "provinces": [
     {
       "code": "EC",
@@ -758,14 +758,14 @@ const DASHBOARD_DATA = {
     {
       "code": "GP",
       "name": "Gauteng",
-      "as_of": "2026-06-09",
+      "as_of": "2026-06-10",
       "herd": 474928,
       "positive": 275,
       "suspected": 2,
       "negative": 0,
       "pending": 0,
       "received": 518500,
-      "vaccinated": 266121
+      "vaccinated": 274757
     },
     {
       "code": "KZN",
@@ -1082,9 +1082,17 @@ const DASHBOARD_DATA = {
       "pending": null
     },
     {
+      "date": "2026-06-10",
+      "received": 6572981,
+      "administered": 4092413,
+      "positive": 2361,
+      "suspected": 936,
+      "pending": null
+    },
+    {
       "date": "2026-06-11",
       "received": 6572981,
-      "administered": 4176897,
+      "administered": 4185533,
       "positive": 2346,
       "suspected": 936,
       "pending": null
@@ -1092,7 +1100,7 @@ const DASHBOARD_DATA = {
     {
       "date": "2026-06-12",
       "received": 6572981,
-      "administered": 4404720,
+      "administered": 4413356,
       "positive": 2371,
       "suspected": 952,
       "pending": null
@@ -1100,7 +1108,7 @@ const DASHBOARD_DATA = {
     {
       "date": "2026-06-15",
       "received": 6572981,
-      "administered": 4404720,
+      "administered": 4413356,
       "positive": 2373,
       "suspected": 952,
       "pending": null
@@ -1121,9 +1129,9 @@ const DASHBOARD_DATA = {
     "procured": 13500000,
     "distributed": 6572981,
     "received": 6572981,
-    "administered": 4404720,
+    "administered": 4413356,
     "herd_cattle": 12496199,
-    "balance": 2168261,
+    "balance": 2159625,
     "delta_received": 0,
     "delta_distributed": 0,
     "delta_administered": 0,
@@ -1608,11 +1616,11 @@ const DASHBOARD_DATA = {
     {
       "code": "GP",
       "name": "Gauteng",
-      "joc": 266121,
+      "joc": 274757,
       "joc_date": "2026-06-12",
       "ministerial": 325216,
       "ministerial_date": "2026-06-04",
-      "diff": -59095,
+      "diff": -50459,
       "flag": "critical"
     },
     {
@@ -1721,7 +1729,7 @@ const DASHBOARD_DATA = {
       "severity": "critical",
       "province": "GP",
       "title": "Gauteng: JOC figure lower than ministerial briefing",
-      "detail": "Ministerial (2026-06-04) reported 325,216 cattle vaccinated; current JOC/AgriSA figure is 266,121 \u2014 gap of 59,095. Impossible if both are cumulative.",
+      "detail": "Ministerial (2026-06-04) reported 325,216 cattle vaccinated; current JOC/AgriSA figure is 274,757 \u2014 gap of 50,459. Impossible if both are cumulative.",
       "action": "Reconcile AgriSA provincial return against ministerial figure. Determine whether ministerial count includes additional species (pigs, sheep) beyond cattle only.",
       "owner": "Gauteng AgriSA affiliate"
     },
@@ -3352,6 +3360,7 @@ const DASHBOARD_DATA = {
     "Press Statement by Minister John Steenhuisen on Foot and Mouth Disease vaccination and vaccine acquisition 1 June 2026.pdf",
     "RPO Info/Vaccine Rollout Stats.xlsx",
     "Summary and Outcomes_FMD Weekly Engagement_2026.06.03.pdf",
+    "Summary and Outcomes_FMD Weekly Engagement_2026.06.10.pdf",
     "VL BKS JOC verslag 260605.pdf",
     "Vaccine Orders Export (2026-06-02).xlsx",
     "WC GIS portal (gis.westerncape.gov.za)",
