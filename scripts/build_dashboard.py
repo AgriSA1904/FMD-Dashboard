@@ -38,6 +38,7 @@ PROGRAMME_SOURCES = frozenset({
     "FS-JOC", "FS-DRDAR", "FS-DARDLEA", "FS-DARDEA", "FS-Landbou",
     "EC-DRDAR", "GP-GDARD", "WC-GIS",
     "LP-LDARD", "MP-DVS", "MP-AgriMP", "AgriMP", "NW-RPO",
+    "NC-DALRRD",
 })
 
 # Metrics that indicate real vaccination or disease data (not policy or metadata)

@@ -728,8 +728,8 @@
 
 <script>
 const DASHBOARD_DATA = {
-  "snapshot_date": "2026-06-15",
-  "build_date": "2026-06-18",
+  "snapshot_date": "2026-06-16",
+  "build_date": "2026-06-22",
   "provinces": [
     {
       "code": "EC",
@@ -818,14 +818,14 @@ const DASHBOARD_DATA = {
     {
       "code": "NC",
       "name": "Northern Cape",
-      "as_of": "2026-06-09",
+      "as_of": "2026-06-16",
       "herd": 443893,
-      "positive": 17,
+      "positive": 20,
       "suspected": 2,
       "negative": 0,
       "pending": 0,
-      "received": 150600,
-      "vaccinated": 28054
+      "received": 200600,
+      "vaccinated": 114443
     },
     {
       "code": "WC",
@@ -1083,33 +1083,41 @@ const DASHBOARD_DATA = {
     },
     {
       "date": "2026-06-10",
-      "received": 6572981,
-      "administered": 4092413,
+      "received": 6622981,
+      "administered": 4178802,
       "positive": 2361,
       "suspected": 936,
       "pending": null
     },
     {
       "date": "2026-06-11",
-      "received": 6572981,
-      "administered": 4185533,
+      "received": 6622981,
+      "administered": 4271922,
       "positive": 2346,
       "suspected": 936,
       "pending": null
     },
     {
       "date": "2026-06-12",
-      "received": 6572981,
-      "administered": 4413356,
+      "received": 6622981,
+      "administered": 4499745,
       "positive": 2371,
       "suspected": 952,
       "pending": null
     },
     {
       "date": "2026-06-15",
-      "received": 6572981,
-      "administered": 4413356,
+      "received": 6622981,
+      "administered": 4499745,
       "positive": 2373,
+      "suspected": 952,
+      "pending": null
+    },
+    {
+      "date": "2026-06-16",
+      "received": 6622981,
+      "administered": 4499745,
+      "positive": 2376,
       "suspected": 952,
       "pending": null
     }
@@ -1122,20 +1130,20 @@ const DASHBOARD_DATA = {
     "unallocated": 358480
   },
   "national": {
-    "positive": 2373,
+    "positive": 2376,
     "suspected": 952,
     "negative": 77,
     "pending": 259,
     "procured": 13500000,
-    "distributed": 6572981,
-    "received": 6572981,
-    "administered": 4413356,
+    "distributed": 6622981,
+    "received": 6622981,
+    "administered": 4499745,
     "herd_cattle": 12496199,
-    "balance": 2159625,
+    "balance": 2123236,
     "delta_received": 0,
     "delta_distributed": 0,
     "delta_administered": 0,
-    "delta_positive": 2
+    "delta_positive": 3
   },
   "mpo": {
     "weekly": [
@@ -1666,12 +1674,12 @@ const DASHBOARD_DATA = {
     {
       "code": "NC",
       "name": "Northern Cape",
-      "joc": 28054,
-      "joc_date": "2026-06-12",
+      "joc": 114443,
+      "joc_date": "2026-06-16",
       "ministerial": 99642,
       "ministerial_date": "2026-06-04",
-      "diff": -71588,
-      "flag": "critical"
+      "diff": 14801,
+      "flag": null
     },
     {
       "code": "WC",
@@ -1756,14 +1764,6 @@ const DASHBOARD_DATA = {
       "detail": "Ministerial (2026-06-04) reported 600,331 cattle vaccinated; current JOC/AgriSA figure is 527,337 \u2014 gap of 72,994. Impossible if both are cumulative.",
       "action": "Reconcile AgriSA provincial return against ministerial figure. Determine whether ministerial count includes additional species (pigs, sheep) beyond cattle only.",
       "owner": "North West AgriSA affiliate"
-    },
-    {
-      "severity": "critical",
-      "province": "NC",
-      "title": "Northern Cape: JOC figure lower than ministerial briefing",
-      "detail": "Ministerial (2026-06-04) reported 99,642 cattle vaccinated; current JOC/AgriSA figure is 28,054 \u2014 gap of 71,588. Impossible if both are cumulative.",
-      "action": "Reconcile AgriSA provincial return against ministerial figure. Determine whether ministerial count includes additional species (pigs, sheep) beyond cattle only.",
-      "owner": "Northern Cape AgriSA affiliate"
     },
     {
       "severity": "critical",
@@ -3065,7 +3065,7 @@ const DASHBOARD_DATA = {
     },
     "NC": {
       "name": "Northern Cape",
-      "latest_date": "2026-06-12",
+      "latest_date": "2026-06-16",
       "vaccine_types": [
         {
           "type": "dolvet",
@@ -3109,10 +3109,15 @@ const DASHBOARD_DATA = {
       ],
       "districts": [],
       "extra": {
+        "vaccination_sites": {
+          "label": "Vaccination sites",
+          "value": 641,
+          "date": "2026-06-10"
+        },
         "vaccine_balance": {
           "label": "Vaccine balance on hand",
-          "value": 99373,
-          "date": "2026-05-21"
+          "value": 86157,
+          "date": "2026-06-10"
         }
       },
       "sources": [
@@ -3120,6 +3125,7 @@ const DASHBOARD_DATA = {
         "FMD-ICC",
         "MPO",
         "Ministry",
+        "NC-DALRRD",
         "RMIS",
         "RPO"
       ]
@@ -3355,6 +3361,8 @@ const DASHBOARD_DATA = {
     "MEDIA BRIEFING BY MINISTER OF AGRICULTURE_LATIN AMERICA OUTCOMES_SECTION 10_FMD_05MAY2026.pdf",
     "MPO Info/Copy of FMD Vaccination Data 17 April 2026.xlsx",
     "MPO direct communication \u2014 15 May 2026",
+    "NC Image Jun 10 2026 10_05_22 PM.png",
+    "NC Image Jun 16 2026 12_46_38 AM.png",
     "PRESENTATION TO PORTFOLIO COMMITTEE 9 JUNE Final ((003).pdf",
     "Presentation LIMPOPO FMD OUTBREAK CURRENT STATUS PRIORATY MEETING 2026-06-04.pdf",
     "Press Statement by Minister John Steenhuisen on Foot and Mouth Disease vaccination and vaccine acquisition 1 June 2026.pdf",

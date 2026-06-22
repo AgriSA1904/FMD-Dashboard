@@ -1,3 +1,65 @@
+As at 2026-06-22 (session 43 -- NC vaccination campaign overview and situation update):
+- Master: **1,692 rows** (+6 new rows from 1,686)
+- Dashboard snapshot: **16 June 2026** (35 weekly points)
+- Dashboard rebuilt: Yes (167,032 bytes; validation passed)
+
+**New data ingested (session 43):**
+- NC Image Jun 10, 2026 (NC vaccination campaign overview image): 5 rows.
+- NC Image Jun 16, 2026 (NC Vet Surveillance System situation overview): 1 row.
+
+**Key figures added:**
+- NC doses_received 200,600 as at 10 June 2026 (NC-DALRRD; confirms Ministry allocation)
+- NC doses_administered 114,443 as at 10 June 2026 (derived: 200,600 - 86,157 balance)
+- NC animals_vaccinated 114,443 as at 10 June 2026 (breakdown: commercial 76,835; communal 34,521; smallholder 2,879; dairy 208; private vets 3,567 doses; farms/facilities 641; tags used 65,364)
+- NC vaccine_balance 86,157 as at 10 June 2026
+- NC vaccination_sites 641 farms/facilities visited as at 10 June 2026
+- NC positive_cases 20 confirmed outbreaks as at 16 June 2026 (up from 17 at 9 June; 5 SVA areas; 9 municipalities; cumulative cases 79; Karnarvon 4 Upington 5 De Aar 1 Gordonia 4 Namakwa 6)
+
+**National headlines (dashboard 16 June 2026):**
+- Distributed (doses received, sum of latest per province): 6,345,581
+- Administered (doses administered, sum of latest per province): 4,094,702
+- Animals vaccinated (sum of latest per province): 4,499,745
+- Positive cases: 2,376 (EC 381, FS 620, GP 275, KZN 336, LP 81, MP 251, NW 375, NC 20, WC 37)
+
+**Per-province latest vaccine figures (updated NC):**
+
+| Province | Received | Administered | Animals vaccinated | Date |
+|---|---|---|---|---|
+| EC | 1,000,660 | 489,979 | 926,233 | 11 Jun |
+| FS | 838,400 | 482,848 | 935,809 | 12 Jun |
+| GP | 518,500 | 370,837 | 274,757 | 10 Jun |
+| KZN | 1,329,112 | 800,177 | 648,609 | 21 May |
+| LP | 611,000 | 379,471 | 427,959 | 5 Jun |
+| MP | 732,489 | 486,818 | 344,629 | 8 Jun |
+| NW | 617,720 | 642,745 | 527,337 | Jun dates |
+| NC | 200,600 | 114,443 | **114,443** | **10 Jun** |
+| WC | 497,100 | 327,384 | 299,969 | 15 Jun |
+
+**Data quality notes (session 43):**
+- NC campaign overview sourced from NC-DALRRD (new provincial source added to PROGRAMME_SOURCES). Source org inferred from content style; no explicit department name on image.
+- NC situation overview (Jun 16) reports 79 cumulative FMD cases total and 20 confirmed outbreak premises. Dashboard uses 20 confirmed outbreaks as positive_cases (consistent with other provinces counting outbreak premises). Cumulative 79 noted in row notes.
+- NC balance (86,157) implies doses administered = 114,443, which matches animals_vaccinated exactly -- consistent with single-dose campaign.
+- NC FMD map (15 June, Directorate Animal Health) confirms outbreak cluster near Kimberley and along Orange River -- qualitative only; no additional numeric rows added.
+
+**Parked/outstanding (carry forward):**
+- 17 June FMD Weekly Engagement summary -- meeting held 17 June; outcomes not in inbox.
+- LP PCM 18 June 2026 minutes -- meeting held; not yet in inbox.
+- Section 9 gazette: approximately 55 days overdue. Urgent.
+- Consolidated AgriSA weekly xlsx: approximately 58 days outstanding. Urgent.
+- 2 million Dollvet doses expected ~15 June -- not confirmed in RMIS (now 7 days past expected date).
+- KZN booster programme confirmation -- 260,000 of 360,200 dairy cows receiving booster; Harry Gwala still awaiting.
+- RMIS Vaccine Orders Export (08 June, 09 June) xlsx files unprocessed.
+- RMIS GLN Locations export (2026-06-11) xlsx unprocessed.
+- MPO Week 35 -- not in inbox.
+- LP DolVet 150,000 receipt -- outstanding.
+- LP Biogenesis discrepancy: LDARD 99,020 vs AgriSA-NAT 100,020. Minor.
+- GP OBP column-mapping issue -- ongoing.
+- EC Artio-Preva duplication -- ongoing.
+- KZN animals vaccinated gap (DoA 1.16 million vs master 648,609).
+- SAPPO 2026-05-25 unknown province (62 bottles) -- follow up with Dr Chiappero.
+
+---
+
 ---
 name: FMD daily run state
 description: Latest master_data.csv row count and dashboard snapshot

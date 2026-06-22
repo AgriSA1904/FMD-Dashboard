@@ -4,6 +4,55 @@ A running record of what changed in the master and dashboard, with dates and sou
 
 ---
 
+## 2026-06-22 (session 43) -- NC vaccination campaign overview and situation update
+
+**Master: 1,692 rows (+6 from 1,686). Dashboard: 16 June 2026 (35 weekly points; 167,032 bytes; validation passed).**
+
+**GitHub push:** master_data.csv, FMD_Dashboard.html, memory_update.md, change_log.md, scripts/build_dashboard.py.
+
+### Inbox scan
+
+| Folder | File | Status |
+|---|---|---|
+| inbox/Northern Cape/ | NC Image Jun 10, 2026, 10_05_22 PM.png | New -- ingested (NC vaccination campaign overview) |
+| inbox/Northern Cape/ | FMD_Map_Northern Cape_2026-06-15.jpg.jpeg | New -- qualitative map only; no rows added |
+| inbox/Northern Cape/ | NC Image Jun 16, 2026, 12_46_38 AM.png | New -- ingested (NC Vet Surveillance System situation overview) |
+| inbox/RMIS/ | RMIS GLN Locations export (2026-06-11).xlsx | Still unprocessed (openpyxl) |
+| inbox/RMIS/ | Vaccine Orders Export (2026-06-08), (2026-06-09) | Still unprocessed |
+| inbox/AgriSA Summary and Outcomes/ | (no new file) | 17 June summary not yet received |
+| inbox/Limpopo/ | (no new file) | LP PCM 18 June minutes not yet received |
+| All other subfolders | -- | No new files since session 42 |
+
+### Rows added
+
+| Source | Effective date | Rows | Key figures |
+|---|---|---|---|
+| NC-DALRRD (campaign overview image) | 2026-06-10 | 5 | doses_received 200,600; doses_administered 114,443; animals_vaccinated 114,443; vaccine_balance 86,157; vaccination_sites 641 |
+| Ministry (NC Vet Surveillance System) | 2026-06-16 | 1 | positive_cases 20 confirmed outbreaks; cumulative cases 79; 5 SVA areas; 9 municipalities |
+
+### Build change
+
+- NC-DALRRD added to PROGRAMME_SOURCES in scripts/build_dashboard.py.
+- Dashboard snapshot advanced from 2026-06-15 to 2026-06-16 (35 weekly points, up from 34).
+
+### Data quality flags
+
+- NC campaign overview: source org NC-DALRRD inferred from content; no explicit department name visible on image.
+- NC cumulative cases 79 vs confirmed outbreaks 20: situation overview distinguishes these; dashboard uses 20 (consistent with other provinces).
+- NC doses_administered = animals_vaccinated = 114,443 (single-dose campaign; balance confirms arithmetic).
+- NC FMD map dated 15/06/2026 (Directorate Animal Health, fmd.nda.gov.za) qualitative only; no numeric rows added.
+
+### Next-run actions
+
+- 17 June FMD Weekly Engagement summary -- monitor inbox/AgriSA Summary and Outcomes/.
+- LP PCM 18 June 2026 minutes -- monitor inbox/Limpopo/.
+- RMIS files (08 June, 09 June, 11 June) -- process when openpyxl available.
+- 2M Dollvet receipt -- 7 days past expected date; monitor RMIS portal.
+- Section 9 gazette -- 55+ days overdue; monitor Ministerial Updates.
+- MPO Week 35 -- monitor inbox/MPO/.
+
+---
+
 ## 2026-06-18 (session 42) -- 10 June FMD Weekly Engagement summary
 
 **Master: 1,686 rows (+13 from 1,673). Dashboard: 15 June 2026 (34 weekly points; 167,165 bytes; validation passed).**
