@@ -1,7 +1,8 @@
-As at 2026-06-23 (session 44b -- EC 28 May pptx backfill + RMIS 9 June feedlot orders):
-- Master: **1,750 rows** (+18 new rows from 1,732)
-- Dashboard snapshot: **21 June 2026** (37 weekly points; no advance -- new data is historical backfill)
-- Dashboard rebuilt: Yes (168,021 bytes; validation passed)
+As at 2026-06-23 (session 44c -- GP GDARD 12 Jun + NW RPO 9 Jun + LP 29 May + MP VWG 22 Jun + MPO Wk35 + WC GIS 22 Jun + badge removal):
+- Master: **1,780 rows** (+30 from 1,750)
+- Dashboard snapshot: **22 June 2026** (38 weekly points; 167,255 bytes; validation passed)
+- Dashboard rebuilt: Yes -- snapshot advanced from 21 June to 22 June
+- Dashboard change: "AS AT / Built date" badge permanently removed from header
 
 **New data ingested (session 44):**
 - GDARD FMD JOC Meeting 12_06_2026.pdf (GP-GDARD): 8 rows. Formal JOC; effective 10 June.
@@ -73,5 +74,4 @@ type: project
 ---
 
 As at 2026-06-22 (session 43 -- NC vaccination campaign overview and situation update):
-- Master: **1,692 rows** (+6 from 1,686)
-- Dashboard snapshot: **16 June 2026** (35 weekly points; 167,032 bytes; validation passed)
+- Master: **1,692 

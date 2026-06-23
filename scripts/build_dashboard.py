@@ -1028,12 +1028,11 @@ def build_dashboard():
                                          if r["superseded_by"] == ""))
 
     with open(TEMPLATE, "r", encoding="utf-8") as f:
-        template = f.read()
+        template = f.read().replace("\x00", "")  # strip null bytes left by some editors
     json_block = json.dumps(payload, indent=2)
     out_html = template.replace("/* DATA_PLACEHOLDER */",
                                 "const DASHBOARD_DATA = " + json_block + ";")
-    out_html = out_html.replace("__SNAPSHOT_DATE__", snapshot)
-    out_html = out_html.replace("__BUILD_DATE__", str(date.today()))
+
 
     # Ministerial comparison date — derived from the latest cattle_vaccinated_ministerial row
     # Ministerial comparison date — derived from the latest cattle_vaccinated_ministerial row
@@ -1064,3 +1063,4 @@ def build_dashboard():
 
 if __name__ == "__main__":
     build_dashboard()
+                                                                       

@@ -74,18 +74,6 @@
     font-size: 16px; color: rgba(255,255,255,0.85);
     margin: 0; max-width: 720px;
   }
-  .badge-block { text-align: right; min-width: 220px; }
-  .pill-status {
-    display: inline-block; background: rgba(255,255,255,0.12);
-    border: 1px solid rgba(255,255,255,0.22);
-    padding: 6px 18px; border-radius: var(--r-pill);
-    font-size: 12px; font-weight: 600; letter-spacing: 0.4px;
-    text-transform: uppercase; color: var(--white);
-  }
-  .last-updated {
-    display: block; font-size: 13px; color: rgba(255,255,255,0.7);
-    margin-top: var(--sp-3);
-  }
 
   main { max-width: 1440px; margin: 0 auto; padding: var(--sp-10) var(--sp-9) var(--sp-12); }
   section { margin-bottom: var(--sp-10); }
@@ -378,10 +366,6 @@
         <div class="kicker-light">FMD Industry Coordination Council</div>
         <h1>Foot and mouth disease in South Africa.</h1>
         <p class="subtitle">A weekly view of vaccine rollout, disease status and provincial coverage. Compiled by AgriCulture South Africa from provincial Joint Operations Committee submissions.</p>
-      </div>
-      <div class="badge-block">
-        <span class="pill-status">As at 2026-06-04</span>
-        <span class="last-updated">Built 2026-06-05</span>
       </div>
     </div>
   </div>
@@ -728,7 +712,7 @@
 
 <script>
 const DASHBOARD_DATA = {
-  "snapshot_date": "2026-06-21",
+  "snapshot_date": "2026-06-22",
   "build_date": "2026-06-23",
   "provinces": [
     {
@@ -758,14 +742,14 @@ const DASHBOARD_DATA = {
     {
       "code": "GP",
       "name": "Gauteng",
-      "as_of": "2026-06-10",
+      "as_of": "2026-06-12",
       "herd": 474928,
       "positive": 300,
       "suspected": 1,
       "negative": 0,
       "pending": 0,
       "received": 643300,
-      "vaccinated": 274757
+      "vaccinated": 333221
     },
     {
       "code": "KZN",
@@ -794,13 +778,13 @@ const DASHBOARD_DATA = {
     {
       "code": "MP",
       "name": "Mpumalanga",
-      "as_of": "2026-06-09",
+      "as_of": "2026-06-22",
       "herd": 1177420,
-      "positive": 251,
-      "suspected": 104,
+      "positive": 261,
+      "suspected": 129,
       "negative": 0,
       "pending": 0,
-      "received": 732489,
+      "received": 747000,
       "vaccinated": 344629
     },
     {
@@ -830,9 +814,9 @@ const DASHBOARD_DATA = {
     {
       "code": "WC",
       "name": "Western Cape",
-      "as_of": "2026-06-15",
+      "as_of": "2026-06-22",
       "herd": 458457,
-      "positive": 37,
+      "positive": 38,
       "suspected": 17,
       "negative": 0,
       "pending": 0,
@@ -1020,7 +1004,7 @@ const DASHBOARD_DATA = {
     {
       "date": "2026-05-29",
       "received": 5639190,
-      "administered": 3095261,
+      "administered": 3115700,
       "positive": 1975,
       "suspected": 925,
       "pending": null
@@ -1100,7 +1084,7 @@ const DASHBOARD_DATA = {
     {
       "date": "2026-06-12",
       "received": 6912441,
-      "administered": 4499745,
+      "administered": 4558209,
       "positive": 2396,
       "suspected": 951,
       "pending": null
@@ -1108,7 +1092,7 @@ const DASHBOARD_DATA = {
     {
       "date": "2026-06-14",
       "received": 6912441,
-      "administered": 4534918,
+      "administered": 4593382,
       "positive": 2399,
       "suspected": 948,
       "pending": null
@@ -1116,7 +1100,7 @@ const DASHBOARD_DATA = {
     {
       "date": "2026-06-15",
       "received": 6912441,
-      "administered": 4534918,
+      "administered": 4593382,
       "positive": 2401,
       "suspected": 948,
       "pending": null
@@ -1124,7 +1108,7 @@ const DASHBOARD_DATA = {
     {
       "date": "2026-06-16",
       "received": 6912441,
-      "administered": 4534918,
+      "administered": 4593382,
       "positive": 2404,
       "suspected": 948,
       "pending": null
@@ -1132,9 +1116,17 @@ const DASHBOARD_DATA = {
     {
       "date": "2026-06-21",
       "received": 6912441,
-      "administered": 4566888,
+      "administered": 4625352,
       "positive": 2404,
       "suspected": 957,
+      "pending": null
+    },
+    {
+      "date": "2026-06-22",
+      "received": 6926952,
+      "administered": 4625352,
+      "positive": 2415,
+      "suspected": 982,
       "pending": null
     }
   ],
@@ -1146,20 +1138,20 @@ const DASHBOARD_DATA = {
     "unallocated": 358480
   },
   "national": {
-    "positive": 2404,
-    "suspected": 957,
+    "positive": 2415,
+    "suspected": 982,
     "negative": 77,
     "pending": 259,
     "procured": 13500000,
-    "distributed": 6912441,
-    "received": 6912441,
-    "administered": 4566888,
+    "distributed": 6926952,
+    "received": 6926952,
+    "administered": 4625352,
     "herd_cattle": 12496199,
-    "balance": 2345553,
-    "delta_received": 0,
-    "delta_distributed": 0,
-    "delta_administered": 31970,
-    "delta_positive": 0
+    "balance": 2301600,
+    "delta_received": 14511,
+    "delta_distributed": 14511,
+    "delta_administered": 0,
+    "delta_positive": 11
   },
   "mpo": {
     "weekly": [
@@ -1657,12 +1649,12 @@ const DASHBOARD_DATA = {
     {
       "code": "GP",
       "name": "Gauteng",
-      "joc": 274757,
+      "joc": 333221,
       "joc_date": "2026-06-19",
       "ministerial": 325216,
       "ministerial_date": "2026-06-04",
-      "diff": -50459,
-      "flag": "critical"
+      "diff": 8005,
+      "flag": null
     },
     {
       "code": "KZN",
@@ -1688,7 +1680,7 @@ const DASHBOARD_DATA = {
       "code": "MP",
       "name": "Mpumalanga",
       "joc": 344629,
-      "joc_date": "2026-06-19",
+      "joc_date": "2026-06-22",
       "ministerial": 465105,
       "ministerial_date": "2026-06-04",
       "diff": -120476,
@@ -1718,7 +1710,7 @@ const DASHBOARD_DATA = {
       "code": "WC",
       "name": "Western Cape",
       "joc": 299969,
-      "joc_date": "2026-06-19",
+      "joc_date": "2026-06-22",
       "ministerial": 265379,
       "ministerial_date": "2026-06-04",
       "diff": 34590,
@@ -1765,14 +1757,6 @@ const DASHBOARD_DATA = {
       "detail": "JOC reports 299,969 animals vaccinated but only 230,140 doses received in province. Likely a cumulative vs period reporting mismatch, or draw on pre-rollout stock.",
       "action": "Confirm whether provincial figures are cumulative from rollout start or period-only. Request reconciliation of receipt and administration logs.",
       "owner": "Western Cape AgriSA affiliate / JOC"
-    },
-    {
-      "severity": "critical",
-      "province": "GP",
-      "title": "Gauteng: JOC figure lower than ministerial briefing",
-      "detail": "Ministerial (2026-06-04) reported 325,216 cattle vaccinated; current JOC/AgriSA figure is 274,757 \u2014 gap of 50,459. Impossible if both are cumulative.",
-      "action": "Reconcile AgriSA provincial return against ministerial figure. Determine whether ministerial count includes additional species (pigs, sheep) beyond cattle only.",
-      "owner": "Gauteng AgriSA affiliate"
     },
     {
       "severity": "critical",
@@ -1957,6 +1941,11 @@ const DASHBOARD_DATA = {
         }
       ],
       "extra": {
+        "booster_vaccinations": {
+          "label": "Booster vaccinations",
+          "value": 7956,
+          "date": "2026-06-19"
+        },
         "vaccine_balance": {
           "label": "Vaccine balance on hand",
           "value": 74427,
@@ -2428,8 +2417,8 @@ const DASHBOARD_DATA = {
       "extra": {
         "controlled_slaughter": {
           "label": "Controlled slaughter",
-          "value": 231244,
-          "date": "2026-05-22"
+          "value": 225134,
+          "date": "2026-06-12"
         },
         "vaccine_balance": {
           "label": "Vaccine balance on hand",
@@ -2504,7 +2493,7 @@ const DASHBOARD_DATA = {
         "booster_vaccinations": {
           "label": "Booster vaccinations",
           "value": 240000,
-          "date": "2026-06-12"
+          "date": "2026-06-19"
         },
         "vaccine_balance": {
           "label": "Vaccine balance on hand",
@@ -2759,7 +2748,7 @@ const DASHBOARD_DATA = {
     },
     "MP": {
       "name": "Mpumalanga",
-      "latest_date": "2026-06-19",
+      "latest_date": "2026-06-22",
       "vaccine_types": [
         {
           "type": "bioaftogen",
@@ -2911,8 +2900,8 @@ const DASHBOARD_DATA = {
       "extra": {
         "vaccine_wastage": {
           "label": "Vaccine wastage",
-          "value": 2707,
-          "date": "2026-05-21"
+          "value": 4843,
+          "date": "2026-06-22"
         },
         "controlled_slaughter": {
           "label": "Controlled slaughter",
@@ -2921,8 +2910,8 @@ const DASHBOARD_DATA = {
         },
         "vaccine_balance": {
           "label": "Vaccine balance on hand",
-          "value": 146423,
-          "date": "2026-05-21"
+          "value": 164406,
+          "date": "2026-06-22"
         }
       },
       "sources": [
@@ -3165,7 +3154,7 @@ const DASHBOARD_DATA = {
     },
     "WC": {
       "name": "Western Cape",
-      "latest_date": "2026-06-19",
+      "latest_date": "2026-06-22",
       "vaccine_types": [
         {
           "type": "dolvet",
@@ -3215,8 +3204,8 @@ const DASHBOARD_DATA = {
         },
         "vaccination_sites": {
           "label": "Vaccination sites",
-          "value": 1443,
-          "date": "2026-06-15"
+          "value": 1595,
+          "date": "2026-06-22"
         },
         "vaccine_balance": {
           "label": "Vaccine balance on hand",
@@ -3382,6 +3371,7 @@ const DASHBOARD_DATA = {
     "Email - SAPPO.pdf",
     "Email -SAPPO - 05 June.pdf",
     "FMD PCM MEETING PACK 20260604.pdf",
+    "FMD PCM MEETINGPACK 20260611.pdf",
     "FMD PCM MEETINGPACK 20260622 REV0.pdf",
     "FMD PCM MEETINGPACK 20260622 REV2.pdf",
     "FMD-Vaccine_Imported.xlsx",
@@ -3395,6 +3385,7 @@ const DASHBOARD_DATA = {
     "GDARD FMD JOC Meeting 22.05.26.pdf",
     "ICC FMD_VaccineRollout_20March2026.pdf",
     "MEDIA BRIEFING BY MINISTER OF AGRICULTURE_LATIN AMERICA OUTCOMES_SECTION 10_FMD_05MAY2026.pdf",
+    "MP FMD outbreak Update VWG 2026 06 22.pptx",
     "MPO Info/Copy of FMD Vaccination Data 17 April 2026.xlsx",
     "MPO direct communication \u2014 15 May 2026",
     "NC Image Jun 10 2026 10_05_22 PM.png",
