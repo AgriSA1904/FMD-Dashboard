@@ -1,7 +1,7 @@
-As at 2026-06-23 (session 44 -- GP GDARD JOC 12 June + LP PCM Week 28-29 + MPO Week 35):
-- Master: **1,732 rows** (+40 new rows from 1,692)
-- Dashboard snapshot: **21 June 2026** (37 weekly points)
-- Dashboard rebuilt: Yes (167,815 bytes; validation passed)
+As at 2026-06-23 (session 44b -- EC 28 May pptx backfill + RMIS 9 June feedlot orders):
+- Master: **1,750 rows** (+18 new rows from 1,732)
+- Dashboard snapshot: **21 June 2026** (37 weekly points; no advance -- new data is historical backfill)
+- Dashboard rebuilt: Yes (168,021 bytes; validation passed)
 
 **New data ingested (session 44):**
 - GDARD FMD JOC Meeting 12_06_2026.pdf (GP-GDARD): 8 rows. Formal JOC; effective 10 June.
