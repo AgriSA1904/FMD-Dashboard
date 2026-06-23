@@ -4,6 +4,53 @@ A running record of what changed in the master and dashboard, with dates and sou
 
 ---
 
+## 2026-06-23 (session 44) -- GP GDARD JOC + LP PCM Week 28-29 + MPO Week 35
+
+**Master: 1,732 rows (+40 from 1,692). Dashboard: 21 June 2026 (37 weekly points; 167,815 bytes; validation passed).**
+
+**GitHub push:** master_data.csv, FMD_Dashboard.html, memory_update.md, change_log.md.
+
+### Inbox scan
+
+| Folder | File | Status |
+|---|---|---|
+| inbox/Gauteng/ | GDARD FMD JOC Meeting 12_06_2026.pdf | New -- ingested |
+| inbox/Limpopo/ | FMD PCM MEETINGPACK 20260622 REV2.pdf | New -- ingested (11 Jun minutes + Week 28-29) |
+| inbox/AgriSA Summary and Outcomes/ | AgriSA Weekly FMD Engagement_ 2026.06.24.pdf | Agenda only -- no data |
+| inbox/MPO/ | Week 35 - Update ... | New -- ingested (19 June) |
+| inbox/RMIS/ | Vaccine Orders Export (08-09 Jun); GLN export 11 Jun | Still unprocessed |
+
+### Rows added
+
+| Source | Effective date | Rows | Key figures |
+|---|---|---|---|
+| GP-GDARD | 2026-06-10 | 8 | positive_cases 300; animals_vaccinated 333,221; doses_received 643,300; controlled_slaughter 225,134 |
+| LP-LDARD Week 28 | 2026-06-14 | 3 | positive_cases 84; suspected 87; animals_vaccinated 463,132 |
+| LP-LDARD doses_received | 2026-06-10 | 1 | doses_received 775,660 (163,980 new Bioaftogen ~10 June) |
+| LP-LDARD Week 29 | 2026-06-21 | 5 | positive_cases 84; suspected 96; animals_vaccinated 495,102 |
+| MPO Week 35 | 2026-06-19 | 23 | dairy_cows_vaccinated per province; booster per province; dairy FMD active per province |
+
+### Data quality flags
+
+- GP positive_cases 300 (formal GDARD 10 Jun) CONFLICT: DoA 275 (9 Jun). Both held; GDARD authoritative.
+- GP animals_vaccinated 333,221 includes Karan 80,000 feedlot (per-commodity table = 253,251; +Karan = 333,221).
+- GP OBP column-mapping RESOLVED: 1,700 ARC-OVR allocated; 1,533 administered (under-filled). Not Dollvet.
+- LP DolVet 150,000 parked item: DV unchanged at 410,000 across all LP weeks. Still open.
+- LP Biogenesis discrepancy RESOLVED: LDARD records now show 100,020 matching AgriSA-NAT.
+- MPO Week 35 GP/MP active dairy case CONFLICT: Week 34 GP=3 MP=17; Week 35 GP=17 MP=3. Possible swap. Flag.
+- EC dairy cows Week 35 (306,879) vs Week 34 (307,266) slight decrease. Both held.
+
+### Next-run actions
+
+- 24 June FMD Weekly Engagement outcomes -- monitor inbox (meeting held today).
+- RMIS files -- process when openpyxl available.
+- 2M Dollvet receipt -- 8+ days past expected; monitor RMIS.
+- Section 9 gazette -- urgently overdue.
+- MPO Week 36 -- monitor.
+- LP PCM 6 July 2026 -- monitor.
+
+---
+
 ## 2026-06-22 (session 43) -- NC vaccination campaign overview and situation update
 
 **Master: 1,692 rows (+6 from 1,686). Dashboard: 16 June 2026 (35 weekly points; 167,032 bytes; validation passed).**
