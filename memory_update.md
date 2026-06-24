@@ -1,8 +1,8 @@
-As at 2026-06-23 (session 44c -- GP GDARD 12 Jun + NW RPO 9 Jun + LP 29 May + MP VWG 22 Jun + MPO Wk35 + WC GIS 22 Jun + badge removal):
-- Master: **1,780 rows** (+30 from 1,750)
-- Dashboard snapshot: **22 June 2026** (38 weekly points; 167,255 bytes; validation passed)
-- Dashboard rebuilt: Yes -- snapshot advanced from 21 June to 22 June
-- Dashboard change: "AS AT / Built date" badge permanently removed from header
+As at 2026-06-24 (session 44d -- RMIS Vaccine Orders 22 June):
+- Master: **1,790 rows** (+10 from 1,780)
+- Dashboard snapshot: **22 June 2026** (38 weekly points; 167,386 bytes; validation passed)
+- Dashboard rebuilt: Yes (logistics-only addition; snapshot unchanged)
+- RMIS feedlot orders 22 June: 2,141,146 national approved doses (1,763 orders; nearly double the June 9 figure of 1,097,179)
 
 **New data ingested (session 44):**
 - GDARD FMD JOC Meeting 12_06_2026.pdf (GP-GDARD): 8 rows. Formal JOC; effective 10 June.
@@ -74,4 +74,5 @@ type: project
 ---
 
 As at 2026-06-22 (session 43 -- NC vaccination campaign overview and situation update):
-- Master: **1,692 
+- Master: **1,692 rows** (+6 from 1,686)
+- Dashboard snapshot: **16 June 2026** (35 weekly points; 167,032 bytes; validation passed)
