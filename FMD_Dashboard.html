@@ -712,7 +712,7 @@
 
 <script>
 const DASHBOARD_DATA = {
-  "snapshot_date": "2026-06-22",
+  "snapshot_date": "2026-06-23",
   "build_date": "2026-06-24",
   "provinces": [
     {
@@ -730,14 +730,14 @@ const DASHBOARD_DATA = {
     {
       "code": "FS",
       "name": "Free State",
-      "as_of": "2026-06-12",
+      "as_of": "2026-06-23",
       "herd": 1928862,
-      "positive": 620,
+      "positive": 634,
       "suspected": 428,
       "negative": 0,
       "pending": 0,
       "received": 838400,
-      "vaccinated": 935809
+      "vaccinated": 1053502
     },
     {
       "code": "GP",
@@ -1124,8 +1124,16 @@ const DASHBOARD_DATA = {
     {
       "date": "2026-06-22",
       "received": 6926952,
-      "administered": 4625352,
+      "administered": 4743045,
       "positive": 2415,
+      "suspected": 982,
+      "pending": null
+    },
+    {
+      "date": "2026-06-23",
+      "received": 6926952,
+      "administered": 4743045,
+      "positive": 2429,
       "suspected": 982,
       "pending": null
     }
@@ -1138,20 +1146,20 @@ const DASHBOARD_DATA = {
     "unallocated": 358480
   },
   "national": {
-    "positive": 2415,
+    "positive": 2429,
     "suspected": 982,
     "negative": 77,
     "pending": 259,
     "procured": 13500000,
     "distributed": 6926952,
     "received": 6926952,
-    "administered": 4625352,
+    "administered": 4743045,
     "herd_cattle": 12496199,
-    "balance": 2301600,
-    "delta_received": 14511,
-    "delta_distributed": 14511,
+    "balance": 2183907,
+    "delta_received": 0,
+    "delta_distributed": 0,
     "delta_administered": 0,
-    "delta_positive": 11
+    "delta_positive": 14
   },
   "mpo": {
     "weekly": [
@@ -1643,11 +1651,11 @@ const DASHBOARD_DATA = {
     {
       "code": "FS",
       "name": "Free State",
-      "joc": 935809,
-      "joc_date": "2026-06-22",
+      "joc": 1053502,
+      "joc_date": "2026-06-23",
       "ministerial": 707986,
       "ministerial_date": "2026-06-04",
-      "diff": 227823,
+      "diff": 345516,
       "flag": null
     },
     {
@@ -1969,7 +1977,7 @@ const DASHBOARD_DATA = {
     },
     "FS": {
       "name": "Free State",
-      "latest_date": "2026-06-22",
+      "latest_date": "2026-06-23",
       "vaccine_types": [
         {
           "type": "dolvet",
@@ -2098,6 +2106,17 @@ const DASHBOARD_DATA = {
           "notes": "Thabo Mofutsanyana district. Breakdown: Dihlabeng 67, Maluti-A-Phofung 28, Mantsopa 46, Phumelela 40."
         },
         {
+          "name": "Moqhaka; Kroonstad SVA; Moqhaka Municipality;",
+          "date": "2026-06-23",
+          "vaccinated": null,
+          "cases": 117,
+          "suspected": null,
+          "pending": null,
+          "outbreaks": null,
+          "negative": null,
+          "notes": "District: Moqhaka; Kroonstad SVA; Moqhaka Municipality; from FS DARDLEA media release 23 Jun 2026"
+        },
+        {
           "name": "Kroonstad SVA",
           "date": "2026-06-02",
           "vaccinated": null,
@@ -2120,6 +2139,17 @@ const DASHBOARD_DATA = {
           "notes": "State Vet Area: Heilbron SVA | Local municipality/ies: Ngwathe | FS-DRDAR media release 2 Jun 2026. Total SVA breakdown sums to 604."
         },
         {
+          "name": "Ngwathe; Heilbron SVA; Ngwathe Municipality;",
+          "date": "2026-06-23",
+          "vaccinated": null,
+          "cases": 93,
+          "suspected": null,
+          "pending": null,
+          "outbreaks": null,
+          "negative": null,
+          "notes": "District: Ngwathe; Heilbron SVA; Ngwathe Municipality; FS DARDLEA media release 23 Jun 2026"
+        },
+        {
           "name": "Frankfort SVA",
           "date": "2026-06-02",
           "vaccinated": null,
@@ -2131,6 +2161,17 @@ const DASHBOARD_DATA = {
           "notes": "State Vet Area: Frankfort SVA | Local municipality/ies: Mafube | FS-DRDAR media release 2 Jun 2026. Total SVA breakdown sums to 604."
         },
         {
+          "name": "Mafube; Frankfort SVA; Mafube Municipality; F",
+          "date": "2026-06-23",
+          "vaccinated": null,
+          "cases": 74,
+          "suspected": null,
+          "pending": null,
+          "outbreaks": null,
+          "negative": null,
+          "notes": "District: Mafube; Frankfort SVA; Mafube Municipality; FS DARDLEA media release 23 Jun 2026"
+        },
+        {
           "name": "Bethlehem SVA",
           "date": "2026-06-02",
           "vaccinated": null,
@@ -2140,6 +2181,17 @@ const DASHBOARD_DATA = {
           "outbreaks": null,
           "negative": null,
           "notes": "State Vet Area: Bethlehem SVA | Local municipality/ies: Dihlabeng and Nketoana | FS-DRDAR media release 2 Jun 2026. Total SVA breakdown sums to 604."
+        },
+        {
+          "name": "Dihlabeng_Nketoana; Bethlehem SVA; Dihlabeng",
+          "date": "2026-06-23",
+          "vaccinated": null,
+          "cases": 67,
+          "suspected": null,
+          "pending": null,
+          "outbreaks": null,
+          "negative": null,
+          "notes": "District: Dihlabeng_Nketoana; Bethlehem SVA; Dihlabeng and Nketoana Municipalities; FS DARDLEA media release 23 Jun 2026"
         },
         {
           "name": "Lejweleputswa",
@@ -2162,6 +2214,17 @@ const DASHBOARD_DATA = {
           "outbreaks": null,
           "negative": null,
           "notes": "district=Lejweleputswa (Matjhabeng 43; Tokologo 10; Tswelopele 12)"
+        },
+        {
+          "name": "Metsimaholo; Sasolburg SVA; Metsimaholo Munic",
+          "date": "2026-06-23",
+          "vaccinated": null,
+          "cases": 64,
+          "suspected": null,
+          "pending": null,
+          "outbreaks": null,
+          "negative": null,
+          "notes": "District: Metsimaholo; Sasolburg SVA; Metsimaholo Municipality; FS DARDLEA media release 23 Jun 2026"
         },
         {
           "name": "Lejweleputswa district",
@@ -2197,6 +2260,17 @@ const DASHBOARD_DATA = {
           "notes": "State Vet Area: Ladybrand SVA | Local municipality/ies: Mantsopa and Setsoto | FS-DRDAR media release 2 Jun 2026. Total SVA breakdown sums to 604."
         },
         {
+          "name": "Mantsopa_Setsoto; Ladybrand SVA; Mantsopa and",
+          "date": "2026-06-23",
+          "vaccinated": null,
+          "cases": 46,
+          "suspected": null,
+          "pending": null,
+          "outbreaks": null,
+          "negative": null,
+          "notes": "District: Mantsopa_Setsoto; Ladybrand SVA; Mantsopa and Setsoto Municipalities; FS DARDLEA media release 23 Jun 2026"
+        },
+        {
           "name": "Welkom SVA",
           "date": "2026-06-02",
           "vaccinated": null,
@@ -2208,6 +2282,28 @@ const DASHBOARD_DATA = {
           "notes": "State Vet Area: Welkom SVA | Local municipality/ies: Matjhabeng and Nala | FS-DRDAR media release 2 Jun 2026. Total SVA breakdown sums to 604."
         },
         {
+          "name": "Matjhabeng_Nala; Welkom SVA; Matjhabeng and N",
+          "date": "2026-06-23",
+          "vaccinated": null,
+          "cases": 43,
+          "suspected": null,
+          "pending": null,
+          "outbreaks": null,
+          "negative": null,
+          "notes": "District: Matjhabeng_Nala; Welkom SVA; Matjhabeng and Nala Municipalities; FS DARDLEA media release 23 Jun 2026"
+        },
+        {
+          "name": "Phumelela; Warden SVA; Phumelela Municipality",
+          "date": "2026-06-23",
+          "vaccinated": null,
+          "cases": 43,
+          "suspected": null,
+          "pending": null,
+          "outbreaks": null,
+          "negative": null,
+          "notes": "District: Phumelela; Warden SVA; Phumelela Municipality; FS DARDLEA media release 23 Jun 2026"
+        },
+        {
           "name": "Warden SVA",
           "date": "2026-06-02",
           "vaccinated": null,
@@ -2217,6 +2313,17 @@ const DASHBOARD_DATA = {
           "outbreaks": null,
           "negative": null,
           "notes": "State Vet Area: Warden SVA | Local municipality/ies: Phumelela | FS-DRDAR media release 2 Jun 2026. Total SVA breakdown sums to 604."
+        },
+        {
+          "name": "Maluti-A-Phofung; Qwa-Qwa SVA; Maluti-A-Phofu",
+          "date": "2026-06-23",
+          "vaccinated": null,
+          "cases": 29,
+          "suspected": null,
+          "pending": null,
+          "outbreaks": null,
+          "negative": null,
+          "notes": "District: Maluti-A-Phofung; Qwa-Qwa SVA; Maluti-A-Phofung Municipality; FS DARDLEA media release 23 Jun 2026"
         },
         {
           "name": "Qwa-Qwa SVA",
@@ -2261,83 +2368,6 @@ const DASHBOARD_DATA = {
           "outbreaks": null,
           "negative": null,
           "notes": "district=Xhariep (Kopanong 8; Mohokare 7)"
-        },
-        {
-          "name": "Boshof SVA",
-          "date": "2026-06-02",
-          "vaccinated": null,
-          "cases": 10,
-          "suspected": null,
-          "pending": null,
-          "outbreaks": null,
-          "negative": null,
-          "notes": "State Vet Area: Boshof SVA | Local municipality/ies: Tokologo | FS-DRDAR media release 2 Jun 2026. Total SVA breakdown sums to 604. (Note: Bultfontein SVA also = 10; both are distinct SVAs.)"
-        },
-        {
-          "name": "Bultfontein SVA",
-          "date": "2026-06-02",
-          "vaccinated": null,
-          "cases": 10,
-          "suspected": null,
-          "pending": null,
-          "outbreaks": null,
-          "negative": null,
-          "notes": "State Vet Area: Bultfontein SVA | Local municipality/ies: Tswelopele and Masilonyana | FS-DRDAR media release 2 Jun 2026. Total SVA breakdown sums to 604."
-        },
-        {
-          "name": "Fauresmith SVA",
-          "date": "2026-06-02",
-          "vaccinated": null,
-          "cases": 8,
-          "suspected": null,
-          "pending": null,
-          "outbreaks": null,
-          "negative": null,
-          "notes": "State Vet Area: Fauresmith SVA | Local municipality/ies: Kopanong and Letsemeng | FS-DRDAR media release 2 Jun 2026. Total SVA breakdown sums to 604."
-        },
-        {
-          "name": "Smithfield SVA",
-          "date": "2026-06-02",
-          "vaccinated": null,
-          "cases": 7,
-          "suspected": null,
-          "pending": null,
-          "outbreaks": null,
-          "negative": null,
-          "notes": "State Vet Area: Smithfield SVA | Local municipality/ies: Mohokare and Mangaung | FS-DRDAR media release 2 Jun 2026. Total SVA breakdown sums to 604."
-        },
-        {
-          "name": "Mangaung Metropolitan",
-          "date": "2026-06-12",
-          "vaccinated": null,
-          "cases": 7,
-          "suspected": null,
-          "pending": null,
-          "outbreaks": null,
-          "negative": null,
-          "notes": "district=Mangaung Metropolitan"
-        },
-        {
-          "name": "Bloemfontein SVA",
-          "date": "2026-06-02",
-          "vaccinated": null,
-          "cases": 4,
-          "suspected": null,
-          "pending": null,
-          "outbreaks": null,
-          "negative": null,
-          "notes": "State Vet Area: Bloemfontein SVA | Local municipality/ies: Mangaung Metro | FS-DRDAR media release 2 Jun 2026. Total SVA breakdown sums to 604."
-        },
-        {
-          "name": "Thaba Nchu SVA",
-          "date": "2026-06-02",
-          "vaccinated": null,
-          "cases": 2,
-          "suspected": null,
-          "pending": null,
-          "outbreaks": null,
-          "negative": null,
-          "notes": "State Vet Area: Thaba Nchu SVA | Local municipality/ies: Mangaung Metro | FS-DRDAR media release 2 Jun 2026. Total SVA breakdown sums to 604."
         }
       ],
       "extra": {
@@ -3409,6 +3439,8 @@ const DASHBOARD_DATA = {
     "Week 35 - Update on the state of FMD and vaccine rollouts in the dairy industry.pdf",
     "WhatsApp Image 2026-06-02 at 08.43.23.jpeg",
     "WhatsApp Image 2026-06-06 (FS DARDEA media release 5 June 2026, map dated 4 June 2026)",
+    "WhatsApp Image 2026-06-23 at 12.52.00.jpeg",
+    "WhatsApp Image 2026-06-23 at 12.52.01.jpeg",
     "archive/2026-04-28/04-10-2026_FMD ICC Update.pdf",
     "archive/2026-05-14/FMD PCM MEETING PACK 20260514 REV0.pdf",
     "inbox/01042026_FMD Graphics_V2.pdf",
