@@ -424,30 +424,33 @@ def build_mpo(rows):
     }
 
 def build_rmis(rows):
-    """RMIS feedlot vaccine order tracking.
-    Reads rmis_orders.json for rich per-order breakdown.
-    Falls back to master_data.csv aggregates if JSON absent.
+    """RMIS industry vaccine distribution tracking.
+    Combines:
+      - Feedlot order timeline (feedlot_vaccine_orders metric, from per-order xlsx exports)
+      - Industry distribution breakdown (doses_distributed_industry metric, from Shiny portal + Excel export)
+    Falls back gracefully if data is absent.
     """
-    import json as _json
+    import json as _json, re as _re
     from collections import defaultdict
     rmis_json = os.path.join(ROOT, "rmis_orders.json")
 
-    # Timeline: one cumulative total per export date from master
-    rmis_rows = [r for r in rows
-                 if r["source_org"] == "RMIS"
-                 and r["metric"] == "feedlot_vaccine_orders"
-                 and r["superseded_by"] == ""]
-    if not rmis_rows and not os.path.exists(rmis_json):
-        return None
+    all_rmis = [r for r in rows if r["source_org"] == "RMIS" and r["superseded_by"] == ""]
+
+    # ── 1. Feedlot order timeline ──────────────────────────────────────────────
+    feedlot_rows = [r for r in all_rmis if r["metric"] == "feedlot_vaccine_orders"]
+    if not feedlot_rows and not os.path.exists(rmis_json):
+        # check if we at least have industry distribution data
+        if not any(r["metric"] == "doses_distributed_industry" for r in all_rmis):
+            return None
 
     totals = defaultdict(int)
-    for r in rmis_rows:
+    for r in feedlot_rows:
         totals[r["effective_date"]] += int(num(r["value"]) or 0)
     timeline = [{"date": d, "doses": totals[d]} for d in sorted(totals)]
     latest_t = timeline[-1] if timeline else {}
     prev_t   = timeline[-2] if len(timeline) >= 2 else {}
 
-    # Rich breakdown from JSON (latest export)
+    # Rich per-order breakdown from JSON (legacy; kept for vet/destination drilldown)
     detail = {}
     if os.path.exists(rmis_json):
         with open(rmis_json, "r", encoding="utf-8") as f:
@@ -457,15 +460,110 @@ def build_rmis(rows):
             exports.sort(key=lambda x: x["export_date"])
             detail = exports[-1]
 
+    # ── 2. Industry distribution — allocated vs distributed ───────────────────
+    dist_rows = [r for r in all_rmis if r["metric"] == "doses_distributed_industry"]
+
+    alloc_rows = [r for r in all_rmis
+                  if r["metric"] == "doses_allocated_industry"
+                  and r["province"] == "national"]
+    allocated = 0
+    if alloc_rows:
+        alloc_rows.sort(key=lambda r: r["effective_date"])
+        allocated = int(num(alloc_rows[-1]["value"]) or 0)
+
+    # national total distributed (all, private)
+    nat_dist = [r for r in dist_rows
+                if r["province"] == "national"
+                and r["vaccine_type"] == "all"
+                and r["vet_channel"] == "private"]
+    nat_dist.sort(key=lambda r: r["effective_date"])
+    distributed = int(num(nat_dist[-1]["value"]) or 0) if nat_dist else 0
+    industry_date = nat_dist[-1]["effective_date"] if nat_dist else latest_t.get("date", "")
+
+    utilisation_pct = round(distributed / allocated * 100, 1) if allocated else 0
+
+    # ── 3. Province x total (all manufacturers) ───────────────────────────────
+    prov_total_rows = [r for r in dist_rows
+                       if r["province"] not in ("national", "NAT")
+                       and r["vaccine_type"] == "all"
+                       and r["vet_channel"] == "private"]
+    # take most recent per province
+    prov_best = {}
+    for r in prov_total_rows:
+        p = r["province"]
+        if p not in prov_best or r["effective_date"] > prov_best[p]["effective_date"]:
+            prov_best[p] = r
+    by_province_total = {p: int(num(r["value"]) or 0) for p, r in prov_best.items()}
+
+    # ── 4. Province x manufacturer ────────────────────────────────────────────
+    def _prov_mfr(vtype):
+        rows_m = [r for r in dist_rows
+                  if r["province"] not in ("national", "NAT")
+                  and r["vaccine_type"] == vtype
+                  and r["vet_channel"] == "private"]
+        best = {}
+        for r in rows_m:
+            p = r["province"]
+            if p not in best or r["effective_date"] > best[p]["effective_date"]:
+                best[p] = r
+        return {p: int(num(r["value"]) or 0) for p, r in best.items()}
+
+    by_province_bio    = _prov_mfr("bioaftogen")
+    by_province_dolvet = _prov_mfr("dolvet")
+
+    # ── 5. Sector breakdown (national: stud / commercial / feedlot) ───────────
+    sector_rows = [r for r in dist_rows
+                   if r["province"] == "national"
+                   and r["vaccine_type"] == "all"
+                   and r["vet_channel"] in ("stud", "commercial", "feedlot")]
+    by_sector = {r["vet_channel"]: int(num(r["value"]) or 0) for r in sector_rows}
+
+    # ── 6. Municipality breakdown (province x municipality x sector) ──────────
+    munic_rows = [r for r in dist_rows
+                  if r["province"] not in ("national", "NAT")
+                  and r["vaccine_type"] == "all"
+                  and r["vet_channel"] in ("stud", "commercial", "feedlot")]
+    munic_list = []
+    for r in munic_rows:
+        m = _re.search(r"Municipality: ([^.]+)", r.get("notes", ""))
+        munic = m.group(1).strip() if m else "Unknown"
+        munic_list.append({
+            "province":     r["province"],
+            "municipality": munic,
+            "sector":       r["vet_channel"],
+            "doses":        int(num(r["value"]) or 0),
+        })
+    munic_list.sort(key=lambda x: x["doses"], reverse=True)
+
+    # ── 7. Operations metrics ─────────────────────────────────────────────────
+    vet_rows  = [r for r in all_rmis if r["metric"] == "vet_practices_ordering"]
+    site_rows = [r for r in all_rmis
+                 if r["metric"] == "vaccination_sites" and r["province"] == "national"]
+    vet_count  = int(num(vet_rows[-1]["value"]) or 0)  if vet_rows  else 0
+    site_count = int(num(site_rows[-1]["value"]) or 0) if site_rows else 0
+
     return {
+        # ── industry distribution (new) ──
+        "allocated":          allocated,
+        "distributed":        distributed,
+        "utilisation_pct":    utilisation_pct,
+        "industry_date":      industry_date,
+        "by_province_total":  by_province_total,
+        "by_province_bio":    by_province_bio,
+        "by_province_dolvet": by_province_dolvet,
+        "by_sector":          by_sector,
+        "by_municipality":    munic_list,
+        "vet_practices":      vet_count,
+        "vaccination_sites":  site_count,
+        # ── feedlot order timeline (retained) ──
         "timeline":            timeline,
-        "latest_date":         detail.get("export_date") or latest_t.get("date"),
+        "latest_date":         detail.get("export_date") or industry_date,
         "latest_doses":        detail.get("total_doses") or latest_t.get("doses", 0),
         "previous_doses":      prev_t.get("doses", 0),
         "total_orders":        detail.get("total_orders", 0),
         "unique_vets":         detail.get("unique_vets", 0),
         "unique_destinations": detail.get("unique_destinations", 0),
-        "by_province":         detail.get("by_province", {}),
+        "by_province":         detail.get("by_province", by_province_total),
         "by_district":         detail.get("by_district", {}),
         "by_location_type":    detail.get("by_location_type", {}),
         "by_commodity":        detail.get("by_commodity", {}),
