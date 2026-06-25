@@ -4,6 +4,61 @@ A running record of what changed in the master and dashboard, with dates and sou
 
 ---
 
+## Session 45 — 25 June 2026 (null ingest; inbox clear)
+
+**Master: 1,913 rows (unchanged). Dashboard: 23 June 2026 (unchanged). No new data ingested.**
+
+### Inbox scan
+
+| Folder | File | Status |
+|---|---|---|
+| inbox/AgriSA Summary and Outcomes/ | AgriSA Weekly FMD Engagement_ 2026.06.24.pdf | Already processed in session 44c (agenda only; no data) |
+| inbox/AgriSA Summary and Outcomes/ | Summary and Outcomes...2026.06.10.pdf | Already processed in session 42 |
+| inbox/AgriSA Summary and Outcomes/ | Summary and Outcomes...2026.06.03.pdf | Already processed (ingested 2026-06-07) |
+| inbox/North West/ | 09 JUNE 2026- RPO JIC FMD UPDATE.pdf | Already processed in session 44c |
+| inbox/Free State/02 June/ | FS FMD Vaccine Data - 29.05.2026.xlsx | Already processed (ingested 2026-06-02); WhatsApp images from 2 June also in master |
+| inbox/Free State/ | VL BKS JOC verslag 260605.pdf | Already processed in session 37 |
+| inbox/Free State/ | WhatsApp Image 2026-06-10.jpeg | Confirmed duplicate in session 37; no rows added |
+| inbox/Ministerial Updates/ | Press Statement 1 June 2026.pdf | Already processed (ingested 2026-06-05) |
+| inbox/RMIS/ | All files | Most recent (22 June) processed in session 44d; OneDrive_1_23-06-2026 processed in session 44g |
+| inbox/MPO/ | Weeks 28--35 | All processed; Week 36 still not in inbox |
+| inbox/Gauteng/ | GDARD FMD JOC Meeting 12_06_2026.pdf | Already processed in session 44c |
+| inbox/Limpopo/ | FMD PCM MEETINGPACK 20260622 REV2.pdf | Already processed in session 44d |
+| All other subfolders | -- | No new files since session 44g |
+| Dated root folder (25 Jun 2026) | -- | Not present |
+| SharePoint afterDateTime search (after 2026-06-24) | -- | Zero new files returned |
+
+### Rows added
+
+None.
+
+### Parked / outstanding (carry forward)
+
+- 24 June FMD Weekly Engagement outcomes -- meeting was 24 June; summary PDF not yet in inbox.
+- LP PCM 6 July 2026 -- next meeting confirmed.
+- Section 9 gazette: approximately 72 days overdue. Urgent.
+- Consolidated AgriSA weekly xlsx: approximately 75 days outstanding. Urgent.
+- 2 million DolVet doses expected approximately 15 June -- not confirmed in RMIS (10 days past expected).
+- 7 million Biogenesis doses expected end July 2026 -- forward pipeline.
+- KZN booster programme -- 240,000 done; resumption expected.
+- MPO Week 36 -- not yet in inbox.
+- LP DolVet 150,000 receipt -- outstanding.
+- KZN animals vaccinated gap (DoA 1.16 million versus master 648,609).
+- MPO Week 35 GP/MP dairy active case swap -- confirm with MPO.
+
+### Next-run action items
+
+- Monitor inbox/AgriSA Summary and Outcomes/ for 24 June outcomes PDF.
+- Monitor inbox/MPO/ for Week 36.
+- LP PCM 6 July 2026 -- meeting pack expected before 6 July; meeting minutes after.
+- MP JOC 7 July 2026 -- next scheduled meeting.
+- Section 9 gazette -- escalate; 72+ days overdue.
+- Consolidated AgriSA weekly xlsx -- escalate; 75+ days outstanding.
+- Check WC GIS portal for updated June figures.
+- Confirm DolVet 2 million dose consignment receipt via RMIS portal.
+
+---
+
 ## Session 44g — 24 June 2026 (RMIS industry distribution tab update)
 
 ### Sources processed
@@ -3404,77 +3459,4 @@ NW confirmed at **332** (no change needed).
 
 ### Key figures added — Mpumalanga as at 19 May 2026
 
-**Provincial disease totals (vs 17 May MP-DVS pptx):**
-
-| Metric | 17 May | 19 May | Δ |
-|---|---|---|---|
-| Confirmed outbreaks (provincial) | 231 | 233 | +2 |
-| Suspect cases (provincial) | 104 | 121 | +17 |
-| Animals vaccinated (cumulative since 1 March) | 312,886 | 344,537 | +31,651 |
-
-**Per-municipality outbreaks and suspects (province total 233 / 121):**
-
-| District | Municipality | Outbreaks | Suspects |
-|---|---|---|---|
-| Ehlanzeni | Bushbuckridge | 0 | 2 |
-| Ehlanzeni | Thaba Chweu | 0 | 2 |
-| Ehlanzeni | Bohlabela | 0 | 4 |
-| Ehlanzeni | Nkomazi | 25 | 0 |
-| Ehlanzeni | Mbombela | 1 | 1 |
-| Ehlanzeni | **Subtotal** | **26** | **9** |
-| Gert Sibande | Chief Albert Luthuli | 19 | 3 |
-| Gert Sibande | Msukaligwa | 13 | 9 |
-| Gert Sibande | Govan Mbeki | 18 | 24 |
-| Gert Sibande | Dipaleseng | 26 | 14 |
-| Gert Sibande | Lekwa | 39 | 7 |
-| Gert Sibande | Dr Pixley Ka Seme | 7 | 5 |
-| Gert Sibande | Mkhondo | 15 | 21 |
-| Gert Sibande | **Subtotal** | **137** | **83** |
-| Nkangala | Dr JS Moroka | 2 | 2 |
-| Nkangala | Thembisile Hani | 11 | 0 |
-| Nkangala | Victor Khanye | 13 | 1 |
-| Nkangala | Emalahleni | 9 | 0 |
-| Nkangala | Steve Tshwete | 30 | 13 |
-| Nkangala | Emakhazeni | 5 | 17 |
-| Nkangala | **Subtotal** | **70** | **33** |
-
-**Per-municipality animals vaccinated (cumulative since 1 March 2026; province total 344,537):**
-
-| District | Municipality | Vaccinated | 80% target | Coverage |
-|---|---|---|---|---|
-| Ehlanzeni | Bushbuckridge | 45,187 | 109,948 | 41.1% |
-| Ehlanzeni | Thaba Chweu | 7,917 | 97,959 | 8.1% |
-| Ehlanzeni | Nkomazi | 33,027 | 69,538 | 47.5% |
-| Ehlanzeni | Mbombela | 22,008 | 146,956 | 15.0% |
-| Gert Sibande | Chief Albert Luthuli | 37,951 | 119,941 | 31.6% |
-| Gert Sibande | Msukaligwa | 15,672 | 123,611 | 12.7% |
-| Gert Sibande | Govan Mbeki | 16,495 | 62,285 | 26.5% |
-| Gert Sibande | Dipaleseng | 24,781 | 56,331 | 44.0% |
-| Gert Sibande | Lekwa | 14,178 | 103,479 | 13.7% |
-| Gert Sibande | Dr Pixley Ka Seme | 19,052 | 120,554 | 15.8% |
-| Gert Sibande | Mkhondo | 17,507 | 121,446 | 14.4% |
-| Nkangala | Dr JS Moroka | 10,598 | 36,171 | 29.3% |
-| Nkangala | Thembisile Hani | 13,120 | 67,663 | 19.4% |
-| Nkangala | Victor Khanye | 5,890 | 40,858 | 14.4% |
-| Nkangala | Emalahleni | 9,204 | 61,153 | 15.0% |
-| Nkangala | Steve Tshwete | 40,600 | 89,237 | 45.5% |
-| Nkangala | Emakhazeni | 11,350 | 99,018 | 11.5% |
-
-**Sector split (cumulative animals vaccinated since 1 March 2026):**
-
-- Commercial: 149,908 across 681 herds
-- Communal: 194,629 across 16,206 herds
-- **Total: 344,537 across 16,887 herds**
-
-**Vaccine supply position (per Dr Cele direct):**
-
-| Vaccine | Doses received | Notes |
-|---|---|---|
-| ARC | 2,000 | |
-| Bioaftogen Bivalent (BB1) | 100,020 | |
-| Bioaftogen Trivalent (BB2) | 94,980 | |
-| Dollvet 1 | 95,000 | |
-| Dollvet 2 | 144,000 | Includes 40,000 emergency store |
-| **Total received** | **436,000** | Excludes Artio-Preva (109,489 per 17 May pptx) |
-| New batch received this week | 144,000 | To be included in next report |
-| Availab
+**Provinc
