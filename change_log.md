@@ -4,6 +4,43 @@ A running record of what changed in the master and dashboard, with dates and sou
 
 ---
 
+## Session 46 — 26 June 2026 (ministerial policy statement; null data ingest)
+
+**Master: 1,913 rows (unchanged). Dashboard: 23 June 2026 (unchanged). No quantitative data ingested.**
+
+### Inbox scan
+
+One new file found since session 45 (2026-06-25):
+
+| Folder | File | Status |
+|---|---|---|
+| inbox/Ministerial Updates/ | MEDIA STATEMENT NEW FMD CONTROL MEASURES GIVE FARMERS A CLEARER PATH TO RECOVERY WHILE PROTECTING TRADE.pdf | New — 25 June 2026. Policy document. No quantitative data rows. Logged below. |
+| All other subfolders | — | No new files |
+
+### New document: Ministerial media statement 25 June 2026
+
+**Source:** Ministry of Agriculture (Department of Agriculture)
+**Date:** 25 June 2026
+**Type:** Policy/regulatory — no structured data values; no rows added to master_data.csv
+
+**Summary:** Minister Steenhuisen announced approval of new national FMD control measures. These consolidate and replace previous Section 9 directives, the 2019 FMD Contingency Plan and related protocols. This is the long-awaited Section 9 replacement that has been outstanding since approximately 14 April 2026.
+
+Key provisions:
+- Takes effect upon publication in the Government Gazette (gazette still pending as at 26 June 2026).
+- Single integrated national FMD control framework from detection through recovery.
+- 16 days after property declared clinically clear → animals may be directed to designated FMD abattoirs.
+- 42 days after clinically clear → broader slaughter options including export-approved facilities.
+- Whole-herd depopulation no longer automatic; multiple recovery pathways (remove animals, restock with vaccinated animals, restock from FMD-free sources).
+- New provisions for communal and peri-urban livestock systems.
+- Well-fenced farms may manage outbreaks within affected portions rather than full-operation quarantine.
+- Feed, fodder and manure managed by scientifically established risk periods (not blanket disposal).
+- Fewer animal products need to be destroyed under updated science on virus viability.
+- Formal review within 12 months of implementation.
+
+**Action:** Section 9 parked item downgraded from "Urgent / overdue" to "Announced; gazette pending." No data rows added. Dashboard unchanged.
+
+---
+
 ## Session 45 — 25 June 2026 (null ingest; inbox clear)
 
 **Master: 1,913 rows (unchanged). Dashboard: 23 June 2026 (unchanged). No new data ingested.**
@@ -3424,39 +3461,4 @@ NW confirmed at **332** (no change needed).
 
 ---
 
-## 2026-05-22 (session 19) — MP-DVS 19 May municipality data ingested (automated daily run)
-
-**Master grew from 1,246 to 1,300 rows (+54 new rows).**
-
-**Dashboard rebuilt:** Yes — FMD_Dashboard.html 83,304 bytes, snapshot 2026-05-21 (unchanged, new data effective 19 May), 19 weekly points, validation passed.
-
-### Inbox scan summary
-
-| Folder | Files checked | New since last run? |
-|---|---|---|
-| Root (dated weekly folder for 22 May 2026) | None found | No |
-| inbox/Mpumalanga/ | `FMD vaccinations per municipality 19 May 2026 stk.xlsx` (forwarded by Robert Davel via email 21 May 12:42 from Dr Bhekifa Lucas Cele) | **YES — ingested** |
-| inbox/Mpumalanga/Email - Robert - 21 May.pdf | Email wrapper for the above xlsx | Context only, no rows |
-| inbox/Western Cape/20 May/ | 3 WhatsApp jpegs from 19 May WC GIS portal | Reviewed — data already in master (effective 2026-05-19, ingested session 16b/17) |
-| inbox/Limpopo/FMD PCM 21 MAY 2026/ | Same two PDFs extracted from the zip in session 17 | No new files |
-| inbox/Limpopo/Monday 18 May/ | 5 WhatsApp jpegs | Already processed session 16b |
-| inbox/Free State/FMD STATS/ | 4 jpegs (15 May DRDAR) | Already processed session 14b |
-| inbox/North West/ | 19 May RPO JIC PDF | Already processed session 17 |
-| inbox/ICC Reports/ | No new files | No |
-| inbox/Ministerial Updates/ | No new files | No |
-| inbox/AgriSA Summary and Outcomes - FMD Weekly Engagement/ | No new files | No |
-| inbox/MPO/ | No new files since Week 30 | No |
-
-### Source processed
-
-| File | Effective date | Source org | Outcome |
-|---|---|---|---|
-| `inbox/Mpumalanga/FMD vaccinations per municipality 19 May 2026 stk.xlsx` | 2026-05-19 | MP-DVS (Dr Cele direct, via Robert Davel) | Ingested — 54 rows |
-| `inbox/Mpumalanga/Email - Robert - 21 May.pdf` | 2026-05-21 | MP-DVS | Read for context (no rows) |
-| `inbox/Western Cape/20 May/WhatsApp Image 2026-05-20 at 08.26.42.jpeg` | 2026-05-19 | WC-GIS | Reviewed — data already in master (session 16b/17) |
-| `inbox/Western Cape/20 May/WhatsApp Image 2026-05-20 at 08.26.57.jpeg` | 2026-05-19 | WC-GIS | Reviewed — data already in master |
-| `inbox/Western Cape/20 May/WhatsApp Image 2026-05-20 at 08.27.12.jpeg` | 2026-05-19 | WC-GIS | Reviewed — data already in master |
-
-### Key figures added — Mpumalanga as at 19 May 2026
-
-**Provinc
+## 2026-05-22 (session 19) — MP-DVS 19 May municipality data ingested (automated daily ru

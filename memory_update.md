@@ -1,12 +1,10 @@
-As at 2026-06-25 (session 45 -- null ingest; inbox clear):
+As at 2026-06-26 (session 46 -- ministerial policy statement; null data ingest):
 - Master: **1,913 rows** (unchanged)
 - Dashboard snapshot: **23 June 2026** (39 weekly points; 182,734 bytes; validation passed)
-- Dashboard rebuilt: No -- no new data
+- Dashboard rebuilt: No -- no new quantitative data
 
-**New data ingested (session 45):**
-- None. Full inbox scan performed; no new files since session 44g (24 June 2026).
-- 24 June FMD Weekly Engagement outcomes PDF still not in inbox (only agenda present).
-- MPO Week 36 still not in inbox.
+**New files found (session 46):**
+- `inbox/Ministerial Updates/MEDIA STATEMENT NEW FMD CONTROL MEASURES GIVE FARMERS A CLEARER PATH TO RECOVERY WHILE PROTECTING TRADE.pdf` (25 June 2026). Policy/regulatory announcement. No data rows added. Section 9 replacement measures approved; gazette pending.
 
 **National headlines (dashboard 23 June 2026):**
 - Distributed (doses received): 6,635,041 (unchanged)
@@ -28,11 +26,11 @@ As at 2026-06-25 (session 45 -- null ingest; inbox clear):
 | WC | 497,100 | 299,969 | 15 Jun |
 
 **Parked/outstanding (carry forward):**
+- Section 9 gazette: **MEASURES ANNOUNCED 25 JUNE 2026**. Gazette publication still pending. Monitor for gazette date and gazette number.
 - 24 June FMD Weekly Engagement outcomes -- meeting was 24 June; outcomes PDF not yet in inbox.
 - LP PCM 6 July 2026 -- next meeting confirmed.
-- Section 9 gazette: approximately 72 days overdue. Urgent.
-- Consolidated AgriSA weekly xlsx: approximately 75 days outstanding. Urgent.
-- 2 million DolVet doses expected approximately 15 June -- not confirmed in RMIS (10 days overdue).
+- Consolidated AgriSA weekly xlsx: approximately 76 days outstanding. Urgent.
+- 2 million DolVet doses expected approximately 15 June -- not confirmed in RMIS (11 days overdue).
 - 7 million Biogenesis doses expected end July 2026 -- forward pipeline.
 - KZN booster programme -- 240,000 done; resumption expected.
 - MPO Week 36 -- not yet in inbox.
@@ -86,9 +84,4 @@ As at 2026-06-24 (session 44f -- verification pass; null ingest):
 
 **Per-province latest vaccine figures:**
 
-| Province | Received | Animals vaccinated | Date |
-|---|---|---|---|
-| EC | 1,000,660 | 926,233 | 11 Jun |
-| FS | 838,400 | 1,053,502 | 22 Jun |
-| GP | 643,300 | 333,221 | 10 Jun |
-| KZN | 1,329,112 |
+| Province | Received | Animals vacc
