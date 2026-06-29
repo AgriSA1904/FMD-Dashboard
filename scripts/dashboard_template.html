@@ -922,6 +922,9 @@ try {
     // Header
     const hdr = safeEl('provDetailHeader');
     if (hdr) {
+      // Destroy any existing province bar chart before wiping innerHTML
+      if (window._provBarChart) { try { window._provBarChart.destroy(); } catch(e){} window._provBarChart = null; }
+
       const cov = pv.herd > 0 ? ((pv.vaccinated / pv.herd) * 100).toFixed(1) : '—';
       hdr.innerHTML = `
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:var(--sp-6);align-items:start">
@@ -937,7 +940,83 @@ try {
           <div><div style="font-size:13px;opacity:0.6;text-transform:uppercase;letter-spacing:0.6px">Suspect / pending</div>
             <div style="font-size:32px;font-weight:300;color:var(--white)">${fmt2(pv.suspected)}</div>
             <div style="font-size:13px;opacity:0.8">As at ${d.latest_date || '—'}</div></div>
+        </div>
+        <div style="margin-top:var(--sp-6);padding-top:var(--sp-5);border-top:1px solid rgba(255,255,255,0.12)">
+          <div style="font-size:11px;opacity:0.55;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:var(--sp-3)">Provincial scale overview</div>
+          <div style="position:relative;height:160px"><canvas id="provBarChart"></canvas></div>
         </div>`;
+
+      // Initialise the bar chart on the newly created canvas
+      if (typeof Chart !== 'undefined') {
+        const bcCanvas = document.getElementById('provBarChart');
+        if (bcCanvas) {
+          const bcLabels = ['Herd size', 'Doses received', 'Animals vaccinated', 'Suspected cases', 'Confirmed cases'];
+          const bcValues = [pv.herd || 0, pv.received || 0, pv.vaccinated || 0, pv.suspected || 0, pv.positive || 0];
+          const bcColors = [
+            'rgba(203,217,41,0.28)',
+            'rgba(203,217,41,0.70)',
+            'rgba(203,217,41,1.00)',
+            'rgba(231,136,60,0.75)',
+            'rgba(220,60,60,0.90)',
+          ];
+          const fmtAxis = v => {
+            if (v === 0) return '0';
+            if (v >= 1000000) return (v / 1000000).toFixed(1) + 'M';
+            if (v >= 1000)    return (v / 1000).toFixed(0) + 'k';
+            return String(v);
+          };
+          window._provBarChart = new Chart(bcCanvas, {
+            type: 'bar',
+            data: {
+              labels: bcLabels,
+              datasets: [{
+                data: bcValues,
+                backgroundColor: bcColors,
+                borderRadius: 4,
+                barThickness: 20,
+              }]
+            },
+            options: {
+              indexAxis: 'y',
+              responsive: true,
+              maintainAspectRatio: false,
+              animation: { duration: 300 },
+              plugins: {
+                legend: { display: false },
+                tooltip: {
+                  callbacks: { label: ctx => '  ' + fmt(ctx.raw) }
+                },
+                datalabels: {
+                  anchor: 'end', align: 'end', clamp: true,
+                  color: 'rgba(255,255,255,0.75)',
+                  font: { size: 11 },
+                  formatter: v => v > 0 ? fmtAxis(v) : '',
+                }
+              },
+              scales: {
+                x: {
+                  type: 'logarithmic',
+                  min: 1,
+                  grid: { color: 'rgba(255,255,255,0.08)' },
+                  border: { color: 'rgba(255,255,255,0.15)' },
+                  ticks: {
+                    color: 'rgba(255,255,255,0.50)',
+                    font: { size: 10 },
+                    maxTicksLimit: 6,
+                    callback: function(v) { return fmtAxis(v); }
+                  }
+                },
+                y: {
+                  grid: { display: false },
+                  border: { display: false },
+                  ticks: { color: 'rgba(255,255,255,0.80)', font: { size: 12 } }
+                }
+              },
+              layout: { padding: { right: 40 } }
+            }
+          });
+        }
+      }
     }
 
     // Vaccine type breakdown
@@ -1736,7 +1815,7 @@ if (chartJsReady && data.ministerial_comparison) try {
                         p.flag === 'warning'  ? 'color:#e67e22;font-weight:600' :
                                                 'color:#27ae60';
       const flagText  = p.flag === 'critical' ? '&#9888; Discrepancy' :
-                        p.flag === 'warning'  ? '&#9651; No change' : '&#10003; Progress';
+                        p.flag === 'warning'  ? '&#9651; No change' : '\u2713 Progress';
       const diffFmt   = p.diff !== null
         ? `<span style="${p.diff < 0 ? 'color:#c0392b' : 'color:#27ae60'}">${p.diff >= 0 ? '+' : ''}${fmt(p.diff)}</span>`
         : '<span style="color:var(--charcoal)">N/A</span>';
