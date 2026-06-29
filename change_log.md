@@ -4,6 +4,89 @@ A running record of what changed in the master and dashboard, with dates and sou
 
 ---
 
+## Session 47 — 29 June 2026 (NW RPO JIC 23 Jun; 1 Jul agenda)
+
+**Master: 1,956 rows (+43). Dashboard: 23 June 2026, 40 weekly points (187,415 bytes). Validation passed.**
+
+### Inbox scan
+
+| Folder | File | Status |
+|---|---|---|
+| inbox/North West/ | 23 JUNE 2026- RPO JIC FMD UPDATE.pdf | New -- 23 June 2026. NW-RPO JIC presentation. 43 rows ingested. |
+| inbox/AgriSA Summary and Outcomes/ | AgriSA Weekly FMD Engagement_ 2026.07.01.pdf | New -- 1 July 2026 meeting agenda. No data rows. |
+| inbox/Ministerial Updates/ | MEDIA STATEMENT... CLEARER PATH TO RECOVERY.pdf | Already processed in session 46 |
+
+### Data ingested: NW-RPO JIC 23 June 2026
+
+**Source:** NW-RPO (North West Department of Agriculture and Rural Development / RPO JIC)
+**Effective date (data as at):** 18 June 2026 (map title: "NW FMD CASES 18 June 2026"; current vaccination week: 12/06-18/06)
+**Meeting date:** 23 June 2026
+**Rows added:** 43
+
+**Key figures:**
+
+| Metric | Value | Notes |
+|---|---|---|
+| doses_received (total allocated) | 1,021,140 | Includes Bioaftogen 1186 11th June batch (117,000). Supersedes 895,120 at 2026-06-09. |
+| doses_administered (total) | 793,964 | Internal spreadsheets figure (78%). FMD Summary slide shows 793,564 -- minor discrepancy noted; table value used. |
+| animals_vaccinated (platform) | 876,483 | 86% of allocation. Supersedes 527,337 at 2026-06-01. |
+| vaccine_balance | 156,573 | Of which 34,235 with feedlot industry. |
+| positive_cases (cumulative) | 414 | Supersedes 375 at 2026-06-09. DKK 87, Bojanala 78, DRSM 161, NMM 88. 404 reported to WOAH; 10 pending. |
+| new_cases_week | 10 | Week 13-18 June. Ramotshere Moiloa 4, Kagisano 4, Naledi 1, Ratlou 1. |
+
+**Per-vaccine administered (as at 18 June):**
+
+| Vaccine | Allocated | Administered | % |
+|---|---|---|---|
+| OVR (ARC) | 1,400 | 1,291 | 92% |
+| Bioaftogen 1185 | 100,000 | 99,678 | 100% |
+| Aftodoll 15 AFT 25 | 50,000 | 47,712 | 95% |
+| Aftodoll Emerg 15 AFT 25 | 26,000 | 24,171 | 93% |
+| Bioaftogen 1186 (early batch) | 61,920 | 59,935 | 97% |
+| Aftodoll 03 AFT 26 (Gov) | 232,400 | 215,942 | 93% |
+| Aftodoll 03 AFT 26 (Feedlot) | 100,000 | 65,765 | 66% |
+| Aftodoll 05 AFT 26 | 323,400 | 279,070 | 86% |
+| Bioaftogen 1186 11th June | 117,000 | 30,215 | 26% |
+| **TOTAL** | **1,012,120** | **793,779** | **78%** |
+
+Note: Reported total allocation is 1,021,140 (vs column sum 1,012,120 -- ~9k discrepancy, likely rounding/late batch). Reported administered total is 793,964 (vs column sum 793,779 -- minor).
+
+**District vaccination data (Aftodoll 03, 12-18 June):**
+DRSM 57,932 / NMM 53,082 / Bojanala 51,912 / DKK 53,016 / Feedlot 65,765
+
+**District vaccination data (Aftodoll 05, 12-18 June):**
+DRSM 88,622 / NMM 72,978 / Bojanala 33,329 / DKK 84,141
+
+**District vaccination data (Bioaftogen 1186 11th June):**
+DRSM 23,856 (57%) / NMM 702 (2%) / Bojanala 0 / DKK 5,657 (20%)
+
+**Municipality disease breakdown (cumulative, 18 June):**
+DKK: Ventersdorp 26, Potchefstroom 26, Maquassie Hills 9, Matlosana 26
+Bojanala: Rustenburg 28, Madibeng 17, Kgetleng River 15, Moretele 17, Moses Kotane 1
+DRSM: Naledi 62, Greater Taung 23, Mamusa 8, Molopo 11, Kagisano 49, Lekwa Teemane 8, Ratlou 12
+NMM: Mahikeng 32, Tswaing 6, Ditsobotla 15, Ramotshere Moiloa 23
+
+**Operational notes (no data rows):**
+- All PCR-positive cases show active viral shedding; spike in calf mortality being investigated as possible FMD transmission via milk.
+- Industry reporting back to state is a growing challenge.
+- Vet official fatigue flagged as concern.
+- Booster vaccination scheduled to start September 2026 from farms vaccinated in March.
+- FS RMIS AHTs may be redeployed to NW; NW welcomed but noted vehicle shortage.
+
+### New document: AgriSA Weekly FMD Engagement 1 July 2026 (agenda only)
+
+**Source:** AgriSA-NAT
+**Date:** 1 July 2026
+**Type:** Meeting agenda -- no data
+**Rows added:** 0
+**Notes:** Standard agenda format (vaccine rollout, movement control, regulatory, comms, provincial input). Meeting outcomes PDF expected in inbox post-meeting.
+
+### GitHub
+
+Commit: 48c161d -- FMD_Dashboard.html, index.html, master_data.csv updated.
+
+---
+
 ## Session 46 — 26 June 2026 (ministerial policy statement; null data ingest)
 
 **Master: 1,913 rows (unchanged). Dashboard: 23 June 2026 (unchanged). No quantitative data ingested.**
@@ -3377,295 +3460,4 @@ Per-province now-using values:
 | MP | 565,489 | 419,066 | 146,423 | 312,886 | 231 | 104 |
 | NW | 617,720 | 331,103 | 286,617 | 171,561 | 332 | — |
 | NC | 150,600 | 51,227 | 99,373 | 28,054 | 7 | — |
-| WC | 330,340 | 231,913 | 98,427 | 231,913 | 26 | — |
-| **National** | **5,361,509** | **3,380,726** | **1,980,783** | **2,920,528** | **1,904** | **836** |
-
-### New metrics introduced
-
-- `doses_administered` — cumulative doses physically administered (drawn from a syringe into an animal), per vaccine type per province.
-- `vaccine_balance` — distributed minus administered, per province.
-- `vaccine_wastage` — captured for MP (2,707 doses).
-- `doses_received` with vaccine_type `artio_preva_other` — captures Artio-Preva and other non-standard allocations.
-- `doses_received` with vaccine_type `emergency_stock` — captures emergency stock distributed.
-
-### Per-vaccine cumulative national position (21 May 2026 sum of provincial figures)
-
-| Vaccine type | Distributed | Administered |
-|---|---|---|
-| BVI | 1,250 | 1,250 |
-| OBP / ARC | 12,515 | 132,962 |
-| Bioaftogen | 2,088,063 | 1,040,291 |
-| DolVet | 2,912,559 | 809,841 |
-| Artio-Preva / other | 131,122 | 109,489 |
-| Emergency stock | 216,000 | — |
-| **Total** | **5,361,509** | **3,380,726** |
-
-(The OBP administered figure 132,962 exceeds the distributed figure 12,515 because of two effects: a GP duplicate cell in the user submission and historical OBP allocations that were captured as "administered" rather than "received" in earlier sessions. Flagging for clarification.)
-
-### Reconciliation against Ministerial figures
-
-| Figure | Source | Value | Δ vs dashboard |
-|---|---|---|---|
-| Doses procured to date | Minister Steenhuisen, 7 May GCIS brief | 6,000,000 | dashboard distributed is 638,491 lower |
-| Doses distributed nationally | Minister Steenhuisen, 7 May GCIS brief | 5,229,966 | dashboard total now 131,543 higher (5,361,509) |
-| Animals vaccinated (23 April baseline) | Minister Steenhuisen, 7 May GCIS brief | 2,590,016 | dashboard now 2,920,528 (+330,512 over 28 days) |
-
-The dashboard total distributed (5,361,509) is now within 2.5% of the Ministerial figure of 5,229,966 — a substantial reconciliation given previous gaps of ~2.4 million doses. Remaining gap likely sits in (a) national stockpile not yet distributed (~640k) and (b) post-7 May consignments.
-
-### Action items for next run
-
-- Watch for: ICC weekly engagement summary PDF for 20-21 May
-- Watch for: Section 9 gazette (~25 May 2026)
-- Watch for: MPO Week 31 dairy update
-- Investigate: GP OBP distributed (1,700) vs administered (127,580) discrepancy — likely OBP figure in administered column actually reflects a different allocation channel
-- Investigate: EC "Other / Artio-Preva" cell value 1,250 — appears to duplicate BVI; confirm with EC
-- GitHub push pending: master_data.csv + FMD_Dashboard.html + build_dashboard.py + state files
-
----
-
-## 2026-05-21 (session 18b) — WC positive cases correction
-
-**Master grew from 1,245 to 1,246 rows** (one superseding row added).
-
-**Dashboard rebuilt:** Yes — 83,225 bytes, snapshot 2026-05-21, validation passed.
-
-### Change
-
-User verified that WC cumulative positive cases as at 21 May 2026 should be **22, not 26**.
-NW confirmed at **332** (no change needed).
-
-- WC `positive_cases` row dated 2026-05-21 with value 26 (source WC-GIS) marked **superseded_by = v2-corrected-2026-05-21**.
-- New WC `positive_cases` row added at value **22**, version 2, same effective date and source, with note explaining the correction.
-- Historical WC positive_cases rows (9 May, 19 May, both at 26) retained unchanged — they were correct at the time and the figure has since been revised downward by WC-GIS.
-
-### Per-province positive cases as at 21 May 2026
-
-| Province | Positive | Δ |
-|---|---|---|
-| EC | 295 | — |
-| FS | 589 | — |
-| GP | 294 | — |
-| KZN | 69 | — |
-| LP | 61 | — |
-| MP | 231 | — |
-| NW | 332 | — |
-| NC | 7 | — |
-| WC | **22** | corrected from 26 |
-| **National** | **1,900** | was 1,904 (–4) |
-
-### Action items for next run
-
-- Watch for: ICC weekly engagement summary PDF for 20-21 May
-- Watch for: Section 9 gazette (~25 May 2026)
-- GitHub push: complete this session
-
----
-
-## 2026-05-22 (session 19) — MP-DVS 19 May municipality data ingested (automated daily run)
-
-**Master grew from 1,246 to 1,300 rows (+54 new rows).**
-
-**Dashboard rebuilt:** Yes — FMD_Dashboard.html 83,304 bytes, snapshot 2026-05-21 (unchanged, new data effective 19 May), 19 weekly points, validation passed.
-
-### Inbox scan summary
-
-| Folder | Files checked | New since last run? |
-|---|---|---|
-| Root (dated weekly folder for 22 May 2026) | None found | No |
-| inbox/Mpumalanga/ | `FMD vaccinations per municipality 19 May 2026 stk.xlsx` (forwarded by Robert Davel via email 21 May 12:42 from Dr Bhekifa Lucas Cele) | **YES — ingested** |
-| inbox/Mpumalanga/Email - Robert - 21 May.pdf | Email wrapper for the above xlsx | Context only, no rows |
-| inbox/Western Cape/20 May/ | 3 WhatsApp jpegs from 19 May WC GIS portal | Reviewed — data already in master (effective 2026-05-19, ingested session 16b/17) |
-| inbox/Limpopo/FMD PCM 21 MAY 2026/ | Same two PDFs extracted from the zip in session 17 | No new files |
-| inbox/Limpopo/Monday 18 May/ | 5 WhatsApp jpegs | Already processed session 16b |
-| inbox/Free State/FMD STATS/ | 4 jpegs (15 May DRDAR) | Already processed session 14b |
-| inbox/North West/ | 19 May RPO JIC PDF | Already processed session 17 |
-| inbox/ICC Reports/ | No new files | No |
-| inbox/Ministerial Updates/ | No new files | No |
-| inbox/AgriSA Summary and Outcomes - FMD Weekly Engagement/ | No new files | No |
-| inbox/MPO/ | No new files since Week 30 | No |
-
-### Source processed
-
-| File | Effective date | Source org | Outcome |
-|---|---|---|---|
-| `inbox/Mpumalanga/FMD vaccinations per municipality 19 May 2026 stk.xlsx` | 2026-05-19 | MP-DVS (Dr Cele direct, via Robert Davel) | Ingested — 54 rows |
-| `inbox/Mpumalanga/Email - Robert - 21 May.pdf` | 2026-05-21 | MP-DVS | Read for context (no rows) |
-| `inbox/Western Cape/20 May/WhatsApp Image 2026-05-20 at 08.26.42.jpeg` | 2026-05-19 | WC-GIS | Reviewed — data already in master (session 16b/17) |
-| `inbox/Western Cape/20 May/WhatsApp Image 2026-05-20 at 08.26.57.jpeg` | 2026-05-19 | WC-GIS | Reviewed — data already in master |
-| `inbox/Western Cape/20 May/WhatsApp Image 2026-05-20 at 08.27.12.jpeg` | 2026-05-19 | WC-GIS | Reviewed — data already in master |
-
-### Key figures added — Mpumalanga as at 19 May 2026
-
-**Provincial disease totals (vs 17 May MP-DVS pptx):**
-
-| Metric | 17 May | 19 May | Δ |
-|---|---|---|---|
-| Confirmed outbreaks (provincial) | 231 | 233 | +2 |
-| Suspect cases (provincial) | 104 | 121 | +17 |
-| Animals vaccinated (cumulative since 1 March) | 312,886 | 344,537 | +31,651 |
-
-**Per-municipality outbreaks and suspects (province total 233 / 121):**
-
-| District | Municipality | Outbreaks | Suspects |
-|---|---|---|---|
-| Ehlanzeni | Bushbuckridge | 0 | 2 |
-| Ehlanzeni | Thaba Chweu | 0 | 2 |
-| Ehlanzeni | Bohlabela | 0 | 4 |
-| Ehlanzeni | Nkomazi | 25 | 0 |
-| Ehlanzeni | Mbombela | 1 | 1 |
-| Ehlanzeni | **Subtotal** | **26** | **9** |
-| Gert Sibande | Chief Albert Luthuli | 19 | 3 |
-| Gert Sibande | Msukaligwa | 13 | 9 |
-| Gert Sibande | Govan Mbeki | 18 | 24 |
-| Gert Sibande | Dipaleseng | 26 | 14 |
-| Gert Sibande | Lekwa | 39 | 7 |
-| Gert Sibande | Dr Pixley Ka Seme | 7 | 5 |
-| Gert Sibande | Mkhondo | 15 | 21 |
-| Gert Sibande | **Subtotal** | **137** | **83** |
-| Nkangala | Dr JS Moroka | 2 | 2 |
-| Nkangala | Thembisile Hani | 11 | 0 |
-| Nkangala | Victor Khanye | 13 | 1 |
-| Nkangala | Emalahleni | 9 | 0 |
-| Nkangala | Steve Tshwete | 30 | 13 |
-| Nkangala | Emakhazeni | 5 | 17 |
-| Nkangala | **Subtotal** | **70** | **33** |
-
-**Per-municipality animals vaccinated (cumulative since 1 March 2026; province total 344,537):**
-
-| District | Municipality | Vaccinated | 80% target | Coverage |
-|---|---|---|---|---|
-| Ehlanzeni | Bushbuckridge | 45,187 | 109,948 | 41.1% |
-| Ehlanzeni | Thaba Chweu | 7,917 | 97,959 | 8.1% |
-| Ehlanzeni | Nkomazi | 33,027 | 69,538 | 47.5% |
-| Ehlanzeni | Mbombela | 22,008 | 146,956 | 15.0% |
-| Gert Sibande | Chief Albert Luthuli | 37,951 | 119,941 | 31.6% |
-| Gert Sibande | Msukaligwa | 15,672 | 123,611 | 12.7% |
-| Gert Sibande | Govan Mbeki | 16,495 | 62,285 | 26.5% |
-| Gert Sibande | Dipaleseng | 24,781 | 56,331 | 44.0% |
-| Gert Sibande | Lekwa | 14,178 | 103,479 | 13.7% |
-| Gert Sibande | Dr Pixley Ka Seme | 19,052 | 120,554 | 15.8% |
-| Gert Sibande | Mkhondo | 17,507 | 121,446 | 14.4% |
-| Nkangala | Dr JS Moroka | 10,598 | 36,171 | 29.3% |
-| Nkangala | Thembisile Hani | 13,120 | 67,663 | 19.4% |
-| Nkangala | Victor Khanye | 5,890 | 40,858 | 14.4% |
-| Nkangala | Emalahleni | 9,204 | 61,153 | 15.0% |
-| Nkangala | Steve Tshwete | 40,600 | 89,237 | 45.5% |
-| Nkangala | Emakhazeni | 11,350 | 99,018 | 11.5% |
-
-**Sector split (cumulative animals vaccinated since 1 March 2026):**
-
-- Commercial: 149,908 across 681 herds
-- Communal: 194,629 across 16,206 herds
-- **Total: 344,537 across 16,887 herds**
-
-**Vaccine supply position (per Dr Cele direct):**
-
-| Vaccine | Doses received | Notes |
-|---|---|---|
-| ARC | 2,000 | |
-| Bioaftogen Bivalent (BB1) | 100,020 | |
-| Bioaftogen Trivalent (BB2) | 94,980 | |
-| Dollvet 1 | 95,000 | |
-| Dollvet 2 | 144,000 | Includes 40,000 emergency store |
-| **Total received** | **436,000** | Excludes Artio-Preva (109,489 per 17 May pptx) |
-| New batch received this week | 144,000 | To be included in next report |
-| Available (received less used) | 91,463 | Effective available with new batch: 235,463 |
-
-### Reconciliation between MP sources
-
-- Robert email (Dr Cele direct, 19 May): **436,000 received / 344,537 administered / 91,463 available**.
-- Consolidated 21 May template (MP-DVS): **565,489 distributed / 419,066 administered / 146,423 balance**.
-- Difference between sources = Artio-Preva (109,489) + emergency stock (20,000) = 129,489. The 21 May template includes Artio-Preva and the full 20,000 emergency line as distributed; Dr Cele's narrative excludes Artio-Preva from his "received" line because it is treated separately in MP operational tracking. Both sources held in master with explanatory notes.
-
-### National impact
-
-- MP positive cases 231 to 233 (+2) — national headline now 1,902 (was 1,900 after WC correction).
-- MP animals vaccinated 312,886 to 344,537 (+31,651) — but dashboard snapshot remains 21 May 2026 (newer date than 19 May), so headline animals_vaccinated figure (2,920,528) unchanged for this run.
-- No change to weekly time-series points (still 19).
-
-### Data quality flags
-
-1. **MP source duality:** Robert / Dr Cele email (19 May) and consolidated weekly template (21 May) both filed under MP-DVS source_org but report different "received" totals. Both retained per project rule. The 21 May template is treated as the more comprehensive figure for distributed-to-province; the 19 May email is the most current administered/used figure.
-2. **Per-municipality positive_cases:** The xlsx uses the heading "Otbreaks" (sic, typo for "Outbreaks") and "Suspects". We map the former to `positive_cases_district` to stay consistent with the existing MP master schema. Subtotal-row checks: Ehlanzeni 26 (sum 26 - includes Bohlabela which has 0 outbreaks but 4 suspects), Gert Sibande 137 (sum of municipalities 137), Nkangala 70 (sum 70). Province total 233 matches.
-3. **Bohlabela:** Present in this xlsx as a separate municipality under Ehlanzeni district. Not in the 17 May MP pptx municipality list. Captured as a new entry for completeness.
-4. **Suspect total cross-check:** Province-level row says 121 but sum of municipalities is 9 + 83 + 33 = 125. The 121 is treated as authoritative (matches the provincial total cell in the xlsx). Flagged in notes.
-5. **Animals vaccinated subtotal cross-check:** Per-municipality sum is exactly 344,537 (matches province total cell). No discrepancy.
-
-### Action items for next run
-
-1. **Watch for:** 22 May or later consolidated AgriSA weekly xlsx
-2. **Watch for:** ICC weekly engagement summary PDF for 20-21 May
-3. **Watch for:** Section 9 gazette (~25 May 2026, three days away)
-4. **Watch for:** MPO Week 31 dairy update
-5. **Investigate:** GP OBP distributed (1,700) vs administered (127,580) discrepancy from session 18
-6. **Investigate:** EC Other/Artio-Preva 1,250 cell flagged in session 18
-7. **GitHub push:** master_data.csv + FMD_Dashboard.html + change_log.md + memory_update.md + scripts/append_mp_19may_dvs.py
-
-
----
-
-## 2026-05-25 (session 20) — GDARD GP JOC 22 May 2026 ingested (automated daily run)
-
-**Master grew from 1,301 to 1,308 rows (+7 new rows).**
-
-**Dashboard rebuilt:** Yes — FMD_Dashboard.html updated (84,026 bytes, **20 weekly points**, validation passed). **Snapshot date advanced from 21 May 2026 to 22 May 2026.**
-
-**GitHub push:** Pending this session.
-
-### Inbox scan summary
-
-| Folder | Files checked | New since last run? |
-|---|---|---|
-| Root — "25 May 2026" dated weekly folder | None | No new AgriSA consolidated xlsx |
-| inbox/Gauteng/ | GDARD FMD JOC Meeting 22.05.26.pdf | **YES — ingested** |
-| inbox/Free State/ | No new files | No |
-| inbox/Eastern Cape/ | No new files | No |
-| inbox/Limpopo/ | No new files | No |
-| inbox/Mpumalanga/ | No new files | No |
-| inbox/North West/ | No new files | No |
-| inbox/MPO/ | No MPO Week 31 found | No |
-| inbox/ICC Reports/ | No new ICC summary | No |
-| inbox/Ministerial Updates/ | No Section 9 gazette yet | No |
-| inbox/AgriSA Summary and Outcomes/ | No 20–21 May summary | No |
-
-### Sources processed
-
-| File | Effective Date | Source Org | Outcome |
-|---|---|---|---|
-| `inbox/Gauteng/GDARD FMD JOC Meeting 22.05.26.pdf` | 2026-05-22 | GP-GDARD | Ingested — 7 rows |
-
-### Key figures added (GP as at 22 May 2026)
-
-| Metric | Previous (21 May) | New (22 May) | Change |
-|---|---|---|---|
-| Animals vaccinated (total, 2026) | 244,800 | 266,121 | +21,321 |
-| Animals vaccinated — Biogenesis Bago | — | 142,341 | New breakdown |
-| Animals vaccinated — Aftodoll | — | 123,780 | New breakdown |
-| Doses received/allocated (total) | 517,940 | 518,500 | +560 |
-| Positive cases | 294 | 296 | +2 |
-| Suspected cases | 2 | 0 | -2 (none active) |
-| Controlled slaughter (depopulation) | — | 231,244 | New row |
-
-**District breakdown (from GDARD JOC report):**
-- Biogenesis Bago by district: Pretoria 45,476 / Randfontein 18,139 / Germiston 78,726
-- Aftodoll by district: Pretoria 46,075 / Randfontein 16,812 / Germiston 60,893
-- 4,853 movement permits issued; at least R32 million allocated for vaccines; 38 new animal health technicians and veterinarians appointed
-
-### Data quality flags
-
-1. **GP doses_received discrepancy:** GDARD reports 518,500 "at least allocated" vs 517,940 in the 21 May consolidated template — difference of 560 doses. GDARD also notes "124,800 Dollvet x2 not received yet" as a separate allocation. Both figures are now in master with source context. The 124,800 pending will advance the distributed total materially once confirmed received.
-2. **GP animals vaccinated vs doses administered:** GDARD reports 266,121 animals vaccinated (2026 only) but the 21 May template shows 370,837 doses administered. These measure different things: the template doses_administered likely includes 2025 baseline vaccinations and counts each dose (not each animal). The GDARD figure is 2026 animals vaccinated only. No conflict — different metrics, flagged in notes.
-3. **GP OBP/ARC discrepancy (carry forward from session 18):** GDARD confirms 1,700 ARC-OVR received; the 127,580 doses_administered row for obp_arc in the 21 May template remains flagged as a likely column-mapping error in the submitted template. Still unresolved.
-4. **GP positive cases period:** GDARD reports 296 total confirmed outbreaks for the period 1 April 2025–25 May 2026. The 21 May template showed 294. The 296 includes outbreaks recorded since the outbreak started in April 2025, not just the current 2026 intensive response period.
-
-### Action items for next run
-
-1. **Watch for:** 25 May 2026 (or later) consolidated AgriSA weekly xlsx — priority to advance national headline
-2. **Watch for:** Section 9 gazette — expected ~25 May 2026 (today); not yet in inbox at time of this run
-3. **Watch for:** ICC weekly engagement summary PDF for 20–21 May 2026
-4. **Watch for:** MPO Week 31 dairy update
-5. **Watch for:** KZN submission — no JOC data since late March; booster programme confirmation outstanding
-6. **Investigate:** GP 124,800 Dollvet x2 not yet received — confirm receipt in next GP report
-7. **Investigate:** GP OBP column-mapping discrepancy (session 18 flag — still unresolved)
-8. **GitHub push:** master_data.csv + FMD_Dashboard.html + change_log.md + memory_update.md
-
+|
