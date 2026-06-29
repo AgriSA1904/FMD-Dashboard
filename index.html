@@ -722,7 +722,7 @@
 <script>
 const DASHBOARD_DATA = {
   "snapshot_date": "2026-06-23",
-  "build_date": "2026-06-24",
+  "build_date": "2026-06-29",
   "provinces": [
     {
       "code": "EC",
@@ -799,14 +799,14 @@ const DASHBOARD_DATA = {
     {
       "code": "NW",
       "name": "North West",
-      "as_of": "2026-06-09",
+      "as_of": "2026-06-18",
       "herd": 1383919,
-      "positive": 375,
+      "positive": 414,
       "suspected": 0,
       "negative": 0,
       "pending": 0,
-      "received": 895120,
-      "vaccinated": 527337
+      "received": 1021140,
+      "vaccinated": 876483
     },
     {
       "code": "NC",
@@ -1123,26 +1123,34 @@ const DASHBOARD_DATA = {
       "pending": null
     },
     {
+      "date": "2026-06-18",
+      "received": 7038461,
+      "administered": 4942528,
+      "positive": 2443,
+      "suspected": 948,
+      "pending": null
+    },
+    {
       "date": "2026-06-21",
-      "received": 6912441,
-      "administered": 4625352,
-      "positive": 2404,
+      "received": 7038461,
+      "administered": 4974498,
+      "positive": 2443,
       "suspected": 957,
       "pending": null
     },
     {
       "date": "2026-06-22",
-      "received": 6926952,
-      "administered": 4743045,
-      "positive": 2415,
+      "received": 7052972,
+      "administered": 5092191,
+      "positive": 2454,
       "suspected": 982,
       "pending": null
     },
     {
       "date": "2026-06-23",
-      "received": 6926952,
-      "administered": 4743045,
-      "positive": 2429,
+      "received": 7052972,
+      "administered": 5092191,
+      "positive": 2468,
       "suspected": 982,
       "pending": null
     }
@@ -1155,16 +1163,16 @@ const DASHBOARD_DATA = {
     "unallocated": 358480
   },
   "national": {
-    "positive": 2429,
+    "positive": 2468,
     "suspected": 982,
     "negative": 77,
     "pending": 259,
     "procured": 13500000,
-    "distributed": 6926952,
-    "received": 6926952,
-    "administered": 4743045,
+    "distributed": 7052972,
+    "received": 7052972,
+    "administered": 5092191,
     "herd_cattle": 12496199,
-    "balance": 2183907,
+    "balance": 1960781,
     "delta_received": 0,
     "delta_distributed": 0,
     "delta_administered": 0,
@@ -2176,12 +2184,12 @@ const DASHBOARD_DATA = {
     {
       "code": "NW",
       "name": "North West",
-      "joc": 527337,
+      "joc": 876483,
       "joc_date": "2026-06-22",
       "ministerial": 600331,
       "ministerial_date": "2026-06-04",
-      "diff": -72994,
-      "flag": "critical"
+      "diff": 276152,
+      "flag": null
     },
     {
       "code": "NC",
@@ -2260,14 +2268,6 @@ const DASHBOARD_DATA = {
       "detail": "Ministerial (2026-06-04) reported 465,105 cattle vaccinated; current JOC/AgriSA figure is 344,629 \u2014 gap of 120,476. Impossible if both are cumulative.",
       "action": "Reconcile AgriSA provincial return against ministerial figure. Determine whether ministerial count includes additional species (pigs, sheep) beyond cattle only.",
       "owner": "Mpumalanga AgriSA affiliate"
-    },
-    {
-      "severity": "critical",
-      "province": "NW",
-      "title": "North West: JOC figure lower than ministerial briefing",
-      "detail": "Ministerial (2026-06-04) reported 600,331 cattle vaccinated; current JOC/AgriSA figure is 527,337 \u2014 gap of 72,994. Impossible if both are cumulative.",
-      "action": "Reconcile AgriSA provincial return against ministerial figure. Determine whether ministerial count includes additional species (pigs, sheep) beyond cattle only.",
-      "owner": "North West AgriSA affiliate"
     },
     {
       "severity": "critical",
@@ -3488,6 +3488,94 @@ const DASHBOARD_DATA = {
       ],
       "districts": [
         {
+          "name": "Aftodoll 05 AFT 26; district: DRSM",
+          "date": "2026-06-18",
+          "vaccinated": 88622,
+          "cases": null,
+          "suspected": null,
+          "pending": null,
+          "outbreaks": null,
+          "negative": null,
+          "notes": "Aftodoll 05 AFT 26; district: DRSM. Cumulative usage as at 18 Jun."
+        },
+        {
+          "name": "Aftodoll 05 AFT 26; district: DKK",
+          "date": "2026-06-18",
+          "vaccinated": 84141,
+          "cases": null,
+          "suspected": null,
+          "pending": null,
+          "outbreaks": null,
+          "negative": null,
+          "notes": "Aftodoll 05 AFT 26; district: DKK. Cumulative usage as at 18 Jun."
+        },
+        {
+          "name": "Aftodoll 05 AFT 26; district: NMM",
+          "date": "2026-06-18",
+          "vaccinated": 72978,
+          "cases": null,
+          "suspected": null,
+          "pending": null,
+          "outbreaks": null,
+          "negative": null,
+          "notes": "Aftodoll 05 AFT 26; district: NMM. Cumulative usage as at 18 Jun."
+        },
+        {
+          "name": "Aftodoll 03 AFT 26 Feedlot; alloc 100000; bal",
+          "date": "2026-06-18",
+          "vaccinated": 65765,
+          "cases": null,
+          "suspected": null,
+          "pending": null,
+          "outbreaks": null,
+          "negative": null,
+          "notes": "Aftodoll 03 AFT 26 Feedlot; alloc 100000; balance 34235. Cumulative feedlot total as at 18 Jun."
+        },
+        {
+          "name": "Aftodoll 03 AFT 26 Gov; district: DRSM; alloc",
+          "date": "2026-06-18",
+          "vaccinated": 57932,
+          "cases": null,
+          "suspected": null,
+          "pending": null,
+          "outbreaks": null,
+          "negative": null,
+          "notes": "Aftodoll 03 AFT 26 Gov; district: DRSM; alloc 58100. Cumulative usage as at 18 Jun."
+        },
+        {
+          "name": "Aftodoll 03 AFT 26 Gov; district: NMM; alloc",
+          "date": "2026-06-18",
+          "vaccinated": 53082,
+          "cases": null,
+          "suspected": null,
+          "pending": null,
+          "outbreaks": null,
+          "negative": null,
+          "notes": "Aftodoll 03 AFT 26 Gov; district: NMM; alloc 58100. Cumulative usage as at 18 Jun."
+        },
+        {
+          "name": "Aftodoll 03 AFT 26 Gov; district: DKK; alloc",
+          "date": "2026-06-18",
+          "vaccinated": 53016,
+          "cases": null,
+          "suspected": null,
+          "pending": null,
+          "outbreaks": null,
+          "negative": null,
+          "notes": "Aftodoll 03 AFT 26 Gov; district: DKK; alloc 58100. Cumulative usage as at 18 Jun."
+        },
+        {
+          "name": "Aftodoll 03 AFT 26 Gov; district: Bojanala; a",
+          "date": "2026-06-18",
+          "vaccinated": 51912,
+          "cases": null,
+          "suspected": null,
+          "pending": null,
+          "outbreaks": null,
+          "negative": null,
+          "notes": "Aftodoll 03 AFT 26 Gov; district: Bojanala; alloc 58100. Cumulative usage as at 18 Jun."
+        },
+        {
           "name": "DRSM",
           "date": "2026-04-30",
           "vaccinated": 43676,
@@ -3497,6 +3585,28 @@ const DASHBOARD_DATA = {
           "outbreaks": null,
           "negative": null,
           "notes": "NW Aftodoll used as at 19 May 2026 (consignment 30 Apr). District: DRSM. Allocated 58100; used 43676; balance 14424."
+        },
+        {
+          "name": "Aftodoll 05 AFT 26; district: Bojanala",
+          "date": "2026-06-18",
+          "vaccinated": 33329,
+          "cases": null,
+          "suspected": null,
+          "pending": null,
+          "outbreaks": null,
+          "negative": null,
+          "notes": "Aftodoll 05 AFT 26; district: Bojanala. Cumulative usage as at 18 Jun."
+        },
+        {
+          "name": "Bioaftogen 1186 11th June batch; district: DR",
+          "date": "2026-06-18",
+          "vaccinated": 23856,
+          "cases": null,
+          "suspected": null,
+          "pending": null,
+          "outbreaks": null,
+          "negative": null,
+          "notes": "Bioaftogen 1186 11th June batch; district: DRSM; alloc 41850. Usage as at 18 Jun."
         },
         {
           "name": "NMM",
@@ -3574,13 +3684,46 @@ const DASHBOARD_DATA = {
           "outbreaks": null,
           "negative": null,
           "notes": "NW Bioaftogen used. District: Dr Kenneth Kaunda (DKK). Allocated 15480; used 11527; balance 3953."
+        },
+        {
+          "name": "Bioaftogen 1186 11th June batch; district: DK",
+          "date": "2026-06-18",
+          "vaccinated": 5657,
+          "cases": null,
+          "suspected": null,
+          "pending": null,
+          "outbreaks": null,
+          "negative": null,
+          "notes": "Bioaftogen 1186 11th June batch; district: DKK; alloc 28410. Usage as at 18 Jun."
+        },
+        {
+          "name": "Bioaftogen 1186 11th June batch; district: NM",
+          "date": "2026-06-18",
+          "vaccinated": 702,
+          "cases": null,
+          "suspected": null,
+          "pending": null,
+          "outbreaks": null,
+          "negative": null,
+          "notes": "Bioaftogen 1186 11th June batch; district: NMM; alloc 32240. Usage as at 18 Jun."
+        },
+        {
+          "name": "Bioaftogen 1186 11th June batch; district: Bo",
+          "date": "2026-06-18",
+          "vaccinated": 0,
+          "cases": null,
+          "suspected": null,
+          "pending": null,
+          "outbreaks": null,
+          "negative": null,
+          "notes": "Bioaftogen 1186 11th June batch; district: Bojanala; alloc 9570. Usage as at 18 Jun."
         }
       ],
       "extra": {
         "vaccine_balance": {
           "label": "Vaccine balance on hand",
-          "value": 286617,
-          "date": "2026-05-21"
+          "value": 156573,
+          "date": "2026-06-18"
         }
       },
       "sources": [
@@ -3868,6 +4011,7 @@ const DASHBOARD_DATA = {
     "05-29-2026_FMD ICC Update.pdf",
     "09 JUNE 2026- RPO JIC FMD UPDATE.pdf",
     "17 April 2026/2. AgriSA - FMD Vaccination Data - 17.04.26.pdf",
+    "23 JUNE 2026- RPO JIC FMD UPDATE.pdf",
     "24 April 2026/AgriSA - FMD Vaccination Data - 24.04.26.xlsx",
     "26 March 2026/AgriSA - FMD Vaccination Data - 26.03.26.pdf",
     "689472179_1403112188514725_9185104008803752555_n.jpg",
