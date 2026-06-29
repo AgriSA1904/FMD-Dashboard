@@ -1,85 +1,61 @@
-As at 2026-06-29 (session 47 -- NW RPO JIC 23 June; AgriSA Weekly Engagement 1 Jul agenda):
-- Master: **1,956 rows** (+43 from session 46: NW-RPO 23 June 2026 JIC)
-- Dashboard snapshot: **23 June 2026** (40 weekly points; 187,415 bytes; validation passed)
-- Dashboard rebuilt: Yes -- NW animals vaccinated updated to 876,483
+As at 2026-06-29 (session 48 -- EC 25 Jun; MPO Week 36; 24 Jun outcomes; Ministerial Section 9 announcement):
+- Master: **1,996 rows** (+40 from session 48)
+- Dashboard snapshot: **25 June 2026** (42 weekly points; 190,849 bytes; validation passed)
+- Dashboard rebuilt: Yes — snapshot advanced from 23 Jun to 25 Jun; EC and MPO data updated
 
-**New files ingested (session 47):**
-- `inbox/North West/23 JUNE 2026- RPO JIC FMD UPDATE.pdf` (NW-RPO): 43 rows. Positive cases 414; animals vaccinated 876,483 (platform); doses allocated 1,021,140; doses used 793,964; balance 156,573.
-- `inbox/AgriSA Summary and Outcomes - FMD Weekly Engagement/AgriSA Weekly FMD Engagement_ 2026.07.01.pdf`: Agenda only (meeting 1 July 2026). No data rows.
+**New files ingested (session 48):**
+- `inbox/Eastern Cape/EC FMD Update - 25.06.2026.pptx` (EC-DRDAR; 17 image slides): 17 rows. Positive cases 411, suspected 235. Total vaccinations 1,001,292 (incl MPO dairy 304,884); JOC state+private 696,408. Doses received 1,117,680. Balance 116,388. Vaccine utilisation 89.5%.
+- `inbox/MPO/Week 36 - Update on the state of FMD and vaccine rollouts in the dairy industry.pdf` (MPO; snapshot 26 Jun): 16 rows. National dairy first vaccinations 935,918; boosters 250,328. 171 dairy farms with FMD cases; 124 still active.
+- `inbox/AgriSA Summary and Outcomes/24-june-2026-outcomes.pdf` (AgriSA-NAT; 24 Jun): 6 rows. GLN registrations ~12,500; ~650 vaccination sites; ~260,000 dairy boosters nationally; industry expecting to dispatch ~1.9M doses by end of week following meeting; LP 84 positive cases and ~500,000 vaccinated confirmed.
+- `inbox/Ministerial Updates/MEDIA STATEMENT NEW FMD CONTROL MEASURES...pdf` (Ministry; 25 Jun): 1 row (classification event). New FMD control measures approved by Minister Steenhuisen — replaces Section 9 directives incl 2019 FMD Contingency Plan. Gazette publication pending.
+- `inbox/AgriSA Summary and Outcomes/AgriSA Weekly FMD Engagement_ 2026.07.01.pdf`: Agenda only; no data rows.
 
-**National headlines (dashboard 23 June 2026):**
-- Distributed (doses received): 6,635,041 (unchanged — NW update is provincial-only, not yet reflected in national headline pending full ICC reconciliation)
-- Animals vaccinated: updated (NW contribution now 876,483 vs prior 527,337)
-- Positive cases: updated (NW now 414 vs prior 375)
+**National headlines (dashboard 25 June 2026):**
+- Total positive cases (latest per province): 2,498 (EC 411, FS 634, GP 300, KZN 336, LP 84, MP 261, NW 414, NC 20, WC 38)
+- Total animals vaccinated (programme sources, JOC-tracked): 4,780,875
 
-**Per-province latest vaccine figures:**
+**Data quality notes:**
+- EC animals_vaccinated total on slide 16 is 1,001,292 including MPO dairy (304,884). JOC-tracked state+private excl MPO: 696,408. Dashboard uses 696,408 for EC to avoid double-counting with MPO rows.
+- LP vaccine_balance row in master shows 0 from 2026-06-01 (stale). LP received 775,660, administered 497,363 = implied balance ~278,297. No JOC balance row for LP.
+- EC positive cases 411 is "confirmed outbreaks Dec 2025 to date" per slide; includes Buffalo City Amathole subdistrict flagged with asterisk.
+- MPO Week 36 LP figure of 5,475 dairy cows vaccinated — low relative to LP general herd (495,102). Consistent with prior MPO data.
 
-| Province | Received | Animals vaccinated | Date |
-|---|---|---|---|
-| EC | 1,000,660 | 926,233 | 11 Jun |
-| FS | 838,400 | 1,053,502 | 22 Jun |
-| GP | 643,300 | 333,221 | 10 Jun |
-| KZN | 1,329,112 | 648,609 | 21 May |
-| LP | 775,660 | 495,102 | 21 Jun |
-| MP | 732,489 | 344,629 | 8 Jun |
-| NW | 1,021,140 | 876,483 | 18 Jun |
-| NC | 200,600 | 114,443 | 10 Jun |
-| WC | 497,100 | 299,969 | 15 Jun |
+**Per-province latest figures (as at 29 June 2026):**
 
-**Key NW data added (session 47):**
-- positive_cases: 414 cumulative as at 18 Jun (DKK 87, Bojanala 78, DRSM 161, NMM 88); +39 from prior 375
-- new_cases_week: 10 (week 13-18 Jun; Ramotshere Moiloa 4, Kagisano 4, Naledi 1, Ratlou 1)
-- doses_allocated total: 1,021,140 (includes Bioaftogen 1186 11th June batch 117,000)
-- doses_administered total: 793,964 (78%; internal spreadsheet figure; summary slide shows 793,564 -- minor discrepancy noted)
-- animals_vaccinated: 876,483 (86% per platform)
-- vaccine_balance: 156,573 (of which 34,235 with feedlot industry)
-- Per-vaccine administered: Aftodoll 03 Gov 215,942 / Feedlot 65,765 / Aftodoll 05: 279,070 / Bioaftogen 1186 11Jun: 30,215
-- NW booster vaccination scheduled to start September, from farms/villages vaccinated in March
-- FS RMIS AHTs may be redeployed to NW (FS unable to utilise)
-
-**GitHub commit:** 48c161d (session 47)
+| Province | Received | Animals vaccinated | Positive cases | Date |
+|---|---|---|---|---|
+| EC | 1,117,680 | 696,408 (JOC) / 1,001,292 (all) | 411 | 25 Jun |
+| FS | 838,400 | 1,053,502 | 634 | 22-23 Jun |
+| GP | 643,300 | 333,221 | 300 | 12 Jun |
+| KZN | 1,329,112 | 648,609 | 336 | 21 May / 5 Jun |
+| LP | 775,660 | 495,102 (LDARD 21 Jun) | 84 | 21-24 Jun |
+| MP | 747,000 | 344,629 | 261 | 22 Jun |
+| NW | 1,021,140 | 876,483 | 414 | 18 Jun |
+| NC | 200,600 | 114,443 | 20 | 16 Jun |
+| WC | 497,100 | 299,969 | 38 | 22 Jun |
 
 **Parked/outstanding (carry forward):**
-- Section 9 gazette: Announced 25 June 2026; gazette publication still pending. Monitor for gazette date and number.
-- 1 July FMD Weekly Engagement outcomes -- meeting was today (1 July); outcomes PDF not yet in inbox.
-- LP PCM 6 July 2026 -- next meeting confirmed; await update.
-- Consolidated AgriSA weekly xlsx: approximately 82 days outstanding. Urgent.
-- 2 million DolVet doses expected approximately 15 June -- not confirmed in RMIS (14+ days overdue).
-- 7 million Biogenesis doses expected end July 2026 -- forward pipeline.
-- KZN booster programme -- 240,000 done; resumption expected.
-- MPO Week 36 -- not yet in inbox.
-- LP DolVet 150,000 receipt -- outstanding.
+- 1 July FMD Weekly Engagement: meeting held 1 July 2026; outcomes PDF expected in inbox.
+- Section 9 gazette: Announced 25 June 2026 by Minister Steenhuisen; gazette publication still pending — watch inbox.
+- LP PCM 6 July 2026 — next meeting confirmed; await pack and update.
+- Consolidated AgriSA weekly xlsx: ~83 days outstanding. Urgent.
+- 2 million DolVet doses expected mid-June — not yet confirmed in RMIS data.
+- 7 million Biogenesis doses expected end July 2026 — forward pipeline.
+- KZN booster programme — 240,000 done per MPO Week 36; resumption expected.
+- LP DolVet 150,000 receipt — outstanding.
 - KZN animals vaccinated gap (DoA 1.16 million versus master 648,609).
-- MPO Week 35 GP/MP dairy active case swap -- confirm with MPO.
-- NW 793,564 vs 793,964 administered discrepancy (summary slide vs table) -- minor; table value used.
+- MPO Week 37 — not yet in inbox.
 
 ---
 
-As at 2026-06-26 (session 46 -- ministerial policy statement; null data ingest):
-- Master: **1,913 rows** (unchanged)
-- Dashboard snapshot: **23 June 2026** (39 weekly points; 182,734 bytes; validation passed)
-- Dashboard rebuilt: No -- no new quantitative data
+As at 2026-06-29 (session 47b -- null ingest; inbox clear; MP received corrected):
+- Master: **1,956 rows** (unchanged)
+- Dashboard snapshot: **23 June 2026** (40 weekly points; 187,415 bytes; validation passed)
+- Dashboard rebuilt: No -- no new data
 
-**New files found (session 46):**
-- `inbox/Ministerial Updates/MEDIA STATEMENT NEW FMD CONTROL MEASURES GIVE FARMERS A CLEARER PATH TO RECOVERY WHILE PROTECTING TRADE.pdf` (25 June 2026). Policy/regulatory announcement. No data rows added. Section 9 replacement measures approved; gazette pending.
-
-**National headlines (dashboard 23 June 2026):**
-- Distributed (doses received): 6,635,041 (unchanged)
-- Animals vaccinated: 4,742,044 (unchanged)
-- Positive cases: 2,418 (unchanged)
-
-**Per-province latest vaccine figures:**
-
-| Province | Received | Animals vaccinated | Date |
-|---|---|---|---|
-| EC | 1,000,660 | 926,233 | 11 Jun |
-| FS | 838,400 | 1,053,502 | 22 Jun |
-| GP | 643,300 | 333,221 | 10 Jun |
-| KZN | 1,329,112 | 648,609 | 21 May |
-| LP | 775,660 | 495,102 | 21 Jun |
-| MP | 732,489 | 344,629 | 8 Jun |
-| NW | 895,120 | 527,337 | 1 Jun |
-| NC | 200,600 | 114,443 | 10 Jun |
-| WC | 497,100 | 299,969 | 15 Jun |
-
-**Parked/outstanding
+**Inbox scan (session 47b):**
+- All files in inbox confirmed processed in prior sessions.
+- MP VWG PPTX 22 June: confirmed in master (session 42; 747,000 received / 577,751 administered / 261 positive cases).
+- FS FMD STATS zip (15 June folder): contains FS 12 June xlsx already in master.
+- RMIS GLN Locations 22 June: location registry (auction facilities); no dose/case data.
+- FMD_Data_Stakeholder_Report_25May2026.xlsx: output report deriv

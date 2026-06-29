@@ -4,6 +4,97 @@ A running record of what changed in the master and dashboard, with dates and sou
 
 ---
 
+## Session 48 -- 29 June 2026 (EC 25 Jun; MPO Week 36; 24 Jun outcomes; Ministerial Section 9 announcement)
+
+**Master: 1,996 rows (+40). Dashboard snapshot: 25 June 2026 (42 weekly points; 190,849 bytes). Validation passed.**
+
+### Sources processed
+
+| File | Source org | Effective date | Rows added |
+|---|---|---|---|
+| EC FMD Update - 25.06.2026.pptx | EC-DRDAR | 2026-06-25 | 17 |
+| Week 36 - Update on state of FMD and vaccine rollouts in the dairy industry.pdf | MPO | 2026-06-26 | 16 |
+| 24-june-2026-outcomes.pdf | AgriSA-NAT | 2026-06-24 | 6 |
+| MEDIA STATEMENT NEW FMD CONTROL MEASURES GIVE FARMERS A CLEARER PATH TO RECOVERY WHILE PROTECTING TRADE.pdf | Ministry | 2026-06-25 | 1 |
+| AgriSA Weekly FMD Engagement_ 2026.07.01.pdf | AgriSA-NAT | — | 0 (agenda only) |
+
+### Key figures extracted
+
+**Eastern Cape (EC-DRDAR, 25 June 2026):**
+- Confirmed outbreaks Dec 2025 to date: 411 (Alfred Nzo 47, Amathole 204, Chris Hani 67, Joe Gqabi 71, OR Tambo 16, Sarah Baartman 6)
+- Suspected outbreaks: 235
+- Doses received (all types, all channels): 1,117,680
+- Animals vaccinated (all channels incl MPO 304,884): 1,001,292
+- Animals vaccinated (JOC state+private, excl MPO): 696,408
+- By vaccine type: Biogenesis 392,402 | DolVet 602,462 | ARC-OVI 2,177 | BVI 1,250
+- Balance on hand: 116,388 (derived)
+- Vaccine utilisation: 89.5%
+- District totals: Alfred Nzo 123,685 | Amathole 277,933 | Chris Hani 108,824 | Joe Gqabi 81,883 | OR Tambo 97,760 | Sarah Baartman 6,343 | MPO 304,884
+
+**MPO Week 36 (snapshot 26 June 2026):**
+- National dairy first vaccinations: 935,918
+- National dairy boosters: 250,328
+- Dairy farms with FMD cases to date: 171; still active: 124
+- KZN: 360,200 first / 240,000 booster | EC: 307,275 first / 10,328 booster | WC: 216,827 first
+- FS: 15,104 | GP: 14,832 | MP: 9,863 | NW: 6,342 | LP: 5,475 | NC: 0
+
+**24 June 2026 Outcomes (AgriSA-NAT):**
+- GLN registrations: ~12,500 (growing ~1,000/week)
+- Vaccination sites via RMIS: ~650
+- Dairy boosters nationally: ~260,000
+- Industry doses expected dispatched by end of following week: ~1.9 million
+- LP positive cases: 84; LP cattle vaccinated: ~500,000
+
+**Ministry media statement (25 June 2026):**
+- New FMD control measures approved by Minister Steenhuisen
+- Replaces all previous Section 9 directives including 2019 FMD Contingency Plan
+- Key provisions: 16-day pathway to FMD abattoirs after clinical clearance; 42-day to export-approved facilities; risk-based movement controls; communal/peri-urban livestock provisions; well-fenced farms manage within affected portions only
+- Gazette publication pending as at 25 June 2026
+
+### Data quality flags
+
+- EC animals_vaccinated 1,001,292 includes MPO dairy (304,884); JOC-tracked figure 696,408 used for dashboard headline to avoid double-counting with MPO rows
+- Buffalo City (Amathole) flagged with asterisk on EC slide 16 — some figures under review
+- LP vaccine_balance row in master shows 0 from 1 June (stale); implied balance 775,660 - 497,363 = ~278,297
+- Biogenesis column total on EC slide (392,402) + Dollvet (602,462) + ARC (2,177) + BVI (1,250) = 998,291 vs total shown 1,001,292 — minor rounding/unallocated ~3,001 doses
+
+### Next-run action items
+
+- Watch for 1 July FMD Weekly Engagement outcomes PDF
+- Watch for Section 9 gazette publication in Government Gazette
+- LP PCM pack 6 July 2026
+- Consolidated AgriSA weekly xlsx remains outstanding (~83 days)
+- MPO Week 37 expected next week
+- Confirm 2 million DolVet receipt in RMIS data
+
+---
+
+## Session 47b -- 29 June 2026 (null ingest; inbox verification pass)
+
+**Master: 1,956 rows (unchanged). Dashboard: 23 June 2026 (unchanged). No new data ingested.**
+
+### Inbox scan
+
+Full scan of all inbox folders. All files verified as processed in prior sessions. Key findings:
+- MP VWG PPTX 22 June: already in master (session 42; 6 MP-DVS rows at 2026-06-22; 747,000 received / 577,751 administered / 261 positive cases).
+- FS FMD STATS zip (15 June folder): contains FS 12 June xlsx already in master.
+- RMIS GLN Locations exports (11 Jun, 22 Jun): location registries (auction facilities); no dose/case data; skipped.
+- FMD_Data_Stakeholder_Report_25May2026.xlsx: output report derived from master (1,308 rows, 22 May snapshot); not a source file; skipped.
+- OneDrive_1_23-06-2026 bundle: June 8 and June 18 vaccine orders superseded by June 22 already in master; June 9 and 22 already in master.
+- AgriSA engagement summaries 3 Jun and 10 Jun: already in master (24 and 26 rows respectively).
+- ICC 29 May update: already in master (1 row).
+- MPO Week 35: already in master (session 44d).
+
+### Correction noted
+
+MP received in prior memory_update.md table was stale (732,489 from May). Master correctly shows 747,000 from MP-DVS VWG 22 June (processed in session 42). Table corrected in session 47b memory_update.md.
+
+### GitHub
+
+No push this session -- no data or dashboard change.
+
+---
+
 ## Session 47 — 29 June 2026 (NW RPO JIC 23 Jun; 1 Jul agenda)
 
 **Master: 1,956 rows (+43). Dashboard: 23 June 2026, 40 weekly points (187,415 bytes). Validation passed.**
@@ -3373,91 +3464,4 @@ Snapshot moved from 15 May 2026 → 19 May 2026 driven by WC-GIS 19 May data (PR
 | Balance | 4,439 |
 | New consignment incoming | 267,700 |
 
-Vaccine usage: Bioaftogen 99,678/100,000 (99.7%); Aftodoll 47,712/50,000 (95.4%); Aftodoll Emergency RM 24,171/26,000 (93.0%). District distribution (Bioaftogen 13 Apr + Aftodoll 30 Apr): DRSM 59,112 used / NMM 31,795 / Bojanala 25,705 / DKK 24,293. Feedlot Aftodoll usage 17,237 (Mushlendaw 10,891 dominant).
-
-### LP 20 May 2026 key figures (LDARD priority committee SAKELYS pack)
-
-| District | Commercial | Communal | Emerging | Grand Total | Δ vs 18 May |
-|---|---|---|---|---|---|
-| Capricorn | 34,951 | 12,381 | 3,773 | 51,105 | +1,735 |
-| Mopani | 9,935 | 25,069 | 5,006 | 40,010 | +4,362 |
-| Sekhukhune | 1,466 | 30,319 | 1,606 | 33,391 | +3,910 |
-| Vhembe | 19,512 | 34,076 | 2,216 | 55,804 | +4,590 |
-| Waterberg | 109,051 | 5,041 | 6,242 | 120,334 | +6,488 |
-| **National (LP)** | **174,915** | **106,886** | **18,843** | **300,644** | **+21,085** |
-
-Week 25 (19-25 May) disease summary: Positive 68 (unchanged from W24); Suspect 82 (+5); Day-0 27 (+4); Negative 52 (+1).
-
-### RMIS 06 May 2026 feedlot vaccine orders
-
-40 orders totalling 3,000 doses of Dollvet Biotech Trivalent across 8 provinces between 30 Apr and 6 May (OBP-supplied). Per province: GP 1,059 / FS 870 / MP 519 / NW 278 / LP 171 / KZN 64 / EC 20 / NC 19.
-
-### EC 14 May 2026 doses_received row added
-
-Set to 489,979 — equal to administered total — per the EC xlsx convention where "TOTAL Vaccines Received" matches "TOTAL Vaccines Administered" (the cell was left blank for 14 May; we mirrored the 7 May treatment). The dashboard's `doses_received` carry-forward for EC now reflects 14 May rather than 7 May.
-
-### Dashboard impact — national totals
-
-| Metric | Before (session 16b, snapshot 19 May) | After (session 17, snapshot 20 May) | Δ |
-|---|---|---|---|
-| Doses received | 3,253,995 | 3,622,508 | +368,513 |
-| Animals vaccinated | 2,631,018 | 2,938,800 | +307,782 |
-
-Per-province now-using values:
-- EC: 489,979 received & vaccinated (was 469,955 / 489,979)
-- LP: 300,644 vaccinated (was 128,937 AgriSA-NAT 1 May)
-- MP: 312,886 vaccinated (was 176,811 AgriSA-NAT 24 Apr); 545,489 received (was 197,000 AgriSA-NAT 1 May)
-- WC, FS, GP unchanged
-
-### Data quality notes
-
-- NW-RPO is intentionally NOT a PROGRAMME_SOURCE. NW headline figures still rely on AgriSA-NAT (177,400 received / 168,748 vaccinated 24 Apr) which is now significantly outdated vs the NW-RPO 19 May figures (176,000 / 171,561). If NW JIC moves to a DARD-led JOC source in future, the source filter should be revisited.
-- LP 20 May Mopani row total sums to 73 in the PDF but the table header says 72 — minor off-by-one; we report 72 per the PDF total cell.
-- Waterberg row had a PDF parse glitch (7 numbers vs 8 expected) — captured via the per-district aggregate animals_vaccinated_district figures rather than the raw status counts.
-- EC 14 May 489,979 is a sum-of-doses (double-counts dose1+dose2 per session 8/14b correction methodology). Unique-animals figure pending an EC-DRDAR cumulative update.
-
-### GitHub push
-
-| Action | Status |
-|---|---|
-| Commit + push session 17 to AgriSA1904/FMD-Dashboard `main` | PENDING — to be pushed in this session |
-
-### Action items for next run
-
-- Watch for: 22 May (or later) consolidated AgriSA weekly xlsx
-- Watch for: 20 May ICC weekly engagement summary PDF
-- Watch for: Section 9 gazette (~25 May 2026)
-- Watch for: NW new consignment 267,700 confirmation
-- Watch for: KZN booster programme confirmation
-- Consider: adding NW-RPO to PROGRAMME_SOURCES only if NW moves to a state-DARD-led JOC channel (currently RPO is a commodity body — kept consistent with MPO/AWC-RPO exclusion)
-
----
-
-## 2026-05-21 (session 18) — Uploaded weekly template ingested for 21 May reporting week
-
-**Master grew from 1,126 to 1,245 rows (+119 rows).**
-
-**Dashboard rebuilt:** Yes — 83,145 bytes, snapshot ADVANCED from 2026-05-20 to 2026-05-21, **19 weekly points** (was 18), validation passed.
-
-### Code change
-`scripts/build_dashboard.py` — PROGRAMME_SOURCES extended to include **NW-RPO**. The user submitted complete NW provincial figures via the consolidated AgriSA weekly template, and NW-RPO is the de-facto NW data channel (no NW-DARD JOC equivalent exists).
-
-### Source processed
-
-| File | Effective date | Type | Outcome |
-|---|---|---|---|
-| `uploads/FMD_Master_Template_v2.xlsx` | 2026-05-21 | Consolidated weekly template, user-filled for all 9 provinces | Ingested — 119 rows across distributed / administered / balance / wastage / animals vaccinated / disease / dairy |
-
-### Per-province 21 May 2026 cumulative figures
-
-| Province | Distributed | Administered | Balance | Animals vaccinated | Pos | Susp |
-|---|---|---|---|---|---|---|
-| EC | 652,349 | 489,979 | 162,370 | 489,979 | 295 | 221 |
-| FS | 863,400 | 482,848 | 380,552 | 513,167 | 589 | 363 |
-| GP | 517,940 | 370,837 | 147,103 | 244,800 | 294 | 2 |
-| KZN | 1,329,112 | 800,177 | 528,935 | 648,609 | 69 | 72 |
-| LP | 334,559 | 203,576 | 130,983 | 279,559 | 61 | 74 |
-| MP | 565,489 | 419,066 | 146,423 | 312,886 | 231 | 104 |
-| NW | 617,720 | 331,103 | 286,617 | 171,561 | 332 | — |
-| NC | 150,600 | 51,227 | 99,373 | 28,054 | 7 | — |
-|
+Vaccine usage: Bioaftogen 99,678/100,000 (99.7%); Aftodoll 47,712/50,000 (95.4%); Aftodoll Emergency RM 24,171/26,000 (93.0%). District distribution (Bioaftogen 13 Apr + Aftodoll 30 Apr): DRSM 59,112 used / NMM 31,795 / Boja

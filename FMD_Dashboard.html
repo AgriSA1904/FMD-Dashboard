@@ -721,20 +721,20 @@
 
 <script>
 const DASHBOARD_DATA = {
-  "snapshot_date": "2026-06-23",
+  "snapshot_date": "2026-06-25",
   "build_date": "2026-06-29",
   "provinces": [
     {
       "code": "EC",
       "name": "Eastern Cape",
-      "as_of": "2026-06-11",
+      "as_of": "2026-06-25",
       "herd": 2895096,
-      "positive": 381,
-      "suspected": 237,
+      "positive": 411,
+      "suspected": 235,
       "negative": 15,
       "pending": 0,
-      "received": 1000660,
-      "vaccinated": 926233
+      "received": 1117680,
+      "vaccinated": 1001292
     },
     {
       "code": "FS",
@@ -775,14 +775,14 @@ const DASHBOARD_DATA = {
     {
       "code": "LP",
       "name": "Limpopo",
-      "as_of": "2026-06-21",
+      "as_of": "2026-06-24",
       "herd": 1007316,
       "positive": 84,
       "suspected": 96,
       "negative": 62,
       "pending": 259,
       "received": 775660,
-      "vaccinated": 495102
+      "vaccinated": 500000
     },
     {
       "code": "MP",
@@ -1153,6 +1153,22 @@ const DASHBOARD_DATA = {
       "positive": 2468,
       "suspected": 982,
       "pending": null
+    },
+    {
+      "date": "2026-06-24",
+      "received": 7052972,
+      "administered": 5097089,
+      "positive": 2468,
+      "suspected": 982,
+      "pending": null
+    },
+    {
+      "date": "2026-06-25",
+      "received": 7169992,
+      "administered": 5172148,
+      "positive": 2498,
+      "suspected": 980,
+      "pending": null
     }
   ],
   "sources": {
@@ -1163,20 +1179,20 @@ const DASHBOARD_DATA = {
     "unallocated": 358480
   },
   "national": {
-    "positive": 2468,
-    "suspected": 982,
+    "positive": 2498,
+    "suspected": 980,
     "negative": 77,
     "pending": 259,
     "procured": 13500000,
-    "distributed": 7052972,
-    "received": 7052972,
-    "administered": 5092191,
+    "distributed": 7169992,
+    "received": 7169992,
+    "administered": 5172148,
     "herd_cattle": 12496199,
-    "balance": 1960781,
-    "delta_received": 0,
-    "delta_distributed": 0,
-    "delta_administered": 0,
-    "delta_positive": 14
+    "balance": 1997844,
+    "delta_received": 117020,
+    "delta_distributed": 117020,
+    "delta_administered": 75059,
+    "delta_positive": 30
   },
   "mpo": {
     "weekly": [
@@ -1270,16 +1286,29 @@ const DASHBOARD_DATA = {
         "NC": 0,
         "WC": 202827,
         "national": 921522
+      },
+      {
+        "date": "2026-06-26",
+        "EC": 307275,
+        "FS": 15104,
+        "GP": 14832,
+        "KZN": 360200,
+        "LP": 5475,
+        "MP": 9863,
+        "NW": 6342,
+        "NC": 0,
+        "WC": 216827,
+        "national": 935918
       }
     ],
-    "latest_date": "2026-06-19",
+    "latest_date": "2026-06-26",
     "provinces": [
       {
         "code": "EC",
         "name": "Eastern Cape",
-        "current": 306879,
-        "previous": 311038,
-        "change": -4159
+        "current": 307275,
+        "previous": 306879,
+        "change": 396
       },
       {
         "code": "FS",
@@ -1333,9 +1362,9 @@ const DASHBOARD_DATA = {
       {
         "code": "WC",
         "name": "Western Cape",
-        "current": 202827,
-        "previous": 189396,
-        "change": 13431
+        "current": 216827,
+        "previous": 202827,
+        "change": 14000
       }
     ],
     "farms_confirmed": 171,
@@ -1385,8 +1414,8 @@ const DASHBOARD_DATA = {
         "note": "MPO Week 31 (22 May 2026): 1 NW dairy farm reported FMD reinfection after vaccination \u2014 Lichtenburg. Confirms Week 30 suspected case."
       }
     ],
-    "national_current": 921522,
-    "national_previous": 912250,
+    "national_current": 935918,
+    "national_previous": 921522,
     "active_by_province": [
       {
         "code": "EC",
@@ -2124,18 +2153,18 @@ const DASHBOARD_DATA = {
     {
       "code": "EC",
       "name": "Eastern Cape",
-      "joc": 926233,
-      "joc_date": "2026-06-22",
+      "joc": 1001292,
+      "joc_date": "2026-06-26",
       "ministerial": 725632,
       "ministerial_date": "2026-06-04",
-      "diff": 200601,
+      "diff": 275660,
       "flag": null
     },
     {
       "code": "FS",
       "name": "Free State",
       "joc": 1053502,
-      "joc_date": "2026-06-23",
+      "joc_date": "2026-06-26",
       "ministerial": 707986,
       "ministerial_date": "2026-06-04",
       "diff": 345516,
@@ -2145,7 +2174,7 @@ const DASHBOARD_DATA = {
       "code": "GP",
       "name": "Gauteng",
       "joc": 333221,
-      "joc_date": "2026-06-22",
+      "joc_date": "2026-06-26",
       "ministerial": 325216,
       "ministerial_date": "2026-06-04",
       "diff": 8005,
@@ -2155,7 +2184,7 @@ const DASHBOARD_DATA = {
       "code": "KZN",
       "name": "KwaZulu-Natal",
       "joc": 648609,
-      "joc_date": "2026-06-22",
+      "joc_date": "2026-06-26",
       "ministerial": 1163193,
       "ministerial_date": "2026-06-04",
       "diff": -514584,
@@ -2164,18 +2193,18 @@ const DASHBOARD_DATA = {
     {
       "code": "LP",
       "name": "Limpopo",
-      "joc": 495102,
-      "joc_date": "2026-06-22",
+      "joc": 500000,
+      "joc_date": "2026-06-26",
       "ministerial": 357045,
       "ministerial_date": "2026-06-04",
-      "diff": 138057,
+      "diff": 142955,
       "flag": null
     },
     {
       "code": "MP",
       "name": "Mpumalanga",
       "joc": 344629,
-      "joc_date": "2026-06-22",
+      "joc_date": "2026-06-26",
       "ministerial": 465105,
       "ministerial_date": "2026-06-04",
       "diff": -120476,
@@ -2185,7 +2214,7 @@ const DASHBOARD_DATA = {
       "code": "NW",
       "name": "North West",
       "joc": 876483,
-      "joc_date": "2026-06-22",
+      "joc_date": "2026-06-26",
       "ministerial": 600331,
       "ministerial_date": "2026-06-04",
       "diff": 276152,
@@ -2195,7 +2224,7 @@ const DASHBOARD_DATA = {
       "code": "NC",
       "name": "Northern Cape",
       "joc": 114443,
-      "joc_date": "2026-06-22",
+      "joc_date": "2026-06-26",
       "ministerial": 99642,
       "ministerial_date": "2026-06-04",
       "diff": 14801,
@@ -2205,7 +2234,7 @@ const DASHBOARD_DATA = {
       "code": "WC",
       "name": "Western Cape",
       "joc": 299969,
-      "joc_date": "2026-06-22",
+      "joc_date": "2026-06-26",
       "ministerial": 265379,
       "ministerial_date": "2026-06-04",
       "diff": 34590,
@@ -2225,7 +2254,7 @@ const DASHBOARD_DATA = {
       "severity": "critical",
       "province": "LP",
       "title": "Limpopo: Animals vaccinated exceeds doses received",
-      "detail": "JOC reports 128,937 animals vaccinated but only 126,720 doses received in province. Likely a cumulative vs period reporting mismatch, or draw on pre-rollout stock.",
+      "detail": "JOC reports 500,000 animals vaccinated but only 126,720 doses received in province. Likely a cumulative vs period reporting mismatch, or draw on pre-rollout stock.",
       "action": "Confirm whether provincial figures are cumulative from rollout start or period-only. Request reconciliation of receipt and administration logs.",
       "owner": "Limpopo AgriSA affiliate / JOC"
     },
@@ -2281,7 +2310,7 @@ const DASHBOARD_DATA = {
   "provincial_detail": {
     "EC": {
       "name": "Eastern Cape",
-      "latest_date": "2026-06-22",
+      "latest_date": "2026-06-26",
       "vaccine_types": [
         {
           "type": "dolvet",
@@ -2318,8 +2347,8 @@ const DASHBOARD_DATA = {
         {
           "key": "state",
           "label": "State vet",
-          "animals_vaccinated": 626951,
-          "date": "2026-06-11"
+          "animals_vaccinated": 696408,
+          "date": "2026-06-25"
         },
         {
           "key": "private",
@@ -2350,6 +2379,61 @@ const DASHBOARD_DATA = {
       ],
       "districts": [
         {
+          "name": "MPO dairy sector vaccinations within EC",
+          "date": "2026-06-25",
+          "vaccinated": 304884,
+          "cases": null,
+          "suspected": null,
+          "pending": null,
+          "outbreaks": null,
+          "negative": null,
+          "notes": "MPO dairy sector vaccinations within EC. AlfrNzo 11757, Amathole 3273, BufCty 10851, ChrisHani 57836, NelMandela 6188, SBaartman 214979."
+        },
+        {
+          "name": "Amathole district total",
+          "date": "2026-06-25",
+          "vaccinated": 277933,
+          "cases": null,
+          "suspected": null,
+          "pending": null,
+          "outbreaks": null,
+          "negative": null,
+          "notes": "Amathole district total. Communal 188632, Commercial 89301."
+        },
+        {
+          "name": "Alfred Nzo district total",
+          "date": "2026-06-25",
+          "vaccinated": 123685,
+          "cases": null,
+          "suspected": null,
+          "pending": null,
+          "outbreaks": null,
+          "negative": null,
+          "notes": "Alfred Nzo district total. Communal 91229, Commercial 32436."
+        },
+        {
+          "name": "Chris Hani district total",
+          "date": "2026-06-25",
+          "vaccinated": 108824,
+          "cases": null,
+          "suspected": null,
+          "pending": null,
+          "outbreaks": null,
+          "negative": null,
+          "notes": "Chris Hani district total. Communal 45640, Commercial 63184."
+        },
+        {
+          "name": "OR Tambo district total",
+          "date": "2026-06-25",
+          "vaccinated": 97760,
+          "cases": null,
+          "suspected": null,
+          "pending": null,
+          "outbreaks": null,
+          "negative": null,
+          "notes": "OR Tambo district total. Predominantly communal 97760."
+        },
+        {
           "name": "Amathole",
           "date": "2026-05-14",
           "vaccinated": 91231,
@@ -2370,6 +2454,17 @@ const DASHBOARD_DATA = {
           "outbreaks": null,
           "negative": 7,
           "notes": "EC district Alfred Nzo as at 14 May 2026. BVI 450 + Bioaftogen 66864 + DollVet 20844 = 88158. 46 positive / 30 suspect / 7 negative. Up from 87,965 on 7 May."
+        },
+        {
+          "name": "Joe Gqabi district total",
+          "date": "2026-06-25",
+          "vaccinated": 81883,
+          "cases": null,
+          "suspected": null,
+          "pending": null,
+          "outbreaks": null,
+          "negative": null,
+          "notes": "Joe Gqabi district total. Communal 32879, Commercial 49004."
         },
         {
           "name": "Chris Hani",
@@ -2405,6 +2500,17 @@ const DASHBOARD_DATA = {
           "notes": "EC district Joe Gqabi as at 14 May 2026. Bioaftogen 16677 + DollVet 14666 = 31343. 45 positive / 6 suspect / 0 negative. Up from 18,368 on 7 May."
         },
         {
+          "name": "Sarah Baartman district total",
+          "date": "2026-06-25",
+          "vaccinated": 6343,
+          "cases": null,
+          "suspected": null,
+          "pending": null,
+          "outbreaks": null,
+          "negative": null,
+          "notes": "Sarah Baartman district total. Communal 2367, Commercial 3976."
+        },
+        {
           "name": "Sarah Baartman",
           "date": "2026-05-14",
           "vaccinated": 5200,
@@ -2435,8 +2541,8 @@ const DASHBOARD_DATA = {
         },
         "vaccine_balance": {
           "label": "Vaccine balance on hand",
-          "value": 74427,
-          "date": "2026-06-11"
+          "value": 116388,
+          "date": "2026-06-25"
         }
       },
       "sources": [
@@ -2452,7 +2558,7 @@ const DASHBOARD_DATA = {
     },
     "FS": {
       "name": "Free State",
-      "latest_date": "2026-06-23",
+      "latest_date": "2026-06-26",
       "vaccine_types": [
         {
           "type": "dolvet",
@@ -2880,7 +2986,7 @@ const DASHBOARD_DATA = {
     },
     "GP": {
       "name": "Gauteng",
-      "latest_date": "2026-06-22",
+      "latest_date": "2026-06-26",
       "vaccine_types": [
         {
           "type": "dolvet",
@@ -2949,7 +3055,7 @@ const DASHBOARD_DATA = {
     },
     "KZN": {
       "name": "KwaZulu-Natal",
-      "latest_date": "2026-06-22",
+      "latest_date": "2026-06-26",
       "vaccine_types": [
         {
           "type": "dolvet",
@@ -3023,7 +3129,7 @@ const DASHBOARD_DATA = {
     },
     "LP": {
       "name": "Limpopo",
-      "latest_date": "2026-06-22",
+      "latest_date": "2026-06-26",
       "vaccine_types": [
         {
           "type": "dolvet",
@@ -3257,7 +3363,7 @@ const DASHBOARD_DATA = {
     },
     "MP": {
       "name": "Mpumalanga",
-      "latest_date": "2026-06-22",
+      "latest_date": "2026-06-26",
       "vaccine_types": [
         {
           "type": "bioaftogen",
@@ -3437,7 +3543,7 @@ const DASHBOARD_DATA = {
     },
     "NW": {
       "name": "North West",
-      "latest_date": "2026-06-22",
+      "latest_date": "2026-06-26",
       "vaccine_types": [
         {
           "type": "dolvet",
@@ -3739,7 +3845,7 @@ const DASHBOARD_DATA = {
     },
     "NC": {
       "name": "Northern Cape",
-      "latest_date": "2026-06-22",
+      "latest_date": "2026-06-26",
       "vaccine_types": [
         {
           "type": "dolvet",
@@ -3806,7 +3912,7 @@ const DASHBOARD_DATA = {
     },
     "WC": {
       "name": "Western Cape",
-      "latest_date": "2026-06-22",
+      "latest_date": "2026-06-26",
       "vaccine_types": [
         {
           "type": "dolvet",
@@ -4013,6 +4119,7 @@ const DASHBOARD_DATA = {
     "17 April 2026/2. AgriSA - FMD Vaccination Data - 17.04.26.pdf",
     "23 JUNE 2026- RPO JIC FMD UPDATE.pdf",
     "24 April 2026/AgriSA - FMD Vaccination Data - 24.04.26.xlsx",
+    "24-june-2026-outcomes.pdf",
     "26 March 2026/AgriSA - FMD Vaccination Data - 26.03.26.pdf",
     "689472179_1403112188514725_9185104008803752555_n.jpg",
     "AHGEN112 FMD Outbreak Report 29 May 2026.pdf",
@@ -4020,6 +4127,7 @@ const DASHBOARD_DATA = {
     "AgriMP_WhatsApp_20260609.txt",
     "AgriSA FMD Data - ICC Update - 01.04.2026.pdf",
     "EC FMD Update - 11.06.2026 Final.pptx",
+    "EC FMD Update - 25.06.2026.pptx",
     "Email - SAPPO - 10 June.pdf",
     "Email - SAPPO.pdf",
     "Email -SAPPO - 05 June.pdf",
@@ -4038,6 +4146,7 @@ const DASHBOARD_DATA = {
     "GDARD FMD JOC Meeting 22.05.26.pdf",
     "ICC FMD_VaccineRollout_20March2026.pdf",
     "MEDIA BRIEFING BY MINISTER OF AGRICULTURE_LATIN AMERICA OUTCOMES_SECTION 10_FMD_05MAY2026.pdf",
+    "MEDIA STATEMENT NEW FMD CONTROL MEASURES GIVE FARMERS A CLEARER PATH TO RECOVERY WHILE PROTECTING TRADE.pdf",
     "MP FMD outbreak Update VWG 2026 06 22.pptx",
     "MPO Info/Copy of FMD Vaccination Data 17 April 2026.xlsx",
     "MPO direct communication \u2014 15 May 2026",
@@ -4056,6 +4165,7 @@ const DASHBOARD_DATA = {
     "Week 33 - Update on the state of FMD and vaccine rollouts in the dairy industry.pdf",
     "Week 34 - Update on the state of FMD and vaccine rollouts in the dairy industry.pdf",
     "Week 35 - Update on the state of FMD and vaccine rollouts in the dairy industry.pdf",
+    "Week 36 - Update on the state of FMD and vaccine rollouts in the dairy industry.pdf",
     "WhatsApp Image 2026-06-02 at 08.43.23.jpeg",
     "WhatsApp Image 2026-06-06 (FS DARDEA media release 5 June 2026, map dated 4 June 2026)",
     "WhatsApp Image 2026-06-23 at 12.52.00.jpeg",
