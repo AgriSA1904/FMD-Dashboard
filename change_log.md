@@ -4,6 +4,40 @@ A running record of what changed in the master and dashboard, with dates and sou
 
 ---
 
+## Session 49 -- 30 June 2026 (FS-Landbou WhatsApp timeline chart 26 Jun)
+
+**Master: 1,997 rows (+1). Dashboard snapshot: 26 June 2026 (43 weekly points; 194,305 bytes). Validation passed.**
+
+### Sources processed
+
+| File | Source org | Effective date | Rows added |
+|---|---|---|---|
+| WhatsApp Image 2026-06-29 at 12.50.17.jpeg | FS-Landbou | 2026-06-26 | 1 |
+
+### Key figures extracted
+
+**Free State (FS-Landbou, 26 June 2026):**
+- Cumulative confirmed FMD cases as at 26 June 2026: 648
+- Source: FS FMD timeline chart (Vrystaat Landbou / Free State Agriculture), Jul 2025 to 26 Jun 2026
+- Increases from 634 (FS-DARDLEA, 23 June 2026) — 14 new confirmed cases in 3 days
+
+### Data quality flags
+
+- FS-Landbou figure (648) read from orange step-line on chart; chart is from Vrystaat Landbou commodity body. Source is in PROGRAMME_SOURCES as FS-Landbou=Yes per CLAUDE.md; snapshot advanced accordingly.
+- Suspected cases visible on chart (red X marks) in recent weeks at roughly 400-level range but not legible precisely; no suspected_cases row added.
+
+### Next-run action items
+
+- Watch for 1 July FMD Weekly Engagement outcomes PDF (meeting held 1 July; outcomes expected)
+- Watch for Section 9 gazette publication in Government Gazette
+- LP PCM pack 6 July 2026
+- Consolidated AgriSA weekly xlsx remains outstanding (~84 days)
+- MPO Week 37 expected this week
+- Confirm 2 million DolVet receipt in RMIS data
+- KZN updated figures — gap remains vs DoA 1.16 million
+
+---
+
 ## Session 48 -- 29 June 2026 (EC 25 Jun; MPO Week 36; 24 Jun outcomes; Ministerial Section 9 announcement)
 
 **Master: 1,996 rows (+40). Dashboard snapshot: 25 June 2026 (42 weekly points; 190,849 bytes). Validation passed.**
@@ -3442,26 +3476,4 @@ Snapshot moved from 15 May 2026 → 19 May 2026 driven by WC-GIS 19 May data (PR
 **Dashboard rebuilt:** Yes — 82,367 bytes, snapshot ADVANCED from 2026-05-19 to 2026-05-20, **18 weekly points** (was 12), validation passed.
 
 ### Code change
-`scripts/build_dashboard.py` — PROGRAMME_SOURCES extended to include **LP-LDARD** and **MP-DVS** (provincial state JOC equivalents to EC-DRDAR/GP-GDARD). NW-RPO remains excluded (commodity body, parallel to MPO/AWC-RPO).
-
-### Sources processed
-
-| File | Effective Date | Type | Source Org | Outcome |
-|---|---|---|---|---|
-| `inbox/North West/19 MAY 2026- RPO JIC FMD UPDATE.pdf` | 2026-05-19 | NW RPO JIC update | NW-RPO | Ingested — 19 rows |
-| `inbox/Limpopo/FMD PCM 21 MAY 2026.zip` → `FMD PCM SAKELYS 20260521 REV0.pdf` | 2026-05-20 | LP LDARD priority committee pack | LP-LDARD | Ingested — 13 rows |
-| `inbox/Limpopo/FMD PCM 21 MAY 2026.zip` → `FMD PCM MEETING PACK 20260514 REV0.pdf` | — | Duplicate of session 14b ingest | LP-LDARD | No new rows |
-| `inbox/RMIS/06.05.2026_Final_Vaccine Orders Export (2026-05-06)_Feedlots.xlsx` | 2026-05-06 | RMIS feedlot vaccine orders | RMIS | Ingested — 8 rows (province aggregates) |
-| `inbox/Eastern Cape/Reporting of cases & vaccines - 14.05.2026.xlsx` (post-session-16b doses_received row) | 2026-05-14 | EC 14 May doses_received proxy | EC-DRDAR | Ingested — 1 row |
-
-### NW 19 May 2026 key figures (RPO JIC)
-
-| Metric | Value |
-|---|---|
-| New cases week 11-15 May | 19 (Mahikeng 3, Kagisano 9, Lekwa-Taemane 1, Naledi 4, Ditsobotla 1, Greater Taung 1) |
-| Total doses allocated | 176,000 |
-| Total doses used | 171,561 (98%) |
-| Balance | 4,439 |
-| New consignment incoming | 267,700 |
-
-Vaccine usage: Bioaftogen 99,678/100,000 (99.7%); Aftodoll 47,712/50,000 (95.4%); Aftodoll Emergency RM 24,171/26,000 (93.0%). District distribution (Bioaftogen 13 Apr + Aftodoll 30 Apr): DRSM 59,112 used / NMM 31,795 / Boja
+`scripts/build_dashboard.py` — PROGRAMME_SOURCES extended to include **LP-LDARD** and **MP-DVS** (provincial state JOC equivalents to EC-DRDAR/GP-GDARD). NW-RPO remains excluded (commodity 
