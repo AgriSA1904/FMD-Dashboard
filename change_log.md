@@ -4,6 +4,39 @@ A running record of what changed in the master and dashboard, with dates and sou
 
 ---
 
+## Session 49b -- 30 June 2026 (FS 26 Jun xlsx + DARDLEA media release + Vrystaat Landbou timeline)
+
+**Sources processed:**
+
+| File | Source org | Rows added |
+|---|---|---|
+| FS FMD Vaccine Data - 26.06.2026.xlsx | FS-DARDLEA | 8 |
+| WhatsApp Image 2026-06-29 at 15.23.14.jpeg (media release p1) | FS-DARDLEA | 16 |
+| WhatsApp Image 2026-06-29 at 12.50.17.jpeg (Vrystaat Landbou timeline) | FS-Landbou | 2 (1 dup skipped) |
+| **Total** | | **25** |
+
+**Key figures (26 June 2026):**
+- FS doses received: 1,272,180 total (Bioaftogen 539,980 + DolVet 732,200)
+- FS animals vaccinated: 1,106,191 (up from 1,053,502 at 22 Jun)
+- FS positive cases: 648 (confirmed by DARDLEA; +14 new cases on 26 Jun)
+- FS suspected cases: 414 (down from 428 at 12 Jun)
+- 19 municipalities affected; 15 State Vet areas with positive cases
+
+**District breakdown (State Vet areas, 26 Jun):**
+Kroonstad 119, Heilbron 94, Frankfort 74, Thabo Mofutsanyana/Bethlehem 67, Fezile Dabi/Ngwathe 94 — see positive_cases_district rows for full SV-area list.
+
+**Data quality flags:**
+- animals_vaccinated 1,106,191 is from xlsx footer row (column 45); no dose-type breakdown submitted.
+- FS DARDLEA media release warns of non-compliance with suspect reporting.
+- DolVet jumped from 466,100 to 732,200 (+266,100); new consignment not yet confirmed via RMIS.
+
+**Next-run action items:**
+- Watch for 1 July FMD Weekly Engagement outcomes PDF.
+- Archive inbox/Free State/FMD STATS - 30 June/ to archive/2026-06-30/Free State/.
+- Section 9 gazette still outstanding.
+
+---
+
 ## Session 49 -- 30 June 2026 (FS-Landbou WhatsApp timeline chart 26 Jun)
 
 **Master: 1,997 rows (+1). Dashboard snapshot: 26 June 2026 (43 weekly points; 194,305 bytes). Validation passed.**
@@ -3452,28 +3485,4 @@ Snapshot moved from 15 May 2026 → 19 May 2026 driven by WC-GIS 19 May data (PR
 
 - MP-DVS is a new source_org not yet listed in `PROGRAMME_SOURCES` in build_dashboard.py. The MP 17 May data is in master but does not drive the time-series anchor for MP; MP carry-forward in national_view still falls back to AgriSA-NAT 1 May. Decision: leave build script unchanged for this routine ingest; flag for consideration in next dashboard refactor.
 - LP-LDARD same exclusion remains — LP 18 May case figures held in master but not driving the carry-forward.
-- EC 489,979 dose-count: matches xlsx total cell; flag in row notes that unique-animals figure not directly available from this xlsx (session 8/14b correction methodology should be reapplied when ICC issues a corrected figure).
-- MP Ehlanzeni: district summary shows 12 suspects but municipality detail sums to 2 — flagged in notes; provincial total of 104 used.
-- WC GIS booster column has no Central Karoo or Overberg values (zero implicit).
-
-### Action items for next run
-
-- Watch for: 22 May consolidated AgriSA weekly xlsx (highest priority)
-- Watch for: 20 May ICC weekly engagement summary PDF
-- Watch for: Section 9 gazette (~25 May 2026)
-- Watch for: LP DolVet 150,000 receipt confirmation
-- Watch for: KZN booster programme confirmation
-- Watch for: MP follow-up provincial JOC submission
-- Consider: adding MP-DVS and LP-LDARD to PROGRAMME_SOURCES in build_dashboard.py once additional submissions confirm consistent reporting (architectural decision; out of scope for routine ingest)
-- GitHub push pending (git not accessible from sandbox): master_data.csv + FMD_Dashboard.html
-
----
-
-## 2026-05-21 (session 17) — NW + LP 20 May + RMIS + EC 14 May receipts; PROGRAMME_SOURCES extended
-
-**Master grew from 1,085 to 1,126 rows (+41 rows).**
-
-**Dashboard rebuilt:** Yes — 82,367 bytes, snapshot ADVANCED from 2026-05-19 to 2026-05-20, **18 weekly points** (was 12), validation passed.
-
-### Code change
-`scripts/build_dashboard.py` — PROGRAMME_SOURCES extended to include **LP-LDARD** and **MP-DVS** (provincial state JOC equivalents to EC-DRDAR/GP-GDARD). NW-RPO remains excluded (commodity 
+- EC 489,979 dose-count: matches xlsx total cell; flag in row n
