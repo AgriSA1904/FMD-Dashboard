@@ -4,9 +4,9 @@ A running record of what changed in the master and dashboard, with dates and sou
 
 ---
 
-## Session 50 -- 1 July 2026 (WC GIS portal live pull, 29 Jun; RMIS Vaccine Orders 24 & 30 Jun; Gauteng advocacy email reviewed)
+## Session 50 -- 1 July 2026 (WC GIS portal live pull, 29 Jun; RMIS Vaccine Orders 24 & 30 Jun; NC outbreak dashboard 26 Jun; Gauteng advocacy email reviewed)
 
-**Master: 2,047 rows (+25: 5 WC-GIS, 20 RMIS). Dashboard snapshot: 29 June 2026 (44 weekly points; 194,833 bytes). Validation passed.**
+**Master: 2,048 rows (+26: 5 WC-GIS, 20 RMIS, 1 NC). Dashboard snapshot: 29 June 2026 (44 weekly points; 194,883 bytes). Validation passed.**
 
 ### Sources processed
 
@@ -15,7 +15,17 @@ A running record of what changed in the master and dashboard, with dates and sou
 | WC GIS portal (gis.westerncape.gov.za), read live in-browser at user request | WC-GIS | 2026-06-29 | 5 |
 | Vaccine Orders Export (2026-06-24).xlsx | RMIS | 2026-06-24 | 10 (9 provinces + national) |
 | Vaccine Orders Export (2026-06-30) (1).xlsx | RMIS | 2026-06-30 | 10 (9 provinces + national) |
+| WhatsApp Image 2026-06-26 at 12.10.46.jpeg (FMD outbreak dashboard) | NC-DALRRD | 2026-06-26 | 1 |
+| WhatsApp Image 2026-06-26 at 12.22.53.jpeg + " - 1.jpeg" (outbreak map, duplicate pair) | NC-DALRRD | 2026-06-26 | 0 (visual only, no new figures) |
 | Email - Ryan - 30 June.pdf | AgricultureGauteng (advocacy, not a programme source) | -- | 0 (reviewed, not ingested) |
+
+### Northern Cape outbreak dashboard (NC-DALRRD, 26 June 2026)
+
+- Total reported outbreaks: 22 (up from 20 at 16 June)
+- Municipalities affected: KPI card says 8; the municipality bar chart lists 9 (Siyancuma 6, !Kheis 4, Joe Morolong 3, Thembelihle 3, Magareng 2, Ga-Segonyana 1, Gamagara 1, Dikgatlong 1, Dawid Kruiper 1 = 22). Discrepancy flagged in master notes, not reconciled.
+- State Veterinary Areas affected: 4 (Kuruman, Kimberley, De Aar, Upington). Upington accounts for 50.0% (11 outbreaks) per the graphic's own footnote.
+- Diagnostic status: 10 (45.5%) laboratory confirmed, 12 (54.5%) clinical diagnosis.
+- By production type: commercial farm 12 (54.5%), communal 4 (18.2%), feedlot 3 (13.6%), other 2 (9.1%), emerging farm 1 (4.5%).
 
 ### RMIS feedlot vaccine orders (cumulative approved animal doses)
 
@@ -59,8 +69,9 @@ A running record of what changed in the master and dashboard, with dates and sou
 - Section 9 gazette still outstanding.
 - Consolidated AgriSA weekly xlsx still outstanding (~85 days).
 - Confirm with RMIS whether the recurring corrupted autoFilter reference in their exports is a known export-tool issue.
+- Confirm with NC-DALRRD whether 8 or 9 municipalities are affected (KPI card vs chart discrepancy).
 
-**GitHub commits:** 7a50951 (WC-GIS), pending (RMIS -- see below)
+**GitHub commits:** 7a50951 (WC-GIS), 22114dc (RMIS), pending (NC)
 
 ---
 
@@ -3890,30 +3901,4 @@ NW confirmed at **332** (no change needed).
 2. **Per-municipality positive_cases:** The xlsx uses the heading "Otbreaks" (sic, typo for "Outbreaks") and "Suspects". We map the former to `positive_cases_district` to stay consistent with the existing MP master schema. Subtotal-row checks: Ehlanzeni 26 (sum 26 - includes Bohlabela which has 0 outbreaks but 4 suspects), Gert Sibande 137 (sum of municipalities 137), Nkangala 70 (sum 70). Province total 233 matches.
 3. **Bohlabela:** Present in this xlsx as a separate municipality under Ehlanzeni district. Not in the 17 May MP pptx municipality list. Captured as a new entry for completeness.
 4. **Suspect total cross-check:** Province-level row says 121 but sum of municipalities is 9 + 83 + 33 = 125. The 121 is treated as authoritative (matches the provincial total cell in the xlsx). Flagged in notes.
-5. **Animals vaccinated subtotal cross-check:** Per-municipality sum is exactly 344,537 (matches province total cell). No discrepancy.
-
-### Action items for next run
-
-1. **Watch for:** 22 May or later consolidated AgriSA weekly xlsx
-2. **Watch for:** ICC weekly engagement summary PDF for 20-21 May
-3. **Watch for:** Section 9 gazette (~25 May 2026, three days away)
-4. **Watch for:** MPO Week 31 dairy update
-5. **Investigate:** GP OBP distributed (1,700) vs administered (127,580) discrepancy from session 18
-6. **Investigate:** EC Other/Artio-Preva 1,250 cell flagged in session 18
-7. **GitHub push:** master_data.csv + FMD_Dashboard.html + change_log.md + memory_update.md + scripts/append_mp_19may_dvs.py
-
-
----
-
-## 2026-05-25 (session 20) — GDARD GP JOC 22 May 2026 ingested (automated daily run)
-
-**Master grew from 1,301 to 1,308 rows (+7 new rows).**
-
-**Dashboard rebuilt:** Yes — FMD_Dashboard.html updated (84,026 bytes, **20 weekly points**, validation passed). **Snapshot date advanced from 21 May 2026 to 22 May 2026.**
-
-**GitHub push:** Pending this session.
-
-### Inbox scan summary
-
-| Folder | Files checked | New since last run? |
-|---|---|---|
+5. **Animals vaccinated subtotal cross-

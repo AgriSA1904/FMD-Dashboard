@@ -1,7 +1,15 @@
-As at 2026-07-01 (session 50 -- WC GIS portal live pull, 29 Jun snapshot; RMIS Vaccine Orders 24 & 30 Jun; Gauteng advocacy email reviewed, not ingested):
-- Master: **2,047 rows** (+5 WC-GIS, +20 RMIS = +25 total today)
-- Dashboard snapshot: **29 June 2026** (44 weekly points; 194,833 bytes; validation passed)
-- Dashboard rebuilt: Yes -- WC-GIS live portal read via browser at user's request; snapshot advanced from 26 June to 29 June. RMIS logistics tab updated (RMIS is not a programme source so it does not move the snapshot date).
+As at 2026-07-01 (session 50 -- WC GIS portal live pull, 29 Jun snapshot; RMIS Vaccine Orders 24 & 30 Jun; NC outbreak dashboard 26 Jun; Gauteng advocacy email reviewed, not ingested):
+- Master: **2,048 rows** (+5 WC-GIS, +20 RMIS, +1 NC = +26 total today)
+- Dashboard snapshot: **29 June 2026** (44 weekly points; 194,883 bytes; validation passed)
+- Dashboard rebuilt: Yes -- WC-GIS live portal read via browser at user's request; snapshot advanced from 26 June to 29 June. RMIS logistics tab and NC positive cases updated (neither moves the snapshot date: RMIS is not a programme source, and NC's 26 June figure is older than the current 29 June snapshot).
+
+**New data ingested (session 50, continued -- NC):**
+- `inbox/Northern Cape/WhatsApp Image 2026-06-26 at 12.10.46.jpeg` (NC-DALRRD FMD outbreak dashboard, 26 June): 1 row.
+  - positive_cases (total reported outbreaks) 22, up from 20 at 16 June.
+  - Data quality flag: KPI card states 8 municipalities affected, but the municipality chart lists 9 named municipalities summing to the 22 outbreaks. Not reconciled -- held as-is with both figures in notes.
+  - 4 State Veterinary Areas affected (Kuruman, Kimberley, De Aar, Upington); Upington alone accounts for 50% (11 outbreaks) per the chart's own footnote.
+  - Diagnostic split: 10 lab confirmed / 12 clinical. By production type: commercial 12, communal 4, feedlot 3, other 2, emerging farm 1.
+  - Two accompanying WhatsApp images were an identical duplicate outbreak-location map; no extra numeric data.
 
 **New data ingested (session 50):**
 - WC GIS portal (gis.westerncape.gov.za), read live in-browser, "Last Updated: 29 June 2026": 5 rows.
@@ -35,6 +43,7 @@ As at 2026-07-01 (session 50 -- WC GIS portal live pull, 29 Jun snapshot; RMIS V
 
 **Parked/outstanding (carry forward):**
 - 1 July FMD Weekly Engagement outcomes PDF -- meeting held today; not yet in inbox.
+- NC outbreak dashboard (26 June): confirm with NC-DALRRD whether 8 or 9 municipalities are affected -- KPI card and chart disagree by one.
 - Gauteng DCA/private-manufacturer advocacy email -- confirm GP 351,945 vaccinated figure with GDARD; consider as a policy/advocacy item for AgriSA leadership rather than a data point.
 - Section 9 gazette: announced 25 June 2026; publication still pending.
 - LP PCM 6 July 2026 -- next meeting confirmed; await pack and update.
@@ -385,25 +394,4 @@ As at 2026-06-24 (session 44e -- FS DARDLEA 23 Jun media release + MP JOC 23 Jun
 
 | Province | Received | Animals vaccinated | Date |
 |---|---|---|---|
-| EC | 1,000,660 | 926,233 | 11 Jun |
-| FS | 838,400 | 1,053,502 | 22 Jun |
-| GP | 643,300 | 333,221 | 10 Jun |
-| KZN | 1,329,112 | 648,609 | 21 May |
-| LP | 775,660 | 495,102 | 21 Jun |
-| MP | 732,489 | 344,629 | 8 Jun |
-| NW | 617,720 | 527,337 | Jun dates |
-| NC | 200,600 | 114,443 | 10 Jun |
-| WC | 497,100 | 299,969 | 15 Jun |
-
-**Data quality notes (session 44e):**
-- FS animals_vaccinated 1,053,502: from GIS map caption; Biogenesis Bago + DolVet combined. Dose breakdown not provided.
-- FS xlsx vaccine allocation columns all zero in PROVINCIAL TOTAL row -- vaccine metrics not filled in this submission; only disease data valid.
-- MP JOC 23 June: Section 9 not signed; ARC surveillance delays noted; next JOC 7 July 2026.
-
-**Parked/outstanding (carry forward):**
-- 24 June FMD Weekly Engagement outcomes -- meeting today; outcomes expected.
-- LP PCM 6 July 2026 -- next meeting confirmed.
-- Section 9 gazette: approximately 70 days overdue. Urgent.
-- Consolidated AgriSA weekly xlsx: approximately 73 days outstanding. Urgent.
-- 2 million DolVet doses expected ~15 June -- not confirmed in RMIS.
-- 7 million Biogenesis doses ex
+| EC | 1,000,660 | 926,233 |
