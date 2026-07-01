@@ -1,7 +1,7 @@
-As at 2026-07-01 (session 50 -- WC GIS portal live pull, 29 Jun snapshot; Gauteng advocacy email reviewed, not ingested):
-- Master: **2,027 rows** (+5 from WC-GIS portal pull)
-- Dashboard snapshot: **29 June 2026** (44 weekly points; 194,569 bytes; validation passed)
-- Dashboard rebuilt: Yes -- WC-GIS live portal read via browser at user's request; snapshot advanced from 26 June to 29 June
+As at 2026-07-01 (session 50 -- WC GIS portal live pull, 29 Jun snapshot; RMIS Vaccine Orders 24 & 30 Jun; Gauteng advocacy email reviewed, not ingested):
+- Master: **2,047 rows** (+5 WC-GIS, +20 RMIS = +25 total today)
+- Dashboard snapshot: **29 June 2026** (44 weekly points; 194,833 bytes; validation passed)
+- Dashboard rebuilt: Yes -- WC-GIS live portal read via browser at user's request; snapshot advanced from 26 June to 29 June. RMIS logistics tab updated (RMIS is not a programme source so it does not move the snapshot date).
 
 **New data ingested (session 50):**
 - WC GIS portal (gis.westerncape.gov.za), read live in-browser, "Last Updated: 29 June 2026": 5 rows.
@@ -10,6 +10,10 @@ As at 2026-07-01 (session 50 -- WC GIS portal live pull, 29 Jun snapshot; Gauten
   - doses_received ("Vaccines Received") 497,100 (unchanged since 9 June)
   - vaccination_sites 1,777 (up from 1,595 at 22 June)
   - private_vets_vaccinating 29 (unchanged)
+- `inbox/RMIS/Vaccine Orders Export (2026-06-24).xlsx` and `(2026-06-30) (1).xlsx` (RMIS): 20 rows (9 provinces + national, x2 dates).
+  - National cumulative approved feedlot doses: 2,209,794 (24 Jun) -> 3,179,243 (30 Jun), up from 2,141,146 at 22 Jun.
+  - Order count: 1,858 (24 Jun) -> 2,306 (30 Jun), up from 1,763 at 22 Jun.
+  - Both files had a corrupted autoFilter XML reference; repaired before parsing. See change_log.md for detail and a flag to RMIS.
 
 **Inbox scan (session 50, prior to WC update):**
 - Only one file newer than master_data.csv: `inbox/Gauteng/Email - Ryan - 30 June.pdf`.
@@ -402,17 +406,4 @@ As at 2026-06-24 (session 44e -- FS DARDLEA 23 Jun media release + MP JOC 23 Jun
 - Section 9 gazette: approximately 70 days overdue. Urgent.
 - Consolidated AgriSA weekly xlsx: approximately 73 days outstanding. Urgent.
 - 2 million DolVet doses expected ~15 June -- not confirmed in RMIS.
-- 7 million Biogenesis doses expected end July 2026 -- forward pipeline.
-- KZN booster programme -- 240,000 done; resumption expected.
-- MPO Week 36 -- not yet in inbox.
-- LP DolVet 150,000 receipt -- outstanding.
-- KZN animals vaccinated gap (DoA 1.16 million vs master 648,609).
-- MPO Week 35 GP/MP dairy active case swap -- confirm with MPO.
-
----
-
-As at 2026-06-24 (session 44d -- RMIS Vaccine Orders 22 June):
-- Master: **1,790 rows** (+10 from 1,780)
-- Dashboard snapshot: **22 June 2026** (38 weekly points; 167,386 bytes; validation passed)
-- Dashboard rebuilt: Yes (logistics-only addition; snapshot unchanged)
-- RMIS f
+- 7 million Biogenesis doses ex

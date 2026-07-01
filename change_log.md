@@ -4,16 +4,37 @@ A running record of what changed in the master and dashboard, with dates and sou
 
 ---
 
-## Session 50 -- 1 July 2026 (WC GIS portal live pull, 29 Jun; Gauteng advocacy email reviewed)
+## Session 50 -- 1 July 2026 (WC GIS portal live pull, 29 Jun; RMIS Vaccine Orders 24 & 30 Jun; Gauteng advocacy email reviewed)
 
-**Master: 2,027 rows (+5). Dashboard snapshot: 29 June 2026 (44 weekly points; 194,569 bytes). Validation passed.**
+**Master: 2,047 rows (+25: 5 WC-GIS, 20 RMIS). Dashboard snapshot: 29 June 2026 (44 weekly points; 194,833 bytes). Validation passed.**
 
 ### Sources processed
 
 | File | Source org | Effective date | Rows added |
 |---|---|---|---|
 | WC GIS portal (gis.westerncape.gov.za), read live in-browser at user request | WC-GIS | 2026-06-29 | 5 |
+| Vaccine Orders Export (2026-06-24).xlsx | RMIS | 2026-06-24 | 10 (9 provinces + national) |
+| Vaccine Orders Export (2026-06-30) (1).xlsx | RMIS | 2026-06-30 | 10 (9 provinces + national) |
 | Email - Ryan - 30 June.pdf | AgricultureGauteng (advocacy, not a programme source) | -- | 0 (reviewed, not ingested) |
+
+### RMIS feedlot vaccine orders (cumulative approved animal doses)
+
+| Province | 22 Jun | 24 Jun | 30 Jun |
+|---|---|---|---|
+| EC | 188,729 | 198,809 | 222,613 |
+| FS | 519,484 | 536,260 | 736,087 |
+| GP | 500,508 | 500,508 | 798,178 |
+| KZN | 185,683 | 188,423 | 211,390 |
+| LP | 63,594 | 68,079 | 121,775 |
+| MP | 309,438 | 321,238 | 463,272 |
+| NC | 88,184 | 103,005 | 137,143 |
+| NW | 278,096 | 286,042 | 481,355 |
+| WC | 7,430 | 7,430 | 7,430 |
+| **National** | **2,141,146** | **2,209,794** | **3,179,243** |
+
+- Order count grew from 1,763 (22 Jun) to 1,858 (24 Jun) to 2,306 (30 Jun).
+- National total jumped +969,449 between 24 and 30 June, largely Biogenesis Bago (+751,579 nationally over the same window) -- consistent with the 2 million DolVet consignment landing 21 June working through vet-practice orders, plus a fresh Biogenesis batch.
+- Both source files had a corrupted `autoFilter` XML reference (`ref="1:1048576"`, missing column letters) that made them unreadable by openpyxl/pandas directly; repaired by stripping the autoFilter and _FilterDatabase defined name from the underlying XML before parsing. Flag to RMIS if this recurs -- may indicate an export tool issue on their end.
 
 ### Key figures extracted
 
@@ -37,8 +58,9 @@ A running record of what changed in the master and dashboard, with dates and sou
 - Flag Gauteng advocacy email and 351,945 figure to AgriSA leadership for GDARD follow-up (policy item, not a data ingest action).
 - Section 9 gazette still outstanding.
 - Consolidated AgriSA weekly xlsx still outstanding (~85 days).
+- Confirm with RMIS whether the recurring corrupted autoFilter reference in their exports is a known export-tool issue.
 
-**GitHub commit:** pending (see below)
+**GitHub commits:** 7a50951 (WC-GIS), pending (RMIS -- see below)
 
 ---
 
@@ -3895,37 +3917,3 @@ NW confirmed at **332** (no change needed).
 
 | Folder | Files checked | New since last run? |
 |---|---|---|
-| Root — "25 May 2026" dated weekly folder | None | No new AgriSA consolidated xlsx |
-| inbox/Gauteng/ | GDARD FMD JOC Meeting 22.05.26.pdf | **YES — ingested** |
-| inbox/Free State/ | No new files | No |
-| inbox/Eastern Cape/ | No new files | No |
-| inbox/Limpopo/ | No new files | No |
-| inbox/Mpumalanga/ | No new files | No |
-| inbox/North West/ | No new files | No |
-| inbox/MPO/ | No MPO Week 31 found | No |
-| inbox/ICC Reports/ | No new ICC summary | No |
-| inbox/Ministerial Updates/ | No Section 9 gazette yet | No |
-| inbox/AgriSA Summary and Outcomes/ | No 20–21 May summary | No |
-
-### Sources processed
-
-| File | Effective Date | Source Org | Outcome |
-|---|---|---|---|
-| `inbox/Gauteng/GDARD FMD JOC Meeting 22.05.26.pdf` | 2026-05-22 | GP-GDARD | Ingested — 7 rows |
-
-### Key figures added (GP as at 22 May 2026)
-
-| Metric | Previous (21 May) | New (22 May) | Change |
-|---|---|---|---|
-| Animals vaccinated (total, 2026) | 244,800 | 266,121 | +21,321 |
-| Animals vaccinated — Biogenesis Bago | — | 142,341 | New breakdown |
-| Animals vaccinated — Aftodoll | — | 123,780 | New breakdown |
-| Doses received/allocated (total) | 517,940 | 518,500 | +560 |
-| Positive cases | 294 | 296 | +2 |
-| Suspected cases | 2 | 0 | -2 (none active) |
-| Controlled slaughter (depopulation) | — | 231,244 | New row |
-
-**District breakdown (from GDARD JOC report):**
-- Biogenesis Bago by district: Pretoria 45,476 / Randfontein 18,139 / Germiston 78,726
-- Aftodoll by district: Pretoria 46,075 / Randfontein 16,812 / Germiston 60,893
-- 4,853 movement permits issued; 
