@@ -2021,3 +2021,8 @@ effective_date,province,metric_category,metric,vaccine_type,vet_channel,value,un
 2026-06-26,FS,disease,positive_cases_district,all,all,20,cases,WhatsApp Image 2026-06-29 at 15.23.14.jpeg,FS-DARDLEA,2026-06-29,2026-06-30,1,,
 2026-06-26,FS,disease,positive_cases_district,all,all,21,cases,WhatsApp Image 2026-06-29 at 15.23.14.jpeg,FS-DARDLEA,2026-06-29,2026-06-30,1,,
 2026-06-26,FS,disease,positive_cases,all,all,620,cases,WhatsApp Image 2026-06-29 at 12.50.17.jpeg,FS-Landbou,2026-06-29,2026-06-30,1,,Vrystaat Landbou timeline: cumulative at ~18 Jun
+2026-06-29,WC,disease,positive_cases,all,all,39,cases,WC GIS portal (gis.westerncape.gov.za),WC-GIS,2026-06-29,2026-07-01,1,,WC GIS portal last updated 29 June 2026. Up from 38 at 22 June. Session 50.
+2026-06-29,WC,vaccine_admin,doses_administered,all,all,376020,doses,WC GIS portal (gis.westerncape.gov.za),WC-GIS,2026-06-29,2026-07-01,1,,"WC GIS portal ""Vaccinations"", last updated 29 June 2026. Up from 339,410 at 22 June. Session 50."
+2026-06-29,WC,vaccine_receipt,doses_received,all,all,497100,doses,WC GIS portal (gis.westerncape.gov.za),WC-GIS,2026-06-29,2026-07-01,1,,"WC GIS portal ""Vaccines Received"", last updated 29 June 2026. Unchanged from 22 June. Session 50."
+2026-06-29,WC,operations,vaccination_sites,all,all,1777,sites,WC GIS portal (gis.westerncape.gov.za),WC-GIS,2026-06-29,2026-07-01,1,,"WC GIS portal ""Vaccination Sites"", last updated 29 June 2026. Up from 1,595 at 22 June. Session 50."
+2026-06-29,WC,operations,private_vets_vaccinating,all,private,29,vets,WC GIS portal (gis.westerncape.gov.za),WC-GIS,2026-06-29,2026-07-01,1,,"WC GIS portal ""Private Vets Vaccinating"", last updated 29 June 2026. Unchanged. Session 50."
