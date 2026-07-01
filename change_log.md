@@ -4,9 +4,9 @@ A running record of what changed in the master and dashboard, with dates and sou
 
 ---
 
-## Session 50 -- 1 July 2026 (WC GIS portal live pull, 29 Jun; RMIS Vaccine Orders 24 & 30 Jun; NC outbreak dashboard 26 Jun; Gauteng advocacy email reviewed)
+## Session 50 -- 1 July 2026 (WC GIS portal live pull, 29 Jun; RMIS Vaccine Orders 24 & 30 Jun; NC outbreak dashboard 26 Jun; KZN-DARD PDMAF screenshots 11 Jun; Gauteng advocacy email reviewed)
 
-**Master: 2,048 rows (+26: 5 WC-GIS, 20 RMIS, 1 NC). Dashboard snapshot: 29 June 2026 (44 weekly points; 194,883 bytes). Validation passed.**
+**Master: 2,069 rows (+47: 5 WC-GIS, 20 RMIS, 1 NC, 21 KZN-DARD). Dashboard snapshot: 29 June 2026 (44 weekly points; 206,938 bytes). Validation passed.**
 
 ### Sources processed
 
@@ -17,7 +17,26 @@ A running record of what changed in the master and dashboard, with dates and sou
 | Vaccine Orders Export (2026-06-30) (1).xlsx | RMIS | 2026-06-30 | 10 (9 provinces + national) |
 | WhatsApp Image 2026-06-26 at 12.10.46.jpeg (FMD outbreak dashboard) | NC-DALRRD | 2026-06-26 | 1 |
 | WhatsApp Image 2026-06-26 at 12.22.53.jpeg + " - 1.jpeg" (outbreak map, duplicate pair) | NC-DALRRD | 2026-06-26 | 0 (visual only, no new figures) |
+| DARDKZN 11 06 2026.docx (19 Teams-screenshot slides of a PDMAF presentation) | KZN-DARD | 2026-05-30 / 2026-06-11 | 21 |
 | Email - Ryan - 30 June.pdf | AgricultureGauteng (advocacy, not a programme source) | -- | 0 (reviewed, not ingested) |
+
+### KwaZulu-Natal: KZN-DARD PDMAF presentation (11 June 2026 meeting; screenshots only, official JOC documents not yet circulated)
+
+**This resolves the long-parked "KZN animals vaccinated gap" item.** KZN-DARD's own provincial figure of 1,085,495 animals vaccinated as at 30 May 2026 sits neatly between the stale AgriSA-NAT carry-forward (648,609 at 21 May) and the previously-unreconciled DoA figure (1,163,193 at 4 June) -- confirming the DoA-scale number was real and the AgriSA-NAT template was simply stale for KZN. The 648,609 row (2026-05-21, AgriSA-NAT) has been marked `superseded_by=KZN-DARD-2026-05-30` per the "trust latest provincial JOC over AgriSA-NAT carry-forward" convention; both rows are retained.
+
+**Key figures added:**
+- Doses issued to province: 1,120,000 (state 560,000 / private 560,000 -- 50/50 split)
+- Animals vaccinated: 1,085,495 (45.2% of ~2.4-2.5 million estimated provincial cattle; target 80% / 1,920,000)
+- District table (13 rows): Amajuba, eThekwini, Harry Gwala, ilembe (0), King Cetshwayo (0), uGu, uMgungundlovu, uMkhanyakude (Jozini + Hluhluwe state vet areas), uMzinyathi, uThukela, Zululand (Vryheid + Nongoma state vet areas)
+- Dairy cows vaccinated: 267,000 (DARD figure; differs from MPO's 360,200 first-dose series -- both held, not reconciled)
+- Vaccine balance: 500,000 doses on hand, stated as insufficient; a further 1,500,000 should be procured urgently
+- New metrics introduced (flagged, not in standard list): `budget_required` = R725 million; `designated_abattoirs` = 6 (Kareen Beef, Feys, Glencoe, Darnell, Boston, Dalton)
+
+**Data quality flags:**
+- District table's own total column (1,089,316) differs from the cattle+pigs sum (1,085,495) by exactly 3,821 -- matching the eThekwini row value precisely. Not reconciled.
+- Several individual district rows' cattle+pigs sub-values do not sum to that row's own animals-vaccinated total (uThukela, uMkhanyakude Hluhluwe) -- read as presented from the source table.
+- All 21 rows are marked UNOFFICIAL in notes: sourced from Teams-meeting screenshots of a presentation, not the formal JOC documents (which the user confirmed have not yet been circulated). Treat as provisional pending JOC confirmation.
+- Effective date split: coverage/vaccination figures explicitly dated "as of 30 May 2026" in the deck; budget and vaccine-balance figures are not independently dated and were assigned the 11 June presentation date instead.
 
 ### Northern Cape outbreak dashboard (NC-DALRRD, 26 June 2026)
 
@@ -70,8 +89,9 @@ A running record of what changed in the master and dashboard, with dates and sou
 - Consolidated AgriSA weekly xlsx still outstanding (~85 days).
 - Confirm with RMIS whether the recurring corrupted autoFilter reference in their exports is a known export-tool issue.
 - Confirm with NC-DALRRD whether 8 or 9 municipalities are affected (KPI card vs chart discrepancy).
+- Obtain the official KZN JOC documents once circulated and reconcile against the KZN-DARD screenshot figures (animals vaccinated, district table, dairy figure vs MPO).
 
-**GitHub commits:** 7a50951 (WC-GIS), 22114dc (RMIS), pending (NC)
+**GitHub commits:** 7a50951 (WC-GIS), 22114dc (RMIS), c3039e2 (NC), pending (KZN)
 
 ---
 
@@ -3868,37 +3888,4 @@ NW confirmed at **332** (no change needed).
 
 - Commercial: 149,908 across 681 herds
 - Communal: 194,629 across 16,206 herds
-- **Total: 344,537 across 16,887 herds**
-
-**Vaccine supply position (per Dr Cele direct):**
-
-| Vaccine | Doses received | Notes |
-|---|---|---|
-| ARC | 2,000 | |
-| Bioaftogen Bivalent (BB1) | 100,020 | |
-| Bioaftogen Trivalent (BB2) | 94,980 | |
-| Dollvet 1 | 95,000 | |
-| Dollvet 2 | 144,000 | Includes 40,000 emergency store |
-| **Total received** | **436,000** | Excludes Artio-Preva (109,489 per 17 May pptx) |
-| New batch received this week | 144,000 | To be included in next report |
-| Available (received less used) | 91,463 | Effective available with new batch: 235,463 |
-
-### Reconciliation between MP sources
-
-- Robert email (Dr Cele direct, 19 May): **436,000 received / 344,537 administered / 91,463 available**.
-- Consolidated 21 May template (MP-DVS): **565,489 distributed / 419,066 administered / 146,423 balance**.
-- Difference between sources = Artio-Preva (109,489) + emergency stock (20,000) = 129,489. The 21 May template includes Artio-Preva and the full 20,000 emergency line as distributed; Dr Cele's narrative excludes Artio-Preva from his "received" line because it is treated separately in MP operational tracking. Both sources held in master with explanatory notes.
-
-### National impact
-
-- MP positive cases 231 to 233 (+2) — national headline now 1,902 (was 1,900 after WC correction).
-- MP animals vaccinated 312,886 to 344,537 (+31,651) — but dashboard snapshot remains 21 May 2026 (newer date than 19 May), so headline animals_vaccinated figure (2,920,528) unchanged for this run.
-- No change to weekly time-series points (still 19).
-
-### Data quality flags
-
-1. **MP source duality:** Robert / Dr Cele email (19 May) and consolidated weekly template (21 May) both filed under MP-DVS source_org but report different "received" totals. Both retained per project rule. The 21 May template is treated as the more comprehensive figure for distributed-to-province; the 19 May email is the most current administered/used figure.
-2. **Per-municipality positive_cases:** The xlsx uses the heading "Otbreaks" (sic, typo for "Outbreaks") and "Suspects". We map the former to `positive_cases_district` to stay consistent with the existing MP master schema. Subtotal-row checks: Ehlanzeni 26 (sum 26 - includes Bohlabela which has 0 outbreaks but 4 suspects), Gert Sibande 137 (sum of municipalities 137), Nkangala 70 (sum 70). Province total 233 matches.
-3. **Bohlabela:** Present in this xlsx as a separate municipality under Ehlanzeni district. Not in the 17 May MP pptx municipality list. Captured as a new entry for completeness.
-4. **Suspect total cross-check:** Province-level row says 121 but sum of municipalities is 9 + 83 + 33 = 125. The 121 is treated as authoritative (matches the provincial total cell in the xlsx). Flagged in notes.
-5. **Animals vaccinated subtotal cross-
+- **Total: 344,537 across 16,887 herd

@@ -1,7 +1,17 @@
-As at 2026-07-01 (session 50 -- WC GIS portal live pull, 29 Jun snapshot; RMIS Vaccine Orders 24 & 30 Jun; NC outbreak dashboard 26 Jun; Gauteng advocacy email reviewed, not ingested):
-- Master: **2,048 rows** (+5 WC-GIS, +20 RMIS, +1 NC = +26 total today)
-- Dashboard snapshot: **29 June 2026** (44 weekly points; 194,883 bytes; validation passed)
-- Dashboard rebuilt: Yes -- WC-GIS live portal read via browser at user's request; snapshot advanced from 26 June to 29 June. RMIS logistics tab and NC positive cases updated (neither moves the snapshot date: RMIS is not a programme source, and NC's 26 June figure is older than the current 29 June snapshot).
+As at 2026-07-01 (session 50 -- WC GIS portal live pull, 29 Jun snapshot; RMIS Vaccine Orders 24 & 30 Jun; NC outbreak dashboard 26 Jun; KZN-DARD PDMAF screenshots 11 Jun; Gauteng advocacy email reviewed, not ingested):
+- Master: **2,069 rows** (+5 WC-GIS, +20 RMIS, +1 NC, +21 KZN-DARD = +47 total today)
+- Dashboard snapshot: **29 June 2026** (44 weekly points; 206,938 bytes; validation passed)
+- Dashboard rebuilt: Yes -- WC-GIS live portal read via browser at user's request; snapshot advanced from 26 June to 29 June. RMIS logistics tab, NC positive cases, and KZN vaccination/district figures updated (none move the snapshot date -- all are dated earlier than 29 June or RMIS is not a programme source).
+
+**New data ingested (session 50, continued -- KZN):**
+- `inbox/KZN/DARDKZN 11 06 2026.docx` (19 Teams-screenshot slides of a KZN-DARD PDMAF presentation, 11 June meeting; user confirmed official JOC documents not yet circulated -- all rows marked UNOFFICIAL): 21 rows.
+  - **Resolves the long-parked KZN animals-vaccinated gap.** KZN-DARD's own figure: 1,085,495 animals vaccinated as at 30 May 2026 (45.2% coverage) -- sits neatly between the stale AgriSA-NAT 648,609 (21 May) and the DoA's 1,163,193 (4 June). The 648,609 row is now marked superseded by this figure.
+  - Doses issued to province: 1,120,000 (state 560,000 / private 560,000).
+  - Full 13-district vaccination breakdown added (Amajuba, eThekwini, Harry Gwala, ilembe, King Cetshwayo, uGu, uMgungundlovu, uMkhanyakude x2 state vet areas, uMzinyathi, uThukela, Zululand x2 state vet areas).
+  - Dairy cows vaccinated: 267,000 (DARD figure -- differs from MPO's 360,200 series; both held, not reconciled).
+  - Vaccine balance: 500,000 doses on hand, stated as insufficient; DARD requests a further 1,500,000 doses urgently.
+  - Two new metrics introduced (flagged as non-standard): budget_required R725 million; designated_abattoirs = 6 named facilities.
+  - Data quality flags: district table's own total (1,089,316) vs cattle+pig sum (1,085,495) differ by exactly eThekwini's value (3,821); a couple of individual district rows' species sub-splits don't sum cleanly either. Not reconciled -- read as presented.
 
 **New data ingested (session 50, continued -- NC):**
 - `inbox/Northern Cape/WhatsApp Image 2026-06-26 at 12.10.46.jpeg` (NC-DALRRD FMD outbreak dashboard, 26 June): 1 row.
@@ -44,6 +54,8 @@ As at 2026-07-01 (session 50 -- WC GIS portal live pull, 29 Jun snapshot; RMIS V
 **Parked/outstanding (carry forward):**
 - 1 July FMD Weekly Engagement outcomes PDF -- meeting held today; not yet in inbox.
 - NC outbreak dashboard (26 June): confirm with NC-DALRRD whether 8 or 9 municipalities are affected -- KPI card and chart disagree by one.
+- KZN: obtain official JOC documents once circulated and confirm the KZN-DARD screenshot figures (1,085,495 animals vaccinated, district table, 267,000 dairy vs MPO's 360,200) are accurate before treating as final.
+- KZN vaccine shortage: DARD says current 500,000-dose balance is insufficient; a further 1,500,000 requested urgently -- watch for confirmation of the next allocation.
 - Gauteng DCA/private-manufacturer advocacy email -- confirm GP 351,945 vaccinated figure with GDARD; consider as a policy/advocacy item for AgriSA leadership rather than a data point.
 - Section 9 gazette: announced 25 June 2026; publication still pending.
 - LP PCM 6 July 2026 -- next meeting confirmed; await pack and update.
@@ -361,37 +373,4 @@ As at 2026-06-24 (session 44f -- verification pass; null ingest):
 - LP PCM 6 July 2026 -- next meeting confirmed.
 - Section 9 gazette: approximately 71 days overdue. Urgent.
 - Consolidated AgriSA weekly xlsx: approximately 74 days outstanding. Urgent.
-- 2 million DolVet doses expected approximately 15 June -- not confirmed in RMIS.
-- 7 million Biogenesis doses expected end July 2026 -- forward pipeline.
-- KZN booster programme -- 240,000 done; resumption expected.
-- MPO Week 36 -- not yet in inbox.
-- LP DolVet 150,000 receipt -- outstanding.
-- KZN animals vaccinated gap (DoA 1.16 million versus master 648,609).
-- MPO Week 35 GP/MP dairy active case swap -- confirm with MPO.
-
----
-
-As at 2026-06-24 (session 44e -- FS DARDLEA 23 Jun media release + MP JOC 23 Jun minutes):
-- Master: **1,807 rows** (+17 from 1,790 at session 44d; +27 from 1,780 at session 44c)
-- Dashboard snapshot: **23 June 2026** (39 weekly points; 168,451 bytes; validation passed)
-- Dashboard rebuilt: Yes -- snapshot advanced from 22 June to 23 June
-
-**New data ingested (session 44e):**
-- FS FMD Vaccine Data - 23.06.2026.xlsx + WhatsApp images (FS-DARDLEA): 17 rows. positive_cases 634; animals_vaccinated 1,053,502; 15 district rows.
-- JOC 23 June 2026 minutes.pdf (MP-DVS): Minutes only -- no data rows.
-
-**Key figures added:**
-- FS positive_cases 634 confirmed as at 23 June 2026 (up from 620 on 12 June; +14 new cases)
-- FS animals_vaccinated 1,053,502 cattle (Biogenesis Bago + DolVet) as at 22 June 2026
-- FS district breakdown: Moqhaka 117; Ngwathe 93; Mafube 74; Metsimaholo 64; Dihlabeng+Nketoana 67; Phumelela 43; Maluti-A-Phofung 29; Matjhabeng+Nala 43; Mantsopa+Setsoto 46; Smithfield 9; Fauresmith 8; Bloemfontein 9; Thaba Nchu 2; Bultfontein 15; Tokologo 15
-
-**National headlines (dashboard 23 June 2026):**
-- Distributed (doses received): 6,635,041 (unchanged; no new national distribution data)
-- Animals vaccinated: updated (FS contribution now 1,053,502 vs prior 935,809)
-- Positive cases: updated (FS now 634 vs prior 620)
-
-**Per-province latest vaccine figures:**
-
-| Province | Received | Animals vaccinated | Date |
-|---|---|---|---|
-| EC | 1,000,660 | 926,233 |
+- 2 million DolVet d

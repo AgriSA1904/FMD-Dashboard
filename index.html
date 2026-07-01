@@ -3100,7 +3100,20 @@ const DASHBOARD_DATA = {
           "date": "2026-05-21"
         }
       ],
-      "vet_channels": [],
+      "vet_channels": [
+        {
+          "key": "state",
+          "label": "State vet",
+          "doses_received": 560000,
+          "date": "2026-05-30"
+        },
+        {
+          "key": "private",
+          "label": "Private vet",
+          "doses_received": 560000,
+          "date": "2026-05-30"
+        }
+      ],
       "classification": [
         {
           "category": "dairy_vaccinated",
@@ -3127,7 +3140,151 @@ const DASHBOARD_DATA = {
           "date": "2026-04-24"
         }
       ],
-      "districts": [],
+      "districts": [
+        {
+          "name": "Harry Gwala",
+          "date": "2026-05-30",
+          "vaccinated": 310352,
+          "cases": null,
+          "suspected": null,
+          "pending": null,
+          "outbreaks": null,
+          "negative": null,
+          "notes": "UNOFFICIAL: received as PDMAF meeting screenshots (Teams recording captures) forwarded by KZN; the corresponding official JOC documents have not yet been circulated. Treat as provisional pending formal JOC confirmation. District: Harry Gwala. Dip tanks/farms vaccinated: 459. Cattle: 310352; pigs: 0. Animals identified (RFID/traceability): 2318. Vaccine used: not stated in table. From KZN-DARD 'Coverage: Vaccination status in district municipality' table, 30 May 2026. Some rows' cattle+pigs do not sum exactly to the animals-vaccinated column (e.g. uThukela, uMkhanyakude Hluhluwe); read as presented, not reconciled."
+        },
+        {
+          "name": "uMgungundlovu",
+          "date": "2026-05-30",
+          "vaccinated": 181684,
+          "cases": null,
+          "suspected": null,
+          "pending": null,
+          "outbreaks": null,
+          "negative": null,
+          "notes": "UNOFFICIAL: received as PDMAF meeting screenshots (Teams recording captures) forwarded by KZN; the corresponding official JOC documents have not yet been circulated. Treat as provisional pending formal JOC confirmation. District: uMgungundlovu. Dip tanks/farms vaccinated: 369. Cattle: 174684; pigs: 7000. Animals identified (RFID/traceability): 102255. Vaccine used: Bioaftogen/Aftodoll. From KZN-DARD 'Coverage: Vaccination status in district municipality' table, 30 May 2026. Some rows' cattle+pigs do not sum exactly to the animals-vaccinated column (e.g. uThukela, uMkhanyakude Hluhluwe); read as presented, not reconciled."
+        },
+        {
+          "name": "Zululand (Vryheid SV)",
+          "date": "2026-05-30",
+          "vaccinated": 130841,
+          "cases": null,
+          "suspected": null,
+          "pending": null,
+          "outbreaks": null,
+          "negative": null,
+          "notes": "UNOFFICIAL: received as PDMAF meeting screenshots (Teams recording captures) forwarded by KZN; the corresponding official JOC documents have not yet been circulated. Treat as provisional pending formal JOC confirmation. District: Zululand (Vryheid SV). Dip tanks/farms vaccinated: 255. Cattle: 77420; pigs: 0. Animals identified (RFID/traceability): 75548. Vaccine used: Bioaftogen. From KZN-DARD 'Coverage: Vaccination status in district municipality' table, 30 May 2026. Some rows' cattle+pigs do not sum exactly to the animals-vaccinated column (e.g. uThukela, uMkhanyakude Hluhluwe); read as presented, not reconciled."
+        },
+        {
+          "name": "uMkhanyakude (Jozini State Vet)",
+          "date": "2026-05-30",
+          "vaccinated": 130807,
+          "cases": null,
+          "suspected": null,
+          "pending": null,
+          "outbreaks": null,
+          "negative": null,
+          "notes": "UNOFFICIAL: received as PDMAF meeting screenshots (Teams recording captures) forwarded by KZN; the corresponding official JOC documents have not yet been circulated. Treat as provisional pending formal JOC confirmation. District: uMkhanyakude (Jozini State Vet). Dip tanks/farms vaccinated: 126. Cattle: 130807; pigs: 0. Animals identified (RFID/traceability): 41891. Vaccine used: not stated in table. From KZN-DARD 'Coverage: Vaccination status in district municipality' table, 30 May 2026. Some rows' cattle+pigs do not sum exactly to the animals-vaccinated column (e.g. uThukela, uMkhanyakude Hluhluwe); read as presented, not reconciled."
+        },
+        {
+          "name": "Zululand (Nongoma SV)",
+          "date": "2026-05-30",
+          "vaccinated": 129135,
+          "cases": null,
+          "suspected": null,
+          "pending": null,
+          "outbreaks": null,
+          "negative": null,
+          "notes": "UNOFFICIAL: received as PDMAF meeting screenshots (Teams recording captures) forwarded by KZN; the corresponding official JOC documents have not yet been circulated. Treat as provisional pending formal JOC confirmation. District: Zululand (Nongoma SV). Dip tanks/farms vaccinated: 261. Cattle: 55319; pigs: 0. Animals identified (RFID/traceability): 106145. Vaccine used: Aftodoll. From KZN-DARD 'Coverage: Vaccination status in district municipality' table, 30 May 2026. Some rows' cattle+pigs do not sum exactly to the animals-vaccinated column (e.g. uThukela, uMkhanyakude Hluhluwe); read as presented, not reconciled."
+        },
+        {
+          "name": "uThukela",
+          "date": "2026-05-30",
+          "vaccinated": 70227,
+          "cases": null,
+          "suspected": null,
+          "pending": null,
+          "outbreaks": null,
+          "negative": null,
+          "notes": "UNOFFICIAL: received as PDMAF meeting screenshots (Teams recording captures) forwarded by KZN; the corresponding official JOC documents have not yet been circulated. Treat as provisional pending formal JOC confirmation. District: uThukela. Dip tanks/farms vaccinated: 76. Cattle: 11222; pigs: 0. Animals identified (RFID/traceability): 22048. Vaccine used: Bioaftogen. From KZN-DARD 'Coverage: Vaccination status in district municipality' table, 30 May 2026. Some rows' cattle+pigs do not sum exactly to the animals-vaccinated column (e.g. uThukela, uMkhanyakude Hluhluwe); read as presented, not reconciled."
+        },
+        {
+          "name": "uGu",
+          "date": "2026-05-30",
+          "vaccinated": 54702,
+          "cases": null,
+          "suspected": null,
+          "pending": null,
+          "outbreaks": null,
+          "negative": null,
+          "notes": "UNOFFICIAL: received as PDMAF meeting screenshots (Teams recording captures) forwarded by KZN; the corresponding official JOC documents have not yet been circulated. Treat as provisional pending formal JOC confirmation. District: uGu. Dip tanks/farms vaccinated: 176. Cattle: 54702; pigs: 0. Animals identified (RFID/traceability): 3105. Vaccine used: Bioaftogen. From KZN-DARD 'Coverage: Vaccination status in district municipality' table, 30 May 2026. Some rows' cattle+pigs do not sum exactly to the animals-vaccinated column (e.g. uThukela, uMkhanyakude Hluhluwe); read as presented, not reconciled."
+        },
+        {
+          "name": "uMkhanyakude (Hluhluwe State Vet)",
+          "date": "2026-05-30",
+          "vaccinated": 43392,
+          "cases": null,
+          "suspected": null,
+          "pending": null,
+          "outbreaks": null,
+          "negative": null,
+          "notes": "UNOFFICIAL: received as PDMAF meeting screenshots (Teams recording captures) forwarded by KZN; the corresponding official JOC documents have not yet been circulated. Treat as provisional pending formal JOC confirmation. District: uMkhanyakude (Hluhluwe State Vet). Dip tanks/farms vaccinated: 194. Cattle: 31958; pigs: not legible. Animals identified (RFID/traceability): 174. Vaccine used: not stated in table. From KZN-DARD 'Coverage: Vaccination status in district municipality' table, 30 May 2026. Some rows' cattle+pigs do not sum exactly to the animals-vaccinated column (e.g. uThukela, uMkhanyakude Hluhluwe); read as presented, not reconciled."
+        },
+        {
+          "name": "Amajuba",
+          "date": "2026-05-30",
+          "vaccinated": 17551,
+          "cases": null,
+          "suspected": null,
+          "pending": null,
+          "outbreaks": null,
+          "negative": null,
+          "notes": "UNOFFICIAL: received as PDMAF meeting screenshots (Teams recording captures) forwarded by KZN; the corresponding official JOC documents have not yet been circulated. Treat as provisional pending formal JOC confirmation. District: Amajuba. Dip tanks/farms vaccinated: 7. Cattle: 4155; pigs: 13396. Animals identified (RFID/traceability): 9289. Vaccine used: Aftodoll. From KZN-DARD 'Coverage: Vaccination status in district municipality' table, 30 May 2026. Some rows' cattle+pigs do not sum exactly to the animals-vaccinated column (e.g. uThukela, uMkhanyakude Hluhluwe); read as presented, not reconciled."
+        },
+        {
+          "name": "uMzinyathi",
+          "date": "2026-05-30",
+          "vaccinated": 16858,
+          "cases": null,
+          "suspected": null,
+          "pending": null,
+          "outbreaks": null,
+          "negative": null,
+          "notes": "UNOFFICIAL: received as PDMAF meeting screenshots (Teams recording captures) forwarded by KZN; the corresponding official JOC documents have not yet been circulated. Treat as provisional pending formal JOC confirmation. District: uMzinyathi. Dip tanks/farms vaccinated: 7. Cattle: 16858; pigs: 0. Animals identified (RFID/traceability): 11561. Vaccine used: Aftodoll. From KZN-DARD 'Coverage: Vaccination status in district municipality' table, 30 May 2026. Some rows' cattle+pigs do not sum exactly to the animals-vaccinated column (e.g. uThukela, uMkhanyakude Hluhluwe); read as presented, not reconciled."
+        },
+        {
+          "name": "eThekwini",
+          "date": "2026-05-30",
+          "vaccinated": 3821,
+          "cases": null,
+          "suspected": null,
+          "pending": null,
+          "outbreaks": null,
+          "negative": null,
+          "notes": "UNOFFICIAL: received as PDMAF meeting screenshots (Teams recording captures) forwarded by KZN; the corresponding official JOC documents have not yet been circulated. Treat as provisional pending formal JOC confirmation. District: eThekwini. Dip tanks/farms vaccinated: 20. Cattle: 3821; pigs: 0. Animals identified (RFID/traceability): 3329. Vaccine used: not stated in table. From KZN-DARD 'Coverage: Vaccination status in district municipality' table, 30 May 2026. Some rows' cattle+pigs do not sum exactly to the animals-vaccinated column (e.g. uThukela, uMkhanyakude Hluhluwe); read as presented, not reconciled."
+        },
+        {
+          "name": "King Cetshwayo",
+          "date": "2026-05-30",
+          "vaccinated": 0,
+          "cases": null,
+          "suspected": null,
+          "pending": null,
+          "outbreaks": null,
+          "negative": null,
+          "notes": "UNOFFICIAL: received as PDMAF meeting screenshots (Teams recording captures) forwarded by KZN; the corresponding official JOC documents have not yet been circulated. Treat as provisional pending formal JOC confirmation. District: King Cetshwayo. Dip tanks/farms vaccinated: 0. Cattle: 0; pigs: 0. Animals identified (RFID/traceability): 0. Vaccine used: not stated in table. From KZN-DARD 'Coverage: Vaccination status in district municipality' table, 30 May 2026. Some rows' cattle+pigs do not sum exactly to the animals-vaccinated column (e.g. uThukela, uMkhanyakude Hluhluwe); read as presented, not reconciled."
+        },
+        {
+          "name": "ilembe",
+          "date": "2026-05-30",
+          "vaccinated": 0,
+          "cases": null,
+          "suspected": null,
+          "pending": null,
+          "outbreaks": null,
+          "negative": null,
+          "notes": "UNOFFICIAL: received as PDMAF meeting screenshots (Teams recording captures) forwarded by KZN; the corresponding official JOC documents have not yet been circulated. Treat as provisional pending formal JOC confirmation. District: ilembe. Dip tanks/farms vaccinated: 0. Cattle: 0; pigs: 0. Animals identified (RFID/traceability): 0. Vaccine used: not stated in table. From KZN-DARD 'Coverage: Vaccination status in district municipality' table, 30 May 2026. Some rows' cattle+pigs do not sum exactly to the animals-vaccinated column (e.g. uThukela, uMkhanyakude Hluhluwe); read as presented, not reconciled."
+        }
+      ],
       "extra": {
         "booster_vaccinations": {
           "label": "Booster vaccinations",
@@ -3136,14 +3293,15 @@ const DASHBOARD_DATA = {
         },
         "vaccine_balance": {
           "label": "Vaccine balance on hand",
-          "value": 528935,
-          "date": "2026-05-21"
+          "value": 500000,
+          "date": "2026-06-11"
         }
       },
       "sources": [
         "AgriSA-ICC",
         "AgriSA-NAT",
         "FMD-ICC",
+        "KZN-DARD",
         "MPO",
         "Ministry",
         "RMIS",
@@ -4224,6 +4382,7 @@ const DASHBOARD_DATA = {
     "inbox/Gauteng/689472003_1403107838515160_3276233086600452208_n.jpg",
     "inbox/Gauteng/WhatsApp Image 2026-05-04 at 14.29.29.jpeg",
     "inbox/JOC - FMD OUTBREAK april.docx",
+    "inbox/KZN/DARDKZN 11 06 2026.docx",
     "inbox/Limpopo/FMD PCM 21 MAY 2026.zip/FMD PCM SAKELYS 20260521 REV0.pdf",
     "inbox/Limpopo/FMD PCM MEETING PACK 20260409 REV0.pdf",
     "inbox/Limpopo/FMD PCM MEETING PACK 20260507 REV1.pdf",
