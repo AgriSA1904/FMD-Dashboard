@@ -1,3 +1,61 @@
+As at 2026-07-03 (session 52 -- GP-GDARD 26 Jun JOC; NW-RPO 30 Jun JIC):
+- Master: **2,218 rows** (+49: 20 GP-GDARD + 29 NW-RPO)
+- Dashboard snapshot: **29 June 2026** (44 weekly points; 217,893 bytes; validation passed)
+- Dashboard rebuilt: Yes -- GP animals vaccinated updated to 405,404; NW positive cases updated to 421.
+
+**New data ingested (session 52):**
+- GDARD FMD JOC Update 26_06_2026.pdf (GP-GDARD, effective 24 Jun 2026): 20 rows.
+  - positive_cases 306 (up from 300 at 10 Jun; 3 outbreaks closed, 303 open).
+  - animals_vaccinated 405,404 (up from 333,221; +72,183); incl 1,533 ARC-OVR. Data quality flag: slide 9 cites 130,000 Karan doses excluded from commodity table; slide 7 cites 80,000 Karan -- discrepancy flagged.
+  - Per-vaccine: Biogenesis Bago 157,909; DolVet (Aftodoll) 245,962; ARC-OVR 1,533.
+  - controlled_slaughter 239,082 cattle / 5,595 permits (up from 225,134 / 5,380 at 10 Jun).
+  - 58 private vets approved; 528 farmer applications. Weekly vaccination: 18 Jun 17,560; 24 Jun 53,459.
+  - Per-municipality outbreaks (11 rows): Randfontein SVA 67, Germiston SVA 185, Tshwane 54.
+  - Alert: 3 dairy herds developed new lesions after BVI x3 + Biogenesis vaccination -- vaccine efficacy concern.
+- 30 JUNE 2026- RPO JIC FMD UPDATE.pdf (NW-RPO, effective 25 Jun 2026): 29 rows.
+  - positive_cases 421 (up from 414 at 18 Jun; +7 in week 19-25 Jun).
+  - animals_vaccinated: internal 892,119 (89%); portal 917,943 (90%) -- conflict held in master.
+  - vaccine_balance 112,731 (22,266 feedlot; net state-held 90,465).
+  - 20 per-state-vet-office positive_cases rows: DKK 87 Bojanala 78 DRSM 168 NMM 88.
+  - Alerts: pig compartment infected Naledi; calf mortality spike -- possible FMD myocarditis.
+- WhatsApp Image 2026-06-29 at 15.23.15.jpeg (FS DARDLEA media release): 0 rows.
+
+**Inbox scan (session 52):** No new files beyond GP and NW PDFs. No 1 Jul outcomes PDF. No MPO Week 37. No Section 9 gazette. No LP 6 Jul PCM pack.
+
+**GitHub push:** Yes.
+
+**Per-province latest figures (3 July 2026):**
+
+| Province | Received | Animals vaccinated | Positive cases | Date |
+|---|---|---|---|---|
+| EC | 1,117,680 | 696,408 (JOC) | 411 | 25 Jun |
+| FS | 1,272,180 | 1,106,191 | 648 | 26 Jun |
+| GP | 643,300 | 405,404 | 306 | 24 Jun |
+| KZN | 1,329,112 | 1,085,495 (UNOFFICIAL) | 336 | 30 May |
+| LP | 775,660 | 495,102 | 84 | 21 Jun |
+| MP | 747,000 | 344,629 | 261 | 22 Jun |
+| NW | 1,021,140 | 892,119 (internal) | 421 | 25 Jun |
+| NC | 200,600 | 114,443 | 22 | 26 Jun |
+| WC | 497,100 | 376,020 | 39 | 29 Jun |
+
+**Parked/outstanding (carry forward):**
+- 1 July FMD Weekly Engagement outcomes PDF -- not yet in inbox.
+- Section 9 gazette: announced 25 June; publication still pending.
+- LP PCM 6 July 2026 -- meeting today; await pack and update.
+- Consolidated AgriSA weekly xlsx: ~89 days outstanding. Urgent.
+- KZN official JOC documents outstanding; current figures UNOFFICIAL.
+- KZN vaccine shortage: 1,500,000 more doses requested urgently.
+- GP vaccine efficacy concern: BVI+Biogenesis multi-dose failure in 3 dairy herds -- flag technical team.
+- NC 8 vs 9 municipalities discrepancy -- unresolved.
+- 2 million DolVet doses mid-June -- not confirmed in RMIS.
+- 7 million Biogenesis doses end July 2026 -- forward pipeline.
+- KZN booster programme -- resumption expected.
+- LP DolVet 150,000 receipt -- outstanding.
+- MPO Week 37 -- not yet in inbox.
+- NW calf mortality spike -- monitor for FMD myocarditis confirmation.
+
+---
+
 As at 2026-07-01 (session 51 -- RMIS industry distribution 1 Jul; ICC 26 Jun industry update reviewed, no rows):
 - Master: **2,169 rows** (+100 RMIS industry distribution from 1 Jul 2026 export)
 - Dashboard snapshot: **29 June 2026** (44 weekly points; 217,805 bytes; validation passed)

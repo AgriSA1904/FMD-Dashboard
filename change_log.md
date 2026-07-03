@@ -4,6 +4,59 @@ A running record of what changed in the master and dashboard, with dates and sou
 
 ---
 
+## Session 52 -- 3 July 2026 (GP-GDARD 26 Jun JOC; NW-RPO 30 Jun JIC)
+
+Master: 2,218 rows (+49: 20 GP-GDARD + 29 NW-RPO). Dashboard: 29 June 2026 (44 weekly; 217,893 bytes). Validation passed.
+
+Sources processed:
+
+File | Source org | Effective date | Rows added
+---|---|---|---
+GDARD FMD JOC Update 26_06_2026.pdf | GP-GDARD  | 2026-06-24 | 20
+30 JUNE 2026- RPO JIC FMD UPDATE.pdf | NW-RPO | 2026-06-25 | 29
+WhatsApp Image 2026-06-29 at 15.23.15.jpeg | FS-DARDLEA | -- | 0 (compliance media release)
+
+Gauteng: GDARD JOC 26 June 2026 (effective 24 Jun)
+- positive_cases: 306 (up from 300 at 10 Jun; +6). 3 outbreaks closed; 303 open.
+- animals_vaccinated: 405,404 (up from 333,221; +72,183). Includes 1,533 ARC-OVR.
+  Data quality flag: Slide 9 note states 130,000 Karan doses excluded from commodity table; slide 7 note cites 80,000 Karan -- discrepancy not reconciled.
+- doses_received: 643,300 (confirmed; unchanged).
+- Per-vaccine: Biogenesis Bago 157,909; DolVet 245,962; ARC-OVR 1,533.
+- controlled_slaughter: 239,082 cattle via 5,595 permits (Karan and Beefcor). Up from 225,134 / 5,380 at 10 Jun.
+- Private vets: 58 approved (Tshwane 24, Germiston 14, Randfontein 20); 528 farmer applications.
+  164,680 doses issued to PV (37,080 Biogenesis + 127,600 DolVet); 107,029 reconciled; 58,231 awaiting recon.
+- Weekly incremental vaccination: week ending 18 Jun 17,560; week ending 24 Jun 53,459.
+- Per-municipality outbreak rows: Randfontein SVA 63 (Merafong 18, Mogale 27, Rand West City 22);
+  Germiston SVA 185 (Ekurhuleni 50, Johannesburg 10, Emfuleni 17, Lesedi 58, Midvaal 50);
+  City of Tshwane 54.
+- Vaccine efficacy alert: 3 dairy herds vaccinated BVI x3 + Biogenesis once developed new lesions 3 weeks later. Noted in master.
+- Law enforcement: 14 Gauteng livestock auctions monitored (SAPS roadblocks 9-11 Jun). No data rows.
+- R32 million allocated for additional vaccine procurement; GDARD questioning need post-court ruling.
+
+North West: RPO JIC 30 June 2026 (week 19-25 June)
+- positive_cases: 421 (up from 414 at 18 Jun; +7).
+  New cases: Greater Taung 3, Naledi 2, Mamusa 1, Kagisano 1.
+  421 reported to WOAH; 10 still to be reported (eventual 431).
+- animals_vaccinated: internal spreadsheet 892,119 (89%); portal 917,943 (90%).
+  Difference 25,824: (1) ArtePrevo (BVI) entries in portal; (2) duplicate farm records from system freezes. Both held in master.
+- vaccine_balance: 112,731 doses (22,266 feedlot industry; net state-held 90,465).
+- 9 vaccine batches tabulated: OVR 1,291; Bio 1185 99,678; Aftodoll 15AFT25 47,712; Aftodoll Emergency 24,171; Bio 1186 (first) 59,935; Aftodoll 03AFT2 Gov 217,597; Aftodoll 03AFT25 Feedlot 77,734; Aftodoll 05AFT26 295,741; Bio 1186 11 Jun 68,260. Total 892,119.
+- 20 per-state-vet-office positive_cases rows:
+  DKK: Ventersdorm 26, Potchefstroom 26, Maquassie Hills 9, Matlosana 26 (total 87).
+  Bojanala: Rustenburg 28, Madibeng 17, Kgetleng River 15, Moretele 17, Moses Kotane 1 (total 78).
+  DRSM: Naledi 64, Greater Taung 26, Mamusa 9, Molopo 11, Kagisano 50, Lekwa TeeSane 8 (total 168).
+  NMM: Ratlou 12, Mahikeng 32, Tswaing 6, Ditsobotla 15, Ramotshere Moiloa 23 (total 88).
+- Disease alerts:
+  Pig compartment infected at Naledi (furrowing house only; targeted slaughter).
+  Calf mortality spike on winter-calving farms -- possible FMD myocarditis in calves from infected nursing dams. Investigation recommended.
+- Section 9 gazette still pending (NW RPO JIC slide p24).
+
+Next-run: 1 Jul outcomes PDF; Section 9 gazette; LP PCM 6 Jul update; consolidated xlsx (~89 days); MPO Week 37.
+
+GitHub commit: session 52
+
+---
+
 ## Session 51 -- Session 51 -- 1 July 2026 (RMIS industry distribution 1 Jul; ICC 26 Jun reviewed)
 
 
@@ -23,6 +76,8 @@ No autoFilter XML corruption in this export (unlike Vaccine Orders exports).
 ICC 26 Jun: Confirms Section 9 gazette pending; next JWG beginning of July (Section 10 committee, FMD Mgmt Manual, allocation protocol, disease-control concept plan). ICC endorses dashboard and RMIS platform.
 
 Next-run: 1 Jul outcomes PDF; Section 9 gazette; LP PCM 6 Jul; consolidated xlsx (~86 days); MPO Week 37; KZN official JOC docs; DolVet 2M confirmation.
+
+GitHub commit: 5df723b (session 51)
 
 
 ---
