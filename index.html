@@ -653,7 +653,7 @@
   <section class="tab-section" data-tab="ministerial">
     <div class="kicker">Data validation</div>
     <h2>Ministerial briefing vs JOC provincial returns.</h2>
-    <p style="color:var(--charcoal);font-size:14px;margin-top:calc(-1 * var(--sp-6));margin-bottom:var(--sp-6)">Comparing DAFF ministerial figures (2026-06-04) against AgriSA JOC provincial returns (latest available). A positive difference means JOC reports more vaccinations than the ministerial figure — expected given the later date. A negative difference flags a data quality issue for investigation.</p>
+    <p style="color:var(--charcoal);font-size:14px;margin-top:calc(-1 * var(--sp-6));margin-bottom:var(--sp-6)">Comparing DAFF ministerial figures (4 June 2026) against AgriSA JOC provincial returns (latest available). A positive difference means JOC reports more vaccinations than the ministerial figure — expected given the later date. A negative difference flags a data quality issue for investigation.</p>
     <div class="grid-2">
       <div class="card">
         <h3>Animals vaccinated: ministerial vs JOC per province.</h3>
@@ -665,7 +665,7 @@
           <thead>
             <tr>
               <th>Province</th>
-              <th class="num">Ministerial<br><small style="font-weight:400">2026-06-04</small></th>
+              <th class="num">Ministerial<br><small style="font-weight:400">4 Jun</small></th>
               <th class="num">JOC / AgriSA<br><small style="font-weight:400">Latest</small></th>
               <th class="num">Difference</th>
               <th>Status</th>
@@ -721,20 +721,20 @@
 
 <script>
 const DASHBOARD_DATA = {
-  "snapshot_date": "2026-06-29",
-  "build_date": "2026-07-03",
+  "snapshot_date": "2026-07-02",
+  "build_date": "2026-07-07",
   "provinces": [
     {
       "code": "EC",
       "name": "Eastern Cape",
-      "as_of": "2026-06-25",
+      "as_of": "2026-07-02",
       "herd": 2895096,
-      "positive": 411,
-      "suspected": 235,
+      "positive": 423,
+      "suspected": 234,
       "negative": 15,
       "pending": 0,
-      "received": 1117680,
-      "vaccinated": 1001292
+      "received": 1064230,
+      "vaccinated": 1026694
     },
     {
       "code": "FS",
@@ -775,14 +775,14 @@ const DASHBOARD_DATA = {
     {
       "code": "LP",
       "name": "Limpopo",
-      "as_of": "2026-06-24",
+      "as_of": "2026-06-26",
       "herd": 1007316,
-      "positive": 84,
+      "positive": 95,
       "suspected": 96,
-      "negative": 62,
-      "pending": 259,
+      "negative": 105,
+      "pending": 219,
       "received": 775660,
-      "vaccinated": 500000
+      "vaccinated": 520185
     },
     {
       "code": "MP",
@@ -835,6 +835,38 @@ const DASHBOARD_DATA = {
   ],
   "weekly": [
     {
+      "date": "2026-01-23",
+      "received": null,
+      "administered": null,
+      "positive": 0,
+      "suspected": 0,
+      "pending": null
+    },
+    {
+      "date": "2026-02-10",
+      "received": null,
+      "administered": null,
+      "positive": 0,
+      "suspected": 0,
+      "pending": null
+    },
+    {
+      "date": "2026-02-26",
+      "received": null,
+      "administered": null,
+      "positive": 0,
+      "suspected": 0,
+      "pending": null
+    },
+    {
+      "date": "2026-03-12",
+      "received": null,
+      "administered": null,
+      "positive": 0,
+      "suspected": 0,
+      "pending": null
+    },
+    {
       "date": "2026-03-25",
       "received": 2220997,
       "administered": 900278,
@@ -844,6 +876,22 @@ const DASHBOARD_DATA = {
     },
     {
       "date": "2026-04-01",
+      "received": 2495940,
+      "administered": 1738424,
+      "positive": 1345,
+      "suspected": 0,
+      "pending": null
+    },
+    {
+      "date": "2026-04-02",
+      "received": 2495940,
+      "administered": 1738424,
+      "positive": 1345,
+      "suspected": 0,
+      "pending": null
+    },
+    {
+      "date": "2026-04-11",
       "received": 2495940,
       "administered": 1738424,
       "positive": 1345,
@@ -884,6 +932,14 @@ const DASHBOARD_DATA = {
     },
     {
       "date": "2026-05-01",
+      "received": 2647580,
+      "administered": 2162650,
+      "positive": 1536,
+      "suspected": 872,
+      "pending": null
+    },
+    {
+      "date": "2026-05-05",
       "received": 2647580,
       "administered": 2162650,
       "positive": 1536,
@@ -1131,6 +1187,14 @@ const DASHBOARD_DATA = {
       "pending": null
     },
     {
+      "date": "2026-06-19",
+      "received": 7038461,
+      "administered": 4626867,
+      "positive": 2443,
+      "suspected": 957,
+      "pending": null
+    },
+    {
       "date": "2026-06-21",
       "received": 7038461,
       "administered": 4658837,
@@ -1173,17 +1237,25 @@ const DASHBOARD_DATA = {
     {
       "date": "2026-06-26",
       "received": 7603772,
-      "administered": 5312656,
-      "positive": 2527,
+      "administered": 5332841,
+      "positive": 2538,
       "suspected": 966,
       "pending": null
     },
     {
       "date": "2026-06-29",
       "received": 7603772,
-      "administered": 5312656,
-      "positive": 2528,
+      "administered": 5332841,
+      "positive": 2539,
       "suspected": 966,
+      "pending": null
+    },
+    {
+      "date": "2026-07-02",
+      "received": 7550322,
+      "administered": 5358243,
+      "positive": 2551,
+      "suspected": 965,
       "pending": null
     }
   ],
@@ -1195,20 +1267,20 @@ const DASHBOARD_DATA = {
     "unallocated": 358480
   },
   "national": {
-    "positive": 2528,
-    "suspected": 966,
-    "negative": 77,
-    "pending": 259,
+    "positive": 2551,
+    "suspected": 965,
+    "negative": 120,
+    "pending": 219,
     "procured": 13500000,
-    "distributed": 7603772,
-    "received": 7603772,
-    "administered": 5312656,
+    "distributed": 7550322,
+    "received": 7550322,
+    "administered": 5358243,
     "herd_cattle": 12496199,
-    "balance": 2291116,
-    "delta_received": 0,
-    "delta_distributed": 0,
-    "delta_administered": 0,
-    "delta_positive": 1
+    "balance": 2192079,
+    "delta_received": -53450,
+    "delta_distributed": -53450,
+    "delta_administered": 25402,
+    "delta_positive": 12
   },
   "mpo": {
     "weekly": [
@@ -1315,16 +1387,29 @@ const DASHBOARD_DATA = {
         "NC": 0,
         "WC": 216827,
         "national": 935918
+      },
+      {
+        "date": "2026-07-03",
+        "EC": 307275,
+        "FS": 15104,
+        "GP": 14832,
+        "KZN": 360200,
+        "LP": 5475,
+        "MP": 9863,
+        "NW": 6342,
+        "NC": 0,
+        "WC": 239000,
+        "national": 958091
       }
     ],
-    "latest_date": "2026-06-26",
+    "latest_date": "2026-07-03",
     "provinces": [
       {
         "code": "EC",
         "name": "Eastern Cape",
         "current": 307275,
-        "previous": 306879,
-        "change": 396
+        "previous": 307275,
+        "change": 0
       },
       {
         "code": "FS",
@@ -1378,9 +1463,9 @@ const DASHBOARD_DATA = {
       {
         "code": "WC",
         "name": "Western Cape",
-        "current": 216827,
-        "previous": 202827,
-        "change": 14000
+        "current": 239000,
+        "previous": 216827,
+        "change": 22173
       }
     ],
     "farms_confirmed": 171,
@@ -1430,8 +1515,8 @@ const DASHBOARD_DATA = {
         "note": "MPO Week 31 (22 May 2026): 1 NW dairy farm reported FMD reinfection after vaccination \u2014 Lichtenburg. Confirms Week 30 suspected case."
       }
     ],
-    "national_current": 935918,
-    "national_previous": 921522,
+    "national_current": 958091,
+    "national_previous": 935918,
     "active_by_province": [
       {
         "code": "EC",
@@ -2657,18 +2742,18 @@ const DASHBOARD_DATA = {
     {
       "code": "EC",
       "name": "Eastern Cape",
-      "joc": 1001292,
-      "joc_date": "2026-06-30",
+      "joc": 1026694,
+      "joc_date": "2026-07-03",
       "ministerial": 725632,
       "ministerial_date": "2026-06-04",
-      "diff": 275660,
+      "diff": 301062,
       "flag": null
     },
     {
       "code": "FS",
       "name": "Free State",
       "joc": 1106191,
-      "joc_date": "2026-06-30",
+      "joc_date": "2026-07-03",
       "ministerial": 707986,
       "ministerial_date": "2026-06-04",
       "diff": 398205,
@@ -2678,7 +2763,7 @@ const DASHBOARD_DATA = {
       "code": "GP",
       "name": "Gauteng",
       "joc": 405404,
-      "joc_date": "2026-06-30",
+      "joc_date": "2026-07-03",
       "ministerial": 325216,
       "ministerial_date": "2026-06-04",
       "diff": 80188,
@@ -2688,7 +2773,7 @@ const DASHBOARD_DATA = {
       "code": "KZN",
       "name": "KwaZulu-Natal",
       "joc": 648609,
-      "joc_date": "2026-06-30",
+      "joc_date": "2026-07-03",
       "ministerial": 1163193,
       "ministerial_date": "2026-06-04",
       "diff": -514584,
@@ -2697,18 +2782,18 @@ const DASHBOARD_DATA = {
     {
       "code": "LP",
       "name": "Limpopo",
-      "joc": 500000,
-      "joc_date": "2026-06-30",
+      "joc": 520185,
+      "joc_date": "2026-07-03",
       "ministerial": 357045,
       "ministerial_date": "2026-06-04",
-      "diff": 142955,
+      "diff": 163140,
       "flag": null
     },
     {
       "code": "MP",
       "name": "Mpumalanga",
       "joc": 344629,
-      "joc_date": "2026-06-30",
+      "joc_date": "2026-07-03",
       "ministerial": 465105,
       "ministerial_date": "2026-06-04",
       "diff": -120476,
@@ -2718,7 +2803,7 @@ const DASHBOARD_DATA = {
       "code": "NW",
       "name": "North West",
       "joc": 892119,
-      "joc_date": "2026-06-30",
+      "joc_date": "2026-07-03",
       "ministerial": 600331,
       "ministerial_date": "2026-06-04",
       "diff": 291788,
@@ -2728,7 +2813,7 @@ const DASHBOARD_DATA = {
       "code": "NC",
       "name": "Northern Cape",
       "joc": 114443,
-      "joc_date": "2026-06-30",
+      "joc_date": "2026-07-03",
       "ministerial": 99642,
       "ministerial_date": "2026-06-04",
       "diff": 14801,
@@ -2738,7 +2823,7 @@ const DASHBOARD_DATA = {
       "code": "WC",
       "name": "Western Cape",
       "joc": 299969,
-      "joc_date": "2026-06-30",
+      "joc_date": "2026-07-03",
       "ministerial": 265379,
       "ministerial_date": "2026-06-04",
       "diff": 34590,
@@ -2814,7 +2899,7 @@ const DASHBOARD_DATA = {
   "provincial_detail": {
     "EC": {
       "name": "Eastern Cape",
-      "latest_date": "2026-06-30",
+      "latest_date": "2026-07-03",
       "vaccine_types": [
         {
           "type": "dolvet",
@@ -2826,6 +2911,12 @@ const DASHBOARD_DATA = {
           "type": "bioaftogen",
           "label": "Bioaftogen",
           "doses": 217000,
+          "date": "2026-06-09"
+        },
+        {
+          "type": "bioaftogen_triv2",
+          "label": "Bioaftogen Trivalent",
+          "doses": 117000,
           "date": "2026-06-09"
         },
         {
@@ -2851,8 +2942,8 @@ const DASHBOARD_DATA = {
         {
           "key": "state",
           "label": "State vet",
-          "animals_vaccinated": 696408,
-          "date": "2026-06-25"
+          "animals_vaccinated": 715245,
+          "date": "2026-07-02"
         },
         {
           "key": "private",
@@ -2883,6 +2974,17 @@ const DASHBOARD_DATA = {
       ],
       "districts": [
         {
+          "name": "MPO dairy sector vaccinations within EC (embe",
+          "date": "2026-07-02",
+          "vaccinated": 311449,
+          "cases": null,
+          "suspected": null,
+          "pending": null,
+          "outbreaks": null,
+          "negative": null,
+          "notes": "MPO dairy sector vaccinations within EC (embedded in provincial total). Alfred Nzo 11757, Amathole 3273, Buffalo City 13223, Chris Hani 59583, Joe Gqabi 0, OR Tambo 0, Nelson Mandela 6188, Sarah Baartman 217425."
+        },
+        {
           "name": "MPO dairy sector vaccinations within EC",
           "date": "2026-06-25",
           "vaccinated": 304884,
@@ -2895,135 +2997,135 @@ const DASHBOARD_DATA = {
         },
         {
           "name": "Amathole district total",
-          "date": "2026-06-25",
-          "vaccinated": 277933,
+          "date": "2026-07-02",
+          "vaccinated": 294794,
           "cases": null,
           "suspected": null,
           "pending": null,
           "outbreaks": null,
           "negative": null,
-          "notes": "Amathole district total. Communal 188632, Commercial 89301."
-        },
-        {
-          "name": "Alfred Nzo district total",
-          "date": "2026-06-25",
-          "vaccinated": 123685,
-          "cases": null,
-          "suspected": null,
-          "pending": null,
-          "outbreaks": null,
-          "negative": null,
-          "notes": "Alfred Nzo district total. Communal 91229, Commercial 32436."
+          "notes": "Amathole district total. Communal 200365, Commercial 94429. Vaccination: Biogenesis 102064, Dolvet 190965, ARC 965, BVI 800."
         },
         {
           "name": "Chris Hani district total",
-          "date": "2026-06-25",
-          "vaccinated": 108824,
+          "date": "2026-07-02",
+          "vaccinated": 116291,
           "cases": null,
           "suspected": null,
           "pending": null,
           "outbreaks": null,
           "negative": null,
-          "notes": "Chris Hani district total. Communal 45640, Commercial 63184."
+          "notes": "Chris Hani district total. Communal 47873, Commercial 68418. Vaccination: Biogenesis 58695, Dolvet 57596."
+        },
+        {
+          "name": "Alfred Nzo district total",
+          "date": "2026-07-02",
+          "vaccinated": 111908,
+          "cases": null,
+          "suspected": null,
+          "pending": null,
+          "outbreaks": null,
+          "negative": null,
+          "notes": "Alfred Nzo district total. Communal 91229, Commercial 20679. Vaccination: Biogenesis 80873, Dolvet 30585, BVI 450."
         },
         {
           "name": "OR Tambo district total",
-          "date": "2026-06-25",
-          "vaccinated": 97760,
+          "date": "2026-07-02",
+          "vaccinated": 103210,
           "cases": null,
           "suspected": null,
           "pending": null,
           "outbreaks": null,
           "negative": null,
-          "notes": "OR Tambo district total. Predominantly communal 97760."
-        },
-        {
-          "name": "Amathole",
-          "date": "2026-05-14",
-          "vaccinated": 91231,
-          "cases": 148,
-          "suspected": 96,
-          "pending": null,
-          "outbreaks": null,
-          "negative": 4,
-          "notes": "EC district Amathole as at 14 May 2026. BVI 800 + OBP 965 + Bioaftogen 37185 + DollVet 52281 = 91231. 148 positive / 96 suspect / 4 negative. Up from 81,490 on 7 May (+9,741)."
-        },
-        {
-          "name": "Alfred Nzo",
-          "date": "2026-05-14",
-          "vaccinated": 88158,
-          "cases": 46,
-          "suspected": 30,
-          "pending": null,
-          "outbreaks": null,
-          "negative": 7,
-          "notes": "EC district Alfred Nzo as at 14 May 2026. BVI 450 + Bioaftogen 66864 + DollVet 20844 = 88158. 46 positive / 30 suspect / 7 negative. Up from 87,965 on 7 May."
+          "notes": "OR Tambo district total. Communal 103210, Commercial 0 (100% communal). Vaccination: Biogenesis 33359, Dolvet 69851."
         },
         {
           "name": "Joe Gqabi district total",
-          "date": "2026-06-25",
-          "vaccinated": 81883,
+          "date": "2026-07-02",
+          "vaccinated": 82699,
           "cases": null,
           "suspected": null,
           "pending": null,
           "outbreaks": null,
           "negative": null,
-          "notes": "Joe Gqabi district total. Communal 32879, Commercial 49004."
-        },
-        {
-          "name": "Chris Hani",
-          "date": "2026-05-14",
-          "vaccinated": 60591,
-          "cases": 38,
-          "suspected": 16,
-          "pending": null,
-          "outbreaks": null,
-          "negative": 2,
-          "notes": "EC district Chris Hani as at 14 May 2026. Bioaftogen 41617 + DollVet 18974 = 60591. 38 positive / 16 suspect / 2 negative. Unchanged from 7 May."
-        },
-        {
-          "name": "OR Tambo",
-          "date": "2026-05-14",
-          "vaccinated": 46086,
-          "cases": 13,
-          "suspected": 72,
-          "pending": null,
-          "outbreaks": null,
-          "negative": 0,
-          "notes": "EC district OR Tambo as at 14 May 2026. Bioaftogen 16833 + DollVet 29253 = 46086. 13 positive / 72 suspect / 0 negative. Up from 23,389 on 7 May (+22,697 \u2014 biggest district gain)."
-        },
-        {
-          "name": "Joe Gqabi",
-          "date": "2026-05-14",
-          "vaccinated": 31343,
-          "cases": 45,
-          "suspected": 6,
-          "pending": null,
-          "outbreaks": null,
-          "negative": 0,
-          "notes": "EC district Joe Gqabi as at 14 May 2026. Bioaftogen 16677 + DollVet 14666 = 31343. 45 positive / 6 suspect / 0 negative. Up from 18,368 on 7 May."
+          "notes": "Joe Gqabi district total. Communal 32879, Commercial 49820. Vaccination: Biogenesis 17829, Dolvet 64870."
         },
         {
           "name": "Sarah Baartman district total",
-          "date": "2026-06-25",
+          "date": "2026-07-02",
           "vaccinated": 6343,
           "cases": null,
           "suspected": null,
           "pending": null,
           "outbreaks": null,
           "negative": null,
-          "notes": "Sarah Baartman district total. Communal 2367, Commercial 3976."
+          "notes": "Sarah Baartman district total. Communal 2367, Commercial 3976. Vaccination: Biogenesis 2815, Dolvet 2316, ARC 1212."
+        },
+        {
+          "name": "Amathole",
+          "date": "2026-07-02",
+          "vaccinated": null,
+          "cases": 213,
+          "suspected": 97,
+          "pending": null,
+          "outbreaks": null,
+          "negative": null,
+          "notes": "District: Amathole | Confirmed outbreaks: 204 previously, 9 new."
+        },
+        {
+          "name": "Joe Gqabi",
+          "date": "2026-07-02",
+          "vaccinated": null,
+          "cases": 73,
+          "suspected": 5,
+          "pending": null,
+          "outbreaks": null,
+          "negative": null,
+          "notes": "District: Joe Gqabi | Confirmed outbreaks: 71 previously, 2 new."
+        },
+        {
+          "name": "Chris Hani",
+          "date": "2026-07-02",
+          "vaccinated": null,
+          "cases": 68,
+          "suspected": 20,
+          "pending": null,
+          "outbreaks": null,
+          "negative": null,
+          "notes": "District: Chris Hani | Confirmed outbreaks: 67 previously, 1 new."
+        },
+        {
+          "name": "Alfred Nzo",
+          "date": "2026-07-02",
+          "vaccinated": null,
+          "cases": 47,
+          "suspected": 33,
+          "pending": null,
+          "outbreaks": null,
+          "negative": null,
+          "notes": "District: Alfred Nzo | Confirmed outbreaks: 47 previously, 0 new."
+        },
+        {
+          "name": "OR Tambo",
+          "date": "2026-07-02",
+          "vaccinated": null,
+          "cases": 16,
+          "suspected": 76,
+          "pending": null,
+          "outbreaks": null,
+          "negative": null,
+          "notes": "District: OR Tambo | Confirmed outbreaks: 16 previously, 0 new."
         },
         {
           "name": "Sarah Baartman",
-          "date": "2026-05-14",
-          "vaccinated": 5200,
-          "cases": 4,
-          "suspected": 1,
+          "date": "2026-07-02",
+          "vaccinated": null,
+          "cases": 6,
+          "suspected": 3,
           "pending": null,
           "outbreaks": null,
-          "negative": 1,
-          "notes": "EC district Sarah Baartman as at 14 May 2026. Bioaftogen 2815 + DollVet 1173 + OBP 1212 = 5200. 4 positive / 1 suspect / 1 negative."
+          "negative": null,
+          "notes": "District: Sarah Baartman | Confirmed outbreaks: 6 previously, 0 new."
         },
         {
           "name": "Nelson Mandela Bay Metropolitan",
@@ -3045,8 +3147,8 @@ const DASHBOARD_DATA = {
         },
         "vaccine_balance": {
           "label": "Vaccine balance on hand",
-          "value": 116388,
-          "date": "2026-06-25"
+          "value": 37536,
+          "date": "2026-07-02"
         }
       },
       "sources": [
@@ -3062,7 +3164,7 @@ const DASHBOARD_DATA = {
     },
     "FS": {
       "name": "Free State",
-      "latest_date": "2026-06-30",
+      "latest_date": "2026-07-03",
       "vaccine_types": [
         {
           "type": "dolvet",
@@ -3490,7 +3592,7 @@ const DASHBOARD_DATA = {
     },
     "GP": {
       "name": "Gauteng",
-      "latest_date": "2026-06-30",
+      "latest_date": "2026-07-03",
       "vaccine_types": [
         {
           "type": "dolvet",
@@ -3559,7 +3661,7 @@ const DASHBOARD_DATA = {
     },
     "KZN": {
       "name": "KwaZulu-Natal",
-      "latest_date": "2026-06-30",
+      "latest_date": "2026-07-03",
       "vaccine_types": [
         {
           "type": "dolvet",
@@ -3791,19 +3893,31 @@ const DASHBOARD_DATA = {
     },
     "LP": {
       "name": "Limpopo",
-      "latest_date": "2026-06-30",
+      "latest_date": "2026-07-03",
       "vaccine_types": [
         {
           "type": "dolvet",
           "label": "DolVet",
           "doses": 410000,
-          "date": "2026-05-27"
+          "date": "2026-06-21"
+        },
+        {
+          "type": "bioaftogen_triv2",
+          "label": "Bioaftogen Trivalent",
+          "doses": 263940,
+          "date": "2026-06-21"
         },
         {
           "type": "bioaftogen",
           "label": "Bioaftogen",
           "doses": 164000,
           "date": "2026-06-09"
+        },
+        {
+          "type": "bioaftogen_biv1",
+          "label": "Bioaftogen Bivalent",
+          "doses": 100020,
+          "date": "2026-06-21"
         },
         {
           "type": "emergency_stock",
@@ -3820,8 +3934,8 @@ const DASHBOARD_DATA = {
         {
           "type": "obp_arc",
           "label": "OBP / ARC",
-          "doses": 1315,
-          "date": "2026-05-21"
+          "doses": 1700,
+          "date": "2026-06-21"
         }
       ],
       "vet_channels": [
@@ -3879,58 +3993,58 @@ const DASHBOARD_DATA = {
       "districts": [
         {
           "name": "Waterberg",
-          "date": "2026-06-01",
-          "vaccinated": 158072,
-          "cases": null,
-          "suspected": null,
+          "date": "2026-06-26",
+          "vaccinated": 214328,
+          "cases": 34,
+          "suspected": 27,
           "pending": null,
           "outbreaks": null,
           "negative": null,
-          "notes": "district=Waterberg; commercial+communal+emerging breakdown in source"
-        },
-        {
-          "name": "Vhembe",
-          "date": "2026-06-01",
-          "vaccinated": 70577,
-          "cases": null,
-          "suspected": null,
-          "pending": null,
-          "outbreaks": null,
-          "negative": null,
-          "notes": "district=Vhembe; commercial+communal+emerging breakdown in source"
+          "notes": "District: Waterberg | Week 30 (as at 26 Jun 2026). Suspect 27, Negative 73, Closed 6, Pending 88."
         },
         {
           "name": "Capricorn",
-          "date": "2026-06-01",
-          "vaccinated": 57042,
-          "cases": null,
-          "suspected": null,
+          "date": "2026-06-26",
+          "vaccinated": 96152,
+          "cases": 26,
+          "suspected": 19,
           "pending": null,
           "outbreaks": null,
           "negative": null,
-          "notes": "district=Capricorn; commercial+communal+emerging breakdown in source"
+          "notes": "District: Capricorn | Week 30 (as at 26 Jun 2026). Suspect 19, Negative 12, Closed 1, Pending 30."
+        },
+        {
+          "name": "Vhembe",
+          "date": "2026-06-26",
+          "vaccinated": 79642,
+          "cases": 17,
+          "suspected": 29,
+          "pending": null,
+          "outbreaks": null,
+          "negative": null,
+          "notes": "District: Vhembe | Week 30 (as at 26 Jun 2026). Suspect 29, Negative 12, Closed 2, Pending 17."
         },
         {
           "name": "Mopani",
-          "date": "2026-06-01",
-          "vaccinated": 50657,
-          "cases": null,
-          "suspected": null,
+          "date": "2026-06-26",
+          "vaccinated": 65515,
+          "cases": 3,
+          "suspected": 3,
           "pending": null,
           "outbreaks": null,
           "negative": null,
-          "notes": "district=Mopani; commercial+communal+emerging breakdown in source"
+          "notes": "District: Mopani | Week 30 (as at 26 Jun 2026). Suspect 3, Negative 0, Closed 0, Pending 72."
         },
         {
           "name": "Sekhukhune",
-          "date": "2026-06-01",
-          "vaccinated": 41136,
-          "cases": null,
-          "suspected": null,
+          "date": "2026-06-26",
+          "vaccinated": 64548,
+          "cases": 15,
+          "suspected": 18,
           "pending": null,
           "outbreaks": null,
           "negative": null,
-          "notes": "district=Sekhukhune; commercial+communal+emerging breakdown in source"
+          "notes": "District: Sekhukhune | Week 30 (as at 26 Jun 2026). Suspect 18, Negative 8, Closed 0, Pending 12."
         },
         {
           "name": "Waterberg district",
@@ -3991,8 +4105,8 @@ const DASHBOARD_DATA = {
       "extra": {
         "vaccine_wastage": {
           "label": "Vaccine wastage",
-          "value": 2261,
-          "date": "2026-06-21"
+          "value": 2130,
+          "date": "2026-06-26"
         },
         "vaccination_sites": {
           "label": "Vaccination sites",
@@ -4025,7 +4139,7 @@ const DASHBOARD_DATA = {
     },
     "MP": {
       "name": "Mpumalanga",
-      "latest_date": "2026-06-30",
+      "latest_date": "2026-07-03",
       "vaccine_types": [
         {
           "type": "bioaftogen",
@@ -4205,7 +4319,7 @@ const DASHBOARD_DATA = {
     },
     "NW": {
       "name": "North West",
-      "latest_date": "2026-06-30",
+      "latest_date": "2026-07-03",
       "vaccine_types": [
         {
           "type": "dolvet",
@@ -4507,7 +4621,7 @@ const DASHBOARD_DATA = {
     },
     "NC": {
       "name": "Northern Cape",
-      "latest_date": "2026-06-30",
+      "latest_date": "2026-07-03",
       "vaccine_types": [
         {
           "type": "dolvet",
@@ -4574,7 +4688,7 @@ const DASHBOARD_DATA = {
     },
     "WC": {
       "name": "Western Cape",
-      "latest_date": "2026-06-30",
+      "latest_date": "2026-07-03",
       "vaccine_types": [
         {
           "type": "dolvet",
@@ -4831,6 +4945,7 @@ const DASHBOARD_DATA = {
     "Week 34 - Update on the state of FMD and vaccine rollouts in the dairy industry.pdf",
     "Week 35 - Update on the state of FMD and vaccine rollouts in the dairy industry.pdf",
     "Week 36 - Update on the state of FMD and vaccine rollouts in the dairy industry.pdf",
+    "Week 37 - Update on the state of FMD and vaccine rollouts in the dairy industry.pdf",
     "WhatsApp Image 2026-06-02 at 08.43.23.jpeg",
     "WhatsApp Image 2026-06-06 (FS DARDEA media release 5 June 2026, map dated 4 June 2026)",
     "WhatsApp Image 2026-06-23 at 12.52.00.jpeg",
@@ -4846,6 +4961,7 @@ const DASHBOARD_DATA = {
     "inbox/25032026_FMD Graphics.pdf",
     "inbox/260428FOOT_AND_MOUTH_PRESENTATION_TO_THE_PORTFOLIO_COMMITTEE_ON_AGRICULTURE_28_APRIL_2026.pdf",
     "inbox/AgriSA Summary and Outcomes - FMD Weekly Engagement/AgriSA_Summary and Outcomes_FMD Weekly Engagement_2026.05.11.pdf",
+    "inbox/Eastern Cape/EC FMD Update - 02.07.2026.pptx",
     "inbox/Eastern Cape/EC FMD Update - 28.05.2026.pptx",
     "inbox/Eastern Cape/EC FMD Update 07.05.2026.pptx",
     "inbox/Eastern Cape/Reporting of cases & vaccines - 03.06.2026.xlsx",
@@ -4868,6 +4984,7 @@ const DASHBOARD_DATA = {
     "inbox/Limpopo/FMD PCM 21 MAY 2026.zip/FMD PCM SAKELYS 20260521 REV0.pdf",
     "inbox/Limpopo/FMD PCM MEETING PACK 20260409 REV0.pdf",
     "inbox/Limpopo/FMD PCM MEETING PACK 20260507 REV1.pdf",
+    "inbox/Limpopo/FMD PCM MEETING PACK 20260706 REV0.pdf",
     "inbox/Limpopo/FMD PCM MEETINGPACK 20260611.pdf (minutes of 4 June 2026 meeting)",
     "inbox/Limpopo/Monday 18 May/WhatsApp Image 2026-05-18 at 13.36.35.jpeg",
     "inbox/Limpopo/WhatsApp Image 2026-05-18 at 13.32.24.jpeg",
