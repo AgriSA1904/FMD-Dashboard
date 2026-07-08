@@ -4079,3 +4079,129 @@ NW confirmed at **332** (no change needed).
 7. **Investigate:** GP OBP column-mapping discrepancy (session 18 flag — still unresolved)
 8. **GitHub push:** master_data.csv + FMD_Dashboard.html + change_log.md + memory_update.md
 
+---
+
+## 2026-07-07 (session 53) — EC 2 Jul JOC + LP Week 29/30 (via 6 Jul PCM pack) + MPO Week 37 (automated daily run, backlog catch-up)
+
+**Note on this log:** this file's last entry before today was session 20 (25 May 2026). Sessions 21 through 52 were tracked in `memory_update.md` but a corresponding `change_log.md` section was not appended for any of them — a gap of roughly six weeks in this log despite `memory_update.md` being kept current throughout. This run resumes `change_log.md` logging from today; the gap itself is flagged here rather than backfilled, since reconstructing 32 sessions' worth of detail from `memory_update.md` summaries alone risks introducing errors. Refer to `memory_update.md`'s dated entries for the intervening history.
+
+**Master grew from 2,218 to 2,318 rows (+100 new rows).**
+
+**Dashboard rebuilt:** Yes — `FMD_Dashboard.html` updated (220,756 bytes, **53 weekly points**, validation passed). **Snapshot date advanced from 29 June 2026 to 2 July 2026.**
+
+**GitHub push:** Yes (this session).
+
+### Context: automated run failure on 2026-07-06
+
+`scripts/ingest_task_log.txt` shows the unattended daily-run infrastructure attempted an ingest on 2026-07-06 at 08:50 but failed immediately with `Failed to authenticate. API Error: 401 Invalid authentication credentials`. No data was processed that day. This run (triggered 2026-07-07 via the Cowork scheduled task) covers the backlog that accumulated from 3 July to 7 July.
+
+### Inbox scan summary
+
+| Folder | Files checked | New since last run (3 Jul)? |
+|---|---|---|
+| inbox/Eastern Cape/ | `EC FMD Update - 02.07.2026.pptx` | **YES — ingested** |
+| inbox/Limpopo/ | `FMD PCM MEETING PACK 20260706 REV0.pdf` | **YES — ingested** |
+| inbox/MPO/ | `Week 37 - Update on the state of FMD and vaccine rollouts in the dairy industry.pdf` | **YES — ingested** |
+| inbox/AgriSA Summary and Outcomes - FMD Weekly Engagement/ | `AgriSA Weekly FMD Engagement Agenda_ 2026.07.08.pdf` | Reviewed — agenda only, no data rows |
+| inbox/Free State/, Gauteng/, Mpumalanga/, North West/, Western Cape/, ICC Reports/, Ministerial Updates/, RMIS/ | No new files | No |
+| Root — no new dated weekly folder | None | No new consolidated AgriSA weekly xlsx |
+
+### Sources processed
+
+| File | Effective Date | Source Org | Outcome |
+|---|---|---|---|
+| `inbox/Eastern Cape/EC FMD Update - 02.07.2026.pptx` | 2026-07-02 | EC-DRDAR | Ingested — 42 rows |
+| `inbox/Limpopo/FMD PCM MEETING PACK 20260706 REV0.pdf` | 2026-06-19 / 2026-06-21 / 2026-06-26 | LP-LDARD | Ingested — 42 rows |
+| `inbox/MPO/Week 37 - Update on the state of FMD and vaccine rollouts in the dairy industry.pdf` | 2026-07-03 | MPO | Ingested — 16 rows |
+
+### Key figures added
+
+**Eastern Cape (EC-DRDAR, 2 Jul 2026):** Source is a screen-recording capture of a Teams meeting with the deck embedded as 18 full-slide images (no extractable pptx text) — read via vision.
+
+| Metric | Previous (25 Jun) | New (2 Jul) | Change |
+|---|---|---|---|
+| Positive cases (confirmed outbreaks) | 411 | 423 | +12 |
+| Suspected cases | 235 | 234 | -1 (net reclassification) |
+| Animals vaccinated (all channels incl MPO) | 1,001,292 | 1,026,694 | +25,402 |
+| Vaccine received (cumulative) | 1,117,680 | 1,064,230 | See note below |
+| Vaccine balance | 116,388 | 37,536 | — |
+| Vaccine utilisation | 89.5% | 96.4% | +6.9pp |
+
+Note: EC's "vaccine received" figure moved from 1,117,680 (25 Jun) to 1,064,230 (2 Jul), i.e. down. The 2 Jul slide presents an explicit 11-batch cumulative allocation table (dated batches Jan-Jun 2026) totalling 1,064,230, which appears to be a cleaner recount rather than a decrease in actual stock — both figures are retained in master with source context rather than one overwriting the other, per project convention. Each of the 11 historic batches was logged with its own batch-date `effective_date` for provenance — the first time EC has shown dated batch-level history rather than a single running total.
+
+Per-vaccine doses administered (all channels incl MPO): Bioaftogen 427,820; DolVet 595,447; ARC-OVI 2,177; BVI 1,250. District breakdown captured for all 6 JOC-tracked districts (Alfred Nzo, Amathole, Chris Hani, Joe Gqabi, OR Tambo, Sarah Baartman) plus the MPO dairy-sector contribution (311,449, embedded within the provincial total, not additional to it). Sector split: Communal 477,923 (46.5%) / Commercial 548,771 (53.5%); estimated cattle population 4,595,393; vaccine coverage 22.3%.
+
+**Limpopo (LP-LDARD, via the 6 Jul PCM meeting pack):** the pack is 97 pages but its data ceiling is 26 June 2026 — the 6 Jul meeting's own minutes are not included, only its agenda; the pack instead contains the prior (22 Jun) meeting's minutes plus two LDARD dashboard slide decks (Week 29 "as on 19/21 Jun" and Week 30 "as on 26 Jun").
+
+| Metric | Week 29 (19/21 Jun) | Week 30 (26 Jun) | Change |
+|---|---|---|---|
+| Positive cases | 84 | 95 | +11 |
+| Suspected cases | 96 | 96 | 0 |
+| Negative cases | 69 | 105 | +36 |
+| Pending cases | 251 | 219 | -32 |
+| Vaccine received (cumulative) | 775,660 | 775,660 | 0 (no new consignment reflected) |
+| Animals vaccinated | 495,102 | 520,185 | +25,083 |
+| Vaccine wastage | 2,261 (0.45%) | 2,130 (0.41%) | — |
+
+Full 5-district breakdown captured for both weeks (Capricorn, Mopani, Sekhukhune, Vhembe, Waterberg).
+
+**MPO Week 37 (snapshot 3 Jul 2026):** national dairy cows vaccinated (1st dose) 958,091, up from 935,918 at Week 36 (+22,173, entirely from Western Cape). Western Cape has now **completed** first-dose dairy vaccination at 239,000 (up from 216,827). Eastern Cape unchanged at 307,275 first / 10,328 booster, with one new suspected dairy case in Nelson Mandela District and 8 farms on the KZN border placed under EC surveillance. National booster total unchanged at 250,328. Nationally, 171 dairy farms have reported FMD cases, of which 124 remain active.
+
+### Data quality flags
+
+1. **`change_log.md` gap:** sessions 21-52 (26 May – 3 Jul 2026) were not logged here despite being tracked in `memory_update.md`. See note above. Recommend checking why the append step was skipped in the automated pipeline for six weeks.
+2. **Automated run authentication failure (2026-07-06):** the daily unattended run failed with a 401 error before any inbox scan occurred. Recommend checking the CLI credentials referenced in `scripts/ingest_prompt.txt` / the automation's auth configuration before relying on the unattended path again — this run had to be performed via the Cowork scheduled task instead.
+3. **EC vaccine received discrepancy (25 Jun 1,117,680 vs 2 Jul 1,064,230):** both figures retained; the 2 Jul cumulative batch table is treated as the more granular source but not used to overwrite or supersede the 25 Jun total, since the two may reflect different scopes (e.g. inclusion/exclusion of specific batches). Flagged for confirmation with EC-DRDAR.
+4. **LP DolVet 150,000 doses — still unconfirmed.** RMIS/ICC verbally flagged on 22 Jun 2026 that Limpopo would receive an additional 150,000 doses "within the following few days," plus a "previous batch of 164,000" — neither figure appears in the Week 30 (26 Jun) received total, which is unchanged from Week 29. This item has now been outstanding since May 2026; recommend explicit follow-up with LP-LDARD.
+5. **LP internal inconsistencies (source's own data, not an ingest error):** Week 30 "Closed" cases shown as both 9 (headline dashboard table) and 8 (weekly status-change table) for the same 26 Jun cut; a "Key Numbers at a Glance" summary tile on the Week 30 slide (517/89/97/241/+11) conflicts with the main body of the same slide (524/95/96/9/219) and appears to be a stale, unsynced tile; sector percentage rounding differs between two slides for the same data (Commercial 52%/Communal 40% vs 51%/41%). All captured in row `notes`; 524/95/96/9/219 treated as authoritative per the clean headline table.
+6. **LP Biogenesis 99,020 vs 100,020 discrepancy (carried from earlier sessions):** the 6 Jul pack only shows 100,020 and does not reference or resolve the earlier LDARD-vs-AgriSA-NAT discrepancy.
+
+### Action items for next run
+
+1. **Watch for:** actual 6 July 2026 LP PCM meeting minutes (this pack only had the agenda for that date) — needed to close out the DolVet 150,000 question.
+2. **Watch for:** 8 July FMD Weekly Engagement outcomes (agenda already received; outcomes pending).
+3. **Watch for:** Section 9 gazette — still not published as at this run.
+4. **Watch for:** MPO Week 38 dairy update.
+5. **Watch for:** consolidated AgriSA weekly xlsx — now roughly 95+ days outstanding; this remains the single largest gap in the national headline reconciliation.
+6. **Investigate:** why the automated daily-run pipeline authenticated successfully through 2026-07-03 but failed from 2026-07-06 onward.
+7. **Investigate:** EC 25 Jun vs 2 Jul vaccine-received discrepancy (1,117,680 vs 1,064,230) with EC-DRDAR.
+8. **Investigate:** whether `change_log.md`'s session 21-52 gap should be backfilled from `memory_update.md` in a dedicated cleanup pass.
+9. **GitHub push:** master_data.csv + FMD_Dashboard.html + change_log.md + memory_update.md + scripts/append_session53.py
+
+
+---
+
+## Session 54 -- 8 July 2026 (NW-RPO 7 Jul JIC update)
+
+Master: 2,353 rows (+35, all NW-RPO). Dashboard: 3 July 2026 (54 weekly points; 220,966 bytes). Validation passed.
+
+Sources processed:
+
+File | Source org | Effective date | Rows added
+---|---|---|---
+07 JULY 2026- RPO JIC FMD UPDATE_.pdf | NW-RPO | 2026-07-03 | 35
+
+Inbox scan: this was the only file newer than master_data.csv (mtime 2026-07-07). All other provincial, ICC, ministerial, MPO, RMIS and AgriSA-engagement folders held no files newer than the last run.
+
+Key figures added (North West, week 26 Jun-3 Jul 2026):
+
+Metric | Previous (25 Jun) | New (3 Jul) | Change
+---|---|---|---
+Positive cases (confirmed outbreaks) | 421 | 445 | +24
+New cases in week | 7 | 24 | --
+Vaccine received (cumulative) | 1,021,140 | 1,271,140 | +250,000 (new Aftodoll 09AFT26 batch)
+Animals vaccinated (internal) | 892,119 | 892,119 | 0 (flagged possibly stale)
+Animals vaccinated (FMD Portal) | 917,943 | 942,566 | +24,623
+
+New batch: Aftodoll 09AFT26, 250,000 doses received, 0 administered as at 3 Jul; drives the cumulative received to 1,271,140 and supersedes the 18 Jun total of 1,021,140.
+
+Per-batch doses administered updated: Aftodoll 03AFT25 Gov 217,597 -> 219,928; Aftodoll 03AFT25 Feedlot 77,734 -> 81,346; Aftodoll 05AFT26 295,741 -> 299,116; Bioaftogen 1186 (11 Jun) 68,260 -> 86,241. Others unchanged.
+
+Data quality flags:
+1. NW internal animals-vaccinated (892,119) identical to the 30 Jun figure despite higher per-batch usage (page-10 usage total 919,318) -- carried as a flag; recorded both internal and FMD Portal (942,566).
+2. Page-10 usage total shows 919,318 but the per-batch sum is 919,418 (100-dose source rounding); noted in row detail, not corrected.
+3. Aftodoll 05AFT26 allocation shown as 323,400 on the summary table but 332,400 on the detail slides; 332,400 treated as correct (consistent with prior sessions).
+
+National (programme sources) after this run: received 7,800,322; animals vaccinated 5,358,243; positive 2,575; suspected 965.
+
+GitHub push: attempted this session.
