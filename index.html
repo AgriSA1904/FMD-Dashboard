@@ -721,7 +721,7 @@
 
 <script>
 const DASHBOARD_DATA = {
-  "snapshot_date": "2026-07-03",
+  "snapshot_date": "2026-07-07",
   "build_date": "2026-07-08",
   "provinces": [
     {
@@ -787,14 +787,14 @@ const DASHBOARD_DATA = {
     {
       "code": "MP",
       "name": "Mpumalanga",
-      "as_of": "2026-06-22",
+      "as_of": "2026-07-07",
       "herd": 1177420,
-      "positive": 261,
-      "suspected": 129,
+      "positive": 259,
+      "suspected": 127,
       "negative": 0,
       "pending": 0,
       "received": 747000,
-      "vaccinated": 344629
+      "vaccinated": 654409
     },
     {
       "code": "NW",
@@ -1265,6 +1265,14 @@ const DASHBOARD_DATA = {
       "positive": 2575,
       "suspected": 965,
       "pending": null
+    },
+    {
+      "date": "2026-07-07",
+      "received": 7800322,
+      "administered": 5668023,
+      "positive": 2573,
+      "suspected": 963,
+      "pending": null
     }
   ],
   "sources": {
@@ -1275,20 +1283,20 @@ const DASHBOARD_DATA = {
     "unallocated": 358480
   },
   "national": {
-    "positive": 2575,
-    "suspected": 965,
+    "positive": 2573,
+    "suspected": 963,
     "negative": 120,
     "pending": 219,
     "procured": 13500000,
     "distributed": 7800322,
     "received": 7800322,
-    "administered": 5358243,
+    "administered": 5668023,
     "herd_cattle": 12496199,
-    "balance": 2442079,
-    "delta_received": 250000,
-    "delta_distributed": 250000,
-    "delta_administered": 0,
-    "delta_positive": 24
+    "balance": 2132299,
+    "delta_received": 0,
+    "delta_distributed": 0,
+    "delta_administered": 309780,
+    "delta_positive": -2
   },
   "mpo": {
     "weekly": [
@@ -2800,12 +2808,12 @@ const DASHBOARD_DATA = {
     {
       "code": "MP",
       "name": "Mpumalanga",
-      "joc": 344629,
-      "joc_date": "2026-07-03",
+      "joc": 654409,
+      "joc_date": "2026-07-07",
       "ministerial": 465105,
       "ministerial_date": "2026-06-04",
-      "diff": -120476,
-      "flag": "critical"
+      "diff": 189304,
+      "flag": null
     },
     {
       "code": "NW",
@@ -2886,14 +2894,6 @@ const DASHBOARD_DATA = {
       "detail": "Ministerial (2026-06-04) reported 1,163,193 cattle vaccinated; current JOC/AgriSA figure is 648,609 \u2014 gap of 514,584. Impossible if both are cumulative.",
       "action": "Reconcile AgriSA provincial return against ministerial figure. Determine whether ministerial count includes additional species (pigs, sheep) beyond cattle only.",
       "owner": "KwaZulu-Natal AgriSA affiliate"
-    },
-    {
-      "severity": "critical",
-      "province": "MP",
-      "title": "Mpumalanga: JOC figure lower than ministerial briefing",
-      "detail": "Ministerial (2026-06-04) reported 465,105 cattle vaccinated; current JOC/AgriSA figure is 344,629 \u2014 gap of 120,476. Impossible if both are cumulative.",
-      "action": "Reconcile AgriSA provincial return against ministerial figure. Determine whether ministerial count includes additional species (pigs, sheep) beyond cattle only.",
-      "owner": "Mpumalanga AgriSA affiliate"
     },
     {
       "severity": "critical",
@@ -4147,7 +4147,7 @@ const DASHBOARD_DATA = {
     },
     "MP": {
       "name": "Mpumalanga",
-      "latest_date": "2026-07-03",
+      "latest_date": "2026-07-07",
       "vaccine_types": [
         {
           "type": "bioaftogen",
@@ -4246,22 +4246,17 @@ const DASHBOARD_DATA = {
         {
           "category": "dairy_vaccinated",
           "label": "Dairy cattle",
-          "value": 9341,
-          "date": "2026-04-28"
+          "value": 25249,
+          "date": "2026-07-07"
+        },
+        {
+          "category": "pigs_vaccinated",
+          "label": "Pigs",
+          "value": 2958,
+          "date": "2026-07-07"
         }
       ],
       "districts": [
-        {
-          "name": "Gert Sibande",
-          "date": "2026-05-17",
-          "vaccinated": 132600,
-          "cases": null,
-          "suspected": null,
-          "pending": null,
-          "outbreaks": null,
-          "negative": null,
-          "notes": "MP district Gert Sibande as at 17 May 2026. 137 outbreaks / 78 suspects (dominant district). Municipalities: Chief Albert Luthuli 31661 / Msukaligwa 14898 / Govan Mbeki 16144 / Dipaleseng 14178 / Lekwa 24781 / Dr Pixley kaIsaka Seme 16717 / Mkhondo 14221."
-        },
         {
           "name": "Ehlanzeni",
           "date": "2026-05-17",
@@ -4274,15 +4269,191 @@ const DASHBOARD_DATA = {
           "notes": "MP district Ehlanzeni as at 17 May 2026. 24 outbreaks / 12 suspects. Municipalities: Mbombela 17924 / Nkomazi 27501 / Bushbuckridge 44205 / Thaba Chweu 6757."
         },
         {
-          "name": "Nkangala",
-          "date": "2026-05-17",
-          "vaccinated": 83879,
-          "cases": null,
+          "name": "Gert Sibande - Chief Albert Luthuli",
+          "date": "2026-07-07",
+          "vaccinated": 67018,
+          "cases": 19,
           "suspected": null,
           "pending": null,
           "outbreaks": null,
           "negative": null,
-          "notes": "MP district Nkangala as at 17 May 2026. 70 outbreaks / 31 suspects. Municipalities: Dr JS Moroka 9723 / Thembisile Hani 12285 / Victor Khanye 4577 / Emalahleni 8586 / Steve Tshwete 37454 / Emakhazeni 11254."
+          "notes": "Gert Sibande - Chief Albert Luthuli. Cumulative confirmed outbreaks. MP JOC 7 Jul 2026."
+        },
+        {
+          "name": "Nkangala - Steve Tshwete",
+          "date": "2026-07-07",
+          "vaccinated": 62451,
+          "cases": 35,
+          "suspected": null,
+          "pending": null,
+          "outbreaks": null,
+          "negative": null,
+          "notes": "Nkangala - Steve Tshwete. Cumulative confirmed outbreaks. MP JOC 7 Jul 2026."
+        },
+        {
+          "name": "Ehlanzeni South - Nkomazi",
+          "date": "2026-07-07",
+          "vaccinated": 62155,
+          "cases": 28,
+          "suspected": null,
+          "pending": null,
+          "outbreaks": null,
+          "negative": null,
+          "notes": "Ehlanzeni South - Nkomazi. Cumulative confirmed outbreaks. MP JOC 7 Jul 2026."
+        },
+        {
+          "name": "Ehlanzeni North - Bushbuckridge",
+          "date": "2026-07-07",
+          "vaccinated": 53178,
+          "cases": 1,
+          "suspected": null,
+          "pending": null,
+          "outbreaks": null,
+          "negative": null,
+          "notes": "Ehlanzeni North - Bushbuckridge. Cumulative confirmed outbreaks. MP JOC 7 Jul 2026."
+        },
+        {
+          "name": "Gert Sibande - Lekwa",
+          "date": "2026-07-07",
+          "vaccinated": 45349,
+          "cases": 31,
+          "suspected": null,
+          "pending": null,
+          "outbreaks": null,
+          "negative": null,
+          "notes": "Gert Sibande - Lekwa. Cumulative confirmed outbreaks. MP JOC 7 Jul 2026."
+        },
+        {
+          "name": "Nkangala - Emakhazeni",
+          "date": "2026-07-07",
+          "vaccinated": 42243,
+          "cases": 11,
+          "suspected": null,
+          "pending": null,
+          "outbreaks": null,
+          "negative": null,
+          "notes": "Nkangala - Emakhazeni. Cumulative confirmed outbreaks. MP JOC 7 Jul 2026."
+        },
+        {
+          "name": "Gert Sibande - Msukaligwa",
+          "date": "2026-07-07",
+          "vaccinated": 41153,
+          "cases": 20,
+          "suspected": null,
+          "pending": null,
+          "outbreaks": null,
+          "negative": null,
+          "notes": "Gert Sibande - Msukaligwa. Cumulative confirmed outbreaks. MP JOC 7 Jul 2026."
+        },
+        {
+          "name": "Gert Sibande - Mkhondo",
+          "date": "2026-07-07",
+          "vaccinated": 35558,
+          "cases": 14,
+          "suspected": null,
+          "pending": null,
+          "outbreaks": null,
+          "negative": null,
+          "notes": "Gert Sibande - Mkhondo. Cumulative confirmed outbreaks. MP JOC 7 Jul 2026."
+        },
+        {
+          "name": "Gert Sibande - Dipaleseng",
+          "date": "2026-07-07",
+          "vaccinated": 34484,
+          "cases": 42,
+          "suspected": null,
+          "pending": null,
+          "outbreaks": null,
+          "negative": null,
+          "notes": "Gert Sibande - Dipaleseng. Cumulative confirmed outbreaks. MP JOC 7 Jul 2026."
+        },
+        {
+          "name": "Gert Sibande - Govan Mbeki",
+          "date": "2026-07-07",
+          "vaccinated": 34447,
+          "cases": 14,
+          "suspected": null,
+          "pending": null,
+          "outbreaks": null,
+          "negative": null,
+          "notes": "Gert Sibande - Govan Mbeki. Cumulative confirmed outbreaks. MP JOC 7 Jul 2026."
+        },
+        {
+          "name": "Gert Sibande - Dr Pixley kalsaka Seme",
+          "date": "2026-07-07",
+          "vaccinated": 33168,
+          "cases": 10,
+          "suspected": null,
+          "pending": null,
+          "outbreaks": null,
+          "negative": null,
+          "notes": "Gert Sibande - Dr Pixley kalsaka Seme. Cumulative confirmed outbreaks. MP JOC 7 Jul 2026."
+        },
+        {
+          "name": "Ehlanzeni North - Thaba Chweu",
+          "date": "2026-07-07",
+          "vaccinated": 32303,
+          "cases": 1,
+          "suspected": null,
+          "pending": null,
+          "outbreaks": null,
+          "negative": null,
+          "notes": "Ehlanzeni North - Thaba Chweu. Cumulative confirmed outbreaks. MP JOC 7 Jul 2026."
+        },
+        {
+          "name": "Ehlanzeni South - City of Mbombela",
+          "date": "2026-07-07",
+          "vaccinated": 27660,
+          "cases": 1,
+          "suspected": null,
+          "pending": null,
+          "outbreaks": null,
+          "negative": null,
+          "notes": "Ehlanzeni South - City of Mbombela. Cumulative confirmed outbreaks. MP JOC 7 Jul 2026."
+        },
+        {
+          "name": "Nkangala - Thembisile Hani",
+          "date": "2026-07-07",
+          "vaccinated": 23286,
+          "cases": 8,
+          "suspected": null,
+          "pending": null,
+          "outbreaks": null,
+          "negative": null,
+          "notes": "Nkangala - Thembisile Hani. Cumulative confirmed outbreaks. MP JOC 7 Jul 2026."
+        },
+        {
+          "name": "Nkangala - Emalahleni",
+          "date": "2026-07-07",
+          "vaccinated": 22731,
+          "cases": 8,
+          "suspected": null,
+          "pending": null,
+          "outbreaks": null,
+          "negative": null,
+          "notes": "Nkangala - Emalahleni. Cumulative confirmed outbreaks. MP JOC 7 Jul 2026."
+        },
+        {
+          "name": "Nkangala - Dr JS Moroka",
+          "date": "2026-07-07",
+          "vaccinated": 19726,
+          "cases": 2,
+          "suspected": null,
+          "pending": null,
+          "outbreaks": null,
+          "negative": null,
+          "notes": "Nkangala - Dr JS Moroka. Cumulative confirmed outbreaks. MP JOC 7 Jul 2026."
+        },
+        {
+          "name": "Nkangala - Victor Khanye",
+          "date": "2026-07-07",
+          "vaccinated": 17499,
+          "cases": 14,
+          "suspected": null,
+          "pending": null,
+          "outbreaks": null,
+          "negative": null,
+          "notes": "Nkangala - Victor Khanye. Cumulative confirmed outbreaks. MP JOC 7 Jul 2026."
         },
         {
           "name": "MP-DVS (Dr Cele) 19 May 2026",
@@ -4294,23 +4465,67 @@ const DASHBOARD_DATA = {
           "outbreaks": null,
           "negative": null,
           "notes": "MP-DVS (Dr Cele) 19 May 2026. Ehlanzeni - Bushbuckridge: 0 confirmed outbreaks."
+        },
+        {
+          "name": "Gert Sibande",
+          "date": "2026-07-07",
+          "vaccinated": null,
+          "cases": null,
+          "suspected": 93,
+          "pending": null,
+          "outbreaks": null,
+          "negative": null,
+          "notes": "District: Gert Sibande. MP JOC 7 Jul 2026."
+        },
+        {
+          "name": "Nkangala",
+          "date": "2026-07-07",
+          "vaccinated": null,
+          "cases": null,
+          "suspected": 31,
+          "pending": null,
+          "outbreaks": null,
+          "negative": null,
+          "notes": "District: Nkangala. MP JOC 7 Jul 2026."
+        },
+        {
+          "name": "Ehlanzeni North",
+          "date": "2026-07-07",
+          "vaccinated": null,
+          "cases": null,
+          "suspected": 2,
+          "pending": null,
+          "outbreaks": null,
+          "negative": null,
+          "notes": "District: Ehlanzeni North. MP JOC 7 Jul 2026."
+        },
+        {
+          "name": "Ehlanzeni South",
+          "date": "2026-07-07",
+          "vaccinated": null,
+          "cases": null,
+          "suspected": 1,
+          "pending": null,
+          "outbreaks": null,
+          "negative": null,
+          "notes": "District: Ehlanzeni South. MP JOC 7 Jul 2026."
         }
       ],
       "extra": {
         "vaccine_wastage": {
           "label": "Vaccine wastage",
-          "value": 4843,
-          "date": "2026-06-22"
+          "value": 4490,
+          "date": "2026-07-07"
         },
         "controlled_slaughter": {
           "label": "Controlled slaughter",
-          "value": 24291,
-          "date": "2026-05-17"
+          "value": 33222,
+          "date": "2026-07-07"
         },
         "vaccine_balance": {
           "label": "Vaccine balance on hand",
-          "value": 164406,
-          "date": "2026-06-22"
+          "value": 89867,
+          "date": "2026-07-07"
         }
       },
       "sources": [
@@ -4938,6 +5153,7 @@ const DASHBOARD_DATA = {
     "MP FMD outbreak Update VWG 2026 06 22.pptx",
     "MPO Info/Copy of FMD Vaccination Data 17 April 2026.xlsx",
     "MPO direct communication \u2014 15 May 2026",
+    "Mpumalanga Provincial JOC 07 July 2026.pdf",
     "NC Image Jun 10 2026 10_05_22 PM.png",
     "NC Image Jun 16 2026 12_46_38 AM.png",
     "PRESENTATION TO PORTFOLIO COMMITTEE 9 JUNE Final ((003).pdf",

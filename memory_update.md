@@ -1,19 +1,22 @@
-As at 2026-07-08 (session 54 -- NW-RPO 7 Jul JIC update):
-- Master: **2,353 rows** (+35: all NW-RPO, week 26 Jun-3 Jul 2026)
-- Dashboard snapshot: **3 July 2026** (54 weekly points; 220,966 bytes; validation passed)
-- Dashboard rebuilt: Yes -- North West now current to 3 Jul 2026.
+As at 2026-07-08 (session 55 -- MP-DVS 7 Jul provincial JOC):
+- Master: **2,414 rows** (+61: all MP-DVS, 17th FMD JOC 7 Jul 2026)
+- Dashboard snapshot: **7 July 2026** (55 weekly points; 227,296 bytes; validation passed)
+- Dashboard rebuilt: Yes -- Mpumalanga now current to 7 Jul 2026.
+- Prior run same day (session 54) ingested NW-RPO 7 Jul (+35 rows).
 
-**New data ingested (session 54):**
-- `07 JULY 2026- RPO JIC FMD UPDATE_.pdf` (NW-RPO, effective 3 Jul 2026): 35 rows. 18-page slide pack; text extracted with pypdf (charts/maps are images and were not needed for the figures).
-  - positive_cases 445 confirmed outbreaks (up from 421 at 25 Jun, +24). 421 reported to WOAH; 24 still to report. Regions: DKK 88, Bojanala 79, DRSM 188, NMM 90. Full 20-office breakdown captured.
-  - new_cases_week 24 (26 Jun-3 Jul): Kagisano Molopo 15, Naledi 2, Greater Taung 2, Mamusa 1, Ratlou 2, Maquassi Hills 1, Madibeng 1. All PCR tissue/swab except Madibeng (serology NSP).
-  - Vaccine received (cumulative) now 1,271,140 -- up from 1,021,140, driven by a new Aftodoll 09AFT26 batch of 250,000 (0 used so far). Supersedes the 18 Jun cumulative of 1,021,140.
-  - Doses administered per batch: OVR 1,291; Bioaftogen 1185 99,678; Aftodoll 15AFT25 Gov 47,712; Aftodoll 15AFT25 Emergency 24,171; Bioaftogen 1186 first 59,935; Aftodoll 03AFT25 Gov 219,928; Aftodoll 03AFT25 Feedlot 81,346; Aftodoll 05AFT26 299,116; Bioaftogen 1186 11 Jun 86,241. Page-10 usage total 919,318; per-batch sum 919,418 (source rounding, 100 diff, noted).
-  - Animals vaccinated: internal spreadsheet 892,119 (92pct with spillages) -- unchanged from 30 Jun, flagged as possibly stale; FMD Portal 942,566 (74pct of 1,271,140). Vaccine coverage 42pct against census of 2,196,694.
-  - Update note: the Section 9 Contingency Plan for FMD has been approved by the Minister and awaits gazetting before it can be used.
+**New data ingested (session 55):**
+- `Mpumalanga Provincial JOC 07 July 2026.pdf` (MP-DVS, effective 7 Jul 2026): 61 rows. 20-page JOC minutes with an embedded slide deck; narrative read via pypdf, all data tables read via page-image vision (slides are images, no extractable text).
+  - Outbreaks 259 confirmed (down 2 from 261 at 22 Jun, reclassification). By district: Gert Sibande 150, Nkangala 78, Ehlanzeni South 29, Ehlanzeni North 2. Suspects 127 (Gert Sibande 93, Nkangala 31, Ehlanzeni North 2, Ehlanzeni South 1).
+  - New this period: 1 confirmed outbreak, Kromdraai (Nkangala). Thaba Chweu 6 of 7 blood samples NSP-positive (Feb samples, PCR negative).
+  - Cattle vaccinated cumulative 654,409 (Commercial 343,115 / 1,363 owners; Communal 311,294 / 22,542 owners). Large but genuine rise from 344,537 at 19 May; corroborated by doses administered 653,374. Full 17-municipality breakdown captured for outbreaks and cattle vaccinated.
+  - Vaccine: total allocation 747,000 (unchanged from 22 Jun); administered 653,374 (87pct); wastage 4,490 (0.6pct); in-hand 89,867 (of which Bioaftogen 3 63,752 still being deployed, plus 20,000 storage). Per-batch usage: ARC 1,805; Bioaftogen 1 97,554; Aftodoll 1 93,972; Bioaftogen 2 94,061; Aftodoll 2 138,148; Aftodoll 3 123,410; Bioaftogen 3 103,228.
+  - Special categories: sheep 1,391; goats 493; pigs 2,958; dairy 25,249; stud 21,085; feedlot 12,838.
+  - Controlled slaughter 33,222 at 3 designated abattoirs (Karan Beef, Volkrust Meat Co, Ramburg Beef); 2 new abattoir applications.
+  - RPO note: 61,000 doses received, 27,700 orders still waiting; OBP delivery slow; private sector under-utilised.
+  - No confirmed FMD in small stock. Next JOC 21 July 2026.
 
 **National (programme sources only) as at this run:**
-- Doses received 7,800,322; animals vaccinated 5,358,243; positive cases 2,575; suspected cases 965.
+- Doses received 7,800,322; animals vaccinated 5,668,023; positive cases 2,573; suspected cases 963.
 
 **Per-province latest figures (8 July 2026):**
 
@@ -24,20 +27,18 @@ As at 2026-07-08 (session 54 -- NW-RPO 7 Jul JIC update):
 | GP | 643,300 | 405,404 | 306 | 24 Jun |
 | KZN | 1,329,112 | 648,609 (UNOFFICIAL) | 336 | 9 Jun |
 | LP | 775,660 | 520,185 | 95 | 26 Jun |
-| MP | 747,000 | 344,629 | 261 | 22 Jun |
+| MP | 747,000 | 654,409 | 259 | 7 Jul |
 | NW | 1,271,140 | 892,119 (internal) | 445 | 3 Jul |
 | NC | 200,600 | 114,443 | 22 | 26 Jun |
 | WC | 497,100 | 299,969 | 39 | 29 Jun |
 
 **Parked/outstanding (carry forward):**
-- NW internal spreadsheet animals-vaccinated figure (892,119) unchanged from 30 Jun -- confirm whether stale; page-10 usage total is 919,318 and FMD Portal is 942,566.
-- NW new Aftodoll 09AFT26 batch (250,000) received but 0 administered as at 3 Jul -- track uptake next update.
-- 8 July FMD Weekly Engagement outcomes (agenda already received; outcomes pending).
-- Section 9 / Section 10 gazette: Section 9 Contingency Plan approved by Minister, awaiting gazetting.
-- Consolidated AgriSA weekly xlsx: ~100+ days outstanding. Longstanding gap in national reconciliation.
-- KZN official JOC documents outstanding; current figures UNOFFICIAL and now stale (9 Jun).
-- KZN vaccine shortage: 1,500,000 more doses requested urgently.
-- LP DolVet 150,000 receipt -- still unconfirmed as at 26 Jun.
-- LP Biogenesis 99,020 vs 100,020 discrepancy -- unresolved.
-- GP OBP distributed vs administered column-mapping concern (carried).
-- Automated daily-run auth failure (401) on 2026-07-06 -- check CLI credentials before relying on the unattended run.
+- Two other files newer than master were NOT ingested this session (user asked for Mpumalanga only): `inbox/ICC Reports/MEDIA STATEMENT NEW FMD CONTROL MEASURES...pdf` and `inbox/RMIS/rmis_industry_allocated_fmd_vaccine_distribution_data_2026-07-08.xlsx`. Ingest next run.
+- MP cattle-vaccinated jump (344k to 654k since mid-May) is genuine per doses administered, but worth a sanity note to the ICC given the size.
+- MP outbreaks dropped 261 to 259 (reclassification) -- confirm.
+- NW internal animals-vaccinated (892,119) unchanged from 30 Jun -- possibly stale.
+- 8 July FMD Weekly Engagement outcomes (agenda received; outcomes pending).
+- Section 9 gazette: approved by Minister (per NW and MP updates), awaiting gazetting.
+- Consolidated AgriSA weekly xlsx: ~100+ days outstanding.
+- KZN official JOC documents outstanding; figures UNOFFICIAL and stale (9 Jun); 1.5m more doses requested.
+- LP DolVet 150,000 receipt still unconfirmed; LP Biogenesis 99,020 vs 100,020 discrepancy unresolved.

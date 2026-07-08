@@ -4205,3 +4205,41 @@ Data quality flags:
 National (programme sources) after this run: received 7,800,322; animals vaccinated 5,358,243; positive 2,575; suspected 965.
 
 GitHub push: attempted this session.
+
+---
+
+## Session 55 -- 8 July 2026 (MP-DVS 7 Jul provincial JOC)
+
+Master: 2,414 rows (+61, all MP-DVS). Dashboard: 7 July 2026 (55 weekly points; 227,296 bytes). Validation passed.
+
+Sources processed:
+
+File | Source org | Effective date | Rows added
+---|---|---|---
+Mpumalanga Provincial JOC 07 July 2026.pdf | MP-DVS | 2026-07-07 | 61
+
+Extraction note: the JOC pack is minutes plus an embedded slide deck. Narrative pages read with pypdf; all quantitative slides are page images and were read via vision (page renders at 2.2x).
+
+Key figures (Mpumalanga, 7 Jul 2026):
+
+Metric | Previous (22 Jun) | New (7 Jul) | Change
+---|---|---|---
+Confirmed outbreaks | 261 | 259 | -2 (reclassification)
+Suspected cases | 129 | 127 | -2
+Cattle vaccinated (cumulative) | 344,629 (3 Jun) | 654,409 | +309,780
+Doses administered | -- | 653,374 | 87pct of 747,000
+Vaccine balance in hand | 164,406 | 89,867 | --
+Vaccine wastage | 4,843 | 4,490 | --
+
+District outbreaks: Gert Sibande 150, Nkangala 78, Ehlanzeni South 29, Ehlanzeni North 2. Full 17-municipality breakdown captured for outbreaks and cattle vaccinated. Special categories: sheep 1,391; goats 493; pigs 2,958; dairy 25,249; stud 21,085; feedlot 12,838. Controlled slaughter 33,222.
+
+Data quality flags:
+1. Cattle-vaccinated near-doubling since mid-May is genuine (commercial 149,908 to 343,115; communal 194,629 to 311,294) and corroborated by doses administered (653,374). Flagged for ICC awareness given the magnitude.
+2. Cumulative outbreaks fell 261 to 259 -- treated as reclassification, not an ingest error.
+3. New Aftodoll 3 and Bioaftogen 3 batch usage recorded under new vaccine_type codes aftodoll3 / bioaftogen_biv3 for MP.
+
+National (programme sources) after this run: received 7,800,322; animals vaccinated 5,668,023; positive 2,573; suspected 963.
+
+Not ingested this run (per user scope -- Mpumalanga only; carry forward): ICC media statement on new FMD control measures, and RMIS industry export dated 2026-07-08.
+
+GitHub push: attempted this session.
