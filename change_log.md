@@ -4243,3 +4243,90 @@ National (programme sources) after this run: received 7,800,322; animals vaccina
 Not ingested this run (per user scope -- Mpumalanga only; carry forward): ICC media statement on new FMD control measures, and RMIS industry export dated 2026-07-08.
 
 GitHub push: attempted this session.
+
+---
+
+## Session 56 -- 13 July 2026 (EC-DRDAR 9 Jul JOC; RMIS industry export 8 Jul; ICC/Ministerial media statement reviewed; AgriSA Weekly Engagement outcomes reviewed)
+
+Master: 2,414 rows -> **2,550 rows** (+136: 30 EC-DRDAR, 106 RMIS). Dashboard: **9 July 2026** snapshot (56 weekly points; 239,130 bytes). Validation passed.
+
+Context: this run closes a gap. The local unattended daily-run automation (`scripts/ingest_prompt.txt` / `scripts/ingest_task_log.txt`) has been failing continuously with `401 Invalid authentication credentials` on every attempt from 2026-07-06 through 2026-07-13 (confirmed 8 separate failed runs in the log, most recently twice on 13 July at 07:40 and 08:00). No data has been ingested via that path since session 53. This Cowork scheduled-task run is therefore the first successful ingest since session 55 (8 July).
+
+### Inbox scan summary
+
+Files found newer than `master_data.csv` (mtime 8 Jul 08:42), plus two items carried forward from session 55's parked list:
+
+File | Folder | New this run? | Outcome
+---|---|---|---
+`EC FMD Update - 09.07.2026.pptx` | Eastern Cape | Yes | Ingested -- 30 rows
+`rmis_industry_allocated_fmd_vaccine_distribution_data_2026-07-08.xlsx` | RMIS | Carried from session 55 | Ingested -- 106 rows
+`MEDIA STATEMENT NEW FMD CONTROL MEASURES...pdf` | ICC Reports | Carried from session 55 | Reviewed -- narrative only (Ministerial statement dated 25 Jun on the new Section 9-replacement control framework); no data rows
+`AgriSA_ FMD Engagement Outcomes` (zip; contained the 8 Jul outcomes PDF + 15 Jul agenda PDF) | AgriSA Summary and Outcomes | Yes | Reviewed -- narrative only; no data rows
+All other provincial, ICC, MPO, Ministerial and dated-root folders | -- | No | No new files
+
+### Eastern Cape (EC-DRDAR, 9 Jul 2026 provincial JOC)
+
+Source is again a Teams-meeting screen recording with the deck embedded as 10 full-slide images (no extractable pptx text); read via vision.
+
+Metric | Previous (2 Jul) | New (9 Jul) | Change
+---|---|---|---
+Positive cases (confirmed outbreaks) | 423 | 434 | +11
+Suspected cases | 234 | 233 | -1 (net; source's own header-row arithmetic is internally inconsistent)
+Animals vaccinated (all channels incl MPO, dose-count) | 1,026,694 | 1,037,900 | +11,206
+Doses administered -- Biogenesis | 427,820 | 436,282 | +8,462
+Doses administered -- DolVet | 595,447 | 598,191 | +2,744
+Doses administered -- ARC-OVI / BVI | 2,177 / 1,250 | 2,177 / 1,250 | unchanged
+Vaccine received (cumulative, stated) | 1,064,230 | 1,063,530 | see reconciliation note below
+Vaccine utilisation | 96.4% | 97.5% | +1.1pp
+
+**Vaccine-received reconciliation:** the 9 Jul cumulative allocation table lists a new 12th batch -- Dolvet 5, 250,000 doses, received 7 Jul 2026 -- but the slide's own stated total (1,063,530) does not include it, a fact independently confirmed via an EC FMD Operations Group WhatsApp message dated 8 Jul: "received 250 000 doses yesterday, not included in above." Summing the other 11 dated batches (individually logged in master back on 2 Jul) reconciles exactly to 1,063,530 -- which also resolves the 700-dose gap against the 2 Jul session's recorded total of 1,064,230. That earlier figure is now understood to have been a minor source-side tally error rather than a real stock movement (captured in the dashboard's `delta_received` of -700 this run). True cumulative including the new batch = 1,313,530. The new batch's own per-district distribution (Amathole 92,000; Chris Hani 32,000; Joe Gqabi 28,000; Alfred Nzo 16,000; OR Tambo 40,000; Sarah Baartman 20,000) sums to only 228,000 against its 250,000 total -- a fresh 22,000 discrepancy, flagged but not corrected.
+
+**Sector-split discrepancy (new this session):** the 9 Jul deck's "farming sector" table gives per-district totals (Communal 486,294 / 46.8%, Commercial 551,606 / 53.2%, total 1,037,900) that do not reconcile against the per-vaccine-type "Total Vaccination" table on an adjacent slide of the *same* deck -- e.g. Amathole 242,992 (sector table) vs 299,746 (vaccine-type table); Alfred Nzo 123,665 vs 111,908 (the latter gap, 11,757, exactly matches Alfred Nzo's MPO dairy contribution, suggesting the sector table embeds MPO at district level while the vaccine-type table does not -- but this doesn't explain the Amathole direction of the gap). Both tables retained as presented per project convention; flagged for EC-DRDAR confirmation.
+
+**Cattle population estimate revised down sharply:** 3,002,959 (9 Jul) vs 4,595,393 (2 Jul) -- treated as a corrected/revised denominator, not an actual herd collapse. Vaccine coverage consequently rises from 22.3% to 34.5%.
+
+Full 6-district breakdown captured for outbreaks (confirmed and suspected) and for vaccination totals, matching the pattern of prior EC sessions.
+
+### RMIS industry-allocated export, 8 Jul 2026 (as at 7 Jul 2026)
+
+Two sheets ingested in full: `provincial_distribution` (province x manufacturer, 9 provinces x 2 manufacturers = 18 rows + 2 national totals) and `sector_distribution` (municipality x sector, 86 rows across all 9 provinces). RMIS is a logistics-layer, non-programme source (per `PROGRAMME_SOURCES`) and does not move the dashboard's national headline figures.
+
+National industry-allocated total (Biogenesis + DolVet): **2,105,105 doses distributed**. This corroborates the 8 Jul AgriSA Weekly Engagement outcomes narrative almost exactly: "More than 2.1 million of the 2.5 million industry-allocated doses have been distributed" (see below) -- independent cross-check between two unrelated sources, both retained.
+
+### Ministerial media statement -- "New FMD control measures give farmers a clearer path to recovery while protecting trade" (25 Jun 2026, filed in ICC Reports)
+
+Narrative-only; no data rows. Minister Steenhuisen has approved a single consolidated national FMD control framework replacing the prior Section 9 directives and the 2019 Contingency Plan, pending Gazette publication. Key provisions: vaccinated-but-never-infected animals remain freely tradeable; FMD-abattoir access from 16 days post clinically-clear, broader slaughter (incl. export facilities) from 42 days; partial-property quarantine for well-fenced farms; new provisions for communal/peri-urban systems; formal review within 12 months of implementation. This is the Section 9 replacement previously tracked as a parked item.
+
+### AgriSA Weekly FMD Engagement -- Outcomes 8 Jul 2026 / Agenda 15 Jul 2026
+
+Agenda (15 Jul): items only, no content yet. Outcomes (8 Jul) narrative highlights, no data rows added to master (soft/approximate figures, some cross-checked against RMIS above), but important for ICC/Ministerial context:
+
+- **Possible change of Agriculture Minister:** the outcomes minutes twice refer to "the new Minister" (resolving the ongoing court case; re-signing the Section 9 regulations following "cabinet changes"). This has not been independently verified against other sources this session -- flagged for confirmation, not assumed.
+- Publication of the Section 9 regulations in the Government Gazette "expected during the current week" (week of 6-10 Jul).
+- 1.5 million further Biogenesis doses shipped and expected shortly; Section 21 approval reportedly granted for a further 14 million Biogenesis doses (large-scale private procurement opportunity flagged for late July).
+- Over 1,000 delivery points serviced and ~97 veterinarians participating under the RMIS/DHL distribution model (DHL now managing repackaging and cold-chain logistics).
+- Positive kudu case confirmed in the Eastern Cape (wildlife spillover); sheep infections also reported elsewhere -- biosecurity attention flagged for both species.
+- Private vaccination continues under an interim court order pending a long-term settlement; future commercial sales expected to operate under Section 10.
+
+### Data quality flags (new this session)
+
+1. EC vaccine-received total for 9 Jul (1,063,530) is 700 doses lower than the 2 Jul figure (1,064,230) despite an intervening 250,000-dose batch arriving -- fully reconciled above; the new batch is simply not yet reflected in the stated cumulative.
+2. EC's two per-district totals tables (farming-sector vs vaccine-type) disagree by material amounts for at least 2 of 6 districts -- unresolved, flagged for EC-DRDAR.
+3. EC estimated cattle population fell from 4,595,393 to 3,002,959 between consecutive JOC packs with no explanatory note on the slide -- treated as a data correction, not a real change; watch for further revision.
+4. EC Dolvet 5 batch (250,000 doses) district distribution sums to 228,000, a 22,000 shortfall -- unresolved.
+5. "New Minister" reference in the 8 Jul AgriSA outcomes minutes is unconfirmed by any other source this session -- do not treat as fact without corroboration.
+
+### Action items for next run
+
+1. **Confirm:** whether there has been a change of Minister of Agriculture (referenced twice in 8 Jul outcomes minutes as "the new Minister").
+2. **Watch for:** Section 9 gazette publication (expected week of 6-10 Jul per outcomes minutes; still not seen in the inbox as at this run).
+3. **Watch for:** confirmation/correction of EC's conflicting per-district vaccination totals (farming-sector table vs vaccine-type table).
+4. **Watch for:** the 1.5 million Biogenesis doses "shipped and expected shortly" (per 8 Jul outcomes) landing in a future EC/national batch table.
+5. **Watch for:** MPO Week 38 dairy update (EC's MPO figure has now been static at 311,449 for two consecutive JOC packs).
+6. **Watch for:** consolidated AgriSA weekly xlsx -- now roughly 100+ days outstanding; remains the single largest gap in the national headline reconciliation.
+7. **Investigate:** the automated daily-run pipeline's 401 authentication failure, now persisting for a full week (2026-07-06 through 2026-07-13, 8 failed attempts) -- this Cowork scheduled task is currently the only working ingest path.
+8. **GitHub push:** master_data.csv + FMD_Dashboard.html + change_log.md + memory_update.md.
+
+National (programme sources) after this run: received 7,799,622 (-700 vs prior run); animals vaccinated 5,679,229 (+11,206); positive 2,584 (+11); suspected 962 (-1).
+
+GitHub push: attempted this session.
