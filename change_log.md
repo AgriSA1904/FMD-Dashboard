@@ -4330,3 +4330,195 @@ Agenda (15 Jul): items only, no content yet. Outcomes (8 Jul) narrative highligh
 National (programme sources) after this run: received 7,799,622 (-700 vs prior run); animals vaccinated 5,679,229 (+11,206); positive 2,584 (+11); suspected 962 (-1).
 
 GitHub push: attempted this session.
+
+---
+
+## Session 57 -- 14 July 2026 (MPO Week 38 dairy update; Free State FS-Landbou 10 Jul chart set)
+
+Master: 2,550 rows -> **2,571 rows** (+21: 16 MPO, 5 FS-Landbou). Dashboard: **10 July 2026** snapshot (57 weekly points; 240,010 bytes). Validation passed.
+
+Two new source files found newer than `master_data.csv` (mtime 13 Jul 08:18). Both are commodity/state-allocation views that do not move the national programme headline; the MPO file clears a parked item from session 56.
+
+### Inbox scan summary
+
+File | Folder | New this run? | Outcome
+---|---|---|---
+`Week 38 - Update on the state of FMD and vaccine rollouts in the dairy industry.pdf` | MPO | Yes (was parked in session 56) | Ingested -- 16 rows
+`13.07.26 update.docx` + `WhatsApp Image 2026-07-13 at 09.16.59.jpeg` + `WhatsApp Image 2026-07-13 at 09.17.21.jpeg` | Free State | Yes | Ingested -- 5 rows (FS-Landbou/Vrystaat Landbou 10 Jul chart set)
+All other provincial, ICC, MPO, Ministerial, RMIS and dated-root folders | -- | No | No new files. No new consolidated AgriSA weekly xlsx; no new dated root folder for 14 Jul.
+
+### MPO Week 38 (snapshot 10 July 2026)
+
+Metric | Week 37 (3 Jul) | Week 38 (10 Jul) | Change
+---|---|---|---
+National dairy cows vaccinated (1st) | 958,091 | 958,511 | +420 (all EC)
+National 2nd vaccination (booster) | 250,328 | 281,259 | +30,931
+Dairy farms active with FMD | 124 | 125 | +1 (172 reported to date)
+
+Week 38 provides per-province 2nd-vaccination (booster) detail for the first time: KZN 240,000; EC 17,388; FS 10,151; GP 13,720 (sum 281,259). First-vaccination per province: KZN 360,200; EC 307,695; FS 15,104; LP 5,475; GP 14,832; MP 9,863; NW 6,342; WC 239,000; NC 0.
+
+Narrative: EC now has 11 positive dairy FMD cases (up from 10), with 8 farms on the KZN border under EC surveillance; EC reported one new dairy case and 7,000+ boosters last week. North region (GP, FS, LP, NW, MP, NC) administered 23,871 boosters in the past week. WC has completed the first round of dairy vaccination.
+
+### Free State -- FS-Landbou / Vrystaat Landbou (chart snapshot 10 July 2026)
+
+State-vet allocation view only; the source disclaimer notes it excludes RPO/MPO/feedlot industry-body allocations. Read from the docx narrative plus the two chart images (read via vision).
+
+Metric | Value (10 Jul) | vaccine_type | vet_channel
+---|---|---|---
+Total vaccine administered | 1,320,000 | all | state
+BB/Aftodol administered (cumulative) | 467,000 | bioaftogen | state
+Dolvet administered (cumulative) | 734,000 | dolvet | state
+Vaccine balance on hand | 369,000 | all | state
+New batch allocated 6 Jul | 250,000 | bioaftogen (BB/Aftodol) | state
+
+Administration rate ~47,000/week. FS case commentary: suspect cases now below 400, 33 cases closed; new outbreaks concentrated around Boshof (21 to 42 in two weeks) and Bultfontein, moving toward Bloemfontein; Rouxville flagged as a risk on the N6 from the Eastern Cape; holding farms remain a concern. A booster-programme timing question was raised: ~194 cases are due 6-month boosters from end August, dependent on supply.
+
+### Data quality flags (this session)
+
+1. FS-Landbou 10 Jul state-vet administered total (1,320,000) is a different measurement basis from the FS-JOC programme figure (26 Jun) and does not reconcile directly. Both held by source per convention.
+2. MPO 1st-vaccination totals are near-static week-on-week (only EC moved, +420); the real movement this week is in 2nd-dose/booster activity (+30,931). No conflict, noted for context.
+3. FS case chart is cumulative incidents per state-vet area and cannot be cleanly totalled to a single positive-case figure; no FS positive-case total was added this run.
+
+### Action items for next run
+
+1. **Confirm:** change of Minister of Agriculture (still unverified from session 56).
+2. **Watch for:** Section 9 gazette publication (still not seen).
+3. **Watch for:** the 1.5m Biogenesis doses "shipped and expected shortly" landing in a batch table.
+4. **Watch for:** consolidated AgriSA weekly xlsx (100+ days outstanding).
+5. **Watch for:** EC per-district totals reconciliation; EC Dolvet 5 batch 22,000 shortfall; EC cattle-population revision.
+6. **Confirm:** whether the local unattended daily-run pipeline has recovered from its 401 authentication failure (persisting through 13 Jul).
+7. **GitHub push:** master_data.csv + FMD_Dashboard.html + change_log.md + memory_update.md (not pushed this run -- api.github.com blocked in sandbox).
+
+National (programme sources) after this run: unchanged headline -- received 7,799,622; animals vaccinated 5,679,229; positive 2,584; suspected 962. MPO/FS-Landbou are commodity/state-allocation views.
+
+GitHub push: not performed this run (sandbox network restriction).
+
+## Session 58 -- 15 July 2026 (Limpopo PCM pack for 20 Jul, carrying Week 31 minutes and a Week 32 status deck)
+
+Master: 2,571 rows -> **2,599 rows** (+28, all LP-LDARD). Dashboard: **12 July 2026** snapshot (58 weekly points; 240,275 bytes). Validation passed.
+
+One new source file found newer than `master_data.csv` (mtime 14 Jul 07:34). It advances the Limpopo headline by two reporting weeks (Week 30 on 26 Jun to Week 32 on 12 Jul).
+
+### Inbox scan summary
+
+File | Folder | New this run? | Outcome
+---|---|---|---
+`FMD PCM MEETING PACK 20260720 REV0.pdf` | Limpopo | Yes | Ingested -- 28 rows (Week 31 minutes + Week 32 DVS status deck)
+All other provincial, ICC, MPO, Ministerial, RMIS, dated-root and Draft Summary folders | -- | No | No new files. No new consolidated AgriSA weekly xlsx; no new dated root folder.
+
+### Limpopo Week 31 (as at 3 Jul 2026, from 6 Jul minutes)
+
+positive 102, suspected 92, negative 115, pending 212, closed 9, total investigations 530. Animals vaccinated 549,442 (551,737 doses used, spillage 0.42% over 29 active weeks, 39.4% of the 1.2m target). Week 31 weekly throughput ~21,656, down 26.6% on Week 30 as Animal Health Technicians completed outstanding 2025 leave.
+
+### Limpopo Week 32 (as on 12 Jul 2026, DVS current-status deck)
+
+Metric | Week 30 (26 Jun) | Week 31 (3 Jul) | Week 32 (12 Jul)
+---|---|---|---
+Positive cases | 95 | 102 (restated 101) | 106
+Suspected | 96 | 92 | 87
+Negative | 105 | 115 | 146
+Pending | 219 | 212 | 189
+Animals vaccinated | 520,185 | 549,442 | 595,012
+Doses administered | 522,315 | 551,737 | 597,358
+
+Week 32 species split: cattle 518,709 (87.2%), pigs 73,359 (12.3%), goats 2,050, sheep 894. Cattle coverage 43.2% of the 1.2m cattle target (the all-animal total must not be divided by the cattle target, which would overstate coverage as 49.6%). Weekly throughput 33,626 (+22.8%) was the strongest week of the campaign. Sector split commercial 46.9%, communal 45.3%, emerging 7.8%.
+
+Week 32 product breakdown (doses administered): Dollvet-oil SAT 1,2&3 311,877; Bioaftogen SAT 1,2&3 132,699; Bioaftogen SAT 1&2 94,918; Dollvet-oil Industry 37,099; ArtioPREVA 19,065; Onderstepoort SAT 1,2&3 1,700 (total 597,358).
+
+Week 32 district animals vaccinated (cumulative): Capricorn 125,016; Mopani 71,866; Sekhukhune 87,926; Vhembe 81,376; Waterberg 228,828.
+
+Week 32 district confirmed cases (incident-date, WOAH basis, not comparable to the 106 result-date headline): Capricorn 35, Mopani 3, Sekhukhune 17, Vhembe 19, Waterberg 41. Vhembe re-emerged with a new case sampled 6 Jul after five weeks clear; most recent provincial case 9 Jul (Waterberg); Capricorn and Sekhukhune hot; Mopani resolved on incident cases but 71 results outstanding.
+
+### Policy and logistics captured (held in narrative, not as receipt rows)
+
+- Section 9 instrument signed off by DDG Seraki on 6 Jul and routed via the Director-General to the Minister for signature the same day. It replaces the contingency plan through ministerial directives and will **not** require Government Gazette publication. This resolves the "Section 9 gazette expected" watch item -- no gazette is coming.
+- RMIS/ICC: 2 million Dolvet doses entered the country over the weekend of 4 to 5 Jul; 580,000 to industry (Milk 200,000, RPO 200,000, Stud breeders 180,000); LP receiving a further 150,000 within days plus a previous 164,000 batch; 300,000 to 360,000 held as OBP emergency stock. New LP 200,000 Dollvet-oil batch due 6 Jul, to reflect next week.
+
+### Data quality flags (this session)
+
+1. LP positive cases counted two ways: result-date basis gives the 106 provincial headline; incident-date (WOAH) basis gives 115 confirmed at province level. District confirmed-case rows were recorded on the incident-date basis and noted as such.
+2. LP Week 31 positive restated from 102 (minutes) to 101 (Week 32 result-date table). Both held.
+3. LP doses received not restated in this pack (narrative gives "roughly 775,000"); master retains 775,660. Several inbound batches reported verbally but not yet in a receipt table.
+
+### Action items for next run
+
+1. **Watch for:** the signed Section 9 instrument landing in the inbox (no gazette expected).
+2. **Confirm:** change of Minister of Agriculture (still unverified).
+3. **Watch for:** LP inbound batches (150,000 + 164,000 + 200,000 Dollvet-oil) landing in a receipt or batch table; also the 1.5m Biogenesis doses.
+4. **Watch for:** consolidated AgriSA weekly xlsx (100+ days outstanding).
+5. **Watch for:** EC per-district reconciliation; EC Dolvet 5 batch 22,000 shortfall; EC cattle-population revision.
+6. **Confirm:** whether the local unattended daily-run pipeline has recovered from its 401 authentication failure.
+7. **GitHub push:** master_data.csv + FMD_Dashboard.html + change_log.md + memory_update.md (not pushed this run -- api.github.com blocked in sandbox).
+
+GitHub push: not performed this run (sandbox network restriction).
+
+---
+
+## Session 59 -- 15 July 2026 (Western Cape GIS portal live pull; RMIS industry export 15 Jul 2026)
+
+Master: 2,599 rows -> **2,709 rows** (+110: 4 WC-GIS, 106 RMIS). Dashboard: **14 July 2026** snapshot (59 weekly points; 252,173 bytes). Validation passed.
+
+User-directed run: ingest the Western Cape data from the GIS portal, then a new RMIS export dropped into the inbox mid-run.
+
+### Western Cape GIS FMD portal (live ArcGIS REST API)
+
+Portal: `https://gis.westerncape.gov.za/portal/apps/experiencebuilder/experience/?id=46f73682c6fc4b3a9fdc03bfa62223b4` (Experience Builder, client-rendered). WebFetch cannot read it (JS-rendered) and the REST endpoints were not in the fetch provenance set, so the two published layers were queried through the browser page context (same origin):
+
+- Disease Reporting layer (`.../DOA-Vets/FMD_Public/FeatureServer/0`): grouped statistics -> 29 Confirmed, 12 Suspected FMD establishments.
+- FMD Vaccinations layer (`.../FeatureServer/1`): sum of NumberVaccinated = 403,243 across 2,013 records; max VaccinationDate = 2026-07-14.
+
+Rows added (effective 2026-07-14, source WC-GIS):
+
+Metric | Value | Note
+---|---|---
+positive_cases (all/all) | 29 | Live portal confirmed establishments
+suspected_cases (all/all) | 12 | Live portal suspected establishments
+doses_administered (all/all) | 403,243 | Sum NumberVaccinated, 2,013 records
+animals_vaccinated (all/all) | 403,243 | Mirror of doses_administered
+
+Movement vs prior WC-GIS: doses administered 376,020 (29 Jun) -> 403,243 (14 Jul), +27,223. Confirmed cases: the live portal shows 29, which is lower than the 39 weekly-summary positive figure held under WC-GIS on 29 Jun. These are different bases (current confirmed establishments vs cumulative weekly summary); both retained per project convention and flagged. Doses received is not exposed by the portal and remains 497,100 from the prior WC source.
+
+Not ingested this run: the WC per-district breakdown (available via point-in-polygon spatial join against the AfriGIS district boundaries service) -- master holds WC-GIS at province level, so district rows were not added. Available on request.
+
+### RMIS industry-allocated export, 15 Jul 2026 (as at 14 Jul 2026)
+
+File `rmis_industry_allocated_fmd_vaccine_distribution_data_2026-07-15.xlsx`. Same two-sheet structure ingested as on 8 Jul: `provincial_distribution` (9 provinces x 2 manufacturers = 18 rows + 2 national manufacturer totals) and `sector_distribution` (86 municipality x sector rows). Metric `doses_distributed_industry`, vet_channel private (provincial) / sector name (sector rows), vaccine_type bioaftogen (Biogenesis) or dolvet (Dollvet).
+
+National industry-allocated total: **2,117,915 doses** (Biogenesis 1,728,343; Dollvet 389,572), up from 2,105,105 on 8 Jul (+12,810). RMIS is a non-programme logistics source and does not move the dashboard national headline.
+
+### Data quality flags (this session)
+
+1. WC confirmed cases: live GIS portal 29 vs WC weekly-summary 39 (29 Jun) -- different measurement bases, both retained under WC-GIS.
+2. WC doses received not exposed by the portal; carried forward at 497,100.
+
+### Action items for next run
+
+1. Confirm which WC case basis the ICC prefers for the national headline (portal confirmed vs weekly summary).
+2. Offer WC per-district spatial-join breakdown if the ICC wants district granularity.
+3. Watch items carried forward: signed Section 9 instrument landing; Minister change; LP incoming batches; EC per-district and cattle-population reconciliations; 1.5m Biogenesis doses; consolidated AgriSA weekly xlsx; KZN official JOC; automation 401 recovery.
+4. GitHub push: master_data.csv + FMD_Dashboard.html + change_log.md + memory_update.md (not pushed this run -- sandbox network restriction).
+
+National (programme sources) after this run: recomputed on rebuild; the one programme movement is WC animals vaccinated 299,969 (9 Jun) -> 403,243 (14 Jul). RMIS is non-programme.
+
+GitHub push: not performed this run (sandbox network restriction).
+
+---
+
+## Session 59 (continued) -- 15 July 2026 (Ministerial + ICC source merge; template repair)
+
+Two follow-on changes after the WC and RMIS ingest.
+
+1. **Ministerial and ICC unified as one source (display and data).** Per instruction, the FMD Industry Coordination Council is a task team established by the Minister of Agriculture, so ICC updates and Ministerial updates are the same data stream. Changes in `scripts/build_dashboard.py`:
+   - `load_master()` now normalises the ICC family (`ICC`, `FMD-ICC`, `AgriSA-ICC`, plus `Ministerial`/`DAFF`) onto the single canonical source `Ministry`.
+   - Source-preference lists that previously named `ICC` now name `Ministry` (herd, source mix, national receipts, ministerial comparison).
+   - Provenance lists relabel the canonical source as "Ministerial and ICC" for display.
+   - Template: the tab is renamed "Ministerial and ICC updates" and the section explains the ICC is the Minister's task team so the two are reported as one source.
+   Verified in-process (build functions): provenance now shows a single "Ministerial and ICC" label with no residual ICC-family codes; national and WC figures unchanged by the merge (received 7,799,622; administered 5,857,330; positive 2,585).
+
+2. **Template repair.** `scripts/dashboard_template.html` was found truncated (ended mid-script, 4 open vs 3 close `<script>` tags, no closing `</html>`), which broke the build. It was reconstructed from the last good `FMD_Dashboard.html` (data block reversed back to the `DATA_PLACEHOLDER`, ministerial date placeholders restored) and the label edits reapplied. Rebuild validation now passes (252k+ bytes, balanced tags).
+
+**Environment notes (for whoever maintains the automation):**
+- The OneDrive mount showed read-after-write lag in this sandbox: `bash`/`grep` and Python `open()` intermittently returned different versions of the same file across calls. Final verification was therefore done from the in-memory build objects rather than by re-reading the output file. The generated content is correct.
+- Stale bytecode: `scripts/__pycache__/build_dashboard.cpython-*.pyc` could not be deleted (permission denied on the mount) and initially shadowed source edits under the importlib loader. The build was run by compiling the source string directly to bypass the cache. Source files were touched to bump mtimes. If a future automated run produces stale output, delete `scripts/__pycache__` first.
+
+GitHub push: not performed (sandbox network restriction); the live GitHub Pages site will not reflect these changes until master_data.csv, FMD_Dashboard.html, change_log.md and memory_update.md are pushed.

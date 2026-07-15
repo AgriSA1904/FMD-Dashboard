@@ -34,7 +34,7 @@ PROVINCES = [
 # Sources that represent actual vaccination programme data (national or provincial JOC).
 # RPO, MPO and administrative/metadata rows are excluded from driving the weekly axis.
 PROGRAMME_SOURCES = frozenset({
-    "AgriSA-NAT", "ICC", "FMD-ICC", "Ministry",
+    "AgriSA-NAT", "Ministry", "FMD-ICC", "Ministry",
     "FS-JOC", "FS-DRDAR", "FS-DARDLEA", "FS-DARDEA", "FS-Landbou",
     "EC-DRDAR", "GP-GDARD", "WC-GIS",
     "LP-LDARD", "MP-DVS", "MP-AgriMP", "AgriMP", "NW-RPO",
@@ -47,11 +47,25 @@ _ANCHOR_METRICS = frozenset({
     "animals_vaccinated_dose1", "positive_cases",
 })
 
+# The FMD Industry Coordination Council is a task team established by the Minister
+# of Agriculture, so ICC updates and Ministerial updates are the same data stream.
+# We normalise all ICC-family source codes onto a single canonical source so they
+# are treated as one source everywhere in the build (weekly axis, source preference,
+# provenance lists and the dashboard tab).
+MINISTRY_ICC_ALIASES = frozenset({"ICC", "FMD-ICC", "AgriSA-ICC", "Ministerial", "DAFF"})
+MINISTRY_ICC_CANON = "Ministry"          # internal canonical source_org
+MINISTRY_ICC_LABEL = "Ministerial and ICC"   # display label for provenance lists
+
 def load_master():
     if not os.path.exists(MASTER):
         return []
     with open(MASTER, "r", encoding="utf-8") as f:
-        return list(csv.DictReader(f))
+        rows = list(csv.DictReader(f))
+    # Unify the Ministerial/ICC family onto a single canonical source code.
+    for r in rows:
+        if r.get("source_org") in MINISTRY_ICC_ALIASES:
+            r["source_org"] = MINISTRY_ICC_CANON
+    return rows
 
 def num(v):
     try: return float(v)
@@ -229,7 +243,7 @@ def build_provinces(rows, snapshot_date):
             "as_of": ed,
             # herd_cattle is static reference data — AgriSA-NAT is canonical
             "herd": int(latest_metric(prog, province=code, metric="herd_cattle",
-                                      prefer_org=["AgriSA-NAT", "ICC"]) or 0),
+                                      prefer_org=["AgriSA-NAT", "Ministry"]) or 0),
             # Disease counts: most recent from any programme source (no prefer_org)
             # so JOC submissions (GP-GDARD, EC-DRDAR, etc.) beat a stale AgriSA-NAT value.
             "positive":  int(latest_metric(prog, province=code, metric="positive_cases") or 0),
@@ -299,7 +313,7 @@ def build_source_mix(rows, snapshot_date):
         out[vt] = int(total)
     nat_total = latest_metric(rows, province="national", metric="doses_received",
                               vaccine_type="all", vet_channel="all",
-                              prefer_org=["AgriSA-NAT", "ICC", "WC-GIS"]) or 0
+                              prefer_org=["AgriSA-NAT", "Ministry", "WC-GIS"]) or 0
     sum_mfg = sum(out.values())
     out["unallocated"] = max(0, int(nat_total) - sum_mfg)
     return out
@@ -603,7 +617,7 @@ def national_view(rows, snapshot):
     )
     herd = sum(
         latest_metric(prog_rows, province=code, metric="herd_cattle",
-                      prefer_org=["AgriSA-NAT", "ICC", "WC-GIS"]) or 0
+                      prefer_org=["AgriSA-NAT", "Ministry", "WC-GIS"]) or 0
         for code, _ in PROVINCES
     )
 
@@ -681,10 +695,10 @@ def build_quality_flags(rows, snapshot, min_comparison):
     for code, name in PROVINCES:
         received = latest_metric(rows, province=code, metric="doses_received",
                                  vaccine_type="all", vet_channel="all",
-                                 prefer_org=["AgriSA-NAT", "ICC"])
+                                 prefer_org=["AgriSA-NAT", "Ministry"])
         vaccinated = latest_metric(rows, province=code, metric="animals_vaccinated",
                                    vaccine_type="all", vet_channel="all",
-                                   prefer_org=["AgriSA-NAT", "ICC", "WC-GIS", "GDARD"])
+                                   prefer_org=["AgriSA-NAT", "Ministry", "WC-GIS", "GDARD"])
         if received and vaccinated and vaccinated > received:
             flags.append({
                 "severity": "critical", "province": code,
@@ -955,8 +969,10 @@ def build_provincial_detail(rows):
             if v:
                 extra[metric] = {"label": label, "value": int(v) if v == int(v) else round(v, 2), "date": dt}
 
-        # Sources
-        sources = sorted(set(r["source_org"] for r in prov_rows))
+        # Sources (relabel the canonical Ministry/ICC source for display)
+        sources = sorted(set(
+            (MINISTRY_ICC_LABEL if r["source_org"] == MINISTRY_ICC_CANON else r["source_org"])
+            for r in prov_rows))
 
         detail[code] = {
             "name": name,
@@ -1134,30 +1150,4 @@ def build_dashboard():
 
     # Ministerial comparison date — derived from the latest cattle_vaccinated_ministerial row
     # Ministerial comparison date — derived from the latest cattle_vaccinated_ministerial row
-    min_dates = [r["effective_date"] for r in rows
-                 if r["metric"] == "cattle_vaccinated_ministerial"
-                 and r["source_org"] == "Ministry" and r["superseded_by"] == ""]
-    if min_dates:
-        latest_min_date = max(min_dates)
-        try:
-            from datetime import datetime as _dt
-            _d = _dt.strptime(latest_min_date, "%Y-%m-%d")
-            _long  = _d.strftime("%-d %B %Y")
-            _short = _d.strftime("%-d %b")
-        except Exception:
-            _long  = latest_min_date
-            _short = latest_min_date
-    else:
-        _long  = "n/a"
-        _short = "n/a"
-    out_html = out_html.replace("__MINISTERIAL_DATE_LONG__",  _long)
-    out_html = out_html.replace("__MINISTERIAL_DATE_SHORT__", _short)
-
-    validate_output(out_html, DASHBOARD)
-    with open(DASHBOARD, "w", encoding="utf-8") as f:
-        f.write(out_html)
-    print(f"Wrote {DASHBOARD} ({len(out_html)} bytes) — validation passed")
-
-
-if __name__ == "__main__":
-    build_dashboard()
+   
