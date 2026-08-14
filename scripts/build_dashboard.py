@@ -39,6 +39,7 @@ PROGRAMME_SOURCES = frozenset({
     "EC-DRDAR", "GP-GDARD", "WC-GIS",
     "LP-LDARD", "MP-DVS", "MP-AgriMP", "AgriMP", "NW-RPO",
     "NC-DALRRD",
+    "KZN-DARD", "WC-DoA",  # official provincial departments, added session 67 (Portfolio Committee packs, Aug 2026)
 })
 
 # Metrics that indicate real vaccination or disease data (not policy or metadata)

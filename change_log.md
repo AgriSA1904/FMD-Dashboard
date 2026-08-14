@@ -4522,3 +4522,529 @@ Two follow-on changes after the WC and RMIS ingest.
 - Stale bytecode: `scripts/__pycache__/build_dashboard.cpython-*.pyc` could not be deleted (permission denied on the mount) and initially shadowed source edits under the importlib loader. The build was run by compiling the source string directly to bypass the cache. Source files were touched to bump mtimes. If a future automated run produces stale output, delete `scripts/__pycache__` first.
 
 GitHub push: not performed (sandbox network restriction); the live GitHub Pages site will not reflect these changes until master_data.csv, FMD_Dashboard.html, change_log.md and memory_update.md are pushed.
+
+## Session 60 -- 23 July 2026 (Eastern Cape 16 Jul JOC; Free State 17 Jul JOC; Gauteng 10 Jul JOC minutes; MPO Week 39 dairy update; North West RPO JIC 21 Jul)
+
+Master: 2,710 rows -> **2,784 rows** (+75: 24 EC, 6 FS, 3 GP, 20 MPO, 22 NW). Dashboard: **17 July 2026** snapshot (61 weekly points; 257,941 bytes). Validation passed.
+
+Context: this run picks up five files that landed in the inbox since the last successful ingest on 15 July (session 59): an Eastern Cape JOC deck (16 Jul), a Free State JOC workbook (17 Jul), a Gauteng JOC minutes document (10 Jul), the MPO Week 39 dairy update (17 Jul) and a North West RPO JIC deck (21 Jul, data as at 16 Jul). No status on the previously reported 401 authentication failure on the unattended local pipeline was available this session.
+
+### Inbox scan summary
+
+Files with mtime newer than the prior `master_data.csv` (15 Jul 08:12):
+
+File | Folder | Outcome
+---|---|---
+`EC FMD Update - 16.07.2026.pptx` | Eastern Cape | Ingested -- 24 rows
+`FMD STATS 17 JULY 2026.zip` -> `FS FMD Vaccine Data - 17.07.2026.xlsx` | Free State | Ingested -- 6 rows
+`JOC FMD Outbreak Minutes - 10 July 2026.doc` | Gauteng | Ingested -- 3 rows
+`Week 39 - Update on the state of FMD and vaccine rollouts in the dairy industry.pdf` | MPO | Ingested -- 20 rows
+`21 JULY 2026- RPO JIC FMD UPDATE_.pdf` | North West | Ingested -- 22 rows
+All other provincial, ICC, MPO, Ministerial, RMIS and dated-root folders | -- | No new files
+
+### Eastern Cape (EC-DRDAR, 16 Jul 2026 provincial JOC)
+
+Source is a 4-slide deck, each slide a single embedded image (no extractable pptx text); read via vision.
+
+Metric | Previous (9 Jul) | New (16 Jul) | Change
+---|---|---|---
+Positive cases (confirmed outbreaks) | 434 | 459 | +25
+Suspected cases | 233 | 225 | -8
+Animals vaccinated (JOC/state, dose-count, excl MPO/RPO) | 726,451 | 741,291 | +14,840
+Animals vaccinated (incl MPO 311,449 + RPO 20,108) | -- | 1,072,848 | new row this session
+Vaccine received (cumulative, all channels) | 1,063,530 (excl Dolvet 5) | 1,424,530 | see reconciliation note
+
+**Vaccine-received reconciliation:** the 16 Jul deck's allocation-by-date table lists 13 batches, including the Dolvet 5 batch (250,000, received 7 Jul) that the 9 Jul session had confirmed was excluded from that week's stated total, plus two MPO batches (Dolvet 100,000; Biogenesis 100,000) and one RPO batch (Biogenesis 61,000). Summing all 13 lines reconciles exactly to the deck's stated total of 1,424,530. Compared with the 9 Jul session's "true cumulative including Dolvet 5" of 1,313,530, this adds a further ~111,000 of MPO/RPO industry allocation now folded into the DRDAR provincial total for the first time.
+
+**District-level vaccination discrepancy (new this session):** Amathole's Dolvet component fell from 193,291 (9 Jul) to 192,100 (16 Jul), a decrease that is inconsistent with a cumulative figure. Flagged as a likely data-entry error on the source slide; not corrected. All other districts increased or held steady (Alfred Nzo +5,712 Biogenesis; Joe Gqabi +4,093 combined; OR Tambo +481 Biogenesis; Sarah Baartman +1,305 Dolvet; Chris Hani unchanged).
+
+**Cattle population:** 3,002,959 stated this session, consistent with the 9 Jul figure of the same order -- confirms the 2 Jul -> 9 Jul revision (4,595,393 -> 3,002,959) was a stable correction, not an ongoing anomaly. Vaccine coverage stated as 35.7%.
+
+Full 6-district breakdown captured for confirmed and suspected outbreaks and for vaccination totals, matching prior EC sessions.
+
+### Free State (FS-JOC, 17 Jul 2026 provincial workbook)
+
+Metric | Previous (26 Jun) | New (17 Jul) | Change
+---|---|---|---
+Positive cases | 648 | 686 | +38
+Suspected cases | 414 | 361 | -53
+
+District breakdown: Mangaung Metropolitan 14, Fezile Dabi 351 (Mafube 74, Metsimaholo 64, Moqhaka 119, Ngwathe 94), Lejweleputswa 112 (Matjhabeng 43, Tokologo 44, Tswelopele 25), Thabo Mofutsanyana 185 (Dihlabeng 67, Maluti-A-Phofung 29, Mantsopa 46, Phumelela 43), Xhariep 24 (Kopanong 8, Mohokare 16). All district figures cross-foot exactly to the stated provincial total of 686.
+
+**Data quality flag:** every vaccine-receipt and vaccine-administration column in this week's template (Bioaftogen, DolVet, OBP received; Dose 1/Dose 2 administered by vaccine type) was blank/zero. This reads as a genuine reporting gap rather than confirmed zero doses, given the province's active rollout in prior weeks -- no doses_received or animals_vaccinated row was added from this source this session; flagged for follow-up with FS-JOC on the next submission.
+
+### Gauteng (GP-GDARD, 10 Jul 2026 JOC minutes)
+
+Source is a Word document (JOC meeting minutes), converted via LibreOffice for text extraction.
+
+Metric | Previous (24 Jun) | New (10 Jul, vaccinated as at 9 Jul) | Change
+---|---|---|---
+Confirmed outbreaks | 306 | 306 | unchanged
+Outbreaks closed | 3 | 4 | +1
+Animals vaccinated | 405,404 | 492,050 | +86,646
+
+The Chair clarified that the apparent rise to 306 outbreaks recorded on 24 Jun in fact reflected historical January 2026 SR1 reports only recently captured into the provincial line list, not new infections; Gauteng has recorded no newly confirmed outbreaks for approximately 30 days. One suspect case is awaiting laboratory confirmation. Fifty-nine private veterinarians have been approved and 556 farmers have applied for vaccination; three contracted veterinarians have commenced duty with 35 contract Animal Health Technicians due to start 13 Jul.
+
+**Two items requiring corroboration (new this session):** the minutes state that new FMD control measures were gazetted on 8 Jul 2026, and separately that "a new national Minister of Agriculture had recently been appointed." Neither is independently verified by a primary Ministerial source this run; both are carried forward as parked items rather than treated as confirmed fact. The gazette reference may or may not be the same instrument as the Section 9 scheme reported signed off on 6 Jul (session 58/59 notes).
+
+### MPO Week 39 dairy update (snapshot 17 Jul 2026)
+
+First-vaccination dairy cow totals are unchanged from Week 38 across all nine provinces (KZN 360,200; EC 307,695; FS 15,104; LP 5,475; GP 14,832; MP 9,863; NW 6,342; WC 239,000; NC 0; national 958,511) -- the first-dose rollout has plateaued, consistent with recent weeks. Booster totals continue to grow:
+
+Province | Week 38 booster | Week 39 booster | Change
+---|---|---|---
+KZN | 240,000 | 334,000 | +94,000
+EC | 17,388 | 18,619 | +1,231
+FS | 10,151 | 14,578 | +4,427
+GP | 13,720 | 13,720 | unchanged
+National | 281,259 | 380,917 | +99,658
+
+125 of 172 dairy farms remain active with reported FMD (unchanged from Week 38). Eastern Cape holds at 11 positive dairy FMD cases with one new suspect case this week; 8 EC farms on the KZN border remain under EC surveillance. KZN: all dairy animals have now received booster vaccinations (beef animals on dairy farms are still pending). WC: first-round dairy vaccination is complete; boosters are expected to start soon.
+
+### North West (NW-RPO, 21 Jul 2026 RPO JIC deck, data as at 16 Jul 2026)
+
+Metric | Previous (3 Jul) | New (as at 16 Jul) | Change
+---|---|---|---
+Confirmed outbreaks | 445 | 471 | +26 (9 of these specifically in the 10-16 Jul week per the source; the remaining 17 accumulated in the unreported week between the two RPO decks)
+Vaccine allocation (total) | 1,271,140 | 1,350,140 | see reconciliation note
+Animals vaccinated (internal spreadsheet, with spillages) | 892,119 (flagged stale since 30 Jun) | 1,039,254 | +147,135
+
+Regional breakdown of the 471 confirmed outbreaks: DKK 92 (Ventersdorp 28, Potchefstroom 27, Maquassie Hills 11, Matlosana 26), Bojanala 81 (Rustenburg 28, Madibeng 19, Kgetleng River 15, Moretele 17, Moses Kotane 2), DRSM 206 (Naledi 69, Greater Taung 32, Mamusa 11, Molopo 15, Kagisano 71, Lekwa Teemane 8), NMM 92 (Ratlou 14, Mahikeng 33, Tswaing 7, Ditsobotla 15, Ramotshere Moiloa 23). 454 of the 471 have been reported to WOAH by NDA; 17 remain to be reported. New cases in the 10-16 Jul week: Greater Taung 3, Molopo 2, Tswaing 1, Moses Kotane 1, Madibeng 1, and Ventersdorp 1 (a serology result from samples collected in January 2026).
+
+**Vaccine-received reconciliation:** the allocation table's 11 line items (OVR, Bioaftogen 1185/1186, four Aftodoll batches, RPO) sum to 1,341,120 against the table's own stated total of 1,350,140 -- a 9,020 discrepancy, flagged but not corrected. Separately, the same deck's FMD-summary slide states "total vaccines received including 09AFT26 - 1,271,140," identical to the figure held since 3 Jul -- this reads as a stale carried-forward slide rather than a fresh figure, so the allocation table's 1,350,140 is used as the current doses_received value.
+
+**Animals-vaccinated reconciliation:** three different totals appear in the same deck -- internal spreadsheet with spillages 1,039,254 (83%), internal spreadsheet without spillages 1,059,059 (82%), and FMD Portal 1,032,615. The allocation table's own usage column separately totals 1,118,514 with discard/spillage of 19,805 (83% usage). All are recorded as shown; the internal-spreadsheet-with-spillages figure (1,039,254) is used as the primary animals_vaccinated row, continuing the convention from prior NW sessions, with the portal figure retained as a second row. This resolves the "stale since 30 Jun" flag carried in sessions 56-59, but the underlying internal-vs-portal-vs-allocation-table divergence remains an open North West data-quality issue.
+
+### Data quality flags (this session)
+
+1. FS 17 Jul submission: all vaccine receipt/administration columns blank/zero -- genuine reporting gap, not ingested as a doses figure.
+2. EC Amathole Dolvet component decreased 193,291 -> 192,100 (9 Jul -> 16 Jul) -- likely data-entry error, unresolved.
+3. EC Dolvet 5 batch (250,000) district distribution shortfall (flagged session 56, ~22,000 short) remains unresolved; not re-verified this session.
+4. NW allocation-table total (1,350,140) does not equal the sum of its own eleven line items (1,341,120); a 9,020 gap, unresolved.
+5. NW FMD-summary slide's "total vaccines received" (1,271,140) appears to be a stale figure carried forward unchanged from 3 Jul; the allocation table is used instead.
+6. NW continues to show three non-reconciling animals-vaccinated totals within a single source document (internal with/without spillages, FMD Portal, allocation-table usage) -- a recurring, unresolved provincial data-quality gap.
+7. Gauteng JOC minutes reference both a newly gazetted set of FMD control measures (8 Jul) and a newly appointed national Minister of Agriculture -- neither independently verified this session.
+
+### Action items for next run
+
+1. **Confirm:** whether there has been a change of Minister of Agriculture, now referenced in two separate sources (8 Jul AgriSA outcomes minutes, session 56; and 10 Jul Gauteng JOC minutes, this session).
+2. **Confirm:** the 8 Jul gazette referenced in the Gauteng JOC minutes -- obtain the primary document and determine whether it is the Section 9 replacement instrument already tracked as signed 6 Jul, or a separate publication.
+3. **Follow up:** Free State vaccine receipt/administration data gap in the 17 Jul submission.
+4. **Watch for:** consolidated AgriSA weekly xlsx -- still outstanding, now well over 100 days.
+5. **Watch for:** KZN official JOC documents -- figures remain UNOFFICIAL and are now more than six weeks stale (9 Jun).
+6. **Watch for:** MP provincial JOC follow-up confirming the 259 outbreak reclassification (8 Jul).
+7. **Watch for:** LP incoming vaccine batches (Dolvet 150,000/164,000/200,000 consignments referenced in prior sessions) landing in a receipt or batch table.
+8. **Investigate:** status of the unattended local daily-run pipeline's 401 authentication failure -- no information available this session; this Cowork scheduled task remains the working ingest path.
+9. **GitHub push:** not performed this run (outside the scope of this scheduled ingest task) -- push master_data.csv, FMD_Dashboard.html, change_log.md and memory_update.md when next running interactively with network access.
+
+National (programme sources) after this run: received 8,239,622 (+439,930 vs the 15 Jul session's national total); animals vaccinated 5,794,502 (+115,270 net movement across EC, GP and NW); positive 2,674 (+90 net across EC, FS, GP and NW); suspected 887 (-16 net across EC and FS).
+
+GitHub push: not performed this run.
+
+---
+
+## Session 61 -- 4 August 2026 (Limpopo 31 Jul PCM pack; North West 28 Jul RPO JIC; Gauteng 29 Jul JOC update; Free State 23 Jul FSP map; MPO Week 40; Agri Western Cape/RPO 21 Jul; ICC updates 17 and 24 Jul)
+
+Master: 2,784 rows -> **2,835 rows** (+51: 19 LP, 9 NW, 16 MPO, 3 GP, 2 FS, 2 WC). Dashboard: snapshot advanced 17 Jul -> **31 July 2026** (65 weekly points; 260,801 bytes). Validation passed.
+
+Context: this run clears eight files that landed since the 23 July ingest (session 60). Six carried numeric data; the two ICC updates were policy/narrative and resolved two long-standing parked items (new Minister, Section 9 gazette). No consolidated AgriSA weekly xlsx this run.
+
+### Inbox scan summary
+
+Files with mtime newer than the prior `master_data.csv` (23 Jul 13:36):
+
+File | Folder | effective_date | source_org | Outcome
+---|---|---|---|---
+`FMD PCM MEETING PACK 20260803.pdf` | Limpopo | 31 Jul | LP-LDARD | Ingested -- 19 rows
+`28 JULY 2026- RPO JIC FMD UPDATE_.pdf` | North West | 25 Jul | NW-RPO | Ingested -- 9 rows
+`Fw_Draft Minutes and FMD outbreak status update.zip` (GDARD JOC update + 24 Jul minutes) | Gauteng | 29 Jul | GP-GDARD | Ingested -- 3 rows
+`WhatsApp Image 2026-07-24 at 08.38.40.jpeg` (FSP status map) | Free State | 23 Jul | FS-JOC | Ingested -- 2 rows
+`Week 40 - ... dairy industry.pdf` | MPO | 24 Jul | MPO | Ingested -- 16 rows
+`AWC and RPO FMD update 21 July.pdf` | inbox root | 21 Jul | AWC-RPO | Ingested -- 2 rows (held by source)
+`07-17-2026_FMD ICC Update.pdf` | ICC Reports | 17 Jul | FMD-ICC | Processed -- policy only, parked items resolved
+`07-24-2026_FMD ICC Update.pdf` | ICC Reports | 24 Jul | FMD-ICC | Processed -- policy only, parked items resolved
+
+### Limpopo (LP-LDARD, PCM pack for the 3 Aug meeting, Week 35 data as on 31 Jul 2026)
+
+The 98-page pack carries the 24 July JOC minutes plus embedded ArcGIS dashboards for both Week 34 (24 Jul) and Week 35 (31 Jul). The Week 35 figures are the latest and were ingested.
+
+Metric | Previous (12 Jul, Week 32) | New (31 Jul, Week 35) | Change
+---|---|---|---
+Positive cases | 106 | 109 | +3 over the fortnight (+1 vs 108 on 24 Jul)
+Suspected cases | -- | 86 | --
+Negative cases | 146 | 166 | +20
+Pending cases | 189 | 169 | -20 (backlog clearing)
+Doses received/issued | 775,660 (held) | 994,725 | Section 11 workbook 'Doses Issued'
+Doses administered | -- | 761,223 | --
+All-animal vaccinated | 595,012 (held) | 758,379 | cattle 681,682 = 56.8% of the 1.2m target
+Usable balance on hand | -- | 228,400 | 77% stock committed
+Open-vial wastage | -- | 5,102 | wastage rate 1.04%
+
+Milestone noted on the epidemiology slide: the 4-week window (3-31 Jul) shows 9 active cases and NO HOT districts for the first time in the 35-week outbreak; Waterberg alone ACTIVE, the other four districts WANING. Mopani reactivated from resolved to WANING after a positive buffalo result (06 Jul); wildlife involvement now confirmed (1 buffalo Mopani, 2 sable Waterberg). 71 Mopani lab results remain outstanding (oldest 19 Feb). Five district all-animal vaccination rows (Capricorn 184,723; Mopani 111,486; Sekhukhune 111,512; Vhembe 88,165; Waterberg 262,493) and five district positive rows (Capricorn 36; Mopani 4; Sekhukhune 18; Vhembe 18; Waterberg 33, summing to 109) added. Data flag from the workbook: 2 district/product lines show doses used exceeding doses issued (negative usable) -- flagged, not corrected.
+
+### North West (NW-RPO, 28 Jul RPO JIC deck, data as at 25 Jul 2026)
+
+Metric | Previous (16 Jul) | New (25 Jul) | Change
+---|---|---|---
+Confirmed outbreaks | 471 | 476 | +5 (all in Kagisano, DRSM, week 11-25 Jul)
+Vaccine allocation (total) | 1,350,140 | 1,271,140 | see reconciliation note
+Animals vaccinated (internal, with spillages) | 1,039,254 | 1,220,669 | +181,415
+Animals vaccinated (FMD Portal) | 1,032,615 | 1,083,325 | +50,710
+Discard/spillage | 19,805 | 22,456 | +2,651
+
+Regional outbreak split: DKK 92, Bojanala 81, DRSM 211, NMM 92 (four regional subtotal rows added). 427 of 476 reported to WOAH by NDA; 30 closed and quarantines lifted.
+
+**Vaccine-received reconciliation:** this week both the allocation table AND the FMD-summary slide state 1,271,140 (previously the summary slide's 1,271,140 was flagged as a stale carried-forward figure while the allocation table read 1,350,140). With both now agreeing on 1,271,140, the 16 Jul 1,350,140 appears to have been a one-off variant carrying an extra RPO 79,000 line. The 1,271,140 is used as the current cumulative received. Listed components sum to 1,262,120, a ~9,020 discrepancy that persists. This produces an apparent week-on-week decrease in the NW received figure -- flagged; confirm on the next deck.
+
+### Gauteng (GP-GDARD, GDARD JOC update deck, as at 29 Jul 2026; plus 24 Jul JOC minutes)
+
+Metric | Previous (9-10 Jul) | New (29 Jul) | Change
+---|---|---|---
+Confirmed outbreaks | 306 | 307 | +1
+Outbreaks closed | 4 | 110 | historical closures processed
+Animals vaccinated (2026) | 492,050 | 527,626 | +35,576
+Controlled slaughter | 239,082 (24 Jun) | 255,325 | +16,243
+
+The deck carries two snapshots (as at 22 Jul: 520,103 vaccinated, 34 closed; as at 29 Jul: 527,626 vaccinated, 110 closed) -- the 29 Jul figures were ingested. Product split: Biogenesis Bago 191,102; Aftodoll 334,991. The 24 Jul minutes report the outbreak has stabilised (no new outbreaks or suspects in two weeks), that the Department had received "close to 800,000 doses" and issued "approximately 195,000 doses" to private vets, and that surveillance is now assessing post-vaccination immunity at 12 Tshwane sites. The exact GP received figure was NOT recorded as a hard row (stated only as "close to 800,000"); last precise received figure held at 643,300, flagged for confirmation.
+
+### Free State (FS-JOC, FMD FSP status map dated 23 Jul 2026)
+
+Metric | Previous (17 Jul) | New (23 Jul) | Change
+---|---|---|---
+Positive cases | 686 | 728 | +42
+Suspected cases | 361 | 357 | -4
+Cases closed | -- | 317 | noted
+
+Source is a single provincial status map image (read via vision). No vaccine receipt or administration figures -- the FS vaccine reporting gap flagged on 17 Jul continues.
+
+### MPO Week 40 dairy update (snapshot 24 Jul 2026)
+
+First-vaccination dairy cow totals unchanged from Week 39 across all nine provinces (national 958,511) -- first-dose rollout remains plateaued. Booster totals:
+
+Province | Week 39 booster | Week 40 booster | Change
+---|---|---|---
+KZN | 334,000 | 334,000 | unchanged
+EC | 18,619 | 75,444 | +56,825
+FS | 14,578 | 14,578 | unchanged
+GP | 13,720 | 13,720 | unchanged
+National | 380,917 | 437,742 | +56,825
+
+The entire national booster increase this week is Eastern Cape (a further 56,825 dairy animals boosted). 125 of 172 dairy farms remain active. EC holds at 11 positive dairy cases; 8 farms on the KZN border remain under EC surveillance. KZN: all dairy animals boosted (beef animals on dairy farms still pending vaccine). WC: first-round dairy vaccination complete; boosters to start soon.
+
+### Western Cape (AWC-RPO, 21 Jul 2026, commodity body -- held by source)
+
+29 confirmed cases (3 officially closed, 26 active), consistent with the WC-GIS portal's 29 confirmed. 351,765 animals vaccinated to date (Cape Winelands 49,278; Central Karoo 2,696; Cape Town Metro 54,222; Garden Route 142,995; West Coast and Overberg not itemised). Boosters now underway in official FMD quarantine and danger zones. WC-GIS (403,243 as at 14 Jul) remains the WC programme source; the AWC/RPO figure is held by source per the standing methodology note.
+
+### ICC updates 17 and 24 July 2026 (FMD-ICC, policy -- parked items resolved)
+
+- **New Minister of Agriculture confirmed: Mr Willie Aucamp.** The ICC met him on Wednesday 15 July (17 Jul update) and he joined the ICC meeting the following week and intends to attend Council meetings going forward (24 Jul update). His stated priorities: speeding up vaccine imports, removing distribution bottlenecks, and enabling farmers to administer vaccines themselves. This resolves the "new Minister" watch item carried since the 10 Jul Gauteng minutes.
+- **Section 9 national FMD control measures confirmed: Government Gazette Notice 7668, Gazette No. 54969, published 8 July 2026**, replacing the previous control measures. (The Agri Western Cape letter cites "Gazette No. 7687, signed 4 July"; the ICC reference is treated as authoritative and the WC number as a likely transposition.) This resolves the gazette parked item.
+- New watch items: Section 10 committee appointment (Minister to feed back to the ICC); FMD ICC Terms of Reference under review, changes expected to be announced; the Minister to meet MinMEC to align provincial application of the control measures and rollout.
+
+No numeric rows were added from the ICC updates; the "LIVE Vaccine Rollout Dashboard" sections point to the published dashboard rather than tabling figures.
+
+### National headline after rebuild (validation passed)
+
+Metric | Previous (session 60) | New (session 61)
+---|---|---
+Positive cases | 2,674 | 2,725
+Suspected cases | 887 | 882
+Negative cases | 161 | 181
+Pending cases | 189 | 169
+Doses distributed/received | 8,239,622 | 8,379,687
+Doses administered | 5,794,502 | 6,174,860
+Balance on hand | 2,445,120 | 2,204,827
+
+### Data quality flags (this session)
+
+1. NW received decreased 1,350,140 -> 1,271,140 week-on-week (table/summary now agree on 1,271,140); confirm true cumulative allocation next deck.
+2. GP received stated only as "close to 800,000" in the 24 Jul minutes; not recorded as a hard figure. Confirm exact total.
+3. FS vaccine receipt/administration still not reported (23 Jul map is case-only).
+4. LP Section 11 workbook: 2 district/product lines show doses used exceeding doses issued (negative usable stock).
+5. WC AWC/RPO 351,765 vs WC-GIS 403,243 -- methodology gap, both held by source.
+
+### Action items for next run
+
+- Push master_data.csv, FMD_Dashboard.html, change_log.md and memory_update.md to AgriSA1904/FMD-Dashboard (not done this run; needs interactive session with network access).
+- Confirm GP exact doses received and NW true cumulative allocation.
+- Chase FS vaccine figures, the consolidated AgriSA weekly xlsx (now over 120 days outstanding), official KZN JOC documents, and an MP provincial update.
+- Watch for the ICC Section 10 committee decision, the FMD ICC Terms of Reference changes, and confirmation of the incoming 2 million doses referenced in the Limpopo minutes.
+
+## Session 62 -- 5 August 2026 (daily inbox scan, no new source files)
+
+Master: **2,835 rows** (unchanged). Dashboard snapshot: **31 July 2026** (unchanged, 65 weekly points, validation passed).
+
+We scanned the full inbox and the SharePoint document library for anything modified after the last ingest. Nothing new arrived. The two most recent source files, the Limpopo Priority Committee meeting pack of 3 August and the Gauteng draft minutes and outbreak status zip of 3 August, were both processed in session 61 on 4 August. The only items carrying a later timestamp are the outputs of that session itself.
+
+| Check | Scope | Outcome |
+|---|---|---|
+| Local inbox scan | All provincial subfolders, ICC Reports, Ministerial Updates, Portfolio Committee Presentations, MPO, RMIS, AgriSA Weekly Engagement | No files newer than 3 August |
+| Dated root folder | Searched for a folder named in the DD MMM YYYY pattern for August 2026 | None created |
+| SharePoint search | Whole library, modified after 3 August | Only session 61 outputs and unrelated AgriSA documents |
+| Outlook scan | Messages mentioning FMD received after 3 August | One message only, the Limpopo pack of 3 August, already ingested |
+| Dashboard rebuild | Verification rebuild via importlib | Validation passed, output identical to session 61 |
+
+No rows were added and no rows were superseded. We took a backup of the master before the verification rebuild and it is retained as `master_data.csv.bak_session62`.
+
+**Data quality flags:** none new. All flags carried forward from session 61 remain open.
+
+**Operational note:** in this session, bash appends to existing files on the OneDrive mount did not persist, while new file creation did. State file updates were completed through the file tools instead. Worth watching on the next unattended run, since the automated pipeline writes through bash.
+
+**Action items for the next run:**
+
+- Gauteng exact doses received. The 24 July minutes state close to 800,000 received and approximately 195,000 issued to private vets. The last precise figure remains 643,300.
+- Free State vaccine receipt and administration figures. Still not reported since the FS-Landbou view of 10 July. The 23 July map is case-only.
+- North West cumulative allocation. Confirm whether 1,271,140 or 1,350,140 is correct, and close the roughly 9,020 gap between the components and the stated total.
+- Consolidated AgriSA weekly xlsx. Now more than 120 days outstanding and the largest remaining gap in national headline reconciliation.
+- KZN official Joint Operations Committee documents. Figures remain unofficial and are now more than eight weeks stale, dated 9 June.
+- Mpumalanga follow-up provincial submission. The reclassified outbreak count of 259 dated 8 July is still unconfirmed.
+- Limpopo incoming vaccine batches and the 2 million doses referenced in the 24 July minutes, plus the two district lines in the Section 11 workbook where doses used exceed doses issued.
+- Section 10 committee appointment and the FMD Industry Coordination Council Terms of Reference review. Both awaiting Ministerial feedback.
+- GitHub push. Not performed this run. Push master_data.csv, FMD_Dashboard.html, change_log.md and memory_update.md to AgriSA1904/FMD-Dashboard when next running interactively with network access.
+
+## Session 63 -- 6 August 2026 (daily inbox ingest; Mpumalanga Portfolio Committee pack and ICC Update of 4 August)
+
+Master: **2,835 -> 2,879 rows** (+44, all Mpumalanga). Dashboard snapshot: **31 July 2026** (unchanged), weekly points 65 -> 66 on the new 27 July Mpumalanga vaccination point. Validation passed. Backup retained as `master_data.csv.bak_session63`.
+
+Two files arrived since session 62. The ICC Update of 4 August was placed in the inbox at 08:49 on 5 August, shortly after session 62 had already completed its scan, so it was missed by that run and is picked up here. The Mpumalanga Portfolio Committee pack arrived this afternoon.
+
+| File | effective_date | source_org | Outcome |
+|---|---|---|---|
+| `inbox/Mpumalanga/260804_MP_FMD_Update (1).pdf` | 2026-07-31 (cases), 2026-07-27 (vaccine) | MP-DVS | Ingested, 44 rows |
+| `inbox/ICC Reports/08-04-2026_FMD ICC Update.pdf` | 2026-08-04 | FMD-ICC | Processed for policy content, no numeric rows |
+
+### Mpumalanga (MP-DVS, Portfolio Committee on Agriculture, Cape Town, 4 August 2026)
+
+This is the first Mpumalanga submission since the provincial JOC of 7 July and it closes the longest-standing provincial gap on our watch list. Presented by the MEC for Agriculture, Rural Development, Land and Environmental Affairs, Ms B K Moeketsi.
+
+Disease position, 1 April 2025 to 31 July 2026:
+
+Metric | Previous (7 Jul) | New (31 Jul) | Change
+---|---|---|---
+Total outbreaks | 259 | 259 | unchanged, now confirmed
+Outbreaks closed | -- | 85 | newly reported
+Outbreaks open | -- | 174 | newly reported
+Suspects reported/sampled | 104 | 127 | +23
+Controlled slaughter | 33,222 | 35,285 | +2,063
+
+District split: Ehlanzeni 31 outbreaks (0 closed, 3 suspects), Gert Sibande 150 (37 closed, 93 suspects), Nkangala 78 (48 closed, 31 suspects). Gert Sibande remains the centre of the provincial outbreak with 113 of the 174 open cases. The deck also confirms the outbreak history: index case at Volksrust, Dr Pixley ka Isaka Seme, on 11 April 2025 from 22 cattle bought at a Utrecht auction in KwaZulu-Natal, then Nkangala from 4 July 2025 and Ehlanzeni only from 13 February 2026.
+
+**The 259 outbreak count is now confirmed.** This resolves the parked item carried since 8 July, where the reclassified figure was recorded but unverified.
+
+Vaccination campaign, 1 March to 27 July 2026:
+
+Metric | Previous (7 Jul) | New (27 Jul) | Change
+---|---|---|---
+Doses received | 747,000 | 897,000 | +150,000
+Doses administered | 653,374 | 729,074 | +75,700
+Animals vaccinated | 654,409 | 729,074 | +74,665
+Balance on hand | 89,867 | 169,324 | +79,457
+Cumulative losses | 4,490 | 5,032 | +542
+
+The increase in the allocation is the Aftodol 4 consignment of 150,000 doses received on 14 July, of which only 17,219 doses (11 percent) had been used by 27 July. That single consignment accounts for 132,781 of the 169,324 remaining balance, so Mpumalanga has stock in hand rather than a supply constraint.
+
+District position: Ehlanzeni 262,960 allocated and 183,196 administered (70 percent), Gert Sibande 361,520 and 328,657 (91 percent), Nkangala 242,560 and 217,221 (90 percent), with 29,960 doses still in provincial stores. Ehlanzeni is the clear laggard.
+
+Ownership split: commercial 397,726 animals across 1,625 owners (45.45 percent of animals, 6.43 percent of owners), communal 331,348 across 23,635 owners (54.55 percent of animals, 93.57 percent of owners), 25,260 herds vaccinated in total. Private veterinarians performed 69,218 vaccinations, 9.49 percent of the provincial total.
+
+Boosters: 8,914 administered to date, all in Ehlanzeni, given reactively to contain specific outbreaks (Mbombela 26, Nkomazi 484 communal and 3,014 commercial, Bushbuckridge 4,390 communal). The routine booster round is planned to begin in September 2026, six months after first vaccination.
+
+Special categories are unchanged from 7 July: sheep 1,391, goats 493, pigs 2,958, dairy 25,249, stud 21,085, feedlot 12,838.
+
+Additional context captured: 110,524 BVI doses were used in Mpumalanga between 1 April 2025 and the end of February 2026, before the current campaign, giving roughly 839,598 doses administered across both periods. Provincial FMD budget is R10.6 million. Ten replacement state veterinarians have been appointed, 20 animal health technicians are still needed, and vehicle shortages and dilapidated dip tank infrastructure are cited as constraints. The Livestock Identification and Traceability System was piloted but never rolled out provincially for want of resources; SAFAIS is being implemented in the protection zone and its data will be imported into LITS.
+
+### ICC Update, 4 August 2026 (FMD-ICC, policy only)
+
+- **Two new ICC members appointed by the Minister: Dr Theo de Jager and Dr Danie Odendaal.**
+- **The 1.5 million doses of Biogenesis Bago vaccine held at OBP have been allocated** to provinces and commodity organisations. The ICC records that how allocation decisions are made, and which structure makes them, remains unclear, and has raised this since April. No province-level split was published, so no rows were added.
+- The ICC will write to the Director-General to request an update on the Section 10 committee appointment, which must be established before owners can participate in the Section 10 Routine Vaccination Scheme, and on the provincial application of the Section 9 control measures.
+- The Minister has asked the ICC to table a vaccination rollout plan. The ICC will meet Ministerial Task Team veterinarians on Tuesday 11 August to align the practical and scientific aspects before submission.
+
+### National headline after rebuild (validation passed)
+
+Metric | Session 62 | Session 63
+---|---|---
+Positive cases | 2,725 | 2,725
+Suspected cases | 882 | 882
+Negative cases | 181 | 181
+Pending cases | 169 | 169
+Doses distributed/received | 8,379,687 | 8,529,687
+Doses administered | 6,174,860 | 6,249,525
+Balance on hand | 2,204,827 | 2,280,162
+
+Case totals are unchanged because the Mpumalanga figure of 259 was already carried in the master from 8 July; this run confirms rather than moves it.
+
+### Data quality flags (this session)
+
+1. **Mpumalanga balance on hand does not reconcile three ways.** The vaccine-type table states 169,324, its own in-hand column sums to 185,924, and the district table states 132,320 plus 29,960 in stores. The stated headline of 169,324 is recorded and the conflict flagged.
+2. **Mpumalanga losses do not reconcile.** The vaccine-type table states 5,032, the district table states 5,646. The 5,032 is recorded.
+3. **Mpumalanga batch allocations are inconsistent with batch administration.** Aftodol 1 shows 140,017 administered against a 95,000 allocation and Aftodol 3 shows 155,458 against 144,000. The administered column nonetheless sums exactly to the stated 729,074, so batch-level administration is treated as reliable and batch-level allocation is not.
+4. **Bioaftogen 3 allocation shown as 197,000** in this deck versus 167,000 in the 7 July JOC deck. The 167,000 reading makes the allocation column sum to the stated 897,000, so 197,000 is treated as a typing error. The district table reconciles exactly to 897,000, which is why that total is used with confidence.
+5. **Mpumalanga booster total shown as 729,074**, which duplicates the overall administered figure and is a clear copy error. The district lines sum to 8,914 and that is what was recorded.
+6. **Three conflicting Mpumalanga cattle population estimates:** Ministerial Task Team 1,868,920, Mpumalanga Veterinary Services 1,480,241, and the AgriSA and ICC reference herd figure of 1,177,420 held in this master. The provincial figure was recorded as susceptible population rather than herd size so the dashboard coverage denominator is not moved on an unresolved conflict.
+7. **Session 62 missed a file.** The ICC Update of 4 August landed at 08:49 on 5 August, roughly an hour after session 62 completed. Not a pipeline fault, but it argues for running the scan later in the day.
+
+### Action items for next run
+
+- Confirm with Mpumalanga which in-hand and loss totals are correct, and whether Bioaftogen 3 was 167,000 or 197,000.
+- Watch for the province-level split of the 1.5 million Biogenesis Bago doses allocated from OBP, and press for clarity on which structure makes allocation decisions.
+- Watch for the outcome of the ICC meeting with Ministerial Task Team veterinarians on 11 August and the rollout plan submitted to the Minister.
+- Section 10 committee appointment and the provincial application of Section 9, both now the subject of a formal ICC letter to the Director-General.
+- Gauteng exact doses received. The 24 July minutes state close to 800,000 received and approximately 195,000 issued to private vets. The last precise figure remains 643,300.
+- Free State vaccine receipt and administration figures. Still not reported since the FS-Landbou view of 10 July.
+- North West cumulative allocation. Confirm whether 1,271,140 or 1,350,140 is correct, and close the roughly 9,020 gap between components and stated total.
+- Consolidated AgriSA weekly xlsx. Now more than 120 days outstanding and the largest remaining gap in national headline reconciliation.
+- KwaZulu-Natal official Joint Operations Committee documents. Figures remain unofficial and are now more than eight weeks stale, dated 9 June.
+- Limpopo incoming vaccine batches and the 2 million doses referenced in the 24 July minutes, plus the two Section 11 district lines where doses used exceed doses issued.
+- **Unattended pipeline is stalling.** `ingest_log.txt` shows the local scheduled run on each of 3, 4, 5 and 6 August finding 23 xlsx files, beginning the same Mpumalanga file from 19 May, and producing no further output. It has added nothing for at least four days. Needs investigation.
+- GitHub push. Not performed this run. Push master_data.csv, FMD_Dashboard.html, change_log.md and memory_update.md to AgriSA1904/FMD-Dashboard when next running interactively with network access.
+
+## Session 64 — 7 August 2026 (scheduled daily ingest; no new files)
+
+### Scope
+
+Automated daily inbox ingest. The inbox, dated root folders and project root were scanned through both the SharePoint index (three separate content queries filtered to files modified after 6 August 14:00 UTC) and a full local filesystem scan against the master mtime. Both methods agree: no new files have arrived since session 63.
+
+### Sources checked
+
+Folder | Newest file | Status
+---|---|---
+inbox/ICC Reports | 08-04-2026_FMD ICC Update.pdf (5 Aug 08:49) | Already ingested (session 63)
+inbox/Mpumalanga | 260804_MP_FMD_Update (1).pdf (6 Aug 15:27) | Already ingested (session 63)
+inbox/Limpopo | FMD PCM MEETING PACK 20260803.pdf (3 Aug 13:23) | Already ingested (19 rows, session 62)
+Dated root folders | None newer than 01 May 2026 | Nothing new
+All other inbox folders | Nothing after 27 July | Nothing new
+
+### Outcome
+
+- Master rows: 2,879 → 2,879 (no change).
+- Dashboard: verification rebuild run via importlib. Output confirmed: snapshot 2026-07-31, 66 weekly points, "Wrote ... - validation passed" (262,402 bytes).
+- No rows added, no conflicts raised, no backup needed.
+
+### Data quality flags
+
+None new this session.
+
+### Automation health
+
+- The unattended local pipeline stall continues: `ingest_log.txt` shows runs on 3, 4, 5 and 6 August each finding 23 xlsx files, starting the same Mpumalanga file dated 19 May, then producing no further output.
+- No `ingest_log.txt` entry exists for the 08:00 run of 7 August at the time of this session (roughly mid-morning). Either the local scheduled task did not fire today or the log had not synced. Add this to the stall investigation.
+
+### Action items for next run
+
+- Watch for the ICC Update covering the 11 August meeting with Ministerial Task Team veterinarians and the rollout plan for the Minister. Scan later in the day to avoid the 08:49-style same-day miss from session 62.
+- All parked items from session 63 carry forward unchanged: Mpumalanga reconciliation queries, Biogenesis Bago 1.5 million split, Section 9 and Section 10 follow-ups, Gauteng exact received figure, Free State vaccine figures (stale since 10 July), North West allocation confirmation, consolidated AgriSA weekly xlsx (120 days plus outstanding), KZN official JOC documents (stale since 9 June), Limpopo incoming batches and Section 11 lines, Western Cape case-count basis.
+- Investigate the local pipeline stall and confirm whether the 7 August local run fired.
+- GitHub push outstanding: push master_data.csv, FMD_Dashboard.html, change_log.md and memory_update.md to AgriSA1904/FMD-Dashboard when next running interactively (no data change this session, so the published dashboard is not stale).
+
+## Session 65 -- 10 August 2026 (daily inbox ingest; no new files)
+
+### Sources scanned
+
+| Location | Newest item | Outcome |
+|---|---|---|
+| SharePoint content index ("FMD", "vaccine", "update", "ICC" after 6 Aug 16:00) | Only state files, logs and unrelated UNISA study notes | Nothing new |
+| Local filesystem (find -newer master_data.csv) | change_log.md, memory_update.md, FMD_Dashboard.html, ingest logs only | Nothing new |
+| SharePoint folder index (inbox subfolders, dated root folders) | No FMD folder modified after 27 July; no new dated root folder for 7 to 10 August | Nothing new |
+
+### Outcome
+
+- Master rows: 2,879 → 2,879 (no change).
+- Dashboard: verification rebuild run via importlib. Output confirmed: snapshot 2026-07-31, 66 weekly points, "Wrote ... - validation passed" (262,402 bytes).
+- No rows added, no conflicts raised, no backup needed.
+
+### Data quality flags
+
+None new this session.
+
+### Automation health
+
+- Root cause of the local pipeline failure identified. `ingest_task_log.txt` shows the Claude CLI failing with "401 OAuth access token has expired. Re-authenticate to continue." on the 6, 7 and 9 August runs. The local Claude CLI needs to be re-authenticated (run `claude` interactively and sign in, or `claude login`) before the unattended task can ingest again.
+- The xlsx pre-processing stall also persists: runs on 5, 6, 7 August (08:00) and 9 August (11:51) each found 23 xlsx files, started the same Mpumalanga file dated 19 May and produced no further output.
+- No local run fired at 08:00 on 8 or 10 August. The 9 August run fired at 11:51, off schedule. Check the Windows scheduled task trigger alongside the re-authentication.
+
+### Action items for next run
+
+- ICC meeting with Ministerial Task Team veterinarians is tomorrow, Tuesday 11 August. Expect the ICC Update PDF and the rollout plan for the Minister this week; scan later in the day to avoid a same-day miss.
+- Re-authenticate the local Claude CLI so the unattended 08:00 pipeline can resume.
+- All parked items from session 64 carry forward unchanged: Mpumalanga reconciliation queries, Biogenesis Bago 1.5 million split, Section 9 and Section 10 follow-ups, Gauteng exact received figure, Free State vaccine figures (stale since 10 July), North West allocation confirmation, consolidated AgriSA weekly xlsx (more than 120 days outstanding), KZN official JOC documents (stale since 9 June), Limpopo incoming batches and Section 11 lines, Western Cape case-count basis.
+- GitHub push outstanding: push master_data.csv, FMD_Dashboard.html, change_log.md and memory_update.md to AgriSA1904/FMD-Dashboard when next running interactively (no data change this session, so the published dashboard is not stale).
+
+## Session 66 -- 11 August 2026 (daily inbox ingest; no new files)
+
+### Sources scanned
+
+| Location | Newest item | Outcome |
+|---|---|---|
+| Local filesystem (find -newer master_data.csv, all inbox subfolders and root) | Only scripts/ingest_prompt.txt (9 Aug, pipeline file), state files and logs | Nothing new |
+| SharePoint content index ("FMD", "vaccine", "ICC update", "rollout plan" after 6 Aug 16:00) | Only state files, logs and the pipeline prompt | Nothing new |
+| SharePoint folder index (ICC Reports and inbox subfolders) | inbox/ICC Reports newest file remains 08-04-2026_FMD ICC Update.pdf (5 Aug) | Nothing new |
+| Dated root folders | None newer than 01 May 2026 | Nothing new |
+
+### Outcome
+
+- Master rows: 2,879 → 2,879 (no change).
+- Dashboard: verification rebuild run via importlib. Output confirmed: snapshot 2026-07-31, 66 weekly points, "Wrote ... - validation passed" (262,402 bytes).
+- No rows added, no conflicts raised, no backup needed.
+
+### Data quality flags
+
+None new this session.
+
+### Automation health
+
+- Local Claude CLI re-authentication is still outstanding (401 OAuth failures on 6, 7 and 9 August in ingest_task_log.txt). No fresh local run entries since 9 August 11:51, so no run fired at 08:00 on 8, 10 or 11 August. The Windows scheduled task trigger also needs checking.
+- The xlsx pre-processing stall persists (23 xlsx files found, same 19 May Mpumalanga file started, no further output).
+
+### Action items for next run
+
+- The ICC meeting with Ministerial Task Team veterinarians took place today, 11 August. The ICC Update PDF and the rollout plan for the Minister had not landed by run time. Scan again later today or tomorrow; session 62 missed an 08:49 same-day file.
+- Re-authenticate the local Claude CLI and check the Windows scheduled task trigger.
+- All parked items from session 65 carry forward unchanged: Mpumalanga reconciliation queries, Biogenesis Bago 1.5 million split, Section 9 and Section 10 follow-ups, Gauteng exact received figure, Free State vaccine figures (stale since 10 July), North West allocation confirmation, consolidated AgriSA weekly xlsx (more than 120 days outstanding), KZN official JOC documents (stale since 9 June), Limpopo incoming batches and Section 11 lines, Western Cape case-count basis.
+- GitHub push outstanding: push master_data.csv, FMD_Dashboard.html, change_log.md and memory_update.md to AgriSA1904/FMD-Dashboard when next running interactively (no data change this session, so the published dashboard is not stale).
+
+## Session 67 -- 14 August 2026 (daily inbox ingest; Portfolio Committee packs, Free State stats, MPO Week 42)
+
+### Sources processed
+
+| File | Effective date | Source org | Outcome |
+|---|---|---|---|
+| inbox/Free State/FMD STATS 6 AUGUST 2026.zip (xlsx plus two media release images) | 2026-08-06 | FS-DARDLEA | 7 rows: positive cases 764 with district split, animals vaccinated 1,458,124 |
+| inbox/MPO/Week 42 - Update on the state of FMD and vaccine rollouts in the dairy industry.pdf | 2026-08-07 | MPO | 16 rows: dairy first and second vaccinations per province, active dairy farms |
+| inbox/Portfolio Committee Presentations/260805_EC_Presentation.pptx | 2026-08-05 | EC-DRDAR | 9 rows: received 1,527,230, vaccinated 1,284,333, wastage, outbreaks 483 |
+| inbox/Portfolio Committee Presentations/260805_KZN_Interventions_and_Implementation_of_FMD_Vaccination_Report.pptx | 2026-07-26 | KZN-DARD | 16 rows: vaccinated 1,567,971 official, channel and district splits, dairy boosters 247,000 |
+| inbox/Portfolio Committee Presentations/260805_Foot_and_Mouth_Outbreak_NC.pdf | 2026-08-05 | NC-DALRRD | 13 rows: received 333,560, vaccinated 215,546, type and district splits, 40 outbreaks |
+| inbox/Portfolio Committee Presentations/260805_WC_Presentation.pdf | 2026-07-31 | WC-DoA | 6 rows: received 547,100, administered 429,000, primary 367,311, boosters 61,689 |
+| inbox/Portfolio Committee Presentations/260805pcagric_Media_Statement.docx (duplicate copy "(1)" ignored) | 2026-08-05 | Ministry | 1 row: 17 million doses procured nationally, four million more expected |
+
+### Outcome
+
+- Master rows: 2,879 -> 2,948 (69 added, 0 duplicates skipped). Backup written to archive/2026-08-14/master_data_pre_session67.csv.
+- Dashboard rebuilt via importlib: snapshot advanced 2026-07-31 -> 2026-08-06, weekly points 66 -> 71, "Wrote ... - validation passed" (264,826 bytes).
+- Code change: KZN-DARD and WC-DoA added to PROGRAMME_SOURCES in scripts/build_dashboard.py. Both are official provincial departments presenting to the Portfolio Committee on Agriculture; KZN figures are official for the first time since 9 June.
+
+### Key figures added
+
+- KZN (official, as of 26 Jul): 1,567,971 animals vaccinated, 55.0 percent coverage; state 950,242 versus private 617,729; 247,000 dairy boosters; twelve district rows.
+- FS (as of 6 Aug): 764 confirmed cases (543 resolved, 221 active); 1,458,124 cattle vaccinated per the 7 August media release.
+- EC (as of 5 Aug): 1,527,230 doses received; 1,284,333 vaccinated (dose-count basis); 483 confirmed and 227 suspected outbreaks; wastage 11,812; leftover 125,156.
+- NC (as of 5 Aug): 333,560 received; 215,546 vaccinated (53 percent of herd); 40 outbreaks, 3 closed.
+- WC (as of 30 to 31 Jul): 547,100 received; 429,000 administered (367,311 primary, 61,689 booster); 35 confirmed outbreaks.
+- MPO Week 42 (as of 7 Aug): 958,511 dairy first vaccinations and 449,060 boosters nationally; 125 dairy farms with active FMD.
+- National: 17 million doses procured, four million more expected (Portfolio Committee statement, 5 Aug).
+
+### Data quality flags
+
+1. EC internal conflict: doses used 1,279,311 versus vaccinated 1,284,333 (gap 5,022). Both held with notes.
+2. EC, NC and WC now report on an outbreaks basis rather than individual positive cases; flagged in notes and not directly comparable with prior positive_cases rows.
+3. KZN district table inconsistencies (Hluhluwe animals figure duplicates the Jozini cattle column; uGu cattle exceeds its total); rows still sum to 1,567,971.
+4. FS animals vaccinated (1,458,124) exceeds the last known FS received figure (1,272,180 of 10 Jul); FS receipts are stale, not wrong.
+5. FS xlsx vaccination columns were all zero; the vaccination figure came from the media release images.
+6. Bottom-up provincial vaccinated sum (~8.19 million) now exceeds the ICC national administered figure of 6,249,525 (4 Aug); reconcile against the next ICC update.
+
+### Action items for next run
+
+- Still watching for the ICC Update PDF covering the 11 August Ministerial Task Team meeting and the rollout plan for the Minister.
+- Chase FS and KZN doses received figures and an official KZN case count.
+- Watch for the first NC booster figures (campaign due to start August).
+- All other parked items carry forward; see memory_update.md.
