@@ -530,14 +530,20 @@ def build_rmis(rows):
     sector_rows = [r for r in dist_rows
                    if r["province"] == "national"
                    and r["vaccine_type"] == "all"
-                   and r["vet_channel"] in ("stud", "commercial", "feedlot")]
+                   and r["vet_channel"] in ("stud", "commercial", "feedlot", "dairy")]
+    if sector_rows:
+        latest_sec = max(r["effective_date"] for r in sector_rows)
+        sector_rows = [r for r in sector_rows if r["effective_date"] == latest_sec]
     by_sector = {r["vet_channel"]: int(num(r["value"]) or 0) for r in sector_rows}
 
     # ── 6. Municipality breakdown (province x municipality x sector) ──────────
     munic_rows = [r for r in dist_rows
                   if r["province"] not in ("national", "NAT")
                   and r["vaccine_type"] == "all"
-                  and r["vet_channel"] in ("stud", "commercial", "feedlot")]
+                  and r["vet_channel"] in ("stud", "commercial", "feedlot", "dairy")]
+    if munic_rows:
+        latest_mun = max(r["effective_date"] for r in munic_rows)
+        munic_rows = [r for r in munic_rows if r["effective_date"] == latest_mun]
     munic_list = []
     for r in munic_rows:
         m = _re.search(r"Municipality: ([^.]+)", r.get("notes", ""))
@@ -1072,9 +1078,39 @@ def build_dashboard():
                        "replacing the localised DMA rules.")
         })
 
+    if any(r["metric"] == "minister_appointed" for r in rows):
+        policy_events.append({
+            "date": "2026-07-01",
+            "title": "Willie Aucamp appointed Minister of Agriculture",
+            "detail": ("Minister Aucamp replaced John Steenhuisen following the DA's GNU "
+                       "reshuffle announced on 17 June 2026. The FMD response continues with a "
+                       "stronger emphasis on public-private partnership and opening the vaccine "
+                       "supply chain to private participation.")
+        })
+    if any(r["metric"] == "fmd_settlement_private_imports" for r in rows):
+        policy_events.append({
+            "date": "2026-07-10",
+            "title": "FMD settlement opens private vaccine imports and sales",
+            "detail": ("Settlement between the Department of Agriculture, SAAI, Sakeliga and "
+                       "Free State Agriculture ends litigation. The state and OBP relinquish "
+                       "sole rights to import and distribute FMD vaccines. Livestock owners may "
+                       "vaccinate voluntarily subject to biosecurity, traceability and "
+                       "reporting rules.")
+        })
+    if any(r["metric"] == "self_vaccination_portal_launched" for r in rows):
+        policy_events.append({
+            "date": "2026-07-25",
+            "title": "Online self-vaccination authorisation system launched",
+            "detail": ("Authorised farmers can now apply online to vaccinate their own "
+                       "livestock under traceability and reporting conditions, delivering on "
+                       "the July settlement. The department retains vaccine provision in "
+                       "outbreak areas and for farmers who cannot afford doses. Stated target: "
+                       "80 percent of the national cattle herd vaccinated by December 2026.")
+        })
+
     incoming = []
     # Vaccine supply pipeline — hardcoded from ministerial briefings and RMIS import tracker.
-    # Updated as at 1 June 2026 (Minister Steenhuisen, Parliament).
+    # Updated as at 17 August 2026 (Minister Aucamp statements, 31 July and 5 August 2026).
     # Do not regenerate from doses_incoming rows (stale format). Update here manually.
     incoming = [
         {"vaccine": "ARC Trivalent",        "doses": 12900,    "date": "2026-02-01", "status": "Arrived",  "notes": "Initial emergency stock."},
@@ -1084,7 +1120,7 @@ def build_dashboard():
         {"vaccine": "DolVet Trivalent",     "doses": 2000000,  "date": "2026-04-01", "status": "Arrived",  "notes": ""},
         {"vaccine": "DolVet Trivalent",     "doses": 2000000,  "date": "2026-05-01", "status": "Arrived",  "notes": ""},
         {"vaccine": "Biogenesis Bago",      "doses": 3500000,  "date": "2026-05-28", "status": "Arrived",  "notes": "Distributed: 1.5M feedlots; 500 000 RMPO; 200 000 MPO; 100 000 stud breeders; 1.05M provinces; balance for border vaccination."},
-        {"vaccine": "DolVet (Dunevax)",     "doses": 4000000,  "date": "2026-06-30", "status": "Expected", "notes": "First consignment of 14M SAHPRA Section 21-approved Dollvet doses. Enables booster programme."},
+        {"vaccine": "DolVet (Dunevax)",     "doses": 4000000,  "date": "2026-08-03", "status": "Arrived",  "notes": "First consignment of 14M SAHPRA Section 21-approved Dollvet doses. Landed week of 3 August 2026 per Minister Aucamp (31 July). Enables booster programme."},
         {"vaccine": "DolVet (Dunevax)",     "doses": 10000000, "date": "2026",       "status": "Pipeline", "notes": "Remaining balance of 14M SAHPRA Section 21 approval. Delivery schedule to be confirmed."},
     ]
 
@@ -1097,8 +1133,10 @@ def build_dashboard():
         "provincial_cattle":       prov_ministerial,
         "policy_events":           policy_events,
         "incoming_supply":         incoming,
-        "source_date":             "2026-06-04",
-        "source_label":            "DoA Portfolio Committee briefing, 9 June 2026 (data as at 4 June 2026)",
+        "source_date":             "2026-08-05",
+        "source_label":            ("Minister Aucamp statements and DoA Portfolio Committee "
+                                    "correspondence, July to August 2026 (procurement as at "
+                                    "5 August 2026; vaccination total as at 17 July 2026)"),
     }
 
     min_comparison = build_ministerial_comparison(rows)

@@ -549,7 +549,7 @@
   <section class="tab-section" data-tab="rmis" id="rmisSection">
     <div class="kicker">Industry distribution view</div>
     <h2>RMIS: Industry vaccine distribution.</h2>
-    <p style="color:var(--charcoal);font-size:14px;margin-top:calc(-1 * var(--sp-6));margin-bottom:var(--sp-6)" id="rmisSubtitle">Tracked by the Red Meat Industry Service (RMIS). Covers the private industry channel — doses allocated to and distributed by industry across all sectors (feedlot, commercial farms, stud). Complements the state programme doses tracked in the provincial data above. Cumulative from rollout start.</p>
+    <p style="color:var(--charcoal);font-size:14px;margin-top:calc(-1 * var(--sp-6));margin-bottom:var(--sp-6)" id="rmisSubtitle">Tracked by the Red Meat Industry Service (RMIS). Covers the private industry channel — doses allocated to and distributed by industry across all sectors (feedlot, commercial farms, stud, dairy). Complements the state programme doses tracked in the provincial data above. Cumulative from rollout start.</p>
 
     <!-- KPI row -->
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:var(--sp-4);margin-bottom:var(--sp-6)">
@@ -596,7 +596,7 @@
       </div>
       <div class="card" style="display:flex;flex-direction:column;justify-content:center">
         <h3>Data notes.</h3>
-        <p style="font-size:13px;color:var(--charcoal);line-height:1.6">The RMIS industry channel covers vaccine distributed directly to farmers and feedlots through private veterinary practices, separate from state-programme doses administered by provincial veterinary services. Source: RMIS Shiny portal and Excel export, 22 June 2026. Biogenesis = Biogenesis Bagó (Argentina). DolVet = DolVet Biotech Trivalent (Turkey).</p>
+        <p style="font-size:13px;color:var(--charcoal);line-height:1.6">The RMIS industry channel covers vaccine distributed directly to farmers and feedlots through private veterinary practices, separate from state-programme doses administered by provincial veterinary services. Source: RMIS Shiny portal, release of 11 August 2026 (read 17 August 2026). Biogenesis = Biogenesis Bagó (Argentina). DolVet = DolVet Biotech Trivalent (Turkey).</p>
       </div>
     </div>
 
@@ -788,7 +788,7 @@ try {
     </div>
     <div>
       <p class="alert-headline">
-        Government has procured <span class="accent">${fmt(procured)} doses</span> (Ministerial briefing, 1 June 2026).
+        Government has procured <span class="accent">${fmt(procured)} doses</span> (DoA Portfolio Committee statement, 5 August 2026).
         Provinces have reported receiving <span class="accent">${fmt(distributed)} doses</span> via JOC returns — the balance is in national stockpile or in transit.
         We measure against a national herd of ${fmt(N.herd_cattle)} cattle.
         Full coverage at two doses per animal requires roughly ${(fullCoverageNeed/1e6).toFixed(1)} million doses.
@@ -1563,8 +1563,8 @@ if (data.rmis) try {
   if (municPanel && rmis.by_municipality && rmis.by_municipality.length > 0) {
     const top = rmis.by_municipality.slice(0,15);
     const maxDoses = top[0].doses || 1;
-    const sectorCol = s => s==='feedlot'?'#102D2D':s==='commercial'?'#4a8f8f':'#CBD929';
-    const sectorTxt = s => s==='stud'?'#333':'#fff';
+    const sectorCol = s => s==='feedlot'?'#102D2D':s==='commercial'?'#4a8f8f':s==='dairy'?'#8FB3B3':'#CBD929';
+    const sectorTxt = s => (s==='stud'||s==='dairy')?'#333':'#fff';
     municPanel.innerHTML = `
       <table style="width:100%;border-collapse:collapse;font-size:12px">
         <thead><tr style="border-bottom:1px solid var(--mist)">
@@ -1749,7 +1749,7 @@ if (data.ministerial) try {
       `<tr><td>${i.vaccine}</td><td class="num">${i.doses>=1000?fmt(i.doses):'—'}</td><td>${i.date||''}</td><td>${statusBadge(i.status)}</td><td style="font-size:12px;color:var(--charcoal)">${i.notes||''}</td></tr>`
     ).join('');
     supplyEl.innerHTML = `
-      <p style="font-size:13px;color:var(--charcoal);margin:0 0 var(--sp-4)">Total doses procured as at 1 June 2026: <strong style="color:var(--pine)">${fmt(13500000)}</strong> &nbsp;|&nbsp; Confirmed arrived: <strong style="color:var(--pine)">${fmt(totalProcured)}</strong> &nbsp;|&nbsp; Pipeline: <strong style="color:var(--pine)">${fmt(14000000)}</strong> additional (SAHPRA Section 21 approved)</p>
+      <p style="font-size:13px;color:var(--charcoal);margin:0 0 var(--sp-4)">Total doses procured as at 5 August 2026: <strong style="color:var(--pine)">${fmt(17000000)}</strong> &nbsp;|&nbsp; Confirmed arrived: <strong style="color:var(--pine)">${fmt(totalProcured)}</strong> &nbsp;|&nbsp; Pipeline: <strong style="color:var(--pine)">${fmt(10000000)}</strong> additional (balance of the 14M SAHPRA Section 21 approval)</p>
       <table><thead><tr><th>Vaccine</th><th class="num">Doses</th><th>Date</th><th>Status</th><th>Notes</th></tr></thead><tbody>${rows}</tbody><tfoot><tr><td>Total</td><td class="num">${fmt(totalAll)}</td><td></td><td></td><td></td></tr></tfoot></table>`;
   }
 } catch(e) { showError('ministerialBanner', 'Ministerial section', e); }
