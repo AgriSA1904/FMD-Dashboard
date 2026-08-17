@@ -33,7 +33,7 @@ As at 2026-08-14 (session 67 -- daily inbox ingest; Portfolio Committee packs, F
 
 **Parked/outstanding:**
 
-- ICC Update PDF covering the 11 August meeting with the Ministerial Task Team veterinarians, plus the rollout plan for the Minister. Still not arrived.
+- ICC Update PDF covering the 11 August meeting with the Ministerial Task Team veterinarians, plus the rollout plan for the Minister. Still not arrived (checked 17 Aug).
 - FS doses received figure (stale since 10 Jul and now below animals vaccinated).
 - KZN doses received and official case count (received stale since 9 Jun; cases since 5 Jun).
 - Gauteng exact doses received (approximately 800,000 per 24 Jul minutes; last precise 643,300).
@@ -46,3 +46,14 @@ As at 2026-08-14 (session 67 -- daily inbox ingest; Portfolio Committee packs, F
 - Western Cape case-count basis (now three counts: deck 35 outbreaks, GIS 29, weekly summary 39) and AWC/RPO methodology gap.
 - NC booster campaign due to start August 2026; watch for the first booster figures.
 - GitHub push: attempted this run from the sandbox; see change_log session 67 for the result.
+
+
+---
+
+## Session 68 addendum (17 Aug 2026)
+
+- RMIS portal release 11 Aug ingested (live browser read): allocated 2.9M, distributed 2,578,470, 121 practices, 1,622 sites, full province/manufacturer/municipality detail, new Industry Allocation Log table (metric industry_allocation_batch).
+- WC GIS live REST query 17 Aug: confirmed 36 / suspected 19; vaccinated 469,770 (2,497 records); received 597,080 (13 Aug). National headline received now 8,656,215, administered 8,231,492, positive 2,768.
+- Minister era captured: Aucamp replaced Steenhuisen (official 1 Jul); 10 Jul settlement opened private vaccine imports/sales; 25 Jul self-vaccination portal; over 8M vaccinated as at 17 Jul (ministerial); 80% herd target by Dec 2026; 4M Dunevax landed week of 3 Aug. Ministerial dashboard section updated accordingly.
+- Builder fix: RMIS sector/municipality panels now dedupe to latest release date and include dairy.
+- Watch next: ICC 11 Aug update PDF; first booster figures (NC); whether procurement moves past 17M once the 4M landing is formally confirmed by DoA.
