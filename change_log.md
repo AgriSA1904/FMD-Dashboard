@@ -4,69 +4,6 @@ A running record of what changed in the master and dashboard, with dates and sou
 
 ---
 
-## 2026-08-17 (session 68) — RMIS 11 Aug release, WC GIS live query, and Aucamp-era ministerial updates
-
-**New rows added to master:** 159 (2,948 → 3,107 rows)
-
-**Dashboard rebuilt:** Yes — validation passed; headless render check clean (no JS errors)
-
-**Snapshot date moved:** 6 Aug → 17 Aug 2026 (WC-GIS live query is now the newest observation)
-
-### Sources processed this session
-
-| Source | As at | Method |
-|---|---|---|
-| RMIS Industry Allocated FMD Vaccine Distribution Dashboard (Shiny) | Release 11 Aug 2026 | Live browser read, all tables expanded |
-| WC GIS portal (ArcGIS FeatureServer REST) | 17 Aug 2026 (received figure 13 Aug) | Live REST statistics queries |
-| Ministerial statements (Minister Willie Aucamp era) | 17 Jun – 5 Aug 2026 | Web research, public statements |
-
-### RMIS — release 11 Aug 2026 (previous ingest: 14 Jul)
-
-- Allocated to industry: **2,900,000** (up from 2,500,000 at 22 Jun)
-- Distributed by industry: **2,578,470** portal headline (stud 166,710 / commercial 626,462 / feedlot 1,785,298); provincial table sums to 2,580,315 including 1,845 dairy doses (FS) omitted from the headline card — both figures held, discrepancy noted
-- Vet practices ordering: **121** (up from 64); GLN vaccination sites: **1,622** (up from 650)
-- Province totals (all manufacturers): FS 706,422; GP 558,255; NW 503,721; MP 282,780; EC 165,671; KZN 151,728; LP 112,857; NC 98,201; WC 680
-- Manufacturer split per province captured (Biogenesis 2,060,239 national / Dollvet 520,076)
-- Full municipality x sector detail: 97 rows across all 9 provinces (sums reconcile to province totals exactly)
-- **New table on portal:** Industry Allocation Log (arrival month x manufacturer x sector), 10 batches Apr–Jul 2026 totalling 2,900,000 — stored under new metric `industry_allocation_batch`
-- Note: NW municipal detail lists a ZF Mgcawu row (180 doses) — ZF Mgcawu is a Northern Cape district; kept as reported by RMIS
-
-### WC GIS portal — live query 17 Aug 2026 (previous: 14 Jul)
-
-- Confirmed FMD establishments: **36** (up from 29); suspected: **19** (up from 12). Case-basis caveat vs the end-Jul deck (35 outbreaks) remains open
-- Vaccinations administered: **469,770** across 2,497 site records (up from 403,243). Monthly: Feb 27,609; Mar 125,952; Apr 28,148; May 105,298; Jun 105,406; Jul 43,118; Aug-to-date 33,560; some records forward-dated to 20 Aug
-- Vaccines received: **597,080** (stat table last edited 13 Aug; up from 497,100 at 29 Jun / 547,100 in end-Jul deck)
-- Private vets vaccinating: 29 (unchanged)
-
-### Ministerial — Aucamp era (user-requested currency check)
-
-Confirmed there IS newer ministry data than the 1 June briefing, and a new minister:
-
-- **Willie Aucamp replaced John Steenhuisen as Minister of Agriculture** (DA GNU reshuffle announced 17 Jun; official 1 Jul 2026)
-- **10 Jul:** historic FMD settlement (DoA + SAAI + Sakeliga + Free State Agriculture) — state/OBP relinquish sole rights to import and distribute FMD vaccines; private imports and sales opened
-- **25 Jul:** online FMD self-vaccination authorisation system launched
-- **As at 17 Jul:** over **8,000,000** animals vaccinated (commercial 4.9M; communal/emerging 3.1M; dairy herd complete; KZN, NW, EC, FS each above 1M) — supersedes 4,709,529 (4 Jun) as the ministerial national figure
-- **Target:** 80% of the national cattle herd by December 2026
-- **Week of 3 Aug:** 4M Dollvet (Dunevax) consignment landed (first of the 14M SAHPRA Section 21 approval; 10M remains in pipeline)
-- 17,000,000 doses procured (5 Aug Portfolio Committee statement) remains the current procurement figure
-
-### Build/template changes
-
-- `build_dashboard.py`: RMIS sector and municipality panels now include the dairy sector and use only the latest release date (previously all releases accumulated in the municipality panel); three Aucamp policy events added; supply pipeline updated (4M Dunevax marked Arrived 3 Aug); ministerial source label updated to Jul–Aug 2026
-- `dashboard_template.html`: hero procurement attribution updated (1 June briefing → 5 August Portfolio Committee statement); procurement summary strip updated (13.5M as at 1 Jun → 17M as at 5 Aug, pipeline 10M); RMIS source line updated to the 11 Aug release; dairy sector colour added
-
-### National headline movement (from WC updates)
-
-- Received: 8,606,235 → **8,656,215** (+49,980, WC)
-- Administered: 8,190,379 → **8,231,492** (+41,113, WC)
-- Positive: 2,761 → **2,768** (+7, WC)
-
-### Still outstanding (unchanged from session 67)
-
-All session-67 parked items remain except: WC GIS refresh (done, 17 Aug), RMIS refresh (done, 11 Aug release), minister-era policy capture (done). The ICC Update PDF covering the 11 Aug meeting has still not arrived; FS and KZN received figures remain stale; AgriSA consolidated weekly xlsx remains outstanding.
-
----
-
 ## Session 52 -- 3 July 2026 (GP-GDARD 26 Jun JOC; NW-RPO 30 Jun JIC)
 
 Master: 2,218 rows (+49: 20 GP-GDARD + 29 NW-RPO). Dashboard: 29 June 2026 (44 weekly; 217,893 bytes). Validation passed.
@@ -5111,3 +5048,87 @@ None new this session.
 - Chase FS and KZN doses received figures and an official KZN case count.
 - Watch for the first NC booster figures (campaign due to start August).
 - All other parked items carry forward; see memory_update.md.
+
+## Session 68 -- 17 August 2026 (scheduled daily inbox ingest; no new files)
+
+### Sources scanned
+
+| Location | Newest item | Outcome |
+|---|---|---|
+| Local filesystem (find -newer master_data.csv, all inbox subfolders and root) | Only state files, dashboard and build script from session 67 | Nothing new |
+| SharePoint content index ("FMD", "vaccine" after 14 Aug 17:00) | No results | Nothing new |
+| SharePoint folder index ("Aug 2026") | Only a WhatsApp image of 4 Aug outside the project folder, predating session 67 | Nothing new |
+| Dated root folders | None newer than 01 May 2026 | Nothing new |
+
+### Outcome
+
+- Master rows: 2,948 -> 2,948 (no change).
+- Dashboard: verification rebuild run via importlib. Output confirmed: snapshot 2026-08-06, 71 weekly points, "Wrote ... - validation passed" (264,826 bytes, byte-identical to session 67).
+- No rows added, no conflicts raised, no backup needed.
+- GitHub verified current: remote AgriSA1904/FMD-Dashboard HEAD is the session 67 commit (14 Aug 16:37) carrying 2,948 master rows, so the published dashboard reflects the latest data. No push needed this session. Note the local FMD-Dashboard/ clone in the project root is stale (5 June) and is not the publish channel.
+
+### Data quality flags
+
+None new this session.
+
+### Automation health
+
+- Local Claude CLI still failing with 401 OAuth; scripts/ingest_task_log.txt shows failures on 12 August (08:17), 13 August (15:34) and 14 August (08:00). Re-authentication remains outstanding.
+- No local run entries for 15, 16 or 17 August, so the Windows scheduled task trigger is also still unreliable.
+
+### Action items for next run
+
+- Still watching for the ICC Update PDF covering the 11 August Ministerial Task Team meeting and the rollout plan for the Minister (now six days overdue against the usual cadence).
+- Chase FS and KZN doses received figures and an official KZN case count.
+- Watch for the first NC booster figures (campaign due to start August).
+- Re-authenticate the local Claude CLI and check the Windows scheduled task trigger.
+- All other parked items carry forward unchanged; see memory_update.md.
+
+## Session 69 -- 24 August 2026 (scheduled daily inbox ingest; EC JOC decks and RMIS export)
+
+### Rows
+
+- Master rows: 2,948 -> 3,085 (137 added, 0 duplicates skipped). Backup written to archive/2026-08-24/master_data_pre_session69.csv.
+
+### Sources processed
+
+| File | Effective date | Source org | Outcome |
+|---|---|---|---|
+| inbox/Eastern Cape/EC FMD Update - 06.08.2026.pptx | 2026-08-06 | EC-DRDAR | 4 rows (outbreaks, suspects, received, vaccinated) |
+| inbox/Eastern Cape/EC FMD Update - 13.08.2026.pptx | 2026-08-13 | EC-DRDAR | 4 rows |
+| inbox/Eastern Cape/EC FMD Update - 20.08.2026.pptx | 2026-08-20 | EC-DRDAR | 12 rows (summary, dairy primary and booster, six district rows) |
+| inbox/RMIS/rmis_industry_allocated_fmd_vaccine_distribution_data_2026-08-17.xlsx | 2026-08-16 | RMIS | 117 rows (18 province x manufacturer, 2 national totals, 97 municipality x sector) |
+
+All three EC decks are Teams meeting screenshot slides; figures were read visually from the slide images.
+
+### Key figures added
+
+- EC (as at 20 Aug): 498 confirmed outbreaks (2 new), 229 suspected (2 new, kudu in Sarah Baartman); 1,786,510 doses received (state 1,423,510, MPO 302,000, RPO 61,000); 1,378,088 vaccinated (dose-count basis), usage 77.1 percent, coverage 36.5 percent of 3,775,342 estimated cattle; sector split communal 626,636 (45.5 percent) versus commercial 751,452 (54.5 percent).
+- EC weekly series restored: vaccinated 1,299,271 (6 Aug), 1,346,933 (13 Aug), 1,378,088 (20 Aug); outbreaks 491 -> 496 -> 498.
+- EC received a Biogenesis consignment of 259,980 on 4 August, distributed across ten districts and municipalities (largest OR Tambo 51,840).
+- EC dairy programme (20 Aug): first vaccinations 308,092, boosters 93,253; MPO per-district total 388,034 plus State 13,311 giving 401,345 doses.
+- RMIS industry channel (as at 16 Aug): 2,580,315 doses distributed nationally, Biogenesis 2,060,239 versus Dollvet 520,076. Largest provincial industry books: FS 706,422, GP 558,255, NW 503,721.
+
+### Data quality flags
+
+1. EC received CONFLICT: JOC 1,786,510 versus Portfolio Committee 1,527,230 (5 Aug). Both held with notes; the JOC figure includes industry consignments and the 4 August batch.
+2. EC JOC slide vaccine-type totals (Biogenesis 467,831, Dollvet 646,650, ARC OVI 2,177, BVI 1,250) are identical across all three decks and do not reconcile with the weekly totals; treated as stale and not ingested.
+3. EC animals vaccinated remains dose-count basis (boosters double-counted); unique-animals figure still pending.
+4. RMIS export introduces a new Dairy sector; recorded as vet_channel "dairy" (new value alongside commercial, feedlot, stud).
+5. Two new suspected outbreaks in Sarah Baartman are kudu -- wildlife signal, watch for confirmation.
+
+### Dashboard
+
+- Rebuilt via importlib. Snapshot advanced 2026-08-06 -> 2026-08-20; weekly points 71 -> 73. Output: "Wrote ... - validation passed" (278,464 bytes). EC headline figures verified present in the built HTML.
+
+### Automation health
+
+- Local Claude CLI still failing with 401 OAuth (failures logged 20 and 21 August); no local run entries 22 to 24 August, so the Windows scheduled task trigger also remains unreliable. This Cowork session remains the reliable ingest path.
+
+### Action items for next run
+
+- Still watching for the ICC Update PDF covering the 11 August Ministerial Task Team meeting (about two weeks overdue) and the rollout plan for the Minister.
+- Chase FS and KZN doses received figures and an official KZN case count.
+- Watch for confirmation of the Sarah Baartman kudu suspects and the first NC booster figures.
+- Re-authenticate the local Claude CLI and check the Windows scheduled task trigger.
+- Verify the session 69 GitHub push on the remote next run. All other parked items carry forward; see memory_update.md.
