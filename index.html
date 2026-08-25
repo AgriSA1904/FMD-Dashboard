@@ -723,7 +723,7 @@
 <script>
 const DASHBOARD_DATA = {
   "snapshot_date": "2026-08-20",
-  "build_date": "2026-08-24",
+  "build_date": "2026-08-25",
   "provinces": [
     {
       "code": "EC",
@@ -740,14 +740,14 @@ const DASHBOARD_DATA = {
     {
       "code": "FS",
       "name": "Free State",
-      "as_of": "2026-08-06",
+      "as_of": "2026-08-14",
       "herd": 1928862,
-      "positive": 764,
+      "positive": 770,
       "suspected": 357,
       "negative": 0,
       "pending": 0,
       "received": 1272180,
-      "vaccinated": 1458124
+      "vaccinated": 1485340
     },
     {
       "code": "GP",
@@ -1412,10 +1412,18 @@ const DASHBOARD_DATA = {
       "pending": null
     },
     {
+      "date": "2026-08-14",
+      "received": 8865515,
+      "administered": 8280195,
+      "positive": 2767,
+      "suspected": 884,
+      "pending": null
+    },
+    {
       "date": "2026-08-20",
       "received": 8865515,
-      "administered": 8284134,
-      "positive": 2761,
+      "administered": 8311350,
+      "positive": 2767,
       "suspected": 886,
       "pending": null
     }
@@ -1428,16 +1436,16 @@ const DASHBOARD_DATA = {
     "unallocated": 3529620
   },
   "national": {
-    "positive": 2761,
+    "positive": 2767,
     "suspected": 886,
     "negative": 181,
     "pending": 169,
     "procured": 17000000,
     "distributed": 8865515,
     "received": 8865515,
-    "administered": 8284134,
+    "administered": 8311350,
     "herd_cattle": 12496199,
-    "balance": 581381,
+    "balance": 554165,
     "delta_received": 0,
     "delta_distributed": 0,
     "delta_administered": 31155,
@@ -4567,11 +4575,11 @@ const DASHBOARD_DATA = {
     {
       "code": "FS",
       "name": "Free State",
-      "joc": 1458124,
+      "joc": 1485340,
       "joc_date": "2026-08-16",
       "ministerial": 707986,
       "ministerial_date": "2026-06-04",
-      "diff": 750138,
+      "diff": 777354,
       "flag": null
     },
     {
@@ -5115,8 +5123,8 @@ const DASHBOARD_DATA = {
         {
           "type": "bioaftogen",
           "label": "Bioaftogen",
-          "doses": 539980,
-          "date": "2026-06-26"
+          "doses": 370000,
+          "date": "2026-08-14"
         },
         {
           "type": "emergency_stock",
@@ -5167,6 +5175,17 @@ const DASHBOARD_DATA = {
       ],
       "districts": [
         {
+          "name": "Mangaung Metropolitan, OBP Dose 1",
+          "date": "2026-08-14",
+          "vaccinated": 2231,
+          "cases": null,
+          "suspected": null,
+          "pending": null,
+          "outbreaks": null,
+          "negative": null,
+          "notes": "Mangaung Metropolitan, OBP Dose 1. The only district with a non-zero vaccination entry in this week's template."
+        },
+        {
           "name": "Fezile Dabi",
           "date": "2026-08-06",
           "vaccinated": null,
@@ -5179,14 +5198,14 @@ const DASHBOARD_DATA = {
         },
         {
           "name": "Fezile Dabi district",
-          "date": "2026-07-17",
+          "date": "2026-08-14",
           "vaccinated": null,
-          "cases": 351,
+          "cases": 366,
           "suspected": null,
           "pending": null,
           "outbreaks": null,
           "negative": null,
-          "notes": "Fezile Dabi district. Breakdown: Mafube 74, Metsimaholo 64, Moqhaka 119, Ngwathe 94."
+          "notes": "Fezile Dabi district. Breakdown: Mafube 81, Metsimaholo 64, Moqhaka 125, Ngwathe 96. Unchanged from 6 Aug."
         },
         {
           "name": "Fezile Dabi (Mafube 74",
@@ -5212,14 +5231,14 @@ const DASHBOARD_DATA = {
         },
         {
           "name": "Thabo Mofutsanyana district",
-          "date": "2026-07-17",
+          "date": "2026-08-14",
           "vaccinated": null,
-          "cases": 185,
+          "cases": 193,
           "suspected": null,
           "pending": null,
           "outbreaks": null,
           "negative": null,
-          "notes": "Thabo Mofutsanyana district. Breakdown: Dihlabeng 67, Maluti-A-Phofung 29, Mantsopa 46, Phumelela 43 (Nketoana and Setsoto blank/not reported this week)."
+          "notes": "Thabo Mofutsanyana district. Breakdown: Dihlabeng 73, Maluti-A-Phofung 29, Mantsopa 46, Phumelela 45 (Nketoana and Setsoto blank/not reported this week). Unchanged from 6 Aug."
         },
         {
           "name": "Thabo Mofutsanyana (Dihlabeng 67",
@@ -5231,6 +5250,17 @@ const DASHBOARD_DATA = {
           "outbreaks": null,
           "negative": null,
           "notes": "district=Thabo Mofutsanyana (Dihlabeng 67; Maluti-A-Phofung 29; Mantsopa 46; Phumelela 43)"
+        },
+        {
+          "name": "Lejweleputswa district",
+          "date": "2026-08-14",
+          "vaccinated": null,
+          "cases": 138,
+          "suspected": null,
+          "pending": null,
+          "outbreaks": null,
+          "negative": null,
+          "notes": "Lejweleputswa district. Breakdown: Matjhabeng 51, Tokologo 52, Tswelopele 35 (Masilonyana and Nala blank/not reported this week). Up from 136 (6 Aug)."
         },
         {
           "name": "Lejweleputswa",
@@ -5253,17 +5283,6 @@ const DASHBOARD_DATA = {
           "outbreaks": null,
           "negative": null,
           "notes": "District: Moqhaka; Kroonstad SVA; Moqhaka Municipality; from FS DARDLEA media release 23 Jun 2026"
-        },
-        {
-          "name": "Lejweleputswa district",
-          "date": "2026-07-17",
-          "vaccinated": null,
-          "cases": 112,
-          "suspected": null,
-          "pending": null,
-          "outbreaks": null,
-          "negative": null,
-          "notes": "Lejweleputswa district. Breakdown: Matjhabeng 43, Tokologo 44, Tswelopele 25 (Masilonyana and Nala blank/not reported this week)."
         },
         {
           "name": "Kroonstad SVA",
@@ -5442,6 +5461,17 @@ const DASHBOARD_DATA = {
           "notes": "District: Xhariep. Municipal detail: Kopanong and Letsemeng 24, Mohokare and Mangaung 18. Sums to provincial total 764."
         },
         {
+          "name": "Xhariep district",
+          "date": "2026-08-14",
+          "vaccinated": null,
+          "cases": 42,
+          "suspected": null,
+          "pending": null,
+          "outbreaks": null,
+          "negative": null,
+          "notes": "Xhariep district. Breakdown: Kopanong 24, Mohokare 18 (Letsemeng blank/not reported this week). Unchanged from 6 Aug."
+        },
+        {
           "name": "Warden SVA",
           "date": "2026-06-02",
           "vaccinated": null,
@@ -5453,6 +5483,17 @@ const DASHBOARD_DATA = {
           "notes": "State Vet Area: Warden SVA | Local municipality/ies: Phumelela | FS-DRDAR media release 2 Jun 2026. Total SVA breakdown sums to 604."
         },
         {
+          "name": "Mangaung Metropolitan district total",
+          "date": "2026-08-14",
+          "vaccinated": null,
+          "cases": 30,
+          "suspected": null,
+          "pending": null,
+          "outbreaks": null,
+          "negative": null,
+          "notes": "Mangaung Metropolitan district total. Media release splits this as Bloemfontein SVA 28 plus Thaba Nchu SVA 2."
+        },
+        {
           "name": "Maluti-A-Phofung; Qwa-Qwa SVA; Maluti-A-Phofu",
           "date": "2026-06-23",
           "vaccinated": null,
@@ -5462,39 +5503,6 @@ const DASHBOARD_DATA = {
           "outbreaks": null,
           "negative": null,
           "notes": "District: Maluti-A-Phofung; Qwa-Qwa SVA; Maluti-A-Phofung Municipality; FS DARDLEA media release 23 Jun 2026"
-        },
-        {
-          "name": "Qwa-Qwa SVA",
-          "date": "2026-06-02",
-          "vaccinated": null,
-          "cases": 28,
-          "suspected": null,
-          "pending": null,
-          "outbreaks": null,
-          "negative": null,
-          "notes": "State Vet Area: Qwa-Qwa SVA | Local municipality/ies: Maluti-a-Phofung | FS-DRDAR media release 2 Jun 2026. Total SVA breakdown sums to 604."
-        },
-        {
-          "name": "Mangaung Metropolitan",
-          "date": "2026-08-06",
-          "vaccinated": null,
-          "cases": 27,
-          "suspected": null,
-          "pending": null,
-          "outbreaks": null,
-          "negative": null,
-          "notes": "District: Mangaung Metropolitan. Municipal detail: Bloemfontein SVA 25 plus Thaba Nchu SVA 2. Sums to provincial total 764."
-        },
-        {
-          "name": "Xhariep district",
-          "date": "2026-07-17",
-          "vaccinated": null,
-          "cases": 24,
-          "suspected": null,
-          "pending": null,
-          "outbreaks": null,
-          "negative": null,
-          "notes": "Xhariep district. Breakdown: Kopanong 8, Mohokare 16 (Letsemeng blank/not reported this week)."
         }
       ],
       "extra": {
@@ -7266,9 +7274,11 @@ const DASHBOARD_DATA = {
     "FMD_Master_Template_v2.xlsx (uploaded 2026-05-21) \u2014 user correction",
     "FOOT AND MOUTH PRESENTATION TO MINMEC (7 MAY 2026).pptx",
     "FS DARDLEA media release 07.08.2026 (FMD STATS 6 AUGUST 2026.zip)",
+    "FS DARDLEA media release 14.08.2026 (FMD STATS 14 AUGUST 2026.zip)",
     "FS FMD Vaccine Data - 05.06.2026.xlsx (in FMD STATS 08 june.zip)",
     "FS FMD Vaccine Data - 06082026.xlsx (FMD STATS 6 AUGUST 2026.zip)",
     "FS FMD Vaccine Data - 12.06.2026.xlsx",
+    "FS FMD Vaccine Data - 14.08.2026.xlsx (FMD STATS 14 AUGUST 2026.zip)",
     "FS FMD Vaccine Data - 17.07.2026.xlsx",
     "FS FMD Vaccine Data - 26.06.2026.xlsx",
     "FS FMD Vaccine Data - 29.05.2026.xlsx",

@@ -5132,3 +5132,49 @@ All three EC decks are Teams meeting screenshot slides; figures were read visual
 - Watch for confirmation of the Sarah Baartman kudu suspects and the first NC booster figures.
 - Re-authenticate the local Claude CLI and check the Windows scheduled task trigger.
 - Verify the session 69 GitHub push on the remote next run. All other parked items carry forward; see memory_update.md.
+
+---
+
+## Session 70 -- 25 August 2026 (scheduled daily inbox ingest; FS-DARDLEA weekly stats pack, 14 August)
+
+### Rows
+
+- Master rows: 3,085 -> 3,095 (10 added, 0 duplicates skipped).
+
+### Sources processed
+
+| File | Effective date | Source org | Outcome |
+|---|---|---|---|
+| inbox/Free State/FMD STATS 14 AUGUST 2026.zip -> FS FMD Vaccine Data - 14.08.2026.xlsx | 2026-08-14 | FS-DARDLEA | 8 rows (provincial and district case totals, animals vaccinated, one district vaccine receipt, one district vaccination) |
+| inbox/Free State/FMD STATS 14 AUGUST 2026.zip -> WhatsApp Image 2026-08-14 at 13.41.00/.01.jpeg (media release, 2 pages) | 2026-08-14 | FS-DARDLEA | 2 rows (provincial case total from the release text, cross-checked against the xlsx) |
+
+This was the only new file found across all inbox subfolders since the 24 August build; no other provincial, ICC, ministerial or commodity-body sources had material newer than the last run.
+
+### Key figures added
+
+- FS positive cases: 770 per the media release (764 -> 770; +6: Kroonstad SVA 1, Bloemfontein SVA 3, Welkom SVA 2). 551 resolved, 219 active under quarantine, across 19 local municipalities.
+- FS animals vaccinated: 1,485,340 (1,458,124 -> 1,485,340; +27,216), again a standalone summary figure with the municipality vaccination table left blank.
+- FS district case totals: Fezile Dabi 366 (unchanged), Lejweleputswa 138 (up from 136), Thabo Mofutsanyana 193 (unchanged), Xhariep 42 (unchanged), Mangaung 30 (unchanged; media release splits this Bloemfontein 28 + Thaba Nchu 2).
+- Mangaung district only: 370,000 Bioaftogen doses received, 2,231 animals vaccinated with OBP dose 1 -- the sole non-zero district entries in this week's vaccine columns.
+
+### Data quality flags
+
+1. FS positive cases CONFLICT: media release states 770, xlsx template states 769. The media release's own State Vet Area breakdown sums to 769, one short of its own headline figure -- a recurring FS off-by-one pattern (both rows held).
+2. FS animals-vaccinated total is again disconnected from the (blank) per-municipality table, so it cannot be cross-checked against a district sum this week.
+3. FS provincial doses received remains stale at 1,272,180 (10 Jul); only a single district (Mangaung) reported a receipt figure this week.
+
+### Dashboard
+
+- Rebuilt via importlib. Snapshot unchanged at 2026-08-20 (new FS data is dated 14 Aug, older than the existing EC-driven snapshot date); weekly points 73 -> 74. Output: "Wrote ... - validation passed" (281,563 bytes).
+
+### Automation health
+
+- Local Windows-scheduled Claude CLI run failed again with 401 OAuth expiry at 08:00 on 25 August (per scripts/ingest_task_log.txt), continuing the daily failure pattern since at least 17 August. This Cowork scheduled session remains the only ingest path actually landing data.
+
+### Action items for next run
+
+- Still watching for the ICC Update PDF covering the 11 August Ministerial Task Team meeting (now about three weeks overdue) and the rollout plan for the Minister.
+- Chase FS provincial doses received, and KZN doses received plus an official KZN case count.
+- Watch for confirmation of the Sarah Baartman kudu suspects and the first NC booster figures.
+- Re-authenticate the local Claude CLI and check the Windows scheduled task trigger.
+- Verify the session 70 GitHub push on the remote next run. All other parked items carry forward; see memory_update.md.

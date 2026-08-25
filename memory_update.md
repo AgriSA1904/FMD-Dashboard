@@ -1,20 +1,19 @@
-As at 2026-08-24 (session 69 -- scheduled daily inbox ingest; EC JOC decks and RMIS export):
+As at 2026-08-25 (session 70 -- scheduled daily inbox ingest; FS-DARDLEA weekly stats pack, 14 August):
 
-- Master: **3,085 rows** (was 2,948; 137 added). Dashboard snapshot advanced to **20 August 2026**; weekly points 73. Rebuild via importlib, validation passed (278,464 bytes).
-- New sources this session: three Eastern Cape provincial JOC decks (EC FMD Update 6, 13 and 20 August, Teams screenshot slides read visually) and the RMIS industry vaccine distribution export of 17 August (orders shipped through 11 August).
-- **EC received jumps to 1,786,510.** The JOC allocation table gives state 1,423,510 plus MPO 302,000 plus RPO 61,000, including a Biogenesis consignment of 259,980 received 4 August. This conflicts with the Portfolio Committee figure of 1,527,230 (5 Aug); both held by source and date. The JOC series is now the EC received channel.
-- **EC vaccination weekly series restored:** 1,299,271 (6 Aug), 1,346,933 (13 Aug), 1,378,088 (20 Aug), all dose-count basis, usage 77.1 percent at 20 August, coverage 36.5 percent of an estimated 3,775,342 cattle.
-- **EC outbreaks:** 491 (6 Aug), 496 (13 Aug), 498 confirmed and 229 suspected (20 Aug). The two new suspects at 20 August are kudu in Sarah Baartman -- second wildlife signal after the earlier KZN vaccinated-herd suspect.
-- **RMIS industry channel** as at 16 August: 2,580,315 doses distributed nationally (Biogenesis 2,060,239, Dollvet 520,076). A new Dairy sector channel appears in the export for the first time (vet_channel "dairy").
+- Master: **3,095 rows** (was 3,085; 10 added). Dashboard snapshot unchanged at **20 August 2026** (the new data is dated 14 Aug, older than the existing EC-driven snapshot); weekly points now 74. Rebuild via importlib, validation passed (281,563 bytes).
+- New source this session: Free State FMD STATS 14 AUGUST 2026.zip (FS-DARDLEA), containing the weekly xlsx template plus a two-page ministerial-style media release. Only new file found in the inbox since the last run; no other provincial folders had material newer than the 24 August build.
+- **FS positive cases: 770** per the 14 August media release (up from 764 at 6 Aug; six new cases -- Kroonstad SVA 1, Bloemfontein SVA 3, Welkom SVA 2). 551 resolved, 219 active under quarantine, spread across 19 local municipalities. The accompanying xlsx template states 769 (one less); both held, same rounding-gap pattern seen in prior FS releases.
+- **FS animals vaccinated: 1,485,340** (up from 1,458,124 at 6 Aug; +27,216), again reported as a standalone summary cell with the municipality-level vaccination table left blank. FS doses received remains stale at 1,272,180 (10 Jul) except for one district figure: Mangaung received 370,000 Bioaftogen doses and vaccinated 2,231 animals with OBP dose 1 this week -- the only district with non-zero vaccine entries in the template.
+- District-level positive case totals held steady versus 6 Aug for Fezile Dabi (366), Thabo Mofutsanyana (193) and Xhariep (42); Lejweleputswa rose from 136 to 138.
 
-**National programme headline (unchanged ICC basis, 4 August):** positive cases 2,725; doses distributed 8,529,687; administered 6,249,525; balance 2,280,162. The ICC update covering the 11 August Ministerial Task Team meeting remains outstanding (about two weeks overdue); bottom-up provincial sums continue to run ahead of the ICC administered figure and reconciliation is the key check when it lands.
+**National programme headline (unchanged ICC basis, 4 August):** positive cases 2,725; doses distributed 8,529,687; administered 6,249,525; balance 2,280,162. The ICC update covering the 11 August Ministerial Task Team meeting remains outstanding (now about three weeks overdue).
 
 **Per-province latest figures (programme sources only):**
 
 | Province | Received | Animals vaccinated | Positive cases | Date |
 |---|---|---|---|---|
 | EC | 1,786,510 (JOC; PC 1,527,230 held) | 1,378,088 (dose-count basis) | 498 outbreaks, 229 suspected | 20 Aug |
-| FS | 1,272,180 (stale, 10 Jul) | 1,458,124 | 764 | 6 Aug |
+| FS | 1,272,180 (stale, 10 Jul) | 1,485,340 | 770 | 14 Aug |
 | GP | 643,300 (approx 800,000 per 24 Jul minutes, unconfirmed) | 527,626 | 307 | 29 Jul |
 | KZN | 1,329,112 (stale, 9 Jun) | 1,567,971 (OFFICIAL) | 336 (stale, 5 Jun) | 26 Jul |
 | LP | 994,725 | 758,379 | 109 | 31 Jul |
@@ -23,18 +22,17 @@ As at 2026-08-24 (session 69 -- scheduled daily inbox ingest; EC JOC decks and R
 | NC | 333,560 | 215,546 | 40 outbreaks (basis change) | 5 Aug |
 | WC | 547,100 | 428,657 | 35 outbreaks (GIS 29 retained) | 30 to 31 Jul |
 
-**New data quality flags (session 69):**
+**New data quality flags (session 70):**
 
-- EC received conflict: JOC 1,786,510 versus Portfolio Committee 1,527,230 (5 Aug). Both held; JOC includes industry consignments and the 4 August batch.
-- EC JOC slide vaccine-type totals (Biogenesis 467,831, Dollvet 646,650, ARC OVI 2,177, BVI 1,250) are identical across the 6, 13 and 20 August decks and do not sum to the weekly totals; treated as stale and not ingested as type splits.
-- EC dose-count caveat still applies to animals vaccinated (boosters double-counted).
-- RMIS introduces a Dairy sector channel; recorded as vet_channel "dairy" alongside commercial, feedlot and stud.
+- FS positive cases: media release states 770, xlsx template states 769; State Vet Area breakdown in the media release itself sums to 769, one short of its own stated total. Consistent with a recurring FS off-by-one pattern.
+- FS animals-vaccinated total (1,485,340) is again a manually-entered summary figure disconnected from the (blank) municipality-level table -- cannot be cross-checked against a per-district sum this week.
+- FS doses received still has no provincial-level update; only Mangaung reported a district figure (370,000 Bioaftogen).
 
-**Automation health:** local Claude CLI still failing with 401 OAuth (latest failures 20 and 21 August in scripts/ingest_task_log.txt; a 19 August run appears to have completed its wrapper but the 20 August run hit the 401). No local run entries for 22 to 24 August. This Cowork session remains the reliable ingest path.
+**Automation health:** local Windows-scheduled Claude CLI run continues to fail with 401 OAuth expiry (confirmed again at 08:00 on 25 Aug in scripts/ingest_task_log.txt; same failure every day since at least 17 Aug). This Cowork scheduled session remains the only ingest path actually landing data. Re-authentication of the local CLI is still outstanding.
 
 **Parked/outstanding:**
 
-- ICC Update PDF covering the 11 August Ministerial Task Team meeting, plus the rollout plan for the Minister. Still not arrived; about two weeks overdue.
+- ICC Update PDF covering the 11 August Ministerial Task Team meeting, plus the rollout plan for the Minister. Still not arrived; about three weeks overdue.
 - FS doses received figure (stale since 10 Jul and below animals vaccinated).
 - KZN doses received and official case count (received stale since 9 Jun; cases since 5 Jun).
 - Gauteng exact doses received (approximately 800,000 per 24 Jul minutes; last precise 643,300).
@@ -43,9 +41,9 @@ As at 2026-08-24 (session 69 -- scheduled daily inbox ingest; EC JOC decks and R
 - Mpumalanga reconciliation queries (in-hand and loss totals; Bioaftogen 3 quantity).
 - Biogenesis Bago 1.5 million provincial split; Section 9 and Section 10 follow-ups; ICC Terms of Reference.
 - North West allocation confirmation (1,271,140 versus 1,350,140) and spreadsheet versus FMD Portal gap.
-- Consolidated AgriSA weekly xlsx, now more than 135 days outstanding.
+- Consolidated AgriSA weekly xlsx, now more than 136 days outstanding.
 - Limpopo incoming batches, the 2 million doses referenced in the 24 July minutes, and the two Section 11 district lines.
 - Western Cape case-count basis (three counts held) and AWC/RPO methodology gap.
 - NC booster campaign due to start August 2026; no booster figures seen yet.
 - Re-authenticate the local Claude CLI and check the Windows scheduled task trigger.
-- GitHub: session 69 push done this session; verify remote HEAD next run.
+- GitHub: session 70 push done this session; verify remote HEAD next run.
