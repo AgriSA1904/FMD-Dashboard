@@ -5254,3 +5254,32 @@ This was the only new file found across all inbox subfolders since the 24 August
 - Watch for the next FS weekly pack (expected around 28 August), MPO Week 45, EC 27 August JOC pptx and the next RMIS export.
 - Chase KZN doses received and an official KZN case count; GP exact received.
 - Re-authenticate the local Claude CLI and check why the Windows task has no 26 August log entry. All other parked items carry forward; see memory_update.md.
+
+## Session 71b -- 26 August 2026 (web sweep: WC GIS portal attempt, ministerial and KZN updates)
+
+### Rows
+
+- Master rows: 3,261 -> 3,264 (3 added). No backup taken (small additive change; session 71 backup covers today).
+
+### Sources processed
+
+| Source | Effective date | Source org | Outcome |
+|---|---|---|---|
+| African Farming, "4 million FMD vaccines landing next week" (31 Jul, Aucamp FMD Symposium) plus departmental statement 31 Jul | 2026-07-17 | Ministry | 2 rows: national animals vaccinated 8,024,843 (commercial 4,917,609, communal and emerging 3,107,234); doses distributed 9,000,000 (ROUNDED, "more than 9 million") |
+| African Farming, "KZN FMD vaccination drive reaches 1.7 million cattle" (21 Aug, MEC kaMadlopha-Mthethwa) | 2026-08-20 | KZN-DARD | 1 row: KZN animals vaccinated 1,700,000 (ROUNDED); nine districts; uMzinyathi resuming 21 Aug (285,000 targeted) |
+| WC GIS Experience Builder portal (requested by Jay) | n/a | WC-GIS | NOT INGESTED: client-rendered app; Chrome extension not connected and ArcGIS REST endpoints unreachable from the sandbox. Retry when a browser session is available. |
+| Departmental newsroom, SAnews, Elsenburg | n/a | Ministry / WC-DoA | Reviewed; no FMD figures newer than held data. Aucamp appointed De Jager and Odendaal to the ICC (31 Jul); ICC Terms of Reference to be expanded; suppliers to attend ad hoc. |
+
+### Data quality flags
+
+1. Both new headline figures are ROUNDED as publicly reported (9 million distributed; 1.7 million KZN vaccinated); flagged in notes. Reconcile against the next ICC update and KZN-DARD submission.
+2. The Aucamp 17 Jul national figures sit between the 4 Jun ministerial basis and the 4 Aug ICC basis; the ICC administered figure (6,249,525 at 4 Aug) is now clearly inconsistent with the ministerial "8 million vaccinated by 17 Jul" -- reinforces the need for the overdue ICC update.
+
+### Dashboard
+
+- Rebuilt via importlib. Snapshot unchanged at 2026-08-21; 75 weekly points; validation passed (292,935 bytes). KZN latest vaccinated now 1,700,000 (20 Aug).
+
+### Action items for next run
+
+- Retry the WC GIS portal with a connected browser (Claude in Chrome) or ask WC-DoA for the underlying feature service URL.
+- Reconcile rounded ministerial and KZN figures against exact submissions when they arrive.

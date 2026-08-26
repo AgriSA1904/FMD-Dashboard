@@ -1,4 +1,11 @@
-As at 2026-08-26 (session 71 -- early manual ingest requested by Jay; FS 21 Aug pack, MPO Weeks 43 and 44, RMIS 25 Aug. Session 72, the afternoon scheduled run of the same day, found no new submissions and verified the session 71 GitHub push):
+As at 2026-08-26 (session 71 -- early manual ingest requested by Jay; FS 21 Aug pack, MPO Weeks 43 and 44, RMIS 25 Aug. Session 72, the afternoon scheduled run of the same day, found no new submissions and verified the session 71 GitHub push. Session 71b, same day: web sweep for the WC GIS portal and post-June ministerial updates -- master now **3,264 rows**, three rows added):
+
+**Session 71b additions (26 Aug, web sweep):**
+
+- **Ministerial channel updated past early June.** Minister Willie Aucamp (FMD Symposium, Pretoria, 31 July, via African Farming and the departmental statement): by 17 July more than 9 million doses distributed and just over 8 million animals vaccinated (commercial 4,917,609; communal and emerging 3,107,234); 17 million doses imported to date; four million further doses due early August; target 80 percent of the national herd by December 2026. The national vaccinated row (8,024,843, 17 Jul) and a ROUNDED doses distributed row (9,000,000) are now in master under Ministry.
+- **KZN unstuck.** KZN MEC kaMadlopha-Mthethwa (Mtubatuba engagement, via African Farming 21 Aug): 1.7 million cattle vaccinated (ROUNDED), more than two-thirds of the estimated 2.5 million herd, nine districts; uMzinyathi resumed 21 Aug targeting about 285,000 cattle. Replaces 1,567,971 of 26 Jul as the latest KZN vaccinated figure.
+- **WC GIS portal could not be scraped this session.** The Experience Builder app is client-rendered; the Claude in Chrome extension was not connected and the sandbox cannot query the ArcGIS REST services directly. No fresh WC-GIS figures ingested; WC latest remains 30 to 31 Jul. An Elsenburg article of 22 June (328,876 vaccinated) is older than what we hold and was not ingested.
+- Other checks: departmental newsroom has no FMD figures newer than the 5 Aug Portfolio Committee statement (Aug releases cover citrus and a Carte Blanche clarification on Act 36 matters); Minister Aucamp appointed Dr Theo de Jager and Dr Danie Odendaal to the ICC on 31 July and will expand the ICC Terms of Reference, with vaccine suppliers attending ad hoc.
 
 - Master: **3,261 rows** (was 3,095; 166 added). Dashboard snapshot advanced to **21 August 2026**; weekly points 75. Rebuild via importlib, validation passed (292,754 bytes).
 - New sources this session: FMD STATS 21 AUGUST 2026.zip (FS-DARDLEA xlsx plus media release), MPO Week 43 (snapshot 14 Aug) and Week 44 (snapshot 21 Aug) dairy updates, and the RMIS industry export of 25 August. The AgriSA Provincial Chamber minutes of 29 July (filed 25 Aug on the corporate SharePoint) were reviewed: policy context only (Free State Agriculture court action history, Section 10 promulgation, lessons-learned discussion deferred), no figures ingested.
@@ -18,7 +25,7 @@ As at 2026-08-26 (session 71 -- early manual ingest requested by Jay; FS 21 Aug 
 | EC | 1,786,510 (JOC; PC 1,527,230 held) | 1,378,088 (dose-count basis) | 498 outbreaks, 229 suspected | 20 Aug |
 | FS | 1,741,840 | 1,512,319 | 772 (273 suspected) | 21 Aug |
 | GP | 643,300 (approx 800,000 per 24 Jul minutes, unconfirmed) | 527,626 | 307 | 29 Jul |
-| KZN | 1,329,112 (stale, 9 Jun) | 1,567,971 (OFFICIAL) | 336 (stale, 5 Jun) | 26 Jul |
+| KZN | 1,329,112 (stale, 9 Jun) | 1,700,000 (MEC, rounded) | 336 (stale, 5 Jun) | 20 Aug |
 | LP | 994,725 | 758,379 | 109 | 31 Jul |
 | MP | 897,000 | 729,074 | 259 | 27 to 31 Jul |
 | NW | 1,271,140 | 1,220,669 | 476 | 25 Jul |
