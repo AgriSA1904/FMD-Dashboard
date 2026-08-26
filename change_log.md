@@ -5283,3 +5283,25 @@ This was the only new file found across all inbox subfolders since the 24 August
 
 - Retry the WC GIS portal with a connected browser (Claude in Chrome) or ask WC-DoA for the underlying feature service URL.
 - Reconcile rounded ministerial and KZN figures against exact submissions when they arrive.
+
+## Session 71c -- 26 August 2026 (stale-date fixes reported by Jay on the live dashboard)
+
+### What was stale and why
+
+1. Ministerial and ICC card showed vaccinated 4,709,529 "as at 4 June" with a hardcoded caption. Cause: the card reads metric animals_vaccinated_ministerial, but session 71b stored the Aucamp figure under animals_vaccinated; and source_date/source_label were hardcoded in build_dashboard.py.
+2. RMIS industry card showed 986,012 "as at 22 Jun". Cause: the card reads the national all/private total, which only the 22 June export carried; the 30 Jun, 7 Jul, 14 Jul, 16 Aug and 25 Aug exports were ingested at manufacturer and municipality level only.
+3. National overview banner cited "Ministerial briefing, 1 June 2026", the supply pipeline table showed 13.5 million as at 1 June, and the RMIS data note cited 22 June. All hardcoded in the template.
+
+### Fixes
+
+- Master rows: 3,264 -> 3,274 (10 added): derived national all/private industry totals for 30 Jun (1,109,889), 7 Jul (2,105,105), 14 Jul (2,117,915), 16 Aug (2,580,315) and 24 Aug (2,761,420); derived national sector totals for 24 Aug (feedlot 1,785,576, commercial 771,252, stud 197,847, dairy 6,745); and animals_vaccinated_ministerial 8,024,843 (17 Jul).
+- build_dashboard.py: ministerial source_date and source_label now derive from the effective dates of the latest Ministry rows (cannot go stale again); supply pipeline updated to 17 million arrived (balance line reconciles consignments to the 5 Aug Portfolio Committee total) plus the 4 million due early August per Aucamp.
+- dashboard_template.html: banner procured date now dynamic (fmtDate helper added); supply pipeline heading now dynamic; RMIS data note no longer carries a hardcoded date; utilisation card now flags when distribution exceeds the stale 22 June allocation of 2.5 million instead of printing a misleading percentage.
+
+### Dashboard
+
+- Rebuilt via importlib; snapshot 2026-08-21, 75 weekly points, validation passed (293,974 bytes). Verified in built HTML: ministerial card 17,000,000 / 9,000,000 / 8,024,843 with dynamic caption; RMIS card 2,761,420 as at 24 Aug.
+
+### Action items
+
+- Chase an updated industry allocation figure (last published 2,500,000, 22 June) so the utilisation card can show a real percentage again.

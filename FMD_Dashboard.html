@@ -596,7 +596,7 @@
       </div>
       <div class="card" style="display:flex;flex-direction:column;justify-content:center">
         <h3>Data notes.</h3>
-        <p style="font-size:13px;color:var(--charcoal);line-height:1.6">The RMIS industry channel covers vaccine distributed directly to farmers and feedlots through private veterinary practices, separate from state-programme doses administered by provincial veterinary services. Source: RMIS Shiny portal and Excel export, 22 June 2026. Biogenesis = Biogenesis Bagó (Argentina). DolVet = DolVet Biotech Trivalent (Turkey).</p>
+        <p style="font-size:13px;color:var(--charcoal);line-height:1.6">The RMIS industry channel covers vaccine distributed directly to farmers and feedlots through private veterinary practices, separate from state-programme doses administered by provincial veterinary services. Source: RMIS weekly Excel exports; the as-at date is shown on the cards above. Biogenesis = Biogenesis Bagó (Argentina). DolVet = DolVet Biotech Trivalent (Turkey).</p>
       </div>
     </div>
 
@@ -1822,9 +1822,9 @@ const DASHBOARD_DATA = {
   },
   "rmis": {
     "allocated": 2500000,
-    "distributed": 986012,
-    "utilisation_pct": 39.4,
-    "industry_date": "2026-06-22",
+    "distributed": 2761420,
+    "utilisation_pct": 110.5,
+    "industry_date": "2026-08-24",
     "by_province_total": {
       "FS": 270434,
       "GP": 214150,
@@ -1859,9 +1859,9 @@ const DASHBOARD_DATA = {
       "WC": 200
     },
     "by_sector": {
-      "stud": 48579,
-      "commercial": 263373,
-      "feedlot": 674060
+      "stud": 197847,
+      "commercial": 771252,
+      "feedlot": 1785576
     },
     "by_municipality": [
       {
@@ -5057,8 +5057,8 @@ const DASHBOARD_DATA = {
     "doses_procured": 17000000,
     "doses_procured_asof": "2026-08-05",
     "doses_distributed": 9000000,
-    "animals_vaccinated": 4709529,
-    "animals_vaccinated_asof": "2026-06-04",
+    "animals_vaccinated": 8024843,
+    "animals_vaccinated_asof": "2026-07-17",
     "provincial_cattle": {
       "EC": {
         "value": 725632,
@@ -5160,11 +5160,18 @@ const DASHBOARD_DATA = {
         "notes": "Distributed: 1.5M feedlots; 500 000 RMPO; 200 000 MPO; 100 000 stud breeders; 1.05M provinces; balance for border vaccination."
       },
       {
-        "vaccine": "DolVet (Dunevax)",
+        "vaccine": "Further consignments to 5 Aug",
+        "doses": 5487100,
+        "date": "2026-08-05",
+        "status": "Arrived",
+        "notes": "Balance of the 17 million doses procured to date per the Portfolio Committee statement (5 August); individual consignment detail not published."
+      },
+      {
+        "vaccine": "Further consignment",
         "doses": 4000000,
-        "date": "2026-06-30",
+        "date": "2026-08-07",
         "status": "Expected",
-        "notes": "First consignment of 14M SAHPRA Section 21-approved Dollvet doses. Enables booster programme."
+        "notes": "Four million doses due early August per Minister Aucamp at the FMD Symposium, 31 July. Confirm arrival."
       },
       {
         "vaccine": "DolVet (Dunevax)",
@@ -5174,8 +5181,8 @@ const DASHBOARD_DATA = {
         "notes": "Remaining balance of 14M SAHPRA Section 21 approval. Delivery schedule to be confirmed."
       }
     ],
-    "source_date": "2026-06-04",
-    "source_label": "DoA Portfolio Committee briefing, 9 June 2026 (data as at 4 June 2026)"
+    "source_date": "2026-07-17",
+    "source_label": "Latest ministerial figures: doses procured as at 5 August 2026, distributed as at 17 July 2026, vaccinated as at 17 July 2026."
   },
   "ministerial_comparison": [
     {
@@ -8032,6 +8039,7 @@ function caseColor(n) {
   return BRAND.pine;
 }
 function fmt(n) { return Number(n).toLocaleString('en-ZA'); }
+function fmtDate(d) { return d ? new Date(d+'T12:00:00').toLocaleDateString('en-ZA',{day:'numeric',month:'long',year:'numeric'}) : ''; }
 
 // ── Safe helpers ────────────────────────────────────────────────────────────
 // Each rendering section runs inside its own try/catch so a single bad value
@@ -8082,7 +8090,7 @@ try {
     </div>
     <div>
       <p class="alert-headline">
-        Government has procured <span class="accent">${fmt(procured)} doses</span> (Ministerial briefing, 1 June 2026).
+        Government has procured <span class="accent">${fmt(procured)} doses</span> (ministerial figure as at ${fmtDate(data.ministerial && data.ministerial.doses_procured_asof) || 'latest briefing'}).
         Provinces have reported receiving <span class="accent">${fmt(distributed)} doses</span> via JOC returns — the balance is in national stockpile or in transit.
         We measure against a national herd of ${fmt(N.herd_cattle)} cattle.
         Full coverage at two doses per animal requires roughly ${(fullCoverageNeed/1e6).toFixed(1)} million doses.
@@ -8753,7 +8761,11 @@ if (data.rmis) try {
   if (kpiOrds) {
     const utilPct = rmis.utilisation_pct || 0;
     const allocated = rmis.allocated || 0;
-    kpiOrds.innerHTML = `<div class="kpi-label">Utilisation of industry allocation</div><div class="kpi-value">${utilPct}%</div><div class="kpi-sub">of ${fmt(allocated)} doses allocated to industry</div>`;
+    if (allocated && utilPct > 100) {
+      kpiOrds.innerHTML = `<div class="kpi-label">Utilisation of industry allocation</div><div class="kpi-value">&gt;100%</div><div class="kpi-sub">distribution has exceeded the last published allocation of ${fmt(allocated)} doses (22 Jun); updated allocation figure awaited</div>`;
+    } else {
+      kpiOrds.innerHTML = `<div class="kpi-label">Utilisation of industry allocation</div><div class="kpi-value">${utilPct}%</div><div class="kpi-sub">of ${fmt(allocated)} doses allocated to industry</div>`;
+    }
   }
 
   const kpiVets = document.getElementById('rmisKpiVets');
@@ -9043,7 +9055,7 @@ if (data.ministerial) try {
       `<tr><td>${i.vaccine}</td><td class="num">${i.doses>=1000?fmt(i.doses):'—'}</td><td>${i.date||''}</td><td>${statusBadge(i.status)}</td><td style="font-size:12px;color:var(--charcoal)">${i.notes||''}</td></tr>`
     ).join('');
     supplyEl.innerHTML = `
-      <p style="font-size:13px;color:var(--charcoal);margin:0 0 var(--sp-4)">Total doses procured as at 1 June 2026: <strong style="color:var(--pine)">${fmt(13500000)}</strong> &nbsp;|&nbsp; Confirmed arrived: <strong style="color:var(--pine)">${fmt(totalProcured)}</strong> &nbsp;|&nbsp; Pipeline: <strong style="color:var(--pine)">${fmt(14000000)}</strong> additional (SAHPRA Section 21 approved)</p>
+      <p style="font-size:13px;color:var(--charcoal);margin:0 0 var(--sp-4)">Total doses procured as at ${fmtDate(m.doses_procured_asof) || 'latest briefing'}: <strong style="color:var(--pine)">${fmt(m.doses_procured || totalProcured)}</strong> &nbsp;|&nbsp; Confirmed arrived: <strong style="color:var(--pine)">${fmt(totalProcured)}</strong> &nbsp;|&nbsp; Pipeline: <strong style="color:var(--pine)">${fmt(14000000)}</strong> additional (SAHPRA Section 21 approved)</p>
       <table><thead><tr><th>Vaccine</th><th class="num">Doses</th><th>Date</th><th>Status</th><th>Notes</th></tr></thead><tbody>${rows}</tbody><tfoot><tr><td>Total</td><td class="num">${fmt(totalAll)}</td><td></td><td></td><td></td></tr></tfoot></table>`;
   }
 } catch(e) { showError('ministerialBanner', 'Ministerial section', e); }

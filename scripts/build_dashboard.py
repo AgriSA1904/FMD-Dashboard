@@ -1028,6 +1028,27 @@ def build_dashboard():
         payload["national"]["delta_positive"] = 0
 
     # Ministerial / DAFF figures — most recent Ministry-sourced totals
+    def _ministerial_source_label(min_recv, min_dist, min_adm):
+        """Build a provenance label from the effective dates of the latest
+        Ministry-sourced rows, so the caption can never go stale again."""
+        def _fmt(d):
+            from datetime import datetime as _dt
+            try:
+                dt = _dt.strptime(d, "%Y-%m-%d")
+                return f"{dt.day} {dt.strftime('%B')} {dt.year}"
+            except Exception:
+                return d
+        parts = []
+        if min_recv:
+            parts.append(f"doses procured as at {_fmt(min_recv[1])}")
+        if min_dist:
+            parts.append(f"distributed as at {_fmt(min_dist[1])}")
+        if min_adm:
+            parts.append(f"vaccinated as at {_fmt(min_adm[1])}")
+        if not parts:
+            return "Ministerial figures pending."
+        return "Latest ministerial figures: " + ", ".join(parts) + "."
+
     def min_nat(metric, vaccine_type="", vet_channel=""):
         matches = [r for r in rows if r["source_org"] == "Ministry"
                    and r["province"] == "national" and r["metric"] == metric
@@ -1074,7 +1095,8 @@ def build_dashboard():
 
     incoming = []
     # Vaccine supply pipeline — hardcoded from ministerial briefings and RMIS import tracker.
-    # Updated as at 1 June 2026 (Minister Steenhuisen, Parliament).
+    # Updated as at 26 August 2026 (Minister Aucamp, FMD Symposium 31 July, and
+    # Portfolio Committee statement 5 August: 17 million procured to date).
     # Do not regenerate from doses_incoming rows (stale format). Update here manually.
     incoming = [
         {"vaccine": "ARC Trivalent",        "doses": 12900,    "date": "2026-02-01", "status": "Arrived",  "notes": "Initial emergency stock."},
@@ -1084,7 +1106,8 @@ def build_dashboard():
         {"vaccine": "DolVet Trivalent",     "doses": 2000000,  "date": "2026-04-01", "status": "Arrived",  "notes": ""},
         {"vaccine": "DolVet Trivalent",     "doses": 2000000,  "date": "2026-05-01", "status": "Arrived",  "notes": ""},
         {"vaccine": "Biogenesis Bago",      "doses": 3500000,  "date": "2026-05-28", "status": "Arrived",  "notes": "Distributed: 1.5M feedlots; 500 000 RMPO; 200 000 MPO; 100 000 stud breeders; 1.05M provinces; balance for border vaccination."},
-        {"vaccine": "DolVet (Dunevax)",     "doses": 4000000,  "date": "2026-06-30", "status": "Expected", "notes": "First consignment of 14M SAHPRA Section 21-approved Dollvet doses. Enables booster programme."},
+        {"vaccine": "Further consignments to 5 Aug", "doses": 5487100, "date": "2026-08-05", "status": "Arrived", "notes": "Balance of the 17 million doses procured to date per the Portfolio Committee statement (5 August); individual consignment detail not published."},
+        {"vaccine": "Further consignment",  "doses": 4000000,  "date": "2026-08-07", "status": "Expected", "notes": "Four million doses due early August per Minister Aucamp at the FMD Symposium, 31 July. Confirm arrival."},
         {"vaccine": "DolVet (Dunevax)",     "doses": 10000000, "date": "2026",       "status": "Pipeline", "notes": "Remaining balance of 14M SAHPRA Section 21 approval. Delivery schedule to be confirmed."},
     ]
 
@@ -1097,8 +1120,8 @@ def build_dashboard():
         "provincial_cattle":       prov_ministerial,
         "policy_events":           policy_events,
         "incoming_supply":         incoming,
-        "source_date":             "2026-06-04",
-        "source_label":            "DoA Portfolio Committee briefing, 9 June 2026 (data as at 4 June 2026)",
+        "source_date":             (min_adm[1] if min_adm else (min_dist[1] if min_dist else (min_recv[1] if min_recv else None))),
+        "source_label":            _ministerial_source_label(min_recv, min_dist, min_adm),
     }
 
     min_comparison = build_ministerial_comparison(rows)
