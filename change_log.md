@@ -5223,3 +5223,34 @@ This was the only new file found across all inbox subfolders since the 24 August
 - Watch for WC-GIS/WC-DoA confirmation of the two new WC dairy cases and for Sarah Baartman kudu confirmation.
 - Chase KZN doses received and an official KZN case count; GP exact received.
 - Re-authenticate the local Claude CLI. All other parked items carry forward; see memory_update.md.
+
+## Session 72 -- 26 August 2026 (scheduled afternoon run, no new data)
+
+### Rows
+
+- Master rows: 3,261 -> 3,261 (no change). No backup needed.
+
+### Sources processed
+
+| File | Effective date | Source org | Outcome |
+|---|---|---|---|
+| (none) | n/a | n/a | Local filesystem scan and three SharePoint sweeps (afterDateTime 25 Aug 12:00) found nothing newer than the session 71 ingest of this morning. The only recently modified items, the RMIS 25 August export and the Provincial Chamber draft minutes of 29 July, were both already processed in session 71. |
+
+### Dashboard
+
+- Not rebuilt. Master unchanged since the session 71 rebuild this morning (snapshot 21 August 2026, weekly points 75, validation passed).
+
+### GitHub verification
+
+- Session 71 push confirmed on the remote: HEAD of main is e5b9690 ("Session 71 -- FS 21 Aug pack, MPO Weeks 43-44, RMIS 25 Aug; snapshot 21 Aug; 3,261 rows"), remote master_data.csv has 3,261 data rows, and both FMD_Dashboard.html and index.html are byte-identical to local. The live GitHub Pages site reflects the 21 August snapshot.
+
+### Automation health
+
+- Local Claude CLI task log shows 401 OAuth failures through 25 August and no entry for 26 August; the Windows task may not have fired today or the log has not synced. Cowork remains the only working ingest path.
+
+### Action items for next run
+
+- Still watching for the ICC Update PDF covering the 11 August Ministerial Task Team meeting (now more than three weeks overdue).
+- Watch for the next FS weekly pack (expected around 28 August), MPO Week 45, EC 27 August JOC pptx and the next RMIS export.
+- Chase KZN doses received and an official KZN case count; GP exact received.
+- Re-authenticate the local Claude CLI and check why the Windows task has no 26 August log entry. All other parked items carry forward; see memory_update.md.

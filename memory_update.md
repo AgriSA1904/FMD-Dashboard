@@ -1,4 +1,4 @@
-As at 2026-08-26 (session 71 -- early manual ingest requested by Jay; FS 21 Aug pack, MPO Weeks 43 and 44, RMIS 25 Aug):
+As at 2026-08-26 (session 71 -- early manual ingest requested by Jay; FS 21 Aug pack, MPO Weeks 43 and 44, RMIS 25 Aug. Session 72, the afternoon scheduled run of the same day, found no new submissions and verified the session 71 GitHub push):
 
 - Master: **3,261 rows** (was 3,095; 166 added). Dashboard snapshot advanced to **21 August 2026**; weekly points 75. Rebuild via importlib, validation passed (292,754 bytes).
 - New sources this session: FMD STATS 21 AUGUST 2026.zip (FS-DARDLEA xlsx plus media release), MPO Week 43 (snapshot 14 Aug) and Week 44 (snapshot 21 Aug) dairy updates, and the RMIS industry export of 25 August. The AgriSA Provincial Chamber minutes of 29 July (filed 25 Aug on the corporate SharePoint) were reviewed: policy context only (Free State Agriculture court action history, Section 10 promulgation, lessons-learned discussion deferred), no figures ingested.
@@ -32,7 +32,7 @@ As at 2026-08-26 (session 71 -- early manual ingest requested by Jay; FS 21 Aug 
 - MPO national first-vaccination total has been flat at 958,511 for three weeks while boosters climb; the second-round count may exceed round one for FS per MPO's own note.
 - RMIS 25 Aug export includes orders shipped same-day (through 25 Aug); effective date recorded as 24 Aug by convention.
 
-**Automation health:** local Claude CLI still failing with 401 OAuth; no successful local runs. Cowork sessions remain the only working ingest path. Re-authentication still outstanding.
+**Automation health:** local Claude CLI still failing with 401 OAuth; no successful local runs. The local task log shows failures through 25 August and no entry at all for 26 August (the Windows task may not have fired, or the log has not synced). Cowork sessions remain the only working ingest path. Re-authentication still outstanding.
 
 **Parked/outstanding:**
 
@@ -50,4 +50,4 @@ As at 2026-08-26 (session 71 -- early manual ingest requested by Jay; FS 21 Aug 
 - Western Cape case-count basis (three counts held) and AWC/RPO methodology gap.
 - NC booster campaign due to start August 2026; no booster figures seen yet.
 - Re-authenticate the local Claude CLI and check the Windows scheduled task trigger.
-- GitHub: session 71 push done this session; verify remote HEAD next run.
+- GitHub: session 71 push verified on the remote in session 72 (commit e5b9690, master 3,261 rows, dashboard and index.html identical to local). No further verification outstanding.
