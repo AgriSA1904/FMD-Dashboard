@@ -5178,3 +5178,48 @@ This was the only new file found across all inbox subfolders since the 24 August
 - Watch for confirmation of the Sarah Baartman kudu suspects and the first NC booster figures.
 - Re-authenticate the local Claude CLI and check the Windows scheduled task trigger.
 - Verify the session 70 GitHub push on the remote next run. All other parked items carry forward; see memory_update.md.
+
+## Session 71 -- 26 August 2026 (early manual ingest requested by Jay)
+
+### Rows
+
+- Master rows: 3,095 -> 3,261 (166 added, 0 duplicates skipped). Backup written to archive/2026-08-26/master_data_pre_session71.csv.
+
+### Sources processed
+
+| File | Effective date | Source org | Outcome |
+|---|---|---|---|
+| inbox/Free State/FMD STATS 21 AUGUST 2026.zip (xlsx plus media release images) | 2026-08-21 | FS-DARDLEA | 12 rows (cases, first suspected figure, received, vaccinated, five district rows, Mangaung detail) |
+| inbox/MPO/Week 43 - Update ... dairy industry.pdf | 2026-08-14 | MPO | 17 rows |
+| inbox/MPO/Week 44 - Update ... dairy industry.pdf | 2026-08-21 | MPO | 17 rows |
+| inbox/RMIS/rmis_industry_allocated_fmd_vaccine_distribution_data_2026-08-25.xlsx | 2026-08-24 | RMIS | 120 rows (18 province x manufacturer, 2 national totals, 100 municipality x sector) |
+| AgriSA Prov Chamber Minutes 29 July 2026 (corporate SharePoint) | n/a | AgriSA | Reviewed; policy context only (FSA court action, Section 10, lessons-learned deferred). No figures ingested. |
+
+### Key figures added
+
+- FS (21 Aug): 772 confirmed cases (2 new: Heilbron 1, Bloemfontein 1; 577 resolved, 195 active); suspected cases 273 (first FS suspected figure); doses received 1,741,840 (first provincial received update since 10 July, replacing stale 1,272,180); animals vaccinated 1,512,319 (up 26,979 on the week). Media release and xlsx agree at 772 and the SVA breakdown sums exactly.
+- MPO dairy (14 and 21 Aug): national first vaccinations flat at 958,511; boosters 473,677 (14 Aug) -> 504,804 (21 Aug); EC boosters 100,837, WC 37,129, KZN complete at 334,000. Dairy farms: 175 reported, 128 active. New dairy cases in Week 44: EC one (Smoordrif), WC two (Rooiheuwel, Oudtshoorn).
+- RMIS industry channel (as at 24 Aug): 2,761,420 doses distributed (Biogenesis 2,066,984, Dollvet 694,436), up 181,105 versus the 16 Aug export.
+- Section 9 gazette identified via FS media release: Government Gazette No. 54969, Notice No. 7668, 8 July 2026.
+
+### Data quality flags
+
+1. FS suspected cases (273) is a first-time summary figure with no breakdown; treat with care until repeated.
+2. FS received (1,741,840) is a summary cell; municipality receipt cells blank except Mangaung Bioaftogen 370,000, so no bottom-up cross-check.
+3. MPO first-vaccination total flat at 958,511 for three consecutive weeks while boosters climb; FS round two may exceed round one per MPO note.
+4. RMIS export includes same-day shipments (through 25 Aug); effective date recorded as 24 Aug by convention.
+
+### Dashboard
+
+- Rebuilt via importlib. Snapshot advanced 2026-08-20 -> 2026-08-21; weekly points 74 -> 75. Output: "Wrote ... - validation passed" (292,754 bytes). FS headline figures verified present in the built HTML.
+
+### Automation health
+
+- Local Claude CLI still failing with 401 OAuth; Cowork remains the working ingest path.
+
+### Action items for next run
+
+- Still watching for the ICC Update PDF covering the 11 August Ministerial Task Team meeting (three weeks overdue).
+- Watch for WC-GIS/WC-DoA confirmation of the two new WC dairy cases and for Sarah Baartman kudu confirmation.
+- Chase KZN doses received and an official KZN case count; GP exact received.
+- Re-authenticate the local Claude CLI. All other parked items carry forward; see memory_update.md.

@@ -722,8 +722,8 @@
 
 <script>
 const DASHBOARD_DATA = {
-  "snapshot_date": "2026-08-20",
-  "build_date": "2026-08-25",
+  "snapshot_date": "2026-08-21",
+  "build_date": "2026-08-26",
   "provinces": [
     {
       "code": "EC",
@@ -740,14 +740,14 @@ const DASHBOARD_DATA = {
     {
       "code": "FS",
       "name": "Free State",
-      "as_of": "2026-08-14",
+      "as_of": "2026-08-21",
       "herd": 1928862,
-      "positive": 770,
-      "suspected": 357,
+      "positive": 772,
+      "suspected": 273,
       "negative": 0,
       "pending": 0,
-      "received": 1272180,
-      "vaccinated": 1485340
+      "received": 1741840,
+      "vaccinated": 1512319
     },
     {
       "code": "GP",
@@ -1426,6 +1426,14 @@ const DASHBOARD_DATA = {
       "positive": 2767,
       "suspected": 886,
       "pending": null
+    },
+    {
+      "date": "2026-08-21",
+      "received": 9335175,
+      "administered": 8338329,
+      "positive": 2769,
+      "suspected": 802,
+      "pending": null
     }
   ],
   "sources": {
@@ -1436,20 +1444,20 @@ const DASHBOARD_DATA = {
     "unallocated": 3529620
   },
   "national": {
-    "positive": 2767,
-    "suspected": 886,
+    "positive": 2769,
+    "suspected": 802,
     "negative": 181,
     "pending": 169,
     "procured": 17000000,
-    "distributed": 8865515,
-    "received": 8865515,
-    "administered": 8311350,
+    "distributed": 9335175,
+    "received": 9335175,
+    "administered": 8338329,
     "herd_cattle": 12496199,
-    "balance": 554165,
-    "delta_received": 0,
-    "delta_distributed": 0,
-    "delta_administered": 31155,
-    "delta_positive": 0
+    "balance": 996846,
+    "delta_received": 469660,
+    "delta_distributed": 469660,
+    "delta_administered": 26979,
+    "delta_positive": 2
   },
   "mpo": {
     "weekly": [
@@ -1621,16 +1629,42 @@ const DASHBOARD_DATA = {
         "NC": 0,
         "WC": 239000,
         "national": 958908
+      },
+      {
+        "date": "2026-08-14",
+        "EC": 308092,
+        "FS": 15104,
+        "GP": 14832,
+        "KZN": 360200,
+        "LP": 5475,
+        "MP": 9863,
+        "NW": 6342,
+        "NC": 0,
+        "WC": 239000,
+        "national": 958908
+      },
+      {
+        "date": "2026-08-21",
+        "EC": 308092,
+        "FS": 15104,
+        "GP": 14832,
+        "KZN": 360200,
+        "LP": 5475,
+        "MP": 9863,
+        "NW": 6342,
+        "NC": 0,
+        "WC": 239000,
+        "national": 958908
       }
     ],
-    "latest_date": "2026-08-07",
+    "latest_date": "2026-08-21",
     "provinces": [
       {
         "code": "EC",
         "name": "Eastern Cape",
         "current": 308092,
-        "previous": 307695,
-        "change": 397
+        "previous": 308092,
+        "change": 0
       },
       {
         "code": "FS",
@@ -1737,7 +1771,7 @@ const DASHBOARD_DATA = {
       }
     ],
     "national_current": 958908,
-    "national_previous": 958511,
+    "national_previous": 958908,
     "active_by_province": [
       {
         "code": "EC",
@@ -1803,10 +1837,10 @@ const DASHBOARD_DATA = {
       "WC": 680
     },
     "by_province_bio": {
-      "EC": 112748,
-      "FS": 541546,
+      "EC": 112958,
+      "FS": 547381,
       "GP": 457455,
-      "KZN": 114784,
+      "KZN": 115484,
       "LP": 91745,
       "MP": 221312,
       "NW": 438303,
@@ -1814,14 +1848,14 @@ const DASHBOARD_DATA = {
       "WC": 480
     },
     "by_province_dolvet": {
-      "EC": 52923,
-      "FS": 164876,
-      "GP": 100800,
-      "KZN": 36944,
+      "EC": 80517,
+      "FS": 208773,
+      "GP": 100950,
+      "KZN": 90278,
       "LP": 21112,
-      "MP": 61468,
-      "NW": 65418,
-      "NC": 16335,
+      "MP": 70023,
+      "NW": 93524,
+      "NC": 29059,
       "WC": 200
     },
     "by_sector": {
@@ -1840,6 +1874,12 @@ const DASHBOARD_DATA = {
         "province": "GP",
         "municipality": "Sedibeng",
         "sector": "feedlot",
+        "doses": 394090
+      },
+      {
+        "province": "GP",
+        "municipality": "Sedibeng",
+        "sector": "feedlot",
         "doses": 392890
       },
       {
@@ -1847,6 +1887,12 @@ const DASHBOARD_DATA = {
         "municipality": "Sedibeng",
         "sector": "feedlot",
         "doses": 392890
+      },
+      {
+        "province": "FS",
+        "municipality": "Thabo Mofutsanyane",
+        "sector": "feedlot",
+        "doses": 279277
       },
       {
         "province": "FS",
@@ -1888,6 +1934,12 @@ const DASHBOARD_DATA = {
         "province": "MP",
         "municipality": "Nkangala",
         "sector": "feedlot",
+        "doses": 138650
+      },
+      {
+        "province": "MP",
+        "municipality": "Nkangala",
+        "sector": "feedlot",
         "doses": 138350
       },
       {
@@ -1903,10 +1955,28 @@ const DASHBOARD_DATA = {
         "doses": 135021
       },
       {
+        "province": "FS",
+        "municipality": "Fezile Dabi",
+        "sector": "feedlot",
+        "doses": 135021
+      },
+      {
         "province": "NW",
         "municipality": "Doctor Kenneth Kaunda",
         "sector": "feedlot",
         "doses": 132730
+      },
+      {
+        "province": "NW",
+        "municipality": "Doctor Kenneth Kaunda",
+        "sector": "feedlot",
+        "doses": 132730
+      },
+      {
+        "province": "NW",
+        "municipality": "Doctor Ruth Segomotsi Mompati",
+        "sector": "feedlot",
+        "doses": 131170
       },
       {
         "province": "NW",
@@ -1952,6 +2022,12 @@ const DASHBOARD_DATA = {
       },
       {
         "province": "NW",
+        "municipality": "Doctor Ruth Segomotsi Mompati",
+        "sector": "commercial",
+        "doses": 108266
+      },
+      {
+        "province": "NW",
         "municipality": "Doctor Kenneth Kaunda",
         "sector": "feedlot",
         "doses": 92770
@@ -1975,6 +2051,18 @@ const DASHBOARD_DATA = {
         "doses": 87000
       },
       {
+        "province": "GP",
+        "municipality": "City of Tshwane",
+        "sector": "feedlot",
+        "doses": 87000
+      },
+      {
+        "province": "MP",
+        "municipality": "Gert Sibande",
+        "sector": "feedlot",
+        "doses": 82220
+      },
+      {
         "province": "MP",
         "municipality": "Gert Sibande",
         "sector": "feedlot",
@@ -1993,6 +2081,18 @@ const DASHBOARD_DATA = {
         "doses": 79980
       },
       {
+        "province": "FS",
+        "municipality": "Xhariep",
+        "sector": "commercial",
+        "doses": 71761
+      },
+      {
+        "province": "GP",
+        "municipality": "Ekurhuleni",
+        "sector": "feedlot",
+        "doses": 71650
+      },
+      {
         "province": "GP",
         "municipality": "Ekurhuleni",
         "sector": "feedlot",
@@ -2009,6 +2109,12 @@ const DASHBOARD_DATA = {
         "municipality": "Ekurhuleni",
         "sector": "feedlot",
         "doses": 71650
+      },
+      {
+        "province": "FS",
+        "municipality": "Thabo Mofutsanyane",
+        "sector": "commercial",
+        "doses": 71396
       },
       {
         "province": "FS",
@@ -2059,6 +2165,12 @@ const DASHBOARD_DATA = {
         "doses": 58468
       },
       {
+        "province": "KZN",
+        "municipality": "Uthukela",
+        "sector": "commercial",
+        "doses": 57908
+      },
+      {
         "province": "NW",
         "municipality": "Ngaka Modiri Molema",
         "sector": "feedlot",
@@ -2066,9 +2178,27 @@ const DASHBOARD_DATA = {
       },
       {
         "province": "NW",
+        "municipality": "Ngaka Modiri Molema",
+        "sector": "feedlot",
+        "doses": 55350
+      },
+      {
+        "province": "MP",
+        "municipality": "Gert Sibande",
+        "sector": "commercial",
+        "doses": 54964
+      },
+      {
+        "province": "NW",
         "municipality": "Doctor Ruth Segomotsi Mompati",
         "sector": "commercial",
         "doses": 53027
+      },
+      {
+        "province": "NW",
+        "municipality": "Bojanala",
+        "sector": "feedlot",
+        "doses": 52840
       },
       {
         "province": "NW",
@@ -2113,6 +2243,12 @@ const DASHBOARD_DATA = {
         "doses": 48730
       },
       {
+        "province": "EC",
+        "municipality": "Sarah Baartman",
+        "sector": "commercial",
+        "doses": 47251
+      },
+      {
         "province": "FS",
         "municipality": "Fezile Dabi",
         "sector": "feedlot",
@@ -2131,6 +2267,18 @@ const DASHBOARD_DATA = {
         "doses": 46820
       },
       {
+        "province": "LP",
+        "municipality": "Waterberg",
+        "sector": "feedlot",
+        "doses": 46820
+      },
+      {
+        "province": "KZN",
+        "municipality": "Amajuba",
+        "sector": "commercial",
+        "doses": 46727
+      },
+      {
         "province": "NW",
         "municipality": "Doctor Ruth Segomotsi Mompati",
         "sector": "feedlot",
@@ -2141,6 +2289,12 @@ const DASHBOARD_DATA = {
         "municipality": "Doctor Ruth Segomotsi Mompati",
         "sector": "feedlot",
         "doses": 45310
+      },
+      {
+        "province": "FS",
+        "municipality": "Mangaung",
+        "sector": "commercial",
+        "doses": 43057
       },
       {
         "province": "NW",
@@ -2171,6 +2325,12 @@ const DASHBOARD_DATA = {
         "municipality": "Mangaung",
         "sector": "commercial",
         "doses": 40794
+      },
+      {
+        "province": "FS",
+        "municipality": "Lejweleputswa",
+        "sector": "commercial",
+        "doses": 40734
       },
       {
         "province": "FS",
@@ -2207,6 +2367,18 @@ const DASHBOARD_DATA = {
         "municipality": "Uthukela",
         "sector": "feedlot",
         "doses": 35870
+      },
+      {
+        "province": "KZN",
+        "municipality": "Uthukela",
+        "sector": "feedlot",
+        "doses": 35870
+      },
+      {
+        "province": "NC",
+        "municipality": "ZF Mgcawu",
+        "sector": "commercial",
+        "doses": 35229
       },
       {
         "province": "MP",
@@ -2293,6 +2465,18 @@ const DASHBOARD_DATA = {
         "doses": 29924
       },
       {
+        "province": "FS",
+        "municipality": "Lejweleputswa",
+        "sector": "stud",
+        "doses": 29571
+      },
+      {
+        "province": "LP",
+        "municipality": "Capricorn",
+        "sector": "feedlot",
+        "doses": 29320
+      },
+      {
         "province": "LP",
         "municipality": "Capricorn",
         "sector": "feedlot",
@@ -2323,10 +2507,22 @@ const DASHBOARD_DATA = {
         "doses": 28120
       },
       {
+        "province": "EC",
+        "municipality": "Amathole",
+        "sector": "commercial",
+        "doses": 28106
+      },
+      {
         "province": "MP",
         "municipality": "Gert Sibande",
         "sector": "commercial",
         "doses": 28045
+      },
+      {
+        "province": "KZN",
+        "municipality": "Umzinyathi",
+        "sector": "commercial",
+        "doses": 27982
       },
       {
         "province": "MP",
@@ -2351,6 +2547,12 @@ const DASHBOARD_DATA = {
         "municipality": "Amathole",
         "sector": "commercial",
         "doses": 26287
+      },
+      {
+        "province": "FS",
+        "municipality": "Thabo Mofutsanyane",
+        "sector": "stud",
+        "doses": 25270
       },
       {
         "province": "KZN",
@@ -2383,6 +2585,18 @@ const DASHBOARD_DATA = {
         "doses": 23294
       },
       {
+        "province": "EC",
+        "municipality": "Chris Hani",
+        "sector": "commercial",
+        "doses": 22941
+      },
+      {
+        "province": "FS",
+        "municipality": "Lejweleputswa",
+        "sector": "feedlot",
+        "doses": 21890
+      },
+      {
         "province": "FS",
         "municipality": "Lejweleputswa",
         "sector": "feedlot",
@@ -2408,11 +2622,23 @@ const DASHBOARD_DATA = {
       },
       {
         "province": "EC",
+        "municipality": "Joe Gqabi",
+        "sector": "commercial",
+        "doses": 20088
+      },
+      {
+        "province": "EC",
         "municipality": "Chris Hani",
         "sector": "commercial",
         "doses": 19978
       },
       {
+        "province": "NW",
+        "municipality": "Ngaka Modiri Molema",
+        "sector": "commercial",
+        "doses": 19603
+      },
+      {
         "province": "LP",
         "municipality": "Waterberg",
         "sector": "feedlot",
@@ -2423,6 +2649,12 @@ const DASHBOARD_DATA = {
         "municipality": "Waterberg",
         "sector": "feedlot",
         "doses": 18920
+      },
+      {
+        "province": "EC",
+        "municipality": "Joe Gqabi",
+        "sector": "stud",
+        "doses": 18619
       },
       {
         "province": "NC",
@@ -2453,6 +2685,12 @@ const DASHBOARD_DATA = {
         "municipality": "Joe Gqabi",
         "sector": "stud",
         "doses": 17444
+      },
+      {
+        "province": "NW",
+        "municipality": "Doctor Ruth Segomotsi Mompati",
+        "sector": "stud",
+        "doses": 16964
       },
       {
         "province": "EC",
@@ -2510,6 +2748,12 @@ const DASHBOARD_DATA = {
       },
       {
         "province": "FS",
+        "municipality": "Xhariep",
+        "sector": "stud",
+        "doses": 15975
+      },
+      {
+        "province": "FS",
         "municipality": "Lejweleputswa",
         "sector": "commercial",
         "doses": 15950
@@ -2531,6 +2775,18 @@ const DASHBOARD_DATA = {
         "municipality": "Vhembe",
         "sector": "feedlot",
         "doses": 15430
+      },
+      {
+        "province": "LP",
+        "municipality": "Vhembe",
+        "sector": "feedlot",
+        "doses": 15430
+      },
+      {
+        "province": "NC",
+        "municipality": "Pixley ka Seme",
+        "sector": "commercial",
+        "doses": 15324
       },
       {
         "province": "NW",
@@ -2569,6 +2825,12 @@ const DASHBOARD_DATA = {
         "doses": 14020
       },
       {
+        "province": "KZN",
+        "municipality": "Umgungundlovu",
+        "sector": "feedlot",
+        "doses": 14020
+      },
+      {
         "province": "EC",
         "municipality": "Amathole",
         "sector": "commercial",
@@ -2579,6 +2841,12 @@ const DASHBOARD_DATA = {
         "municipality": "Amathole",
         "sector": "commercial",
         "doses": 13955
+      },
+      {
+        "province": "NC",
+        "municipality": "ZF Mgcawu",
+        "sector": "feedlot",
+        "doses": 13890
       },
       {
         "province": "NC",
@@ -2627,6 +2895,12 @@ const DASHBOARD_DATA = {
         "municipality": "Uthukela",
         "sector": "commercial",
         "doses": 13090
+      },
+      {
+        "province": "EC",
+        "municipality": "Sarah Baartman",
+        "sector": "stud",
+        "doses": 12974
       },
       {
         "province": "EC",
@@ -2713,6 +2987,18 @@ const DASHBOARD_DATA = {
         "doses": 11474
       },
       {
+        "province": "NC",
+        "municipality": "John Taolo Gaetsewe",
+        "sector": "commercial",
+        "doses": 11015
+      },
+      {
+        "province": "EC",
+        "municipality": "Alfred Nzo",
+        "sector": "commercial",
+        "doses": 10863
+      },
+      {
         "province": "EC",
         "municipality": "Alfred Nzo",
         "sector": "commercial",
@@ -2785,6 +3071,12 @@ const DASHBOARD_DATA = {
         "doses": 10079
       },
       {
+        "province": "MP",
+        "municipality": "Gert Sibande",
+        "sector": "stud",
+        "doses": 10079
+      },
+      {
         "province": "FS",
         "municipality": "Lejweleputswa",
         "sector": "commercial",
@@ -2819,6 +3111,12 @@ const DASHBOARD_DATA = {
         "municipality": "Pixley ka Seme",
         "sector": "commercial",
         "doses": 9696
+      },
+      {
+        "province": "EC",
+        "municipality": "Sarah Baartman",
+        "sector": "feedlot",
+        "doses": 9630
       },
       {
         "province": "EC",
@@ -2873,6 +3171,24 @@ const DASHBOARD_DATA = {
         "municipality": "Umzinyathi",
         "sector": "feedlot",
         "doses": 8620
+      },
+      {
+        "province": "KZN",
+        "municipality": "Umzinyathi",
+        "sector": "feedlot",
+        "doses": 8620
+      },
+      {
+        "province": "NC",
+        "municipality": "Pixley ka Seme",
+        "sector": "stud",
+        "doses": 8585
+      },
+      {
+        "province": "LP",
+        "municipality": "Capricorn",
+        "sector": "commercial",
+        "doses": 8538
       },
       {
         "province": "LP",
@@ -2977,6 +3293,24 @@ const DASHBOARD_DATA = {
         "doses": 7190
       },
       {
+        "province": "NC",
+        "municipality": "Pixley ka Seme",
+        "sector": "feedlot",
+        "doses": 7190
+      },
+      {
+        "province": "FS",
+        "municipality": "Mangaung",
+        "sector": "stud",
+        "doses": 7174
+      },
+      {
+        "province": "KZN",
+        "municipality": "Amajuba",
+        "sector": "feedlot",
+        "doses": 7160
+      },
+      {
         "province": "KZN",
         "municipality": "Amajuba",
         "sector": "feedlot",
@@ -3046,6 +3380,12 @@ const DASHBOARD_DATA = {
         "province": "EC",
         "municipality": "Amathole",
         "sector": "stud",
+        "doses": 6529
+      },
+      {
+        "province": "EC",
+        "municipality": "Amathole",
+        "sector": "stud",
         "doses": 6370
       },
       {
@@ -3079,6 +3419,12 @@ const DASHBOARD_DATA = {
         "doses": 6100
       },
       {
+        "province": "FS",
+        "municipality": "Fezile Dabi",
+        "sector": "stud",
+        "doses": 6072
+      },
+      {
         "province": "LP",
         "municipality": "Capricorn",
         "sector": "commercial",
@@ -3101,6 +3447,18 @@ const DASHBOARD_DATA = {
         "municipality": "Vhembe",
         "sector": "feedlot",
         "doses": 6010
+      },
+      {
+        "province": "NC",
+        "municipality": "ZF Mgcawu",
+        "sector": "stud",
+        "doses": 5945
+      },
+      {
+        "province": "EC",
+        "municipality": "Chris Hani",
+        "sector": "stud",
+        "doses": 5807
       },
       {
         "province": "NC",
@@ -3157,6 +3515,12 @@ const DASHBOARD_DATA = {
         "doses": 5407
       },
       {
+        "province": "LP",
+        "municipality": "Waterberg",
+        "sector": "stud",
+        "doses": 5407
+      },
+      {
         "province": "MP",
         "municipality": "Gert Sibande",
         "sector": "stud",
@@ -3185,6 +3549,12 @@ const DASHBOARD_DATA = {
         "municipality": "Mangaung",
         "sector": "stud",
         "doses": 5219
+      },
+      {
+        "province": "NW",
+        "municipality": "Doctor Kenneth Kaunda",
+        "sector": "commercial",
+        "doses": 5169
       },
       {
         "province": "FS",
@@ -3235,6 +3605,12 @@ const DASHBOARD_DATA = {
         "doses": 4772
       },
       {
+        "province": "NC",
+        "municipality": "Frances Baard",
+        "sector": "commercial",
+        "doses": 4614
+      },
+      {
         "province": "EC",
         "municipality": "Sarah Baartman",
         "sector": "commercial",
@@ -3245,6 +3621,12 @@ const DASHBOARD_DATA = {
         "municipality": "Sarah Baartman",
         "sector": "commercial",
         "doses": 4320
+      },
+      {
+        "province": "NW",
+        "municipality": "Doctor Kenneth Kaunda",
+        "sector": "stud",
+        "doses": 4194
       },
       {
         "province": "NW",
@@ -3278,6 +3660,12 @@ const DASHBOARD_DATA = {
       },
       {
         "province": "FS",
+        "municipality": "Xhariep",
+        "sector": "feedlot",
+        "doses": 3920
+      },
+      {
+        "province": "FS",
         "municipality": "Fezile Dabi",
         "sector": "stud",
         "doses": 3900
@@ -3299,6 +3687,12 @@ const DASHBOARD_DATA = {
         "municipality": "Gert Sibande",
         "sector": "stud",
         "doses": 3840
+      },
+      {
+        "province": "MP",
+        "municipality": "Nkangala",
+        "sector": "commercial",
+        "doses": 3552
       },
       {
         "province": "EC",
@@ -3331,6 +3725,12 @@ const DASHBOARD_DATA = {
         "doses": 3090
       },
       {
+        "province": "FS",
+        "municipality": "Fezile Dabi",
+        "sector": "commercial",
+        "doses": 2991
+      },
+      {
         "province": "NC",
         "municipality": "Pixley ka Seme",
         "sector": "feedlot",
@@ -3361,6 +3761,18 @@ const DASHBOARD_DATA = {
         "doses": 2900
       },
       {
+        "province": "GP",
+        "municipality": "West Rand",
+        "sector": "feedlot",
+        "doses": 2900
+      },
+      {
+        "province": "KZN",
+        "municipality": "Amajuba",
+        "sector": "stud",
+        "doses": 2900
+      },
+      {
         "province": "EC",
         "municipality": "Chris Hani",
         "sector": "stud",
@@ -3383,6 +3795,12 @@ const DASHBOARD_DATA = {
         "municipality": "Fezile Dabi",
         "sector": "commercial",
         "doses": 2691
+      },
+      {
+        "province": "NC",
+        "municipality": "Frances Baard",
+        "sector": "stud",
+        "doses": 2625
       },
       {
         "province": "NC",
@@ -3433,6 +3851,12 @@ const DASHBOARD_DATA = {
         "doses": 2285
       },
       {
+        "province": "KZN",
+        "municipality": "Zululand",
+        "sector": "commercial",
+        "doses": 2285
+      },
+      {
         "province": "NC",
         "municipality": "Frances Baard",
         "sector": "commercial",
@@ -3463,8 +3887,20 @@ const DASHBOARD_DATA = {
         "doses": 2180
       },
       {
+        "province": "LP",
+        "municipality": "Mopani",
+        "sector": "feedlot",
+        "doses": 2180
+      },
+      {
         "province": "NC",
         "municipality": "ZF Mgcawu",
+        "sector": "stud",
+        "doses": 2160
+      },
+      {
+        "province": "NW",
+        "municipality": "Ngaka Modiri Molema",
         "sector": "stud",
         "doses": 2160
       },
@@ -3473,6 +3909,18 @@ const DASHBOARD_DATA = {
         "municipality": "Waterberg",
         "sector": "commercial",
         "doses": 2140
+      },
+      {
+        "province": "LP",
+        "municipality": "Waterberg",
+        "sector": "commercial",
+        "doses": 2140
+      },
+      {
+        "province": "KZN",
+        "municipality": "Zululand",
+        "sector": "stud",
+        "doses": 2120
       },
       {
         "province": "KZN",
@@ -3521,6 +3969,12 @@ const DASHBOARD_DATA = {
         "municipality": "Fezile Dabi",
         "sector": "commercial",
         "doses": 2000
+      },
+      {
+        "province": "NC",
+        "municipality": "Frances Baard",
+        "sector": "feedlot",
+        "doses": 1980
       },
       {
         "province": "NC",
@@ -3601,10 +4055,22 @@ const DASHBOARD_DATA = {
         "doses": 1890
       },
       {
+        "province": "MP",
+        "municipality": "Nkangala",
+        "sector": "stud",
+        "doses": 1870
+      },
+      {
         "province": "LP",
         "municipality": "Capricorn",
         "sector": "commercial",
         "doses": 1809
+      },
+      {
+        "province": "NW",
+        "municipality": "Bojanala",
+        "sector": "stud",
+        "doses": 1806
       },
       {
         "province": "NW",
@@ -3635,6 +4101,30 @@ const DASHBOARD_DATA = {
         "municipality": "John Taolo Gaetsewe",
         "sector": "stud",
         "doses": 1590
+      },
+      {
+        "province": "NC",
+        "municipality": "John Taolo Gaetsewe",
+        "sector": "stud",
+        "doses": 1590
+      },
+      {
+        "province": "EC",
+        "municipality": "Alfred Nzo",
+        "sector": "stud",
+        "doses": 1575
+      },
+      {
+        "province": "NC",
+        "municipality": "John Taolo Gaetsewe",
+        "sector": "feedlot",
+        "doses": 1480
+      },
+      {
+        "province": "NC",
+        "municipality": "Namakwa",
+        "sector": "commercial",
+        "doses": 1458
       },
       {
         "province": "NC",
@@ -3699,6 +4189,12 @@ const DASHBOARD_DATA = {
       {
         "province": "NW",
         "municipality": "Bojanala",
+        "sector": "commercial",
+        "doses": 1395
+      },
+      {
+        "province": "NW",
+        "municipality": "Bojanala",
         "sector": "stud",
         "doses": 1381
       },
@@ -3725,6 +4221,12 @@ const DASHBOARD_DATA = {
         "municipality": "ZF Mgcawu",
         "sector": "feedlot",
         "doses": 1350
+      },
+      {
+        "province": "EC",
+        "municipality": "Chris Hani",
+        "sector": "feedlot",
+        "doses": 1320
       },
       {
         "province": "EC",
@@ -3775,6 +4277,18 @@ const DASHBOARD_DATA = {
         "doses": 1296
       },
       {
+        "province": "LP",
+        "municipality": "Vhembe",
+        "sector": "commercial",
+        "doses": 1296
+      },
+      {
+        "province": "EC",
+        "municipality": "None",
+        "sector": "commercial",
+        "doses": 1186
+      },
+      {
         "province": "NC",
         "municipality": "John Taolo Gaetsewe",
         "sector": "commercial",
@@ -3796,6 +4310,12 @@ const DASHBOARD_DATA = {
         "province": "FS",
         "municipality": "Xhariep",
         "sector": "feedlot",
+        "doses": 1100
+      },
+      {
+        "province": "GP",
+        "municipality": "West Rand",
+        "sector": "commercial",
         "doses": 1100
       },
       {
@@ -3844,6 +4364,12 @@ const DASHBOARD_DATA = {
         "province": "LP",
         "municipality": "Sekhukhune",
         "sector": "stud",
+        "doses": 950
+      },
+      {
+        "province": "LP",
+        "municipality": "Sekhukhune",
+        "sector": "commercial",
         "doses": 950
       },
       {
@@ -3979,6 +4505,12 @@ const DASHBOARD_DATA = {
         "doses": 743
       },
       {
+        "province": "EC",
+        "municipality": "Buffalo City Metropolitan Municipality",
+        "sector": "commercial",
+        "doses": 743
+      },
+      {
         "province": "LP",
         "municipality": "Waterberg",
         "sector": "commercial",
@@ -4013,6 +4545,18 @@ const DASHBOARD_DATA = {
         "municipality": "Garden Route",
         "sector": "feedlot",
         "doses": 680
+      },
+      {
+        "province": "WC",
+        "municipality": "Garden Route",
+        "sector": "feedlot",
+        "doses": 680
+      },
+      {
+        "province": "GP",
+        "municipality": "None",
+        "sector": "feedlot",
+        "doses": 600
       },
       {
         "province": "GP",
@@ -4099,6 +4643,12 @@ const DASHBOARD_DATA = {
         "doses": 465
       },
       {
+        "province": "EC",
+        "municipality": "Buffalo City Metropolitan Municipality",
+        "sector": "stud",
+        "doses": 465
+      },
+      {
         "province": "NC",
         "municipality": "John Taolo Gaetsewe",
         "sector": "stud",
@@ -4129,6 +4679,18 @@ const DASHBOARD_DATA = {
         "doses": 455
       },
       {
+        "province": "GP",
+        "municipality": "City of Tshwane",
+        "sector": "stud",
+        "doses": 455
+      },
+      {
+        "province": "LP",
+        "municipality": "Capricorn",
+        "sector": "stud",
+        "doses": 404
+      },
+      {
         "province": "LP",
         "municipality": "Capricorn",
         "sector": "stud",
@@ -4141,10 +4703,28 @@ const DASHBOARD_DATA = {
         "doses": 372
       },
       {
+        "province": "LP",
+        "municipality": "Vhembe",
+        "sector": "stud",
+        "doses": 372
+      },
+      {
         "province": "EC",
         "municipality": "None",
         "sector": "feedlot",
         "doses": 300
+      },
+      {
+        "province": "EC",
+        "municipality": "None",
+        "sector": "feedlot",
+        "doses": 300
+      },
+      {
+        "province": "GP",
+        "municipality": "City of Tshwane",
+        "sector": "commercial",
+        "doses": 270
       },
       {
         "province": "FS",
@@ -4183,6 +4763,18 @@ const DASHBOARD_DATA = {
         "doses": 200
       },
       {
+        "province": "FS",
+        "municipality": "Mangaung",
+        "sector": "feedlot",
+        "doses": 200
+      },
+      {
+        "province": "GP",
+        "municipality": "Sedibeng",
+        "sector": "stud",
+        "doses": 190
+      },
+      {
         "province": "GP",
         "municipality": "Sedibeng",
         "sector": "stud",
@@ -4195,6 +4787,24 @@ const DASHBOARD_DATA = {
         "doses": 180
       },
       {
+        "province": "NW",
+        "municipality": "ZF Mgcawu",
+        "sector": "commercial",
+        "doses": 180
+      },
+      {
+        "province": "EC",
+        "municipality": "Joe Gqabi",
+        "sector": "feedlot",
+        "doses": 178
+      },
+      {
+        "province": "KZN",
+        "municipality": "Umgungundlovu",
+        "sector": "commercial",
+        "doses": 170
+      },
+      {
         "province": "LP",
         "municipality": "Capricorn",
         "sector": "stud",
@@ -4205,6 +4815,12 @@ const DASHBOARD_DATA = {
         "municipality": "Capricorn",
         "sector": "stud",
         "doses": 161
+      },
+      {
+        "province": "GP",
+        "municipality": "West Rand",
+        "sector": "stud",
+        "doses": 150
       },
       {
         "province": "GP",
@@ -4566,7 +5182,7 @@ const DASHBOARD_DATA = {
       "code": "EC",
       "name": "Eastern Cape",
       "joc": 1378088,
-      "joc_date": "2026-08-20",
+      "joc_date": "2026-08-24",
       "ministerial": 725632,
       "ministerial_date": "2026-06-04",
       "diff": 652456,
@@ -4575,18 +5191,18 @@ const DASHBOARD_DATA = {
     {
       "code": "FS",
       "name": "Free State",
-      "joc": 1485340,
-      "joc_date": "2026-08-16",
+      "joc": 1512319,
+      "joc_date": "2026-08-24",
       "ministerial": 707986,
       "ministerial_date": "2026-06-04",
-      "diff": 777354,
+      "diff": 804333,
       "flag": null
     },
     {
       "code": "GP",
       "name": "Gauteng",
       "joc": 527626,
-      "joc_date": "2026-08-16",
+      "joc_date": "2026-08-24",
       "ministerial": 325216,
       "ministerial_date": "2026-06-04",
       "diff": 202410,
@@ -4596,7 +5212,7 @@ const DASHBOARD_DATA = {
       "code": "KZN",
       "name": "KwaZulu-Natal",
       "joc": 1567971,
-      "joc_date": "2026-08-16",
+      "joc_date": "2026-08-24",
       "ministerial": 1163193,
       "ministerial_date": "2026-06-04",
       "diff": 404778,
@@ -4606,7 +5222,7 @@ const DASHBOARD_DATA = {
       "code": "LP",
       "name": "Limpopo",
       "joc": 758379,
-      "joc_date": "2026-08-16",
+      "joc_date": "2026-08-24",
       "ministerial": 357045,
       "ministerial_date": "2026-06-04",
       "diff": 401334,
@@ -4616,7 +5232,7 @@ const DASHBOARD_DATA = {
       "code": "MP",
       "name": "Mpumalanga",
       "joc": 729074,
-      "joc_date": "2026-08-16",
+      "joc_date": "2026-08-24",
       "ministerial": 465105,
       "ministerial_date": "2026-06-04",
       "diff": 263969,
@@ -4626,7 +5242,7 @@ const DASHBOARD_DATA = {
       "code": "NW",
       "name": "North West",
       "joc": 1220669,
-      "joc_date": "2026-08-16",
+      "joc_date": "2026-08-24",
       "ministerial": 600331,
       "ministerial_date": "2026-06-04",
       "diff": 620338,
@@ -4636,7 +5252,7 @@ const DASHBOARD_DATA = {
       "code": "NC",
       "name": "Northern Cape",
       "joc": 215546,
-      "joc_date": "2026-08-16",
+      "joc_date": "2026-08-24",
       "ministerial": 99642,
       "ministerial_date": "2026-06-04",
       "diff": 115904,
@@ -4646,7 +5262,7 @@ const DASHBOARD_DATA = {
       "code": "WC",
       "name": "Western Cape",
       "joc": 428657,
-      "joc_date": "2026-08-16",
+      "joc_date": "2026-08-24",
       "ministerial": 265379,
       "ministerial_date": "2026-06-04",
       "diff": 163278,
@@ -4706,7 +5322,7 @@ const DASHBOARD_DATA = {
   "provincial_detail": {
     "EC": {
       "name": "Eastern Cape",
-      "latest_date": "2026-08-20",
+      "latest_date": "2026-08-24",
       "vaccine_types": [
         {
           "type": "dolvet",
@@ -5091,8 +5707,8 @@ const DASHBOARD_DATA = {
         },
         "booster_vaccinations": {
           "label": "Booster vaccinations",
-          "value": 93253,
-          "date": "2026-08-20"
+          "value": 100837,
+          "date": "2026-08-21"
         },
         "vaccine_balance": {
           "label": "Vaccine balance on hand",
@@ -5112,7 +5728,7 @@ const DASHBOARD_DATA = {
     },
     "FS": {
       "name": "Free State",
-      "latest_date": "2026-08-16",
+      "latest_date": "2026-08-24",
       "vaccine_types": [
         {
           "type": "dolvet",
@@ -5124,7 +5740,7 @@ const DASHBOARD_DATA = {
           "type": "bioaftogen",
           "label": "Bioaftogen",
           "doses": 370000,
-          "date": "2026-08-14"
+          "date": "2026-08-21"
         },
         {
           "type": "emergency_stock",
@@ -5186,6 +5802,28 @@ const DASHBOARD_DATA = {
           "notes": "Mangaung Metropolitan, OBP Dose 1. The only district with a non-zero vaccination entry in this week's template."
         },
         {
+          "name": "Mangaung Metropolitan, OBP dose 1; unchanged",
+          "date": "2026-08-21",
+          "vaccinated": 2231,
+          "cases": null,
+          "suspected": null,
+          "pending": null,
+          "outbreaks": null,
+          "negative": null,
+          "notes": "Mangaung Metropolitan, OBP dose 1; unchanged from 14 Aug template."
+        },
+        {
+          "name": "Fezile Dabi district",
+          "date": "2026-08-21",
+          "vaccinated": null,
+          "cases": 368,
+          "suspected": null,
+          "pending": null,
+          "outbreaks": null,
+          "negative": null,
+          "notes": "Fezile Dabi district. up from 366 at 14 Aug; Mafube 81, Metsimaholo 64, Moqhaka 126, Ngwathe 97."
+        },
+        {
           "name": "Fezile Dabi",
           "date": "2026-08-06",
           "vaccinated": null,
@@ -5195,17 +5833,6 @@ const DASHBOARD_DATA = {
           "outbreaks": null,
           "negative": null,
           "notes": "District: Fezile Dabi. Municipal detail: Mafube 81, Metsimaholo 64, Moqhaka 125, Ngwathe 96. Sums to provincial total 764."
-        },
-        {
-          "name": "Fezile Dabi district",
-          "date": "2026-08-14",
-          "vaccinated": null,
-          "cases": 366,
-          "suspected": null,
-          "pending": null,
-          "outbreaks": null,
-          "negative": null,
-          "notes": "Fezile Dabi district. Breakdown: Mafube 81, Metsimaholo 64, Moqhaka 125, Ngwathe 96. Unchanged from 6 Aug."
         },
         {
           "name": "Fezile Dabi (Mafube 74",
@@ -5231,14 +5858,14 @@ const DASHBOARD_DATA = {
         },
         {
           "name": "Thabo Mofutsanyana district",
-          "date": "2026-08-14",
+          "date": "2026-08-21",
           "vaccinated": null,
           "cases": 193,
           "suspected": null,
           "pending": null,
           "outbreaks": null,
           "negative": null,
-          "notes": "Thabo Mofutsanyana district. Breakdown: Dihlabeng 73, Maluti-A-Phofung 29, Mantsopa 46, Phumelela 45 (Nketoana and Setsoto blank/not reported this week). Unchanged from 6 Aug."
+          "notes": "Thabo Mofutsanyana district. unchanged; Dihlabeng 73, Maluti-A-Phofung 29, Mantsopa 46, Phumelela 45."
         },
         {
           "name": "Thabo Mofutsanyana (Dihlabeng 67",
@@ -5253,14 +5880,14 @@ const DASHBOARD_DATA = {
         },
         {
           "name": "Lejweleputswa district",
-          "date": "2026-08-14",
+          "date": "2026-08-21",
           "vaccinated": null,
           "cases": 138,
           "suspected": null,
           "pending": null,
           "outbreaks": null,
           "negative": null,
-          "notes": "Lejweleputswa district. Breakdown: Matjhabeng 51, Tokologo 52, Tswelopele 35 (Masilonyana and Nala blank/not reported this week). Up from 136 (6 Aug)."
+          "notes": "Lejweleputswa district. unchanged; Matjhabeng 51, Tokologo 52, Tswelopele 35."
         },
         {
           "name": "Lejweleputswa",
@@ -5462,14 +6089,14 @@ const DASHBOARD_DATA = {
         },
         {
           "name": "Xhariep district",
-          "date": "2026-08-14",
+          "date": "2026-08-21",
           "vaccinated": null,
           "cases": 42,
           "suspected": null,
           "pending": null,
           "outbreaks": null,
           "negative": null,
-          "notes": "Xhariep district. Breakdown: Kopanong 24, Mohokare 18 (Letsemeng blank/not reported this week). Unchanged from 6 Aug."
+          "notes": "Xhariep district. unchanged; Kopanong 24, Mohokare 18."
         },
         {
           "name": "Warden SVA",
@@ -5483,33 +6110,22 @@ const DASHBOARD_DATA = {
           "notes": "State Vet Area: Warden SVA | Local municipality/ies: Phumelela | FS-DRDAR media release 2 Jun 2026. Total SVA breakdown sums to 604."
         },
         {
-          "name": "Mangaung Metropolitan district total",
-          "date": "2026-08-14",
+          "name": "Mangaung Metropolitan district",
+          "date": "2026-08-21",
           "vaccinated": null,
-          "cases": 30,
+          "cases": 31,
           "suspected": null,
           "pending": null,
           "outbreaks": null,
           "negative": null,
-          "notes": "Mangaung Metropolitan district total. Media release splits this as Bloemfontein SVA 28 plus Thaba Nchu SVA 2."
-        },
-        {
-          "name": "Maluti-A-Phofung; Qwa-Qwa SVA; Maluti-A-Phofu",
-          "date": "2026-06-23",
-          "vaccinated": null,
-          "cases": 29,
-          "suspected": null,
-          "pending": null,
-          "outbreaks": null,
-          "negative": null,
-          "notes": "District: Maluti-A-Phofung; Qwa-Qwa SVA; Maluti-A-Phofung Municipality; FS DARDLEA media release 23 Jun 2026"
+          "notes": "Mangaung Metropolitan district. up from 30 at 14 Aug; Bloemfontein SVA 29 plus Thaba Nchu SVA 2."
         }
       ],
       "extra": {
         "booster_vaccinations": {
           "label": "Booster vaccinations",
-          "value": 14578,
-          "date": "2026-08-07"
+          "value": 19118,
+          "date": "2026-08-21"
         },
         "animals_vaccinated_dose1": {
           "label": "Dose 1 animals",
@@ -5545,7 +6161,7 @@ const DASHBOARD_DATA = {
     },
     "GP": {
       "name": "Gauteng",
-      "latest_date": "2026-08-16",
+      "latest_date": "2026-08-24",
       "vaccine_types": [
         {
           "type": "dolvet",
@@ -5592,7 +6208,7 @@ const DASHBOARD_DATA = {
         "booster_vaccinations": {
           "label": "Booster vaccinations",
           "value": 13720,
-          "date": "2026-08-07"
+          "date": "2026-08-21"
         },
         "controlled_slaughter": {
           "label": "Controlled slaughter",
@@ -5618,7 +6234,7 @@ const DASHBOARD_DATA = {
     },
     "KZN": {
       "name": "KwaZulu-Natal",
-      "latest_date": "2026-08-16",
+      "latest_date": "2026-08-24",
       "vaccine_types": [
         {
           "type": "dolvet",
@@ -5874,7 +6490,7 @@ const DASHBOARD_DATA = {
         "booster_vaccinations": {
           "label": "Booster vaccinations",
           "value": 334000,
-          "date": "2026-08-07"
+          "date": "2026-08-21"
         },
         "vaccine_balance": {
           "label": "Vaccine balance on hand",
@@ -5894,7 +6510,7 @@ const DASHBOARD_DATA = {
     },
     "LP": {
       "name": "Limpopo",
-      "latest_date": "2026-08-16",
+      "latest_date": "2026-08-24",
       "vaccine_types": [
         {
           "type": "dolvet",
@@ -6138,7 +6754,7 @@ const DASHBOARD_DATA = {
     },
     "MP": {
       "name": "Mpumalanga",
-      "latest_date": "2026-08-16",
+      "latest_date": "2026-08-24",
       "vaccine_types": [
         {
           "type": "bioaftogen",
@@ -6570,7 +7186,7 @@ const DASHBOARD_DATA = {
     },
     "NW": {
       "name": "North West",
-      "latest_date": "2026-08-16",
+      "latest_date": "2026-08-24",
       "vaccine_types": [
         {
           "type": "dolvet",
@@ -6920,7 +7536,7 @@ const DASHBOARD_DATA = {
     },
     "NC": {
       "name": "Northern Cape",
-      "latest_date": "2026-08-16",
+      "latest_date": "2026-08-24",
       "vaccine_types": [
         {
           "type": "dolvet",
@@ -7031,7 +7647,7 @@ const DASHBOARD_DATA = {
     },
     "WC": {
       "name": "Western Cape",
-      "latest_date": "2026-08-16",
+      "latest_date": "2026-08-24",
       "vaccine_types": [
         {
           "type": "dolvet",
@@ -7076,8 +7692,8 @@ const DASHBOARD_DATA = {
         },
         "booster_vaccinations": {
           "label": "Booster vaccinations",
-          "value": 61689,
-          "date": "2026-07-31"
+          "value": 37129,
+          "date": "2026-08-21"
         },
         "vaccination_sites": {
           "label": "Vaccination sites",
@@ -7275,11 +7891,13 @@ const DASHBOARD_DATA = {
     "FOOT AND MOUTH PRESENTATION TO MINMEC (7 MAY 2026).pptx",
     "FS DARDLEA media release 07.08.2026 (FMD STATS 6 AUGUST 2026.zip)",
     "FS DARDLEA media release 14.08.2026 (FMD STATS 14 AUGUST 2026.zip)",
+    "FS DARDLEA media release 21.08.2026 (FMD STATS 21 AUGUST 2026.zip)",
     "FS FMD Vaccine Data - 05.06.2026.xlsx (in FMD STATS 08 june.zip)",
     "FS FMD Vaccine Data - 06082026.xlsx (FMD STATS 6 AUGUST 2026.zip)",
     "FS FMD Vaccine Data - 12.06.2026.xlsx",
     "FS FMD Vaccine Data - 14.08.2026.xlsx (FMD STATS 14 AUGUST 2026.zip)",
     "FS FMD Vaccine Data - 17.07.2026.xlsx",
+    "FS FMD Vaccine Data - 21.08.2026.xlsx (FMD STATS 21 AUGUST 2026.zip)",
     "FS FMD Vaccine Data - 26.06.2026.xlsx",
     "FS FMD Vaccine Data - 29.05.2026.xlsx",
     "GDARD FMD JOC Meeting 12_06_2026.pdf",
@@ -7315,6 +7933,8 @@ const DASHBOARD_DATA = {
     "Week 39 - Update on the state of FMD and vaccine rollouts in the dairy industry.pdf",
     "Week 40 - Update on the state of FMD and vaccine rollouts in the dairy industry.pdf",
     "Week 42 - Update on the state of FMD and vaccine rollouts in the dairy industry.pdf",
+    "Week 43 - Update on the state of FMD and vaccine rollouts in the dairy industry.pdf",
+    "Week 44 - Update on the state of FMD and vaccine rollouts in the dairy industry.pdf",
     "WhatsApp Image 2026-06-02 at 08.43.23.jpeg",
     "WhatsApp Image 2026-06-06 (FS DARDEA media release 5 June 2026, map dated 4 June 2026)",
     "WhatsApp Image 2026-06-23 at 12.52.00.jpeg",
@@ -7388,6 +8008,7 @@ const DASHBOARD_DATA = {
     "rmis_industry_allocated_fmd_vaccine_distribution_data_2026-07-08.xlsx",
     "rmis_industry_allocated_fmd_vaccine_distribution_data_2026-07-15.xlsx",
     "rmis_industry_allocated_fmd_vaccine_distribution_data_2026-08-17.xlsx",
+    "rmis_industry_allocated_fmd_vaccine_distribution_data_2026-08-25.xlsx",
     "uploads/Week 28- Update on the state of FMD and vaccine rollouts in the dairy industry.pdf",
     "uploads/Week 29- Update on the state of FMD and vaccine rollouts in the dairy industry.pdf",
     "uploads/Week 30 - Update on the state of FMD and vaccine rollouts in the dairy industry.pdf"
