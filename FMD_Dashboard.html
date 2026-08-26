@@ -435,8 +435,9 @@
     <h2>Doses by province and by manufacturer.</h2>
     <div class="grid-3">
       <div class="card">
-        <h3>Doses received and animals vaccinated by province.</h3>
+        <h3>Doses received and animals vaccinated by dose, per province.</h3>
         <div class="chart-wrap tall"><canvas id="provVax"></canvas></div>
+        <p style="font-size:11px;color:var(--charcoal);margin-top:var(--sp-3)" id="provVaxNote"></p>
       </div>
       <div class="card">
         <h3>Vaccine source mix.</h3>
@@ -492,7 +493,7 @@
     <div class="kicker">Coverage gap</div>
     <h2>Herd coverage against the two dose protocol.</h2>
     <div class="card">
-      <h3>First round coverage: share of provincial cattle herd that has received at least one dose.</h3>
+      <h3>Herd coverage per province: vaccines received, dose 1 and dose 2 as a share of the cattle herd.</h3>
       <div class="chart-wrap tall"><canvas id="coverageChart"></canvas></div>
       <p style="font-size:14px;color:var(--charcoal);margin-top:var(--sp-4)" id="coverageNote"></p>
     </div>
@@ -515,7 +516,7 @@
     <!-- Vaccination + active cases by province -->
     <div class="grid-2" style="margin-bottom:var(--sp-6)">
       <div class="card">
-        <h3>Dairy cows vaccinated by province.</h3>
+        <h3>Dairy cows vaccinated by province: dose 1 and dose 2.</h3>
         <div class="chart-wrap tall"><canvas id="mpoDairyChart"></canvas></div>
       </div>
       <div class="card">
@@ -735,7 +736,13 @@ const DASHBOARD_DATA = {
       "negative": 15,
       "pending": 0,
       "received": 1786510,
-      "vaccinated": 1378088
+      "vaccinated": 1378088,
+      "dose1": 1284835,
+      "dose2": 93253,
+      "dose2_asof": "2026-08-20",
+      "dose2_source": "EC-DRDAR",
+      "dose1_derived": true,
+      "dose2_partial": false
     },
     {
       "code": "FS",
@@ -747,7 +754,13 @@ const DASHBOARD_DATA = {
       "negative": 0,
       "pending": 0,
       "received": 1741840,
-      "vaccinated": 1512319
+      "vaccinated": 1512319,
+      "dose1": 1493201,
+      "dose2": 19118,
+      "dose2_asof": "2026-08-21",
+      "dose2_source": "MPO",
+      "dose1_derived": true,
+      "dose2_partial": true
     },
     {
       "code": "GP",
@@ -759,7 +772,13 @@ const DASHBOARD_DATA = {
       "negative": 0,
       "pending": 0,
       "received": 643300,
-      "vaccinated": 527626
+      "vaccinated": 527626,
+      "dose1": 513906,
+      "dose2": 13720,
+      "dose2_asof": "2026-08-21",
+      "dose2_source": "MPO",
+      "dose1_derived": true,
+      "dose2_partial": true
     },
     {
       "code": "KZN",
@@ -771,7 +790,13 @@ const DASHBOARD_DATA = {
       "negative": 0,
       "pending": 0,
       "received": 1120000,
-      "vaccinated": 1700000
+      "vaccinated": 1700000,
+      "dose1": 1453000,
+      "dose2": 247000,
+      "dose2_asof": "2026-07-26",
+      "dose2_source": "KZN-DARD",
+      "dose1_derived": true,
+      "dose2_partial": false
     },
     {
       "code": "LP",
@@ -783,7 +808,13 @@ const DASHBOARD_DATA = {
       "negative": 166,
       "pending": 169,
       "received": 994725,
-      "vaccinated": 758379
+      "vaccinated": 758379,
+      "dose1": 758379,
+      "dose2": 0,
+      "dose2_asof": null,
+      "dose2_source": null,
+      "dose1_derived": true,
+      "dose2_partial": false
     },
     {
       "code": "MP",
@@ -795,7 +826,13 @@ const DASHBOARD_DATA = {
       "negative": 0,
       "pending": 0,
       "received": 897000,
-      "vaccinated": 729074
+      "vaccinated": 729074,
+      "dose1": 720160,
+      "dose2": 8914,
+      "dose2_asof": "2026-07-27",
+      "dose2_source": "MP-DVS",
+      "dose1_derived": true,
+      "dose2_partial": false
     },
     {
       "code": "NW",
@@ -807,7 +844,13 @@ const DASHBOARD_DATA = {
       "negative": 0,
       "pending": 0,
       "received": 1271140,
-      "vaccinated": 1220669
+      "vaccinated": 1220669,
+      "dose1": 1220669,
+      "dose2": 0,
+      "dose2_asof": null,
+      "dose2_source": null,
+      "dose1_derived": true,
+      "dose2_partial": false
     },
     {
       "code": "NC",
@@ -819,7 +862,13 @@ const DASHBOARD_DATA = {
       "negative": 0,
       "pending": 0,
       "received": 333560,
-      "vaccinated": 215546
+      "vaccinated": 215546,
+      "dose1": 215546,
+      "dose2": 0,
+      "dose2_asof": null,
+      "dose2_source": null,
+      "dose1_derived": true,
+      "dose2_partial": false
     },
     {
       "code": "WC",
@@ -831,7 +880,13 @@ const DASHBOARD_DATA = {
       "negative": 0,
       "pending": 0,
       "received": 547100,
-      "vaccinated": 428657
+      "vaccinated": 428657,
+      "dose1": 367311,
+      "dose2": 61689,
+      "dose2_asof": "2026-07-31",
+      "dose2_source": "WC-DoA",
+      "dose1_derived": false,
+      "dose2_partial": false
     }
   ],
   "weekly": [
@@ -1454,6 +1509,9 @@ const DASHBOARD_DATA = {
     "administered": 8470358,
     "herd_cattle": 12496199,
     "balance": 864817,
+    "dose2": 443694,
+    "dose1": 8026664,
+    "dose_split_note": "Dose 2 is the sum of the latest booster figures per province; several provinces report boosters for the dairy programme only, so dose 2 is a minimum and dose 1 a derived maximum.",
     "delta_received": 469660,
     "delta_distributed": 469660,
     "delta_administered": 26979,
@@ -1664,63 +1722,72 @@ const DASHBOARD_DATA = {
         "name": "Eastern Cape",
         "current": 308092,
         "previous": 308092,
-        "change": 0
+        "change": 0,
+        "booster": 100837
       },
       {
         "code": "FS",
         "name": "Free State",
         "current": 15104,
         "previous": 15104,
-        "change": 0
+        "change": 0,
+        "booster": 19118
       },
       {
         "code": "GP",
         "name": "Gauteng",
         "current": 14832,
         "previous": 14832,
-        "change": 0
+        "change": 0,
+        "booster": 13720
       },
       {
         "code": "KZN",
         "name": "KwaZulu-Natal",
         "current": 360200,
         "previous": 360200,
-        "change": 0
+        "change": 0,
+        "booster": 334000
       },
       {
         "code": "LP",
         "name": "Limpopo",
         "current": 5475,
         "previous": 5475,
-        "change": 0
+        "change": 0,
+        "booster": 0
       },
       {
         "code": "MP",
         "name": "Mpumalanga",
         "current": 9863,
         "previous": 9863,
-        "change": 0
+        "change": 0,
+        "booster": 0
       },
       {
         "code": "NW",
         "name": "North West",
         "current": 6342,
         "previous": 6342,
-        "change": 0
+        "change": 0,
+        "booster": 0
       },
       {
         "code": "NC",
         "name": "Northern Cape",
         "current": 0,
         "previous": 0,
-        "change": 0
+        "change": 0,
+        "booster": 0
       },
       {
         "code": "WC",
         "name": "Western Cape",
         "current": 239000,
         "previous": 239000,
-        "change": 0
+        "change": 0,
+        "booster": 37129
       }
     ],
     "farms_confirmed": 171,
@@ -8253,12 +8320,13 @@ try {
       if (typeof Chart !== 'undefined') {
         const bcCanvas = document.getElementById('provBarChart');
         if (bcCanvas) {
-          const bcLabels = ['Herd size', 'Doses received', 'Animals vaccinated', 'Suspected cases', 'Confirmed cases'];
-          const bcValues = [pv.herd || 0, pv.received || 0, pv.vaccinated || 0, pv.suspected || 0, pv.positive || 0];
+          const bcLabels = ['Herd size', 'Doses received', 'Vaccinated: dose 1', 'Vaccinated: dose 2', 'Suspected cases', 'Confirmed cases'];
+          const bcValues = [pv.herd || 0, pv.received || 0, pv.dose1 || 0, pv.dose2 || 0, pv.suspected || 0, pv.positive || 0];
           const bcColors = [
             'rgba(203,217,41,0.28)',
             'rgba(203,217,41,0.70)',
             'rgba(203,217,41,1.00)',
+            'rgba(203,217,41,0.50)',
             'rgba(231,136,60,0.75)',
             'rgba(220,60,60,0.90)',
           ];
@@ -8526,7 +8594,7 @@ if (chartJsReady) try {
       datasets:[
         { label:'Vaccines received', data:data.weekly.map(w=>w.received),
           borderColor:BRAND.pine, backgroundColor:'rgba(16,45,45,0.1)', tension:0.25, fill:true, borderWidth:2 },
-        { label:'Animals vaccinated', data:data.weekly.map(w=>w.administered),
+        { label:'Animals vaccinated (all doses; historic dose split not reported)', data:data.weekly.map(w=>w.administered),
           borderColor:BRAND.olive, backgroundColor:'rgba(91,126,61,0.12)', tension:0.25, fill:true, borderWidth:2 }
       ]},
     options:{ responsive:true, maintainAspectRatio:false,
@@ -8541,13 +8609,29 @@ if (chartJsReady) try {
     type:'bar',
     data:{ labels:provinces.map(p=>p.name),
       datasets:[
-        { label:'Doses received', data:provinces.map(p=>p.received), backgroundColor:BRAND.pine, borderRadius:3 },
-        { label:'Animals vaccinated', data:provinces.map(p=>p.vaccinated), backgroundColor:BRAND.olive, borderRadius:3 }
+        { label:'Total vaccines received', data:provinces.map(p=>p.received), backgroundColor:BRAND.pine, borderRadius:3 },
+        { label:'Animals vaccinated: dose 1', data:provinces.map(p=>p.dose1), backgroundColor:BRAND.olive, borderRadius:3 },
+        { label:'Animals vaccinated: dose 2', data:provinces.map(p=>p.dose2), backgroundColor:BRAND.sage, borderRadius:3 }
       ]},
     options:{ responsive:true, maintainAspectRatio:false, indexAxis:'y',
-      plugins:{legend:{position:'bottom'}},
+      plugins:{legend:{position:'bottom'},
+        tooltip:{callbacks:{afterLabel:(ctx)=>{
+          const p = provinces[ctx.dataIndex];
+          if (ctx.datasetIndex===2 && p.dose2_partial) return 'Dairy programme boosters only (' + (p.dose2_source||'') + '); provincial dose 2 not yet reported.';
+          if (ctx.datasetIndex===1 && p.dose1_derived) return 'Derived: total vaccinated minus known dose 2.';
+          return '';
+        }}}},
       scales:{x:{beginAtZero:true, grid:{color:BRAND.mist}}, y:{grid:{display:false}}} }
   });
+  const pvNote = safeEl('provVaxNote');
+  if (pvNote) {
+    const partialNames = provinces.filter(p=>p.dose2_partial).map(p=>p.name).join(', ');
+    const noneNames = provinces.filter(p=>!p.dose2).map(p=>p.name).join(', ');
+    pvNote.textContent = 'Dose 2 shows the latest booster figure per province.'
+      + (partialNames ? ' Dairy programme boosters only, so a minimum: ' + partialNames + '.' : '')
+      + (noneNames ? ' No boosters reported yet: ' + noneNames + '.' : '')
+      + ' Dose 1 is derived as total vaccinated minus known dose 2, except where the province reports the split (Western Cape).';
+  }
 } catch(e) { showError('provVax', 'Provincial vaccination chart', e); }
 
 // ── Manufacturer source doughnut ─────────────────────────────────────────────
@@ -8570,22 +8654,19 @@ if (chartJsReady) try {
 
 // ── Herd coverage chart ──────────────────────────────────────────────────────
 if (chartJsReady) try {
-  const sortedCov = provinces.slice().sort((a,b)=>(b.vaccinated/Math.max(b.herd,1))-(a.vaccinated/Math.max(a.herd,1)));
+  const sortedCov = provinces.slice().sort((a,b)=>(b.dose1/Math.max(b.herd,1))-(a.dose1/Math.max(a.herd,1)));
+  const covPct = f => sortedCov.map(p=>((f(p)/Math.max(p.herd,1))*100).toFixed(1));
   new Chart(safeEl('coverageChart'), {
     type:'bar',
     data:{ labels:sortedCov.map(p=>p.name),
-      datasets:[{ label:'% of cattle herd vaccinated, at least one dose',
-        data:sortedCov.map(p=>((p.vaccinated/Math.max(p.herd,1))*100).toFixed(1)),
-        backgroundColor:sortedCov.map(p=>{
-          const cov=p.vaccinated/Math.max(p.herd,1);
-          if (cov>0.4) return BRAND.pine;
-          if (cov>0.2) return BRAND.olive;
-          if (cov>0.1) return BRAND.sage;
-          return BRAND.paleSage;
-        }), borderRadius:3 }]},
+      datasets:[
+        { label:'Vaccines received, % of herd', data:covPct(p=>p.received), backgroundColor:BRAND.pine, borderRadius:3 },
+        { label:'Dose 1, % of herd', data:covPct(p=>p.dose1), backgroundColor:BRAND.olive, borderRadius:3 },
+        { label:'Dose 2, % of herd', data:covPct(p=>p.dose2), backgroundColor:BRAND.sage, borderRadius:3 }
+      ]},
     options:{ responsive:true, maintainAspectRatio:false,
-      plugins:{legend:{display:false}},
-      scales:{y:{beginAtZero:true, max:100, grid:{color:BRAND.mist}, ticks:{callback:(v)=>v+'%'}}, x:{grid:{display:false}}} }
+      plugins:{legend:{position:'bottom'}},
+      scales:{y:{beginAtZero:true, grid:{color:BRAND.mist}, ticks:{callback:(v)=>v+'%'}}, x:{grid:{display:false}}} }
   });
   const covNote = safeEl('coverageNote');
   if (covNote) covNote.innerHTML =
@@ -8646,14 +8727,14 @@ if (data.mpo) try {
     <div class="kpi-trend" style="font-size:11px;color:var(--charcoal);margin-top:var(--sp-2)">Symptoms significantly less severe than pre-vaccination</div>`;
 
   if (chartJsReady) {
-    // Dairy cows vaccinated by province (latest vs prior week)
-    const sorted = mpo.provinces.filter(p=>p.current>0).sort((a,b)=>b.current-a.current);
+    // Dairy cows vaccinated by province: first vaccination (dose 1) vs boosters (dose 2)
+    const sorted = mpo.provinces.filter(p=>p.current>0 || p.booster>0).sort((a,b)=>b.current-a.current);
     new Chart(safeEl('mpoDairyChart'), {
       type:'bar',
       data:{labels:sorted.map(p=>p.name),
         datasets:[
-          {label:'Latest week',data:sorted.map(p=>p.current),backgroundColor:BRAND.pine,borderRadius:3},
-          {label:'Prior week', data:sorted.map(p=>p.previous),backgroundColor:BRAND.sage,borderRadius:3}
+          {label:'First vaccination (dose 1)',data:sorted.map(p=>p.current),backgroundColor:BRAND.pine,borderRadius:3},
+          {label:'Booster (dose 2)', data:sorted.map(p=>p.booster||0),backgroundColor:BRAND.sage,borderRadius:3}
         ]},
       options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,
         plugins:{legend:{position:'top',labels:{boxWidth:10,font:{size:11}}},datalabels:{display:false}},

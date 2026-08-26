@@ -231,6 +231,60 @@ def latest_metric(rows, *, province, metric, vaccine_type="", vet_channel="",
             return pick_best(preferred)
     return pick_best(matches)
 
+def _dose_split(all_rows, code, vaccinated):
+    """Best-available dose 1 / dose 2 split for a province.
+
+    Dose 2 comes from the most recent booster_vaccinations row, preferring
+    programme sources (provincial departments) over commodity figures (MPO,
+    which covers dairy boosters only and therefore undercounts). Dose 1 is
+    taken from primary_vaccinations only where it reconciles with the
+    provincial total (currently WC); everywhere else it is derived as
+    vaccinated minus dose 2 and flagged as derived.
+    """
+    cand = [r for r in all_rows
+            if r["province"] == code and r["superseded_by"] == ""
+            and r["metric"] == "booster_vaccinations"
+            and r["vet_channel"] in ("all", "total")
+            and num(r["value"])]
+    prog = [r for r in cand if r["source_org"] in PROGRAMME_SOURCES]
+    pick_from = prog if prog else cand
+    dose2 = 0
+    dose2_asof = None
+    dose2_src = None
+    if pick_from:
+        pick_from.sort(key=lambda r: r["effective_date"], reverse=True)
+        best = pick_from[0]
+        dose2 = int(num(best["value"]) or 0)
+        dose2_asof = best["effective_date"]
+        dose2_src = best["source_org"]
+    partial = bool(dose2_src) and dose2_src not in PROGRAMME_SOURCES
+
+    # Official dose 1 where it reconciles with the provincial total.
+    derived = True
+    dose1 = max(int(vaccinated or 0) - dose2, 0)
+    prim = [r for r in all_rows
+            if r["province"] == code and r["superseded_by"] == ""
+            and r["metric"] == "primary_vaccinations"
+            and r["source_org"] in PROGRAMME_SOURCES
+            and num(r["value"])]
+    if prim and vaccinated and dose2:
+        prim.sort(key=lambda r: r["effective_date"], reverse=True)
+        p1 = int(num(prim[0]["value"]) or 0)
+        # accept the official primary figure only if primary plus booster is
+        # within five percent of the provincial total (guards against
+        # dairy-only primary figures such as the EC MPO line)
+        if abs((p1 + dose2) - int(vaccinated)) <= 0.05 * int(vaccinated):
+            dose1 = p1
+            derived = False
+    return {
+        "dose1": dose1,
+        "dose2": dose2,
+        "dose2_asof": dose2_asof,
+        "dose2_source": dose2_src,
+        "dose1_derived": derived,
+        "dose2_partial": partial,
+    }
+
 def build_provinces(rows, snapshot_date):
     # Filter to programme sources only — same as national_view — so RPO/MPO
     # commodity submissions don't overwrite JOC figures in the province table.
@@ -257,6 +311,7 @@ def build_provinces(rows, snapshot_date):
             "received":  int(_best_received(prog, code)),
             "vaccinated": int(_best_vaccinated(prog, code)),
         })
+        out[-1].update(_dose_split(rows, code, out[-1]["vaccinated"]))
     return out
 
 def build_weekly(rows):
@@ -360,8 +415,13 @@ def build_mpo(rows):
     for code, name in PROVINCES:
         cur = latest_w.get(code, 0)
         prv = prev_w.get(code, 0)
+        boost_rows = [r for r in mpo_rows if r["province"] == code
+                      and r["metric"] == "booster_vaccinations" and num(r["value"])]
+        boost_rows.sort(key=lambda r: r["effective_date"], reverse=True)
+        booster = int(num(boost_rows[0]["value"]) or 0) if boost_rows else 0
         provinces.append({"code": code, "name": name,
-                          "current": cur, "previous": prv, "change": cur - prv})
+                          "current": cur, "previous": prv, "change": cur - prv,
+                          "booster": booster})
 
     # Per-province active dairy farm counts — most recent available per province.
     # Stored in master as dairy_farms_active_fmd_prov; carry-forward if Week 30
@@ -1009,6 +1069,17 @@ def build_dashboard():
         "mpo":  build_mpo(rows),
         "rmis": build_rmis(rows),
     }
+
+    # National dose split — sum of provincial dose 2 figures; dose 1 is the
+    # national vaccinated total minus known dose 2 (derived, best available).
+    _nat_d2 = sum(p.get("dose2") or 0 for p in payload["provinces"])
+    _nat_vax = nat.get("administered") or 0
+    payload["national"]["dose2"] = int(_nat_d2)
+    payload["national"]["dose1"] = max(int(_nat_vax) - int(_nat_d2), 0)
+    payload["national"]["dose_split_note"] = (
+        "Dose 2 is the sum of the latest booster figures per province; several "
+        "provinces report boosters for the dairy programme only, so dose 2 is a "
+        "minimum and dose 1 a derived maximum.")
 
     # Week-on-week deltas — derived from the already-computed weekly series so that
     # deltas are always consistent with what the chart shows, even when the prior

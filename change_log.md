@@ -5305,3 +5305,28 @@ This was the only new file found across all inbox subfolders since the 24 August
 ### Action items
 
 - Chase an updated industry allocation figure (last published 2,500,000, 22 June) so the utilisation card can show a real percentage again.
+
+## Session 71d -- 26 August 2026 (dose 1 versus dose 2 separation across all charts, requested by Jay)
+
+### What changed
+
+Every chart that shows vaccination per province now separates three series as far as the data allows: total vaccines received, animals vaccinated dose 1 and animals vaccinated dose 2.
+
+- build_dashboard.py: new _dose_split() helper adds dose1, dose2, dose2_asof, dose2_source, dose1_derived and dose2_partial to every province in the payload, plus a national dose1/dose2. Dose 2 uses the latest booster_vaccinations row per province, preferring programme sources over MPO dairy-only figures; dose 1 uses the official primary figure only where it reconciles with the provincial total (WC), otherwise derived as total minus dose 2. build_mpo now carries per-province boosters. No hardcoded values; splits update automatically as new booster figures arrive.
+- Provincial chart (national overview): three bars per province with tooltips flagging derived and dairy-only figures, plus an explanatory note.
+- Herd coverage chart (provincial tab): three percent-of-herd bars (received, dose 1, dose 2), sorted by dose 1 coverage; the misleading 100 percent axis cap removed since received can exceed herd size under a two dose protocol.
+- Province detail card: bar chart now shows six rows including vaccinated dose 1 and dose 2.
+- MPO dairy chart: first vaccination versus booster per province (replaces latest-versus-prior-week, which the weekly table still covers).
+- National weekly trend line relabelled "all doses; historic dose split not reported" -- the split cannot be reconstructed backwards.
+
+### Current splits (as built)
+
+EC dose1 1,284,835 / dose2 93,253 (EC-DRDAR); FS 1,493,201 / 19,118 (MPO, dairy only); GP 513,906 / 13,720 (MPO, dairy only); KZN 1,453,000 / 247,000 (KZN-DARD); LP 758,379 / 0; MP 720,160 / 8,914 (MP-DVS); NW 1,220,669 / 0; NC 215,546 / 0; WC 367,311 / 61,689 (WC-DoA, official split). National: dose 1 approximately 8.03 million, dose 2 minimum 443,694.
+
+### Caveats
+
+Dose 2 is a minimum where only dairy boosters are reported (FS, GP); LP, NW and NC report no boosters yet. Dose 1 is derived everywhere except WC. Flagged in tooltips and chart notes.
+
+### Dashboard
+
+- Rebuilt via importlib; snapshot 2026-08-21, 75 weekly points, validation passed (297,379 bytes). All inline JS syntax-checked. Backups: archive/2026-08-26/build_dashboard_pre_s71d.py and dashboard_template_pre_s71d.html.
