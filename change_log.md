@@ -5330,3 +5330,9 @@ Dose 2 is a minimum where only dairy boosters are reported (FS, GP); LP, NW and 
 ### Dashboard
 
 - Rebuilt via importlib; snapshot 2026-08-21, 75 weekly points, validation passed (297,379 bytes). All inline JS syntax-checked. Backups: archive/2026-08-26/build_dashboard_pre_s71d.py and dashboard_template_pre_s71d.html.
+
+## Session 71e -- 26 August 2026 (provincial table dose split, requested by Jay)
+
+- The per-province table now splits Animals vaccinated into Vaccinated: dose 1 and Vaccinated: dose 2 columns, and Coverage into separate dose 1 and dose 2 progress bars (percent of provincial herd). The national footer row splits the same way.
+- Markers in the table: * dairy programme boosters only (dose 2 a minimum: FS, GP); dagger no boosters reported yet (LP, NW, NC); hover titles flag derived dose 1 figures. Balance remains received minus total vaccinated (all doses).
+- Rebuilt via importlib; snapshot 2026-08-21, validation passed (298,664 bytes); inline JS syntax-checked.

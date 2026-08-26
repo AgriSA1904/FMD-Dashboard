@@ -460,9 +460,11 @@
             <th class="num">Pending</th>
             <th class="num">Cattle herd</th>
             <th class="num">Doses received</th>
-            <th class="num">Animals vaccinated</th>
+            <th class="num">Vaccinated: dose 1</th>
+            <th class="num">Vaccinated: dose 2</th>
             <th class="num">Balance</th>
-            <th>Coverage</th>
+            <th>Coverage: dose 1</th>
+            <th>Coverage: dose 2</th>
           </tr>
         </thead>
         <tbody id="provTable"></tbody>
@@ -8228,8 +8230,12 @@ try {
   const tbody = safeEl('provTable');
   if (tbody) {
     provinces.slice().sort((a,b)=>b.positive-a.positive).forEach(p => {
-      const cov = (p.vaccinated / Math.max(p.herd, 1)) * 100;
+      const cov1 = ((p.dose1||0) / Math.max(p.herd, 1)) * 100;
+      const cov2 = ((p.dose2||0) / Math.max(p.herd, 1)) * 100;
       const balance = p.received - p.vaccinated;
+      const d2Note = p.dose2_partial ? ' title="Dairy programme boosters only; provincial dose 2 not yet reported"' : '';
+      const d1Note = p.dose1_derived ? ' title="Derived: total vaccinated minus known dose 2"' : '';
+      const flag2 = p.dose2_partial ? '*' : (p.dose2 ? '' : '&dagger;');
       const tr = document.createElement('tr');
       tr.innerHTML = `
         <td><strong>${p.name}</strong></td>
@@ -8238,16 +8244,26 @@ try {
         <td class="num">${fmt(p.pending)}</td>
         <td class="num">${fmt(p.herd)}</td>
         <td class="num">${fmt(p.received)}</td>
-        <td class="num">${fmt(p.vaccinated)}</td>
+        <td class="num"${d1Note}>${fmt(p.dose1||0)}</td>
+        <td class="num"${d2Note}>${fmt(p.dose2||0)}${flag2}</td>
         <td class="num">${fmt(balance)}</td>
         <td>
           <div class="progress-bar">
-            <div class="progress-fill" style="width:${Math.min(cov,100)}%"></div>
-            <div class="progress-label">${cov.toFixed(1)}%</div>
+            <div class="progress-fill" style="width:${Math.min(cov1,100)}%"></div>
+            <div class="progress-label">${cov1.toFixed(1)}%</div>
+          </div>
+        </td>
+        <td>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width:${Math.min(cov2,100)}%;opacity:0.55"></div>
+            <div class="progress-label">${cov2.toFixed(1)}%</div>
           </div>
         </td>`;
       tbody.appendChild(tr);
     });
+    const tblNote = document.createElement('tr');
+    tblNote.innerHTML = `<td colspan="11" style="font-size:11px;color:var(--charcoal);border-top:none;padding-top:6px">* Dairy programme boosters only, so dose 2 is a minimum. &dagger; No boosters reported yet. Dose 1 is derived as total vaccinated minus known dose 2, except the Western Cape which reports the split.</td>`;
+    tbody.appendChild(tblNote);
   }
   const tfoot = safeEl('provTableFoot');
   if (tfoot) tfoot.innerHTML = `
@@ -8258,9 +8274,11 @@ try {
       <td class="num">${fmt(N.pending)}</td>
       <td class="num">${fmt(N.herd_cattle)}</td>
       <td class="num">${fmt(N.received)}</td>
-      <td class="num">${fmt(N.administered)}</td>
+      <td class="num">${fmt(N.dose1||0)}</td>
+      <td class="num">${fmt(N.dose2||0)}</td>
       <td class="num">${fmt(N.balance)}</td>
-      <td>${(N.administered/N.herd_cattle*100).toFixed(1)}%</td>
+      <td>${((N.dose1||0)/N.herd_cattle*100).toFixed(1)}%</td>
+      <td>${((N.dose2||0)/N.herd_cattle*100).toFixed(1)}%</td>
     </tr>`;
 } catch(e) { showError('provTable', 'Provincial table', e); }
 
