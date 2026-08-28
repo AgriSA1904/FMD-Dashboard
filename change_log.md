@@ -5336,3 +5336,42 @@ Dose 2 is a minimum where only dairy boosters are reported (FS, GP); LP, NW and 
 - The per-province table now splits Animals vaccinated into Vaccinated: dose 1 and Vaccinated: dose 2 columns, and Coverage into separate dose 1 and dose 2 progress bars (percent of provincial herd). The national footer row splits the same way.
 - Markers in the table: * dairy programme boosters only (dose 2 a minimum: FS, GP); dagger no boosters reported yet (LP, NW, NC); hover titles flag derived dose 1 figures. Balance remains received minus total vaccinated (all doses).
 - Rebuilt via importlib; snapshot 2026-08-21, validation passed (298,664 bytes); inline JS syntax-checked.
+
+## Session 73 -- 28 August 2026 (Cowork: NW RPO JIC 11 Aug ingest, dashboard published as a Claude Artifact)
+
+### Rows
+
+- Master rows: 3,274 -> 3,278 (4 added). Backup: master_data.csv.bak_session73.
+
+### Sources processed
+
+| File | Effective date | Source org | Outcome |
+|---|---|---|---|
+| inbox/North West/11 AUGUST 2026- RPO JIC FMD UPDATE_.pdf | 2026-08-11 | NW-RPO | 4 rows: positive_cases 478, suspected_cases 115, doses_received 1,271,140, animals_vaccinated 1,172,333 (FMD Portal basis). Full inbox scan found no other files modified since the session 71c/71d/71e runs of 26 August. |
+
+### Data quality flags
+
+1. NW animals_vaccinated (FMD Portal, 1,172,333 at 11 Aug) is LOWER than the internal-spreadsheet figure already held for 25 Jul (1,220,669) -- flagged as a likely counting-method difference between the FMD Portal and NW-RPO's internal spreadsheet, not an actual fall in vaccinated animals. Not treated as superseding the higher figure for trend purposes.
+2. NW doses_received (1,271,140) is unchanged from 25 Jul, continuing this document family's established pattern of a stale carried-forward summary slide; the same report's allocation table states 1,350,140 including RPO allocation -- the long-running 1,271,140 vs 1,350,140 discrepancy persists, still not corrected.
+3. NW per-municipality case table (20 state vet offices) could not be reliably parsed from the PDF text extraction (columns misaligned across the confirmed/suspected/closed fields). Province-level confirmed and suspected totals were captured; district-level breakdown was not. Flag for manual entry if granular NW district detail is needed.
+4. Source states "3 new cases" for a week described as "03rd to 30th July 2026", which conflicts with the +2 cumulative delta from 476 (25 Jul) to 478 (11 Aug) -- treated as further stale/carried-forward text and not entered as a new_cases_week row.
+
+### Dashboard
+
+- Rebuilt via importlib. Snapshot unchanged at 21 August 2026; weekly points 75 -> 76 (11 Aug added as a new point); validation passed (298,900 bytes).
+
+### Published as a Claude Artifact
+
+- At Jay's request, the dashboard is now also published as a hosted Claude Artifact page (in addition to GitHub Pages), so it can be opened directly as a claude.ai link without a GitHub Pages hop: https://claude.ai/code/artifact/c6f5c0bc-212c-4ac9-8946-8fe3f2c5a9f4
+- Going forward this Artifact should be republished (same URL, via the Artifact tool) whenever the dashboard is rebuilt in a Cowork session, alongside the existing GitHub Pages push.
+
+### GitHub
+
+- Pushed to GitHub in this session (commit hash to be confirmed by the next session's verification pass, following this project's established practice).
+
+### Action items for next run
+
+- Still watching for the ICC Update PDF covering the 11 August Ministerial Task Team meeting (now more than three weeks overdue).
+- Chase KZN doses received and an official KZN case count; GP exact received; NW district-level 11 Aug case breakdown (see data quality flag 3).
+- Re-authenticate the local Claude CLI. All other parked items carry forward; see memory_update.md.
+- Republish the Claude Artifact alongside future GitHub pushes.
