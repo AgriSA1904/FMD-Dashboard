@@ -5367,7 +5367,7 @@ Dose 2 is a minimum where only dairy boosters are reported (FS, GP); LP, NW and 
 
 ### GitHub
 
-- Pushed to GitHub in this session (commit hash to be confirmed by the next session's verification pass, following this project's established practice).
+- Pushed as commit fd53040 ("Session 73 -- NW RPO JIC 11 Aug ingest; dashboard published as a Claude Artifact; 3,278 rows").
 
 ### Action items for next run
 

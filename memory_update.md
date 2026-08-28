@@ -69,4 +69,4 @@ Local Claude CLI still failing with 401 OAuth as of the last check (25-26 August
 - NC booster campaign due to start August 2026; no booster figures seen yet.
 - Re-authenticate the local Claude CLI and check the Windows scheduled task trigger.
 - Republish the Claude Artifact alongside every future GitHub Pages push (see "Publishing" above).
-- GitHub: session 73 pushed this session ("Session 73 -- NW RPO JIC 11 Aug ingest; 3,278 rows"); master 3,278 rows, dashboard and index.html byte-identical to local at push time. Commit hash to be confirmed by the next session's verification pass.
+- GitHub: session 73 pushed as commit fd53040 ("Session 73 -- NW RPO JIC 11 Aug ingest; dashboard published as a Claude Artifact; 3,278 rows"); master 3,278 rows, dashboard and index.html byte-identical to local at push time.
