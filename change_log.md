@@ -5375,3 +5375,113 @@ Dose 2 is a minimum where only dairy boosters are reported (FS, GP); LP, NW and 
 - Chase KZN doses received and an official KZN case count; GP exact received; NW district-level 11 Aug case breakdown (see data quality flag 3).
 - Re-authenticate the local Claude CLI. All other parked items carry forward; see memory_update.md.
 - Republish the Claude Artifact alongside future GitHub pushes.
+
+## Session 74 -- 9 September 2026 (Cowork scheduled run, degraded: shell sandbox unavailable)
+
+### Run conditions
+
+The Linux shell sandbox failed to mount three times with an identical error, so no Python could run this session. Files were read with the file tools (PDFs) and the SharePoint connector (xlsx). The connector cannot open zip archives, returned empty text for both Eastern Cape pptx decks (image-only slides) and truncated the RMIS xlsx at 1,173 of 2,297 rows on the raw sheet, so the summary sheets were unreachable. Rows were appended to master_data.csv by direct file edit. The dashboard was NOT rebuilt and nothing was pushed to GitHub or republished to the Claude Artifact.
+
+### Rows
+
+- Master rows: 3,278 -> 3,332 (54 added, 0 duplicates; all composite keys checked by grep before appending). No backup taken (additive change only; no existing rows touched).
+
+### Sources processed
+
+| File | Effective date | Source org | Outcome |
+|---|---|---|---|
+| inbox/MPO/Week 45 - Update ... dairy industry.pdf | 2026-08-28 | MPO | 17 rows (first vaccination x 9 provinces plus national, boosters x 5 provinces plus national, active dairy farms) |
+| inbox/MPO/Week 46 - Update ... dairy industry.pdf | 2026-09-04 | MPO | 17 rows (same structure) |
+| inbox/RMIS/Email - Jason Kümm - Outlook.pdf (RMIS stats email, 3 Sep) | 2026-09-03 | RMIS | 20 rows: GLN registrations national plus 9 provinces, tags distributed national plus 7 provinces, 20 AHTs deployed, 139,432 cattle vaccinated by AHTs |
+| inbox/RMIS/rmis_industry_allocated_fmd_vaccine_distribution_data_2026-09-03.xlsx | 2026-09-03 | RMIS | PARKED: needs Python aggregation (province x manufacturer, municipality x sector); connector output truncated |
+| inbox/Eastern Cape/EC FMD Update - 27.08.2026.pptx | 2026-08-27 | EC-DRDAR | PARKED: connector returned no text; needs python-pptx or visual read |
+| inbox/Eastern Cape/EC FMD Update - 03.09.2026.pptx | 2026-09-03 | EC-DRDAR | PARKED: as above |
+| inbox/Free State/FMD STATS 01-09.zip (contains FS FMD Vaccine Data - 28.08.2026.xlsx plus images) | 2026-08-28 | FS-DARDLEA | PARKED: zip not readable without shell |
+| inbox/Free State/FMD STATS 4 SEPT 2026.zip | 2026-09-04 | FS-DARDLEA | PARKED: zip not readable without shell |
+
+No new dated weekly folder, ICC report, ministerial statement, Limpopo, Gauteng, Mpumalanga, North West or Western Cape file was found since session 73.
+
+### Key figures added
+
+- MPO dairy first vaccinations: 958,511 (28 Aug, flat since Week 42) -> 960,142 (4 Sep, +1,631, entirely WC 239,000 -> 240,234).
+- MPO dairy boosters: 504,804 (21 Aug) -> 521,631 (28 Aug) -> 566,434 (4 Sep). EC boosters 100,837 -> 116,489 -> 151,093; WC 37,129 -> 38,304 -> 48,503; KZN complete at 334,000; FS 19,118 and GP 13,720 unchanged. Northern region boosters 32,838.
+- Dairy farms: 175 reported, 128 active, unchanged for three weeks. No new dairy FMD cases reported in Weeks 45 or 46.
+- RMIS: 13,733 registered GLNs (FS 4,417, EC 2,580, NC 1,740, NW 1,403, KZN 1,240, MP 918, LP 649, WC 442, GP 344); 169,499 tags distributed (FS 57,429, LP 54,360, NW 32,100, GP 18,050, EC 5,500, KZN 1,060, NC 1,000); 20 AHTs deployed in GP, NW and FS have vaccinated 139,432 cattle.
+
+### Data quality flags
+
+1. New metric name aht_cattle_vaccinated (RMIS, national, private channel) introduced; it is a subset of provincial state-programme totals and is not additive. The dashboard does not read it.
+2. rfid_tags_received reused for RMIS tag distribution; the earlier LP row (20,000 at 25 Mar, LDARD basis) may overlap with the RMIS LP figure of 54,360.
+3. Both MPO weeks: provincial rows sum exactly to the national totals for first vaccination and boosters.
+
+### Dashboard
+
+- NOT rebuilt (no shell). Live GitHub Pages and the Claude Artifact still reflect the session 73 build (snapshot 21 Aug 2026, 76 weekly points, 3,278 rows).
+
+### Action items for next run
+
+- First priority: with a working shell, rebuild the dashboard via importlib, confirm validation passed, push to GitHub and republish the Claude Artifact.
+- Process the five parked files above (two FS zips, two EC pptx decks, RMIS 3 Sep xlsx). The FS 28 Aug and 4 Sep packs and the EC 27 Aug and 3 Sep decks should advance the snapshot date to 4 September.
+- Still watching for the ICC Update PDF covering the 11 August Ministerial Task Team meeting (now more than four weeks overdue).
+- Chase KZN doses received and an official KZN case count; GP exact received; NW district-level case breakdown.
+- Re-authenticate the local Claude CLI. All other parked items carry forward; see memory_update.md.
+
+## Session 75 -- 15 September 2026 (Cowork scheduled run, full backlog clearance)
+
+### Run conditions
+
+Shell sandbox healthy. Cleared the five files parked in session 74 plus the three files that arrived on 14 September (EC 10 Sep deck, FS 11 Sep pack, LP PCM pack). The zips in `inbox/Free State/` had already been extracted into sibling folders on 9 September (outside this session); the 11 Sep zip and the Limpopo zip were extracted in the sandbox. EC decks are Teams screen-recordings of image-only slides, read visually after cropping the content pane out of each slide. The 14 Sep "update-status FAILED" note in `AgriSA FMD Updates/` was written by a different task with no shell; its claim that the last rebuild was session 52 (3 July) is wrong (session 73, 28 August) and can be disregarded.
+
+### Rows
+
+- Master rows: 3,332 -> 3,597 (265 added, 0 duplicates by composite key). Backup: `master_data.csv.bak_session75`.
+
+### Sources processed
+
+| File | Effective date | Source org | Outcome |
+|---|---|---|---|
+| inbox/Free State/FMD STATS 01-09/FS FMD Vaccine Data - 28.08.2026.xlsx plus media release images | 2026-08-28 | FS-DARDLEA | 11 rows: positive 783 (11 new), 5 district totals, animals vaccinated 1,568,230, Mangaung Bioaftogen 370,000 and OBP 2,231. Received cell blank; suspected n/a. |
+| inbox/Free State/FMD STATS 4 SEPT 2026/FS FMD Vaccine Data - 04.09.2026.xlsx plus media release | 2026-09-04 | FS-DARDLEA | 13 rows: positive 795 (12 new), suspected 266, doses received 1,961,840 (up 220,000), animals vaccinated 1,611,570, districts. |
+| inbox/Free State/FMD_STATS_11_SEPTEMBER_2026.zip (FS FMD Vaccine Data - 11.09.2026.xlsx plus media release) | 2026-09-11 | FS-DARDLEA | 9 rows: positive 796 (1 new, Boshof SVA), animals vaccinated 1,643,655, districts. Received and Mangaung cells blank; suspected n/a. |
+| inbox/Eastern Cape/EC FMD Update - 27.08.2026.pptx | 2026-08-27 | EC-DRDAR | 20 rows: outbreaks 500, suspected 230, received 1,939,510, vaccinated 1,503,214, MPO primary 308,092, boosters 120,022, RPO 48,373, 6 district vaccinated and case rows. |
+| inbox/Eastern Cape/EC FMD Update - 03.09.2026.pptx | 2026-09-03 | EC-DRDAR | 20 rows: outbreaks 501, suspected 230, received 1,939,510, vaccinated 1,548,788, boosters 123,646, districts. |
+| inbox/Eastern Cape/EC FMD Update - 10.09.2026.pptx | 2026-09-10 | EC-DRDAR | 28 rows: outbreaks 506, suspected 228, received 2,174,510, vaccinated 1,615,211, boosters 163,038, RPO 56,965, districts, MPO per-district table (8 rows). |
+| EC FMD Update 06/13/20.08.2026.pptx (alignment, no new file) | 2026-08-06/13/20 | EC-DRDAR | 3 rows: positive_cases 491, 496, 498 mirroring the existing reported_outbreaks rows (see flag 1). |
+| inbox/Limpopo/UPDATED_AGENDA_FMD_PCM_.zip, FMD PCM MEETING PACK 20260914 REV1.pdf (minutes of 31 Aug) | 2026-08-28 | LP-LDARD | 18 rows: Week 39 positive 110, suspected 79, negative 212, pending 131, issued 1,144,725, used 923,544, animals vaccinated 920,142, balance 216,079, 5 district vaccinated, 5 district positive. |
+| inbox/Limpopo/UPDATED_AGENDA_FMD_PCM_.zip, FMD_Week41_2026_PriorityCommittee_LDARD.pdf | 2026-09-11 | LP-LDARD | 18 rows: positive 101, suspected 73, negative 223, pending 124, register received 1,225,660, used 971,866, animals vaccinated 956,974, balance 167,757, districts. |
+| inbox/RMIS/rmis_industry_allocated_fmd_vaccine_distribution_data_2026-09-03.xlsx | 2026-09-03 | RMIS | 125 rows: 18 province x manufacturer, 2 national manufacturer totals, national all 2,814,006, 100 municipality x sector, 4 national sector totals. |
+
+No new ICC report, ministerial statement, MPO, Gauteng, Mpumalanga, North West, Northern Cape or Western Cape file since session 74.
+
+### Key figures added
+
+- Free State: confirmed cases 772 (21 Aug) -> 783 -> 795 -> 796 (11 Sep); 604 resolved, 192 active. First vaccinations 1,512,319 -> 1,568,230 -> 1,611,570 -> 1,643,655. Doses received 1,741,840 -> 1,961,840 (4 Sep).
+- Eastern Cape: confirmed outbreaks 498 (20 Aug) -> 500 -> 501 -> 506 (10 Sep); suspected 229 -> 230 -> 230 -> 228. Vaccine received 1,786,510 -> 1,939,510 (27 Aug) -> 2,174,510 (10 Sep). Doses administered (dose-count) 1,378,088 -> 1,503,214 -> 1,548,788 -> 1,615,211; usage 74.2 percent, coverage 42.7 percent of 3,775,342 cattle. Dairy boosters 93,253 -> 163,038.
+- Limpopo: animals vaccinated 758,379 (31 Jul) -> 920,142 (28 Aug) -> 956,974 (11 Sep); cattle 880,162 = 73.3 percent of the 1.2 million target. Register total received 1,225,660 (latest Dollvet 100,000 on 3 Sep), issued 1,144,725, used 971,866, usable 167,757. Cases: 110 positive at Week 39 falling to 101 at Week 41 as results return (closed 23 -> 35); no new cases sampled since 28 Aug. Four wildlife positives (buffalo, two sable, roan).
+- RMIS industry channel to 3 Sep: 2,814,006 doses shipped (Biogenesis 2,068,984; Dollvet 745,022), up 52,586 from the 25 Aug export. By sector: feedlot 1,785,576, commercial 822,180, stud 199,505, dairy 6,745.
+
+### Data quality flags
+
+1. EC positive_cases series had stalled at 459 (16 Jul) because the August decks were captured under `reported_outbreaks` only; the dashboard reads `positive_cases`. Added mirror positive_cases rows for 6, 13 and 20 August and captured both metrics for the three new decks. EC now shows 506 on the dashboard.
+2. EC 10 Sep deck: outbreak-control table 506 (4 new) versus the vaccination summary slide still showing 501 and Sarah Baartman 40; 506 used. The 3 Sep deck shows a 3,059 gap between the summary total (1,548,788) and the farming-sector total (1,545,729); summary used. The 27 Aug deck states "previously reported 497" though 20 Aug closed at 498.
+3. LP positive_cases falls 110 (28 Aug) to 101 (11 Sep) through reclassification to closed (Section 23), not fewer outbreaks; confirmed including closed rose 133 -> 136. National positive therefore moves 2,842 -> 2,834 despite EC adding 5.
+4. LP doses_received basis: the 11 Sep row uses the provincial register total received (1,225,660) rather than doses issued to districts (1,144,725) used by earlier rows; noted in the row. The 100,000 Dollvet balance sits at provincial level.
+5. FS templates for 28 Aug and 11 Sep leave the provincial received cell blank and show suspected cases as n/a; only the 4 Sep template carries received (1,961,840) and suspected (266).
+6. EC MPO per-district table recorded under `dairy_cows_vaccinated` (private channel, doses basis) so it does not collide with the provincial animals_vaccinated series.
+7. RMIS: two municipality rows carry a blank municipality name in the export (recorded as "Municipality: None"), consistent with prior exports.
+
+### Dashboard
+
+- Rebuilt via importlib. Snapshot 21 Aug -> 11 September 2026; weekly points 76 -> 82; validation passed (315,454 bytes). National: positive 2,834, suspected 896, distributed 10,174,110, administered 8,989,076, balance 1,185,034.
+
+### GitHub and Artifact
+
+- See memory_update.md for the commit reference. Two empty "Update FMD dashboard" commits (4 and 14 Sep) from the Windows scheduled task were on the remote; remote master was still at 3,278 rows, local is a strict superset, so the push replaces cleanly.
+
+### Action items for next run
+
+- Chase FS provincial received (blank two of three weeks) and suspected cases (n/a).
+- Ask LDARD to confirm the received basis going forward (register 1,225,660 versus issued 1,144,725) and the Capricorn/Vhembe transfer reconciliation.
+- Still watching for the ICC Update PDF covering the 11 August Ministerial Task Team meeting (more than five weeks overdue) and any MPO Week 47 update.
+- KZN doses received and case count remain stale (9 Jun / 5 Jun); GP exact received; NW district breakdown.
+- Re-authenticate the local Claude CLI; the Windows scheduled task still only produces empty commits.
