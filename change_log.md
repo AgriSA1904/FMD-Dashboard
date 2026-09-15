@@ -5476,7 +5476,7 @@ No new ICC report, ministerial statement, MPO, Gauteng, Mpumalanga, North West, 
 
 ### GitHub and Artifact
 
-- See memory_update.md for the commit reference. Two empty "Update FMD dashboard" commits (4 and 14 Sep) from the Windows scheduled task were on the remote; remote master was still at 3,278 rows, local is a strict superset, so the push replaces cleanly.
+- Pushed as commit ead724f ("Session 75 -- FS 28 Aug to 11 Sep, EC 27 Aug to 10 Sep, LP Weeks 39 and 41, RMIS 3 Sep; snapshot 11 Sep 2026; 3,597 rows"); state files re-pushed in a follow-up commit. Claude Artifact NOT republished: the hosted Artifact tool used in session 73 is not available in this scheduled-task session (only the local Cowork artifact manifest is, which holds a different May artifact). Two empty "Update FMD dashboard" commits (4 and 14 Sep) from the Windows scheduled task were on the remote; remote master was still at 3,278 rows, local is a strict superset, so the push replaces cleanly.
 
 ### Action items for next run
 

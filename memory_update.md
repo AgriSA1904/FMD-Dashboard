@@ -11,8 +11,8 @@ As at 2026-09-15 (session 75 -- Cowork scheduled run, shell healthy, full backlo
 
 ## Publishing
 
-- **GitHub Pages** (primary public site): https://AgriSA1904.github.io/FMD-Dashboard/. Push per the pattern in CLAUDE.md (clone `AgriSA1904/FMD-Dashboard`, copy `FMD_Dashboard.html` as both itself and `index.html` plus `master_data.csv`, `change_log.md`, `memory_update.md`, `scripts/build_dashboard.py`, commit, push to `main`). Session 75 push: see change_log session 75 GitHub section.
-- **Claude Artifact** (added session 73): https://claude.ai/code/artifact/c6f5c0bc-212c-4ac9-8946-8fe3f2c5a9f4. Republish by taking the freshly rebuilt `FMD_Dashboard.html`, stripping the outer `<!DOCTYPE>`/`<html>`/`<head>`/`<body>` wrapper, and republishing to the same URL. Session 75: attempted after the GitHub push; result recorded in change_log.
+- **GitHub Pages** (primary public site): https://AgriSA1904.github.io/FMD-Dashboard/. Push per the pattern in CLAUDE.md (clone `AgriSA1904/FMD-Dashboard`, copy `FMD_Dashboard.html` as both itself and `index.html` plus `master_data.csv`, `change_log.md`, `memory_update.md`, `scripts/build_dashboard.py`, commit, push to `main`). Session 75 push: commit ead724f plus a follow-up state-file commit.
+- **Claude Artifact** (added session 73): https://claude.ai/code/artifact/c6f5c0bc-212c-4ac9-8946-8fe3f2c5a9f4. Republish by taking the freshly rebuilt `FMD_Dashboard.html`, stripping the outer `<!DOCTYPE>`/`<html>`/`<head>`/`<body>` wrapper, and republishing to the same URL. Session 75: NOT republished; the hosted Artifact tool is not available in scheduled-task sessions. Do this in an interactive Cowork session.
 
 ## National programme headline (dashboard, 11 September)
 
