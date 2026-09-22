@@ -5539,3 +5539,47 @@ No new file since 18 September for EC, LP, RMIS, MPO, WC, GP, NC, KZN, or ICC/Mi
 - Watch for the next FS pack to see whether the district SVA table finally reflects the +2 cases the media release announced.
 - Chase EC, LP, WC, GP, NC, KZN, RMIS and MPO files for the week of 18-22 September; none were found in the inbox this session.
 - Consider whether the new Ministry province-level doses_received/administered/herd_cattle rows should become the dashboard's preferred source over provincial JOC rows when the two disagree materially (currently both are held and the dashboard's tie-break applies).
+
+## Session 76b -- 22 September 2026
+
+Same-day follow-up to session 76: added a new dashboard tab and ingested one further inbox file the user flagged mid-session.
+
+### New dashboard tab: Vaccine order process
+
+Built a new "Vaccine order process" tab from three source documents the user supplied (`Vaccine Process.docx`, `2026.08.12 Vaccine Ordering Process.pdf`, `Buffalo_Analytics_FMD_Preparation_User_Manual (1).pdf`), plus web research to confirm the current live links for each of the three ordering routes:
+
+- Three option cards (Government, Industry, Private) covering facilitator, vaccine supplier, the farmer's steps, and a call-to-action link: `fmd.nda.gov.za` (Government, National Department of Agriculture FMD reporting system), `rmis.co.za/services/traceability/` (Industry, RMIS vet ordering portal), `buffalo.vet/fmd` (Private, Buffalo Analytics with Dunevax).
+- A simplified six-step order-and-delivery infographic (order, confirm, pay, deliver, vaccinate, report), based on the RMIS process as the worked example.
+- Two downloadable guides embedded directly in the dashboard as base64 PDFs so the file stays a single self-contained document: the RMIS vaccine ordering guide and the Buffalo Analytics FMD preparation user manual.
+- Implemented via a standalone script that edits `scripts/dashboard_template.html` (new CSS block, nav button, and section), so the base64 PDF content never passed through generated text. Verified post-build: `data-target="vaccineorder"` present, two `data:application/pdf;base64,` download links present.
+
+### New source processed
+
+| Source file | Effective date | Source org | Rows / content added |
+|---|---|---|---|
+| inbox/ICC Reports/09-18-2026_FMD ICC Update.pdf | 2026-09-18 | FMD-ICC | 7 policy-category rows (no quantitative figures in this update): outstanding Section 10 Committee appointment, outstanding compulsory-vaccination/state-funding decision, outstanding verified-doses-imported statement request, outstanding vaccine-allocation-criteria request, an overdue data-consolidation meeting the Minister instructed the Department to arrange, the tabled Vaccination Rollout Plan, and a note that the ICC update itself links to our own published dashboard. |
+
+### Key figures added
+
+- No new case, dose or vaccination figures this session -- the 18 September ICC update is governance and process content only. It confirms the ICC has now asked the Department four times in 2026 (January, April, June, August) for vaccine allocation criteria, and that the MTT and veterinary working group were scheduled to meet 21 September 2026 to settle allocation criteria; the outcome of that meeting was not yet available in this document and should be watched for in the next ICC update.
+- Notable: the ICC update itself cites our AgriCulture South Africa dashboard (https://agrisa1904.github.io/FMD-Dashboard/) as its "LIVE Vaccine Rollout Dashboard" reference for stakeholders.
+
+### Data quality flags
+
+8. The ICC's request for "a verified statement of total vaccine doses imported to date" directly echoes the national doses_procured conflict already held in master (16,000,000 per the 22 Sep Portfolio Committee table versus 17,000,000 per the 5 Aug Ministerial statement, flag 4 above). The ICC frames this, the allocation-criteria gap and the un-convened data-consolidation meeting as three symptoms of the same underlying problem: no single verified, reconciled national dataset. Worth flagging to the ICC desk that our dashboard already reconciles as far as the source material allows.
+9. Policy-category rows from this ICC update are not wired into the dashboard's hardcoded `policy_events` list in `build_dashboard.py` (that list is manually curated for two specific historical events -- the Section 10 scheme and the KZN DMA lift). The new rows are held in master_data.csv for the audit trail and future reference but will not appear as a dashboard banner unless `policy_events` is extended manually.
+
+### Dashboard
+
+- Rebuilt via importlib. Snapshot unchanged at 18 September 2026 (no new dated province figures this session); 84 weekly points; validation passed. New size 1,970,724 bytes (up from 314,063 bytes, driven almost entirely by the two embedded PDF guides -- RMIS guide ~323KB base64, Buffalo Analytics manual ~1.32MB base64). Master rows: 3,670 -> 3,677.
+
+### GitHub
+
+- Commit reference recorded in memory_update.md.
+
+### Action items for next run
+
+- Watch for the outcome of the 21 September MTT/veterinary working group meeting on vaccine allocation criteria in the next ICC update.
+- Watch for confirmation of whether the Section 10 Committee has finally been appointed.
+- Confirm the RMIS and Buffalo Analytics guide download buttons open correctly for end users; consider whether the dashboard's overall file size (now just under 2MB) needs a lighter-weight embedding approach if further large PDFs are added in future.
+- Consider whether to extend the hardcoded `policy_events` list in build_dashboard.py so future ICC governance updates surface as a dashboard banner rather than only living in the CSV.

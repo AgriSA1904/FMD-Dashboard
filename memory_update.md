@@ -1,4 +1,10 @@
-As at 2026-09-22 (session 76 -- Cowork, user-triggered ingest of the week's accumulated inbox -- master now **3,670 rows**, 73 rows added; **dashboard rebuilt, snapshot 18 September 2026, 84 weekly points, validation passed**):
+As at 2026-09-22 (session 76b -- Cowork, same-day follow-up -- master now **3,677 rows**, 7 rows added; new "Vaccine order process" dashboard tab added; **dashboard rebuilt, snapshot unchanged at 18 September 2026, 84 weekly points, validation passed, 1,970,724 bytes**):
+
+**Session 76b (22 Sep, new dashboard tab + ICC Update 18 Sep):**
+
+- Built a new "Vaccine order process" tab on the dashboard from three user-supplied documents (`Vaccine Process.docx`, the RMIS ordering-process PDF, the Buffalo Analytics user manual) plus web research confirming current live links: Government route (`fmd.nda.gov.za`), Industry route (`rmis.co.za/services/traceability/`), Private route (`buffalo.vet/fmd`). Includes a six-step order-and-delivery infographic and two downloadable guides embedded as base64 PDFs (RMIS guide, Buffalo Analytics manual) so the dashboard stays a single self-contained file.
+- Ingested `inbox/ICC Reports/09-18-2026_FMD ICC Update.pdf` (FMD-ICC, 18 Sep): 7 policy rows, no quantitative figures -- outstanding Section 10 Committee appointment, outstanding compulsory-vaccination/state-funding decision, outstanding verified-doses-imported statement request, outstanding vaccine-allocation-criteria request (MTT/vet working group meeting was scheduled 21 Sep to settle this), an overdue data-consolidation meeting the Minister instructed the Department to arrange at the 2 Sep Joint Working Group, the tabled Vaccination Rollout Plan, and a note that the ICC update itself cites our dashboard (https://agrisa1904.github.io/FMD-Dashboard/) as its live reference.
+- These policy rows are held in master_data.csv for the audit trail but are not wired into the dashboard's hardcoded `policy_events` banner list (which only covers the Section 10 scheme and KZN DMA lift). Consider extending that list if ICC governance updates should surface as a banner going forward.
 
 **Session 76 (22 Sep, FS 18 Sep pack, MP 19th JOC / 14 Sep, NW RPO / 14 Sep, Portfolio Committee mass-vaccination presentation / 14 Sep):**
 
@@ -63,6 +69,8 @@ Cowork sessions (scheduled and user-triggered) are the only reliable ingest path
 
 ## Parked/outstanding
 
+- Outcome of the 21 September MTT/veterinary working group meeting on vaccine allocation criteria -- watch the next ICC update.
+- Whether the Section 10 Committee has finally been appointed (nominations submitted May 2026, still outstanding as at 18 Sep).
 - ICC Update PDF covering the 11 August Ministerial Task Team meeting -- now more than six weeks overdue; the 22 Sep Portfolio Committee presentation partially substitutes at national level.
 - MPO Week 47+ updates not seen since Week 46 (4 Sep).
 - FS 798-versus-796 case count needs confirmation from the next FS pack.
