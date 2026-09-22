@@ -400,16 +400,27 @@ def build_mpo(rows):
     latest_w = weekly[-1] if weekly else {}
     prev_w   = weekly[-2] if len(weekly) >= 2 else {}
 
-    def get_nat_mpo(metric):
+    # The MPO has used several names for the same two figures over the months.
+    # Treat them as aliases, otherwise the headline cards and the trend chart
+    # freeze on whichever name was in use first (they sat on May figures until
+    # this was found on 22 September 2026).
+    FARMS_ACTIVE_METRICS = ("dairy_farms_active_fmd", "dairy_farms_active_fmd_prov")
+    FARMS_CONFIRMED_METRICS = ("dairy_farms_confirmed_fmd", "dairy_farms_total_fmd",
+                               "dairy_farms_fmd_total")
+
+    def get_nat_mpo(metrics):
+        if isinstance(metrics, str):
+            metrics = (metrics,)
         matches = [r for r in mpo_rows
-                   if r["province"] == "national" and r["metric"] == metric]
+                   if r["province"] == "national" and r["metric"] in metrics
+                   and r["superseded_by"] == ""]
         if not matches:
             return None, None
         matches.sort(key=lambda r: r["effective_date"], reverse=True)
         return int(num(matches[0]["value"]) or 0), matches[0]["effective_date"]
 
-    farms_confirmed, farms_confirmed_date = get_nat_mpo("dairy_farms_confirmed_fmd")
-    farms_active,    farms_active_date    = get_nat_mpo("dairy_farms_active_fmd")
+    farms_confirmed, farms_confirmed_date = get_nat_mpo(FARMS_CONFIRMED_METRICS)
+    farms_active,    farms_active_date    = get_nat_mpo(FARMS_ACTIVE_METRICS)
 
     provinces = []
     for code, name in PROVINCES:
@@ -443,19 +454,25 @@ def build_mpo(rows):
     farms_trend = []
     farm_dates = sorted(set(
         r["effective_date"] for r in mpo_rows
-        if r["metric"] in ("dairy_farms_active_fmd", "dairy_farms_confirmed_fmd",
-                           "dairy_farms_total_fmd")
+        if r["metric"] in (FARMS_ACTIVE_METRICS + FARMS_CONFIRMED_METRICS)
         and r["province"] == "national"
     ))
+    last_conf = None
     for fd in farm_dates:
         active_m  = [r for r in mpo_rows if r["effective_date"] == fd
                      and r["province"] == "national"
-                     and r["metric"] == "dairy_farms_active_fmd"]
+                     and r["metric"] in FARMS_ACTIVE_METRICS]
         conf_m    = [r for r in mpo_rows if r["effective_date"] == fd
                      and r["province"] == "national"
-                     and r["metric"] in ("dairy_farms_confirmed_fmd", "dairy_farms_total_fmd")]
+                     and r["metric"] in FARMS_CONFIRMED_METRICS]
         a = int(num(active_m[0]["value"])  or 0) if active_m else None
         c = int(num(conf_m[0]["value"])    or 0) if conf_m  else None
+        # Most weeks the MPO reports active farms only. Carry the last published
+        # cumulative confirmed figure forward so the trend line stays continuous.
+        if c is None:
+            c = last_conf
+        else:
+            last_conf = c
         farms_trend.append({
             "date": fd,
             "active": a,

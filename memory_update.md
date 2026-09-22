@@ -1,4 +1,15 @@
-As at 2026-09-22 (session 76b -- Cowork, same-day follow-up -- master now **3,677 rows**, 7 rows added; new "Vaccine order process" dashboard tab added; **dashboard rebuilt, snapshot unchanged at 18 September 2026, 84 weekly points, validation passed, 1,970,724 bytes**):
+As at 2026-09-22 (session 76c -- Cowork, third run of the day -- master now **3,705 rows**; **dashboard rebuilt, snapshot 18 September 2026, 84 weekly points, validation passed, 1,979,595 bytes**):
+
+**Session 76c (22 Sep, MPO Week 48 / 18 Sep):**
+
+- MPO Week 48 ingested, 28 rows. Week 47 was never received, so this follows Week 46 (4 Sep) directly.
+- Dairy cows vaccinated first round 960,295 nationally (up 153, all Western Cape). Boosters 638,336 (up 71,902: EC +59,699 to 210,792, WC +12,203 to 60,706). Limpopo, Mpumalanga, North West and Northern Cape still report no boosters.
+- Dairy farms: 175 cumulative, 128 active. Per-province active from the MPO map: KZN 62, EC 20, GP 17, FS 10, WC 9, NW 6, MP 3, LP 1, NC 0 (sums exactly to 128). EC's 20 includes eight KZN-border farms under EC surveillance; EC's own positive count is twelve.
+- KZN reports all dairy animals boosted, beef animals on dairy farms still outstanding, and a further 42,000 doses delivered to five veterinary practices.
+- **Fixed a four-month-old bug:** the dairy farm headline cards and trend chart were reading the May-era metric names (`dairy_farms_confirmed_fmd`, `dairy_farms_active_fmd`) while data had been landing under `dairy_farms_fmd_total` and `dairy_farms_active_fmd_prov` since June. The cards had been frozen on 171 confirmed / 124 active since May, and the trend chart had only four points. Now treated as aliases in build_dashboard.py, with carry-forward of the last cumulative confirmed figure. Cards read 175 / 128 as at 18 Sep; trend chart now has 17 points.
+- **Standing lesson:** two stale-figure bugs found in one day (this and the August consignment row). Both were display paths quietly serving an old value rather than surfacing that the newer one was not being picked up. Remaining dashboard lookups should be audited for the same alias pattern.
+
+As at 2026-09-22 (session 76b -- Cowork, same-day follow-up -- master now 3,677 rows, 7 rows added; new "Vaccine order process" dashboard tab added):
 
 **Session 76b (22 Sep, new dashboard tab + ICC Update 18 Sep):**
 
@@ -75,7 +86,9 @@ Cowork sessions (scheduled and user-triggered) are the only reliable ingest path
 - Outcome of the 21 September MTT/veterinary working group meeting on vaccine allocation criteria -- watch the next ICC update.
 - Whether the Section 10 Committee has finally been appointed (nominations submitted May 2026, still outstanding as at 18 Sep).
 - ICC Update PDF covering the 11 August Ministerial Task Team meeting -- now more than six weeks overdue; the 22 Sep Portfolio Committee presentation partially substitutes at national level.
-- MPO Week 47+ updates not seen since Week 46 (4 Sep).
+- MPO Week 47 was skipped entirely (Week 46 on 4 Sep, then Week 48 on 18 Sep). Chase it or confirm none was issued.
+- Ask the MPO whether the per-province active dairy case map is still being refreshed; it has been identical to the 19 June breakdown for every province except EC (18 to 20) and WC (7 to 9).
+- Audit the remaining dashboard lookups for stale metric-name aliases, after two frozen-figure bugs were found on 22 September.
 - FS 798-versus-796 case count needs confirmation from the next FS pack.
 - EC, LP, WC, GP, NC, KZN, RMIS files for the week of 18-22 September not yet in the inbox.
 - Confirm whether Ministry (Portfolio Committee) province-level figures should be preferred over provincial JOC figures going forward, or continue to be held side by side.

@@ -5596,3 +5596,49 @@ Two corrections after the user reviewed the first build.
 - Watch for confirmation of whether the Section 10 Committee has finally been appointed.
 - Confirm the RMIS and Buffalo Analytics guide download buttons open correctly for end users; consider whether the dashboard's overall file size (now just under 2MB) needs a lighter-weight embedding approach if further large PDFs are added in future.
 - Consider whether to extend the hardcoded `policy_events` list in build_dashboard.py so future ICC governance updates surface as a dashboard banner rather than only living in the CSV.
+
+## Session 76c -- 22 September 2026
+
+Third run of the day, triggered by a new MPO update landing in the inbox.
+
+### Source processed
+
+| Source file | Effective date | Source org | Rows added |
+|---|---|---|---|
+| inbox/MPO/Week 48 - Update on the state of FMD and vaccine rollouts in the dairy industry.pdf | 2026-09-18 | MPO | 28 rows: first-round dairy cows vaccinated for all 9 provinces plus national, second-round boosters for the 5 provinces reporting them plus national, cumulative and active dairy farm counts, per-province active dairy cases read from the MPO map, and a KwaZulu-Natal dairy-channel vaccine receipt. |
+
+Week 47 was never received. This update follows Week 46 (4 September) directly, so the fortnight's movement is compressed into one step.
+
+### Key figures added
+
+- Dairy cows vaccinated, first round: 960,295 nationally, up 153 on Week 46. All of the movement is in the Western Cape (240,234 to 240,387). Every other province is unchanged.
+- Boosters, second round: 638,336 nationally, up 71,902 on Week 46. Eastern Cape +59,699 (151,093 to 210,792) and Western Cape +12,203 (48,503 to 60,706). KwaZulu-Natal, Free State and Gauteng unchanged. Limpopo, Mpumalanga, North West and Northern Cape reported no boosters and are left blank rather than zeroed.
+- KwaZulu-Natal reports all dairy animals boosted, with beef animals on dairy farms still outstanding. A further 42,000 doses were delivered over the weekend to five veterinary practices in the province.
+- Dairy farms: 175 have reported FMD cases cumulatively, 128 remain active. Per-province active cases, read from the MPO map: KZN 62, EC 20, GP 17, FS 10, WC 9, NW 6, MP 3, LP 1, NC 0. These sum exactly to 128.
+- No new dairy FMD cases were reported in any province during the past week.
+
+### Data quality flags
+
+10. Eastern Cape's 20 active dairy cases include eight farms on the KwaZulu-Natal border that have been placed under Eastern Cape surveillance for management purposes. The province's own positive case count is twelve. Recorded as 20 under EC to match the MPO map, with the split explained in the row notes.
+11. The MPO warns that second-round figures may exceed first-round figures in some provinces, because state veterinarians are referring non-member dairy farmers and institutions such as universities to the MPO for vaccine procurement. The Free State already shows this pattern: 15,104 first round against 19,118 boosters.
+12. The per-province active dairy case map has been identical to the 19 June breakdown for every province except the Eastern Cape (18 to 20) and Western Cape (7 to 9). Either the dairy outbreak has genuinely plateaued or the map is being carried forward. Worth a query to the MPO.
+13. The KwaZulu-Natal 42,000-dose receipt is recorded as `doses_received_dairy` on the private channel rather than the generic `doses_received`, to avoid the metric-name collision that corrupted the Mpumalanga headline in session 76.
+
+### Fixed this session: MPO dairy farm headline frozen since May
+
+The dashboard's dairy farm cards were reading `dairy_farms_confirmed_fmd` and `dairy_farms_active_fmd`, the metric names the MPO used in May. From June onward the same two figures have been landing under `dairy_farms_fmd_total` and `dairy_farms_active_fmd_prov`, so the build silently kept serving the May values. The cards had been showing 171 confirmed and 124 active, dated 8 and 22 May, for four months, and the farms trend chart had only four data points, all from May.
+
+Fixed by treating the naming variants as aliases in `build_dashboard.py`, for the headline lookup and the trend chart. The last published cumulative confirmed figure is now also carried forward on weeks where the MPO reports active farms only, so the trend line stays continuous. After the fix the cards read 175 confirmed and 128 active as at 18 September, and the trend chart runs to 17 points through to September.
+
+This is the second stale-figure bug found in a day, after the August consignment row. Both came from the same root cause: a display path that quietly kept serving an old value instead of showing that the newer one was not being picked up.
+
+### Dashboard
+
+- Rebuilt via importlib. Snapshot 18 September 2026, 84 weekly points, validation passed, 1,979,595 bytes. Master rows: 3,677 to 3,705.
+
+### Action items for next run
+
+- Ask the MPO whether the per-province active case map is being refreshed, given it has been static since 19 June outside the Eastern Cape and Western Cape.
+- Chase the missing Week 47 MPO update, or confirm that none was issued.
+- Watch for Limpopo, Mpumalanga, North West and Northern Cape to start reporting boosters.
+- Audit the remaining dashboard lookups for the same alias problem, since two metric families have now been found reading stale values.
