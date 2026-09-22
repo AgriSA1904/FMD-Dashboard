@@ -5485,3 +5485,57 @@ No new ICC report, ministerial statement, MPO, Gauteng, Mpumalanga, North West, 
 - Still watching for the ICC Update PDF covering the 11 August Ministerial Task Team meeting (more than five weeks overdue) and any MPO Week 47 update.
 - KZN doses received and case count remain stale (9 Jun / 5 Jun); GP exact received; NW district breakdown.
 - Re-authenticate the local Claude CLI; the Windows scheduled task still only produces empty commits.
+
+## Session 76 -- 22 September 2026 (Cowork, user-triggered ingest of accumulated inbox files)
+
+### Run conditions
+
+Triggered by Jay after an RMIS email turned out to be a duplicate of the 9 September stats pack (no new attachment). While checking that email, a scan of the inbox found five files that had arrived since the 15 September run: the FS 18 September pack, the Mpumalanga 19th JOC minutes (15 Sep, data as at 14 Sep), the North West RPO update (14 Sep), and a new Portfolio Committee presentation on the mass vaccination strategy (22 Sep, data as at 14 Sep). All four were processed; shell was healthy throughout.
+
+### Rows
+
+- Master rows: 3,597 -> 3,670 (73 added, 0 duplicates by composite key). Backup: `master_data.csv.bak_session76`. One row was corrected post-append: an MP-DVS industry-received figure (59,500, Nkangala private channel) had been filed under the `doses_received` metric and was being picked up by the dashboard ahead of MP's true state-channel total (1,116,940) because both carried the same effective date. Renamed to `doses_received_industry` and the dashboard was rebuilt clean; see data quality flag 6.
+
+### Sources processed
+
+| File | Effective date | Source org | Outcome |
+|---|---|---|---|
+| inbox/Free State/FMD_STATS_18_SEPTEMBER_2026.zip (xlsx plus 3 media-release images) | 2026-09-18 | FS-DARDLEA | 13 rows: positive_cases 796 (xlsx) and 798 (media release, conflicting -- both held), suspected 260, animals vaccinated 1,671,316, doses received 1,961,840 (unchanged), 5 district rows, a new vaccination-intent-notifications metric (115), and a national Section 9 gazette event row. |
+| inbox/Mpumalanga/19th JOC Minutes - 15 September 2026.pdf | 2026-09-14 | MP-DVS | 21 rows: outbreaks 262 (137 open, 125 closed), 4 district rows, primary vaccinated 823,655, boosters 64,772, total administered 888,427, 4 district vaccination rows, industry-received 59,500 (Nkangala), controlled slaughter 37,849, dairy and feedlot special-category totals. |
+| inbox/North West/14 SEPTEMBER 2026- RPO FMD UPDATE..pdf | 2026-09-14 | NW-RPO | 6 rows: positive 482, suspected 115 (unchanged, likely stale), doses received 1,665,100, doses administered 1,482,307, vaccine wastage 38,666, animals vaccinated 1,347,844 (Portal, as at 13 Sep). |
+| inbox/Portfolio Committee Presentations/... MASS VACCINATION STRATEGY (FINAL).pdf | 2026-09-14 (presented 22 Sep) | Ministry | 33 rows: doses_received, doses_administered and herd_cattle for all 9 provinces (independent Ministerial cross-check of the provincial JOC totals), national doses_procured (16,000,000), 2 capacity rows (25 vets, 186 AHTs employed), 4 national industry-vaccine-used rows by special-allocation sector. |
+
+No new file since 18 September for EC, LP, RMIS, MPO, WC, GP, NC, KZN, or ICC/Ministerial channels.
+
+### Key figures added
+
+- Free State: positive cases 796 (xlsx) / 798 (media release text) as at 18 Sep -- see flag 1. Animals vaccinated 1,671,316. A new National FMD Reporting System metric: 115 farmer notifications of intent to self-vaccinate, by State Vet Area.
+- Mpumalanga: 262 cumulative outbreaks (137 open, 125 closed), up from 259 (31 Jul). 823,655 primary vaccinated cattle plus 64,772 boosters = 888,427 total administered, up from 729,074 (27 Jul). Controlled slaughter 37,849 (up from 35,285).
+- North West: doses received jumped to 1,665,100 (up from 1,271,140, 11 Aug) and doses administered 1,482,307 (91.34 percent usage, 38,666 discarded). Animals vaccinated (FMD Portal) 1,347,844, which now exceeds the internal-spreadsheet figure previously flagged as a gap -- see flag 5.
+- National (Ministry, Portfolio Committee, 14 Sep basis): 16,000,000 doses procured (down from the 17,000,000 stated 5 Aug -- both held, see flag 4), 11.8 million doses received across the 9 provinces, 9.67 million administered, 15.4 million estimated cattle population, 63 percent national coverage. 25 vets and 186 AHTs employed; only the Western Cape FMD lab is operational.
+- A national policy event row was added: Government Gazette No. 54969 / Notice No. 7668 (Section 9(1) control measures), published 8 July 2026 -- resolves the long-parked "Section 9 gazette" item, backdated to its actual publication date.
+
+### Data quality flags
+
+1. FS 18 Sep: the media release text states 798 confirmed cases (2 new: Bultfontein, Welkom) but the accompanying xlsx template's provincial total and full per-SVA breakdown are byte-identical to the 11 Sep template (796, no district movement). Both rows held; the dashboard's tie-break currently surfaces 796 since it is the structured-template row.
+2. FS 18 Sep animals-vaccinated: xlsx (18 Sep) states 1,671,316; the media-release map, dated one day earlier (17 Sep), states 1,650,907. The 18 Sep xlsx figure was used as primary; the map figure is noted.
+3. MP Nkangala vaccine-received table has a transposition typo ("40 3500" for Victor Khanye); resolved to 43,500 because the two municipality lines then sum exactly to the stated district total of 87,780 received / 59,500 administered.
+4. National doses_procured: the Portfolio Committee's own itemised delivery table sums to 16.0 million, matching its "16 million doses" conclusion-slide claim, but this is lower than the 17,000,000 stated in the 5 August Ministerial media statement. Both rows held; no reconciliation available.
+5. NW animals_vaccinated (FMD Portal) has flipped from below the internal-spreadsheet figure (flagged in sessions 73-75) to above it: 1,347,844 (13 Sep, Portal) now exceeds the 1,220,669 spreadsheet figure held since 25 Jul. Treated as the gap resolving in the Portal's favour rather than a new anomaly.
+6. **Fixed this session:** an MP-DVS row recording Nkangala's industry-received vaccine (59,500 doses, private channel) had been filed under the generic `doses_received` metric. Because it shared an effective date with MP's true state-channel total, the dashboard's date-tie-break logic was picking the smaller industry figure as MP's national-headline "received" value. Renamed the metric to `doses_received_industry` so it no longer competes with the province total; the headline is now correct (MP received 1,116,940 on the rebuilt dashboard). Worth keeping in mind for any future metric that pairs a small industry/private-channel receipt with a same-date provincial total.
+7. NW suspected_cases (115) is identical to the figure held since 11 August -- likely another carried-forward stale figure in this document family rather than a genuine plateau.
+
+### Dashboard
+
+- Rebuilt via importlib (twice, after the metric-naming fix). Snapshot 11 Sep -> 18 September 2026; weekly points 82 -> 84; validation passed (314,063 bytes). National: positive 2,841, suspected 890, distributed 11,815,120, administered 9,286,829, balance 2,528,291, procured 16,000,000, herd_cattle 15,450,142 (now sourced from the Portfolio Committee table rather than the stale March/April AgriSA-NAT rows).
+
+### GitHub
+
+- Commit reference recorded in memory_update.md.
+
+### Action items for next run
+
+- Confirm FS's 798-versus-796 case count with the province directly if possible; carry both forward until resolved.
+- Watch for the next FS pack to see whether the district SVA table finally reflects the +2 cases the media release announced.
+- Chase EC, LP, WC, GP, NC, KZN, RMIS and MPO files for the week of 18-22 September; none were found in the inbox this session.
+- Consider whether the new Ministry province-level doses_received/administered/herd_cattle rows should become the dashboard's preferred source over provincial JOC rows when the two disagree materially (currently both are held and the dashboard's tie-break applies).
