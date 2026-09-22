@@ -5642,3 +5642,63 @@ This is the second stale-figure bug found in a day, after the August consignment
 - Chase the missing Week 47 MPO update, or confirm that none was issued.
 - Watch for Limpopo, Mpumalanga, North West and Northern Cape to start reporting boosters.
 - Audit the remaining dashboard lookups for the same alias problem, since two metric families have now been found reading stale values.
+
+## Session 77 -- 22 September 2026
+
+Fourth run of the day. Inbox check only.
+
+### Inbox scan
+
+| Folder | Status |
+|---|---|
+| All inbox subfolders (all nine provinces, ICC Reports, Ministerial Updates, Portfolio Committee Presentations, MPO, RMIS, SAPPO, AgriSA Summary and Outcomes, Vaccine_Process) | No new files since session 76c. The files touched today (MPO Week 48, the 18 September ICC update, the Portfolio Committee mass-vaccination presentation, and the Vaccine_Process documents) were all already ingested in sessions 76b and 76c. |
+| Root folder | No new dated (`DD MMM YYYY`) folder present. |
+
+### Rows added
+
+None. Master remains at 3,705 rows.
+
+### GitHub
+
+No push required. Verified the published site remains in sync with the last ingest: local record and `origin/main` both at commit `bf8c610` (session 76c).
+
+### Action items for next run
+
+All items carried forward unchanged from session 76c. See memory_update.md, Parked/outstanding, for the full list -- notably the missing MPO Week 47, the outstanding Section 10 Committee appointment, the 4-million-dose consignment still unconfirmed, and the stale-metric-alias audit.
+
+## Session 77b -- 22 September 2026
+
+Fifth run of the day. Ministerial media statement on private-sector ARC vaccine manufacturing.
+
+### Inbox scan
+
+| Folder | Status |
+|---|---|
+| Ministerial Updates | New file: `Media Statement Minister Aucamp announces private sector to assist in ARC vaccine production.pdf`, dated 22 Sep 2026, added to the inbox after session 77's check. |
+| All other inbox subfolders | No new files since session 76c/77. |
+
+### Rows added
+
+2 rows, both `policy` category, `national`, source org Ministry:
+
+- `private_sector_arc_vaccine_manufacturing_approved` (effective 21 Sep 2026): the ARC Board unanimously agreed to allow qualifying private companies, local and/or international, to use the ARC's intellectual property and manufacture the ARC FMD vaccine at scale under conditional licensing agreements. Addresses the ARC's manufacturing-scale constraint; licensing income is ringfenced for the ARC's own capacity expansion.
+- `arc_pirbright_vaccine_matching_round2` (effective 22 Sep 2026): on the Minister's request, the ARC will submit FMD field-circulating virus isolates to the Pirbright Institute (UK) in October 2026 for a second round of vaccine-matching assessments.
+
+### Data quality flag
+
+The statement names Willie Aucamp as Minister of Agriculture. All earlier Ministry-sourced rows in the master (Section 10 scheme, KZN DMA lift, Portfolio Committee tables, prior media statements) name John Steenhuisen. Nothing else in this ingest confirms or explains the change; held as an open flag rather than corrected retroactively.
+
+### Dashboard
+
+Rebuilt via importlib. Snapshot unchanged at 18 September 2026, 84 weekly points, validation passed, 1,979,725 bytes (up from 1,979,595; policy-only ingest, no headline or chart data affected). Master rows: 3,705 -> 3,707.
+
+### GitHub
+
+Pushed as commit PENDING_HASH ("Session 77b -- ministerial private-sector ARC vaccine manufacturing statement; 3,707 rows").
+
+### Action items for next run
+
+- Confirm the ministerial transition (Aucamp named in this statement versus Steenhuisen in every earlier record) and update framing once confirmed.
+- Watch for the named private-sector manufacturing partner(s) once announced.
+- Watch for the outcome of the ARC's October Pirbright vaccine-matching submission.
+- All items carried forward from session 77/76c unchanged: missing MPO Week 47, outstanding Section 10 Committee appointment, unconfirmed 4-million-dose consignment, stale-metric-alias audit.

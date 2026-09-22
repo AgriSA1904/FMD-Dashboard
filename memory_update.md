@@ -1,3 +1,18 @@
+As at 2026-09-22 (session 77b -- Cowork, fifth run of the day -- master now **3,707 rows**, 2 rows added; **dashboard rebuilt, snapshot unchanged at 18 September 2026, 84 weekly points, validation passed, 1,979,725 bytes**):
+
+**Session 77b (22 Sep, Ministerial private-sector vaccine manufacturing statement):**
+
+- Ingested `inbox/Ministerial Updates/Media Statement Minister Aucamp announces private sector to assist in ARC vaccine production.pdf` (Ministry, 22 Sep): 2 policy rows, no quantitative figures.
+- The ARC Board unanimously agreed on 21 Sep 2026 to let qualifying private companies (local and/or international) use the ARC's IP and manufacture the ARC's FMD vaccine at scale under conditional licensing agreements, addressing the ARC's manufacturing-scale constraint. Licensing income is ringfenced for the ARC's own capacity expansion.
+- On the Minister's request, the ARC will also submit FMD field-circulating virus isolates to the Pirbright Institute (UK) in October for a second round of vaccine-matching assessments.
+- **New minister named:** this statement names Willie Aucamp as Minister of Agriculture. Every earlier Ministry-sourced row in this master names John Steenhuisen. Flagged in the row notes and in Parked/outstanding below; held as an open flag rather than corrected retroactively pending a second source.
+- These policy rows are not wired into the dashboard's hardcoded `policy_events` banner list, same convention as the 18 Sep ICC update (session 76b note). Worth revisiting whether this should surface as a banner.
+- Dashboard rebuilt via importlib (no headline or snapshot-date change; policy-only ingest). See Publishing section below for the GitHub push outcome.
+
+As at 2026-09-22 (session 77 -- Cowork, fourth run of the day -- inbox check only, no new submissions, master unchanged at 3,705 rows, dashboard and GitHub already in sync from session 76c):
+
+**Session 77 (22 Sep, empty inbox check):** scanned every inbox subfolder; nothing newer than session 76c's ingest. The files with today's timestamps (MPO Week 48, the ICC update, the Portfolio Committee presentation, the Vaccine_Process documents) were already processed in sessions 76b/76c. No rows added, no rebuild, no push. Confirmed `origin/main` still at `bf8c610`. See change_log.md, session 77, for detail.
+
 As at 2026-09-22 (session 76c -- Cowork, third run of the day -- master now **3,705 rows**; **dashboard rebuilt, snapshot 18 September 2026, 84 weekly points, validation passed, 1,979,595 bytes**):
 
 **Session 76c (22 Sep, MPO Week 48 / 18 Sep):**
@@ -99,3 +114,5 @@ Cowork sessions (scheduled and user-triggered) are the only reliable ingest path
 - NC booster campaign due to start August 2026; no booster figures seen yet (though general observations slide of the 22 Sep PC deck says NC has already started boosters -- watch for provincial confirmation).
 - Re-authenticate the local Claude CLI; disable or fix the Windows scheduled task's empty commits.
 - Republish the Claude Artifact alongside every GitHub Pages push -- needs an interactive Cowork session with the Artifact tool.
+- Confirm the ministerial transition: the 22 Sep private-sector manufacturing statement names Willie Aucamp as Minister of Agriculture; every earlier Ministry-sourced row in this master names John Steenhuisen. Establish when the change took effect.
+- Watch for the named private-sector partner(s) in ARC FMD vaccine manufacturing (ARC Board agreed 21 Sep) and for the outcome of the ARC's October submission of FMD isolates to the Pirbright Institute for a second vaccine-matching round.
