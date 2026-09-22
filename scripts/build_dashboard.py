@@ -1166,8 +1166,12 @@ def build_dashboard():
 
     incoming = []
     # Vaccine supply pipeline — hardcoded from ministerial briefings and RMIS import tracker.
-    # Updated as at 26 August 2026 (Minister Aucamp, FMD Symposium 31 July, and
-    # Portfolio Committee statement 5 August: 17 million procured to date).
+    # Updated as at 22 September 2026. The eight "Arrived" rows sum to exactly 17,000,000,
+    # which matches the 5 August Portfolio Committee statement of 17 million procured to date.
+    # The most recent Ministerial figure (Portfolio Committee, 22 September) is 16,000,000.
+    # The 4 million announced for early August is therefore almost certainly already inside
+    # those totals rather than additional to them, and is held as "Unconfirmed" pending a
+    # statement from the Department. Do not add it to the arrived total.
     # Do not regenerate from doses_incoming rows (stale format). Update here manually.
     incoming = [
         {"vaccine": "ARC Trivalent",        "doses": 12900,    "date": "2026-02-01", "status": "Arrived",  "notes": "Initial emergency stock."},
@@ -1178,7 +1182,7 @@ def build_dashboard():
         {"vaccine": "DolVet Trivalent",     "doses": 2000000,  "date": "2026-05-01", "status": "Arrived",  "notes": ""},
         {"vaccine": "Biogenesis Bago",      "doses": 3500000,  "date": "2026-05-28", "status": "Arrived",  "notes": "Distributed: 1.5M feedlots; 500 000 RMPO; 200 000 MPO; 100 000 stud breeders; 1.05M provinces; balance for border vaccination."},
         {"vaccine": "Further consignments to 5 Aug", "doses": 5487100, "date": "2026-08-05", "status": "Arrived", "notes": "Balance of the 17 million doses procured to date per the Portfolio Committee statement (5 August); individual consignment detail not published."},
-        {"vaccine": "Further consignment",  "doses": 4000000,  "date": "2026-08-07", "status": "Expected", "notes": "Four million doses due early August per Minister Aucamp at the FMD Symposium, 31 July. Confirm arrival."},
+        {"vaccine": "Further consignment",  "doses": 4000000,  "date": "2026-08-07", "status": "Unconfirmed", "notes": "Announced by Minister Aucamp at the FMD Symposium on 31 July as due early August. No arrival has been confirmed since. The arrived consignments above already sum to the 17 million reported as procured on 5 August, and the most recent Ministerial figure (22 September) is 16 million, so these doses are most likely already counted within those totals rather than additional to them. Not added to the arrived total."},
         {"vaccine": "DolVet (Dunevax)",     "doses": 10000000, "date": "2026",       "status": "Pipeline", "notes": "Remaining balance of 14M SAHPRA Section 21 approval. Delivery schedule to be confirmed."},
     ]
 

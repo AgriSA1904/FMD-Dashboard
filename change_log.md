@@ -5577,8 +5577,21 @@ Built a new "Vaccine order process" tab from three source documents the user sup
 
 - Commit reference recorded in memory_update.md.
 
+### Follow-up within session 76b: readability pass and supply-table correction
+
+Two corrections after the user reviewed the first build.
+
+**1. Vaccine order process tab made more illustrative.** The first version used 13px body copy and plain numbered lists, which is too small and too dense for the farmer audience. Rebuilt as three full-height route cards with a coloured header band, a large option numeral, a "choose this if" strip in plain language, 17px step copy with bold key terms, 46px numbered step circles joined by drawn arrows, and full-width 17px call-to-action buttons. The six-step journey strip was rebuilt the same way, with 62px numerals, 19px step headings, 15px body copy and arrows drawn between each step. Both collapse cleanly to single and two-column layouts on narrow screens.
+
+**2. Stale August consignment row corrected in the incoming supply table.** The row "Further consignment, 4,000,000, 2026-08-07" was still displaying as "Expected" in late September, and the table footer was summing every row regardless of status into a single "Total" of 31,000,000, which overstated the position. Corrections made:
+
+- The eight "Arrived" rows sum to exactly 17,000,000, which matches the 5 August Portfolio Committee statement of 17 million procured to date. The 4 million announced on 31 July as due early August is therefore almost certainly already counted inside that total rather than additional to it. Re-statused from "Expected" to "Unconfirmed", with a note explaining the reasoning and that it is excluded from the arrived total.
+- The footer no longer shows a single combined total. It now shows three separate lines: total confirmed arrived (17,000,000), announced but arrival not confirmed (4,000,000), and pipeline not yet scheduled (10,000,000), each with a short explanatory note.
+- The "Expected" status badge used lime on a light background, which is off-brand. Changed to mist, and the new "Unconfirmed" badge uses lime on Pine, which is the correct on-brand use of lime and draws the eye to the item that needs attention.
+
 ### Action items for next run
 
+- Ask the Department to confirm whether the 4 million doses announced for early August arrived, and whether they sit inside the 16 to 17 million already reported as procured. This is the same question the ICC is asking in its 18 September update.
 - Watch for the outcome of the 21 September MTT/veterinary working group meeting on vaccine allocation criteria in the next ICC update.
 - Watch for confirmation of whether the Section 10 Committee has finally been appointed.
 - Confirm the RMIS and Buffalo Analytics guide download buttons open correctly for end users; consider whether the dashboard's overall file size (now just under 2MB) needs a lighter-weight embedding approach if further large PDFs are added in future.
