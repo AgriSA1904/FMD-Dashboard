@@ -420,6 +420,20 @@
     .journey { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--sp-6); }
     .j-arrow { display: none; }
   }
+  /* Latest news tab */
+  .news-filters { display:flex; flex-wrap:wrap; gap:var(--sp-2); margin-bottom:var(--sp-6); }
+  .news-chip { border:1px solid var(--sage); background:var(--white); color:var(--pine);
+    border-radius:var(--r-pill); padding:6px 14px; font:inherit; font-size:14px; cursor:pointer; }
+  .news-chip.active { background:var(--pine); color:var(--white); border-color:var(--pine); }
+  .news-list { display:grid; gap:var(--sp-4); }
+  .news-item { background:var(--white); border-radius:var(--r-card); padding:var(--sp-6);
+    border-left:4px solid var(--olive); }
+  .news-meta { font-size:14px; color:var(--charcoal); margin-bottom:6px; display:flex; flex-wrap:wrap; gap:var(--sp-3); }
+  .news-tag { background:var(--pale-sage); color:var(--pine); border-radius:var(--r-chip); padding:0 10px; font-size:13px; }
+  .news-item h3 { margin:0 0 8px; font-size:18px; }
+  .news-item h3 a { color:var(--pine); text-decoration:none; }
+  .news-item h3 a:hover { text-decoration:underline; }
+  .news-item p { margin:0; color:var(--charcoal); font-size:16px; }
 </style>
 </head>
 <body>
@@ -469,6 +483,7 @@
   <button class="tab-btn" data-target="sappo">SAPPO</button>
   <button class="tab-btn" data-target="ministerial">Ministerial and ICC updates</button>
   <button class="tab-btn" data-target="vaccineorder">Vaccine order process</button>
+  <button class="tab-btn" data-target="news">Latest news</button>
 </nav>
 
   <div class="alert-banner tab-section tab-active" data-tab="national" id="alertBanner"></div>
@@ -978,6 +993,13 @@
     </p>
   </section>
 
+  <section class="tab-section" data-tab="news" id="newsSection">
+    <div class="kicker">Media and public reporting</div>
+    <h2>Latest news on foot and mouth disease in South Africa.</h2>
+    <p style="color:var(--charcoal);font-size:14px;margin-bottom:var(--sp-6)" id="newsIntro"></p>
+    <div class="news-filters" id="newsFilters"></div>
+    <div class="news-list" id="newsList"></div>
+  </section>
 </main>
 
 <footer>
@@ -1021,7 +1043,7 @@
 <script>
 const DASHBOARD_DATA = {
   "snapshot_date": "2026-09-18",
-  "build_date": "2026-09-22",
+  "build_date": "2026-09-24",
   "provinces": [
     {
       "code": "EC",
@@ -8999,6 +9021,82 @@ const DASHBOARD_DATA = {
       "ML": 609
     }
   },
+  "news": {
+    "last_checked": "2026-09-24",
+    "note": "Curated daily by the scheduled ingest. Items are media and public reporting, not programme data. Figures quoted here do not feed the dashboard headlines unless they are also ingested into master_data.csv from a programme source.",
+    "items": [
+      {
+        "date": "2026-09-22",
+        "headline": "Private companies to manufacture the ARC foot and mouth vaccine under licence.",
+        "source": "Business Day",
+        "url": "https://www.businessday.co.za/news/2026-09-22-private-vaccine-makers-enlisted-to-fight-foot-and-mouth-disease/",
+        "summary": "Minister Willie Aucamp has authorised qualifying private companies to produce the Agricultural Research Council vaccine under licensing agreements. The ARC keeps the intellectual property and licensing income is ringfenced to rebuild its own manufacturing capacity.",
+        "category": "policy",
+        "province": "national",
+        "added": "2026-09-24"
+      },
+      {
+        "date": "2026-09-20",
+        "headline": "Free State confirms two new cases, provincial total reaches 798.",
+        "source": "Channel Africa",
+        "url": "https://www.channelafrica.co.za/channelafrica/news/sa-province-records-two-new-foot-and-mouth-disease-cases/",
+        "summary": "New cases in the Bultfontein and Welkom areas. Of 798 cases, 634 are resolved and 164 remain active under quarantine. More than a million cattle in the province have been vaccinated. Supports the 798 figure already held in our master against the unchanged spreadsheet figure of 796.",
+        "category": "cases",
+        "province": "FS",
+        "added": "2026-09-24"
+      },
+      {
+        "date": "2026-09-06",
+        "headline": "OBP chief executive suspended over vaccine mark-up allegations.",
+        "source": "allAfrica (Department of Agriculture statement)",
+        "url": "https://allafrica.com/stories/202609070409.html",
+        "summary": "After an urgent meeting called by the Minister, the Onderstepoort Biological Products board suspended its chief executive pending his response to allegations of inflated foot and mouth vaccine pricing.",
+        "category": "policy",
+        "province": "national",
+        "added": "2026-09-24"
+      },
+      {
+        "date": "2026-09-06",
+        "headline": "Foot and mouth disease described as a quiet business crisis.",
+        "source": "African Farming",
+        "url": "https://www.africanfarming.com/2026/09/06/foot-and-mouth-disease-south-africas-quiet-business-crisis/",
+        "summary": "Opinion piece on the knock-on effects of movement controls: reduced meat supply, higher prices for poorer households and lost trade for informal traders.",
+        "category": "analysis",
+        "province": "national",
+        "added": "2026-09-24"
+      },
+      {
+        "date": "2026-09-05",
+        "headline": "More than 23 million doses imported and all commercial dairy cattle given a first dose.",
+        "source": "The Witness",
+        "url": "https://witness.co.za/news/2026/09/05/no-new-fmd-cases-in-north-west-as-23m-vaccine-doses-imported/",
+        "summary": "Reports over 23 million doses imported through government and private sector channels, first doses for all 1.38 million commercial dairy cattle, and more than 1,000 farmers registered as authorised vaccinators. The 23 million figure is well above the 16 to 17 million the Ministry reports as procured, and needs reconciling before use.",
+        "category": "vaccination",
+        "province": "national",
+        "added": "2026-09-24"
+      },
+      {
+        "date": "2026-09-05",
+        "headline": "Veterinary certificate agreed for red meat exports to Egypt.",
+        "source": "Maroela Media",
+        "url": "https://maroelamedia.co.za/landbou/rooivleis-kry-uitvoerhupstoot-midde-bek-en-klouseer/",
+        "summary": "South Africa and Egypt have finalised negotiations on a veterinary health certificate for beef and livestock, which will give exporters a clear framework once formally signed.",
+        "category": "trade",
+        "province": "national",
+        "added": "2026-09-24"
+      },
+      {
+        "date": "2026-09-01",
+        "headline": "North West records its first week without a new case since December 2025.",
+        "source": "SAnews",
+        "url": "https://www.sanews.gov.za/south-africa/north-west-records-first-week-no-new-fmd-cases",
+        "summary": "The province had received 1,570,100 doses and vaccinated 1,413,859 animals at the time of the statement. Booster vaccinations were to start in September across all four districts and 18 local municipalities.",
+        "category": "cases",
+        "province": "NW",
+        "added": "2026-09-24"
+      }
+    ]
+  },
   "sources_used": [
     "01 JUNE 2026- RPO JIC FMD UPDATE.pdf",
     "01 May 2026/AgriSA - FMD Vaccination Data - 01.05.26.xlsx",
@@ -10375,6 +10473,38 @@ if (chartJsReady && data.ministerial_comparison) try {
     b.addEventListener('click', function () { switchTab(b.dataset.target); });
   });
   switchTab('national');
+}());
+</script>
+<script>
+(function () {
+  try {
+    var news = (typeof DASHBOARD_DATA !== 'undefined' && DASHBOARD_DATA.news) || {items: []};
+    var items = news.items || [];
+    var PROV = {EC:'Eastern Cape',FS:'Free State',GP:'Gauteng',KZN:'KwaZulu-Natal',LP:'Limpopo',
+      MP:'Mpumalanga',NW:'North West',NC:'Northern Cape',WC:'Western Cape',national:'National'};
+    var CAT = {cases:'Cases',vaccination:'Vaccination',policy:'Policy',trade:'Trade',analysis:'Analysis',other:'Other'};
+    function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+    function fmtDate(d){ if(!d) return ''; var x=new Date(d+'T00:00:00');
+      return isNaN(x)?d:x.toLocaleDateString('en-ZA',{day:'numeric',month:'long',year:'numeric'}); }
+    var intro = document.getElementById('newsIntro');
+    intro.textContent = (news.last_checked ? 'Last checked ' + fmtDate(news.last_checked) + '. ' : '') +
+      'We scan South African and international media every morning. These reports are for context only and do not change the programme figures on the other tabs.';
+    var active = 'all';
+    var cats = ['all'].concat(Object.keys(CAT).filter(function(c){return items.some(function(i){return (i.category||'other')===c;});}));
+    var filt = document.getElementById('newsFilters');
+    function render(){
+      filt.innerHTML = cats.map(function(c){return '<button class="news-chip'+(c===active?' active':'')+'" data-cat="'+c+'">'+(c==='all'?'All':CAT[c])+'</button>';}).join('');
+      var list = items.filter(function(i){return active==='all'||(i.category||'other')===active;});
+      document.getElementById('newsList').innerHTML = list.length ? list.map(function(i){
+        var safeUrl = /^https?:\/\//i.test(i.url||'') ? i.url : '#';
+        return '<article class="news-item"><div class="news-meta"><span>'+esc(fmtDate(i.date))+'</span><span>'+esc(i.source)+'</span>'+
+          '<span class="news-tag">'+esc(CAT[i.category]||'Other')+'</span><span class="news-tag">'+esc(PROV[i.province]||i.province||'National')+'</span></div>'+
+          '<h3><a href="'+esc(safeUrl)+'" target="_blank" rel="noopener">'+esc(i.headline)+'</a></h3><p>'+esc(i.summary)+'</p></article>';
+      }).join('') : '<p style="color:var(--charcoal)">No news items yet.</p>';
+    }
+    filt.addEventListener('click', function(e){ var b=e.target.closest('.news-chip'); if(!b) return; active=b.dataset.cat; render(); });
+    render();
+  } catch (e) { console.error('News tab error:', e); }
 }());
 </script>
 </body>

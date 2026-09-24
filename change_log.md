@@ -5702,3 +5702,33 @@ Pushed as commit 0242f87 ("Session 77b -- ministerial private-sector ARC vaccine
 - Watch for the named private-sector manufacturing partner(s) once announced.
 - Watch for the outcome of the ARC's October Pirbright vaccine-matching submission.
 - All items carried forward from session 77/76c unchanged: missing MPO Week 47, outstanding Section 10 Committee appointment, unconfirmed 4-million-dose consignment, stale-metric-alias audit.
+
+## Session 78 -- 24 September 2026
+
+Setup session. We added a latest news tab to the dashboard and a daily 08:00 scheduled run that ingests the inbox, refreshes the news feed from a wide web search and publishes to GitHub.
+
+### Changes
+
+| Item | Change |
+|---|---|
+| `news_feed.json` | New file in the project root. Holds curated media items (date, headline, source, url, summary, category, province, added) and a `last_checked` date. Media reporting only, never feeds headline figures. |
+| `scripts/build_dashboard.py` | Reads `news_feed.json` into `DASHBOARD_DATA.news`, sorted newest first. Backup at `build_dashboard.py.bak_pre_news`. |
+| `scripts/dashboard_template.html` | New "Latest news" tab with category filters. Backup at `dashboard_template.html.bak_pre_news`. |
+
+### Web search findings (24 September)
+
+- Seven items seeded, covering 1 to 22 September 2026.
+- Ministerial transition flag from session 77b resolved: Business Day, SABC, The Citizen and Department of Agriculture statements all name Willie Aucamp as Minister of Agriculture.
+- Free State 798 cases (20 September, Channel Africa) supports the 798 media release figure against the spreadsheet's 796. 634 resolved, 164 active.
+- The Witness (5 September) reports more than 23 million doses imported. This is well above the Ministry's 16 to 17 million procured. Not ingested. Needs reconciling.
+- OBP chief executive suspended on 6 September over vaccine mark-up allegations. Not yet in the master as a policy event.
+
+### Dashboard
+
+Rebuilt via importlib. Snapshot unchanged at 18 September 2026, 84 weekly points, validation passed. Master rows unchanged at 3,707.
+
+### Action items for next run
+
+- Decide whether to add the OBP suspension (6 September) and Egypt veterinary certificate (5 September) as `policy` rows from a primary Ministry source.
+- Reconcile the 23 million imported doses figure against the Ministry's procured totals.
+- All items carried forward from session 77b.

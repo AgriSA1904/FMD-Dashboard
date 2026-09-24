@@ -1,0 +1,76 @@
+{
+  "last_checked": "2026-09-24",
+  "note": "Curated daily by the scheduled ingest. Items are media and public reporting, not programme data. Figures quoted here do not feed the dashboard headlines unless they are also ingested into master_data.csv from a programme source.",
+  "items": [
+    {
+      "date": "2026-09-22",
+      "headline": "Private companies to manufacture the ARC foot and mouth vaccine under licence.",
+      "source": "Business Day",
+      "url": "https://www.businessday.co.za/news/2026-09-22-private-vaccine-makers-enlisted-to-fight-foot-and-mouth-disease/",
+      "summary": "Minister Willie Aucamp has authorised qualifying private companies to produce the Agricultural Research Council vaccine under licensing agreements. The ARC keeps the intellectual property and licensing income is ringfenced to rebuild its own manufacturing capacity.",
+      "category": "policy",
+      "province": "national",
+      "added": "2026-09-24"
+    },
+    {
+      "date": "2026-09-20",
+      "headline": "Free State confirms two new cases, provincial total reaches 798.",
+      "source": "Channel Africa",
+      "url": "https://www.channelafrica.co.za/channelafrica/news/sa-province-records-two-new-foot-and-mouth-disease-cases/",
+      "summary": "New cases in the Bultfontein and Welkom areas. Of 798 cases, 634 are resolved and 164 remain active under quarantine. More than a million cattle in the province have been vaccinated. Supports the 798 figure already held in our master against the unchanged spreadsheet figure of 796.",
+      "category": "cases",
+      "province": "FS",
+      "added": "2026-09-24"
+    },
+    {
+      "date": "2026-09-06",
+      "headline": "OBP chief executive suspended over vaccine mark-up allegations.",
+      "source": "allAfrica (Department of Agriculture statement)",
+      "url": "https://allafrica.com/stories/202609070409.html",
+      "summary": "After an urgent meeting called by the Minister, the Onderstepoort Biological Products board suspended its chief executive pending his response to allegations of inflated foot and mouth vaccine pricing.",
+      "category": "policy",
+      "province": "national",
+      "added": "2026-09-24"
+    },
+    {
+      "date": "2026-09-06",
+      "headline": "Foot and mouth disease described as a quiet business crisis.",
+      "source": "African Farming",
+      "url": "https://www.africanfarming.com/2026/09/06/foot-and-mouth-disease-south-africas-quiet-business-crisis/",
+      "summary": "Opinion piece on the knock-on effects of movement controls: reduced meat supply, higher prices for poorer households and lost trade for informal traders.",
+      "category": "analysis",
+      "province": "national",
+      "added": "2026-09-24"
+    },
+    {
+      "date": "2026-09-05",
+      "headline": "More than 23 million doses imported and all commercial dairy cattle given a first dose.",
+      "source": "The Witness",
+      "url": "https://witness.co.za/news/2026/09/05/no-new-fmd-cases-in-north-west-as-23m-vaccine-doses-imported/",
+      "summary": "Reports over 23 million doses imported through government and private sector channels, first doses for all 1.38 million commercial dairy cattle, and more than 1,000 farmers registered as authorised vaccinators. The 23 million figure is well above the 16 to 17 million the Ministry reports as procured, and needs reconciling before use.",
+      "category": "vaccination",
+      "province": "national",
+      "added": "2026-09-24"
+    },
+    {
+      "date": "2026-09-05",
+      "headline": "Veterinary certificate agreed for red meat exports to Egypt.",
+      "source": "Maroela Media",
+      "url": "https://maroelamedia.co.za/landbou/rooivleis-kry-uitvoerhupstoot-midde-bek-en-klouseer/",
+      "summary": "South Africa and Egypt have finalised negotiations on a veterinary health certificate for beef and livestock, which will give exporters a clear framework once formally signed.",
+      "category": "trade",
+      "province": "national",
+      "added": "2026-09-24"
+    },
+    {
+      "date": "2026-09-01",
+      "headline": "North West records its first week without a new case since December 2025.",
+      "source": "SAnews",
+      "url": "https://www.sanews.gov.za/south-africa/north-west-records-first-week-no-new-fmd-cases",
+      "summary": "The province had received 1,570,100 doses and vaccinated 1,413,859 animals at the time of the statement. Booster vaccinations were to start in September across all four districts and 18 local municipalities.",
+      "category": "cases",
+      "province": "NW",
+      "added": "2026-09-24"
+    }
+  ]
+}

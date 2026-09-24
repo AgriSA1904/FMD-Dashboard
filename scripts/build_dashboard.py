@@ -1254,6 +1254,19 @@ def build_dashboard():
         "by_rep": {"TC": 1404, "ML": 609},
     }
 
+    # Latest news feed, curated by the daily scheduled run in news_feed.json.
+    # Media reporting only; never feeds headline figures.
+    _news_path = os.path.join(ROOT, "news_feed.json")
+    try:
+        with open(_news_path, "r", encoding="utf-8") as _nf:
+            _news = json.load(_nf)
+        _news["items"] = sorted(_news.get("items", []),
+                                key=lambda i: i.get("date", ""), reverse=True)
+    except (OSError, ValueError) as _e:
+        print(f"News feed not loaded ({_e}); news tab will be empty.")
+        _news = {"last_checked": None, "note": "", "items": []}
+    payload["news"] = _news
+
     payload["sources_used"] = sorted(set(r["source_file"] for r in rows
                                          if r["superseded_by"] == ""))
 
