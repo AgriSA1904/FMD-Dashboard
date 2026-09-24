@@ -5746,3 +5746,43 @@ Rebuilt via importlib. Snapshot unchanged at 18 September 2026, 84 weekly points
 ### Action items for next run
 
 - None for layout. The template carries the change, so future rebuilds keep it.
+
+
+## Session 78c. 24 September 2026. RMIS stats update and industry export of 22 September.
+
+### Sources processed
+
+| Source | Effective date | Source org | Rows |
+|---|---|---|---|
+| `inbox/RMIS/rmis_industry_allocated_fmd_vaccine_distribution_data_2026-09-22.xlsx` | 2026-09-22 | RMIS | 128: 18 province x manufacturer, 2 national manufacturer totals, national all 3,591,419, 103 municipality x sector, 4 national sector totals |
+| Same export, raw order sheet (derived counts) | 2026-09-22 | RMIS | 2: 140 vet practices ordering, 2,120 distinct destination GLNs |
+| RMIS stats update relayed by Jay in chat (as-at date not stated, recorded at 24 Sep, the date received) | 2026-09-24 | RMIS | 13: GLN registrations national plus 9 provinces, tags 192,199, 20 AHTs, 165,104 cattle vaccinated by AHTs |
+
+### Key figures
+
+- RMIS industry channel to 22 Sep (last shipment 17 Sep): 3,591,419 doses (Biogenesis 2,817,193; Dollvet 774,226), up 777,413 from 2,814,006 at 3 Sep. Feedlot 2,490,576 (up 705,000), commercial 883,310, stud 209,660, dairy 7,873. Sector totals sum exactly to the manufacturer total.
+- Gauteng Biogenesis rose 500,020 to 957,475, almost all in Sedibeng feedlots (394,090 to 894,090). A single-fortnight jump of this size is worth confirming with RMIS.
+- GLN registrations 14,209 (up 476 from 13,733). By province: FS 4,580, EC 2,672, NC 1,799, NW 1,445, KZN 1,284, MP 946, LP 657, WC 457, GP 369. By type: farm 12,610, communal land 533, feedlot 324, veterinarian 293, auction house 210, auctioneers 147, abattoir 66, testing station 14, meat processing 12. Both breakdowns sum to 14,209.
+- Tags distributed 192,199 (up 22,700). The provincial breakdown table did not come through in the message; national total only.
+- 20 AHTs (GP, NW, FS) have vaccinated 165,104 cattle (up 25,672). Subset of provincial totals, not additive.
+
+### Fixed this session
+
+- RMIS municipality table was pooling every export since June (710 entries, with the same municipality listed several times at old values). Now reads the latest export only (99 entries).
+- RMIS province ordering read province totals from the June export. Now derived from the latest manufacturer rows.
+- Vet practices (64) and GLN vaccination sites (650) cards had been frozen on 22 June values. Now 140 and 2,120 from the 22 Sep raw orders, with as-at dates on the cards.
+- Added a traceability and field support row to the RMIS tab showing GLN registrations, tags and AHT cattle vaccinated, all previously held in the master but not displayed.
+- Removed an em dash from the RMIS tab subtitle.
+- Quoted an unescaped comma in a session 74 LP tag row that had produced a 16-field row in the CSV. No value changed.
+- Backups: `master_data.csv.bak_session78c`, `scripts/build_dashboard.py.bak_pre_s78c`, `scripts/dashboard_template.html.bak_pre_s78c`. Ingest script: `scripts/ingest_s78c_rmis.py`.
+
+### Dashboard
+
+Rebuilt via importlib. Snapshot unchanged at 18 September 2026 (no programme-source data this session), 84 weekly points, validation passed. Master rows 3,707 to 3,850.
+
+### Action items for next run
+
+- Ask RMIS for the provincial tag breakdown and the as-at date of the stats update.
+- Confirm the 500,020-dose Sedibeng feedlot increase with RMIS.
+- The industry allocation of 2,500,000 (22 Jun) is now well below distribution of 3,591,419. An updated allocation figure is needed.
+- All items carried forward from sessions 78 and 77b.

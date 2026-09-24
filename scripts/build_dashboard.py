@@ -574,6 +574,12 @@ def build_rmis(rows):
 
     utilisation_pct = round(distributed / allocated * 100, 1) if allocated else 0
 
+    # Session 78c: province totals, sector and municipality breakdowns are read
+    # from the latest industry export only. Previously they pooled every export,
+    # so the municipality list carried stale duplicates and the province totals
+    # came from a June export that was the last to carry province all/private rows.
+    latest_dist = [r for r in dist_rows if r["effective_date"] == industry_date] if industry_date else []
+
     # ── 3. Province x total (all manufacturers) ───────────────────────────────
     prov_total_rows = [r for r in dist_rows
                        if r["province"] not in ("national", "NAT")
@@ -586,6 +592,13 @@ def build_rmis(rows):
         if p not in prov_best or r["effective_date"] > prov_best[p]["effective_date"]:
             prov_best[p] = r
     by_province_total = {p: int(num(r["value"]) or 0) for p, r in prov_best.items()}
+    _latest_prov = defaultdict(int)
+    for r in latest_dist:
+        if (r["province"] not in ("national", "NAT") and r["vet_channel"] == "private"
+                and r["vaccine_type"] in ("bioaftogen", "dolvet")):
+            _latest_prov[r["province"]] += int(num(r["value"]) or 0)
+    if _latest_prov:
+        by_province_total = dict(_latest_prov)
 
     # ── 4. Province x manufacturer ────────────────────────────────────────────
     def _prov_mfr(vtype):
@@ -604,14 +617,14 @@ def build_rmis(rows):
     by_province_dolvet = _prov_mfr("dolvet")
 
     # ── 5. Sector breakdown (national: stud / commercial / feedlot) ───────────
-    sector_rows = [r for r in dist_rows
+    sector_rows = [r for r in (latest_dist or dist_rows)
                    if r["province"] == "national"
                    and r["vaccine_type"] == "all"
                    and r["vet_channel"] in ("stud", "commercial", "feedlot")]
     by_sector = {r["vet_channel"]: int(num(r["value"]) or 0) for r in sector_rows}
 
     # ── 6. Municipality breakdown (province x municipality x sector) ──────────
-    munic_rows = [r for r in dist_rows
+    munic_rows = [r for r in (latest_dist or dist_rows)
                   if r["province"] not in ("national", "NAT")
                   and r["vaccine_type"] == "all"
                   and r["vet_channel"] in ("stud", "commercial", "feedlot")]
@@ -631,8 +644,25 @@ def build_rmis(rows):
     vet_rows  = [r for r in all_rmis if r["metric"] == "vet_practices_ordering"]
     site_rows = [r for r in all_rmis
                  if r["metric"] == "vaccination_sites" and r["province"] == "national"]
+    vet_rows.sort(key=lambda r: r["effective_date"])
+    site_rows.sort(key=lambda r: r["effective_date"])
     vet_count  = int(num(vet_rows[-1]["value"]) or 0)  if vet_rows  else 0
     site_count = int(num(site_rows[-1]["value"]) or 0) if site_rows else 0
+    vet_date   = vet_rows[-1]["effective_date"]  if vet_rows  else ""
+    site_date  = site_rows[-1]["effective_date"] if site_rows else ""
+
+    # ── 8. Traceability and field support (RMIS stats updates, session 78c) ──
+    def _latest_nat(metric):
+        rr = sorted([r for r in all_rmis if r["metric"] == metric and r["province"] == "national"],
+                    key=lambda r: r["effective_date"])
+        return (int(num(rr[-1]["value"]) or 0), rr[-1]["effective_date"]) if rr else (0, "")
+    gln_total, gln_date   = _latest_nat("gln_registrations")
+    tags_total, tags_date = _latest_nat("rfid_tags_received")
+    aht_count, aht_date   = _latest_nat("aht_rmis_employed")
+    aht_cattle, aht_cattle_date = _latest_nat("aht_cattle_vaccinated")
+    gln_prov_rows = [r for r in all_rmis if r["metric"] == "gln_registrations"
+                     and r["province"] not in ("national", "NAT") and r["effective_date"] == gln_date]
+    gln_by_province = {r["province"]: int(num(r["value"]) or 0) for r in gln_prov_rows}
 
     return {
         # ── industry distribution (new) ──
@@ -647,6 +677,14 @@ def build_rmis(rows):
         "by_municipality":    munic_list,
         "vet_practices":      vet_count,
         "vaccination_sites":  site_count,
+        "vet_practices_date": vet_date,
+        "vaccination_sites_date": site_date,
+        "traceability": {
+            "gln_total": gln_total, "gln_date": gln_date, "gln_by_province": gln_by_province,
+            "tags_total": tags_total, "tags_date": tags_date,
+            "aht_count": aht_count, "aht_date": aht_date,
+            "aht_cattle": aht_cattle, "aht_cattle_date": aht_cattle_date,
+        },
         # ── feedlot order timeline (retained) ──
         "timeline":            timeline,
         "latest_date":         detail.get("export_date") or industry_date,

@@ -1,3 +1,11 @@
+As at 2026-09-24 (session 78c -- Cowork, user-triggered RMIS ingest -- master now **3,850 rows**, 143 rows added; **dashboard rebuilt, snapshot unchanged at 18 September 2026, 84 weekly points, validation passed**):
+
+**Session 78c (24 Sep, RMIS export 22 Sep and RMIS stats update):**
+
+- RMIS industry channel 3,591,419 doses to 22 Sep (up 777,413 since 3 Sep); feedlot 2,490,576. GP Sedibeng feedlot jump of 500,020 needs confirming.
+- GLN registrations 14,209; tags 192,199 (national only, provincial table missing from the message); 20 AHTs have vaccinated 165,104 cattle. Stats recorded at 24 Sep, as-at date not stated.
+- Fixed three stale RMIS display paths (municipality list pooling all exports, June province totals, June vet/site cards) and added a traceability row to the RMIS tab.
+
 As at 2026-09-22 (session 77b -- Cowork, fifth run of the day -- master now **3,707 rows**, 2 rows added; **dashboard rebuilt, snapshot unchanged at 18 September 2026, 84 weekly points, validation passed, 1,979,725 bytes**):
 
 **Session 77b (22 Sep, Ministerial private-sector vaccine manufacturing statement):**

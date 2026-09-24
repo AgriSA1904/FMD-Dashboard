@@ -730,7 +730,7 @@
   <section class="tab-section" data-tab="rmis" id="rmisSection">
     <div class="kicker">Industry distribution view</div>
     <h2>RMIS: Industry vaccine distribution.</h2>
-    <p style="color:var(--charcoal);font-size:14px;margin-top:calc(-1 * var(--sp-6));margin-bottom:var(--sp-6)" id="rmisSubtitle">Tracked by the Red Meat Industry Service (RMIS). Covers the private industry channel — doses allocated to and distributed by industry across all sectors (feedlot, commercial farms, stud). Complements the state programme doses tracked in the provincial data above. Cumulative from rollout start.</p>
+    <p style="color:var(--charcoal);font-size:14px;margin-top:calc(-1 * var(--sp-6));margin-bottom:var(--sp-6)" id="rmisSubtitle">Tracked by the Red Meat Industry Service (RMIS). Covers the private industry channel, being doses allocated to and distributed by industry across all sectors (feedlot, commercial farms, stud). Complements the state programme doses tracked in the provincial data above. Cumulative from rollout start.</p>
 
     <!-- KPI row -->
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:var(--sp-4);margin-bottom:var(--sp-6)">
@@ -738,6 +738,14 @@
       <div class="card" id="rmisKpiOrders"></div>
       <div class="card" id="rmisKpiVets"></div>
       <div class="card" id="rmisKpiDest"></div>
+    </div>
+
+    <!-- Traceability and field support row (session 78c) -->
+    <h3 style="margin-bottom:var(--sp-4)">Traceability and field support.</h3>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:var(--sp-4);margin-bottom:var(--sp-6)">
+      <div class="card" id="rmisKpiGln"></div>
+      <div class="card" id="rmisKpiTags"></div>
+      <div class="card" id="rmisKpiAht"></div>
     </div>
 
     <!-- Province x manufacturer stacked bar + Sector breakdown -->
@@ -1895,14 +1903,28 @@ if (data.rmis) try {
   const kpiVets = document.getElementById('rmisKpiVets');
   if (kpiVets) {
     const vp = rmis.vet_practices || rmis.unique_vets || 0;
-    kpiVets.innerHTML = `<div class="kpi-label">Vet practices ordering</div><div class="kpi-value">${vp}</div><div class="kpi-sub">private practices in the RMIS system</div>`;
+    kpiVets.innerHTML = `<div class="kpi-label">Vet practices ordering</div><div class="kpi-value">${vp}</div><div class="kpi-sub">private practices in the RMIS system${rmis.vet_practices_date ? ' &nbsp;·&nbsp; as at '+fmtD(rmis.vet_practices_date) : ''}</div>`;
   }
 
   const kpiDest = document.getElementById('rmisKpiDest');
   if (kpiDest) {
     const vs = rmis.vaccination_sites || rmis.unique_destinations || 0;
-    kpiDest.innerHTML = `<div class="kpi-label">GLN vaccination sites</div><div class="kpi-value">${fmt(vs)}</div><div class="kpi-sub">registered farm and feedlot locations</div>`;
+    kpiDest.innerHTML = `<div class="kpi-label">GLN vaccination sites</div><div class="kpi-value">${fmt(vs)}</div><div class="kpi-sub">distinct locations that have received industry vaccine${rmis.vaccination_sites_date ? ' &nbsp;·&nbsp; as at '+fmtD(rmis.vaccination_sites_date) : ''}</div>`;
   }
+
+  const tr = rmis.traceability || {};
+  const kpiGln = document.getElementById('rmisKpiGln');
+  if (kpiGln) kpiGln.innerHTML = tr.gln_total
+    ? `<div class="kpi-label">Production units registered</div><div class="kpi-value">${fmt(tr.gln_total)}</div><div class="kpi-sub">GLNs issued to farms, communal land, feedlots, auctions, abattoirs and vets &nbsp;·&nbsp; as at ${fmtD(tr.gln_date)}</div>`
+    : `<div class="kpi-label">Production units registered</div><div class="kpi-value">—</div><div class="kpi-sub">not yet reported</div>`;
+  const kpiTags = document.getElementById('rmisKpiTags');
+  if (kpiTags) kpiTags.innerHTML = tr.tags_total
+    ? `<div class="kpi-label">Tags distributed to provinces</div><div class="kpi-value">${fmt(tr.tags_total)}</div><div class="kpi-sub">to support vaccination record keeping &nbsp;·&nbsp; as at ${fmtD(tr.tags_date)}</div>`
+    : `<div class="kpi-label">Tags distributed to provinces</div><div class="kpi-value">—</div><div class="kpi-sub">not yet reported</div>`;
+  const kpiAht = document.getElementById('rmisKpiAht');
+  if (kpiAht) kpiAht.innerHTML = tr.aht_cattle
+    ? `<div class="kpi-label">Cattle vaccinated by RMIS animal health technicians</div><div class="kpi-value">${fmt(tr.aht_cattle)}</div><div class="kpi-sub">${tr.aht_count||''} technicians deployed in Gauteng, North West and Free State in support of state veterinary services; included in provincial totals &nbsp;·&nbsp; as at ${fmtD(tr.aht_cattle_date)}</div>`
+    : `<div class="kpi-label">Cattle vaccinated by RMIS animal health technicians</div><div class="kpi-value">—</div><div class="kpi-sub">not yet reported</div>`;
 
   if (chartJsReady) {
     const pine = BRAND.pine, mist = BRAND.mist;
