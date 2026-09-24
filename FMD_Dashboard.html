@@ -434,6 +434,81 @@
   .news-item h3 a { color:var(--pine); text-decoration:none; }
   .news-item h3 a:hover { text-decoration:underline; }
   .news-item p { margin:0; color:var(--charcoal); font-size:16px; }
+/* MOBILE_LAYER v1 */
+  /* Grid children must be allowed to shrink, or charts and tables push the page wider than the phone */
+  .grid-2 > *, .grid-3 > *, .grid-3c > *, .kpi-grid > *, .route-grid > * { min-width: 0; }
+  .table-scroll { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .table-scroll > table { min-width: 100%; }
+  .tab-nav-wrap { position: sticky; top: 0; z-index: 100; }
+
+  @media (max-width: 720px) {
+    body { font-size: 15px; }
+    header { padding: 28px 16px 24px; }
+    .brand-mark { margin-bottom: 16px; }
+    .brand-mark svg { width: 120px; height: auto; }
+    .title-block h1 { font-size: 28px; }
+    .title-block .subtitle { font-size: 15px; }
+    main { padding: 0 16px 48px; overflow-x: clip; }
+    section { margin-bottom: 40px; }
+    h2 { font-size: 22px; margin-bottom: 28px; }
+    h3 { font-size: 15px; }
+
+    /* Tabs: smaller chips, fade on the right edge to show there is more to swipe */
+    .tab-nav { margin: 0 -16px; padding: 0 16px; }
+    .tab-btn { padding: 14px 12px; font-size: 11px; letter-spacing: 0.4px; }
+    .tab-nav-wrap::after {
+      content: ""; position: absolute; top: 0; right: -16px; bottom: 2px; width: 36px;
+      pointer-events: none; background: linear-gradient(to right, rgba(16,45,45,0), var(--pine));
+    }
+    .tab-section.tab-active { padding-top: 28px; }
+    .alert-banner.tab-section.tab-active { margin-top: 28px; }
+
+    /* Cards and KPIs */
+    .card, .card-soft { padding: 20px 16px; }
+    .kpi-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+    .kpi { padding: 14px; }
+    main [style*="minmax(160px"], main [style*="minmax(180px"], main [style*="minmax(200px"] {
+      grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 10px !important;
+    }
+    .kpi-value { font-size: 24px; overflow-wrap: anywhere; }
+    .kpi-sub { font-size: 12px; }
+    .alert-banner { padding: 24px 20px; gap: 12px; margin-bottom: 28px; }
+    .alert-figure { font-size: 44px; }
+    .alert-headline { font-size: 18px; }
+
+    /* Charts */
+    .chart-wrap { height: 260px; }
+    .chart-wrap.tall { height: 340px; }
+
+    /* Tables: scroll sideways inside the card, province column stays in view */
+    th, td { padding: 8px 10px; }
+    .table-scroll th, .table-scroll td { white-space: nowrap; }
+    .table-scroll td.cell-long { white-space: normal; min-width: 220px; }
+    .table-scroll th:first-child, .table-scroll td:first-child {
+      position: sticky; left: 0; z-index: 1; text-align: left;
+    }
+    .table-scroll td:first-child { background: var(--white); }
+    .table-scroll th:first-child, .table-scroll tfoot td:first-child { background: var(--bone); }
+    .progress-bar { min-width: 80px; }
+
+    /* Provincial list: name and cases on one line, coverage bar underneath */
+    .prov-row { grid-template-columns: 4px 1fr auto; row-gap: 6px; }
+    .prov-row .accent-bar { grid-row: span 2; height: 100%; min-height: 36px; }
+    .prov-row .cov { grid-column: 2 / -1; }
+
+    /* Vaccine order and news tabs */
+    .step-strip { grid-template-columns: 1fr 1fr; }
+    .journey { grid-template-columns: 1fr; }
+    .route-head { padding: 16px; }
+    .route-head h3 { font-size: 21px; }
+    .route-body { padding: 18px 16px; }
+    .flow-step p { font-size: 15px; }
+    .j-step h4 { font-size: 17px; }
+    .news-item { padding: 16px; }
+    .news-item p { font-size: 15px; }
+
+    footer { padding: 48px 16px; margin-top: 48px; }
+  }
 </style>
 </head>
 <body>
@@ -10505,6 +10580,45 @@ if (chartJsReady && data.ministerial_comparison) try {
     filt.addEventListener('click', function(e){ var b=e.target.closest('.news-chip'); if(!b) return; active=b.dataset.cat; render(); });
     render();
   } catch (e) { console.error('News tab error:', e); }
+}());
+</script>
+<script>
+/* MOBILE_LAYER v1 */
+(function () {
+  function wrapTables(root) {
+    (root || document).querySelectorAll('table').forEach(function (t) {
+      var p = t.parentElement;
+      if (!p || p.classList.contains('table-scroll')) return;
+      var w = document.createElement('div');
+      w.className = 'table-scroll';
+      p.insertBefore(w, t); w.appendChild(t);
+    });
+    (root || document).querySelectorAll('.table-scroll td').forEach(function (c) {
+      if (!c.dataset.len && (c.textContent || '').trim().length > 40) c.classList.add('cell-long');
+      c.dataset.len = 1;
+    });
+  }
+  wrapTables();
+  var main = document.querySelector('main');
+  if (main && window.MutationObserver) {
+    new MutationObserver(function () { wrapTables(main); })
+      .observe(main, { childList: true, subtree: true });
+  }
+  var nav = document.getElementById('tabNav');
+  if (nav && !nav.parentElement.classList.contains('tab-nav-wrap')) {
+    var wrap = document.createElement('div');
+    wrap.className = 'tab-nav-wrap';
+    nav.parentElement.insertBefore(wrap, nav); wrap.appendChild(nav);
+    nav.style.position = 'static';
+  }
+  if (nav) nav.addEventListener('click', function (e) {
+    var b = e.target.closest('.tab-btn'); if (!b) return;
+    var left = b.offsetLeft - (nav.clientWidth - b.offsetWidth) / 2;
+    nav.scrollTo({ left: left, behavior: 'smooth' });
+  });
+  if (window.Chart && window.matchMedia('(max-width: 720px)').matches) {
+    try { Chart.defaults.font.size = 11; } catch (e) {}
+  }
 }());
 </script>
 </body>

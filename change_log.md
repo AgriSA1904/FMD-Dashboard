@@ -5732,3 +5732,17 @@ Rebuilt via importlib. Snapshot unchanged at 18 September 2026, 84 weekly points
 - Decide whether to add the OBP suspension (6 September) and Egypt veterinary certificate (5 September) as `policy` rows from a primary Ministry source.
 - Reconcile the 23 million imported doses figure against the Ministry's procured totals.
 - All items carried forward from session 77b.
+
+## Session 78b. 24 September 2026. Mobile layout.
+
+### What changed
+
+- Added a mobile layout layer to `scripts/dashboard_template.html` and the built `FMD_Dashboard.html` through `scripts/mobile_patch.py`. The script is marker-based and safe to run more than once. Backup of the template before the change: `scripts/dashboard_template.pre-mobile.html`.
+- Cause of the problem: wide tables (up to 1,100 pixels on the provincial tab) and grid cards that could not shrink pushed the page wider than the phone screen, so phones zoomed the whole page out.
+- On screens 720 pixels wide or less: 16 pixel side margins, smaller headings, two-column KPI cards, shorter charts, tables that scroll sideways inside their card with the province column pinned, a fade on the tab bar to show there are more tabs, and the selected tab scrolls into view.
+- Desktop layout unchanged. Checked at 390 pixels on every tab: page width now equals screen width.
+- No data changes. Master rows unchanged at 3,707.
+
+### Action items for next run
+
+- None for layout. The template carries the change, so future rebuilds keep it.
