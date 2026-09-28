@@ -5786,3 +5786,96 @@ Rebuilt via importlib. Snapshot unchanged at 18 September 2026 (no programme-sou
 - Confirm the 500,020-dose Sedibeng feedlot increase with RMIS.
 - The industry allocation of 2,500,000 (22 Jun) is now well below distribution of 3,591,419. An updated allocation figure is needed.
 - All items carried forward from sessions 78 and 77b.
+
+
+## Session 79. 24 September 2026. Scheduled inbox check, no new submissions.
+
+### Sources processed
+
+| Source | Effective date | Source org | Outcome |
+|---|---|---|---|
+| All inbox subfolders, root dated folders, `AgriSA FMD Updates/` | n/a | n/a | No files newer than the session 78c ingest (24 Sep, 09:05). The newest inbox file is the RMIS 22 September export, already ingested in 78c. |
+| SharePoint search (modified since 23 Sep) | n/a | n/a | Only project state files, the dashboard and scripts changed. No new submissions in the cloud that had not yet synced. |
+
+No new dated weekly folder (for example `24 Sep 2026/`) exists in the project root.
+
+### Rows
+
+None added. Master unchanged at 3,850 data rows.
+
+### Dashboard
+
+Rebuilt via importlib as a check. Snapshot unchanged at 18 September 2026, 84 weekly points, validation passed. Output is identical to the session 78c build, so there is nothing new to publish. No GitHub push this run.
+
+### Action items for next run
+
+- Watch for the Friday 25 September provincial submissions and the next consolidated AgriSA weekly xlsx, which is what will move the snapshot past 18 September.
+- MPO Week 49, next ICC update, and follow-up provincial JOC packs (EC, GP, KZN, LP, NC, WC have not sent new figures in the latest cycle).
+- All items carried forward from sessions 78c, 78 and 77b (RMIS provincial tag breakdown and as-at date, Sedibeng 500,020 feedlot increase, updated industry allocation figure, 23 million imported doses reconciliation, OBP suspension policy row).
+
+
+## Session 80. 28 September 2026. Scheduled inbox check, no new submissions.
+
+### Sources processed
+
+| Source | Effective date | Source org | Outcome |
+|---|---|---|---|
+| All inbox subfolders, root dated folders, `AgriSA FMD Updates/` | n/a | n/a | No files newer than the session 78c ingest (24 Sep, 07:00). The newest inbox file is the RMIS 22 September export, already ingested in 78c. |
+| Full project tree scan (files newer than 24 Sep 09:10, excluding backups/scripts/dashboard/master) | n/a | n/a | Empty -- nothing new anywhere in the project folder. |
+
+No new dated weekly folder (for example `28 Sep 2026/`) exists in the project root.
+
+### Rows
+
+None added. Master unchanged at 3,850 data rows.
+
+### Dashboard
+
+Rebuilt via importlib as a check. Snapshot unchanged at 18 September 2026, 84 weekly points, validation passed (1,930,222 bytes). Output content identical to the session 78c/79 build, so there is nothing new to publish. No GitHub push this run.
+
+### Action items for next run
+
+- Watch for the next consolidated AgriSA weekly xlsx and Friday provincial submissions, which is what will move the snapshot past 18 September.
+- MPO Week 49, next ICC update, and follow-up provincial JOC packs (EC, GP, KZN, LP, NC, WC have not sent new figures since the 10-18 Sep cycle).
+- All items carried forward from sessions 78c, 78 and 77b (RMIS provincial tag breakdown and as-at date, Sedibeng 500,020 feedlot increase, updated industry allocation figure, 23 million imported doses reconciliation, OBP suspension policy row).
+- Stale local git clone at `FMD-Dashboard/` (last commit session 28, 5 June 2026) is out of sync with the published repo and is not used by the current push pipeline, which re-clones fresh per CLAUDE.md. Flagged for cleanup; not touched this session.
+
+
+## Session 80b. 28 September 2026. Rerun of the scheduled update, news scan and publish.
+
+The 08:00 scheduled run could not reach the project folder, because no folder was connected to that session. Jay asked us to run it again and push. Session 80 had already checked the inbox earlier today but had not run the news scan, so this run picks up from there.
+
+### Sources processed
+
+| Source | Effective date | Source org | Outcome |
+|---|---|---|---|
+| All inbox subfolders, root dated folders, `AgriSA FMD Updates/` | n/a | n/a | Nothing newer than the session 78c ingest. Confirms session 80. |
+| Web search, last 7 days (national, provincial, trade, industry bodies, Afrikaans media, international) | n/a | n/a | 3 new news items added to `news_feed.json`. |
+
+### Rows
+
+None added. Master unchanged at 3,850 data rows.
+
+### News items added
+
+| Date | Headline | Source | Relation to master |
+|---|---|---|---|
+| 2026-09-26 | Namibia confirms 17 foot and mouth cases in the Karasburg district. | Republikein | Regional context only. Karasburg lies in the ||Kharas region, which borders the Northern Cape. |
+| 2026-09-25 | Minister sets a target of 80 percent of the national herd vaccinated by December. | Business Day | Compares with 63 percent coverage in the 14 Sep Ministry Portfolio Committee table. Repeats the 23 million imported doses figure, which still conflicts with the 16,000,000 procured held in the master. Not ingested. |
+| 2026-09-23 | Namibia declares an outbreak and suspends livestock movement and meat exports. | Farmer's Weekly | Regional trade context only. |
+
+We considered and left out items that duplicate existing feed entries (the 22 Sep private-sector manufacturing announcement as covered by the DA, EWN, SABC, ProAgri and Moneyweb) and an SABC item on the Agri Limpopo congress that dates from August.
+
+`news_feed.json` backed up to `news_feed.json.bak_session80b`, `last_checked` set to 2026-09-28, 10 items held.
+
+### Dashboard
+
+Rebuilt via importlib. Snapshot unchanged at 18 September 2026, 84 weekly points, validation passed. The three new items are present in the built payload for the "Latest news" tab.
+
+### Action items for next run
+
+- Watch for any South African movement or import restrictions linked to the Namibian outbreak, especially along the Northern Cape border.
+- The Minister's 80 percent by December target could be added as a policy row if it appears in a primary Ministry or Department statement.
+- The 08:00 scheduled task needs the FMD Vaccine Data folder attached so it can run unattended.
+- All items carried forward from session 80.
+- Carried a remote-only change into the template. Commit `da0a10e` (24 Sep) changed the RMIS operational centre number from 067 391 4530 to 087 804 1701 by editing the published HTML directly, so every local rebuild would have reverted it. We made the same change in `scripts/dashboard_template.html` (backup `dashboard_template.html.bak_session80b_rmis_number`) and rebuilt, so the correct number now survives rebuilds.

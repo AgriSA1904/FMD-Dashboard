@@ -1,3 +1,15 @@
+As at 2026-09-28 (session 80b -- Cowork, user-requested rerun of the scheduled update -- inbox still empty, master unchanged at **3,850 rows**; news feed updated with 3 items; dashboard rebuilt, snapshot 18 September 2026, 84 weekly points, validation passed; pushed to GitHub):
+
+**Session 80b (28 Sep, news scan and publish):** the 08:00 scheduled run could not reach the project folder, so we reran it on request. Inbox still empty since the 78c ingest. Added three news items: Namibia's Karasburg outbreak (declared 23 Sep, 17 confirmed cases by 26 Sep, exports halted) and the Minister's target of 80 percent of the national herd vaccinated by December (Business Day, 25 Sep), which compares with 63 percent coverage in the 14 Sep Ministry table and repeats the unreconciled 23 million imported doses figure. No media figures were ingested as programme data.
+
+As at 2026-09-28 (session 80 -- Cowork, scheduled inbox check -- no new submissions, master unchanged at **3,850 rows**; dashboard rebuilt as a check, identical output, snapshot 18 September 2026, 84 weekly points, validation passed; no push needed):
+
+**Session 80 (28 Sep, empty inbox check):** scanned every inbox subfolder, the root for a new dated folder, and the full project tree for anything modified since the session 78c ingest (24 Sep, 07:00). Nothing new -- the newest inbox file remains the RMIS 22 September export, already ingested in 78c. Parked items unchanged; see session 79 below and change_log.md session 80.
+
+As at 2026-09-24 (session 79 -- Cowork, scheduled inbox check -- no new submissions, master unchanged at **3,850 rows**; dashboard rebuilt as a check, identical output, snapshot 18 September 2026, 84 weekly points, validation passed; no push needed):
+
+**Session 79 (24 Sep, empty inbox check):** scanned every inbox subfolder, the root for a new dated folder and SharePoint for anything modified since 23 Sep. Nothing newer than the session 78c RMIS ingest. Parked items unchanged; see session 78c below and change_log.md session 79.
+
 As at 2026-09-24 (session 78c -- Cowork, user-triggered RMIS ingest -- master now **3,850 rows**, 143 rows added; **dashboard rebuilt, snapshot unchanged at 18 September 2026, 84 weekly points, validation passed**):
 
 **Session 78c (24 Sep, RMIS export 22 Sep and RMIS stats update):**
