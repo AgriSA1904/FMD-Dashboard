@@ -5879,3 +5879,47 @@ Rebuilt via importlib. Snapshot unchanged at 18 September 2026, 84 weekly points
 - The 08:00 scheduled task needs the FMD Vaccine Data folder attached so it can run unattended.
 - All items carried forward from session 80.
 - Carried a remote-only change into the template. Commit `da0a10e` (24 Sep) changed the RMIS operational centre number from 067 391 4530 to 087 804 1701 by editing the published HTML directly, so every local rebuild would have reverted it. We made the same change in `scripts/dashboard_template.html` (backup `dashboard_template.html.bak_session80b_rmis_number`) and rebuilt, so the correct number now survives rebuilds.
+
+
+## Session 81. 29 September 2026. Scheduled update, news scan and publish.
+
+Scheduled 08:00 run (fired 09:23 South African time). No session had been logged for 29 September before this run.
+
+### Sources processed
+
+| Source | Effective date | Source org | Outcome |
+|---|---|---|---|
+| `inbox/Portfolio Committee Presentations/260922_PRESENTATION_UPDATE_ON_THE_FOOT_AND_MOUTH_DISEASE_SITUATION_AND_MASS_VACCINATION_STRATEGY_FINAL.pdf` (arrived 29 Sep, 08:30) | 2026-09-14 | Ministry | Duplicate. A re-saved copy of the 22 September presentation ingested in session 76 (PDF modified 21 Sep rather than 18 Sep). All 15 pages have identical text and identical embedded images; only the image order differs on pages 4, 5 and 10. No rows added. |
+| All other inbox subfolders, root dated folders, `AgriSA FMD Updates/` | n/a | n/a | Nothing newer than the session 78c ingest. |
+| Web search, last 7 days (national, provincial, trade, industry bodies, Afrikaans media, international) | n/a | n/a | 3 new news items added to `news_feed.json`. |
+
+### Rows
+
+None added. Master unchanged at 3,850 data rows. No backup of the master was needed.
+
+### News items added
+
+| Date | Headline | Source | Relation to master |
+|---|---|---|---|
+| 2026-09-28 | Free State confirms a new case at Fauresmith, provincial total reaches 799. | Farmer's Weekly | Moves past the 796 (spreadsheet) and 798 (media release) figures held for 18 Sep. The 1,664,385 cattle vaccinated is lower than the 1,671,316 in the 18 Sep pack, and farmer self-vaccination notifications rose from 115 to 128. Media figures, not ingested. |
+| 2026-09-24 | Department says 19 million of 21 million doses secured this year have been distributed. | EWN | A fourth national supply figure, alongside 16,000,000 (22 Sep Portfolio Committee) and 17,000,000 (5 Aug statement) procured in the master and the 23 million imported cited by the Minister. Well above the 11.8 million received by provinces in the 14 Sep Ministry table. Not ingested. |
+| 2026-09-28 | Namibia eases movement restrictions outside the ||Kharas region. | New Era | Regional context only. ||Kharas, which borders the Northern Cape, stays under lockdown. |
+
+We left out items that duplicate existing entries (further coverage of the 22 Sep private sector manufacturing announcement), Namibian livestock show cancellations and UK import restrictions on southern Namibian meat (regional, already covered by the feed), and older articles that surfaced in search (July and March 2026).
+
+`news_feed.json` backed up to `news_feed.json.bak_session81`, `last_checked` set to 2026-09-29, 13 items held.
+
+### Minister of Agriculture transition, partly resolved
+
+Media reports from 10 and 12 July 2026 (DA and Maroela Media, on the private vaccine imports settlement) already name Willie Aucamp as Minister of Agriculture, and a Farmer's Weekly article of 27 March names John Steenhuisen. The change therefore took effect between late March and early July 2026, not in September. This is media evidence only; the exact date still needs a primary source. No rows changed.
+
+### Dashboard
+
+Rebuilt via importlib. Snapshot unchanged at 18 September 2026, 84 weekly points, validation passed (1,932,380 bytes). The three new items are present in the built payload for the "Latest news" tab. The RMIS centre number fix from session 80b is still present.
+
+### Action items for next run
+
+- Watch for the next Free State pack to confirm 799 cases and the vaccinated figure.
+- The national supply figures (16, 17, 21 and 23 million) need a single verified statement from the Department; this matches the ICC's open request.
+- Pin down the date the ministerial transition took effect from a primary source.
+- All items carried forward from sessions 80b and 80.
