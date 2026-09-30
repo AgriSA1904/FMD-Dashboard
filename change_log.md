@@ -5969,3 +5969,39 @@ Rebuilt via importlib. Headline snapshot unchanged at 18 September 2026 (MPO is 
 - MPO Week 50.
 - A Week 29 era MPO reinfection note carried into the dashboard payload contains an em dash; tidy it with a superseding row when convenient.
 - All items carried forward from session 81.
+
+
+## Session 82b. 30 September 2026. Scheduled update, news scan and publish.
+
+Scheduled 08:00 run (started 08:04 South African time). Session 82 (MPO Week 49) had already run and been pushed today as commit `c6d132f`, so this run does not repeat that ingest and takes the next letter suffix.
+
+### Sources processed
+
+| Source | Effective date | Source org | Outcome |
+|---|---|---|---|
+| All inbox subfolders, root dated folders | n/a | n/a | Nothing newer than the session 82 ingest. The newest inbox file remains the MPO Week 49 PDF, already ingested. |
+| Web search, last 7 days (national, provincial, trade, industry bodies, Afrikaans media, international) | n/a | n/a | 1 new news item added to `news_feed.json`. |
+
+### Rows
+
+None added. Master unchanged at 3,878 data rows. No backup of the master was needed.
+
+### News items added
+
+| Date | Headline | Source | Relation to master |
+|---|---|---|---|
+| 2026-09-29 | Farmers and decision-makers to meet at Nampo Alfa on the road to recovery from foot and mouth disease. | African Farming | Event notice for 2 October at Nampo Park; AgriSA and the main commodity bodies confirmed. No figures, nothing to ingest. |
+
+We left out items that duplicate existing feed entries (Maroela Media's 23 September coverage of the ARC private manufacturing decision, which adds a TLU SA reaction), the United Kingdom's 25 September suspension of fresh meat imports from southern Namibia (regional, already covered), and articles that surfaced in search but fall outside the seven-day window (Farmer's Weekly and Bizcommunity pieces of 11 September on Nampo Cape and the SAPPO annual general meeting, and older items from March to August). We found no new primary Ministry or Department statement in the window, so no policy rows were added.
+
+`news_feed.json` backed up to `news_feed.json.bak_session82b`, `last_checked` set to 2026-09-30, 14 items held.
+
+### Dashboard
+
+Rebuilt via importlib. Snapshot unchanged at 18 September 2026, 84 weekly points, validation passed (1,933,837 bytes). The new item is present in the built payload for the "Latest news" tab, and the session 82 MPO figures (962,304 first round) are still present.
+
+### Action items for next run
+
+- The Nampo Alfa discussion on 2 October may produce a recorded outcome or statement worth adding to the feed.
+- MPO Week 50.
+- All items carried forward from sessions 82 and 81.

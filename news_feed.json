@@ -1,7 +1,17 @@
 {
-  "last_checked": "2026-09-29",
+  "last_checked": "2026-09-30",
   "note": "Curated daily by the scheduled ingest. Items are media and public reporting, not programme data. Figures quoted here do not feed the dashboard headlines unless they are also ingested into master_data.csv from a programme source.",
   "items": [
+    {
+      "date": "2026-09-29",
+      "headline": "Farmers and decision-makers to meet at Nampo Alfa on the road to recovery from foot and mouth disease.",
+      "source": "African Farming",
+      "url": "https://www.africanfarming.com/2026/09/29/fmd-farmers-have-say-decision-makers-listen-nampo-alfa-road-to-recovery/",
+      "summary": "A structured discussion on recovery from foot and mouth disease takes place at Nampo Park on Friday 2 October, with morning presentations on red meat strategy and the impact on the food system and farmer-led sessions in the afternoon. AgriSA, provincial affiliates, commodity bodies including the RPO, MPO, SAPPO and RMIS, organised agriculture groups, feedlots and processors are confirmed to attend. The discussion will be recorded and shared with all invited organisations. No programme figures, nothing to ingest.",
+      "category": "other",
+      "province": "national",
+      "added": "2026-09-30"
+    },
     {
       "date": "2026-09-28",
       "headline": "Free State confirms a new case at Fauresmith, provincial total reaches 799.",

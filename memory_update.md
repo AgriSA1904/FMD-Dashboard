@@ -1,3 +1,7 @@
+As at 2026-09-30 (session 82b -- Cowork, scheduled update -- inbox empty since session 82, master unchanged at **3,878 rows**; news feed updated with 1 item; dashboard rebuilt, snapshot 18 September 2026, 84 weekly points, validation passed; pushed to GitHub):
+
+**Session 82b (30 Sep, news scan and publish):** added the Nampo Alfa "Road to Recovery" farmer and decision-maker discussion on 2 October (African Farming, 29 Sep). No new primary Ministry statement in the last seven days.
+
 As at 2026-09-30 (session 82 -- Cowork, user-requested MPO Week 49 ingest -- master now **3,878 rows**, 28 rows added; dashboard rebuilt, snapshot unchanged at 18 September 2026, 84 weekly points, validation passed; pushed to GitHub):
 
 **Session 82 (30 Sep, MPO Week 49 / 25 Sep):** dairy first round 962,304 (up 2,009, all WC). Boosters 693,762 (up 55,426: EC +13,181 to 223,973; WC +42,245 to 102,951, largely backlog records). LP, MP, NW and NC still no boosters. Farms 175 cumulative, 128 active, per-province map identical to Week 48. KZN a further 41,000 doses delivered; over 110,000 via IDtrax to date. No new dairy cases or reinfections.
