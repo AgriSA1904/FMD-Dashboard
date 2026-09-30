@@ -5923,3 +5923,49 @@ Rebuilt via importlib. Snapshot unchanged at 18 September 2026, 84 weekly points
 - The national supply figures (16, 17, 21 and 23 million) need a single verified statement from the Department; this matches the ICC's open request.
 - Pin down the date the ministerial transition took effect from a primary source.
 - All items carried forward from sessions 80b and 80.
+
+### Publish
+
+Commit `b6d238d` pushed to `main`; local HEAD matches `origin/main`. The remote had no commit newer than session 80b before the push. The "pages build and deployment" workflow for `b6d238d` concluded success. The "Build and Deploy FMD Dashboard" workflow did not run, as expected: it is path-filtered to `master_data.csv`, `scripts/build_dashboard.py` and `scripts/dashboard_template.html`, none of which changed. This publish note is held locally and will go up with the next push.
+
+
+## Session 82. 30 September 2026. MPO Week 49 ingest.
+
+Run at Jay's request. The MPO Week 49 update was saved to the inbox at 10:23 on 29 September, about an hour after session 81 finished, so session 81 did not see it.
+
+### Sources processed
+
+| Source | Effective date | Source org | Outcome |
+|---|---|---|---|
+| `inbox/MPO/Week 49 - Update on the state of FMD and vaccine rollouts in the dairy industry.pdf` | 2026-09-25 | MPO | 28 rows, same shape as Week 48. Per-province active case counts read from the embedded map image (saved as `archive/2026-09-30/mpo_week49_map.jpg`). |
+
+### Key figures
+
+- Dairy cows vaccinated, first round: 962,304 nationally, up 2,009, all in the Western Cape (240,387 to 242,396).
+- Boosters: 693,762 nationally, up 55,426. Eastern Cape up 13,181 to 223,973. Western Cape up 42,245 to 102,951, which the MPO says reflects outstanding records from previous months now captured rather than a single week of work. KwaZulu-Natal, Free State and Gauteng unchanged. Limpopo, Mpumalanga, North West and Northern Cape still report no boosters.
+- Dairy farms: 175 cumulative, 128 active, both unchanged. Per-province active map identical to Week 48 (KZN 62, EC 20, GP 17, FS 10, WC 9, NW 6, MP 3, LP 1, NC 0).
+- KwaZulu-Natal: a further 41,000 doses delivered during the week; over 110,000 doses ordered and delivered through the IDtrax platform to date (held in notes only, as a lower bound).
+- No new dairy cases or reinfections reported in any region.
+
+### Arithmetic cross-checks
+
+All passed: provincial first-round figures sum to 962,304; provincial boosters sum to 693,762; the northern provinces' 32,838 boosters equal Free State plus Gauteng; the map sums to 128 active farms.
+
+### Data quality flags
+
+- The per-province active dairy case map is now identical to Week 48, and apart from the Eastern Cape and Western Cape it has not changed since 19 June. The open query to the MPO on whether the map is still being refreshed stands.
+- Free State second-round boosters (19,118) still exceed first-round vaccinations (15,104). The MPO explains that state vets are referring more farmers, including non-members and universities, to the MPO for the second round.
+
+### Rows
+
+28 added, 0 duplicates. Master 3,850 to 3,878 rows. Backup `master_data.csv.bak_session82`. Ingest script `scripts/ingest_s82_mpo_w49.py`.
+
+### Dashboard
+
+Rebuilt via importlib. Headline snapshot unchanged at 18 September 2026 (MPO is not a programme source), 84 weekly points, validation passed (1,932,863 bytes). Checked in the payload: MPO latest date 25 Sep, national dairy first round 962,304, EC booster 223,973, WC booster 102,951, WC first round 242,396, farms 175 and 128 dated 25 Sep. The national booster total is not shown as a single number; the dashboard adds up the provincial boosters, which sum to 693,762.
+
+### Action items for next run
+
+- MPO Week 50.
+- A Week 29 era MPO reinfection note carried into the dashboard payload contains an em dash; tidy it with a superseding row when convenient.
+- All items carried forward from session 81.
