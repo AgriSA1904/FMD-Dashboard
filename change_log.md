@@ -6044,3 +6044,39 @@ Rebuilt via importlib. Snapshot unchanged at 18 September 2026, 84 weekly points
 - Nampo Alfa recovery discussion outcome (2 October).
 - MPO Week 50.
 - All items carried forward from sessions 82 and 81.
+
+
+## Session 83b. 1 October 2026. Scheduled update, second run of the day, news scan and publish.
+
+Scheduled 08:00 run that started late, at 11:47 South African time. Session 83 had already run today, so this run did not repeat its work and takes the next letter suffix.
+
+### Sources processed
+
+| Source | Effective date | Source org | Outcome |
+|---|---|---|---|
+| All inbox subfolders, root dated folders, full project tree | n/a | n/a | Nothing new since session 83. The only files modified today are session 83's own outputs and the local PowerShell ingest logs. |
+| Web search, last 7 days (national, provincial, trade, industry bodies, Afrikaans media, international) | n/a | n/a | 2 new news items added to `news_feed.json`. |
+
+### Rows
+
+None added. Master unchanged at 3,878 data rows.
+
+### News items added
+
+| Date | Headline | Source | Relation to master |
+|---|---|---|---|
+| 2026-09-29 | Red Meat Producers Organisation expects no further state vaccine and urges producers to run their own programmes. | AgriOrbit (Veeplaas) | Commentary from the RPO Gauteng meeting. No figures. |
+| 2026-09-30 | Namibian report says officials warned of unregistered livestock crossing from South Africa before the outbreak. | The Namibian (via allAfrica) | Regional context for the existing Karasburg items. No South African programme figures. |
+
+We left out an undated SABC report of the Minister at the Agri Limpopo congress (13.5 million doses distributed, 10 million more expected), because its figures match early winter reporting and we could not confirm the date; the Western Cape 82 percent herd coverage release (20 August) and the Farmer's Weekly dairy piece (11 September), both outside the window; and older items that resurfaced in search. We found no new primary Ministry or Department statement, so no policy rows were added. `news_feed.json` backed up to `news_feed.json.bak_session83b`, `last_checked` 2026-10-01, 18 items held.
+
+### Dashboard
+
+Rebuilt via importlib. Snapshot unchanged at 18 September 2026, 84 weekly points, validation passed (1,937,339 bytes). Both new items are present in the built payload, and the session 82 MPO figure (962,304 first round) is still present.
+
+### Action items for next run
+
+- Nampo Alfa recovery discussion outcome (2 October).
+- MPO Week 50.
+- The scheduled run started almost four hours late today; worth checking that the desktop app was available at 08:00.
+- All items carried forward from sessions 82 and 81.
