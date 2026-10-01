@@ -1,146 +1,166 @@
 {
-  "last_checked": "2026-09-30",
-  "note": "Curated daily by the scheduled ingest. Items are media and public reporting, not programme data. Figures quoted here do not feed the dashboard headlines unless they are also ingested into master_data.csv from a programme source.",
-  "items": [
-    {
-      "date": "2026-09-29",
-      "headline": "Farmers and decision-makers to meet at Nampo Alfa on the road to recovery from foot and mouth disease.",
-      "source": "African Farming",
-      "url": "https://www.africanfarming.com/2026/09/29/fmd-farmers-have-say-decision-makers-listen-nampo-alfa-road-to-recovery/",
-      "summary": "A structured discussion on recovery from foot and mouth disease takes place at Nampo Park on Friday 2 October, with morning presentations on red meat strategy and the impact on the food system and farmer-led sessions in the afternoon. AgriSA, provincial affiliates, commodity bodies including the RPO, MPO, SAPPO and RMIS, organised agriculture groups, feedlots and processors are confirmed to attend. The discussion will be recorded and shared with all invited organisations. No programme figures, nothing to ingest.",
-      "category": "other",
-      "province": "national",
-      "added": "2026-09-30"
-    },
-    {
-      "date": "2026-09-28",
-      "headline": "Free State confirms a new case at Fauresmith, provincial total reaches 799.",
-      "source": "Farmer's Weekly",
-      "url": "https://www.farmersweekly.co.za/agri-news/south-africa/free-state-reports-new-fmd-case-despite-16-million-cattle-vaccinated/",
-      "summary": "The province reports 799 cases, of which 644 are resolved and 155 remain active under quarantine, with 1,664,385 cattle vaccinated and 128 farmer notifications to self-vaccinate. The case count moves past the 796 and 798 figures held in our master, while the vaccinated figure is lower than the 1,671,316 in the 18 September provincial pack. These are media figures and have not been ingested; we are waiting for the next Free State pack.",
-      "category": "cases",
-      "province": "FS",
-      "added": "2026-09-29"
-    },
-    {
-      "date": "2026-09-28",
-      "headline": "Namibia eases movement restrictions outside the ||Kharas region.",
-      "source": "New Era",
-      "url": "https://neweralive.na/govt-eases-fmd-restrictions/",
-      "summary": "Surveillance from 22 to 25 September found all 17 positive samples in the Karasburg district, so Namibia has lifted movement restrictions south of its veterinary cordon fence except in the ||Kharas region, which borders our Northern Cape and stays under lockdown. Regional context only; no South African figure is affected.",
-      "category": "trade",
-      "province": "national",
-      "added": "2026-09-29"
-    },
-    {
-      "date": "2026-09-26",
-      "headline": "Namibia confirms 17 foot and mouth cases in the Karasburg district.",
-      "source": "Republikein",
-      "url": "https://www.republikein.com.na/landbou/bek-en-klouseer-17-bevestigde-gevalle-by-karasburg-nmh018827-5-23127-23129-23133",
-      "summary": "Enhanced surveillance found 17 positive animals out of 199 samples, all still confined to the Karasburg state veterinary district in the ||Kharas region, which borders our Northern Cape. Four cattle moved from the affected farm to Otjozondjupa tested negative. This is regional context only and does not change any South African figure in our master.",
-      "category": "cases",
-      "province": "national",
-      "added": "2026-09-28"
-    },
-    {
-      "date": "2026-09-25",
-      "headline": "Minister sets a target of 80 percent of the national herd vaccinated by December.",
-      "source": "Business Day",
-      "url": "https://www.businessday.co.za/news/2026-09-25-aucamp-urges-quicker-rollout-of-agriculture-master-plan/",
-      "summary": "Speaking on the agriculture master plan, Minister Willie Aucamp repeated that more than 23 million doses had been imported by early September and said vaccines now move directly from airports to veterinary practices. The 80 percent target compares with the 63 percent coverage in the Ministry's 14 September Portfolio Committee table, and the 23 million import figure still conflicts with the 16 million procured held in our master.",
-      "category": "policy",
-      "province": "national",
-      "added": "2026-09-28"
-    },
-    {
-      "date": "2026-09-24",
-      "headline": "Department says 19 million of 21 million doses secured this year have been distributed.",
-      "source": "EWN",
-      "url": "https://www.ewn.co.za/2026/09/24/agriculture-minister-says-private-sector-manufacturing-fmd-vaccines-will-strengthen-outbreak-response",
-      "summary": "Reporting on the private sector licensing of the ARC vaccine, the Department of Agriculture put doses secured this year at 21 million, with 19 million distributed. This adds a fourth national supply figure alongside the 16 million and 17 million procured held in our master and the 23 million imported cited by the Minister, and is well above the 11.8 million received by provinces in the 14 September Ministry table. Not ingested pending a primary Department statement.",
-      "category": "vaccination",
-      "province": "national",
-      "added": "2026-09-29"
-    },
-    {
-      "date": "2026-09-23",
-      "headline": "Namibia declares an outbreak and suspends livestock movement and meat exports.",
-      "source": "Farmer's Weekly",
-      "url": "https://www.farmersweekly.co.za/agri-news/africa/namibia-bans-exports-and-animal-movement-after-confirmed-fmd-case/",
-      "summary": "Ten of eleven samples from a commercial herd in the Karasburg district tested positive, the first outbreak south of Namibia's veterinary cordon fence in decades. Namibia halted movement of cloven-hoofed animals and exports of livestock and meat until further notice, with possible trade and biosecurity implications for our producers.",
-      "category": "trade",
-      "province": "national",
-      "added": "2026-09-28"
-    },
-    {
-      "date": "2026-09-22",
-      "headline": "Private companies to manufacture the ARC foot and mouth vaccine under licence.",
-      "source": "Business Day",
-      "url": "https://www.businessday.co.za/news/2026-09-22-private-vaccine-makers-enlisted-to-fight-foot-and-mouth-disease/",
-      "summary": "Minister Willie Aucamp has authorised qualifying private companies to produce the Agricultural Research Council vaccine under licensing agreements. The ARC keeps the intellectual property and licensing income is ringfenced to rebuild its own manufacturing capacity.",
-      "category": "policy",
-      "province": "national",
-      "added": "2026-09-24"
-    },
-    {
-      "date": "2026-09-20",
-      "headline": "Free State confirms two new cases, provincial total reaches 798.",
-      "source": "Channel Africa",
-      "url": "https://www.channelafrica.co.za/channelafrica/news/sa-province-records-two-new-foot-and-mouth-disease-cases/",
-      "summary": "New cases in the Bultfontein and Welkom areas. Of 798 cases, 634 are resolved and 164 remain active under quarantine. More than a million cattle in the province have been vaccinated. Supports the 798 figure already held in our master against the unchanged spreadsheet figure of 796.",
-      "category": "cases",
-      "province": "FS",
-      "added": "2026-09-24"
-    },
-    {
-      "date": "2026-09-06",
-      "headline": "OBP chief executive suspended over vaccine mark-up allegations.",
-      "source": "allAfrica (Department of Agriculture statement)",
-      "url": "https://allafrica.com/stories/202609070409.html",
-      "summary": "After an urgent meeting called by the Minister, the Onderstepoort Biological Products board suspended its chief executive pending his response to allegations of inflated foot and mouth vaccine pricing.",
-      "category": "policy",
-      "province": "national",
-      "added": "2026-09-24"
-    },
-    {
-      "date": "2026-09-06",
-      "headline": "Foot and mouth disease described as a quiet business crisis.",
-      "source": "African Farming",
-      "url": "https://www.africanfarming.com/2026/09/06/foot-and-mouth-disease-south-africas-quiet-business-crisis/",
-      "summary": "Opinion piece on the knock-on effects of movement controls: reduced meat supply, higher prices for poorer households and lost trade for informal traders.",
-      "category": "analysis",
-      "province": "national",
-      "added": "2026-09-24"
-    },
-    {
-      "date": "2026-09-05",
-      "headline": "More than 23 million doses imported and all commercial dairy cattle given a first dose.",
-      "source": "The Witness",
-      "url": "https://witness.co.za/news/2026/09/05/no-new-fmd-cases-in-north-west-as-23m-vaccine-doses-imported/",
-      "summary": "Reports over 23 million doses imported through government and private sector channels, first doses for all 1.38 million commercial dairy cattle, and more than 1,000 farmers registered as authorised vaccinators. The 23 million figure is well above the 16 to 17 million the Ministry reports as procured, and needs reconciling before use.",
-      "category": "vaccination",
-      "province": "national",
-      "added": "2026-09-24"
-    },
-    {
-      "date": "2026-09-05",
-      "headline": "Veterinary certificate agreed for red meat exports to Egypt.",
-      "source": "Maroela Media",
-      "url": "https://maroelamedia.co.za/landbou/rooivleis-kry-uitvoerhupstoot-midde-bek-en-klouseer/",
-      "summary": "South Africa and Egypt have finalised negotiations on a veterinary health certificate for beef and livestock, which will give exporters a clear framework once formally signed.",
-      "category": "trade",
-      "province": "national",
-      "added": "2026-09-24"
-    },
-    {
-      "date": "2026-09-01",
-      "headline": "North West records its first week without a new case since December 2025.",
-      "source": "SAnews",
-      "url": "https://www.sanews.gov.za/south-africa/north-west-records-first-week-no-new-fmd-cases",
-      "summary": "The province had received 1,570,100 doses and vaccinated 1,413,859 animals at the time of the statement. Booster vaccinations were to start in September across all four districts and 18 local municipalities.",
-      "category": "cases",
-      "province": "NW",
-      "added": "2026-09-24"
-    }
-  ]
+ "last_checked": "2026-10-01",
+ "note": "Curated daily by the scheduled ingest. Items are media and public reporting, not programme data. Figures quoted here do not feed the dashboard headlines unless they are also ingested into master_data.csv from a programme source.",
+ "items": [
+  {
+   "date": "2026-10-01",
+   "headline": "Milk SA veterinary adviser sets out what the Section 9 regulations mean for dairy farms.",
+   "source": "Veeplaas (AgriOrbit)",
+   "url": "https://agriorbit.com/artikel-9-implikasies-vir-die-suiwelbedryf/",
+   "summary": "Dr Mark Chimes of Milk SA explains the Section 9 regulations under the Animal Diseases Act. OBP is no longer the sole importer and supplier of vaccine; any licensed entity may import and distribute approved vaccines. Owners of cloven-hoofed animals may register with the National Director of Animal Health to vaccinate their own animals, giving at least five days' notice and filing a vaccination report within 14 days. Raw milk from quarantined farms may be moved to processors under a red cross permit and may now share a tanker with milk from unaffected farms; single pasteurisation suffices for the domestic market. No programme figures, nothing to ingest.",
+   "category": "policy",
+   "province": "national",
+   "added": "2026-10-01"
+  },
+  {
+   "date": "2026-10-01",
+   "headline": "Field monitoring programme assesses the safe use of vaccine in commercial dairy, beef, feedlot and communal herds.",
+   "source": "RSG Landbou (AgriOrbit)",
+   "url": "https://agriorbit.com/rsg-landbou-1-oktober-2026/",
+   "summary": "Dr Danie Odendaal of Veearts Netwerk is working with veterinarians, farmers and producer organisations on a structured field monitoring programme evaluating vaccine safety in commercial dairy and beef herds, feedlots and communal herds. Radio interview; no figures published, nothing to ingest.",
+   "category": "other",
+   "province": "national",
+   "added": "2026-10-01"
+  },
+  {
+   "date": "2026-09-29",
+   "headline": "Farmers and decision-makers to meet at Nampo Alfa on the road to recovery from foot and mouth disease.",
+   "source": "African Farming",
+   "url": "https://www.africanfarming.com/2026/09/29/fmd-farmers-have-say-decision-makers-listen-nampo-alfa-road-to-recovery/",
+   "summary": "A structured discussion on recovery from foot and mouth disease takes place at Nampo Park on Friday 2 October, with morning presentations on red meat strategy and the impact on the food system and farmer-led sessions in the afternoon. AgriSA, provincial affiliates, commodity bodies including the RPO, MPO, SAPPO and RMIS, organised agriculture groups, feedlots and processors are confirmed to attend. The discussion will be recorded and shared with all invited organisations. No programme figures, nothing to ingest.",
+   "category": "other",
+   "province": "national",
+   "added": "2026-09-30"
+  },
+  {
+   "date": "2026-09-28",
+   "headline": "Free State confirms a new case at Fauresmith, provincial total reaches 799.",
+   "source": "Farmer's Weekly",
+   "url": "https://www.farmersweekly.co.za/agri-news/south-africa/free-state-reports-new-fmd-case-despite-16-million-cattle-vaccinated/",
+   "summary": "The province reports 799 cases, of which 644 are resolved and 155 remain active under quarantine, with 1,664,385 cattle vaccinated and 128 farmer notifications to self-vaccinate. The case count moves past the 796 and 798 figures held in our master, while the vaccinated figure is lower than the 1,671,316 in the 18 September provincial pack. These are media figures and have not been ingested; we are waiting for the next Free State pack.",
+   "category": "cases",
+   "province": "FS",
+   "added": "2026-09-29"
+  },
+  {
+   "date": "2026-09-28",
+   "headline": "Namibia eases movement restrictions outside the ||Kharas region.",
+   "source": "New Era",
+   "url": "https://neweralive.na/govt-eases-fmd-restrictions/",
+   "summary": "Surveillance from 22 to 25 September found all 17 positive samples in the Karasburg district, so Namibia has lifted movement restrictions south of its veterinary cordon fence except in the ||Kharas region, which borders our Northern Cape and stays under lockdown. Regional context only; no South African figure is affected.",
+   "category": "trade",
+   "province": "national",
+   "added": "2026-09-29"
+  },
+  {
+   "date": "2026-09-26",
+   "headline": "Namibia confirms 17 foot and mouth cases in the Karasburg district.",
+   "source": "Republikein",
+   "url": "https://www.republikein.com.na/landbou/bek-en-klouseer-17-bevestigde-gevalle-by-karasburg-nmh018827-5-23127-23129-23133",
+   "summary": "Enhanced surveillance found 17 positive animals out of 199 samples, all still confined to the Karasburg state veterinary district in the ||Kharas region, which borders our Northern Cape. Four cattle moved from the affected farm to Otjozondjupa tested negative. This is regional context only and does not change any South African figure in our master.",
+   "category": "cases",
+   "province": "national",
+   "added": "2026-09-28"
+  },
+  {
+   "date": "2026-09-25",
+   "headline": "Minister sets a target of 80 percent of the national herd vaccinated by December.",
+   "source": "Business Day",
+   "url": "https://www.businessday.co.za/news/2026-09-25-aucamp-urges-quicker-rollout-of-agriculture-master-plan/",
+   "summary": "Speaking on the agriculture master plan, Minister Willie Aucamp repeated that more than 23 million doses had been imported by early September and said vaccines now move directly from airports to veterinary practices. The 80 percent target compares with the 63 percent coverage in the Ministry's 14 September Portfolio Committee table, and the 23 million import figure still conflicts with the 16 million procured held in our master.",
+   "category": "policy",
+   "province": "national",
+   "added": "2026-09-28"
+  },
+  {
+   "date": "2026-09-24",
+   "headline": "Department says 19 million of 21 million doses secured this year have been distributed.",
+   "source": "EWN",
+   "url": "https://www.ewn.co.za/2026/09/24/agriculture-minister-says-private-sector-manufacturing-fmd-vaccines-will-strengthen-outbreak-response",
+   "summary": "Reporting on the private sector licensing of the ARC vaccine, the Department of Agriculture put doses secured this year at 21 million, with 19 million distributed. This adds a fourth national supply figure alongside the 16 million and 17 million procured held in our master and the 23 million imported cited by the Minister, and is well above the 11.8 million received by provinces in the 14 September Ministry table. Not ingested pending a primary Department statement.",
+   "category": "vaccination",
+   "province": "national",
+   "added": "2026-09-29"
+  },
+  {
+   "date": "2026-09-23",
+   "headline": "Namibia declares an outbreak and suspends livestock movement and meat exports.",
+   "source": "Farmer's Weekly",
+   "url": "https://www.farmersweekly.co.za/agri-news/africa/namibia-bans-exports-and-animal-movement-after-confirmed-fmd-case/",
+   "summary": "Ten of eleven samples from a commercial herd in the Karasburg district tested positive, the first outbreak south of Namibia's veterinary cordon fence in decades. Namibia halted movement of cloven-hoofed animals and exports of livestock and meat until further notice, with possible trade and biosecurity implications for our producers.",
+   "category": "trade",
+   "province": "national",
+   "added": "2026-09-28"
+  },
+  {
+   "date": "2026-09-22",
+   "headline": "Private companies to manufacture the ARC foot and mouth vaccine under licence.",
+   "source": "Business Day",
+   "url": "https://www.businessday.co.za/news/2026-09-22-private-vaccine-makers-enlisted-to-fight-foot-and-mouth-disease/",
+   "summary": "Minister Willie Aucamp has authorised qualifying private companies to produce the Agricultural Research Council vaccine under licensing agreements. The ARC keeps the intellectual property and licensing income is ringfenced to rebuild its own manufacturing capacity.",
+   "category": "policy",
+   "province": "national",
+   "added": "2026-09-24"
+  },
+  {
+   "date": "2026-09-20",
+   "headline": "Free State confirms two new cases, provincial total reaches 798.",
+   "source": "Channel Africa",
+   "url": "https://www.channelafrica.co.za/channelafrica/news/sa-province-records-two-new-foot-and-mouth-disease-cases/",
+   "summary": "New cases in the Bultfontein and Welkom areas. Of 798 cases, 634 are resolved and 164 remain active under quarantine. More than a million cattle in the province have been vaccinated. Supports the 798 figure already held in our master against the unchanged spreadsheet figure of 796.",
+   "category": "cases",
+   "province": "FS",
+   "added": "2026-09-24"
+  },
+  {
+   "date": "2026-09-06",
+   "headline": "OBP chief executive suspended over vaccine mark-up allegations.",
+   "source": "allAfrica (Department of Agriculture statement)",
+   "url": "https://allafrica.com/stories/202609070409.html",
+   "summary": "After an urgent meeting called by the Minister, the Onderstepoort Biological Products board suspended its chief executive pending his response to allegations of inflated foot and mouth vaccine pricing.",
+   "category": "policy",
+   "province": "national",
+   "added": "2026-09-24"
+  },
+  {
+   "date": "2026-09-06",
+   "headline": "Foot and mouth disease described as a quiet business crisis.",
+   "source": "African Farming",
+   "url": "https://www.africanfarming.com/2026/09/06/foot-and-mouth-disease-south-africas-quiet-business-crisis/",
+   "summary": "Opinion piece on the knock-on effects of movement controls: reduced meat supply, higher prices for poorer households and lost trade for informal traders.",
+   "category": "analysis",
+   "province": "national",
+   "added": "2026-09-24"
+  },
+  {
+   "date": "2026-09-05",
+   "headline": "More than 23 million doses imported and all commercial dairy cattle given a first dose.",
+   "source": "The Witness",
+   "url": "https://witness.co.za/news/2026/09/05/no-new-fmd-cases-in-north-west-as-23m-vaccine-doses-imported/",
+   "summary": "Reports over 23 million doses imported through government and private sector channels, first doses for all 1.38 million commercial dairy cattle, and more than 1,000 farmers registered as authorised vaccinators. The 23 million figure is well above the 16 to 17 million the Ministry reports as procured, and needs reconciling before use.",
+   "category": "vaccination",
+   "province": "national",
+   "added": "2026-09-24"
+  },
+  {
+   "date": "2026-09-05",
+   "headline": "Veterinary certificate agreed for red meat exports to Egypt.",
+   "source": "Maroela Media",
+   "url": "https://maroelamedia.co.za/landbou/rooivleis-kry-uitvoerhupstoot-midde-bek-en-klouseer/",
+   "summary": "South Africa and Egypt have finalised negotiations on a veterinary health certificate for beef and livestock, which will give exporters a clear framework once formally signed.",
+   "category": "trade",
+   "province": "national",
+   "added": "2026-09-24"
+  },
+  {
+   "date": "2026-09-01",
+   "headline": "North West records its first week without a new case since December 2025.",
+   "source": "SAnews",
+   "url": "https://www.sanews.gov.za/south-africa/north-west-records-first-week-no-new-fmd-cases",
+   "summary": "The province had received 1,570,100 doses and vaccinated 1,413,859 animals at the time of the statement. Booster vaccinations were to start in September across all four districts and 18 local municipalities.",
+   "category": "cases",
+   "province": "NW",
+   "added": "2026-09-24"
+  }
+ ]
 }

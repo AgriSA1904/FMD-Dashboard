@@ -6005,3 +6005,42 @@ Rebuilt via importlib. Snapshot unchanged at 18 September 2026, 84 weekly points
 - The Nampo Alfa discussion on 2 October may produce a recorded outcome or statement worth adding to the feed.
 - MPO Week 50.
 - All items carried forward from sessions 82 and 81.
+
+### Publish
+
+Commit `57bd906` pushed to `main` on top of session 82's `c6d132f`; local HEAD matches `origin/main`. The "pages build and deployment" workflow for `57bd906` concluded success. The "Build and Deploy FMD Dashboard" workflow did not run for this commit, as expected, because it is path-filtered to the master, build script and template, none of which changed. This publish note is held locally and will go up with the next push.
+
+
+## Session 83. 1 October 2026. Scheduled update, news scan and publish.
+
+Scheduled 08:00 run. The local PowerShell ingest (08:00) ran as usual against the 35 legacy xlsx files and added nothing.
+
+### Sources processed
+
+| Source | Effective date | Source org | Outcome |
+|---|---|---|---|
+| All inbox subfolders, root dated folders, full project tree | n/a | n/a | Nothing modified since the session 82b publish. Newest inbox file remains the MPO Week 49 PDF, already ingested. |
+| Web search, last 7 days (English and Afrikaans media) | n/a | n/a | 2 new news items added to `news_feed.json`. |
+
+### Rows
+
+None added. Master unchanged at 3,878 data rows.
+
+### News items added
+
+| Date | Headline | Source | Relation to master |
+|---|---|---|---|
+| 2026-10-01 | Milk SA veterinary adviser sets out what the Section 9 regulations mean for dairy farms. | Veeplaas (AgriOrbit) | Policy explainer. No figures. |
+| 2026-10-01 | Field monitoring programme assesses the safe use of vaccine in commercial dairy, beef, feedlot and communal herds. | RSG Landbou (AgriOrbit) | Radio interview, Dr Danie Odendaal. No figures. |
+
+We left out African Farming's 30 September piece on Namibia's outbreak, which repeats the Karasburg and movement-restriction items already in the feed. `news_feed.json` backed up to `news_feed.json.bak_session83`, `last_checked` 2026-10-01, 16 items held.
+
+### Dashboard
+
+Rebuilt via importlib. Snapshot unchanged at 18 September 2026, 84 weekly points, validation passed (1,935,603 bytes).
+
+### Action items for next run
+
+- Nampo Alfa recovery discussion outcome (2 October).
+- MPO Week 50.
+- All items carried forward from sessions 82 and 81.

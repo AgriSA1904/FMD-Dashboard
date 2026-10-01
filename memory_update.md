@@ -1,3 +1,7 @@
+As at 2026-10-01 (session 83 -- Cowork, scheduled update -- inbox empty since session 82, master unchanged at **3,878 rows**; news feed updated with 2 items; dashboard rebuilt, snapshot 18 September 2026, 84 weekly points, validation passed; pushed to GitHub):
+
+**Session 83 (1 Oct, news scan and publish):** added Milk SA's explanation of the Section 9 regulations for dairy (Veeplaas, 1 Oct: OBP no longer sole importer, owner self-vaccination by registration, red cross permits for quarantined milk) and Dr Danie Odendaal's vaccine safety field monitoring programme (RSG Landbou, 1 Oct). No new primary Ministry statement. Nampo Alfa recovery discussion is tomorrow, 2 October.
+
 As at 2026-09-30 (session 82b -- Cowork, scheduled update -- inbox empty since session 82, master unchanged at **3,878 rows**; news feed updated with 1 item; dashboard rebuilt, snapshot 18 September 2026, 84 weekly points, validation passed; pushed to GitHub):
 
 **Session 82b (30 Sep, news scan and publish):** added the Nampo Alfa "Road to Recovery" farmer and decision-maker discussion on 2 October (African Farming, 29 Sep). No new primary Ministry statement in the last seven days.
