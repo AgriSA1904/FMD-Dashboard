@@ -6080,3 +6080,41 @@ Rebuilt via importlib. Snapshot unchanged at 18 September 2026, 84 weekly points
 - MPO Week 50.
 - The scheduled run started almost four hours late today; worth checking that the desktop app was available at 08:00.
 - All items carried forward from sessions 82 and 81.
+
+### Publish
+
+Commit `86cd5e4` pushed to `main` on top of session 83's `56385dc`; local HEAD matches `origin/main`. The "pages build and deployment" workflow for `86cd5e4` concluded success. The "Build and Deploy FMD Dashboard" workflow did not run, as expected, because it is path-filtered to the master, build script and template, none of which changed. This publish note is held locally and will go up with the next push.
+
+
+## Session 84. 2 October 2026. Scheduled update, news scan and publish.
+
+Scheduled 08:00 run, started at 08:04 South African time. No session had yet run today. The local PowerShell ingest (08:00) ran as usual against the 35 legacy xlsx files and added nothing.
+
+### Sources processed
+
+| Source | Effective date | Source org | Outcome |
+|---|---|---|---|
+| All inbox subfolders, root dated folders, full project tree | n/a | n/a | Nothing new since session 83b. Two inbox files showed a changed status time (the legacy Mpumalanga municipality xlsx touched daily by the PowerShell ingest, and the 5 August Eastern Cape Portfolio Committee presentation, already ingested); neither has new content. Newest inbox file remains the MPO Week 49 PDF, already ingested. |
+| Web search, last 7 days (national, provincial, trade, industry bodies, Afrikaans media, international) | n/a | n/a | 1 new news item added to `news_feed.json`. |
+
+### Rows
+
+None added. Master unchanged at 3,878 data rows.
+
+### News items added
+
+| Date | Headline | Source | Relation to master |
+|---|---|---|---|
+| 2026-10-01 | Livestock sector recovers on cheaper feed, but foot and mouth disease still weighs on beef exports. | Farmer's Weekly | Absa market outlook. Slaughter and export figures are trade statistics, not programme data. Nothing to ingest. |
+
+We left out Farmer's Weekly's 24 September report on Namibian shows running without livestock (regional, repeats the Karasburg items already in the feed), the Veeplaas October issue (its foot and mouth content is the Section 9 dairy article already in the feed), and older items that resurfaced in search (the undated SABC Agri Limpopo report, Gauteng's June budget allocation, the June Free State voter registration disruption, and items from February to September). We found no new primary Ministry or Department statement, so no policy rows were added. We found no coverage yet of today's Nampo Alfa recovery discussion. `news_feed.json` backed up to `news_feed.json.bak_session84`, `last_checked` 2026-10-02, 19 items held.
+
+### Dashboard
+
+Rebuilt via importlib. Snapshot unchanged at 18 September 2026, 84 weekly points, validation passed (1,938,252 bytes). The new item is present in the built payload, and the session 82 MPO figure (962,304 first round) is still present.
+
+### Action items for next run
+
+- Nampo Alfa recovery discussion outcome (2 October).
+- MPO Week 50.
+- All items carried forward from sessions 82 and 81.
