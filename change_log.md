@@ -6118,3 +6118,36 @@ Rebuilt via importlib. Snapshot unchanged at 18 September 2026, 84 weekly points
 - Nampo Alfa recovery discussion outcome (2 October).
 - MPO Week 50.
 - All items carried forward from sessions 82 and 81.
+
+### Publish
+
+Commit `b7220ff` pushed to `main` on top of session 83b's `86cd5e4`; local HEAD matches `origin/main`. The "pages build and deployment" workflow for `b7220ff` was still queued on GitHub's side more than five minutes after the push (created 06:07 UTC, last checked 06:14 UTC), so we could not confirm that the live site is serving this build. Nothing on our side failed; the next run should confirm the workflow concluded success. The "Build and Deploy FMD Dashboard" workflow did not run, as expected, because it is path-filtered to the master, build script and template, none of which changed. This publish note is held locally and will go up with the next push.
+
+
+## Session 85. 2 October 2026. Scheduled update, Free State and Eastern Cape ingest.
+
+### Sources processed
+
+| Source | Effective date | Source org | Outcome |
+|---|---|---|---|
+| inbox/Free State/FMD_STATS_2_OCTOBER_2026.zip (xlsx plus 4 media release images) | 2026-10-02 | FS-DARDLEA | 12 rows: cases 803, suspected 237, doses received, two cattle vaccinated figures, intent notifications 138, five district case rows. |
+| inbox/Eastern Cape/EC FMD Update - 01.10.2026.pptx (7 screenshot slides) | 2026-10-01 | EC-DRDAR | 20 rows: outbreaks 510, suspected 232, doses received 2,424,510, animals vaccinated 1,759,507, primary, booster, RPO, six district pairs. |
+
+### Rows
+
+32 added. Master 3,878 to 3,910 data rows. Backup: master_data.csv.bak_session85. Script: scripts/ingest_s85_fs_ec.py.
+
+### Data quality flags
+
+- FS cattle vaccinated: xlsx 1,687,931 versus media release 1,671,118 (map dated 1 Oct); the release is lower than the 1,671,316 held for 18 Sep. Both held.
+- EC booster 197,170 (deck) versus 223,973 (MPO Week 49).
+- EC slide 6 (sector view) district totals differ from slide 5 (state channel); slide 5 used for consistency. Slide 6 total 1,759,471 versus 1,759,507.
+- EC deck screenshots show 4 new outbreaks (Amathole 2, Sarah Baartman 2).
+
+### Dashboard
+
+Rebuilt via importlib. Snapshot 2 October 2026, 86 weekly points, validation passed.
+
+### Action items for next run
+
+MPO Week 50, Nampo Alfa outcome, confirm FS vaccinated figure with the Free State JOC, confirm EC booster basis.
