@@ -1,7 +1,37 @@
 {
-  "last_checked": "2026-10-02",
+  "last_checked": "2026-10-03",
   "note": "Curated daily by the scheduled ingest. Items are media and public reporting, not programme data. Figures quoted here do not feed the dashboard headlines unless they are also ingested into master_data.csv from a programme source.",
   "items": [
+    {
+      "date": "2026-10-03",
+      "headline": "Nampo Alfa recovery session calls for closer cooperation between producers, industry and government.",
+      "source": "Farmer's Weekly",
+      "url": "https://www.farmersweekly.co.za/agri-news/south-africa/recovery-and-unity-in-focus-as-livestock-industry-gathers-on-day-1-of-nampo-alfa/",
+      "summary": "The Road to Recovery session at Nampo Alfa on 2 October brought producers, industry bodies and decision-makers together to reflect on the foot and mouth disease response. Farmers raised concerns about vaccine availability and the state's handling of animal health, and participants called for producers, organised agriculture and government to work together more effectively. No new programme figures were reported.",
+      "category": "analysis",
+      "province": "national",
+      "added": "2026-10-03"
+    },
+    {
+      "date": "2026-10-02",
+      "headline": "Vaccination and biosecurity protocol allow a strong livestock turnout at Nampo Alfa.",
+      "source": "Farmer's Weekly",
+      "url": "https://www.farmersweekly.co.za/agri-news/south-africa/biosecurity-measures-help-drive-strong-livestock-turnout-at-nampo-alfa-2026/",
+      "summary": "Organisers required every exhibited animal to be vaccinated under an industry protocol developed by Dr Danie Odendaal, with veterinary inspections before animals left the farm and further checks at the showgrounds. More animals attended than in previous years, and the show was described as the first major livestock event north of the Orange River where animals could compete under current disease control conditions.",
+      "category": "other",
+      "province": "FS",
+      "added": "2026-10-03"
+    },
+    {
+      "date": "2026-10-01",
+      "headline": "Livestock sector recovers on cheaper feed, but foot and mouth disease still weighs on beef exports.",
+      "source": "Farmer's Weekly",
+      "url": "https://farmersweekly.co.za/agri-news/south-africa/livestock-recovery-gains-ground-but-price-trends-diverge",
+      "summary": "An Absa outlook says lower feed costs and better grazing are supporting livestock margins, but foot and mouth disease movement restrictions continue to hold back the beef sector. It reports cattle slaughter down 47 percent year on year in July and beef exports down about half in the first seven months of 2026, and says restoring access to markets such as China depends on effective disease control and traceability. Market analysis only, nothing for the master.",
+      "category": "analysis",
+      "province": "national",
+      "added": "2026-10-02"
+    },
     {
       "date": "2026-10-01",
       "headline": "Milk SA veterinary adviser sets out what the Section 9 regulations mean for dairy farms.",
@@ -23,14 +53,14 @@
       "added": "2026-10-01"
     },
     {
-      "date": "2026-10-01",
-      "headline": "Livestock sector recovers on cheaper feed, but foot and mouth disease still weighs on beef exports.",
-      "source": "Farmer's Weekly",
-      "url": "https://farmersweekly.co.za/agri-news/south-africa/livestock-recovery-gains-ground-but-price-trends-diverge",
-      "summary": "An Absa outlook says lower feed costs and better grazing are supporting livestock margins, but foot and mouth disease movement restrictions continue to hold back the beef sector. It reports cattle slaughter down 47 percent year on year in July and beef exports down about half in the first seven months of 2026, and says restoring access to markets such as China depends on effective disease control and traceability. Market analysis only, nothing for the master.",
-      "category": "analysis",
+      "date": "2026-09-30",
+      "headline": "Namibia's Karasburg outbreak spreads to five farms as government warns against easing restrictions.",
+      "source": "Informanté",
+      "url": "https://informante.web.na/?p=401695",
+      "summary": "Namibia's Minister of Agriculture said affected farms in the Karasburg state veterinary district had risen from three to five, and cautioned against relaxing controls before the 14-day incubation period has passed. Animals traced to the Otjozondjupa region tested negative, and restrictions north of the veterinary cordon fence were partly lifted. This updates the 26 September report of 17 confirmed cases already in our feed.",
+      "category": "trade",
       "province": "national",
-      "added": "2026-10-02"
+      "added": "2026-10-03"
     },
     {
       "date": "2026-09-30",
@@ -44,16 +74,6 @@
     },
     {
       "date": "2026-09-29",
-      "headline": "Farmers and decision-makers to meet at Nampo Alfa on the road to recovery from foot and mouth disease.",
-      "source": "African Farming",
-      "url": "https://www.africanfarming.com/2026/09/29/fmd-farmers-have-say-decision-makers-listen-nampo-alfa-road-to-recovery/",
-      "summary": "A structured discussion on recovery from foot and mouth disease takes place at Nampo Park on Friday 2 October, with morning presentations on red meat strategy and the impact on the food system and farmer-led sessions in the afternoon. AgriSA, provincial affiliates, commodity bodies including the RPO, MPO, SAPPO and RMIS, organised agriculture groups, feedlots and processors are confirmed to attend. The discussion will be recorded and shared with all invited organisations. No programme figures, nothing to ingest.",
-      "category": "other",
-      "province": "national",
-      "added": "2026-09-30"
-    },
-    {
-      "date": "2026-09-29",
       "headline": "Red Meat Producers Organisation expects no further state vaccine and urges producers to run their own programmes.",
       "source": "AgriOrbit (Veeplaas)",
       "url": "https://agriorbit.com/rooivleisproducsente-organisasie-gauteng-vergarder/",
@@ -61,6 +81,16 @@
       "category": "vaccination",
       "province": "national",
       "added": "2026-10-01"
+    },
+    {
+      "date": "2026-09-29",
+      "headline": "Farmers and decision-makers to meet at Nampo Alfa on the road to recovery from foot and mouth disease.",
+      "source": "African Farming",
+      "url": "https://www.africanfarming.com/2026/09/29/fmd-farmers-have-say-decision-makers-listen-nampo-alfa-road-to-recovery/",
+      "summary": "A structured discussion on recovery from foot and mouth disease takes place at Nampo Park on Friday 2 October, with morning presentations on red meat strategy and the impact on the food system and farmer-led sessions in the afternoon. AgriSA, provincial affiliates, commodity bodies including the RPO, MPO, SAPPO and RMIS, organised agriculture groups, feedlots and processors are confirmed to attend. The discussion will be recorded and shared with all invited organisations. No programme figures, nothing to ingest.",
+      "category": "other",
+      "province": "national",
+      "added": "2026-09-30"
     },
     {
       "date": "2026-09-28",

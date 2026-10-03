@@ -6151,3 +6151,40 @@ Rebuilt via importlib. Snapshot 2 October 2026, 86 weekly points, validation pas
 ### Action items for next run
 
 MPO Week 50, Nampo Alfa outcome, confirm FS vaccinated figure with the Free State JOC, confirm EC booster basis.
+
+
+## Session 86. 3 October 2026. Scheduled update, news scan and publish.
+
+The 08:00 scheduled run fired late, at 21:38 South African time on Saturday 3 October. No session had yet run today. The local PowerShell ingest (10:12) ran as usual against the legacy xlsx files and added nothing; its Claude CLI step is still failing with an expired OAuth token. Before publishing we confirmed the remote `main` was still at session 85's `c31da29`, and that both workflows for that commit concluded success, which also closes session 84's open check on the live site.
+
+### Sources processed
+
+| Source | Effective date | Source org | Outcome |
+|---|---|---|---|
+| All inbox subfolders, root dated folders, full project tree | n/a | n/a | Nothing new since session 85. The only changed inbox file is the legacy Mpumalanga municipality xlsx touched daily by the PowerShell ingest, with no new content. |
+| Web search, last 7 days (national, provincial, trade, industry bodies, Afrikaans media, international) | n/a | n/a | 3 new news items added to `news_feed.json`. |
+
+### Rows
+
+None added. Master unchanged at 3,910 data rows.
+
+### News items added
+
+| Date | Headline | Source | Relation to master |
+|---|---|---|---|
+| 2026-10-03 | Nampo Alfa recovery session calls for closer cooperation between producers, industry and government. | Farmer's Weekly | Commentary only, no figures. Closes the Nampo Alfa action item. |
+| 2026-10-02 | Vaccination and biosecurity protocol allow a strong livestock turnout at Nampo Alfa. | Farmer's Weekly | Event report, nothing to ingest. |
+| 2026-09-30 | Namibia's Karasburg outbreak spreads to five farms as government warns against easing restrictions. | Informanté | Regional, not South African programme data. |
+
+We left out older items that resurfaced in search: the undated SABC report of the Minister at the Agri Limpopo congress (13.5 million doses, an earlier figure), the 11 September V-Plan vaccine field monitoring article, KragDag (12 August), the Gauteng 96 percent drop in outbreaks (3 to 4 September), the 10 June Portfolio Committee statement, the 20 September report on OBP imported vaccine sales, and pork industry pieces from mid-September. We found no new primary Ministry or Department statement, so no policy rows were added. `news_feed.json` backed up to `news_feed.json.bak_session86`, `last_checked` 2026-10-03, 22 items held.
+
+### Dashboard
+
+Rebuilt via importlib. Snapshot 2 October 2026, 86 weekly points, validation passed (1,944,038 bytes on disk). All three new items are present in the built payload, and the session 85 figures (Free State 1,687,931 cattle vaccinated, Eastern Cape 2,424,510 received) are still present.
+
+### Action items for next run
+
+- MPO Week 50.
+- Confirm the Free State vaccinated figure with the Free State JOC and the Eastern Cape booster basis (session 85).
+- Re-authenticate the local Claude CLI, or retire the PowerShell task, which still fails daily.
+- All items carried forward from sessions 85 and earlier.
