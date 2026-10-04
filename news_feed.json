@@ -1,7 +1,17 @@
 {
-  "last_checked": "2026-10-03",
+  "last_checked": "2026-10-04",
   "note": "Curated daily by the scheduled ingest. Items are media and public reporting, not programme data. Figures quoted here do not feed the dashboard headlines unless they are also ingested into master_data.csv from a programme source.",
   "items": [
+    {
+      "date": "2026-10-04",
+      "headline": "Namibia needs about N$190 million to contain its ||Kharas outbreak, now confirmed on 11 farms.",
+      "source": "Informanté",
+      "url": "https://informante.web.na/?p=401855",
+      "summary": "Namibia's Ministry of Agriculture says it needs roughly N$190.2 million to manage the outbreak first detected on 22 September. By early October 79 positive samples had been confirmed across 11 farms, up from five farms reported on 30 September, with more than 15,000 animals inspected on 66 farms. The response includes a 290 kilometre disease control fence, vaccination and targeted culling. Regional context only, not South African programme data.",
+      "category": "cases",
+      "province": "national",
+      "added": "2026-10-04"
+    },
     {
       "date": "2026-10-03",
       "headline": "Nampo Alfa recovery session calls for closer cooperation between producers, industry and government.",

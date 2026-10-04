@@ -6188,3 +6188,43 @@ Rebuilt via importlib. Snapshot 2 October 2026, 86 weekly points, validation pas
 - Confirm the Free State vaccinated figure with the Free State JOC and the Eastern Cape booster basis (session 85).
 - Re-authenticate the local Claude CLI, or retire the PowerShell task, which still fails daily.
 - All items carried forward from sessions 85 and earlier.
+
+### Publish
+
+Commit `a3062b1` pushed to `main` on top of session 85's `c31da29`; local HEAD matches `origin/main`. The "pages build and deployment" workflow for `a3062b1` concluded success. The "Build and Deploy FMD Dashboard" workflow did not run, as expected, because it is path-filtered to the master, build script and template, none of which changed. This publish note is held locally and will go up with the next push.
+
+
+## Session 87. 4 October 2026. Scheduled update, news scan and publish.
+
+The 08:00 scheduled run fired late, at 13:33 South African time on Sunday 4 October. No session had yet run today. The local PowerShell ingest (10:12) ran as usual against the legacy xlsx files and added nothing. Before publishing we confirmed the remote `main` was still at session 86's `a3062b1`.
+
+### Sources processed
+
+| Source | Effective date | Source org | Outcome |
+|---|---|---|---|
+| All inbox subfolders, root dated folders, full project tree | n/a | n/a | Nothing new since session 85. Only the PowerShell ingest logs changed. |
+| Web search, last 7 days (national, provincial, trade, industry bodies, Afrikaans media, international) | n/a | n/a | 1 new news item added to `news_feed.json`. |
+
+### Rows
+
+None added. Master unchanged at 3,910 data rows.
+
+### News items added
+
+| Date | Headline | Source | Relation to master |
+|---|---|---|---|
+| 2026-10-04 | Namibia needs about N$190 million to contain its ||Kharas outbreak, now confirmed on 11 farms. | Informanté | Regional, not South African programme data. Updates the five farms reported on 30 September. |
+
+We left out items outside the seven day window or already held: the Namibian agricultural show livestock cancellations (24 September), the Veeplaas October issue (its dairy Section 9 article is already held from AgriOrbit), the OBP chief executive suspension (5 September) and the February Cabinet statement on local vaccine production. Two SABC reports quoting the Minister ("under control" and public-private partnership) could not be fetched to confirm their dates and were not added. We found no new primary Ministry or Department statement, so no policy rows were added. `news_feed.json` backed up to `news_feed.json.bak_session87`, `last_checked` 2026-10-04, 23 items held.
+
+### Dashboard
+
+Rebuilt via importlib. Snapshot 2 October 2026, 86 weekly points, validation passed. The new item is present in the built payload, and the session 85 figures (Free State 1,687,931 cattle vaccinated, Eastern Cape 2,424,510 received) are still present.
+
+### Action items for next run
+
+- MPO Week 50.
+- Confirm the dates of the two SABC Minister reports and add them if they fall within the window.
+- Confirm the Free State vaccinated figure with the Free State JOC and the Eastern Cape booster basis (session 85).
+- Re-authenticate the local Claude CLI, or retire the PowerShell task.
+- All items carried forward from sessions 86 and earlier.

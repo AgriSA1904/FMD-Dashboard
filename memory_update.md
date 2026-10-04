@@ -1,3 +1,7 @@
+As at 2026-10-04 (session 87 -- Cowork, scheduled daily update, run late at 13:33 South African time on Sunday -- inbox empty since session 85, master unchanged at **3,910 rows**; news feed updated with 1 item; dashboard rebuilt, snapshot 2 October 2026, 86 weekly points, validation passed; pushed to GitHub):
+
+**Session 87 (4 Oct, news scan and publish):** added Informanté's report that Namibia needs about N$190 million to contain the ||Kharas outbreak, now 79 positive samples on 11 farms (4 Oct). No new South African programme figures in the media, no new primary Ministry statement, no policy rows. MPO Week 50 still outstanding.
+
 As at 2026-10-03 (session 86 -- Cowork, scheduled daily update, run late at 21:38 South African time -- inbox empty since session 85, master unchanged at **3,910 rows**; news feed updated with 3 items; dashboard rebuilt, snapshot 2 October 2026, 86 weekly points, validation passed; pushed to GitHub):
 
 **Session 86 (3 Oct, news scan and publish):** added two Farmer's Weekly reports from Nampo Alfa (the Road to Recovery session on 2 October, where farmers raised vaccine availability and called for closer cooperation, with no new figures; and the vaccination and biosecurity protocol that allowed a record livestock turnout) and Informanté's report that Namibia's Karasburg outbreak has spread to five farms (30 Sep). No new primary Ministry statement, no policy rows. Nampo Alfa action item closed.
