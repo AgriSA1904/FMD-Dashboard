@@ -6228,3 +6228,44 @@ Rebuilt via importlib. Snapshot 2 October 2026, 86 weekly points, validation pas
 - Confirm the Free State vaccinated figure with the Free State JOC and the Eastern Cape booster basis (session 85).
 - Re-authenticate the local Claude CLI, or retire the PowerShell task.
 - All items carried forward from sessions 86 and earlier.
+
+### Publish
+
+Commit `a864a74` pushed to `main` on top of session 86's `a3062b1`; local HEAD matches `origin/main`. The "pages build and deployment" workflow for `a864a74` concluded success. The "Build and Deploy FMD Dashboard" workflow did not run, as expected, because it is path-filtered to the master, build script and template, none of which changed. This publish note is held locally and will go up with the next push.
+
+
+## Session 88. 5 October 2026. Scheduled update, news scan and publish.
+
+The 08:00 scheduled run fired at 08:24 South African time on Monday 5 October. No session had yet run today. The local PowerShell ingest (08:10) ran as usual against the legacy xlsx files and added nothing. Before publishing we confirmed the remote `main` was still at session 87's `a864a74`.
+
+### Sources processed
+
+| Source | Effective date | Source org | Outcome |
+|---|---|---|---|
+| All inbox subfolders, root dated folders, full project tree | n/a | n/a | Nothing new since session 85. Only the PowerShell ingest logs changed. |
+| Web search, last 7 days (national, provincial, trade, industry bodies, Afrikaans media, international) | n/a | n/a | 2 new news items added to `news_feed.json`. |
+
+### Rows
+
+None added. Master unchanged at 3,910 data rows.
+
+### News items added
+
+| Date | Headline | Source | Relation to master |
+|---|---|---|---|
+| 2026-10-05 | Red meat industry urged to turn its recovery strategy into funded delivery after Nampo Alfa. | Farmer's Weekly | Industry analysis (BFAP R21.1 billion impact estimate for 2025 to 2035; beef exports January to April down from 14,100 to about 7,700 tonnes). No conflict with the master. |
+| 2026-10-04 | Namibian farmers hit by the outbreak must still pay the national minimum wage. | The Namibian (via allAfrica) | Regional, not South African programme data. |
+
+We checked the SABC report of the Minister saying the disease is "under control" (carried from session 87). The page carries no publication date and quotes 13.5 million doses administered, an earlier figure than the 19 million distributed reported on 24 September, so it predates the window and was not added. That action item is closed. We also left out older items that resurfaced in search: the Rosestad report on OBP vaccine pricing (7 September), the Novanews Free State piece (October 2025), Food For Mzansi pieces from June 2025 and April 2026, and the 22 September private-sector manufacturing coverage already held. The USDA FAS GAIN report on Namibia (September) could not be fetched. We found no new primary Ministry or Department statement, so no policy rows were added. `news_feed.json` backed up to `news_feed.json.bak_session88`, `last_checked` 2026-10-05, 25 items held.
+
+### Dashboard
+
+Rebuilt via importlib. Snapshot 2 October 2026, 86 weekly points, validation passed. Both new items are present in the built payload, and the session 85 figures (Free State 1,687,931 cattle vaccinated, Eastern Cape 2,424,510 received) are still present.
+
+### Action items for next run
+
+- MPO Week 50, now overdue (Week 49 was 25 September).
+- Weekly provincial packs for the week ending 2 October are due (EC, FS, GP, KZN, LP, MP, NW, NC, WC); none arrived over the weekend.
+- Confirm the Free State vaccinated figure with the Free State JOC and the Eastern Cape booster basis (session 85).
+- Re-authenticate the local Claude CLI, or retire the PowerShell task.
+- All items carried forward from sessions 87 and earlier.

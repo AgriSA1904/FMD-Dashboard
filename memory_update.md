@@ -1,3 +1,7 @@
+As at 2026-10-05 (session 88 -- Cowork, scheduled daily update, 08:24 South African time -- inbox empty since session 85, master unchanged at **3,910 rows**; news feed updated with 2 items; dashboard rebuilt, snapshot 2 October 2026, 86 weekly points, validation passed; pushed to GitHub):
+
+**Session 88 (5 Oct, news scan and publish):** added Farmer's Weekly's Nampo Alfa follow-up (5 Oct: BFAP puts the 2025 to 2035 production value lost to FMD at R21.1 billion; beef exports January to April about 7,700 tonnes against 14,100 a year earlier) and The Namibian's report that ||Kharas farmers get no minimum wage exemption (4 Oct). The undated SABC "under control" report predates the window and was not added. No new primary Ministry statement, no policy rows. MPO Week 50 and the weekly provincial packs are outstanding.
+
 As at 2026-10-04 (session 87 -- Cowork, scheduled daily update, run late at 13:33 South African time on Sunday -- inbox empty since session 85, master unchanged at **3,910 rows**; news feed updated with 1 item; dashboard rebuilt, snapshot 2 October 2026, 86 weekly points, validation passed; pushed to GitHub):
 
 **Session 87 (4 Oct, news scan and publish):** added Informanté's report that Namibia needs about N$190 million to contain the ||Kharas outbreak, now 79 positive samples on 11 farms (4 Oct). No new South African programme figures in the media, no new primary Ministry statement, no policy rows. MPO Week 50 still outstanding.

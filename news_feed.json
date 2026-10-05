@@ -1,7 +1,17 @@
 {
-  "last_checked": "2026-10-04",
+  "last_checked": "2026-10-05",
   "note": "Curated daily by the scheduled ingest. Items are media and public reporting, not programme data. Figures quoted here do not feed the dashboard headlines unless they are also ingested into master_data.csv from a programme source.",
   "items": [
+    {
+      "date": "2026-10-05",
+      "headline": "Red meat industry urged to turn its recovery strategy into funded delivery after Nampo Alfa.",
+      "source": "Farmer's Weekly",
+      "url": "https://www.farmersweekly.co.za/agri-news/south-africa/red-meat-industry-needs-to-turn-strategy-into-delivery/",
+      "summary": "Speakers at the Nampo Alfa Road to Recovery session said the red meat sector has sound strategies but works in silos and lacks the funding and capacity to deliver them. BFAP modelling puts the gross production value lost to foot and mouth disease between 2025 and 2035 at about R21.1 billion against the pre-outbreak baseline, and beef exports for January to April 2026 were about 7,700 tonnes against 14,100 tonnes a year earlier. Industry analysis only; nothing here changes the programme figures in our master data.",
+      "category": "analysis",
+      "province": "national",
+      "added": "2026-10-05"
+    },
     {
       "date": "2026-10-04",
       "headline": "Namibia needs about N$190 million to contain its ||Kharas outbreak, now confirmed on 11 farms.",
@@ -11,6 +21,16 @@
       "category": "cases",
       "province": "national",
       "added": "2026-10-04"
+    },
+    {
+      "date": "2026-10-04",
+      "headline": "Namibian farmers hit by the outbreak must still pay the national minimum wage.",
+      "source": "The Namibian (via allAfrica)",
+      "url": "https://allafrica.com/stories/202610050101.html",
+      "summary": "Namibia's labour ministry says no exemption from the agricultural minimum wage is being considered for farmers affected by the ||Kharas outbreak, despite income lost to sales and export restrictions. Economic modelling cited in the report suggests the outbreak could cost about 12,000 jobs in 2026 and 2027. Regional context only, not South African programme data.",
+      "category": "other",
+      "province": "national",
+      "added": "2026-10-05"
     },
     {
       "date": "2026-10-03",
