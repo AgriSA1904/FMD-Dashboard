@@ -1,7 +1,17 @@
 {
-  "last_checked": "2026-10-05",
+  "last_checked": "2026-10-06",
   "note": "Curated daily by the scheduled ingest. Items are media and public reporting, not programme data. Figures quoted here do not feed the dashboard headlines unless they are also ingested into master_data.csv from a programme source.",
   "items": [
+    {
+      "date": "2026-10-06",
+      "headline": "Namibia's outbreak could push up South African mutton and lamb prices more than beef.",
+      "source": "Farmer's Weekly",
+      "url": "https://farmersweekly.co.za/agri-news/africa/namibia-fmd-outbreak-could-drive-up-sa-red-meat-prices",
+      "summary": "Namibia's export ban on cloven-hoofed animals cuts a supply line that has sent South Africa 36,821 weaner calves and 417,808 slaughter sheep so far this year. The RPO's Dr Frikkie Maré expects the bigger price effect in mutton and lamb, since Namibian sheep make up about 15 percent of local slaughter supply against 2 percent for weaners. Regional trade context, no conflict with our programme figures.",
+      "category": "trade",
+      "province": "national",
+      "added": "2026-10-06"
+    },
     {
       "date": "2026-10-05",
       "headline": "Red meat industry urged to turn its recovery strategy into funded delivery after Nampo Alfa.",
@@ -11,6 +21,26 @@
       "category": "analysis",
       "province": "national",
       "added": "2026-10-05"
+    },
+    {
+      "date": "2026-10-05",
+      "headline": "Department trade mission seeks Middle East market access for livestock exports.",
+      "source": "Agrinews",
+      "url": "https://agrinews.co.za/south-africa-seeks-middle-east-market-access/",
+      "summary": "A Department of Agriculture delegation led by Deputy Director-General Kwena Komape visited Saudi Arabia, Oman and the United Arab Emirates in late September to reopen export channels closed by foot and mouth disease. Draft memorandums of understanding with Oman and the UAE are to be developed. Media report only; we have not yet seen a primary Department statement, so no policy row was added.",
+      "category": "trade",
+      "province": "national",
+      "added": "2026-10-06"
+    },
+    {
+      "date": "2026-10-05",
+      "headline": "Namibia begins vaccinating around the ||Kharas outbreak as businesses put workers on leave.",
+      "source": "The Namibian",
+      "url": "https://namibian.com.na/fmd-butcheries-scramble-to-keep-workers",
+      "summary": "By 2 October Namibia had tested 531 samples, 79 of them positive for SAT 1, on 11 farms, and inspected 15,096 animals on 66 of 81 targeted farms. Vaccination is starting from the edge of the outbreak inwards, and a 290 kilometre fence is planned at a cost of about N$47 million. Butcheries in the region report placing staff on leave as meat stocks run down.",
+      "category": "cases",
+      "province": "national",
+      "added": "2026-10-06"
     },
     {
       "date": "2026-10-04",

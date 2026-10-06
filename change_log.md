@@ -6269,3 +6269,65 @@ Rebuilt via importlib. Snapshot 2 October 2026, 86 weekly points, validation pas
 - Confirm the Free State vaccinated figure with the Free State JOC and the Eastern Cape booster basis (session 85).
 - Re-authenticate the local Claude CLI, or retire the PowerShell task.
 - All items carried forward from sessions 87 and earlier.
+
+### Publish
+
+Commit `22a395e` pushed to `main` on top of session 87's `a864a74`; local HEAD matches `origin/main`. The "pages build and deployment" workflow for `22a395e` concluded success. The "Build and Deploy FMD Dashboard" workflow did not run, as expected, because it is path-filtered to the master, build script and template, none of which changed. This publish note is held locally and will go up with the next push.
+
+
+## Session 89. 6 October 2026. Scheduled update, MPO Week 50 ingest, news scan and publish.
+
+The 08:00 scheduled run started at 08:04 South African time on Tuesday 6 October. No session had yet run today. Before publishing we confirmed the remote `main` was still at session 88's `22a395e`.
+
+### Sources processed
+
+| Source | Effective date | Source org | Outcome |
+|---|---|---|---|
+| `inbox/MPO/Week 50 - Update on the state of FMD and vaccine rollouts in the dairy industry.pdf` (saved 5 Oct, 08:15, after session 88) | 2026-10-02 | MPO | 30 rows. Per-province active case counts read from the embedded map image, saved as `archive/2026-10-06/mpo_week50_map.jpg`. |
+| All other inbox subfolders, root dated folders, project tree | n/a | n/a | Nothing else new since session 85. |
+| Web search, last 7 days (national, provincial, trade, industry bodies, Afrikaans media, international) | n/a | n/a | 3 new news items added to `news_feed.json`. |
+
+### Key figures
+
+- Dairy cows vaccinated, first round: 962,304 nationally, unchanged in every province.
+- Boosters: 699,127 nationally, up 5,365. Eastern Cape up 1,422 to 225,395. Western Cape up 3,943 to 106,894. KwaZulu-Natal, Free State and Gauteng unchanged. Limpopo, Mpumalanga, North West and Northern Cape still report no boosters.
+- Dairy farms: 175 cumulative, 128 active, both unchanged. Per-province active map identical to Weeks 48 and 49.
+- New column, private vaccine procurement through IDtrax, cumulative to date: KwaZulu-Natal 79,740, Eastern Cape 24,120, total 103,860.
+- No new dairy cases or reinfections reported in any region.
+
+### Arithmetic cross-checks
+
+All passed: provincial first-round figures sum to 962,304; provincial boosters sum to 699,127; the northern provinces' 32,838 boosters equal Free State plus Gauteng; IDtrax provincial figures sum to 103,860; the map sums to 128 active farms.
+
+### Data quality flags and decisions
+
+- **IDtrax conflict.** Week 49 stated that over 110,000 doses had been ordered and delivered to KwaZulu-Natal through IDtrax to date. Week 50 gives 79,740 ("close to 80,000"). The Week 49 figure was held in notes only, so nothing is superseded; the conflict is flagged in the new row's notes. Query with the MPO.
+- **New metric name.** We checked the master for an existing IDtrax or cumulative dairy dose metric and found none. `doses_received_dairy` holds weekly delivery increments (42,000 and 41,000), so the cumulative figures were filed under a new metric, `dairy_doses_idtrax_cumulative` (category logistics, channel private), to keep cumulative and weekly figures apart. The build does not read it; held for analysis only.
+- The per-province active dairy case map is unchanged again. The open query to the MPO on whether it is still being refreshed stands.
+
+### Rows
+
+30 added, 0 duplicates. Master 3,910 to 3,940 rows. Backup `master_data.csv.bak_session89`. Ingest script `scripts/ingest_s89_mpo_w50.py`.
+
+### News items added
+
+| Date | Headline | Source | Relation to master |
+|---|---|---|---|
+| 2026-10-06 | Namibia's outbreak could push up South African mutton and lamb prices more than beef. | Farmer's Weekly | Regional trade context. No conflict with the master. |
+| 2026-10-05 | Department trade mission seeks Middle East market access for livestock exports. | Agrinews | Media report of the late September mission to Saudi Arabia, Oman and the UAE. No primary Department statement found, so no policy row was added. |
+| 2026-10-05 | Namibia begins vaccinating around the ||Kharas outbreak as businesses put workers on leave. | The Namibian | Regional, not South African programme data. Adds sample and inspection counts to the 4 October Informanté item. |
+
+We left out items outside the window or already held: the SAnews and BusinessTech reports of 4 and 7 September on 23 million imported doses, the Namibian ||Kharas update of 28 September and opinion piece of 29 September, the Sunday Standard piece on Botswana (5 October, no South African content), and the 22 September private manufacturing coverage. `news_feed.json` backed up to `news_feed.json.bak_session89`, `last_checked` 2026-10-06, 28 items held.
+
+### Dashboard
+
+Rebuilt via importlib. Snapshot 2 October 2026 (MPO is not a programme source), 86 weekly points, validation passed (1,946,694 bytes). Checked in the payload: dairy latest date 2 October, EC booster 225,395, WC booster 106,894, national first round 962,304, and all three news items present.
+
+### Action items for next run
+
+- Weekly provincial packs for the week ending 2 October (EC, FS, GP, KZN, LP, MP, NW, NC, WC); none have arrived.
+- Ask the MPO to reconcile the KwaZulu-Natal IDtrax figure (over 110,000 in Week 49 against 79,740 in Week 50).
+- Look for a primary Department statement on the Middle East trade mission.
+- Confirm the Free State vaccinated figure with the Free State JOC and the Eastern Cape booster basis (session 85).
+- Re-authenticate the local Claude CLI, or retire the PowerShell task.
+- All items carried forward from sessions 88 and earlier.
