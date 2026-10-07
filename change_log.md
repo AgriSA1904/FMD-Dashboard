@@ -6331,3 +6331,44 @@ Rebuilt via importlib. Snapshot 2 October 2026 (MPO is not a programme source), 
 - Confirm the Free State vaccinated figure with the Free State JOC and the Eastern Cape booster basis (session 85).
 - Re-authenticate the local Claude CLI, or retire the PowerShell task.
 - All items carried forward from sessions 88 and earlier.
+
+### Publish
+
+Commit `d67e673` pushed to `main` on top of session 88's `22a395e`; local HEAD matches `origin/main`. Both the "Build and Deploy FMD Dashboard" and the "pages build and deployment" workflows for `d67e673` concluded success. This publish note is held locally and will go up with the next push.
+
+
+## Session 90. 7 October 2026. Scheduled update, news scan and publish.
+
+The 08:00 scheduled run started at 08:04 South African time on Wednesday 7 October. No session had yet run today. The local PowerShell ingest (08:00) ran against the legacy xlsx files and added nothing; its Claude CLI step again failed with an expired OAuth token.
+
+### Sources processed
+
+| Source | Effective date | Source org | Outcome |
+|---|---|---|---|
+| All inbox subfolders, root dated folders, full project tree | n/a | n/a | Nothing new since session 89. The only changed files were the PowerShell ingest logs. The Eastern Cape 1 October deck shows a fresh change time from OneDrive sync but was already ingested in session 85. |
+| Web search, last 7 days (national, provincial, trade, industry bodies, Afrikaans media, international) | n/a | n/a | 1 new news item added to `news_feed.json`. |
+
+### Rows
+
+None added. Master unchanged at 3,940 data rows.
+
+### News items added
+
+| Date | Headline | Source | Relation to master |
+|---|---|---|---|
+| 2026-10-06 | European Union suspends fresh beef, mutton and goat meat imports from Namibia. | Maroela Media (AFP) | Regional trade context, not South African programme data. No conflict with the master. |
+
+We left out items outside the window or already covered: Farmer's Weekly on Namibian shows banning livestock (24 September), The Namibian on panic buying (27 September) and on N$3.3 billion of European exports at risk (28 September), African Farming's Namibia movement ban report (30 September, covered by items already held), and the OFM Nampo Alfa profitability preview (30 September, no foot and mouth content). We found no new primary Ministry or Department statement, so no policy rows were added. `news_feed.json` backed up to `news_feed.json.bak_session90`, `last_checked` 2026-10-07, 29 items held.
+
+### Dashboard
+
+Rebuilt via importlib. Snapshot 2 October 2026, 86 weekly points, validation passed (1,947,533 bytes). The new news item is present in the built payload.
+
+### Action items for next run
+
+- Weekly provincial packs for the week ending 2 October (EC, FS, GP, KZN, LP, MP, NW, NC, WC); none have arrived. Packs for the week ending 9 October are due from Thursday.
+- MPO Week 51 is due around 9 October.
+- Ask the MPO to reconcile the KwaZulu-Natal IDtrax figure (over 110,000 in Week 49 against 79,740 in Week 50).
+- Look for a primary Department statement on the Middle East trade mission.
+- Re-authenticate the local Claude CLI, or retire the PowerShell task.
+- All items carried forward from sessions 89 and earlier.

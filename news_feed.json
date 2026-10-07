@@ -1,7 +1,17 @@
 {
-  "last_checked": "2026-10-06",
+  "last_checked": "2026-10-07",
   "note": "Curated daily by the scheduled ingest. Items are media and public reporting, not programme data. Figures quoted here do not feed the dashboard headlines unless they are also ingested into master_data.csv from a programme source.",
   "items": [
+    {
+      "date": "2026-10-06",
+      "headline": "European Union suspends fresh beef, mutton and goat meat imports from Namibia.",
+      "source": "Maroela Media (AFP)",
+      "url": "https://maroelamedia.co.za/landbou/namibie-se-beesvleisuitvoer-kry-knou-weens-bek-en-klou/",
+      "summary": "The European Union, which takes more than 80 percent of Namibia's beef exports, has temporarily suspended imports of fresh beef, mutton and goat meat after the outbreak in Namibia's main commercial zone spread to 11 farms. Heavily processed products that meet strict risk-reduction standards may still be exported. This is regional trade context, not South African programme data, and does not affect any figure in our master.",
+      "category": "trade",
+      "province": "national",
+      "added": "2026-10-07"
+    },
     {
       "date": "2026-10-06",
       "headline": "Namibia's outbreak could push up South African mutton and lamb prices more than beef.",
