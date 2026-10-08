@@ -6372,3 +6372,44 @@ Rebuilt via importlib. Snapshot 2 October 2026, 86 weekly points, validation pas
 - Look for a primary Department statement on the Middle East trade mission.
 - Re-authenticate the local Claude CLI, or retire the PowerShell task.
 - All items carried forward from sessions 89 and earlier.
+
+### Publish
+
+Commit `daa413c` pushed to `main` on top of session 89's `d67e673`; local HEAD matches `origin/main`. The "pages build and deployment" workflow for `daa413c` concluded success. The "Build and Deploy FMD Dashboard" workflow did not run, as expected, because it is path-filtered to the master, build script and template, none of which changed. This publish note is held locally and will go up with the next push.
+
+
+## Session 91. 8 October 2026. Scheduled update, news scan and publish.
+
+The 08:00 scheduled run started at 08:04 South African time on Thursday 8 October. No session had yet run today. The local PowerShell ingest (08:00) ran against the legacy xlsx files and added nothing; its Claude CLI step again failed with an expired OAuth token.
+
+### Sources processed
+
+| Source | Effective date | Source org | Outcome |
+|---|---|---|---|
+| All inbox subfolders, root dated folders, full project tree | n/a | n/a | Nothing new since session 90. The only changed files were the PowerShell ingest logs and its prompt file. |
+| Web search, last 7 days (national, provincial, trade, industry bodies, Afrikaans media, international) | n/a | n/a | 1 new news item added to `news_feed.json`. |
+
+### Rows
+
+None added. Master unchanged at 3,940 data rows.
+
+### News items added
+
+| Date | Headline | Source | Relation to master |
+|---|---|---|---|
+| 2026-10-07 | Namibia's confirmed cases rise to 127 on 15 farms as it plans border fencing with South Africa. | Farmer's Weekly | Regional trade context, not South African programme data. Updates the 4 October Informanté item (79 positive samples on 11 farms). No conflict with the master. |
+
+We left out items outside the window or already covered: The Namibian's ||Kharas update of 28 September, the 22 to 24 September private vaccine manufacturing coverage (already ingested as policy rows in session 77b), and older Maroela Media and Farmer's Weekly pieces that surfaced in search (February and March 2026, and 2019). We found no new primary Ministry or Department statement, so no policy rows were added. `news_feed.json` backed up to `news_feed.json.bak_session91`, `last_checked` 2026-10-08, 30 items held.
+
+### Dashboard
+
+Rebuilt via importlib. Snapshot 2 October 2026, 86 weekly points, validation passed (1,948,518 bytes). The new news item is present in the built payload.
+
+### Action items for next run
+
+- Weekly provincial packs for the week ending 2 October (EC, FS, GP, KZN, LP, MP, NW, NC, WC); none have arrived. Packs for the week ending 9 October are due from Friday.
+- MPO Week 51 is due around 9 October.
+- Ask the MPO to reconcile the KwaZulu-Natal IDtrax figure (over 110,000 in Week 49 against 79,740 in Week 50).
+- Look for a primary Department statement on the Middle East trade mission.
+- Re-authenticate the local Claude CLI, or retire the PowerShell task.
+- All items carried forward from sessions 90 and earlier.
