@@ -1,5 +1,5 @@
 {
-  "last_checked": "2026-10-08",
+  "last_checked": "2026-10-11",
   "note": "Curated daily by the scheduled ingest. Items are media and public reporting, not programme data. Figures quoted here do not feed the dashboard headlines unless they are also ingested into master_data.csv from a programme source.",
   "items": [
     {
@@ -301,6 +301,46 @@
       "category": "trade",
       "province": "national",
       "added": "2026-10-08"
+    },
+    {
+      "date": "2026-10-06",
+      "headline": "Farmers and economists say opening ARC vaccine production to private manufacturers is long overdue.",
+      "source": "Daily Maverick",
+      "url": "https://dailymaverick.co.za/article/2026-10-06-foot-and-mouth-disease-vaccine-privatisation-long-overdue-say-farmers-experts",
+      "summary": "Following the ARC Board's 21 September decision to license private manufacture of its vaccine, the ARC says current infrastructure limits short-term volumes and pricing is still to be settled. FMD Response SA and farmer bodies welcome the move but point to long gaps in vaccine supply during the outbreak. The policy decision is already held in our master as session 77b policy rows; no new figures were ingested.",
+      "category": "vaccination",
+      "province": "national",
+      "added": "2026-10-11"
+    },
+    {
+      "date": "2026-10-06",
+      "headline": "Namibian and South African officials discuss protocols to reopen livestock auctions.",
+      "source": "The Namibian",
+      "url": "https://www.namibian.com.na/namibia-sa-discuss-reopening-livestock-auctions/",
+      "summary": "Technical officials from both countries met online on 6 October, and South African animal health experts were due in Namibia on 9 October to agree the conditions for resuming auction trade, including animals destined for South Africa. Namibia says trade will reopen gradually once the Karasburg outbreak is shown to be contained.",
+      "category": "trade",
+      "province": "national",
+      "added": "2026-10-11"
+    },
+    {
+      "date": "2026-10-08",
+      "headline": "Namibia rules out culling and turns to vaccination to contain its outbreak.",
+      "source": "The Namibian",
+      "url": "https://namibian.com.na/no-culling-for-fmd-cattle-only-vaccinations-zaamwani",
+      "summary": "Agriculture minister Inge Zaamwani told Parliament that the window for culling had passed and that vaccination is now the only viable option, with 100,000 doses moved south from the Zambezi region. Investigations into the source continue along the Orange River border area.",
+      "category": "policy",
+      "province": "national",
+      "added": "2026-10-11"
+    },
+    {
+      "date": "2026-10-09",
+      "headline": "Namibia's outbreak reaches 17 farms and 129 positive samples in ||Kharas.",
+      "source": "The Namibian",
+      "url": "https://www.namibian.com.na/fmd-spreads-to-17-kharas-farms/",
+      "summary": "As at 6 October, 17 farms in the Karasburg district were confirmed infected, up from 15 farms and 127 cases reported on 7 October. Twenty inspection teams have visited 72 of 81 farms within 50 kilometres of the index farm, and 16 veterinary checkpoints are operating. Regional context only, not South African programme data.",
+      "category": "cases",
+      "province": "national",
+      "added": "2026-10-11"
     }
   ]
 }

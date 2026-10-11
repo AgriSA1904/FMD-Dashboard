@@ -6413,3 +6413,103 @@ Rebuilt via importlib. Snapshot 2 October 2026, 86 weekly points, validation pas
 - Look for a primary Department statement on the Middle East trade mission.
 - Re-authenticate the local Claude CLI, or retire the PowerShell task.
 - All items carried forward from sessions 90 and earlier.
+
+### Publish
+
+Commit `fef3c0f` pushed to `main` on top of session 90's `daa413c`; local HEAD matches `origin/main`. The "pages build and deployment" workflow for `fef3c0f` concluded success. The "Build and Deploy FMD Dashboard" workflow did not run, as expected, because it is path-filtered to the master, build script and template, none of which changed. This publish note is held locally and will go up with the next push.
+
+
+## Session 92. 9 October 2026. Scheduled update, inbox and news checked, nothing new.
+
+The 08:00 scheduled run started at 08:04 South African time on Friday 9 October. No session had yet run today. The local PowerShell ingest (08:00) ran against the legacy xlsx files and added nothing.
+
+### Sources processed
+
+| Source | Effective date | Source org | Outcome |
+|---|---|---|---|
+| All inbox subfolders, root dated folders, full project tree | n/a | n/a | Nothing new since session 91. The only changed files were the PowerShell ingest logs and its prompt file. |
+| Web search, last 7 days (national, provincial, trade, industry bodies, Afrikaans media, international) | n/a | n/a | No new items. |
+
+### Rows
+
+None added. Master unchanged at 3,940 data rows.
+
+### News
+
+No new items. We left out The Namibian's report on Cabinet's containment plan (6 October) and New Era's report on the President's address (7 October), because both repeat the 127 cases on 15 farms and the border fencing plan already held from Farmer's Weekly (7 October). The Minister's keynote at the Livestock Recording and Registering Federation Stockman School (7 October) did not mention foot and mouth disease. Other results were outside the window or already held. We found no new primary Ministry or Department statement, so no policy rows were added. `last_checked` set to 2026-10-09 (backup `news_feed.json.bak_session92`); 30 items held.
+
+### Dashboard and publish
+
+Not rebuilt and not pushed, as nothing new arrived. The `last_checked` change and this note will go up with the next push.
+
+### Action items for next run
+
+- Weekly provincial packs for the weeks ending 2 and 9 October (EC, FS, GP, KZN, LP, MP, NW, NC, WC) are outstanding; the 9 October packs are due today.
+- MPO Week 51 is due around today.
+- Ask the MPO to reconcile the KwaZulu-Natal IDtrax figure (over 110,000 in Week 49 against 79,740 in Week 50).
+- Look for a primary Department statement on the Middle East trade mission.
+- Re-authenticate the local Claude CLI, or retire the PowerShell task.
+- All items carried forward from sessions 91 and earlier.
+
+
+## Session 93. 11 October 2026. Scheduled update, FS, GP and Department technical report ingest, news scan and publish.
+
+The 08:00 scheduled run started late, at 14:18 South African time on Sunday 11 October. No session had run on 10 or 11 October. Three files arrived in the inbox on 9 October after session 92.
+
+### Sources processed
+
+| Source | Effective date | Source org | Outcome |
+|---|---|---|---|
+| `inbox/Free State/FMD_STATS_9_OCTOBER_2026.zip` (xlsx plus five WhatsApp images of the media release) | 2026-10-09 | FS-DARDLEA | 10 rows. Images read visually and saved as `archive/2026-10-11/fs_9oct_img1-5.jpeg`. |
+| `inbox/Gauteng/Dalene email.pdf` (Agriculture Gauteng summary of the GP JOC of 2 October) | 2026-09-30 | GP-GDARD | 10 rows. Page 2 image is an email signature logo only. |
+| `inbox/Portfolio Committee Presentations/FMD Technial report 30 September 2026.pdf` (Directorate Animal Health, status as reported to WOAH) | 2026-09-30 | Ministry | 20 rows. Images checked: cover, outbreak map (dated 1 October, no figures, saved as `archive/2026-10-11/techrep_p2_Image18.jpg`) and control zone map. |
+| Web search, last 7 days (national, provincial, trade, industry bodies, Afrikaans media, international) | n/a | n/a | 4 new news items. |
+
+Ingest script: `archive/2026-10-11/ingest_session93.py`. Master backed up to `master_data.csv.bak_session93`. Prepared 40, new 40, duplicates skipped 0. Master now 3,980 data rows.
+
+### Key figures added
+
+- **Free State, 9 October.** Positive cases 804 (1 new in Warden SVA; 768 resolved, 36 active). District split Mangaung 35, Fezile Dabi 370, Lejweleputswa 152, Thabo Mofutsanyana 196 (Phumelela up 1 to 46), Xhariep 51. Cattle vaccinated 1,704,678, being 1,695,946 by state and private vets plus 8,732 by farmers. Doses received 1,961,840, unchanged. Self-vaccination notifications 138, unchanged. The suspected cases cell was blank, so no suspected row was added.
+- **Gauteng, as at 30 September.** 312 confirmed outbreaks, 223 closed and 89 active; last outbreak 25 August. 580,838 animals with primary vaccination in 2026, coverage about 90 percent. 757,320 doses received from the National Department, about 70 percent utilised. 63 private vets approved, 612 farmer applications, 198,210 doses issued to private vets. 27 state vets (15 permanent, 12 contract) and 55 Animal Health Technicians (27 permanent, 28 contract).
+- **National, Department technical report, 30 September.** Open outbreaks 1,501 and closed 1,370, total 2,871. By province (open, closed): EC 421, 12; FS 163, 634; GP 136, 165; KZN 346, 30; LP 99, 33; MP 123, 143; NW 143, 329; NC 39, 7; WC 31, 17.
+
+### Arithmetic checks (all asserted in the script)
+
+FS district totals and the release's 14 SVA figures each sum to 804; 768 plus 36 equals 804; 1,695,946 plus 8,732 equals 1,704,678; notification SVA split sums to 138. GP 223 plus 89 equals 312; vets 15 plus 12 equals 27; technicians 27 plus 28 equals 55. Technical report open column sums to 1,501, closed to 1,370, total 2,871, and each province row adds up.
+
+### Conflicts and data quality flags
+
+- GP outbreaks: JOC 312 (223 closed) against the technical report's 301 (165 closed) for the same date. Both held. The WOAH count lags provincial reporting.
+- Technical report counts are below provincial counts in several provinces (EC 433 against 510 at 1 October; FS 797 against 803 at 2 October). Expected, because of the formal WOAH reporting cycle; noted in each row.
+- GP "about 70 percent utilised" of 757,320 doses implies about 530,000 doses, below the 580,838 animals vaccinated. The basis is not explained; flagged in the row notes.
+- The technical report dates the amended control measures gazette to 7 July 2026; we hold Gazette No. 54969 as 8 July 2026 (and the FS release again says 8 July). No change made.
+- GP's received figure is now 757,320 from both the JOC and the Ministry, which closes the earlier 643,300 against 757,320 gap.
+
+### Build change
+
+The new WOAH rows moved the "as at" date of seven province cards (KZN, LP, MP, NW, NC, WC and GP) to 30 September, although their figures were still from 14 September or earlier. We added `REFERENCE_ONLY_METRICS` to `scripts/build_dashboard.py` so `latest_province_date` ignores `woah_outbreaks_open` and `woah_outbreaks_closed`. Backup at `scripts/build_dashboard.py.bak_session93`. After the fix the cards read EC 1 October, FS 9 October, GP 30 September and the rest 14 September.
+
+### News items added
+
+| Date | Headline | Source | Relation to master |
+|---|---|---|---|
+| 2026-10-06 | Farmers and economists say opening ARC vaccine production to private manufacturers is long overdue. | Daily Maverick | Decision already held as session 77b policy rows. No new figures. |
+| 2026-10-06 | Namibian and South African officials discuss protocols to reopen livestock auctions. | The Namibian | Regional trade context. No conflict. |
+| 2026-10-08 | Namibia rules out culling and turns to vaccination to contain its outbreak. | The Namibian | Regional context. No conflict. |
+| 2026-10-09 | Namibia's outbreak reaches 17 farms and 129 positive samples in ||Kharas. | The Namibian | Updates the 7 October item (127 cases on 15 farms). No conflict. |
+
+We left out the Namibian Sun version of the 17 farms report (duplicate), Farmer's Weekly's Nampo Alfa programme piece of 10 October (no new facts beyond the 2 October item), African Farming's poultry vaccine piece (not about foot and mouth disease) and older items that surfaced in search. No new primary Ministry statement, so no policy rows. `news_feed.json` backed up to `news_feed.json.bak_session93`; `last_checked` 2026-10-11; 34 items held.
+
+### Dashboard
+
+Rebuilt via importlib. Snapshot 9 October 2026 (from 2 October), 88 weekly points, validation passed (1,952,213 characters). National: positive 2,858, received 12,596,120, administered 9,517,699, balance 3,078,421. Checked in the payload: FS 804 and 1,704,678; GP 312, 580,838 and 757,320; all four news headlines.
+
+### Action items for next run
+
+- Weekly provincial packs for EC, KZN, LP, MP, NW, NC and WC are still outstanding (last full set 14 September). Packs for the week ending 16 October are due from Thursday.
+- MPO Week 51 has not arrived.
+- Ask the MPO to reconcile the KwaZulu-Natal IDtrax figure (over 110,000 in Week 49 against 79,740 in Week 50).
+- Ask the Department to confirm the gazette date (7 or 8 July 2026).
+- Look for a primary Department statement on the Middle East trade mission.
+- Re-authenticate the local Claude CLI, or retire the PowerShell task.
+- All items carried forward from sessions 92 and earlier.

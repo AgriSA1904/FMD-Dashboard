@@ -1125,8 +1125,8 @@
 
 <script>
 const DASHBOARD_DATA = {
-  "snapshot_date": "2026-10-02",
-  "build_date": "2026-10-08",
+  "snapshot_date": "2026-10-09",
+  "build_date": "2026-10-11",
   "provinces": [
     {
       "code": "EC",
@@ -1149,15 +1149,15 @@ const DASHBOARD_DATA = {
     {
       "code": "FS",
       "name": "Free State",
-      "as_of": "2026-10-02",
+      "as_of": "2026-10-09",
       "herd": 3061684,
-      "positive": 803,
+      "positive": 804,
       "suspected": 237,
       "negative": 0,
       "pending": 0,
       "received": 1961840,
-      "vaccinated": 1687931,
-      "dose1": 1668813,
+      "vaccinated": 1704678,
+      "dose1": 1685560,
       "dose2": 19118,
       "dose2_asof": "2026-10-02",
       "dose2_source": "MPO",
@@ -1167,15 +1167,15 @@ const DASHBOARD_DATA = {
     {
       "code": "GP",
       "name": "Gauteng",
-      "as_of": "2026-09-14",
+      "as_of": "2026-09-30",
       "herd": 475000,
-      "positive": 307,
+      "positive": 312,
       "suspected": 1,
       "negative": 0,
       "pending": 0,
       "received": 757320,
-      "vaccinated": 527626,
-      "dose1": 513906,
+      "vaccinated": 580838,
+      "dose1": 567118,
       "dose2": 13720,
       "dose2_asof": "2026-10-02",
       "dose2_source": "MPO",
@@ -1965,18 +1965,34 @@ const DASHBOARD_DATA = {
       "pending": null
     },
     {
+      "date": "2026-09-30",
+      "received": 11815120,
+      "administered": 9340041,
+      "positive": 2846,
+      "suspected": 890,
+      "pending": null
+    },
+    {
       "date": "2026-10-01",
       "received": 12596120,
-      "administered": 9431125,
-      "positive": 2845,
+      "administered": 9484337,
+      "positive": 2850,
       "suspected": 894,
       "pending": null
     },
     {
       "date": "2026-10-02",
       "received": 12596120,
-      "administered": 9447740,
-      "positive": 2852,
+      "administered": 9500952,
+      "positive": 2857,
+      "suspected": 871,
+      "pending": null
+    },
+    {
+      "date": "2026-10-09",
+      "received": 12596120,
+      "administered": 9517699,
+      "positive": 2858,
       "suspected": 871,
       "pending": null
     }
@@ -1989,23 +2005,23 @@ const DASHBOARD_DATA = {
     "unallocated": 3529620
   },
   "national": {
-    "positive": 2852,
+    "positive": 2858,
     "suspected": 871,
     "negative": 238,
     "pending": 124,
     "procured": 16000000,
     "distributed": 12596120,
     "received": 12596120,
-    "administered": 9447740,
+    "administered": 9517699,
     "herd_cattle": 15450142,
-    "balance": 3148380,
+    "balance": 3078421,
     "dose2": 603469,
-    "dose1": 8844271,
+    "dose1": 8914230,
     "dose_split_note": "Dose 2 is the sum of the latest booster figures per province; several provinces report boosters for the dairy programme only, so dose 2 is a minimum and dose 1 a derived maximum.",
     "delta_received": 0,
     "delta_distributed": 0,
-    "delta_administered": 16615,
-    "delta_positive": 7
+    "delta_administered": 16747,
+    "delta_positive": 1
   },
   "mpo": {
     "weekly": [
@@ -3443,21 +3459,21 @@ const DASHBOARD_DATA = {
     {
       "code": "FS",
       "name": "Free State",
-      "joc": 1687931,
-      "joc_date": "2026-10-02",
+      "joc": 1704678,
+      "joc_date": "2026-10-09",
       "ministerial": 707986,
       "ministerial_date": "2026-06-04",
-      "diff": 979945,
+      "diff": 996692,
       "flag": null
     },
     {
       "code": "GP",
       "name": "Gauteng",
-      "joc": 527626,
+      "joc": 580838,
       "joc_date": "2026-10-02",
       "ministerial": 325216,
       "ministerial_date": "2026-06-04",
-      "diff": 202410,
+      "diff": 255622,
       "flag": null
     },
     {
@@ -3945,7 +3961,7 @@ const DASHBOARD_DATA = {
     },
     "FS": {
       "name": "Free State",
-      "latest_date": "2026-10-02",
+      "latest_date": "2026-10-09",
       "vaccine_types": [
         {
           "type": "dolvet",
@@ -4031,14 +4047,14 @@ const DASHBOARD_DATA = {
         },
         {
           "name": "Fezile Dabi district",
-          "date": "2026-10-02",
+          "date": "2026-10-09",
           "vaccinated": null,
           "cases": 370,
           "suspected": null,
           "pending": null,
           "outbreaks": null,
           "negative": null,
-          "notes": "Fezile Dabi district. Mafube 81, Metsimaholo 64, Moqhaka 127, Ngwathe 98; up 2 from 368."
+          "notes": "Fezile Dabi district. Mafube 81, Metsimaholo 64, Moqhaka 127, Ngwathe 98; unchanged from 2 Oct."
         },
         {
           "name": "Fezile Dabi",
@@ -4064,14 +4080,14 @@ const DASHBOARD_DATA = {
         },
         {
           "name": "Thabo Mofutsanyana district",
-          "date": "2026-10-02",
+          "date": "2026-10-09",
           "vaccinated": null,
-          "cases": 195,
+          "cases": 196,
           "suspected": null,
           "pending": null,
           "outbreaks": null,
           "negative": null,
-          "notes": "Thabo Mofutsanyana district. Dihlabeng 75, Maluti-A-Phofung 29, Mantsopa 46, Phumelela 45; unchanged."
+          "notes": "Thabo Mofutsanyana district. Dihlabeng 75, Maluti-A-Phofung 29, Mantsopa 46, Phumelela 46; up 1 from 195 (new case in Warden SVA, Phumelela)."
         },
         {
           "name": "Thabo Mofutsanyana",
@@ -4097,14 +4113,14 @@ const DASHBOARD_DATA = {
         },
         {
           "name": "Lejweleputswa district",
-          "date": "2026-10-02",
+          "date": "2026-10-09",
           "vaccinated": null,
           "cases": 152,
           "suspected": null,
           "pending": null,
           "outbreaks": null,
           "negative": null,
-          "notes": "Lejweleputswa district. Matjhabeng 55, Tokologo 53, Tswelopele 44; up 2 from 150."
+          "notes": "Lejweleputswa district. Matjhabeng 55, Tokologo 53, Tswelopele 44; unchanged from 2 Oct."
         },
         {
           "name": "Lejweleputswa",
@@ -4240,14 +4256,14 @@ const DASHBOARD_DATA = {
         },
         {
           "name": "Xhariep district",
-          "date": "2026-10-02",
+          "date": "2026-10-09",
           "vaccinated": null,
           "cases": 51,
           "suspected": null,
           "pending": null,
           "outbreaks": null,
           "negative": null,
-          "notes": "Xhariep district. Kopanong 28, Mohokare 23; up 3 from 48."
+          "notes": "Xhariep district. Kopanong 28, Mohokare 23; unchanged from 2 Oct."
         },
         {
           "name": "Ladybrand SVA",
@@ -4328,7 +4344,7 @@ const DASHBOARD_DATA = {
         },
         {
           "name": "Mangaung Metropolitan district",
-          "date": "2026-10-02",
+          "date": "2026-10-09",
           "vaccinated": null,
           "cases": 35,
           "suspected": null,
@@ -6110,9 +6126,29 @@ const DASHBOARD_DATA = {
     }
   },
   "news": {
-    "last_checked": "2026-10-08",
+    "last_checked": "2026-10-11",
     "note": "Curated daily by the scheduled ingest. Items are media and public reporting, not programme data. Figures quoted here do not feed the dashboard headlines unless they are also ingested into master_data.csv from a programme source.",
     "items": [
+      {
+        "date": "2026-10-09",
+        "headline": "Namibia's outbreak reaches 17 farms and 129 positive samples in ||Kharas.",
+        "source": "The Namibian",
+        "url": "https://www.namibian.com.na/fmd-spreads-to-17-kharas-farms/",
+        "summary": "As at 6 October, 17 farms in the Karasburg district were confirmed infected, up from 15 farms and 127 cases reported on 7 October. Twenty inspection teams have visited 72 of 81 farms within 50 kilometres of the index farm, and 16 veterinary checkpoints are operating. Regional context only, not South African programme data.",
+        "category": "cases",
+        "province": "national",
+        "added": "2026-10-11"
+      },
+      {
+        "date": "2026-10-08",
+        "headline": "Namibia rules out culling and turns to vaccination to contain its outbreak.",
+        "source": "The Namibian",
+        "url": "https://namibian.com.na/no-culling-for-fmd-cattle-only-vaccinations-zaamwani",
+        "summary": "Agriculture minister Inge Zaamwani told Parliament that the window for culling had passed and that vaccination is now the only viable option, with 100,000 doses moved south from the Zambezi region. Investigations into the source continue along the Orange River border area.",
+        "category": "policy",
+        "province": "national",
+        "added": "2026-10-11"
+      },
       {
         "date": "2026-10-07",
         "headline": "Namibia's confirmed cases rise to 127 on 15 farms as it plans border fencing with South Africa.",
@@ -6142,6 +6178,26 @@ const DASHBOARD_DATA = {
         "category": "trade",
         "province": "national",
         "added": "2026-10-06"
+      },
+      {
+        "date": "2026-10-06",
+        "headline": "Farmers and economists say opening ARC vaccine production to private manufacturers is long overdue.",
+        "source": "Daily Maverick",
+        "url": "https://dailymaverick.co.za/article/2026-10-06-foot-and-mouth-disease-vaccine-privatisation-long-overdue-say-farmers-experts",
+        "summary": "Following the ARC Board's 21 September decision to license private manufacture of its vaccine, the ARC says current infrastructure limits short-term volumes and pricing is still to be settled. FMD Response SA and farmer bodies welcome the move but point to long gaps in vaccine supply during the outbreak. The policy decision is already held in our master as session 77b policy rows; no new figures were ingested.",
+        "category": "vaccination",
+        "province": "national",
+        "added": "2026-10-11"
+      },
+      {
+        "date": "2026-10-06",
+        "headline": "Namibian and South African officials discuss protocols to reopen livestock auctions.",
+        "source": "The Namibian",
+        "url": "https://www.namibian.com.na/namibia-sa-discuss-reopening-livestock-auctions/",
+        "summary": "Technical officials from both countries met online on 6 October, and South African animal health experts were due in Namibia on 9 October to agree the conditions for resuming auction trade, including animals destined for South Africa. Namibia says trade will reopen gradually once the Karasburg outbreak is shown to be contained.",
+        "category": "trade",
+        "province": "national",
+        "added": "2026-10-11"
       },
       {
         "date": "2026-10-05",
@@ -6551,6 +6607,8 @@ const DASHBOARD_DATA = {
     "inbox/Free State/FMD STATS.msg",
     "inbox/Free State/FMD STATS.zip",
     "inbox/Free State/FMD STATS/WhatsApp Image 2026-05-15 at 18.14.06.jpeg",
+    "inbox/Free State/FMD_STATS_9_OCTOBER_2026.zip -> DARDEA media release 09.10.2026 (WhatsApp images)",
+    "inbox/Free State/FMD_STATS_9_OCTOBER_2026.zip -> FS FMD Vaccine Data - 09.10.2026.xlsx",
     "inbox/Free State/Screenshot 2026-05-04 100411.png",
     "inbox/Free State/WhatsApp Image 2026-04-23 at 08.27.08.jpeg",
     "inbox/Free State/WhatsApp Image 2026-04-23 at 08.27.09.jpeg",
@@ -6558,6 +6616,7 @@ const DASHBOARD_DATA = {
     "inbox/Free State/WhatsApp Image 2026-07-24 at 08.38.40.jpeg",
     "inbox/GP/JOC FMD Outbreak Minutes - 08 May 2026.doc",
     "inbox/Gauteng/689472003_1403107838515160_3276233086600452208_n.jpg",
+    "inbox/Gauteng/Dalene email.pdf",
     "inbox/Gauteng/Fw_Draft Minutes and FMD outbreak status update.zip -> GDARD JOC update Meeting 31_07_2026.pdf",
     "inbox/Gauteng/WhatsApp Image 2026-05-04 at 14.29.29.jpeg",
     "inbox/ICC Reports/09-18-2026_FMD ICC Update.pdf",
@@ -6592,6 +6651,7 @@ const DASHBOARD_DATA = {
     "inbox/North West/14 SEPTEMBER 2026- RPO FMD UPDATE..pdf",
     "inbox/North West/19 MAY 2026- RPO JIC FMD UPDATE.pdf",
     "inbox/North West/28 JULY 2026- RPO JIC FMD UPDATE_.pdf",
+    "inbox/Portfolio Committee Presentations/FMD Technial report 30 September 2026.pdf",
     "inbox/Portfolio Committee Presentations/PRESENTATION TO THE PORTFOLIO COMMITTEE ON AGRICULURE (UPDATE ON THE FOOT AND MOUTH DISEASE SITUATION AND MASS VACCINATION STRATEGY)  (FINAL).pdf",
     "inbox/RMIS/06.05.2026_Final_Vaccine Orders Export (2026-05-06)_Feedlots.xlsx",
     "inbox/RMIS/Email - Jason K\u00fcmm - Outlook.pdf",

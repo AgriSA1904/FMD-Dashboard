@@ -121,10 +121,17 @@ def latest_dates(rows):
         and r["superseded_by"] == ""
     ))
 
+# Metrics held for reference only (not shown on the province cards). They must not
+# advance a province's "as at" date, or a card would look fresher than its figures.
+# Added session 93 for the Department's WOAH technical report rows.
+REFERENCE_ONLY_METRICS = frozenset({"woah_outbreaks_open", "woah_outbreaks_closed"})
+
 def latest_province_date(rows, code):
-    """Most recent effective_date with any non-superseded data for this province."""
+    """Most recent effective_date with any non-superseded data for this province,
+    ignoring reference-only metrics."""
     dates = sorted(set(r["effective_date"] for r in rows
-                       if r["province"] == code and r["superseded_by"] == ""))
+                       if r["province"] == code and r["superseded_by"] == ""
+                       and r["metric"] not in REFERENCE_ONLY_METRICS))
     return dates[-1] if dates else None
 
 def _best_received(rows_as_of, province):
