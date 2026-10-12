@@ -1312,6 +1312,15 @@ def build_dashboard():
         _news = {"last_checked": None, "note": "", "items": []}
     payload["news"] = _news
 
+    # Economic cost boxes on the national overview, curated in sa_economic.json
+    # (session 94c). Context only; never feeds programme figures.
+    try:
+        with open(os.path.join(ROOT, "sa_economic.json"), "r", encoding="utf-8") as _ef:
+            payload["economic"] = json.load(_ef)
+    except (OSError, ValueError) as _e:
+        print(f"Economic data not loaded ({_e}); economic boxes will be hidden.")
+        payload["economic"] = {}
+
     # Namibia regional context tab, curated in namibia_data.json (session 94b).
     # Media and government reporting on Namibia only; never feeds headline figures.
     _nam_path = os.path.join(ROOT, "namibia_data.json")

@@ -6591,3 +6591,23 @@ The latest MPO update held is Week 50 (snapshot 2 October, received 5 October, i
 
 - Keep `namibia_data.json` current in the daily run when Namibian news is added (update the figures, timeline and `last_updated`). The scheduled task prompt does not yet mention this.
 - Chase EC (week ending 9 October), NW (nothing since 14 September) and MPO Week 51.
+
+### Publish
+
+Commit `e881424` pushed to `main` on top of session 94's `2911465`; local HEAD matches `origin/main`. Both the "Build and Deploy FMD Dashboard" and "pages build and deployment" workflows for `e881424` concluded success. This publish note is held locally and will go up with the next push.
+
+
+## Session 94c. 12 October 2026. User request: economic impact boxes on the national overview, and Western Cape GIS check.
+
+### Economic impact boxes
+
+- New file `sa_economic.json`, read by the build into `DASHBOARD_DATA.economic` (backups `*.bak_session94c_econ`). A new "What the outbreak is costing us." section sits under the headline indicators on the national overview, with three boxes, each dated and linked to its source:
+  - Livestock export revenue lost each year, R5.6 billion (beef R3.7 billion, sheep and goat meat R1.4 billion, live animals R502.4 million). Minister of Agriculture, written reply to Parliament, Business Day, 22 December 2025.
+  - State spending on vaccines, R494 million to 1 June 2026 (Minister's statement), plus the further R1.3 billion requested from Treasury in the 2026/27 adjustments (Department presentation to the Portfolio Committee, 22 September 2026, held in our inbox).
+  - Production value lost 2025 to 2035, R21.1 billion (updated BFAP modelling, Farmer's Weekly, 5 October 2026), with beef exports of about 7,700 tonnes in January to April 2026 against 14,100 a year earlier.
+- The R494 million figure is from June, before most of the 16 million doses were procured; we found no later published spend figure. Replace it when the Department publishes one.
+- Rebuilt via importlib, validation passed. Rendered at desktop and phone widths with no errors and no horizontal scroll.
+
+### Western Cape GIS portal
+
+The Western Cape FMD dashboard (ArcGIS FeatureServer `DOA-Vets/FMD_Public`) is not pulled in the daily run. The last pull was 14 July 2026 (58 WC-GIS rows in total, using `wc_spatial_join.py` and `patch_wc_live.py`). Today neither the cloud workspace nor the device shell could reach gis.westerncape.gov.za (connection failed through the proxy), so the domain is probably not on the organisation's network allowlist. Action: add gis.westerncape.gov.za to the allowlist, then add the pull to the daily routine.

@@ -509,6 +509,10 @@
 
     footer { padding: 48px 16px; margin-top: 48px; }
   }
+  /* Economic impact boxes (national overview) */
+  .econ-kpi .kpi-value { font-size:28px; }
+  .econ-kpi .kpi-src { font-size:12px; margin-top:var(--sp-3); color:var(--charcoal); }
+  .econ-kpi .kpi-src a { color:var(--pine); }
   /* Namibia tab */
   .nam-summary { font-size:16px; line-height:1.6; color:var(--charcoal); margin:0 0 var(--sp-6); }
   .nam-kpi .kpi-value { font-size:28px; }
@@ -580,6 +584,13 @@
     <div class="kicker">National headline indicators</div>
     <h2>What we know this week.</h2>
     <div class="kpi-grid" id="kpiGrid"></div>
+  </section>
+
+  <section class="tab-section tab-active" data-tab="national" id="econSection">
+    <div class="kicker">Economic impact</div>
+    <h2>What the outbreak is costing us.</h2>
+    <p style="color:var(--charcoal);font-size:14px;margin-bottom:var(--sp-6)" id="econIntro"></p>
+    <div class="kpi-grid" id="econKpis"></div>
   </section>
 
   <section class="tab-section tab-active" data-tab="national">
@@ -6563,6 +6574,36 @@ const DASHBOARD_DATA = {
       }
     ]
   },
+  "economic": {
+    "last_updated": "2026-10-12",
+    "note": "These figures come from Ministerial statements and independent economic modelling, not from the weekly programme data. They are updated by hand when a new primary figure is published, and each links to its source.",
+    "kpis": [
+      {
+        "label": "Livestock export revenue lost each year",
+        "value": "R5.6 billion",
+        "sub": "Fresh and frozen beef R3.7 billion, sheep and goat meat R1.4 billion and live animals R502.4 million. Average annual loss from closed export markets, based on the previous year's export statistics.",
+        "as_of": "2025-12-22",
+        "source": "Minister of Agriculture, written reply to Parliament, reported by Business Day, 22 December 2025",
+        "url": "https://www.businessday.co.za/news/2025-12-22-foot-and-mouth-outbreak-costs-livestock-sector-r56bn-in-lost-export-revenue/"
+      },
+      {
+        "label": "State spending on vaccines",
+        "value": "R494 million",
+        "sub": "Spent on vaccine procurement and deployment up to 1 June 2026. On 22 September the Department told Parliament it had asked National Treasury for a further R1.3 billion in the 2026/27 adjustments budget, because its own budget cannot sustain procurement.",
+        "as_of": "2026-06-01",
+        "source": "Minister of Agriculture, statement of 1 June 2026; Department of Agriculture presentation to the Portfolio Committee, 22 September 2026",
+        "url": "https://www.polity.org.za/article/sa-john-steenhuisen-address-by-minister-of-agriculture-on-foot-and-mouth-disease-vaccination-and-vaccine-acquisition-01062026-2026-06-02"
+      },
+      {
+        "label": "Production value lost, 2025 to 2035",
+        "value": "R21.1 billion",
+        "sub": "Updated BFAP modelling of gross production value lost against the pre-outbreak baseline. Beef exports fell to about 7,700 tonnes in January to April 2026, from about 14,100 tonnes a year earlier.",
+        "as_of": "2026-10-02",
+        "source": "BFAP, presented at Nampo Alfa, reported by Farmer's Weekly, 5 October 2026",
+        "url": "https://www.farmersweekly.co.za/agri-news/south-africa/red-meat-industry-needs-to-turn-strategy-into-delivery/"
+      }
+    ]
+  },
   "namibia": {
     "last_updated": "2026-10-12",
     "note": "Regional context compiled from Namibian Government statements as reported in the media, the European Union delegation in Namibia and South African and Namibian media. These figures are not South African programme data and never feed the headline figures on the other tabs. Where reports differ, we show each figure with its source.",
@@ -8285,6 +8326,23 @@ if (chartJsReady && data.ministerial_comparison) try {
       return '<article class="news-item"><div class="news-meta"><span>'+esc(fmtDate(i.date))+'</span><span>'+esc(i.source)+'</span></div>'+
         '<h3>'+link(i.headline,i.url)+'</h3></article>'; }).join('') : '<p style="color:var(--charcoal)">No related news items yet.</p>');
   } catch (e) { console.error('Namibia tab error:', e); }
+}());
+</script>
+<script>
+(function () {
+  try {
+    var E = (typeof DASHBOARD_DATA !== 'undefined' && DASHBOARD_DATA.economic) || {};
+    var sec = document.getElementById('econSection');
+    if (!E.kpis || !E.kpis.length) { if (sec) sec.style.display = 'none'; return; }
+    function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+    function fmtDate(d){ if(!d) return ''; var x=new Date(d+'T00:00:00');
+      return isNaN(x)?d:x.toLocaleDateString('en-ZA',{day:'numeric',month:'long',year:'numeric'}); }
+    function link(src,url){ var u=/^https?:\/\//i.test(url||'')?url:''; return u?'<a href="'+esc(u)+'" target="_blank" rel="noopener">'+esc(src)+'</a>':esc(src); }
+    document.getElementById('econIntro').textContent = E.note || '';
+    document.getElementById('econKpis').innerHTML = E.kpis.map(function(k){
+      return '<div class="kpi econ-kpi"><div class="kpi-label">'+esc(k.label)+'</div><div class="kpi-value">'+esc(k.value)+'</div>'+
+        '<div class="kpi-sub">'+esc(k.sub)+'</div><div class="kpi-src">As at '+esc(fmtDate(k.as_of))+'. Source: '+link(k.source,k.url)+'</div></div>'; }).join('');
+  } catch (e) { console.error('Economic boxes error:', e); }
 }());
 </script>
 <script>
