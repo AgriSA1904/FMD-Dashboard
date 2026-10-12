@@ -6513,3 +6513,51 @@ Rebuilt via importlib. Snapshot 9 October 2026 (from 2 October), 88 weekly point
 - Look for a primary Department statement on the Middle East trade mission.
 - Re-authenticate the local Claude CLI, or retire the PowerShell task.
 - All items carried forward from sessions 92 and earlier.
+
+### Publish
+
+Commit `4991cc5` pushed to `main` on top of `e7f2f01` (the local PowerShell task's commit of 9 October, which came after `3c008fc` "Disable Jekyll processing"); neither touched our files. Local HEAD matches `origin/main`. Both the "Build and Deploy FMD Dashboard" and the "pages build and deployment" workflows for `4991cc5` concluded success. This publish note is held locally and will go up with the next push.
+
+
+## Session 94. 12 October 2026. Scheduled update, news scan and publish.
+
+The 08:00 scheduled run started at 08:04 South African time on Monday 12 October. No session had yet run today. The local PowerShell ingest (08:00) failed again on an expired Claude CLI token and touched the legacy Mpumalanga 19 May xlsx, which is not new data.
+
+### Sources processed
+
+| Source | Effective date | Source org | Outcome |
+|---|---|---|---|
+| All inbox subfolders and root dated folders | n/a | n/a | Nothing new since session 93. The only changed files were the PowerShell logs, its prompt file and the legacy Mpumalanga 19 May xlsx (metadata only). |
+| Web search, last 7 days (national, provincial, trade, industry bodies, Afrikaans media, international) | n/a | n/a | 6 new news items. |
+
+### Rows
+
+None added. Master unchanged at 3,980 data rows.
+
+### News items added
+
+| Date | Headline | Source | Relation to master |
+|---|---|---|---|
+| 2026-10-08 | Nampo Alfa recovery speakers call for more funding, a new approach to state animal health and wider farmer participation. | Farmer's Weekly | Includes AgriSA chief executive Johann Kotzé's remarks. No programme figures. |
+| 2026-10-09 | Minister Aucamp calls for regional cooperation with Namibia and Botswana on foot and mouth disease. | Farmer's Weekly | CONFLICT: the Minister cited a national herd of 15.2 million cattle; our master holds 12.4 to 12.5 million (`herd_cattle`, AgriSA-NAT, March and April). Media report only, master not changed. 50,000 doses supplied to Namibia, Eswatini and Lesotho is new and not held. |
+| 2026-10-09 | Settlement with the Minister confirmed as a court order on independent vaccination. | Maroela Media | Reported by Free State Agriculture, Sakeliga and Saai. No primary Department statement seen, so no policy row. |
+| 2026-10-10 | Dairy farmers at the Royal Show warn that foot and mouth disease may become endemic without better surveillance. | Farmer's Weekly | No programme figures. |
+| 2026-10-11 | Namibia confirms foot and mouth disease in the Zambezi region as the ||Kharas outbreak reaches 17 farms. | The Namibian | Regional context. No conflict. |
+| 2026-10-11 | Namibia starts building a veterinary cordon fence along the Orange River border. | The Namibian (via allAfrica) | Updates the 7 October fencing item. No conflict. |
+
+We left out older Farmer's Weekly pieces that surfaced in search (9 December 2025 and 21 February 2026), the Nampo Alfa programme expansion piece (no new facts) and earlier court coverage from March and May. The Minister's quoted ARC production figure of 20,000 doses a month looked implausibly low against earlier reporting, so we did not repeat it. `news_feed.json` backed up to `news_feed.json.bak_session94`; `last_checked` 2026-10-12; 40 items held.
+
+### Dashboard
+
+Rebuilt via importlib. Snapshot 9 October 2026, 88 weekly points, validation passed (1,957,108 bytes). All six new headlines checked in the built payload.
+
+### Action items for next run
+
+- Weekly provincial packs for EC, KZN, LP, MP, NW, NC and WC are still outstanding (last full set 14 September). Packs for the week ending 16 October are due from Thursday.
+- MPO Week 51 has not arrived; Week 52 is due around 16 October.
+- Look for a primary Department statement or the court order itself on the Free State Agriculture, Sakeliga and Saai settlement; add a policy row only if confirmed.
+- Ask the Department which national herd figure to use (15.2 million cited by the Minister against 12.4 to 12.5 million held).
+- Ask the MPO to reconcile the KwaZulu-Natal IDtrax figure (over 110,000 in Week 49 against 79,740 in Week 50).
+- Ask the Department to confirm the gazette date (7 or 8 July 2026).
+- Re-authenticate the local Claude CLI, or retire the PowerShell task.
+- All items carried forward from sessions 93 and earlier.
