@@ -6611,3 +6611,15 @@ Commit `e881424` pushed to `main` on top of session 94's `2911465`; local HEAD m
 ### Western Cape GIS portal
 
 The Western Cape FMD dashboard (ArcGIS FeatureServer `DOA-Vets/FMD_Public`) is not pulled in the daily run. The last pull was 14 July 2026 (58 WC-GIS rows in total, using `wc_spatial_join.py` and `patch_wc_live.py`). Today neither the cloud workspace nor the device shell could reach gis.westerncape.gov.za (connection failed through the proxy), so the domain is probably not on the organisation's network allowlist. Action: add gis.westerncape.gov.za to the allowlist, then add the pull to the daily routine.
+
+### Publish
+
+Commit `baca3f7` pushed to `main` on top of `e881424`; local HEAD matches `origin/main`. Both deployment workflows for `baca3f7` concluded success. This note goes up with the next push.
+
+
+## Session 94d. 12 October 2026. User request: automate the whole dashboard.
+
+- Moved the last two hand-coded lists out of `build_dashboard.py` into JSON files in the project root: `policy_events.json` (policy milestones) and `supply_pipeline.json` (vaccine supply pipeline). The build reads them and falls back to the inline lists if a file is missing (backup `build_dashboard.py.bak_session94d_auto`). Rebuilt via importlib; the payload is identical to before (same size, 2 events, 10 consignments).
+- HANDOVER.md now has a table of the five curated files the daily run maintains (`news_feed.json`, `namibia_data.json`, `sa_economic.json`, `policy_events.json`, `supply_pipeline.json`) with an update rule for each.
+- Updated the 08:00 daily scheduled task. Each run now also: searches Jay's mailbox for FMD submissions from the last 7 days (ingesting figures from email bodies, listing attachments Jay must save to the inbox); tries the Western Cape GIS FeatureServer and ingests it when reachable; searches for Namibian and economic news; refreshes the Namibia tab, the economic boxes, the policy milestones and the supply pipeline; and publishes all five JSON files.
+- Still not automatic: the SAPPO tab (static June 2026 dispatch log; SAPPO has sent nothing since), the Western Cape portal (blocked by the network allowlist until an Owner adds gis.westerncape.gov.za), and attachments that arrive only by email (the run can read email text but needs attachments saved to the inbox).

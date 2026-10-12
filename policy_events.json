@@ -1,0 +1,16 @@
+{
+  "last_reviewed": "2026-10-12",
+  "note": "Policy milestones shown on the Ministerial and ICC tab. Add an event only when confirmed by a primary Ministry or Department source.",
+  "events": [
+    {
+      "date": "2026-05-04",
+      "title": "Section 10 Routine Vaccination Scheme gazetted",
+      "detail": "Farmers may now vaccinate voluntarily under private vet supervision without waiting for the national rollout. Animals must be individually traceable and digitally recorded."
+    },
+    {
+      "date": "2026-05-05",
+      "title": "KwaZulu-Natal DMA formally lifted",
+      "detail": "The KZN Disease Management Area restrictions have been rescinded. Movement controls will transition to a unified province-wide protocol replacing the localised DMA rules."
+    }
+  ]
+}

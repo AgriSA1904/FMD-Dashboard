@@ -1248,6 +1248,20 @@ def build_dashboard():
         {"vaccine": "DolVet (Dunevax)",     "doses": 10000000, "date": "2026",       "status": "Pipeline", "notes": "Remaining balance of 14M SAHPRA Section 21 approval. Delivery schedule to be confirmed."},
     ]
 
+    # Session 94d: the curated lists now live in policy_events.json and
+    # supply_pipeline.json in the project root so the daily run can maintain them
+    # without editing this script. The inline lists above remain as a fallback.
+    try:
+        with open(os.path.join(ROOT, "policy_events.json"), "r", encoding="utf-8") as _pf:
+            policy_events = json.load(_pf).get("events", policy_events)
+    except (OSError, ValueError) as _e:
+        print(f"policy_events.json not loaded ({_e}); using inline list.")
+    try:
+        with open(os.path.join(ROOT, "supply_pipeline.json"), "r", encoding="utf-8") as _sf:
+            incoming = json.load(_sf).get("consignments", incoming)
+    except (OSError, ValueError) as _e:
+        print(f"supply_pipeline.json not loaded ({_e}); using inline list.")
+
     payload["ministerial"] = {
         "doses_procured":          int(min_recv[0]) if min_recv else None,
         "doses_procured_asof":     min_recv[1] if min_recv else None,
