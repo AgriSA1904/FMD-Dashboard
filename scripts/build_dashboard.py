@@ -1312,6 +1312,16 @@ def build_dashboard():
         _news = {"last_checked": None, "note": "", "items": []}
     payload["news"] = _news
 
+    # Namibia regional context tab, curated in namibia_data.json (session 94b).
+    # Media and government reporting on Namibia only; never feeds headline figures.
+    _nam_path = os.path.join(ROOT, "namibia_data.json")
+    try:
+        with open(_nam_path, "r", encoding="utf-8") as _nmf:
+            payload["namibia"] = json.load(_nmf)
+    except (OSError, ValueError) as _e:
+        print(f"Namibia data not loaded ({_e}); Namibia tab will be empty.")
+        payload["namibia"] = {}
+
     payload["sources_used"] = sorted(set(r["source_file"] for r in rows
                                          if r["superseded_by"] == ""))
 

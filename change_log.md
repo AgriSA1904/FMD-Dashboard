@@ -6561,3 +6561,33 @@ Rebuilt via importlib. Snapshot 9 October 2026, 88 weekly points, validation pas
 - Ask the Department to confirm the gazette date (7 or 8 July 2026).
 - Re-authenticate the local Claude CLI, or retire the PowerShell task.
 - All items carried forward from sessions 93 and earlier.
+
+### Publish
+
+Commit `2911465` pushed to `main` on top of session 93's `4991cc5` (pulled first; no newer remote commit). Local HEAD matches `origin/main`. The "pages build and deployment" workflow for `2911465` concluded success. The "Build and Deploy FMD Dashboard" workflow did not run, as expected, because it is path-filtered to the master, build script and template, none of which changed. This publish note is held locally and will go up with the next push.
+
+
+## Session 94b. 12 October 2026. User request: provincial figures check, MPO check and new Namibia tab.
+
+Run on request from Jay at about 08:10 South African time, after session 94 had published.
+
+### Provincial figures confirmed (no change to the master)
+
+Latest programme figures held for the four provinces Jay named: Free State 9 October (804 cases, 1,961,840 received, 1,704,678 vaccinated); Eastern Cape 1 October (510 outbreaks, 232 suspected, 2,424,510 received, 1,759,507 vaccinated on a dose-count basis, 197,170 boosters); North West 14 September (482 cases, 115 suspected, 1,665,100 received, 1,482,307 administered, 1,347,844 animals); Gauteng 30 September (312 outbreaks, 89 active, 757,320 received, 580,838 vaccinated). No newer Eastern Cape or North West submission is in the inbox or in Jay's mailbox.
+
+### MPO
+
+The latest MPO update held is Week 50 (snapshot 2 October, received 5 October, ingested in session 89). No Week 51 was found in `inbox/MPO` or in Jay's mailbox (searched from 25 September).
+
+### Namibia tab
+
+- New file `namibia_data.json` in the project root, curated by hand from Namibian Government statements as reported in the media, the EU delegation statement, Farmer's Weekly, The Namibian, Informanté, Bovine Vet and others. It holds a summary, six headline figures, the two affected regions, the ||Kharas case progression, a timeline, trade measures, links to South Africa and open questions, each with a source link.
+- `scripts/build_dashboard.py` reads it into `DASHBOARD_DATA.namibia` (backup `build_dashboard.py.bak_session94b_namibia`). It is regional context only and never feeds headline figures.
+- `scripts/dashboard_template.html` gains a "Namibia" tab before "Latest news", with its own CSS and render script; related news items are pulled automatically from `news_feed.json` (backup `dashboard_template.html.bak_session94b_namibia`).
+- Rebuilt via importlib, validation passed (1,978,202 characters). Rendered in a headless browser at desktop and phone widths: no tab errors, no horizontal scroll.
+- Data quality note: reports count the ||Kharas outbreak differently (positive samples, confirmed cases, animals with clinical signs), so the progression table carries a note that figures are not always directly comparable.
+
+### Action items
+
+- Keep `namibia_data.json` current in the daily run when Namibian news is added (update the figures, timeline and `last_updated`). The scheduled task prompt does not yet mention this.
+- Chase EC (week ending 9 October), NW (nothing since 14 September) and MPO Week 51.

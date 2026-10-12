@@ -509,6 +509,18 @@
 
     footer { padding: 48px 16px; margin-top: 48px; }
   }
+  /* Namibia tab */
+  .nam-summary { font-size:16px; line-height:1.6; color:var(--charcoal); margin:0 0 var(--sp-6); }
+  .nam-kpi .kpi-value { font-size:28px; }
+  .nam-kpi .kpi-src { font-size:12px; margin-top:var(--sp-3); }
+  .nam-kpi .kpi-src a, .nam-src a { color:var(--pine); }
+  .nam-src { font-size:13px; color:var(--charcoal); margin-top:4px; }
+  .nam-region h4 { margin:0 0 6px; color:var(--pine); font-size:16px; }
+  .nam-region p { margin:0 0 6px; font-size:15px; color:var(--charcoal); line-height:1.5; }
+  .nam-region + .nam-region { margin-top:var(--sp-6); padding-top:var(--sp-6); border-top:1px solid var(--mist); }
+  .nam-table td { text-align:left; font-size:14px; vertical-align:top; }
+  .nam-table td.num, .nam-table th.num { text-align:center; }
+  .nam-list { margin:0; padding-left:20px; color:var(--charcoal); font-size:15px; line-height:1.6; }
 </style>
 </head>
 <body>
@@ -558,6 +570,7 @@
   <button class="tab-btn" data-target="sappo">SAPPO</button>
   <button class="tab-btn" data-target="ministerial">Ministerial and ICC updates</button>
   <button class="tab-btn" data-target="vaccineorder">Vaccine order process</button>
+  <button class="tab-btn" data-target="namibia">Namibia</button>
   <button class="tab-btn" data-target="news">Latest news</button>
 </nav>
 
@@ -1074,6 +1087,25 @@
       Analytics FMD Preparation User Manual (version 1.1, 1 August 2026), the RMIS vaccine ordering guide
       (12 August 2026), and the Department of Agriculture FMD reporting system at fmd.nda.gov.za.
     </p>
+  </section>
+
+  <section class="tab-section" data-tab="namibia" id="namibiaSection">
+    <div class="kicker">Regional context</div>
+    <h2>Foot and mouth disease in Namibia.</h2>
+    <p style="color:var(--charcoal);font-size:14px;margin-bottom:var(--sp-6)" id="namIntro"></p>
+    <p class="nam-summary" id="namSummary"></p>
+    <div class="kpi-grid" id="namKpis" style="margin-bottom:var(--sp-6)"></div>
+    <div class="grid-2" style="margin-bottom:var(--sp-6)">
+      <div class="card"><h3>Affected regions.</h3><div id="namRegions"></div></div>
+      <div class="card"><h3>What it means for South Africa.</h3><ul class="flag-list" id="namSaLinks"></ul></div>
+    </div>
+    <div class="card" style="margin-bottom:var(--sp-6)"><h3>How the ||Kharas outbreak has grown.</h3><div id="namProgression"></div></div>
+    <div class="card" style="margin-bottom:var(--sp-6)"><h3>Trade measures.</h3><div id="namTrade"></div></div>
+    <div class="grid-2" style="margin-bottom:var(--sp-6)">
+      <div class="card"><h3>Timeline.</h3><ul class="flag-list" id="namTimeline"></ul></div>
+      <div class="card"><h3>Open questions.</h3><ul class="nam-list" id="namOpen"></ul>
+        <h3 style="margin-top:var(--sp-6)">Related news.</h3><div class="news-list" id="namNews"></div></div>
+    </div>
   </section>
 
   <section class="tab-section" data-tab="news" id="newsSection">
@@ -6531,6 +6563,260 @@ const DASHBOARD_DATA = {
       }
     ]
   },
+  "namibia": {
+    "last_updated": "2026-10-12",
+    "note": "Regional context compiled from Namibian Government statements as reported in the media, the European Union delegation in Namibia and South African and Namibian media. These figures are not South African programme data and never feed the headline figures on the other tabs. Where reports differ, we show each figure with its source.",
+    "summary": "On 23 September 2026 Namibia confirmed foot and mouth disease on a commercial farm in the Karasburg state veterinary district of the ||Kharas region, inside its WOAH-recognised zone free without vaccination and its first outbreak in that zone in about 60 years. The SAT1 outbreak had reached 17 farms by 6 October. On 7 October a second, separate outbreak was confirmed on Kalala Island in the Zambezi region. Namibia has suspended exports of cloven-hoofed animals and their raw products, the European Union and the United States have restricted imports, and live exports of weaners and slaughter sheep to South Africa have stopped.",
+    "kpis": [
+      {
+        "label": "Farms confirmed infected, ||Kharas",
+        "value": "17",
+        "sub": "As at 6 October 2026. Up from 1 farm on 23 September.",
+        "source": "The Namibian, 9 October 2026",
+        "url": "https://www.namibian.com.na/fmd-spreads-to-17-kharas-farms/"
+      },
+      {
+        "label": "Positive samples, ||Kharas",
+        "value": "129",
+        "sub": "As at 6 October 2026. SAT1 virus.",
+        "source": "The Namibian, 9 October 2026",
+        "url": "https://www.namibian.com.na/fmd-spreads-to-17-kharas-farms/"
+      },
+      {
+        "label": "Regions with confirmed outbreaks",
+        "value": "2",
+        "sub": "||Kharas from 23 September; Zambezi from 7 October.",
+        "source": "The Namibian, 11 October 2026",
+        "url": "https://www.namibian.com.na/fmd-detected-in-zambezi/"
+      },
+      {
+        "label": "Vaccine doses available",
+        "value": "100,000",
+        "sub": "Moved south from the Zambezi region. Namibia has ruled out culling (8 October).",
+        "source": "The Namibian, 8 October 2026",
+        "url": "https://namibian.com.na/no-culling-for-fmd-cattle-only-vaccinations-zaamwani"
+      },
+      {
+        "label": "Beef exports at risk each year",
+        "value": "N$5.5 billion",
+        "sub": "About N$3.3 billion of this goes to the European Union, United Kingdom and Norway.",
+        "source": "The Rio Times, 25 September 2026",
+        "url": "https://www.riotimesonline.com/namibia-spent-year-preparing-fmd-outbreak-2026/"
+      },
+      {
+        "label": "Estimated cost of containment",
+        "value": "N$190 million",
+        "sub": "Ministry of Agriculture estimate, including a 290 kilometre control fence costed at about N$47 million.",
+        "source": "Informant\u00e9, 4 October 2026",
+        "url": "https://informante.web.na/?p=401855"
+      }
+    ],
+    "regions": [
+      {
+        "name": "||Kharas region, Karasburg state veterinary district",
+        "first_confirmed": "2026-09-23",
+        "serotype": "SAT1",
+        "status": "17 farms infected and 129 positive samples as at 6 October. Ring vaccination under way from the edge of the outbreak inwards. 20 inspection teams, 72 of 81 farms within 50 kilometres inspected, 16 veterinary checkpoints.",
+        "border": "Borders our Northern Cape along the Orange River."
+      },
+      {
+        "name": "Zambezi region, Kalala Island (Kabbe constituency)",
+        "first_confirmed": "2026-10-07",
+        "serotype": "Not yet reported",
+        "status": "20 cattle with clinical signs; all 12 samples positive. Movement of cloven-hoofed animals, auctions and local slaughter suspended across the region. Emergency vaccination started. Export abattoirs may still slaughter quarantined cattle under commodity-based trade.",
+        "border": "Namibia's north-eastern vaccination zone; does not border South Africa."
+      }
+    ],
+    "progression": [
+      {
+        "date": "2026-09-23",
+        "farms": "1",
+        "positives": "10 of 11 samples",
+        "detail": "Index farm, Karasburg. 63 cattle showed clinical signs.",
+        "source": "Farmer's Weekly; Bovine Vet",
+        "url": "https://www.farmersweekly.co.za/agri-news/africa/namibia-bans-exports-and-animal-movement-after-confirmed-fmd-case/"
+      },
+      {
+        "date": "2026-09-25",
+        "farms": "",
+        "positives": "17 of 199 samples",
+        "detail": "Surveillance from 22 to 25 September across five regions; all positives in the Karasburg district.",
+        "source": "Republikein; Bovine Vet",
+        "url": "https://www.republikein.com.na/landbou/bek-en-klouseer-17-bevestigde-gevalle-by-karasburg-nmh018827-5-23127-23129-23133"
+      },
+      {
+        "date": "2026-09-30",
+        "farms": "5",
+        "positives": "",
+        "detail": "Affected farms up from three to five.",
+        "source": "Informant\u00e9",
+        "url": "https://informante.web.na/?p=401695"
+      },
+      {
+        "date": "2026-10-02",
+        "farms": "11",
+        "positives": "79 of 531 samples",
+        "detail": "15,096 animals inspected on 66 of 81 targeted farms. SAT1 confirmed.",
+        "source": "The Namibian",
+        "url": "https://namibian.com.na/fmd-butcheries-scramble-to-keep-workers"
+      },
+      {
+        "date": "2026-10-05",
+        "farms": "15",
+        "positives": "127 cases",
+        "detail": "29,313 animals inspected on 68 farms. The Namibian reports 127 cattle with clinical signs from laboratory testing of 2,910 cattle, 22,289 sheep, 4,114 goats and 9 pigs, plus clinical signs in 50 sheep, 1 goat and 1 pig.",
+        "source": "Farmer's Weekly; The Namibian",
+        "url": "https://www.farmersweekly.co.za/agri-news/africa/namibia-steps-up-fmd-controls-as-cases-rise-to-127/"
+      },
+      {
+        "date": "2026-10-06",
+        "farms": "17",
+        "positives": "129 samples",
+        "detail": "72 of 81 farms within 50 kilometres inspected; 2,292 vehicles searched at seven checkpoints.",
+        "source": "The Namibian; Namibian Sun",
+        "url": "https://www.namibian.com.na/fmd-spreads-to-17-kharas-farms/"
+      }
+    ],
+    "timeline": [
+      {
+        "date": "2026-09-22",
+        "event": "Samples taken from 11 cattle with clinical signs on a commercial farm near Karasburg. WOAH suspends the free zone's status with effect from this date.",
+        "source": "African Farming; EU delegation to Namibia",
+        "url": "https://www.eeas.europa.eu/delegations/namibia/eu-statement-foot-and-mouth-disease-outbreak-namibia_en"
+      },
+      {
+        "date": "2026-09-23",
+        "event": "Outbreak confirmed. Veterinary Public Notification No. 15 of 2026 activates the national contingency plan and suspends movement, slaughter, imports and exports of cloven-hoofed animals and their raw products nationwide.",
+        "source": "The Brief; The Rio Times",
+        "url": "https://thebrief.com.na/2026/09/meatco-suspends-beef-exports-slaughter-following-fmd-outbreak/"
+      },
+      {
+        "date": "2026-09-24",
+        "event": "Namibia notifies WOAH. Meatco suspends beef exports and slaughter and reconciles consignments already in transit.",
+        "source": "The Rio Times; The Brief",
+        "url": "https://thebrief.com.na/2026/09/meatco-suspends-beef-exports-slaughter-following-fmd-outbreak/"
+      },
+      {
+        "date": "2026-09-25",
+        "event": "Sixteen veterinary checkpoints begin operating to stop unauthorised movement of livestock and meat.",
+        "source": "The Namibian",
+        "url": "https://www.namibian.com.na/fmd-spreads-to-17-kharas-farms/"
+      },
+      {
+        "date": "2026-09-28",
+        "event": "Movement restored north of the veterinary cordon fence and allowed under strict conditions south of it, except in the ||Kharas region.",
+        "source": "New Era; African Farming",
+        "url": "https://neweralive.na/govt-eases-fmd-restrictions/"
+      },
+      {
+        "date": "2026-09-29",
+        "event": "The United States issues an import alert for all of Namibia, effective 23 September, covering live ruminants, swine and their germplasm.",
+        "source": "Bovine Vet",
+        "url": "https://www.bovinevetonline.com/news/fmd-detection-disrupts-namibias-disease-free-status-and-trade"
+      },
+      {
+        "date": "2026-10-04",
+        "event": "The Ministry of Agriculture estimates containment will cost about N$190 million, including a 290 kilometre control fence, vaccination and targeted culling.",
+        "source": "Informant\u00e9",
+        "url": "https://informante.web.na/?p=401855"
+      },
+      {
+        "date": "2026-10-05",
+        "event": "The European Union publishes a temporary suspension of fresh meat imports from the previously free zone.",
+        "source": "EU delegation to Namibia",
+        "url": "https://www.eeas.europa.eu/delegations/namibia/eu-statement-foot-and-mouth-disease-outbreak-namibia_en"
+      },
+      {
+        "date": "2026-10-06",
+        "event": "Namibian and South African technical officials meet online on protocols to reopen livestock auctions; South African animal health experts due in Namibia on 9 October.",
+        "source": "The Namibian",
+        "url": "https://www.namibian.com.na/namibia-sa-discuss-reopening-livestock-auctions/"
+      },
+      {
+        "date": "2026-10-07",
+        "event": "Farmer's Weekly reports that Cabinet has approved a containment plan with a buffer zone, ring vaccination and veterinary cordon fencing along the border with South Africa. The same day, a second outbreak is confirmed in the Zambezi region.",
+        "source": "Farmer's Weekly; The Namibian",
+        "url": "https://www.farmersweekly.co.za/agri-news/africa/namibia-steps-up-fmd-controls-as-cases-rise-to-127/"
+      },
+      {
+        "date": "2026-10-08",
+        "event": "Agriculture minister Inge Zaamwani tells Parliament that culling is no longer viable and vaccination is the only option, with 100,000 doses available.",
+        "source": "The Namibian",
+        "url": "https://namibian.com.na/no-culling-for-fmd-cattle-only-vaccinations-zaamwani"
+      },
+      {
+        "date": "2026-10-11",
+        "event": "Construction starts on a veterinary cordon fence along the Orange River from Homerevier to Velloorsdrift, expected to take four months.",
+        "source": "The Namibian",
+        "url": "https://allafrica.com/stories/202610120093.html"
+      }
+    ],
+    "trade": [
+      {
+        "market": "European Union",
+        "measure": "Temporary suspension of fresh meat of cattle, sheep, goats and other ungulates, and of biltong and jerky-type products, from the previously free zone.",
+        "detail": "Meat given the most severe risk-reducing treatment may still enter. Fresh meat certified before 23 September may enter within 90 days of that date. Trade preferences under the EU-SADC agreement are unchanged. The EU takes more than 80 percent of Namibia's beef exports.",
+        "date": "2026-10-05",
+        "source": "EU delegation to Namibia; Maroela Media",
+        "url": "https://www.eeas.europa.eu/delegations/namibia/eu-statement-foot-and-mouth-disease-outbreak-namibia_en"
+      },
+      {
+        "market": "United States",
+        "measure": "Import alert for the whole country on live ruminants, camelids, swine and their germplasm, with extra conditions on animal products.",
+        "detail": "Effective 23 September 2026.",
+        "date": "2026-09-29",
+        "source": "Bovine Vet",
+        "url": "https://www.bovinevetonline.com/news/fmd-detection-disrupts-namibias-disease-free-status-and-trade"
+      },
+      {
+        "market": "South Africa",
+        "measure": "Namibian exports of live cloven-hoofed animals, including weaner calves and slaughter sheep, have stopped. Auction trade is under discussion.",
+        "detail": "South Africa had received 36,821 weaner calves and 417,808 slaughter sheep from Namibia so far in 2026. Namibian sheep make up about 15 percent of our slaughter supply, so the RPO expects a larger price effect on mutton and lamb than on beef.",
+        "date": "2026-10-06",
+        "source": "Farmer's Weekly; The Namibian",
+        "url": "https://farmersweekly.co.za/agri-news/africa/namibia-fmd-outbreak-could-drive-up-sa-red-meat-prices"
+      },
+      {
+        "market": "Domestic Namibia",
+        "measure": "Export and local abattoir slaughter suspended in the affected areas; Meatco operations halted.",
+        "detail": "Butcheries in ||Kharas report putting staff on leave. Modelling cited by The Namibian suggests about 12,000 jobs could be lost in 2026 and 2027, and no exemption from the agricultural minimum wage is being considered.",
+        "date": "2026-10-05",
+        "source": "The Brief; The Namibian",
+        "url": "https://namibian.com.na/fmd-butcheries-scramble-to-keep-workers"
+      }
+    ],
+    "sa_links": [
+      {
+        "topic": "Shared border",
+        "detail": "The ||Kharas outbreak lies along the Orange River border with our Northern Cape. Namibia is fencing that border and investigating the source along the river. Namibian officials had warned earlier of unregistered livestock crossing from South Africa.",
+        "source": "The Namibian, 30 September and 8 October 2026",
+        "url": "https://allafrica.com/stories/202610010092.html"
+      },
+      {
+        "topic": "Vaccine support",
+        "detail": "Minister Aucamp said South Africa has made 50,000 vaccine doses available to Namibia, Eswatini and Lesotho this year, and that resuming red meat imports from Namibia and Botswana depends on agreed biosecurity protocols.",
+        "source": "Farmer's Weekly, 9 October 2026",
+        "url": "https://farmersweekly.co.za/agri-news/south-africa/regional-collaboration-needed-to-fight-fmd-in-sa-namibia-and-botswana"
+      },
+      {
+        "topic": "Livestock supply and prices",
+        "detail": "The loss of Namibian weaners and slaughter sheep tightens our supply, with mutton and lamb most exposed.",
+        "source": "Farmer's Weekly, 6 October 2026",
+        "url": "https://farmersweekly.co.za/agri-news/africa/namibia-fmd-outbreak-could-drive-up-sa-red-meat-prices"
+      },
+      {
+        "topic": "Auction protocols",
+        "detail": "Technical officials of both countries are working on conditions to reopen auctions, including for animals destined for South Africa, once the Karasburg outbreak is shown to be contained.",
+        "source": "The Namibian, 6 October 2026",
+        "url": "https://www.namibian.com.na/namibia-sa-discuss-reopening-livestock-auctions/"
+      }
+    ],
+    "open_questions": [
+      "Serotype of the Zambezi outbreak, and whether it is linked to ||Kharas.",
+      "Whether Namibia will subdivide its former free zone so that unaffected areas can resume exports; officials have said a plan could take about six months to reach WOAH.",
+      "The outcome of the 9 October visit by South African animal health experts on auction protocols."
+    ]
+  },
   "sources_used": [
     "01 JUNE 2026- RPO JIC FMD UPDATE.pdf",
     "01 May 2026/AgriSA - FMD Vaccination Data - 01.05.26.xlsx",
@@ -7964,6 +8250,41 @@ if (chartJsReady && data.ministerial_comparison) try {
     filt.addEventListener('click', function(e){ var b=e.target.closest('.news-chip'); if(!b) return; active=b.dataset.cat; render(); });
     render();
   } catch (e) { console.error('News tab error:', e); }
+}());
+</script>
+<script>
+(function () {
+  try {
+    var N = (typeof DASHBOARD_DATA !== 'undefined' && DASHBOARD_DATA.namibia) || {};
+    function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+    function fmtDate(d){ if(!d) return ''; var x=new Date(d+'T00:00:00');
+      return isNaN(x)?d:x.toLocaleDateString('en-ZA',{day:'numeric',month:'long',year:'numeric'}); }
+    function link(src,url){ var u=/^https?:\/\//i.test(url||'')?url:''; return u?'<a href="'+esc(u)+'" target="_blank" rel="noopener">'+esc(src)+'</a>':esc(src); }
+    function set(id,html){ var el=document.getElementById(id); if(el) el.innerHTML=html; }
+    document.getElementById('namIntro').textContent = (N.last_updated ? 'Last updated ' + fmtDate(N.last_updated) + '. ' : '') + (N.note || '');
+    document.getElementById('namSummary').textContent = N.summary || '';
+    set('namKpis', (N.kpis||[]).map(function(k){
+      return '<div class="kpi nam-kpi"><div class="kpi-label">'+esc(k.label)+'</div><div class="kpi-value">'+esc(k.value)+'</div>'+
+        '<div class="kpi-sub">'+esc(k.sub)+'</div><div class="kpi-src">Source: '+link(k.source,k.url)+'</div></div>'; }).join(''));
+    set('namRegions', (N.regions||[]).map(function(r){
+      return '<div class="nam-region"><h4>'+esc(r.name)+'</h4><p><strong>First confirmed:</strong> '+esc(fmtDate(r.first_confirmed))+'. <strong>Virus type:</strong> '+esc(r.serotype)+'.</p>'+
+        '<p>'+esc(r.status)+'</p><p>'+esc(r.border)+'</p></div>'; }).join(''));
+    set('namSaLinks', (N.sa_links||[]).map(function(l){
+      return '<li><strong>'+esc(l.topic)+'.</strong>'+esc(l.detail)+'<div class="nam-src">Source: '+link(l.source,l.url)+'</div></li>'; }).join(''));
+    set('namProgression', '<table class="nam-table"><thead><tr><th>As at</th><th class="num">Farms</th><th class="num">Positives</th><th>Detail</th><th>Source</th></tr></thead><tbody>'+
+      (N.progression||[]).map(function(p){ return '<tr><td>'+esc(fmtDate(p.date))+'</td><td class="num">'+(esc(p.farms)||'&ndash;')+'</td><td class="num">'+(esc(p.positives)||'&ndash;')+'</td><td>'+esc(p.detail)+'</td><td>'+link(p.source,p.url)+'</td></tr>'; }).join('')+
+      '</tbody></table><p class="nam-src">Reports count differently (positive samples, cases, animals with clinical signs), so figures from different dates are not always directly comparable. A dash means the report did not give that figure.</p>');
+    set('namTrade', '<table class="nam-table"><thead><tr><th>Market</th><th>Measure</th><th>Detail</th><th>Date</th><th>Source</th></tr></thead><tbody>'+
+      (N.trade||[]).map(function(t){ return '<tr><td><strong>'+esc(t.market)+'</strong></td><td>'+esc(t.measure)+'</td><td>'+esc(t.detail)+'</td><td>'+esc(fmtDate(t.date))+'</td><td>'+link(t.source,t.url)+'</td></tr>'; }).join('')+'</tbody></table>');
+    set('namTimeline', (N.timeline||[]).map(function(t){
+      return '<li><strong>'+esc(fmtDate(t.date))+'.</strong>'+esc(t.event)+'<div class="nam-src">Source: '+link(t.source,t.url)+'</div></li>'; }).join(''));
+    set('namOpen', (N.open_questions||[]).map(function(q){ return '<li>'+esc(q)+'</li>'; }).join(''));
+    var news = ((typeof DASHBOARD_DATA !== 'undefined' && DASHBOARD_DATA.news) || {}).items || [];
+    var rel = news.filter(function(i){ return /namib|kharas|karasburg|zambezi/i.test((i.headline||'')+' '+(i.summary||'')); }).slice(0,8);
+    set('namNews', rel.length ? rel.map(function(i){
+      return '<article class="news-item"><div class="news-meta"><span>'+esc(fmtDate(i.date))+'</span><span>'+esc(i.source)+'</span></div>'+
+        '<h3>'+link(i.headline,i.url)+'</h3></article>'; }).join('') : '<p style="color:var(--charcoal)">No related news items yet.</p>');
+  } catch (e) { console.error('Namibia tab error:', e); }
 }());
 </script>
 <script>
