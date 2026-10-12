@@ -1168,7 +1168,7 @@
 
 <script>
 const DASHBOARD_DATA = {
-  "snapshot_date": "2026-10-09",
+  "snapshot_date": "2026-10-12",
   "build_date": "2026-10-12",
   "provinces": [
     {
@@ -1318,18 +1318,18 @@ const DASHBOARD_DATA = {
     {
       "code": "WC",
       "name": "Western Cape",
-      "as_of": "2026-09-14",
+      "as_of": "2026-10-12",
       "herd": 501875,
-      "positive": 29,
-      "suspected": 12,
+      "positive": 50,
+      "suspected": 6,
       "negative": 0,
       "pending": 0,
       "received": 647080,
-      "vaccinated": 428657,
-      "dose1": 367311,
-      "dose2": 61689,
-      "dose2_asof": "2026-07-31",
-      "dose2_source": "WC-DoA",
+      "vaccinated": 569901,
+      "dose1": 404526,
+      "dose2": 165375,
+      "dose2_asof": "2026-10-12",
+      "dose2_source": "WC-GIS",
       "dose1_derived": false,
       "dose2_partial": false
     }
@@ -2038,6 +2038,14 @@ const DASHBOARD_DATA = {
       "positive": 2858,
       "suspected": 871,
       "pending": null
+    },
+    {
+      "date": "2026-10-12",
+      "received": 12596120,
+      "administered": 9658943,
+      "positive": 2879,
+      "suspected": 865,
+      "pending": null
     }
   ],
   "sources": {
@@ -2048,23 +2056,23 @@ const DASHBOARD_DATA = {
     "unallocated": 3529620
   },
   "national": {
-    "positive": 2858,
-    "suspected": 871,
+    "positive": 2879,
+    "suspected": 865,
     "negative": 238,
     "pending": 124,
     "procured": 16000000,
     "distributed": 12596120,
     "received": 12596120,
-    "administered": 9517699,
+    "administered": 9658943,
     "herd_cattle": 15450142,
-    "balance": 3078421,
-    "dose2": 603469,
-    "dose1": 8914230,
+    "balance": 2937177,
+    "dose2": 707155,
+    "dose1": 8951788,
     "dose_split_note": "Dose 2 is the sum of the latest booster figures per province; several provinces report boosters for the dairy programme only, so dose 2 is a minimum and dose 1 a derived maximum.",
     "delta_received": 0,
     "delta_distributed": 0,
-    "delta_administered": 16747,
-    "delta_positive": 1
+    "delta_administered": 141244,
+    "delta_positive": 21
   },
   "mpo": {
     "weekly": [
@@ -3572,11 +3580,11 @@ const DASHBOARD_DATA = {
     {
       "code": "WC",
       "name": "Western Cape",
-      "joc": 428657,
-      "joc_date": "2026-10-02",
+      "joc": 569901,
+      "joc_date": "2026-10-12",
       "ministerial": 265379,
       "ministerial_date": "2026-06-04",
-      "diff": 163278,
+      "diff": 304522,
       "flag": null
     }
   ],
@@ -5970,7 +5978,7 @@ const DASHBOARD_DATA = {
     },
     "WC": {
       "name": "Western Cape",
-      "latest_date": "2026-10-02",
+      "latest_date": "2026-10-12",
       "vaccine_types": [
         {
           "type": "dolvet",
@@ -6010,13 +6018,13 @@ const DASHBOARD_DATA = {
       "extra": {
         "primary_vaccinations": {
           "label": "Primary vaccinations",
-          "value": 367311,
-          "date": "2026-07-31"
+          "value": 404526,
+          "date": "2026-10-12"
         },
         "booster_vaccinations": {
           "label": "Booster vaccinations",
-          "value": 106894,
-          "date": "2026-10-02"
+          "value": 165375,
+          "date": "2026-10-12"
         },
         "vaccination_sites": {
           "label": "Vaccination sites",
@@ -6950,6 +6958,7 @@ const DASHBOARD_DATA = {
     "VL BKS JOC verslag 260605.pdf",
     "Vaccine Orders Export (2026-06-02).xlsx",
     "WC GIS FMD Public FeatureServer (live ArcGIS REST API)",
+    "WC GIS FMD Public FeatureServer (live ArcGIS REST API), pulled via browser 12 Oct 2026; raw aggregates archive/2026-10-12/wc_gis_pull_20261012.json",
     "WC GIS portal (gis.westerncape.gov.za)",
     "WC-GIS portal live dashboard 2026-06-09",
     "Week 33 - Update on the state of FMD and vaccine rollouts in the dairy industry.pdf",

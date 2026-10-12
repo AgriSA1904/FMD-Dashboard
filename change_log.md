@@ -6623,3 +6623,34 @@ Commit `baca3f7` pushed to `main` on top of `e881424`; local HEAD matches `origi
 - HANDOVER.md now has a table of the five curated files the daily run maintains (`news_feed.json`, `namibia_data.json`, `sa_economic.json`, `policy_events.json`, `supply_pipeline.json`) with an update rule for each.
 - Updated the 08:00 daily scheduled task. Each run now also: searches Jay's mailbox for FMD submissions from the last 7 days (ingesting figures from email bodies, listing attachments Jay must save to the inbox); tries the Western Cape GIS FeatureServer and ingests it when reachable; searches for Namibian and economic news; refreshes the Namibia tab, the economic boxes, the policy milestones and the supply pipeline; and publishes all five JSON files.
 - Still not automatic: the SAPPO tab (static June 2026 dispatch log; SAPPO has sent nothing since), the Western Cape portal (blocked by the network allowlist until an Owner adds gis.westerncape.gov.za), and attachments that arrive only by email (the run can read email text but needs attachments saved to the inbox).
+
+
+## Session 94e. 12 October 2026. User request: Western Cape GIS pull through the browser.
+
+The FeatureServer is blocked for our shells by the network allowlist, so on Jay's request we queried it through the built-in browser in the Claude desktop app (ArcGIS REST statistics queries, no scraping of the visual page). Raw aggregates saved to `archive/2026-10-12/wc_gis_pull_20261012.json`; ingest script `archive/2026-10-12/ingest_session94e_wcgis.py`; master backed up to `master_data.csv.bak_session94e`. 8 rows added, master now 3,988 rows.
+
+### What changed on the portal
+
+Layer 0 (Disease Reporting) now carries every reportable animal disease (1,424 records), not only FMD, so we filter on DiseaseName. It also has new status fields (Confirmed - Active, Confirmed - Resolved, Suspected - Active, Data Issue). Layer 1 now records Primary and Booster vaccinations and a species category. `wc_spatial_join.py` would now over-count cases because it does not filter by disease; it must be updated before any automated use.
+
+### Figures (WC-GIS, as at 12 October 2026; latest vaccination record 10 October)
+
+| Metric | Value | Note |
+|---|---|---|
+| positive_cases | 50 | 30 active plus 20 resolved FMD establishments. WOAH report 30 Sep: 48. Ministry 14 Sep: 35. |
+| outbreaks_open / outbreaks_closed | 30 / 20 | |
+| suspected_cases | 6 | Plus 9 suspected records flagged "Data Issue", excluded. |
+| animals_vaccinated and doses_administered | 569,901 | Dose-count basis, 3,148 records. Up from 403,243 (14 Jul). Ministry 14 Sep: 522,004. |
+| primary_vaccinations | 404,526 | Beef 157,835, dairy 241,737. |
+| booster_vaccinations | 165,375 | Dairy 124,362 against MPO Week 50 WC boosters 106,894. |
+
+Arithmetic asserted (primary plus booster equals total; active plus resolved equals 50).
+
+### Dashboard
+
+Rebuilt via importlib, validation passed. Snapshot moves to 12 October (89 weekly points) because these rows carry today's date. WC card: 50 positive, 6 suspected, 569,901 vaccinated (404,526 first dose, 165,375 boosters). National: positive 2,879, administered 9,658,943, balance 2,937,177.
+
+### Action items
+
+- Update `wc_spatial_join.py` to filter on Foot-And-Mouth Disease and to split Primary and Booster before the daily run uses it.
+- Ask an Owner to add gis.westerncape.gov.za to the organisation's network allowlist (Admin settings, Capabilities). The browser site permissions screen does not control this.
