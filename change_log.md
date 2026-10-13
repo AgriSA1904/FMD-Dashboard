@@ -6654,3 +6654,66 @@ Rebuilt via importlib, validation passed. Snapshot moves to 12 October (89 weekl
 
 - Update `wc_spatial_join.py` to filter on Foot-And-Mouth Disease and to split Primary and Booster before the daily run uses it.
 - Ask an Owner to add gis.westerncape.gov.za to the organisation's network allowlist (Admin settings, Capabilities). The browser site permissions screen does not control this.
+
+
+## Session 95. 13 October 2026. Scheduled update, MPO Week 51, Western Cape GIS, news scan and publish.
+
+Scheduled 08:00 run, started at about 10:13 South African time.
+
+### Sources processed
+
+| Source | Result |
+|---|---|
+| Inbox | One new file: `inbox/MPO/Week 51 - Update on the state of FMD and vaccine rollouts in the dairy industry.pdf` (saved 12 Oct, after session 94b's check). Ingested. |
+| Mailbox (last 7 days) | No new FMD submissions. FS 9 Oct stats, GP JOC 2 Oct and the Department WOAH report were already ingested in session 93. No attachments to save. |
+| Western Cape GIS | Device shell blocked (HTTP 403 from proxy). Pulled through the built-in browser with ArcGIS REST statistics queries. Raw aggregates `archive/2026-10-13/wc_gis_pull_20261013.json`. |
+| Web | Searches on national, provincial, trade, industry, Afrikaans, international, Namibian and economic news for 6 to 13 October. |
+
+Ingest script `archive/2026-10-13/ingest_session95.py`; master backed up to `master_data.csv.bak_session95`. Prepared 34, new 34, duplicates 0. Master now 4,022 rows.
+
+### MPO Week 51 (snapshot 9 October 2026), 30 rows
+
+- Dairy first round 962,410, up 106 (all WC, now 242,502). Provincial figures sum exactly to the total.
+- Boosters 708,811, up 9,684 (all WC, now 116,578). North boosters 32,838 (FS plus GP). LP, MP, NW and NC still report none.
+- Farms 175 cumulative, 128 active. The map image (`archive/2026-10-13/mpo_week51_map.jpg`) is byte-identical to Week 50, so the per-province active counts are unchanged; the plateau query with the MPO stands.
+- IDtrax cumulative: KZN 95,940 (up 16,200 from 79,740), EC 24,120, total 120,060. Week 49's "over 110,000" for KZN remains unreconciled.
+- All arithmetic asserted.
+
+### Western Cape GIS (as at 13 October 2026), 4 rows
+
+| Metric | Value | Change |
+|---|---|---|
+| animals_vaccinated and doses_administered | 574,926 | Up 5,025. 3,170 records, latest vaccination 12 Oct. Dose-count basis. |
+| primary_vaccinations | 407,541 | Up 3,015, all beef. |
+| booster_vaccinations | 167,385 | Up 2,010. Dairy 125,851. |
+
+Primary plus booster equals total (asserted). Disease layer unchanged from 12 October (30 active, 20 resolved, 6 suspected, 9 Data Issue), so no disease rows added.
+
+### Conflicts
+
+- WC dairy boosters: portal 125,851 (13 Oct) against MPO Week 51 116,578 (9 Oct). Both held, noted on the rows.
+- Namibia: Republikein (11 Oct) and New Era (12 Oct) say vaccination teams were still assembling in Karasburg, whereas earlier reports (The Namibian, 5 Oct) said vaccination had begun. The Namibia tab now reflects the later reports.
+
+### News items added (2)
+
+- Republikein, 11 Oct: Namibia's agriculture minister visits the Karasburg district.
+- New Era, 12 Oct: ||Kharas response on track; containment zone fence starts this week; still 17 farms and 129 positive samples as at 6 Oct.
+
+No new South African primary Ministry statement was found in the window, so no policy rows.
+
+### Curated files
+
+- `news_feed.json`: 2 items, last_checked 13 Oct (backup `.bak_session95`).
+- `namibia_data.json`: ||Kharas status, two timeline events, summary, last_updated (backup `.bak_session95`).
+- `supply_pipeline.json`: reviewed, no new primary consignment information; last_reviewed set to 13 Oct (backup `.bak_session95`).
+- `sa_economic.json` and `policy_events.json`: no newer primary figures or events; unchanged.
+
+### Dashboard
+
+Rebuilt via importlib, validation passed (1,986,017 bytes). Snapshot 13 October, 90 weekly points. Checked in the payload: MPO latest 9 Oct (962,410; WC booster 116,578); WC card 574,926 vaccinated (407,541 first dose, 167,385 boosters); national administered 9,663,968 (up 5,025); both news items and the Namibia update present.
+
+### Action items
+
+- Provincial packs for the week ending 9 October are outstanding for EC, KZN, LP, MP, NW, NC and WC; NW nothing since 14 September.
+- MPO: ask whether the per-province active map is still refreshed, and reconcile the KZN IDtrax figures.
+- Ask an Owner to add gis.westerncape.gov.za to the network allowlist so the shell can pull it directly.

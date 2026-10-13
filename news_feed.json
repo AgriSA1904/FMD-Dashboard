@@ -1,5 +1,5 @@
 {
-  "last_checked": "2026-10-12",
+  "last_checked": "2026-10-13",
   "note": "Curated daily by the scheduled ingest. Items are media and public reporting, not programme data. Figures quoted here do not feed the dashboard headlines unless they are also ingested into master_data.csv from a programme source.",
   "items": [
     {
@@ -401,6 +401,26 @@
       "category": "trade",
       "province": "national",
       "added": "2026-10-12"
+    },
+    {
+      "date": "2026-10-11",
+      "headline": "Namibia's agriculture minister visits the ||Kharas outbreak area as vaccination teams gather in Karasburg.",
+      "source": "Republikein",
+      "url": "https://www.republikein.com.na/landbou/landbouminister-besoek-bks-episentrum-nmh019781-3-24303",
+      "summary": "Minister Inge Zaamwani spent two days in the Karasburg district checking roadblocks and fence construction, and said talks with affected farmers were nearly complete. Most vaccination teams had reached the Karasburg camp, with vaccination to start once schedules are agreed; this differs from earlier reports that vaccination was already under way.",
+      "category": "other",
+      "province": "national",
+      "added": "2026-10-13"
+    },
+    {
+      "date": "2026-10-12",
+      "headline": "Namibia says its ||Kharas response is on track as work on a containment zone fence begins.",
+      "source": "New Era",
+      "url": "https://neweralive.na/fmd-response-operations-in-kharas-satisfactory/",
+      "summary": "As at 6 October, 129 samples had tested positive on 17 farms, with 20 teams inspecting farms within 50 kilometres of the index farm and roadblocks operating day and night. The Orange River cordon fence is expected to take four months, construction of the containment zone fence was due to start in the week of 12 October, and vaccination teams were preparing to deploy. No new case count since 6 October.",
+      "category": "policy",
+      "province": "national",
+      "added": "2026-10-13"
     }
   ]
 }

@@ -1,7 +1,7 @@
 {
-  "last_updated": "2026-10-12",
+  "last_updated": "2026-10-13",
   "note": "Regional context compiled from Namibian Government statements as reported in the media, the European Union delegation in Namibia and South African and Namibian media. These figures are not South African programme data and never feed the headline figures on the other tabs. Where reports differ, we show each figure with its source.",
-  "summary": "On 23 September 2026 Namibia confirmed foot and mouth disease on a commercial farm in the Karasburg state veterinary district of the ||Kharas region, inside its WOAH-recognised zone free without vaccination and its first outbreak in that zone in about 60 years. The SAT1 outbreak had reached 17 farms by 6 October. On 7 October a second, separate outbreak was confirmed on Kalala Island in the Zambezi region. Namibia has suspended exports of cloven-hoofed animals and their raw products, the European Union and the United States have restricted imports, and live exports of weaners and slaughter sheep to South Africa have stopped.",
+  "summary": "On 23 September 2026 Namibia confirmed foot and mouth disease on a commercial farm in the Karasburg state veterinary district of the ||Kharas region, inside its WOAH-recognised zone free without vaccination and its first outbreak in that zone in about 60 years. The SAT1 outbreak had reached 17 farms by 6 October, with no newer count published by 12 October; vaccination teams were assembling in Karasburg and a containment zone fence was due to start in the week of 12 October. On 7 October a second, separate outbreak was confirmed on Kalala Island in the Zambezi region. Namibia has suspended exports of cloven-hoofed animals and their raw products, the European Union and the United States have restricted imports, and live exports of weaners and slaughter sheep to South Africa have stopped.",
   "kpis": [
     {
       "label": "Farms confirmed infected, ||Kharas",
@@ -51,7 +51,7 @@
       "name": "||Kharas region, Karasburg state veterinary district",
       "first_confirmed": "2026-09-23",
       "serotype": "SAT1",
-      "status": "17 farms infected and 129 positive samples as at 6 October. Ring vaccination under way from the edge of the outbreak inwards. 20 inspection teams, 72 of 81 farms within 50 kilometres inspected, 16 veterinary checkpoints.",
+      "status": "17 farms infected and 129 positive samples as at 6 October; no newer count published by 12 October. Vaccination teams were gathering in Karasburg on 11 and 12 October, with vaccination to start once schedules are agreed (earlier reports said ring vaccination had begun). 20 inspection teams within 50 kilometres of the index farm, roadblocks day and night.",
       "border": "Borders our Northern Cape along the Orange River."
     },
     {
@@ -184,6 +184,18 @@
       "event": "Construction starts on a veterinary cordon fence along the Orange River from Homerevier to Velloorsdrift, expected to take four months.",
       "source": "The Namibian",
       "url": "https://allafrica.com/stories/202610120093.html"
+    },
+    {
+      "date": "2026-10-11",
+      "event": "Agriculture minister Inge Zaamwani ends a two-day visit to the Karasburg district, checking roadblocks and fence work; vaccination teams are assembling at a camp in Karasburg.",
+      "source": "Republikein",
+      "url": "https://www.republikein.com.na/landbou/landbouminister-besoek-bks-episentrum-nmh019781-3-24303"
+    },
+    {
+      "date": "2026-10-12",
+      "event": "The Directorate of Veterinary Services says construction of the containment zone fence starts this week, alongside the Orange River cordon fence already under way.",
+      "source": "New Era",
+      "url": "https://neweralive.na/fmd-response-operations-in-kharas-satisfactory/"
     }
   ],
   "trade": [
