@@ -1168,8 +1168,8 @@
 
 <script>
 const DASHBOARD_DATA = {
-  "snapshot_date": "2026-10-13",
-  "build_date": "2026-10-13",
+  "snapshot_date": "2026-10-14",
+  "build_date": "2026-10-14",
   "provinces": [
     {
       "code": "EC",
@@ -1318,17 +1318,17 @@ const DASHBOARD_DATA = {
     {
       "code": "WC",
       "name": "Western Cape",
-      "as_of": "2026-10-13",
+      "as_of": "2026-10-14",
       "herd": 501875,
       "positive": 50,
       "suspected": 6,
       "negative": 0,
       "pending": 0,
       "received": 647080,
-      "vaccinated": 574926,
-      "dose1": 407541,
-      "dose2": 167385,
-      "dose2_asof": "2026-10-13",
+      "vaccinated": 576591,
+      "dose1": 407945,
+      "dose2": 168646,
+      "dose2_asof": "2026-10-14",
       "dose2_source": "WC-GIS",
       "dose1_derived": false,
       "dose2_partial": false
@@ -2054,6 +2054,14 @@ const DASHBOARD_DATA = {
       "positive": 2879,
       "suspected": 865,
       "pending": null
+    },
+    {
+      "date": "2026-10-14",
+      "received": 12596120,
+      "administered": 9665633,
+      "positive": 2879,
+      "suspected": 865,
+      "pending": null
     }
   ],
   "sources": {
@@ -2071,15 +2079,15 @@ const DASHBOARD_DATA = {
     "procured": 16000000,
     "distributed": 12596120,
     "received": 12596120,
-    "administered": 9663968,
+    "administered": 9665633,
     "herd_cattle": 15450142,
-    "balance": 2932152,
-    "dose2": 709165,
-    "dose1": 8954803,
+    "balance": 2930487,
+    "dose2": 710426,
+    "dose1": 8955207,
     "dose_split_note": "Dose 2 is the sum of the latest booster figures per province; several provinces report boosters for the dairy programme only, so dose 2 is a minimum and dose 1 a derived maximum.",
     "delta_received": 0,
     "delta_distributed": 0,
-    "delta_administered": 5025,
+    "delta_administered": 1665,
     "delta_positive": 0
   },
   "mpo": {
@@ -3607,11 +3615,11 @@ const DASHBOARD_DATA = {
     {
       "code": "WC",
       "name": "Western Cape",
-      "joc": 574926,
-      "joc_date": "2026-10-13",
+      "joc": 576591,
+      "joc_date": "2026-10-14",
       "ministerial": 265379,
       "ministerial_date": "2026-06-04",
-      "diff": 309547,
+      "diff": 311212,
       "flag": null
     }
   ],
@@ -6005,7 +6013,7 @@ const DASHBOARD_DATA = {
     },
     "WC": {
       "name": "Western Cape",
-      "latest_date": "2026-10-13",
+      "latest_date": "2026-10-14",
       "vaccine_types": [
         {
           "type": "dolvet",
@@ -6045,13 +6053,13 @@ const DASHBOARD_DATA = {
       "extra": {
         "primary_vaccinations": {
           "label": "Primary vaccinations",
-          "value": 407541,
-          "date": "2026-10-13"
+          "value": 407945,
+          "date": "2026-10-14"
         },
         "booster_vaccinations": {
           "label": "Booster vaccinations",
-          "value": 167385,
-          "date": "2026-10-13"
+          "value": 168646,
+          "date": "2026-10-14"
         },
         "vaccination_sites": {
           "label": "Vaccination sites",
@@ -6204,9 +6212,29 @@ const DASHBOARD_DATA = {
     }
   },
   "news": {
-    "last_checked": "2026-10-13",
+    "last_checked": "2026-10-14",
     "note": "Curated daily by the scheduled ingest. Items are media and public reporting, not programme data. Figures quoted here do not feed the dashboard headlines unless they are also ingested into master_data.csv from a programme source.",
     "items": [
+      {
+        "date": "2026-10-14",
+        "headline": "Namibia's two outbreaks and the European Union restrictions are set out in an international overview.",
+        "source": "Al Jazeera",
+        "url": "https://www.aljazeera.com/news/2026/10/14/namibia-battles-cattle-disease-outbreak-as-eu-suspends-several-meat-imports",
+        "summary": "The report brings together the ||Kharas figures (129 positive samples on 17 farms and 72 of 81 targeted farms inspected as at 6 October) and the separate Zambezi outbreak, which officials say is not shown to be directly linked to ||Kharas. It notes that the EU measure covers the former free zone rather than all Namibian meat, and that the Namibia Agricultural Union expects prices to stay under pressure until export markets reopen.",
+        "category": "trade",
+        "province": "national",
+        "added": "2026-10-14"
+      },
+      {
+        "date": "2026-10-13",
+        "headline": "Foot and mouth disease confirmed in kudu in the Addo Elephant National Park.",
+        "source": "SANParks",
+        "url": "https://www.sanparks.org/news/foot-and-mouth-disease-detected-in-kudu-at-addo-elephant-national-park",
+        "summary": "Wildlife health monitoring picked up more lameness among kudu; a first round of tests was negative, but a second round, run with the Eastern Cape Department of Agriculture, confirmed infection. No other species shows signs, cloven-hoofed animals may not enter or leave the park without veterinary approval, and the park stays open with vehicle disinfection. The source and any link to the Eastern Cape livestock outbreaks are still under investigation; no wildlife figures are held in our master.",
+        "category": "cases",
+        "province": "EC",
+        "added": "2026-10-14"
+      },
       {
         "date": "2026-10-12",
         "headline": "Namibia says its ||Kharas response is on track as work on a containment zone fence begins.",
@@ -6216,6 +6244,16 @@ const DASHBOARD_DATA = {
         "category": "policy",
         "province": "national",
         "added": "2026-10-13"
+      },
+      {
+        "date": "2026-10-12",
+        "headline": "Meatco places about 400 production workers on paid leave as Namibia's exports stay suspended.",
+        "source": "The Namibian",
+        "url": "https://www.namibian.com.na/meatco-puts-400-workers-on-leave-with-full-pay-amid-fmd/",
+        "summary": "Namibia's main beef exporter has sent about 400 of its more than 700 staff on three weeks of special leave with full pay from 1 to 23 October, when it will review the position. It had paid producers about N$31 million for cattle delivered between 29 August and 11 September. No new case count was given.",
+        "category": "trade",
+        "province": "national",
+        "added": "2026-10-14"
       },
       {
         "date": "2026-10-11",
@@ -6660,9 +6698,9 @@ const DASHBOARD_DATA = {
     ]
   },
   "namibia": {
-    "last_updated": "2026-10-13",
+    "last_updated": "2026-10-14",
     "note": "Regional context compiled from Namibian Government statements as reported in the media, the European Union delegation in Namibia and South African and Namibian media. These figures are not South African programme data and never feed the headline figures on the other tabs. Where reports differ, we show each figure with its source.",
-    "summary": "On 23 September 2026 Namibia confirmed foot and mouth disease on a commercial farm in the Karasburg state veterinary district of the ||Kharas region, inside its WOAH-recognised zone free without vaccination and its first outbreak in that zone in about 60 years. The SAT1 outbreak had reached 17 farms by 6 October, with no newer count published by 12 October; vaccination teams were assembling in Karasburg and a containment zone fence was due to start in the week of 12 October. On 7 October a second, separate outbreak was confirmed on Kalala Island in the Zambezi region. Namibia has suspended exports of cloven-hoofed animals and their raw products, the European Union and the United States have restricted imports, and live exports of weaners and slaughter sheep to South Africa have stopped.",
+    "summary": "On 23 September 2026 Namibia confirmed foot and mouth disease on a commercial farm in the Karasburg state veterinary district of the ||Kharas region, inside its WOAH-recognised zone free without vaccination and its first outbreak in that zone in about 60 years. The SAT1 outbreak had reached 17 farms by 6 October, with no newer count published by 14 October; vaccination teams were assembling in Karasburg and a containment zone fence was due to start in the week of 12 October. On 7 October a second, separate outbreak was confirmed on Kalala Island in the Zambezi region. Namibia has suspended exports of cloven-hoofed animals and their raw products, the European Union and the United States have restricted imports, and live exports of weaners and slaughter sheep to South Africa have stopped.",
     "kpis": [
       {
         "label": "Farms confirmed infected, ||Kharas",
@@ -6712,7 +6750,7 @@ const DASHBOARD_DATA = {
         "name": "||Kharas region, Karasburg state veterinary district",
         "first_confirmed": "2026-09-23",
         "serotype": "SAT1",
-        "status": "17 farms infected and 129 positive samples as at 6 October; no newer count published by 12 October. Vaccination teams were gathering in Karasburg on 11 and 12 October, with vaccination to start once schedules are agreed (earlier reports said ring vaccination had begun). 20 inspection teams within 50 kilometres of the index farm, roadblocks day and night.",
+        "status": "17 farms infected and 129 positive samples as at 6 October, when 72 of 81 targeted farms had been inspected; no newer count published by 14 October. Vaccination teams were gathering in Karasburg on 11 and 12 October, with vaccination to start once schedules are agreed (earlier reports said ring vaccination had begun). 20 inspection teams within 50 kilometres of the index farm, roadblocks day and night.",
         "border": "Borders our Northern Cape along the Orange River."
       },
       {
@@ -6857,6 +6895,12 @@ const DASHBOARD_DATA = {
         "event": "The Directorate of Veterinary Services says construction of the containment zone fence starts this week, alongside the Orange River cordon fence already under way.",
         "source": "New Era",
         "url": "https://neweralive.na/fmd-response-operations-in-kharas-satisfactory/"
+      },
+      {
+        "date": "2026-10-12",
+        "event": "Meatco confirms about 400 production workers are on three weeks of paid special leave (1 to 23 October) while exports are suspended; it will review the position on 23 October.",
+        "source": "The Namibian",
+        "url": "https://www.namibian.com.na/meatco-puts-400-workers-on-leave-with-full-pay-amid-fmd/"
       }
     ],
     "trade": [
@@ -6920,7 +6964,7 @@ const DASHBOARD_DATA = {
       }
     ],
     "open_questions": [
-      "Serotype of the Zambezi outbreak, and whether it is linked to ||Kharas.",
+      "Serotype of the Zambezi outbreak, and whether it is linked to ||Kharas; as at 14 October officials said no direct link had been established.",
       "Whether Namibia will subdivide its former free zone so that unaffected areas can resume exports; officials have said a plan could take about six months to reach WOAH.",
       "The outcome of the 9 October visit by South African animal health experts on auction protocols."
     ]
@@ -7019,6 +7063,7 @@ const DASHBOARD_DATA = {
     "WC GIS FMD Public FeatureServer (live ArcGIS REST API)",
     "WC GIS FMD Public FeatureServer (live ArcGIS REST API), pulled via browser 12 Oct 2026; raw aggregates archive/2026-10-12/wc_gis_pull_20261012.json",
     "WC GIS FMD Public FeatureServer (live ArcGIS REST API), pulled via browser 13 Oct 2026; raw aggregates archive/2026-10-13/wc_gis_pull_20261013.json",
+    "WC GIS FMD Public FeatureServer (live ArcGIS REST API), pulled via browser 14 Oct 2026; raw aggregates archive/2026-10-14/wc_gis_pull_20261014.json",
     "WC GIS portal (gis.westerncape.gov.za)",
     "WC-GIS portal live dashboard 2026-06-09",
     "Week 33 - Update on the state of FMD and vaccine rollouts in the dairy industry.pdf",

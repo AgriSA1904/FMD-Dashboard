@@ -1,7 +1,7 @@
 {
-  "last_updated": "2026-10-13",
+  "last_updated": "2026-10-14",
   "note": "Regional context compiled from Namibian Government statements as reported in the media, the European Union delegation in Namibia and South African and Namibian media. These figures are not South African programme data and never feed the headline figures on the other tabs. Where reports differ, we show each figure with its source.",
-  "summary": "On 23 September 2026 Namibia confirmed foot and mouth disease on a commercial farm in the Karasburg state veterinary district of the ||Kharas region, inside its WOAH-recognised zone free without vaccination and its first outbreak in that zone in about 60 years. The SAT1 outbreak had reached 17 farms by 6 October, with no newer count published by 12 October; vaccination teams were assembling in Karasburg and a containment zone fence was due to start in the week of 12 October. On 7 October a second, separate outbreak was confirmed on Kalala Island in the Zambezi region. Namibia has suspended exports of cloven-hoofed animals and their raw products, the European Union and the United States have restricted imports, and live exports of weaners and slaughter sheep to South Africa have stopped.",
+  "summary": "On 23 September 2026 Namibia confirmed foot and mouth disease on a commercial farm in the Karasburg state veterinary district of the ||Kharas region, inside its WOAH-recognised zone free without vaccination and its first outbreak in that zone in about 60 years. The SAT1 outbreak had reached 17 farms by 6 October, with no newer count published by 14 October; vaccination teams were assembling in Karasburg and a containment zone fence was due to start in the week of 12 October. On 7 October a second, separate outbreak was confirmed on Kalala Island in the Zambezi region. Namibia has suspended exports of cloven-hoofed animals and their raw products, the European Union and the United States have restricted imports, and live exports of weaners and slaughter sheep to South Africa have stopped.",
   "kpis": [
     {
       "label": "Farms confirmed infected, ||Kharas",
@@ -51,7 +51,7 @@
       "name": "||Kharas region, Karasburg state veterinary district",
       "first_confirmed": "2026-09-23",
       "serotype": "SAT1",
-      "status": "17 farms infected and 129 positive samples as at 6 October; no newer count published by 12 October. Vaccination teams were gathering in Karasburg on 11 and 12 October, with vaccination to start once schedules are agreed (earlier reports said ring vaccination had begun). 20 inspection teams within 50 kilometres of the index farm, roadblocks day and night.",
+      "status": "17 farms infected and 129 positive samples as at 6 October, when 72 of 81 targeted farms had been inspected; no newer count published by 14 October. Vaccination teams were gathering in Karasburg on 11 and 12 October, with vaccination to start once schedules are agreed (earlier reports said ring vaccination had begun). 20 inspection teams within 50 kilometres of the index farm, roadblocks day and night.",
       "border": "Borders our Northern Cape along the Orange River."
     },
     {
@@ -196,6 +196,12 @@
       "event": "The Directorate of Veterinary Services says construction of the containment zone fence starts this week, alongside the Orange River cordon fence already under way.",
       "source": "New Era",
       "url": "https://neweralive.na/fmd-response-operations-in-kharas-satisfactory/"
+    },
+    {
+      "date": "2026-10-12",
+      "event": "Meatco confirms about 400 production workers are on three weeks of paid special leave (1 to 23 October) while exports are suspended; it will review the position on 23 October.",
+      "source": "The Namibian",
+      "url": "https://www.namibian.com.na/meatco-puts-400-workers-on-leave-with-full-pay-amid-fmd/"
     }
   ],
   "trade": [
@@ -259,7 +265,7 @@
     }
   ],
   "open_questions": [
-    "Serotype of the Zambezi outbreak, and whether it is linked to ||Kharas.",
+    "Serotype of the Zambezi outbreak, and whether it is linked to ||Kharas; as at 14 October officials said no direct link had been established.",
     "Whether Namibia will subdivide its former free zone so that unaffected areas can resume exports; officials have said a plan could take about six months to reach WOAH.",
     "The outcome of the 9 October visit by South African animal health experts on auction protocols."
   ]

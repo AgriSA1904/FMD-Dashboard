@@ -1,5 +1,5 @@
 {
-  "last_checked": "2026-10-13",
+  "last_checked": "2026-10-14",
   "note": "Curated daily by the scheduled ingest. Items are media and public reporting, not programme data. Figures quoted here do not feed the dashboard headlines unless they are also ingested into master_data.csv from a programme source.",
   "items": [
     {
@@ -421,6 +421,36 @@
       "category": "policy",
       "province": "national",
       "added": "2026-10-13"
+    },
+    {
+      "date": "2026-10-12",
+      "headline": "Meatco places about 400 production workers on paid leave as Namibia's exports stay suspended.",
+      "source": "The Namibian",
+      "url": "https://www.namibian.com.na/meatco-puts-400-workers-on-leave-with-full-pay-amid-fmd/",
+      "summary": "Namibia's main beef exporter has sent about 400 of its more than 700 staff on three weeks of special leave with full pay from 1 to 23 October, when it will review the position. It had paid producers about N$31 million for cattle delivered between 29 August and 11 September. No new case count was given.",
+      "category": "trade",
+      "province": "national",
+      "added": "2026-10-14"
+    },
+    {
+      "date": "2026-10-13",
+      "headline": "Foot and mouth disease confirmed in kudu in the Addo Elephant National Park.",
+      "source": "SANParks",
+      "url": "https://www.sanparks.org/news/foot-and-mouth-disease-detected-in-kudu-at-addo-elephant-national-park",
+      "summary": "Wildlife health monitoring picked up more lameness among kudu; a first round of tests was negative, but a second round, run with the Eastern Cape Department of Agriculture, confirmed infection. No other species shows signs, cloven-hoofed animals may not enter or leave the park without veterinary approval, and the park stays open with vehicle disinfection. The source and any link to the Eastern Cape livestock outbreaks are still under investigation; no wildlife figures are held in our master.",
+      "category": "cases",
+      "province": "EC",
+      "added": "2026-10-14"
+    },
+    {
+      "date": "2026-10-14",
+      "headline": "Namibia's two outbreaks and the European Union restrictions are set out in an international overview.",
+      "source": "Al Jazeera",
+      "url": "https://www.aljazeera.com/news/2026/10/14/namibia-battles-cattle-disease-outbreak-as-eu-suspends-several-meat-imports",
+      "summary": "The report brings together the ||Kharas figures (129 positive samples on 17 farms and 72 of 81 targeted farms inspected as at 6 October) and the separate Zambezi outbreak, which officials say is not shown to be directly linked to ||Kharas. It notes that the EU measure covers the former free zone rather than all Namibian meat, and that the Namibia Agricultural Union expects prices to stay under pressure until export markets reopen.",
+      "category": "trade",
+      "province": "national",
+      "added": "2026-10-14"
     }
   ]
 }

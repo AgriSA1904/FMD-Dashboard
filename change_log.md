@@ -6717,3 +6717,59 @@ Rebuilt via importlib, validation passed (1,986,017 bytes). Snapshot 13 October,
 - Provincial packs for the week ending 9 October are outstanding for EC, KZN, LP, MP, NW, NC and WC; NW nothing since 14 September.
 - MPO: ask whether the per-province active map is still refreshed, and reconcile the KZN IDtrax figures.
 - Ask an Owner to add gis.westerncape.gov.za to the network allowlist so the shell can pull it directly.
+
+
+## Session 96. 14 October 2026. Scheduled update, Western Cape GIS, news scan and publish.
+
+Scheduled 08:00 run, started at about 08:04 South African time.
+
+### Sources processed
+
+| Source | Result |
+|---|---|
+| Inbox | Nothing new since session 95 (no file in inbox/ or a new dated root folder modified after 13 Oct 07:00). |
+| Mailbox (last 7 days) | No new FMD submissions. The FS 9 Oct stats and GP JOC 2 Oct emails were ingested in session 93. Mail since 13 Oct is congress, nominations and other AgriSA business. No attachments to save. |
+| Western Cape GIS | Device shell blocked (curl exit 56 through the proxy). Pulled through the built-in browser with ArcGIS REST statistics queries. Raw aggregates `archive/2026-10-14/wc_gis_pull_20261014.json`. |
+| Web | Searches on national, provincial, trade, industry, Afrikaans, international, Namibian and economic news for 7 to 14 October. |
+
+Ingest script `archive/2026-10-14/ingest_session96_wcgis.py`; master backed up to `master_data.csv.bak_session96`. Prepared 4, new 4, duplicates 0. Master now 4,026 rows.
+
+### Western Cape GIS (as at 14 October 2026), 4 rows
+
+| Metric | Value | Change |
+|---|---|---|
+| animals_vaccinated and doses_administered | 576,591 | Up 1,665. 3,186 records, latest vaccination 13 Oct. Dose-count basis. |
+| primary_vaccinations | 407,945 | Up 404, all beef. |
+| booster_vaccinations | 168,646 | Up 1,261 (beef 466, dairy 795). Dairy 126,646. |
+
+Primary plus booster equals total (asserted). Disease layer unchanged (30 active, 20 resolved, 6 suspected, 9 Data Issue), so no disease rows added.
+
+### Conflicts
+
+- WC dairy boosters: portal 126,646 (14 Oct) against MPO Week 51 116,578 (9 Oct). Both held.
+
+### News items added (3)
+
+- SANParks, 13 Oct: FMD confirmed in kudu at Addo Elephant National Park (Eastern Cape) after a second round of tests; movement of cloven-hoofed animals in and out of the park needs veterinary approval. Wildlife only, not programme data; no master rows. Watch for the Department's view on any link to the Eastern Cape livestock outbreaks.
+- The Namibian, 12 Oct: Meatco places about 400 production workers on paid leave until 23 October.
+- Al Jazeera, 14 Oct: overview of Namibia's ||Kharas and Zambezi outbreaks and the EU measure; 72 of 81 targeted farms inspected as at 6 October; no direct link established between the two outbreaks.
+
+No new South African primary Ministry statement was found in the window, so no policy rows.
+
+### Curated files
+
+- `news_feed.json`: 3 items, last_checked 14 Oct, 45 items (backup `.bak_session96`).
+- `namibia_data.json`: ||Kharas status (72 of 81 farms inspected), Meatco timeline event, summary date, Zambezi open question updated, last_updated (backup `.bak_session96`).
+- `supply_pipeline.json`: reviewed, no new primary consignment information; last_reviewed set to 14 Oct (backup `.bak_session96`).
+- `sa_economic.json` and `policy_events.json`: no newer primary figures or events; unchanged.
+
+### Dashboard
+
+Rebuilt via importlib, validation passed (1,989,345 bytes). Snapshot 14 October, 91 weekly points. Checked in the payload: WC card 576,591 vaccinated (407,945 first dose, 168,646 boosters), as at 14 Oct; national administered 9,665,633 (up 1,665); all three news items and the Namibia update present.
+
+### Action items
+
+- Provincial packs for the week ending 9 October are outstanding for EC, KZN, LP, MP, NW, NC and WC; NW nothing since 14 September.
+- Eastern Cape: ask the Department whether the Addo kudu cases are counted in the provincial outbreak totals.
+- MPO Week 52 due around 16 October; per-province map and KZN IDtrax queries still open.
+- Ask an Owner to add gis.westerncape.gov.za to the network allowlist so the shell can pull it directly.
