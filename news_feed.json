@@ -1,5 +1,5 @@
 {
-  "last_checked": "2026-10-14",
+  "last_checked": "2026-10-16",
   "note": "Curated daily by the scheduled ingest. Items are media and public reporting, not programme data. Figures quoted here do not feed the dashboard headlines unless they are also ingested into master_data.csv from a programme source.",
   "items": [
     {
@@ -451,6 +451,46 @@
       "category": "trade",
       "province": "national",
       "added": "2026-10-14"
+    },
+    {
+      "date": "2026-10-14",
+      "headline": "Namibian farmers seek interim trade arrangements after informal talks with a South African delegation.",
+      "source": "New Era (via allAfrica)",
+      "url": "https://allafrica.com/stories/202610150054.html",
+      "summary": "Namibian farmers' bodies want supervised livestock trade from areas unaffected by the outbreak, warning that a six to seven month halt would threaten farm viability. A South African delegation from the RPO, AgriSA and RMIS shared our experience of permits and traceability; no agreements were reached, and any arrangement needs both countries' veterinary authorities.",
+      "category": "trade",
+      "province": "national",
+      "added": "2026-10-16"
+    },
+    {
+      "date": "2026-10-15",
+      "headline": "Namibia starts compulsory vaccination in Karasburg as its outbreak reaches 18 farms.",
+      "source": "New Era",
+      "url": "https://neweralive.na/compulsory-fmd-vaccination-commence-in-karasburg/",
+      "summary": "Vaccination by state officials began on 14 October in three rounds over three months; as at that date 131 animals had tested positive for SAT1 on 18 farms, from 63,011 inspected. In the Zambezi region more than 10,000 cattle have been vaccinated, no new clinical cases were found by 13 October, and officials report no link between the two outbreaks.",
+      "category": "vaccination",
+      "province": "national",
+      "added": "2026-10-16"
+    },
+    {
+      "date": "2026-10-15",
+      "headline": "Daily Dispatch adds detail on the Addo kudu cases and vaccination around the park.",
+      "source": "Daily Dispatch",
+      "url": "https://dailydispatch.co.za/news/2026-10-15-officials-sound-alert-as-fmd-outbreak-confirmed-at-addo-elephant-park/",
+      "summary": "Two lame kudu sampled on 1 September tested positive and a warthog tested negative; SANParks says wildlife became infected through exposure to infected livestock, though the source is not confirmed. The report cites 418,176 farm animals vaccinated in the Sarah Baartman and Nelson Mandela Bay areas, a district figure we do not hold in the master, and the RPO says enough vaccine is available through RMIS.",
+      "category": "cases",
+      "province": "EC",
+      "added": "2026-10-16"
+    },
+    {
+      "date": "2026-10-15",
+      "headline": "GroundUp reports Limpopo's vaccination drive has passed one million doses.",
+      "source": "GroundUp",
+      "url": "https://groundup.org.za/article/a-brilliant-example-state-succeeding",
+      "summary": "Reporting from a booster session near the Kruger National Park, GroundUp says vaccination has reached every Limpopo district, with over one million doses given and about 75 percent of cattle first-vaccinated, and that pigs, goats and sheep are next. It cites 98 confirmed commercial farms under quarantine and 66 suspected to 11 October; these exceed the 971,866 animals (Ministry, 14 September) and 101 positive cases (136 including closed) in our master, which still awaits a newer Limpopo pack.",
+      "category": "vaccination",
+      "province": "LP",
+      "added": "2026-10-16"
     }
   ]
 }

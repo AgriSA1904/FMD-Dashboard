@@ -6773,3 +6773,66 @@ Rebuilt via importlib, validation passed (1,989,345 bytes). Snapshot 14 October,
 - Eastern Cape: ask the Department whether the Addo kudu cases are counted in the provincial outbreak totals.
 - MPO Week 52 due around 16 October; per-province map and KZN IDtrax queries still open.
 - Ask an Owner to add gis.westerncape.gov.za to the network allowlist so the shell can pull it directly.
+
+
+## Session 97. 16 October 2026. Scheduled update, Western Cape GIS, news scan and publish.
+
+Scheduled 08:00 run, started at about 08:46 South African time. No session ran on 15 October, so this run covers everything since session 96 (14 Oct, 08:04).
+
+### Sources processed
+
+| Source | Result |
+|---|---|
+| Inbox | Nothing new since session 96 (no file in inbox/ or a new dated root folder modified after 14 Oct 06:00). |
+| Mailbox (last 7 days) | No new FMD submissions. Mail since 14 Oct is congress, nominations, election results and US Embassy meeting preparation. The Department WOAH report of 30 Sep (forwarded 9 Oct) was ingested in session 93. No attachments to save. |
+| Western Cape GIS | Device shell blocked (curl exit 56, HTTP 403 from proxy after CONNECT). Pulled through the built-in browser with ArcGIS REST statistics queries. Raw aggregates `archive/2026-10-16/wc_gis_pull_20261016.json`. |
+| Web | Searches on national, provincial, trade, industry, Afrikaans, international, Namibian and economic news for 9 to 16 October. |
+
+Ingest script `archive/2026-10-16/ingest_session97_wcgis.py`; master backed up to `master_data.csv.bak_session97`. Prepared 8, new 8, duplicates 0. Master now 4,034 rows.
+
+### Western Cape GIS (as at 16 October 2026), 8 rows
+
+| Metric | Value | Change |
+|---|---|---|
+| positive_cases | 50 | Unchanged total (26 active plus 24 resolved). Row added because the open and closed split changed. |
+| outbreaks_open / outbreaks_closed | 26 / 24 | Four establishments moved from active to resolved (was 30 / 20). |
+| suspected_cases | 6 | Unchanged; 9 Data Issue records excluded. |
+| animals_vaccinated and doses_administered | 584,880 | Up 8,289. 3,247 records, latest vaccination 15 Oct. Dose-count basis. |
+| primary_vaccinations | 408,389 | Up 444, all beef. |
+| booster_vaccinations | 176,491 | Up 7,845 (beef 1,258, dairy 6,587). Dairy 133,233. |
+
+Arithmetic asserted (primary plus booster equals total; active plus resolved equals 50).
+
+### Conflicts
+
+- WC dairy boosters: portal 133,233 (16 Oct) against MPO Week 51 116,578 (9 Oct). Both held.
+- Limpopo: GroundUp (15 Oct) reports over one million doses given, about 75 percent first-dose coverage and 98 confirmed commercial farms under quarantine plus 66 suspected (2 Dec 2025 to 11 Oct 2026). Our master holds 971,866 animals vaccinated (Ministry, 14 Sep) and 101 positive (136 including closed). Media figures, not ingested; the gap points to an outstanding Limpopo pack.
+- Eastern Cape: the Daily Dispatch (15 Oct) cites 418,176 farm animals vaccinated in Sarah Baartman and Nelson Mandela Bay. We hold no district figure for that date; not ingested.
+- Namibia: New Era dates the Zambezi confirmation to 6 October; earlier reports said 7 October. Both noted on the Namibia tab. ||Kharas counts are now of animals testing positive (131), not samples (129 on 6 Oct).
+
+### News items added (4)
+
+- New Era (via allAfrica), 14 Oct: Namibian farmers seek interim trade arrangements after an informal exchange with a South African delegation (RPO, AgriSA, RMIS) on 9 October; no agreements.
+- New Era, 15 Oct: compulsory vaccination begins in Karasburg on 14 October; 18 farms and 131 positive animals; Zambezi more than 10,000 cattle vaccinated.
+- Daily Dispatch, 15 Oct: detail on the Addo kudu cases and vaccination around the park.
+- GroundUp, 15 Oct: Limpopo vaccination drive past one million doses.
+
+No new South African primary Ministry statement was found in the window, so no policy rows.
+
+### Curated files
+
+- `news_feed.json`: 4 items, last_checked 16 Oct, 49 items (backup `.bak_session97`).
+- `namibia_data.json`: summary, four headline figures (18 farms, 131 positive animals, regions note, Zambezi cattle vaccinated 10,864 in place of the earlier 100,000 doses available figure), both region statuses, a 14 Oct progression row, two timeline events (9 Oct informal talks, 14 Oct compulsory vaccination), the auction protocols South Africa link, open questions (Zambezi link and 9 Oct visit answered and replaced), last_updated (backup `.bak_session97`).
+- `supply_pipeline.json`: reviewed, no new primary consignment information; last_reviewed set to 16 Oct (backup `.bak_session97`).
+- `sa_economic.json` and `policy_events.json`: no newer primary figures or events; unchanged.
+
+### Dashboard
+
+Rebuilt via importlib, validation passed (1,995,314 bytes). Snapshot 16 October, 92 weekly points. Checked in the payload: WC card 584,880 vaccinated (408,389 first dose, 176,491 boosters), 50 positive, 6 suspected, as at 16 Oct; national administered 9,673,922 (up 8,289); all four news items and the Namibia update (last_updated 16 Oct, Notification No. 19, 10,864) present.
+
+### Action items
+
+- Provincial packs for the week ending 9 October are outstanding for EC, KZN, LP, MP, NW, NC and WC; NW nothing since 14 September. Limpopo media figures suggest a substantially newer position than we hold.
+- MPO Week 52 due around 16 October; per-province map and KZN IDtrax queries still open.
+- Eastern Cape: ask the Department whether the Addo kudu cases are counted in the provincial outbreak totals.
+- Ask an Owner to add gis.westerncape.gov.za to the network allowlist so the shell can pull it directly.
