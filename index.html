@@ -1168,8 +1168,8 @@
 
 <script>
 const DASHBOARD_DATA = {
-  "snapshot_date": "2026-10-16",
-  "build_date": "2026-10-16",
+  "snapshot_date": "2026-10-20",
+  "build_date": "2026-10-20",
   "provinces": [
     {
       "code": "EC",
@@ -1318,17 +1318,17 @@ const DASHBOARD_DATA = {
     {
       "code": "WC",
       "name": "Western Cape",
-      "as_of": "2026-10-16",
+      "as_of": "2026-10-20",
       "herd": 501875,
       "positive": 50,
       "suspected": 6,
       "negative": 0,
       "pending": 0,
       "received": 647080,
-      "vaccinated": 584880,
-      "dose1": 408389,
-      "dose2": 176491,
-      "dose2_asof": "2026-10-16",
+      "vaccinated": 585699,
+      "dose1": 408830,
+      "dose2": 176869,
+      "dose2_asof": "2026-10-20",
       "dose2_source": "WC-GIS",
       "dose1_derived": false,
       "dose2_partial": false
@@ -2070,6 +2070,14 @@ const DASHBOARD_DATA = {
       "positive": 2879,
       "suspected": 865,
       "pending": null
+    },
+    {
+      "date": "2026-10-20",
+      "received": 12596120,
+      "administered": 9674741,
+      "positive": 2879,
+      "suspected": 865,
+      "pending": null
     }
   ],
   "sources": {
@@ -2087,15 +2095,15 @@ const DASHBOARD_DATA = {
     "procured": 16000000,
     "distributed": 12596120,
     "received": 12596120,
-    "administered": 9673922,
+    "administered": 9674741,
     "herd_cattle": 15450142,
-    "balance": 2922198,
-    "dose2": 718271,
-    "dose1": 8955651,
+    "balance": 2921379,
+    "dose2": 718649,
+    "dose1": 8956092,
     "dose_split_note": "Dose 2 is the sum of the latest booster figures per province; several provinces report boosters for the dairy programme only, so dose 2 is a minimum and dose 1 a derived maximum.",
     "delta_received": 0,
     "delta_distributed": 0,
-    "delta_administered": 8289,
+    "delta_administered": 819,
     "delta_positive": 0
   },
   "mpo": {
@@ -3623,11 +3631,11 @@ const DASHBOARD_DATA = {
     {
       "code": "WC",
       "name": "Western Cape",
-      "joc": 584880,
-      "joc_date": "2026-10-16",
+      "joc": 585699,
+      "joc_date": "2026-10-20",
       "ministerial": 265379,
       "ministerial_date": "2026-06-04",
-      "diff": 319501,
+      "diff": 320320,
       "flag": null
     }
   ],
@@ -6021,7 +6029,7 @@ const DASHBOARD_DATA = {
     },
     "WC": {
       "name": "Western Cape",
-      "latest_date": "2026-10-16",
+      "latest_date": "2026-10-20",
       "vaccine_types": [
         {
           "type": "dolvet",
@@ -6061,13 +6069,13 @@ const DASHBOARD_DATA = {
       "extra": {
         "primary_vaccinations": {
           "label": "Primary vaccinations",
-          "value": 408389,
-          "date": "2026-10-16"
+          "value": 408830,
+          "date": "2026-10-20"
         },
         "booster_vaccinations": {
           "label": "Booster vaccinations",
-          "value": 176491,
-          "date": "2026-10-16"
+          "value": 176869,
+          "date": "2026-10-20"
         },
         "vaccination_sites": {
           "label": "Vaccination sites",
@@ -6220,9 +6228,39 @@ const DASHBOARD_DATA = {
     }
   },
   "news": {
-    "last_checked": "2026-10-16",
+    "last_checked": "2026-10-20",
     "note": "Curated daily by the scheduled ingest. Items are media and public reporting, not programme data. Figures quoted here do not feed the dashboard headlines unless they are also ingested into master_data.csv from a programme source.",
     "items": [
+      {
+        "date": "2026-10-20",
+        "headline": "South African and Namibian industry bodies set out positions on future livestock trade protocols.",
+        "source": "Food For Mzansi",
+        "url": "https://www.foodformzansi.co.za/sa-and-namibia-reevaluate-livestock-trade-after-fmd-outbreak/",
+        "summary": "Following the industry talks between the RMIS, RPO and AgriSA and Namibian producer bodies, RMIS calls for separate protocols for sheep and cattle, with no shortcuts for cattle, which would need to come from below the ||Kharas red zone, be vaccinated and spend at least two weeks in a feedlot. RMIS stresses that the veterinary authorities of the two countries must set the final protocols; between 80 and 90 percent of Namibian sheep are destined for our market.",
+        "category": "trade",
+        "province": "national",
+        "added": "2026-10-20"
+      },
+      {
+        "date": "2026-10-18",
+        "headline": "Zambezi households lose income as auctions and slaughter stay suspended.",
+        "source": "The Namibian",
+        "url": "https://www.namibian.com.na/zula-to-survive-3/",
+        "summary": "The Namibian reports the human cost of the Zambezi restrictions, where auctions, movement and slaughter are suspended after 12 cattle samples tested positive at Kalala Island. Namibia's ministry says the two outbreaks are not linked and that it will vaccinate rather than cull; the Namibia Agricultural Union notes the region has long been classed as FMD-infected.",
+        "category": "other",
+        "province": "national",
+        "added": "2026-10-20"
+      },
+      {
+        "date": "2026-10-16",
+        "headline": "Farmer's Weekly says 1,501 outbreaks remain open although FMD has left the headlines.",
+        "source": "Farmer's Weekly",
+        "url": "https://www.farmersweekly.co.za/agri-news/south-africa/fmd-may-no-longer-be-headline-news-but-1-501-outbreaks-remain-unresolved/",
+        "summary": "Drawing on the Department's outbreak report of 30 September, Farmer's Weekly sets out 2,871 outbreaks nationally, 1,370 closed and 1,501 open, with the Eastern Cape and KwaZulu-Natal holding about half of the open outbreaks. It also traces how the SAT1 and SAT2 strains spread between provinces. These figures match the WOAH report rows already in our master (ingested 11 October), so nothing new was added.",
+        "category": "cases",
+        "province": "national",
+        "added": "2026-10-20"
+      },
       {
         "date": "2026-10-15",
         "headline": "Namibia starts compulsory vaccination in Karasburg as its outbreak reaches 18 farms.",
@@ -6252,6 +6290,16 @@ const DASHBOARD_DATA = {
         "category": "vaccination",
         "province": "LP",
         "added": "2026-10-16"
+      },
+      {
+        "date": "2026-10-15",
+        "headline": "Roadblocks around the Karasburg outbreak could stay in place until 23 December.",
+        "source": "New Era",
+        "url": "https://neweralive.na/kharas-roadblocks-tighten-as-fmd-spreads/",
+        "summary": "Namibian veterinary officials and police have set up fixed and occasional roadblocks around the 17 farms near the index farm, including the Warmbad and Velloorsdrift areas on our border. A local farmer says his small stock exports to South Africa have stopped and lambs could lose N$20 to N$30 a kilogram in value if sales are delayed.",
+        "category": "trade",
+        "province": "NC",
+        "added": "2026-10-20"
       },
       {
         "date": "2026-10-14",
@@ -6746,9 +6794,9 @@ const DASHBOARD_DATA = {
     ]
   },
   "namibia": {
-    "last_updated": "2026-10-16",
+    "last_updated": "2026-10-20",
     "note": "Regional context compiled from Namibian Government statements as reported in the media, the European Union delegation in Namibia and South African and Namibian media. These figures are not South African programme data and never feed the headline figures on the other tabs. Where reports differ, we show each figure with its source.",
-    "summary": "On 23 September 2026 Namibia confirmed foot and mouth disease on a commercial farm in the Karasburg state veterinary district of the ||Kharas region, inside its WOAH-recognised zone free without vaccination and its first outbreak in that zone in about 60 years. By 14 October the SAT1 outbreak had reached 18 farms, with 131 animals positive out of 63,011 inspected, and compulsory vaccination in three rounds over three months began that day. A second outbreak was confirmed on Kalala Island in the Zambezi region in early October; officials say it has no epidemiological link to ||Kharas, and more than 10,000 cattle there have been vaccinated. Namibia has suspended exports of cloven-hoofed animals and their raw products, the European Union and the United States have restricted imports, and live exports of weaners and slaughter sheep to South Africa have stopped.",
+    "summary": "On 23 September 2026 Namibia confirmed foot and mouth disease on a commercial farm in the Karasburg state veterinary district of the ||Kharas region, inside its WOAH-recognised zone free without vaccination and its first outbreak in that zone in about 60 years. By 14 October the SAT1 outbreak had reached 18 farms, with 131 animals positive out of 63,011 inspected, and compulsory vaccination in three rounds over three months began that day. A second outbreak was confirmed on Kalala Island in the Zambezi region in early October; officials say it has no epidemiological link to ||Kharas, and more than 10,000 cattle there have been vaccinated. Namibia has suspended exports of cloven-hoofed animals and their raw products, the European Union and the United States have restricted imports, and live exports of weaners and slaughter sheep to South Africa have stopped. Roadblocks around Karasburg could stay until 23 December, and industry bodies on both sides are setting out positions on the protocols that would let trade with South Africa resume.",
     "kpis": [
       {
         "label": "Farms confirmed infected, ||Kharas",
@@ -6805,7 +6853,7 @@ const DASHBOARD_DATA = {
         "name": "Zambezi region, Kalala Island (Kabbe constituency)",
         "first_confirmed": "2026-10-06",
         "serotype": "Not yet reported",
-        "status": "12 positive samples; no new clinical cases by 13 October after six teams examined 6,226 cattle at 17 crush pens. 10,864 cattle vaccinated by 13 October (2,942 at Kalala, then 7,922 at 11 crush pens), with strategic vaccination by seven teams until 21 October. Five roadblocks from 14 October (Kongola, Selela, Luhonono, Bukalo, Nakabolelwa). Officials report no epidemiological link to ||Kharas. New Era dates confirmation to 6 October; earlier reports said 7 October.",
+        "status": "12 positive samples; no new clinical cases by 13 October after six teams examined 6,226 cattle at 17 crush pens. 10,864 cattle vaccinated by 13 October (2,942 at Kalala, then 7,922 at 11 crush pens), with strategic vaccination by seven teams until 21 October. Five roadblocks from 14 October (Kongola, Selela, Luhonono, Bukalo, Nakabolelwa). Officials report no epidemiological link to ||Kharas. New Era dates confirmation to 6 October; earlier reports said 7 October. Auctions, movement and slaughter remain suspended, and The Namibian reports lost income for local meat sellers and households (18 October).",
         "border": "Namibia's north-eastern vaccination zone; does not border South Africa."
       }
     ],
@@ -6969,6 +7017,12 @@ const DASHBOARD_DATA = {
         "event": "Compulsory vaccination begins in the Karasburg state veterinary district under Veterinary Public Notification No. 19 of 2026, in three rounds over three months. Five strategic roadblocks start in the Zambezi region.",
         "source": "New Era; Namibia Economist",
         "url": "https://neweralive.na/compulsory-fmd-vaccination-commence-in-karasburg/"
+      },
+      {
+        "date": "2026-10-15",
+        "event": "Police and the Karasburg state veterinary office tighten fixed and occasional roadblocks around the 17 farms near the index farm, including Warmbad and Velloorsdrift; the police say the operation could run until 23 December.",
+        "source": "New Era",
+        "url": "https://neweralive.na/kharas-roadblocks-tighten-as-fmd-spreads/"
       }
     ],
     "trade": [
@@ -7029,6 +7083,12 @@ const DASHBOARD_DATA = {
         "detail": "Technical officials of both countries are working on conditions to reopen auctions once the Karasburg outbreak is shown to be contained. At an informal exchange on 9 October, a South African delegation from the RPO, AgriSA and RMIS shared our experience of permits and traceability for moving animals to abattoirs. No agreements were reached; only the two governments can negotiate market access, and formal approval could take six to seven months.",
         "source": "The Namibian, 6 October 2026; New Era, 14 October 2026",
         "url": "https://allafrica.com/stories/202610150054.html"
+      },
+      {
+        "topic": "Industry positions on import protocols",
+        "detail": "RMIS wants separate protocols for sheep and cattle. Imported sheep must be free of FMD risk, and cattle would need to come from below the ||Kharas red zone, be vaccinated and spend at least two weeks in a feedlot, meeting the same standards as our own herds. RMIS also asks for reciprocity on South African genetic material. Final protocols rest with the two veterinary authorities. Between 80 and 90 percent of Namibian sheep are destined for our market.",
+        "source": "Food For Mzansi, 20 October 2026",
+        "url": "https://www.foodformzansi.co.za/sa-and-namibia-reevaluate-livestock-trade-after-fmd-outbreak/"
       }
     ],
     "open_questions": [
@@ -7133,6 +7193,7 @@ const DASHBOARD_DATA = {
     "WC GIS FMD Public FeatureServer (live ArcGIS REST API), pulled via browser 13 Oct 2026; raw aggregates archive/2026-10-13/wc_gis_pull_20261013.json",
     "WC GIS FMD Public FeatureServer (live ArcGIS REST API), pulled via browser 14 Oct 2026; raw aggregates archive/2026-10-14/wc_gis_pull_20261014.json",
     "WC GIS FMD Public FeatureServer (live ArcGIS REST API), pulled via browser 16 Oct 2026; raw aggregates archive/2026-10-16/wc_gis_pull_20261016.json",
+    "WC GIS FMD Public FeatureServer (live ArcGIS REST API), pulled via browser 20 Oct 2026; raw aggregates archive/2026-10-20/wc_gis_pull_20261020.json",
     "WC GIS portal (gis.westerncape.gov.za)",
     "WC-GIS portal live dashboard 2026-06-09",
     "Week 33 - Update on the state of FMD and vaccine rollouts in the dairy industry.pdf",
@@ -7159,6 +7220,7 @@ const DASHBOARD_DATA = {
     "africanfarming.com kzn-fmd-vaccination-drive-reaches-1-7-million-cattle (21 Aug 2026)",
     "archive/2026-04-28/04-10-2026_FMD ICC Update.pdf",
     "archive/2026-05-14/FMD PCM MEETING PACK 20260514 REV0.pdf",
+    "email: AgriSA: FMD Weekly Engagement (19 Oct 2026), attachment 16 October 2026.pdf (ICC Industry Update 16 Oct 2026); not yet saved to inbox",
     "https://rmis.shinyapps.io/rmis-industry-allocated-fmd-vaccine-distribution/",
     "inbox/01042026_FMD Graphics_V2.pdf",
     "inbox/04-17-2026_FMD ICC Update.pdf",

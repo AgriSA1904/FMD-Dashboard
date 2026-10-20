@@ -1,292 +1,304 @@
 {
-  "last_updated": "2026-10-16",
-  "note": "Regional context compiled from Namibian Government statements as reported in the media, the European Union delegation in Namibia and South African and Namibian media. These figures are not South African programme data and never feed the headline figures on the other tabs. Where reports differ, we show each figure with its source.",
-  "summary": "On 23 September 2026 Namibia confirmed foot and mouth disease on a commercial farm in the Karasburg state veterinary district of the ||Kharas region, inside its WOAH-recognised zone free without vaccination and its first outbreak in that zone in about 60 years. By 14 October the SAT1 outbreak had reached 18 farms, with 131 animals positive out of 63,011 inspected, and compulsory vaccination in three rounds over three months began that day. A second outbreak was confirmed on Kalala Island in the Zambezi region in early October; officials say it has no epidemiological link to ||Kharas, and more than 10,000 cattle there have been vaccinated. Namibia has suspended exports of cloven-hoofed animals and their raw products, the European Union and the United States have restricted imports, and live exports of weaners and slaughter sheep to South Africa have stopped.",
-  "kpis": [
-    {
-      "label": "Farms confirmed infected, ||Kharas",
-      "value": "18",
-      "sub": "As at 14 October 2026. Up from 17 on 6 October and 1 on 23 September.",
-      "source": "New Era, 15 October 2026",
-      "url": "https://neweralive.na/compulsory-fmd-vaccination-commence-in-karasburg/"
-    },
-    {
-      "label": "Animals testing positive, ||Kharas",
-      "value": "131",
-      "sub": "As at 14 October 2026, of 63,011 animals inspected. SAT1 virus. Earlier counts were of positive samples (129 on 6 October).",
-      "source": "New Era, 15 October 2026",
-      "url": "https://neweralive.na/compulsory-fmd-vaccination-commence-in-karasburg/"
-    },
-    {
-      "label": "Regions with confirmed outbreaks",
-      "value": "2",
-      "sub": "||Kharas from 23 September; Zambezi from 6 or 7 October (reports differ). Officials report no epidemiological link between them.",
-      "source": "Namibia Economist, 15 October 2026",
-      "url": "https://economist.com.na/mass-vaccination-drive-launched-to-contain-fmd-outbreak/"
-    },
-    {
-      "label": "Cattle vaccinated, Zambezi",
-      "value": "10,864",
-      "sub": "2,942 at Kalala from 7 to 9 October plus 7,922 at 11 crush pens on 12 and 13 October. Strategic vaccination continues to 21 October. Compulsory vaccination in ||Kharas began on 14 October.",
-      "source": "New Era, 15 October 2026",
-      "url": "https://neweralive.na/compulsory-fmd-vaccination-commence-in-karasburg/"
-    },
-    {
-      "label": "Beef exports at risk each year",
-      "value": "N$5.5 billion",
-      "sub": "About N$3.3 billion of this goes to the European Union, United Kingdom and Norway.",
-      "source": "The Rio Times, 25 September 2026",
-      "url": "https://www.riotimesonline.com/namibia-spent-year-preparing-fmd-outbreak-2026/"
-    },
-    {
-      "label": "Estimated cost of containment",
-      "value": "N$190 million",
-      "sub": "Ministry of Agriculture estimate, including a 290 kilometre control fence costed at about N$47 million.",
-      "source": "Informanté, 4 October 2026",
-      "url": "https://informante.web.na/?p=401855"
-    }
-  ],
-  "regions": [
-    {
-      "name": "||Kharas region, Karasburg state veterinary district",
-      "first_confirmed": "2026-09-23",
-      "serotype": "SAT1",
-      "status": "18 farms infected and 131 animals positive of 63,011 inspected, as at 14 October. The first surveillance round covered 82 farms within 30 kilometres of the index farm; the second round, extended to 50 kilometres, had inspected 11 of 65 targeted farms. Compulsory vaccination by state veterinary officials began on 14 October under Veterinary Public Notification No. 19 of 2026: three rounds over three months, ending in mid-January 2027, covering all farms south of the B3 and C10 roads to the Orange River. Owners may not vaccinate their own animals. Eighteen roadblocks operate in ||Kharas, Khomas and Otjozondjupa.",
-      "border": "Borders our Northern Cape along the Orange River."
-    },
-    {
-      "name": "Zambezi region, Kalala Island (Kabbe constituency)",
-      "first_confirmed": "2026-10-06",
-      "serotype": "Not yet reported",
-      "status": "12 positive samples; no new clinical cases by 13 October after six teams examined 6,226 cattle at 17 crush pens. 10,864 cattle vaccinated by 13 October (2,942 at Kalala, then 7,922 at 11 crush pens), with strategic vaccination by seven teams until 21 October. Five roadblocks from 14 October (Kongola, Selela, Luhonono, Bukalo, Nakabolelwa). Officials report no epidemiological link to ||Kharas. New Era dates confirmation to 6 October; earlier reports said 7 October.",
-      "border": "Namibia's north-eastern vaccination zone; does not border South Africa."
-    }
-  ],
-  "progression": [
-    {
-      "date": "2026-09-23",
-      "farms": "1",
-      "positives": "10 of 11 samples",
-      "detail": "Index farm, Karasburg. 63 cattle showed clinical signs.",
-      "source": "Farmer's Weekly; Bovine Vet",
-      "url": "https://www.farmersweekly.co.za/agri-news/africa/namibia-bans-exports-and-animal-movement-after-confirmed-fmd-case/"
-    },
-    {
-      "date": "2026-09-25",
-      "farms": "",
-      "positives": "17 of 199 samples",
-      "detail": "Surveillance from 22 to 25 September across five regions; all positives in the Karasburg district.",
-      "source": "Republikein; Bovine Vet",
-      "url": "https://www.republikein.com.na/landbou/bek-en-klouseer-17-bevestigde-gevalle-by-karasburg-nmh018827-5-23127-23129-23133"
-    },
-    {
-      "date": "2026-09-30",
-      "farms": "5",
-      "positives": "",
-      "detail": "Affected farms up from three to five.",
-      "source": "Informanté",
-      "url": "https://informante.web.na/?p=401695"
-    },
-    {
-      "date": "2026-10-02",
-      "farms": "11",
-      "positives": "79 of 531 samples",
-      "detail": "15,096 animals inspected on 66 of 81 targeted farms. SAT1 confirmed.",
-      "source": "The Namibian",
-      "url": "https://namibian.com.na/fmd-butcheries-scramble-to-keep-workers"
-    },
-    {
-      "date": "2026-10-05",
-      "farms": "15",
-      "positives": "127 cases",
-      "detail": "29,313 animals inspected on 68 farms. The Namibian reports 127 cattle with clinical signs from laboratory testing of 2,910 cattle, 22,289 sheep, 4,114 goats and 9 pigs, plus clinical signs in 50 sheep, 1 goat and 1 pig.",
-      "source": "Farmer's Weekly; The Namibian",
-      "url": "https://www.farmersweekly.co.za/agri-news/africa/namibia-steps-up-fmd-controls-as-cases-rise-to-127/"
-    },
-    {
-      "date": "2026-10-06",
-      "farms": "17",
-      "positives": "129 samples",
-      "detail": "72 of 81 farms within 50 kilometres inspected; 2,292 vehicles searched at seven checkpoints.",
-      "source": "The Namibian; Namibian Sun",
-      "url": "https://www.namibian.com.na/fmd-spreads-to-17-kharas-farms/"
-    },
-    {
-      "date": "2026-10-14",
-      "farms": "18",
-      "positives": "131 animals",
-      "detail": "63,011 animals inspected. Second surveillance round (50 kilometres) at 11 of 65 farms. Counted as animals testing positive, not samples.",
-      "source": "New Era; Namib Times",
-      "url": "https://neweralive.na/compulsory-fmd-vaccination-commence-in-karasburg/"
-    }
-  ],
-  "timeline": [
-    {
-      "date": "2026-09-22",
-      "event": "Samples taken from 11 cattle with clinical signs on a commercial farm near Karasburg. WOAH suspends the free zone's status with effect from this date.",
-      "source": "African Farming; EU delegation to Namibia",
-      "url": "https://www.eeas.europa.eu/delegations/namibia/eu-statement-foot-and-mouth-disease-outbreak-namibia_en"
-    },
-    {
-      "date": "2026-09-23",
-      "event": "Outbreak confirmed. Veterinary Public Notification No. 15 of 2026 activates the national contingency plan and suspends movement, slaughter, imports and exports of cloven-hoofed animals and their raw products nationwide.",
-      "source": "The Brief; The Rio Times",
-      "url": "https://thebrief.com.na/2026/09/meatco-suspends-beef-exports-slaughter-following-fmd-outbreak/"
-    },
-    {
-      "date": "2026-09-24",
-      "event": "Namibia notifies WOAH. Meatco suspends beef exports and slaughter and reconciles consignments already in transit.",
-      "source": "The Rio Times; The Brief",
-      "url": "https://thebrief.com.na/2026/09/meatco-suspends-beef-exports-slaughter-following-fmd-outbreak/"
-    },
-    {
-      "date": "2026-09-25",
-      "event": "Sixteen veterinary checkpoints begin operating to stop unauthorised movement of livestock and meat.",
-      "source": "The Namibian",
-      "url": "https://www.namibian.com.na/fmd-spreads-to-17-kharas-farms/"
-    },
-    {
-      "date": "2026-09-28",
-      "event": "Movement restored north of the veterinary cordon fence and allowed under strict conditions south of it, except in the ||Kharas region.",
-      "source": "New Era; African Farming",
-      "url": "https://neweralive.na/govt-eases-fmd-restrictions/"
-    },
-    {
-      "date": "2026-09-29",
-      "event": "The United States issues an import alert for all of Namibia, effective 23 September, covering live ruminants, swine and their germplasm.",
-      "source": "Bovine Vet",
-      "url": "https://www.bovinevetonline.com/news/fmd-detection-disrupts-namibias-disease-free-status-and-trade"
-    },
-    {
-      "date": "2026-10-04",
-      "event": "The Ministry of Agriculture estimates containment will cost about N$190 million, including a 290 kilometre control fence, vaccination and targeted culling.",
-      "source": "Informanté",
-      "url": "https://informante.web.na/?p=401855"
-    },
-    {
-      "date": "2026-10-05",
-      "event": "The European Union publishes a temporary suspension of fresh meat imports from the previously free zone.",
-      "source": "EU delegation to Namibia",
-      "url": "https://www.eeas.europa.eu/delegations/namibia/eu-statement-foot-and-mouth-disease-outbreak-namibia_en"
-    },
-    {
-      "date": "2026-10-06",
-      "event": "Namibian and South African technical officials meet online on protocols to reopen livestock auctions; South African animal health experts due in Namibia on 9 October.",
-      "source": "The Namibian",
-      "url": "https://www.namibian.com.na/namibia-sa-discuss-reopening-livestock-auctions/"
-    },
-    {
-      "date": "2026-10-07",
-      "event": "Farmer's Weekly reports that Cabinet has approved a containment plan with a buffer zone, ring vaccination and veterinary cordon fencing along the border with South Africa. The same day, a second outbreak is confirmed in the Zambezi region.",
-      "source": "Farmer's Weekly; The Namibian",
-      "url": "https://www.farmersweekly.co.za/agri-news/africa/namibia-steps-up-fmd-controls-as-cases-rise-to-127/"
-    },
-    {
-      "date": "2026-10-08",
-      "event": "Agriculture minister Inge Zaamwani tells Parliament that culling is no longer viable and vaccination is the only option, with 100,000 doses available.",
-      "source": "The Namibian",
-      "url": "https://namibian.com.na/no-culling-for-fmd-cattle-only-vaccinations-zaamwani"
-    },
-    {
-      "date": "2026-10-09",
-      "event": "Namibian farmers' bodies hold an informal exchange with a South African delegation (RPO, AgriSA and RMIS) on protocols, permits and traceability for moving animals from restricted areas to abattoirs. No agreements were reached; Namibian industry is to prepare an evidence-based proposal for both countries' veterinary authorities.",
-      "source": "New Era (via allAfrica)",
-      "url": "https://allafrica.com/stories/202610150054.html"
-    },
-    {
-      "date": "2026-10-11",
-      "event": "Construction starts on a veterinary cordon fence along the Orange River from Homerevier to Velloorsdrift, expected to take four months.",
-      "source": "The Namibian",
-      "url": "https://allafrica.com/stories/202610120093.html"
-    },
-    {
-      "date": "2026-10-11",
-      "event": "Agriculture minister Inge Zaamwani ends a two-day visit to the Karasburg district, checking roadblocks and fence work; vaccination teams are assembling at a camp in Karasburg.",
-      "source": "Republikein",
-      "url": "https://www.republikein.com.na/landbou/landbouminister-besoek-bks-episentrum-nmh019781-3-24303"
-    },
-    {
-      "date": "2026-10-12",
-      "event": "The Directorate of Veterinary Services says construction of the containment zone fence starts this week, alongside the Orange River cordon fence already under way.",
-      "source": "New Era",
-      "url": "https://neweralive.na/fmd-response-operations-in-kharas-satisfactory/"
-    },
-    {
-      "date": "2026-10-12",
-      "event": "Meatco confirms about 400 production workers are on three weeks of paid special leave (1 to 23 October) while exports are suspended; it will review the position on 23 October.",
-      "source": "The Namibian",
-      "url": "https://www.namibian.com.na/meatco-puts-400-workers-on-leave-with-full-pay-amid-fmd/"
-    },
-    {
-      "date": "2026-10-14",
-      "event": "Compulsory vaccination begins in the Karasburg state veterinary district under Veterinary Public Notification No. 19 of 2026, in three rounds over three months. Five strategic roadblocks start in the Zambezi region.",
-      "source": "New Era; Namibia Economist",
-      "url": "https://neweralive.na/compulsory-fmd-vaccination-commence-in-karasburg/"
-    }
-  ],
-  "trade": [
-    {
-      "market": "European Union",
-      "measure": "Temporary suspension of fresh meat of cattle, sheep, goats and other ungulates, and of biltong and jerky-type products, from the previously free zone.",
-      "detail": "Meat given the most severe risk-reducing treatment may still enter. Fresh meat certified before 23 September may enter within 90 days of that date. Trade preferences under the EU-SADC agreement are unchanged. The EU takes more than 80 percent of Namibia's beef exports.",
-      "date": "2026-10-05",
-      "source": "EU delegation to Namibia; Maroela Media",
-      "url": "https://www.eeas.europa.eu/delegations/namibia/eu-statement-foot-and-mouth-disease-outbreak-namibia_en"
-    },
-    {
-      "market": "United States",
-      "measure": "Import alert for the whole country on live ruminants, camelids, swine and their germplasm, with extra conditions on animal products.",
-      "detail": "Effective 23 September 2026.",
-      "date": "2026-09-29",
-      "source": "Bovine Vet",
-      "url": "https://www.bovinevetonline.com/news/fmd-detection-disrupts-namibias-disease-free-status-and-trade"
-    },
-    {
-      "market": "South Africa",
-      "measure": "Namibian exports of live cloven-hoofed animals, including weaner calves and slaughter sheep, have stopped. Auction trade is under discussion.",
-      "detail": "South Africa had received 36,821 weaner calves and 417,808 slaughter sheep from Namibia so far in 2026. Namibian sheep make up about 15 percent of our slaughter supply, so the RPO expects a larger price effect on mutton and lamb than on beef.",
-      "date": "2026-10-06",
-      "source": "Farmer's Weekly; The Namibian",
-      "url": "https://farmersweekly.co.za/agri-news/africa/namibia-fmd-outbreak-could-drive-up-sa-red-meat-prices"
-    },
-    {
-      "market": "Domestic Namibia",
-      "measure": "Export and local abattoir slaughter suspended in the affected areas; Meatco operations halted.",
-      "detail": "Butcheries in ||Kharas report putting staff on leave. Modelling cited by The Namibian suggests about 12,000 jobs could be lost in 2026 and 2027, and no exemption from the agricultural minimum wage is being considered.",
-      "date": "2026-10-05",
-      "source": "The Brief; The Namibian",
-      "url": "https://namibian.com.na/fmd-butcheries-scramble-to-keep-workers"
-    }
-  ],
-  "sa_links": [
-    {
-      "topic": "Shared border",
-      "detail": "The ||Kharas outbreak lies along the Orange River border with our Northern Cape. Namibia is fencing that border and investigating the source along the river. Namibian officials had warned earlier of unregistered livestock crossing from South Africa.",
-      "source": "The Namibian, 30 September and 8 October 2026",
-      "url": "https://allafrica.com/stories/202610010092.html"
-    },
-    {
-      "topic": "Vaccine support",
-      "detail": "Minister Aucamp said South Africa has made 50,000 vaccine doses available to Namibia, Eswatini and Lesotho this year, and that resuming red meat imports from Namibia and Botswana depends on agreed biosecurity protocols.",
-      "source": "Farmer's Weekly, 9 October 2026",
-      "url": "https://farmersweekly.co.za/agri-news/south-africa/regional-collaboration-needed-to-fight-fmd-in-sa-namibia-and-botswana"
-    },
-    {
-      "topic": "Livestock supply and prices",
-      "detail": "The loss of Namibian weaners and slaughter sheep tightens our supply, with mutton and lamb most exposed.",
-      "source": "Farmer's Weekly, 6 October 2026",
-      "url": "https://farmersweekly.co.za/agri-news/africa/namibia-fmd-outbreak-could-drive-up-sa-red-meat-prices"
-    },
-    {
-      "topic": "Auction protocols",
-      "detail": "Technical officials of both countries are working on conditions to reopen auctions once the Karasburg outbreak is shown to be contained. At an informal exchange on 9 October, a South African delegation from the RPO, AgriSA and RMIS shared our experience of permits and traceability for moving animals to abattoirs. No agreements were reached; only the two governments can negotiate market access, and formal approval could take six to seven months.",
-      "source": "The Namibian, 6 October 2026; New Era, 14 October 2026",
-      "url": "https://allafrica.com/stories/202610150054.html"
-    }
-  ],
-  "open_questions": [
-    "Serotype of the Zambezi outbreak; officials report no epidemiological link to ||Kharas.",
-    "Whether Namibia will subdivide its former free zone so that unaffected areas can resume exports; officials have said a plan could take about six months to reach WOAH.",
-    "Whether the veterinary authorities of Namibia and South Africa accept an industry proposal for supervised movement of animals from unaffected areas to abattoirs."
-  ]
+ "last_updated": "2026-10-20",
+ "note": "Regional context compiled from Namibian Government statements as reported in the media, the European Union delegation in Namibia and South African and Namibian media. These figures are not South African programme data and never feed the headline figures on the other tabs. Where reports differ, we show each figure with its source.",
+ "summary": "On 23 September 2026 Namibia confirmed foot and mouth disease on a commercial farm in the Karasburg state veterinary district of the ||Kharas region, inside its WOAH-recognised zone free without vaccination and its first outbreak in that zone in about 60 years. By 14 October the SAT1 outbreak had reached 18 farms, with 131 animals positive out of 63,011 inspected, and compulsory vaccination in three rounds over three months began that day. A second outbreak was confirmed on Kalala Island in the Zambezi region in early October; officials say it has no epidemiological link to ||Kharas, and more than 10,000 cattle there have been vaccinated. Namibia has suspended exports of cloven-hoofed animals and their raw products, the European Union and the United States have restricted imports, and live exports of weaners and slaughter sheep to South Africa have stopped. Roadblocks around Karasburg could stay until 23 December, and industry bodies on both sides are setting out positions on the protocols that would let trade with South Africa resume.",
+ "kpis": [
+  {
+   "label": "Farms confirmed infected, ||Kharas",
+   "value": "18",
+   "sub": "As at 14 October 2026. Up from 17 on 6 October and 1 on 23 September.",
+   "source": "New Era, 15 October 2026",
+   "url": "https://neweralive.na/compulsory-fmd-vaccination-commence-in-karasburg/"
+  },
+  {
+   "label": "Animals testing positive, ||Kharas",
+   "value": "131",
+   "sub": "As at 14 October 2026, of 63,011 animals inspected. SAT1 virus. Earlier counts were of positive samples (129 on 6 October).",
+   "source": "New Era, 15 October 2026",
+   "url": "https://neweralive.na/compulsory-fmd-vaccination-commence-in-karasburg/"
+  },
+  {
+   "label": "Regions with confirmed outbreaks",
+   "value": "2",
+   "sub": "||Kharas from 23 September; Zambezi from 6 or 7 October (reports differ). Officials report no epidemiological link between them.",
+   "source": "Namibia Economist, 15 October 2026",
+   "url": "https://economist.com.na/mass-vaccination-drive-launched-to-contain-fmd-outbreak/"
+  },
+  {
+   "label": "Cattle vaccinated, Zambezi",
+   "value": "10,864",
+   "sub": "2,942 at Kalala from 7 to 9 October plus 7,922 at 11 crush pens on 12 and 13 October. Strategic vaccination continues to 21 October. Compulsory vaccination in ||Kharas began on 14 October.",
+   "source": "New Era, 15 October 2026",
+   "url": "https://neweralive.na/compulsory-fmd-vaccination-commence-in-karasburg/"
+  },
+  {
+   "label": "Beef exports at risk each year",
+   "value": "N$5.5 billion",
+   "sub": "About N$3.3 billion of this goes to the European Union, United Kingdom and Norway.",
+   "source": "The Rio Times, 25 September 2026",
+   "url": "https://www.riotimesonline.com/namibia-spent-year-preparing-fmd-outbreak-2026/"
+  },
+  {
+   "label": "Estimated cost of containment",
+   "value": "N$190 million",
+   "sub": "Ministry of Agriculture estimate, including a 290 kilometre control fence costed at about N$47 million.",
+   "source": "Informanté, 4 October 2026",
+   "url": "https://informante.web.na/?p=401855"
+  }
+ ],
+ "regions": [
+  {
+   "name": "||Kharas region, Karasburg state veterinary district",
+   "first_confirmed": "2026-09-23",
+   "serotype": "SAT1",
+   "status": "18 farms infected and 131 animals positive of 63,011 inspected, as at 14 October. The first surveillance round covered 82 farms within 30 kilometres of the index farm; the second round, extended to 50 kilometres, had inspected 11 of 65 targeted farms. Compulsory vaccination by state veterinary officials began on 14 October under Veterinary Public Notification No. 19 of 2026: three rounds over three months, ending in mid-January 2027, covering all farms south of the B3 and C10 roads to the Orange River. Owners may not vaccinate their own animals. Eighteen roadblocks operate in ||Kharas, Khomas and Otjozondjupa.",
+   "border": "Borders our Northern Cape along the Orange River."
+  },
+  {
+   "name": "Zambezi region, Kalala Island (Kabbe constituency)",
+   "first_confirmed": "2026-10-06",
+   "serotype": "Not yet reported",
+   "status": "12 positive samples; no new clinical cases by 13 October after six teams examined 6,226 cattle at 17 crush pens. 10,864 cattle vaccinated by 13 October (2,942 at Kalala, then 7,922 at 11 crush pens), with strategic vaccination by seven teams until 21 October. Five roadblocks from 14 October (Kongola, Selela, Luhonono, Bukalo, Nakabolelwa). Officials report no epidemiological link to ||Kharas. New Era dates confirmation to 6 October; earlier reports said 7 October. Auctions, movement and slaughter remain suspended, and The Namibian reports lost income for local meat sellers and households (18 October).",
+   "border": "Namibia's north-eastern vaccination zone; does not border South Africa."
+  }
+ ],
+ "progression": [
+  {
+   "date": "2026-09-23",
+   "farms": "1",
+   "positives": "10 of 11 samples",
+   "detail": "Index farm, Karasburg. 63 cattle showed clinical signs.",
+   "source": "Farmer's Weekly; Bovine Vet",
+   "url": "https://www.farmersweekly.co.za/agri-news/africa/namibia-bans-exports-and-animal-movement-after-confirmed-fmd-case/"
+  },
+  {
+   "date": "2026-09-25",
+   "farms": "",
+   "positives": "17 of 199 samples",
+   "detail": "Surveillance from 22 to 25 September across five regions; all positives in the Karasburg district.",
+   "source": "Republikein; Bovine Vet",
+   "url": "https://www.republikein.com.na/landbou/bek-en-klouseer-17-bevestigde-gevalle-by-karasburg-nmh018827-5-23127-23129-23133"
+  },
+  {
+   "date": "2026-09-30",
+   "farms": "5",
+   "positives": "",
+   "detail": "Affected farms up from three to five.",
+   "source": "Informanté",
+   "url": "https://informante.web.na/?p=401695"
+  },
+  {
+   "date": "2026-10-02",
+   "farms": "11",
+   "positives": "79 of 531 samples",
+   "detail": "15,096 animals inspected on 66 of 81 targeted farms. SAT1 confirmed.",
+   "source": "The Namibian",
+   "url": "https://namibian.com.na/fmd-butcheries-scramble-to-keep-workers"
+  },
+  {
+   "date": "2026-10-05",
+   "farms": "15",
+   "positives": "127 cases",
+   "detail": "29,313 animals inspected on 68 farms. The Namibian reports 127 cattle with clinical signs from laboratory testing of 2,910 cattle, 22,289 sheep, 4,114 goats and 9 pigs, plus clinical signs in 50 sheep, 1 goat and 1 pig.",
+   "source": "Farmer's Weekly; The Namibian",
+   "url": "https://www.farmersweekly.co.za/agri-news/africa/namibia-steps-up-fmd-controls-as-cases-rise-to-127/"
+  },
+  {
+   "date": "2026-10-06",
+   "farms": "17",
+   "positives": "129 samples",
+   "detail": "72 of 81 farms within 50 kilometres inspected; 2,292 vehicles searched at seven checkpoints.",
+   "source": "The Namibian; Namibian Sun",
+   "url": "https://www.namibian.com.na/fmd-spreads-to-17-kharas-farms/"
+  },
+  {
+   "date": "2026-10-14",
+   "farms": "18",
+   "positives": "131 animals",
+   "detail": "63,011 animals inspected. Second surveillance round (50 kilometres) at 11 of 65 farms. Counted as animals testing positive, not samples.",
+   "source": "New Era; Namib Times",
+   "url": "https://neweralive.na/compulsory-fmd-vaccination-commence-in-karasburg/"
+  }
+ ],
+ "timeline": [
+  {
+   "date": "2026-09-22",
+   "event": "Samples taken from 11 cattle with clinical signs on a commercial farm near Karasburg. WOAH suspends the free zone's status with effect from this date.",
+   "source": "African Farming; EU delegation to Namibia",
+   "url": "https://www.eeas.europa.eu/delegations/namibia/eu-statement-foot-and-mouth-disease-outbreak-namibia_en"
+  },
+  {
+   "date": "2026-09-23",
+   "event": "Outbreak confirmed. Veterinary Public Notification No. 15 of 2026 activates the national contingency plan and suspends movement, slaughter, imports and exports of cloven-hoofed animals and their raw products nationwide.",
+   "source": "The Brief; The Rio Times",
+   "url": "https://thebrief.com.na/2026/09/meatco-suspends-beef-exports-slaughter-following-fmd-outbreak/"
+  },
+  {
+   "date": "2026-09-24",
+   "event": "Namibia notifies WOAH. Meatco suspends beef exports and slaughter and reconciles consignments already in transit.",
+   "source": "The Rio Times; The Brief",
+   "url": "https://thebrief.com.na/2026/09/meatco-suspends-beef-exports-slaughter-following-fmd-outbreak/"
+  },
+  {
+   "date": "2026-09-25",
+   "event": "Sixteen veterinary checkpoints begin operating to stop unauthorised movement of livestock and meat.",
+   "source": "The Namibian",
+   "url": "https://www.namibian.com.na/fmd-spreads-to-17-kharas-farms/"
+  },
+  {
+   "date": "2026-09-28",
+   "event": "Movement restored north of the veterinary cordon fence and allowed under strict conditions south of it, except in the ||Kharas region.",
+   "source": "New Era; African Farming",
+   "url": "https://neweralive.na/govt-eases-fmd-restrictions/"
+  },
+  {
+   "date": "2026-09-29",
+   "event": "The United States issues an import alert for all of Namibia, effective 23 September, covering live ruminants, swine and their germplasm.",
+   "source": "Bovine Vet",
+   "url": "https://www.bovinevetonline.com/news/fmd-detection-disrupts-namibias-disease-free-status-and-trade"
+  },
+  {
+   "date": "2026-10-04",
+   "event": "The Ministry of Agriculture estimates containment will cost about N$190 million, including a 290 kilometre control fence, vaccination and targeted culling.",
+   "source": "Informanté",
+   "url": "https://informante.web.na/?p=401855"
+  },
+  {
+   "date": "2026-10-05",
+   "event": "The European Union publishes a temporary suspension of fresh meat imports from the previously free zone.",
+   "source": "EU delegation to Namibia",
+   "url": "https://www.eeas.europa.eu/delegations/namibia/eu-statement-foot-and-mouth-disease-outbreak-namibia_en"
+  },
+  {
+   "date": "2026-10-06",
+   "event": "Namibian and South African technical officials meet online on protocols to reopen livestock auctions; South African animal health experts due in Namibia on 9 October.",
+   "source": "The Namibian",
+   "url": "https://www.namibian.com.na/namibia-sa-discuss-reopening-livestock-auctions/"
+  },
+  {
+   "date": "2026-10-07",
+   "event": "Farmer's Weekly reports that Cabinet has approved a containment plan with a buffer zone, ring vaccination and veterinary cordon fencing along the border with South Africa. The same day, a second outbreak is confirmed in the Zambezi region.",
+   "source": "Farmer's Weekly; The Namibian",
+   "url": "https://www.farmersweekly.co.za/agri-news/africa/namibia-steps-up-fmd-controls-as-cases-rise-to-127/"
+  },
+  {
+   "date": "2026-10-08",
+   "event": "Agriculture minister Inge Zaamwani tells Parliament that culling is no longer viable and vaccination is the only option, with 100,000 doses available.",
+   "source": "The Namibian",
+   "url": "https://namibian.com.na/no-culling-for-fmd-cattle-only-vaccinations-zaamwani"
+  },
+  {
+   "date": "2026-10-09",
+   "event": "Namibian farmers' bodies hold an informal exchange with a South African delegation (RPO, AgriSA and RMIS) on protocols, permits and traceability for moving animals from restricted areas to abattoirs. No agreements were reached; Namibian industry is to prepare an evidence-based proposal for both countries' veterinary authorities.",
+   "source": "New Era (via allAfrica)",
+   "url": "https://allafrica.com/stories/202610150054.html"
+  },
+  {
+   "date": "2026-10-11",
+   "event": "Construction starts on a veterinary cordon fence along the Orange River from Homerevier to Velloorsdrift, expected to take four months.",
+   "source": "The Namibian",
+   "url": "https://allafrica.com/stories/202610120093.html"
+  },
+  {
+   "date": "2026-10-11",
+   "event": "Agriculture minister Inge Zaamwani ends a two-day visit to the Karasburg district, checking roadblocks and fence work; vaccination teams are assembling at a camp in Karasburg.",
+   "source": "Republikein",
+   "url": "https://www.republikein.com.na/landbou/landbouminister-besoek-bks-episentrum-nmh019781-3-24303"
+  },
+  {
+   "date": "2026-10-12",
+   "event": "The Directorate of Veterinary Services says construction of the containment zone fence starts this week, alongside the Orange River cordon fence already under way.",
+   "source": "New Era",
+   "url": "https://neweralive.na/fmd-response-operations-in-kharas-satisfactory/"
+  },
+  {
+   "date": "2026-10-12",
+   "event": "Meatco confirms about 400 production workers are on three weeks of paid special leave (1 to 23 October) while exports are suspended; it will review the position on 23 October.",
+   "source": "The Namibian",
+   "url": "https://www.namibian.com.na/meatco-puts-400-workers-on-leave-with-full-pay-amid-fmd/"
+  },
+  {
+   "date": "2026-10-14",
+   "event": "Compulsory vaccination begins in the Karasburg state veterinary district under Veterinary Public Notification No. 19 of 2026, in three rounds over three months. Five strategic roadblocks start in the Zambezi region.",
+   "source": "New Era; Namibia Economist",
+   "url": "https://neweralive.na/compulsory-fmd-vaccination-commence-in-karasburg/"
+  },
+  {
+   "date": "2026-10-15",
+   "event": "Police and the Karasburg state veterinary office tighten fixed and occasional roadblocks around the 17 farms near the index farm, including Warmbad and Velloorsdrift; the police say the operation could run until 23 December.",
+   "source": "New Era",
+   "url": "https://neweralive.na/kharas-roadblocks-tighten-as-fmd-spreads/"
+  }
+ ],
+ "trade": [
+  {
+   "market": "European Union",
+   "measure": "Temporary suspension of fresh meat of cattle, sheep, goats and other ungulates, and of biltong and jerky-type products, from the previously free zone.",
+   "detail": "Meat given the most severe risk-reducing treatment may still enter. Fresh meat certified before 23 September may enter within 90 days of that date. Trade preferences under the EU-SADC agreement are unchanged. The EU takes more than 80 percent of Namibia's beef exports.",
+   "date": "2026-10-05",
+   "source": "EU delegation to Namibia; Maroela Media",
+   "url": "https://www.eeas.europa.eu/delegations/namibia/eu-statement-foot-and-mouth-disease-outbreak-namibia_en"
+  },
+  {
+   "market": "United States",
+   "measure": "Import alert for the whole country on live ruminants, camelids, swine and their germplasm, with extra conditions on animal products.",
+   "detail": "Effective 23 September 2026.",
+   "date": "2026-09-29",
+   "source": "Bovine Vet",
+   "url": "https://www.bovinevetonline.com/news/fmd-detection-disrupts-namibias-disease-free-status-and-trade"
+  },
+  {
+   "market": "South Africa",
+   "measure": "Namibian exports of live cloven-hoofed animals, including weaner calves and slaughter sheep, have stopped. Auction trade is under discussion.",
+   "detail": "South Africa had received 36,821 weaner calves and 417,808 slaughter sheep from Namibia so far in 2026. Namibian sheep make up about 15 percent of our slaughter supply, so the RPO expects a larger price effect on mutton and lamb than on beef.",
+   "date": "2026-10-06",
+   "source": "Farmer's Weekly; The Namibian",
+   "url": "https://farmersweekly.co.za/agri-news/africa/namibia-fmd-outbreak-could-drive-up-sa-red-meat-prices"
+  },
+  {
+   "market": "Domestic Namibia",
+   "measure": "Export and local abattoir slaughter suspended in the affected areas; Meatco operations halted.",
+   "detail": "Butcheries in ||Kharas report putting staff on leave. Modelling cited by The Namibian suggests about 12,000 jobs could be lost in 2026 and 2027, and no exemption from the agricultural minimum wage is being considered.",
+   "date": "2026-10-05",
+   "source": "The Brief; The Namibian",
+   "url": "https://namibian.com.na/fmd-butcheries-scramble-to-keep-workers"
+  }
+ ],
+ "sa_links": [
+  {
+   "topic": "Shared border",
+   "detail": "The ||Kharas outbreak lies along the Orange River border with our Northern Cape. Namibia is fencing that border and investigating the source along the river. Namibian officials had warned earlier of unregistered livestock crossing from South Africa.",
+   "source": "The Namibian, 30 September and 8 October 2026",
+   "url": "https://allafrica.com/stories/202610010092.html"
+  },
+  {
+   "topic": "Vaccine support",
+   "detail": "Minister Aucamp said South Africa has made 50,000 vaccine doses available to Namibia, Eswatini and Lesotho this year, and that resuming red meat imports from Namibia and Botswana depends on agreed biosecurity protocols.",
+   "source": "Farmer's Weekly, 9 October 2026",
+   "url": "https://farmersweekly.co.za/agri-news/south-africa/regional-collaboration-needed-to-fight-fmd-in-sa-namibia-and-botswana"
+  },
+  {
+   "topic": "Livestock supply and prices",
+   "detail": "The loss of Namibian weaners and slaughter sheep tightens our supply, with mutton and lamb most exposed.",
+   "source": "Farmer's Weekly, 6 October 2026",
+   "url": "https://farmersweekly.co.za/agri-news/africa/namibia-fmd-outbreak-could-drive-up-sa-red-meat-prices"
+  },
+  {
+   "topic": "Auction protocols",
+   "detail": "Technical officials of both countries are working on conditions to reopen auctions once the Karasburg outbreak is shown to be contained. At an informal exchange on 9 October, a South African delegation from the RPO, AgriSA and RMIS shared our experience of permits and traceability for moving animals to abattoirs. No agreements were reached; only the two governments can negotiate market access, and formal approval could take six to seven months.",
+   "source": "The Namibian, 6 October 2026; New Era, 14 October 2026",
+   "url": "https://allafrica.com/stories/202610150054.html"
+  },
+  {
+   "topic": "Industry positions on import protocols",
+   "detail": "RMIS wants separate protocols for sheep and cattle. Imported sheep must be free of FMD risk, and cattle would need to come from below the ||Kharas red zone, be vaccinated and spend at least two weeks in a feedlot, meeting the same standards as our own herds. RMIS also asks for reciprocity on South African genetic material. Final protocols rest with the two veterinary authorities. Between 80 and 90 percent of Namibian sheep are destined for our market.",
+   "source": "Food For Mzansi, 20 October 2026",
+   "url": "https://www.foodformzansi.co.za/sa-and-namibia-reevaluate-livestock-trade-after-fmd-outbreak/"
+  }
+ ],
+ "open_questions": [
+  "Serotype of the Zambezi outbreak; officials report no epidemiological link to ||Kharas.",
+  "Whether Namibia will subdivide its former free zone so that unaffected areas can resume exports; officials have said a plan could take about six months to reach WOAH.",
+  "Whether the veterinary authorities of Namibia and South Africa accept an industry proposal for supervised movement of animals from unaffected areas to abattoirs."
+ ]
 }

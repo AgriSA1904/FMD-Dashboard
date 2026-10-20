@@ -6836,3 +6836,70 @@ Rebuilt via importlib, validation passed (1,995,314 bytes). Snapshot 16 October,
 - MPO Week 52 due around 16 October; per-province map and KZN IDtrax queries still open.
 - Eastern Cape: ask the Department whether the Addo kudu cases are counted in the provincial outbreak totals.
 - Ask an Owner to add gis.westerncape.gov.za to the network allowlist so the shell can pull it directly.
+
+
+## Session 98. 20 October 2026. Scheduled update, ICC update, Western Cape GIS, news scan and publish.
+
+Scheduled 08:00 run (fired 07:58 South African time). No sessions ran on 17, 18 or 19 October, so this run covers everything since session 97 (16 Oct, 08:46).
+
+### Sources processed
+
+| Source | Result |
+|---|---|
+| Inbox | Nothing new since session 97 (no file in inbox/ or a new dated root folder modified after 16 Oct 06:00). |
+| Mailbox (last 7 days) | One FMD item: "AgriSA: FMD Weekly Engagement" from Thea Liebenberg (19 Oct), with three PDF attachments not yet in the inbox: `16 October 2026.pdf` (ICC Industry Update 16 Oct), `12 October 2026 Outcomes.pdf` and `21 October 2026 Agenda.pdf`. We read the ICC update and the outcomes through the connector (not guessed). Other mail is congress, rural safety and the US delegation meeting. |
+| Western Cape GIS | Device shell blocked (curl exit 56). Pulled through the built-in browser with ArcGIS REST statistics queries. Raw aggregates `archive/2026-10-20/wc_gis_pull_20261020.json`. |
+| Web | Searches on national, provincial, trade, industry, Afrikaans, international, Namibian and economic news for 13 to 20 October. |
+
+Scripts `archive/2026-10-20/ingest_session98_wcgis.py` (backs up the master to `master_data.csv.bak_session98`) and `archive/2026-10-20/update_curated_session98.py`. Prepared 12, new 12, duplicates 0. Master now 4,046 rows.
+
+### Western Cape GIS (as at 20 October 2026), 4 rows
+
+| Metric | Value | Change |
+|---|---|---|
+| animals_vaccinated and doses_administered | 585,699 | Up 819. 3,256 records, latest vaccination 17 Oct. Dose-count basis. |
+| primary_vaccinations | 408,830 | Up 441, all beef. |
+| booster_vaccinations | 176,869 | Up 378, all beef. Dairy 133,233 unchanged. |
+
+Primary plus booster equals total (asserted). Disease layer unchanged from 16 Oct (26 active, 24 resolved, 6 suspected, 9 Data Issue), so no disease rows added.
+
+### ICC Industry Update, 16 October 2026, 8 policy rows (FMD-ICC, effective 16 Oct)
+
+- Five matters from 18 Sep re-held as still outstanding with no feedback from the Minister or Department: `section10_committee_appointment_pending`, `mandatory_vaccination_funding_decision_pending`, `doses_imported_verified_figure_requested`, `vaccine_allocation_criteria_pending`, `data_consolidation_meeting_overdue`.
+- New: `post_vaccination_monitoring_capacity_concern` (ARC lacks capacity for post-vaccination serology at scale), `risk_assessment_plan_jwg_scheduled` (draft PCP-FMD stage one plan to the Joint Working Group on 27 Oct), `section9_amendments_in_progress` (8 Jul measures being amended with ICC input).
+- No figures in the update. `policy_events.json` not changed, because these are ICC rather than Ministry or Department sources.
+- The 12 Oct engagement outcomes report about 120,000 doses sold through an Eastern Cape industry channel and a shift in concern from vaccine availability to affordability. No date or channel detail, so not ingested.
+
+### Conflicts
+
+- WC dairy boosters: portal 133,233 against MPO Week 51 116,578 (9 Oct). Both held.
+- Namibia: The Namibian (18 Oct) dates the Zambezi confirmation to 7 October; New Era said 6 October. Both already noted on the Namibia tab.
+- Farmer's Weekly (16 Oct) provincial open and closed outbreak counts match our 30 Sep WOAH rows exactly; no conflict.
+
+### News items added (4)
+
+- Farmer's Weekly, 16 Oct: 1,501 outbreaks remain open (Department report, 30 Sep).
+- New Era, 15 Oct: Karasburg roadblocks could run until 23 December.
+- The Namibian, 18 Oct: Zambezi households lose income under the restrictions.
+- Food For Mzansi, 20 Oct: RMIS positions on future Namibian sheep and cattle import protocols.
+
+No new South African primary Ministry statement was found in the window, so no policy events. The SABC "under control" and GroundUp ARC sampling articles predate the window and were not added.
+
+### Curated files
+
+- `news_feed.json`: 4 items, last_checked 20 Oct, 53 items (backup `.bak_session98`).
+- `namibia_data.json`: Karasburg roadblock timeline event (15 Oct), new South Africa link on industry protocol positions, Zambezi status, summary, last_updated (backup `.bak_session98`).
+- `supply_pipeline.json`: reviewed, no new primary consignment information; last_reviewed set to 20 Oct (backup `.bak_session98`). The ICC says a verified total of doses imported is still awaited.
+- `sa_economic.json` and `policy_events.json`: no newer primary figures or events; unchanged.
+
+### Dashboard
+
+Rebuilt via importlib, validation passed (2,000,407 bytes). Snapshot 20 October, 93 weekly points. Checked in the payload: WC card 585,699 vaccinated (408,830 first dose, 176,869 boosters), 50 positive, 6 suspected, as at 20 Oct; national administered 9,674,741 (up 819); all four news items and the Namibia update (last_updated 20 Oct) present.
+
+### Action items
+
+- Jay: save the three attachments from the 19 Oct "AgriSA: FMD Weekly Engagement" email to the inbox (ICC update to `inbox/ICC Reports/`, outcomes and agenda to `inbox/AgriSA Summary and Outcomes - FMD Weekly Engagement/`) for the audit trail.
+- Provincial packs for the weeks ending 9 and 16 October are outstanding for EC, KZN, LP, MP, NW, NC and WC; NW nothing since 14 September.
+- MPO Week 52 (due about 16 Oct) not received; per-province map and KZN IDtrax queries still open.
+- Watch for the outcome of the 21 Oct FMD engagement and the 27 Oct Joint Working Group meeting.
+- Ask an Owner to add gis.westerncape.gov.za to the network allowlist so the shell can pull it directly.
