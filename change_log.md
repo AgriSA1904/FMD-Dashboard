@@ -6993,3 +6993,44 @@ Rebuilt via importlib, validation passed (2,005,224 bytes). Snapshot 21 October,
 - MPO Week 52 (due about 16 Oct) not received.
 - Watch for the outcome of today's FMD engagement and the 27 Oct Joint Working Group meeting.
 - Ask an Owner to add gis.westerncape.gov.za to the network allowlist so the shell can pull it directly.
+
+### Publishing
+
+Commit b0279ea on main (local HEAD equals origin/main). "Build and Deploy FMD Dashboard" and "pages build and deployment" both concluded success. This line was added after the push and will go out with the next commit.
+
+
+## Session 99b. 21 October 2026. Same-day follow-up, MPO Week 52 and files saved to the inbox.
+
+After session 99, Jay saved three files to the inbox. We processed them in a follow-up run.
+
+| File | Result |
+|---|---|
+| `inbox/MPO/Week 52 - Update on the state of FMD and vaccine rollouts in the dairy industry.pdf` | Ingested, 30 rows (snapshot 16 Oct). |
+| `inbox/Free State/FS FMD Vaccine Data - 16.10.2026.xlsx` | Opened with openpyxl: provincial row (804, 211, 1,961,840), Phumelela 45 and total vaccinated 1,738,608 match the session 99 connector read exactly. No new rows; the session 99 rows stand. |
+| `inbox/AgriSA Summary and Outcomes - FMD Weekly Engagement/AgriSA__FMD_Weekly_Engagement_.zip` | Holds the 12 Oct outcomes, 16 Oct ICC update and 21 Oct agenda, read in session 98. Embedded images extracted and viewed (ICC logo and a cover photograph only, saved in archive/2026-10-21/); no figures. No new rows. |
+
+Script `archive/2026-10-21/ingest_session99b_mpo52.py` (backs up the master to `master_data.csv.bak_session99b`). Prepared 30, new 30, duplicates 0. Master now 4,093 rows.
+
+### MPO Week 52 (snapshot 16 October 2026)
+
+| Measure | Value | Change |
+|---|---|---|
+| Dairy cows vaccinated, first round | 962,410 | Unchanged in every province. |
+| Boosters | 735,517 | Up 26,706: EC +14,076 to 239,471; WC +12,630 to 129,208. KZN 334,000, FS 19,118 and GP 13,720 unchanged. |
+| Dairy farms with FMD | 175 cumulative, 128 active | Unchanged. Map byte-identical to Week 51 (archive/2026-10-21/mpo_week52_map.jpg). |
+| IDtrax private doses | KZN 111,240, EC 28,800, total 140,040 | KZN up 15,300 (matches the stated weekly delivery); EC up 4,680. |
+
+Arithmetic asserted: provincial first round and boosters sum to the national totals; North boosters 32,838 equal FS plus GP; IDtrax provinces sum to 140,040; active farms sum to 128. No new dairy cases or reinfections in KZN, WC or the northern provinces.
+
+### Conflicts
+
+- WC dairy boosters: MPO 129,208 (16 Oct) against WC GIS 133,233 (21 Oct). Both held.
+- EC boosters: MPO 239,471 against the EC JOC MPO line of 197,170 (1 Oct). The province card still shows the JOC figure, because the MPO is not a programme source.
+
+### Dashboard
+
+Rebuilt via importlib, validation passed (2,005,702 bytes). Snapshot 21 October, 94 weekly points. Checked in the payload: MPO latest date 16 Oct, farms 175 and 128, provincial boosters EC 239,471 and WC 129,208. The national booster total and the IDtrax figures are held in the master but are not read by the build, as before.
+
+### Action items
+
+- Session 99 action items stand, except that MPO Week 52 and the FS xlsx are now in the inbox, and the 19 Oct engagement attachments are saved.
