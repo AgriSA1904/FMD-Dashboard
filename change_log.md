@@ -7034,3 +7034,64 @@ Rebuilt via importlib, validation passed (2,005,702 bytes). Snapshot 21 October,
 ### Action items
 
 - Session 99 action items stand, except that MPO Week 52 and the FS xlsx are now in the inbox, and the 19 Oct engagement attachments are saved.
+
+### Publishing
+
+Commit 692e6ca on main (local HEAD equals origin/main). Both deployment workflows concluded success. This line was added after the push and will go out with the next commit.
+
+
+## Session 99c. 21 October 2026. User request, new Limpopo data.
+
+Jay saved four Limpopo files to `inbox/Limpopo/` at about 08:43 and asked us to process them.
+
+| File | Result |
+|---|---|
+| `FMD_PriorityCommittee_02Oct2026_LDARD.pdf` (Week 44, position 2 Oct) | Ingested, 21 rows. |
+| `FMD_Limpopo_Infographic_Week44.png` | Read visually; matches the pack (1,011,254 total vaccinations, 95 / 66 / 237 / 46 / 115). |
+| `FMD_Week46_2026_PriorityCommittee_LDARD.pdf` (Week 46, 12 to 18 Oct, position 16 Oct) | Ingested, 21 rows. |
+| `FMD_Week46_Infographic_LDARD.png` | Read visually; used for the Week 46 district quarantine counts. |
+
+This is the first Limpopo data since 11 September. The Week 45 pack (about 9 Oct) was not supplied; its figures appear only as "from" values in Week 46 (positives 98, released 45, pending 103, boosters 44,711, coverage 75.3 percent) and are not ingested.
+
+Script `archive/2026-10-21/ingest_session99c_lp.py` (backs up the master to `master_data.csv.bak_session99c`). Prepared 42, new 42, duplicates 0. Master now 4,135 rows.
+
+### Key figures
+
+| Metric | 2 Oct (Week 44) | 16 Oct (Week 46) |
+|---|---|---|
+| Total vaccinations, all species, primary plus booster (`animals_vaccinated`) | 1,011,254 | 1,035,916 |
+| Primary, all species | 976,054 | 985,320 |
+| Cattle boosters | 35,200 | 50,596 |
+| Cattle primary (coverage of 1.2 million) | 899,242 (74.9 percent) | 908,376 (75.7 percent) |
+| Doses used | 1,017,041 | 1,042,389 |
+| Doses received | 1,225,660 | 1,225,660 |
+| Usable stock | 122,582 | 105,234 |
+| Positive (open) / suspect / negative / closed / pending | 95 / 66 / 237 / 46 / 115 | 96 / 63 / 266 / 47 / 89 |
+| Game positives | 6 (3 districts) | 9 (all 5 districts) |
+
+District primary vaccinated and district positives are held for both dates. For 16 Oct the district primary figures are derived (district total minus district boosters, which sum exactly to 985,320) so the series stays on the primary basis.
+
+### Basis change
+
+Limpopo `animals_vaccinated` was primary only (956,974 on 11 Sep). It now follows the WC and EC dose-count basis (primary plus booster), with `primary_vaccinations` and `booster_vaccinations` held alongside. The province card now shows 1,035,916 vaccinated, with an official dose 1 of 985,320 and dose 2 of 50,596.
+
+### Arithmetic and conflicts
+
+All asserted. Province totals reconcile with the district, provider, sector and stock tables, with these exceptions, which are flagged in the notes:
+
+- Week 44 district booster table sums to 35,320 against the 35,200 headline. The headline is held.
+- Week 44 district positives sum to 94 against the provincial 95.
+- Species table cattle (958,852) against cattle primary plus boosters (958,972) in Week 46: the same 120 gap.
+- Week 46 PDF district tiles carry Week 45 values (Capricorn 34, Mopani awaiting lab 50; tiles sum to 98). The text and infographic give Capricorn 32, which sums to 96, so 32 is held.
+- Week 46 private-sector Waterberg: 195,029 in the table against 194,460 in the text. The table is held, and it reconciles.
+- Week 44 case table is labelled "as at 08 September 2026" (the last sample date); held at the pack date of 2 Oct.
+- GroundUp (15 Oct) reported over one million doses and about 75 percent coverage; now confirmed by the province.
+
+### Dashboard
+
+Rebuilt via importlib, validation passed (2,007,088 bytes). Snapshot 21 October, 94 weekly points. LP card as at 16 Oct: 96 positive, 63 suspected, 1,225,660 received, 1,035,916 vaccinated (dose 1 985,320, dose 2 50,596). National: positive 2,874, suspected 829, administered 9,788,068.
+
+### Action items
+
+- Ask Limpopo for the Week 45 pack (about 9 Oct), and whether the 120-dose booster gap is a district capture issue.
+- Limpopo positives fall as properties close; compare using confirmed including closed (143 on 16 Oct).
