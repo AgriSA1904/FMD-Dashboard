@@ -1,76 +1,76 @@
 {
- "last_reviewed": "2026-10-20",
- "note": "Vaccine supply pipeline shown on the Ministerial and ICC tab. Status is Arrived, Unconfirmed or Pipeline. Never add Unconfirmed or Pipeline doses to the arrived total. Update only from primary Ministry or Department statements, Portfolio Committee packs or the RMIS import tracker, and change last_reviewed whenever you check it.",
- "consignments": [
-  {
-   "vaccine": "ARC Trivalent",
-   "doses": 12900,
-   "date": "2026-02-01",
-   "status": "Arrived",
-   "notes": "Initial emergency stock."
-  },
-  {
-   "vaccine": "Biogenesis Bivalent",
-   "doses": 1000000,
-   "date": "2026-02-01",
-   "status": "Arrived",
-   "notes": ""
-  },
-  {
-   "vaccine": "DolVet Trivalent",
-   "doses": 1500000,
-   "date": "2026-02-01",
-   "status": "Arrived",
-   "notes": ""
-  },
-  {
-   "vaccine": "Biogenesis Trivalent",
-   "doses": 1500000,
-   "date": "2026-04-01",
-   "status": "Arrived",
-   "notes": ""
-  },
-  {
-   "vaccine": "DolVet Trivalent",
-   "doses": 2000000,
-   "date": "2026-04-01",
-   "status": "Arrived",
-   "notes": ""
-  },
-  {
-   "vaccine": "DolVet Trivalent",
-   "doses": 2000000,
-   "date": "2026-05-01",
-   "status": "Arrived",
-   "notes": ""
-  },
-  {
-   "vaccine": "Biogenesis Bago",
-   "doses": 3500000,
-   "date": "2026-05-28",
-   "status": "Arrived",
-   "notes": "Distributed: 1.5M feedlots; 500 000 RMPO; 200 000 MPO; 100 000 stud breeders; 1.05M provinces; balance for border vaccination."
-  },
-  {
-   "vaccine": "Further consignments to 5 Aug",
-   "doses": 5487100,
-   "date": "2026-08-05",
-   "status": "Arrived",
-   "notes": "Balance of the 17 million doses procured to date per the Portfolio Committee statement (5 August); individual consignment detail not published."
-  },
-  {
-   "vaccine": "Further consignment",
-   "doses": 4000000,
-   "date": "2026-08-07",
-   "status": "Unconfirmed",
-   "notes": "Announced by Minister Aucamp at the FMD Symposium on 31 July as due early August. No arrival has been confirmed since. The arrived consignments above already sum to the 17 million reported as procured on 5 August, and the most recent Ministerial figure (22 September) is 16 million, so these doses are most likely already counted within those totals rather than additional to them. Not added to the arrived total."
-  },
-  {
-   "vaccine": "DolVet (Dunevax)",
-   "doses": 10000000,
-   "date": "2026",
-   "status": "Pipeline",
-   "notes": "Remaining balance of 14M SAHPRA Section 21 approval. Delivery schedule to be confirmed."
-  }
- ]
+  "last_reviewed": "2026-10-21",
+  "note": "Vaccine supply pipeline shown on the Ministerial and ICC tab. Status is Arrived, Unconfirmed or Pipeline. Never add Unconfirmed or Pipeline doses to the arrived total. Update only from primary Ministry or Department statements, Portfolio Committee packs or the RMIS import tracker, and change last_reviewed whenever you check it.",
+  "consignments": [
+    {
+      "vaccine": "ARC Trivalent",
+      "doses": 12900,
+      "date": "2026-02-01",
+      "status": "Arrived",
+      "notes": "Initial emergency stock."
+    },
+    {
+      "vaccine": "Biogenesis Bivalent",
+      "doses": 1000000,
+      "date": "2026-02-01",
+      "status": "Arrived",
+      "notes": ""
+    },
+    {
+      "vaccine": "DolVet Trivalent",
+      "doses": 1500000,
+      "date": "2026-02-01",
+      "status": "Arrived",
+      "notes": ""
+    },
+    {
+      "vaccine": "Biogenesis Trivalent",
+      "doses": 1500000,
+      "date": "2026-04-01",
+      "status": "Arrived",
+      "notes": ""
+    },
+    {
+      "vaccine": "DolVet Trivalent",
+      "doses": 2000000,
+      "date": "2026-04-01",
+      "status": "Arrived",
+      "notes": ""
+    },
+    {
+      "vaccine": "DolVet Trivalent",
+      "doses": 2000000,
+      "date": "2026-05-01",
+      "status": "Arrived",
+      "notes": ""
+    },
+    {
+      "vaccine": "Biogenesis Bago",
+      "doses": 3500000,
+      "date": "2026-05-28",
+      "status": "Arrived",
+      "notes": "Distributed: 1.5M feedlots; 500 000 RMPO; 200 000 MPO; 100 000 stud breeders; 1.05M provinces; balance for border vaccination."
+    },
+    {
+      "vaccine": "Further consignments to 5 Aug",
+      "doses": 5487100,
+      "date": "2026-08-05",
+      "status": "Arrived",
+      "notes": "Balance of the 17 million doses procured to date per the Portfolio Committee statement (5 August); individual consignment detail not published."
+    },
+    {
+      "vaccine": "Further consignment",
+      "doses": 4000000,
+      "date": "2026-08-07",
+      "status": "Unconfirmed",
+      "notes": "Announced by Minister Aucamp at the FMD Symposium on 31 July as due early August. No arrival has been confirmed since. The arrived consignments above already sum to the 17 million reported as procured on 5 August, and the most recent Ministerial figure (22 September) is 16 million, so these doses are most likely already counted within those totals rather than additional to them. Not added to the arrived total."
+    },
+    {
+      "vaccine": "DolVet (Dunevax)",
+      "doses": 10000000,
+      "date": "2026",
+      "status": "Pipeline",
+      "notes": "Remaining balance of 14M SAHPRA Section 21 approval. Delivery schedule to be confirmed."
+    }
+  ]
 }

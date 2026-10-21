@@ -1168,8 +1168,8 @@
 
 <script>
 const DASHBOARD_DATA = {
-  "snapshot_date": "2026-10-20",
-  "build_date": "2026-10-20",
+  "snapshot_date": "2026-10-21",
+  "build_date": "2026-10-21",
   "provinces": [
     {
       "code": "EC",
@@ -1192,15 +1192,15 @@ const DASHBOARD_DATA = {
     {
       "code": "FS",
       "name": "Free State",
-      "as_of": "2026-10-09",
+      "as_of": "2026-10-16",
       "herd": 3061684,
       "positive": 804,
-      "suspected": 237,
+      "suspected": 211,
       "negative": 0,
       "pending": 0,
       "received": 1961840,
-      "vaccinated": 1704678,
-      "dose1": 1685560,
+      "vaccinated": 1738608,
+      "dose1": 1719490,
       "dose2": 19118,
       "dose2_asof": "2026-10-09",
       "dose2_source": "MPO",
@@ -1318,17 +1318,17 @@ const DASHBOARD_DATA = {
     {
       "code": "WC",
       "name": "Western Cape",
-      "as_of": "2026-10-20",
+      "as_of": "2026-10-21",
       "herd": 501875,
       "positive": 50,
       "suspected": 6,
       "negative": 0,
       "pending": 0,
       "received": 647080,
-      "vaccinated": 585699,
-      "dose1": 408830,
-      "dose2": 176869,
-      "dose2_asof": "2026-10-20",
+      "vaccinated": 586154,
+      "dose1": 408677,
+      "dose2": 177477,
+      "dose2_asof": "2026-10-21",
       "dose2_source": "WC-GIS",
       "dose1_derived": false,
       "dose2_partial": false
@@ -2066,17 +2066,25 @@ const DASHBOARD_DATA = {
     {
       "date": "2026-10-16",
       "received": 12596120,
-      "administered": 9673922,
+      "administered": 9707852,
       "positive": 2879,
-      "suspected": 865,
+      "suspected": 839,
       "pending": null
     },
     {
       "date": "2026-10-20",
       "received": 12596120,
-      "administered": 9674741,
+      "administered": 9708671,
       "positive": 2879,
-      "suspected": 865,
+      "suspected": 839,
+      "pending": null
+    },
+    {
+      "date": "2026-10-21",
+      "received": 12596120,
+      "administered": 9709126,
+      "positive": 2879,
+      "suspected": 839,
       "pending": null
     }
   ],
@@ -2089,21 +2097,21 @@ const DASHBOARD_DATA = {
   },
   "national": {
     "positive": 2879,
-    "suspected": 865,
+    "suspected": 839,
     "negative": 238,
     "pending": 124,
     "procured": 16000000,
     "distributed": 12596120,
     "received": 12596120,
-    "administered": 9674741,
+    "administered": 9709126,
     "herd_cattle": 15450142,
-    "balance": 2921379,
-    "dose2": 718649,
-    "dose1": 8956092,
+    "balance": 2886994,
+    "dose2": 719257,
+    "dose1": 8989869,
     "dose_split_note": "Dose 2 is the sum of the latest booster figures per province; several provinces report boosters for the dairy programme only, so dose 2 is a minimum and dose 1 a derived maximum.",
     "delta_received": 0,
     "delta_distributed": 0,
-    "delta_administered": 819,
+    "delta_administered": 455,
     "delta_positive": 0
   },
   "mpo": {
@@ -3561,11 +3569,11 @@ const DASHBOARD_DATA = {
     {
       "code": "FS",
       "name": "Free State",
-      "joc": 1704678,
-      "joc_date": "2026-10-09",
+      "joc": 1738608,
+      "joc_date": "2026-10-16",
       "ministerial": 707986,
       "ministerial_date": "2026-06-04",
-      "diff": 996692,
+      "diff": 1030622,
       "flag": null
     },
     {
@@ -3631,11 +3639,11 @@ const DASHBOARD_DATA = {
     {
       "code": "WC",
       "name": "Western Cape",
-      "joc": 585699,
-      "joc_date": "2026-10-20",
+      "joc": 586154,
+      "joc_date": "2026-10-21",
       "ministerial": 265379,
       "ministerial_date": "2026-06-04",
-      "diff": 320320,
+      "diff": 320775,
       "flag": null
     }
   ],
@@ -4063,7 +4071,7 @@ const DASHBOARD_DATA = {
     },
     "FS": {
       "name": "Free State",
-      "latest_date": "2026-10-09",
+      "latest_date": "2026-10-16",
       "vaccine_types": [
         {
           "type": "dolvet",
@@ -4149,14 +4157,14 @@ const DASHBOARD_DATA = {
         },
         {
           "name": "Fezile Dabi district",
-          "date": "2026-10-09",
+          "date": "2026-10-16",
           "vaccinated": null,
           "cases": 370,
           "suspected": null,
           "pending": null,
           "outbreaks": null,
           "negative": null,
-          "notes": "Fezile Dabi district. Mafube 81, Metsimaholo 64, Moqhaka 127, Ngwathe 98; unchanged from 2 Oct."
+          "notes": "Fezile Dabi district. Mafube 81, Metsimaholo 64, Moqhaka 127, Ngwathe 98; unchanged."
         },
         {
           "name": "Fezile Dabi",
@@ -4182,14 +4190,14 @@ const DASHBOARD_DATA = {
         },
         {
           "name": "Thabo Mofutsanyana district",
-          "date": "2026-10-09",
+          "date": "2026-10-16",
           "vaccinated": null,
-          "cases": 196,
+          "cases": 195,
           "suspected": null,
           "pending": null,
           "outbreaks": null,
           "negative": null,
-          "notes": "Thabo Mofutsanyana district. Dihlabeng 75, Maluti-A-Phofung 29, Mantsopa 46, Phumelela 46; up 1 from 195 (new case in Warden SVA, Phumelela)."
+          "notes": "Thabo Mofutsanyana district. Dihlabeng 75, Maluti-A-Phofung 29, Mantsopa 46, Phumelela 45. CONFLICT: 196 held for 9 Oct (Phumelela 46 after the Warden case); this xlsx shows 195, so district cells sum to 803 against the 804 provincial total. Both held."
         },
         {
           "name": "Thabo Mofutsanyana",
@@ -4215,14 +4223,14 @@ const DASHBOARD_DATA = {
         },
         {
           "name": "Lejweleputswa district",
-          "date": "2026-10-09",
+          "date": "2026-10-16",
           "vaccinated": null,
           "cases": 152,
           "suspected": null,
           "pending": null,
           "outbreaks": null,
           "negative": null,
-          "notes": "Lejweleputswa district. Matjhabeng 55, Tokologo 53, Tswelopele 44; unchanged from 2 Oct."
+          "notes": "Lejweleputswa district. Matjhabeng 55, Tokologo 53, Tswelopele 44; unchanged."
         },
         {
           "name": "Lejweleputswa",
@@ -4358,14 +4366,14 @@ const DASHBOARD_DATA = {
         },
         {
           "name": "Xhariep district",
-          "date": "2026-10-09",
+          "date": "2026-10-16",
           "vaccinated": null,
           "cases": 51,
           "suspected": null,
           "pending": null,
           "outbreaks": null,
           "negative": null,
-          "notes": "Xhariep district. Kopanong 28, Mohokare 23; unchanged from 2 Oct."
+          "notes": "Xhariep district. Kopanong 28, Mohokare 23; unchanged."
         },
         {
           "name": "Ladybrand SVA",
@@ -4446,7 +4454,7 @@ const DASHBOARD_DATA = {
         },
         {
           "name": "Mangaung Metropolitan district",
-          "date": "2026-10-09",
+          "date": "2026-10-16",
           "vaccinated": null,
           "cases": 35,
           "suspected": null,
@@ -6029,7 +6037,7 @@ const DASHBOARD_DATA = {
     },
     "WC": {
       "name": "Western Cape",
-      "latest_date": "2026-10-20",
+      "latest_date": "2026-10-21",
       "vaccine_types": [
         {
           "type": "dolvet",
@@ -6069,13 +6077,13 @@ const DASHBOARD_DATA = {
       "extra": {
         "primary_vaccinations": {
           "label": "Primary vaccinations",
-          "value": 408830,
-          "date": "2026-10-20"
+          "value": 408677,
+          "date": "2026-10-21"
         },
         "booster_vaccinations": {
           "label": "Booster vaccinations",
-          "value": 176869,
-          "date": "2026-10-20"
+          "value": 177477,
+          "date": "2026-10-21"
         },
         "vaccination_sites": {
           "label": "Vaccination sites",
@@ -6228,7 +6236,7 @@ const DASHBOARD_DATA = {
     }
   },
   "news": {
-    "last_checked": "2026-10-20",
+    "last_checked": "2026-10-21",
     "note": "Curated daily by the scheduled ingest. Items are media and public reporting, not programme data. Figures quoted here do not feed the dashboard headlines unless they are also ingested into master_data.csv from a programme source.",
     "items": [
       {
@@ -6250,6 +6258,16 @@ const DASHBOARD_DATA = {
         "category": "other",
         "province": "national",
         "added": "2026-10-20"
+      },
+      {
+        "date": "2026-10-17",
+        "headline": "Namibia says its outbreak remains confined to the Karasburg district.",
+        "source": "Namib Times",
+        "url": "https://www.namibtimes.net/fmd-outbreak-remains-confined-to-karasburg-district/",
+        "summary": "Veterinary Public Notification No. 20 of 2026 reports 131 animals positive on 18 farms as at 15 October, all in the Karasburg district, with SAT1 confirmed. Movement north of the veterinary cordon fence remains permitted except in the Zambezi region, and animals in registered feedlots or quarantine may go to registered abattoirs only after 30 days without new intake and negative tests.",
+        "category": "cases",
+        "province": "national",
+        "added": "2026-10-21"
       },
       {
         "date": "2026-10-16",
@@ -6302,6 +6320,16 @@ const DASHBOARD_DATA = {
         "added": "2026-10-20"
       },
       {
+        "date": "2026-10-15",
+        "headline": "The ARC says a funding gap is holding up its planned vaccine manufacturing facility.",
+        "source": "Farmer's Weekly",
+        "url": "https://www.farmersweekly.co.za/agri-news/south-africa/arc-funding-shortfall-is-holding-up-r16bn-fmd-vaccine-facility/",
+        "summary": "The Portfolio Committee on Agriculture heard on 6 October that the ARC has received about R535.5 million from Treasury for the facility and spent R81.7 million, but the estimated cost has risen to about R1.6 billion and construction has not started. The article also reports that the Auditor-General could not confirm value for money on R311 million the Department spent on 3.42 million imported doses, and that OBP sold about 17.5 million doses in the year. These are media reports of the committee meeting; our economic boxes and supply pipeline are unchanged pending the primary documents.",
+        "category": "analysis",
+        "province": "national",
+        "added": "2026-10-21"
+      },
+      {
         "date": "2026-10-14",
         "headline": "Namibia's two outbreaks and the European Union restrictions are set out in an international overview.",
         "source": "Al Jazeera",
@@ -6320,6 +6348,16 @@ const DASHBOARD_DATA = {
         "category": "trade",
         "province": "national",
         "added": "2026-10-16"
+      },
+      {
+        "date": "2026-10-14",
+        "headline": "Namibian farmers seek supervised movement of livestock to abattoirs while auctions stay closed.",
+        "source": "The Namibian",
+        "url": "https://www.namibian.com.na/farmers-seek-supervised-livestock-sales-amid-fmd/",
+        "summary": "The Namibia Agricultural Union plans to ask its veterinary authorities to allow supervised movement of animals to abattoirs, warning that formal approval of new trade protocols could take six to seven months. The RPO says some of our abattoirs struggle to source sheep without Namibian supply, with weaner calf prices at about R57 to R60 a kilogram; it cites Namibian lambs at about 15 percent of our sheep slaughter so far this year, although the article also quotes a figure of more than 70 percent for the abattoirs that depend on them.",
+        "category": "trade",
+        "province": "national",
+        "added": "2026-10-21"
       },
       {
         "date": "2026-10-13",
@@ -6794,23 +6832,23 @@ const DASHBOARD_DATA = {
     ]
   },
   "namibia": {
-    "last_updated": "2026-10-20",
+    "last_updated": "2026-10-21",
     "note": "Regional context compiled from Namibian Government statements as reported in the media, the European Union delegation in Namibia and South African and Namibian media. These figures are not South African programme data and never feed the headline figures on the other tabs. Where reports differ, we show each figure with its source.",
-    "summary": "On 23 September 2026 Namibia confirmed foot and mouth disease on a commercial farm in the Karasburg state veterinary district of the ||Kharas region, inside its WOAH-recognised zone free without vaccination and its first outbreak in that zone in about 60 years. By 14 October the SAT1 outbreak had reached 18 farms, with 131 animals positive out of 63,011 inspected, and compulsory vaccination in three rounds over three months began that day. A second outbreak was confirmed on Kalala Island in the Zambezi region in early October; officials say it has no epidemiological link to ||Kharas, and more than 10,000 cattle there have been vaccinated. Namibia has suspended exports of cloven-hoofed animals and their raw products, the European Union and the United States have restricted imports, and live exports of weaners and slaughter sheep to South Africa have stopped. Roadblocks around Karasburg could stay until 23 December, and industry bodies on both sides are setting out positions on the protocols that would let trade with South Africa resume.",
+    "summary": "On 23 September 2026 Namibia confirmed foot and mouth disease on a commercial farm in the Karasburg state veterinary district of the ||Kharas region, inside its WOAH-recognised zone free without vaccination and its first outbreak in that zone in about 60 years. By 14 October the SAT1 outbreak had reached 18 farms, with 131 animals positive out of 63,011 inspected (unchanged on 15 October, when officials said it remained confined to the Karasburg district), and compulsory vaccination in three rounds over three months began that day. A second outbreak was confirmed on Kalala Island in the Zambezi region in early October; officials say it has no epidemiological link to ||Kharas, and more than 10,000 cattle there have been vaccinated. Namibia has suspended exports of cloven-hoofed animals and their raw products, the European Union and the United States have restricted imports, and live exports of weaners and slaughter sheep to South Africa have stopped. Roadblocks around Karasburg could stay until 23 December, and industry bodies on both sides are setting out positions on the protocols that would let trade with South Africa resume.",
     "kpis": [
       {
         "label": "Farms confirmed infected, ||Kharas",
         "value": "18",
-        "sub": "As at 14 October 2026. Up from 17 on 6 October and 1 on 23 September.",
-        "source": "New Era, 15 October 2026",
-        "url": "https://neweralive.na/compulsory-fmd-vaccination-commence-in-karasburg/"
+        "sub": "As at 15 October 2026, unchanged since 14 October. Up from 17 on 6 October and 1 on 23 September.",
+        "source": "Namib Times (Veterinary Public Notification No. 20 of 2026), 17 October 2026",
+        "url": "https://www.namibtimes.net/fmd-outbreak-remains-confined-to-karasburg-district/"
       },
       {
         "label": "Animals testing positive, ||Kharas",
         "value": "131",
-        "sub": "As at 14 October 2026, of 63,011 animals inspected. SAT1 virus. Earlier counts were of positive samples (129 on 6 October).",
-        "source": "New Era, 15 October 2026",
-        "url": "https://neweralive.na/compulsory-fmd-vaccination-commence-in-karasburg/"
+        "sub": "As at 15 October 2026, unchanged since 14 October (63,011 inspected). SAT1 virus. Earlier counts were of positive samples (129 on 6 October).",
+        "source": "Namib Times (Veterinary Public Notification No. 20 of 2026), 17 October 2026",
+        "url": "https://www.namibtimes.net/fmd-outbreak-remains-confined-to-karasburg-district/"
       },
       {
         "label": "Regions with confirmed outbreaks",
@@ -6846,7 +6884,7 @@ const DASHBOARD_DATA = {
         "name": "||Kharas region, Karasburg state veterinary district",
         "first_confirmed": "2026-09-23",
         "serotype": "SAT1",
-        "status": "18 farms infected and 131 animals positive of 63,011 inspected, as at 14 October. The first surveillance round covered 82 farms within 30 kilometres of the index farm; the second round, extended to 50 kilometres, had inspected 11 of 65 targeted farms. Compulsory vaccination by state veterinary officials began on 14 October under Veterinary Public Notification No. 19 of 2026: three rounds over three months, ending in mid-January 2027, covering all farms south of the B3 and C10 roads to the Orange River. Owners may not vaccinate their own animals. Eighteen roadblocks operate in ||Kharas, Khomas and Otjozondjupa.",
+        "status": "18 farms infected and 131 animals positive of 63,011 inspected, as at 14 October, unchanged at 15 October (Notification No. 20). The first surveillance round covered 82 farms within 30 kilometres of the index farm; the second round, extended to 50 kilometres, had inspected 11 of 65 targeted farms. Compulsory vaccination by state veterinary officials began on 14 October under Veterinary Public Notification No. 19 of 2026: three rounds over three months, ending in mid-January 2027, covering all farms south of the B3 and C10 roads to the Orange River. Owners may not vaccinate their own animals. Eighteen roadblocks operate in ||Kharas, Khomas and Otjozondjupa.",
         "border": "Borders our Northern Cape along the Orange River."
       },
       {
@@ -6913,6 +6951,14 @@ const DASHBOARD_DATA = {
         "detail": "63,011 animals inspected. Second surveillance round (50 kilometres) at 11 of 65 farms. Counted as animals testing positive, not samples.",
         "source": "New Era; Namib Times",
         "url": "https://neweralive.na/compulsory-fmd-vaccination-commence-in-karasburg/"
+      },
+      {
+        "date": "2026-10-15",
+        "farms": "18",
+        "positives": "131 animals",
+        "detail": "Unchanged from 14 October; outbreak still confined to the Karasburg district (Veterinary Public Notification No. 20 of 2026). Counted as animals testing positive.",
+        "source": "Namib Times",
+        "url": "https://www.namibtimes.net/fmd-outbreak-remains-confined-to-karasburg-district/"
       }
     ],
     "timeline": [
@@ -7023,6 +7069,12 @@ const DASHBOARD_DATA = {
         "event": "Police and the Karasburg state veterinary office tighten fixed and occasional roadblocks around the 17 farms near the index farm, including Warmbad and Velloorsdrift; the police say the operation could run until 23 December.",
         "source": "New Era",
         "url": "https://neweralive.na/kharas-roadblocks-tighten-as-fmd-spreads/"
+      },
+      {
+        "date": "2026-10-17",
+        "event": "Veterinary Public Notification No. 20 of 2026 confirms the outbreak is still confined to the Karasburg district. Movement north of the cordon fence stays permitted except in the Zambezi region; feedlot and quarantine animals may go to registered abattoirs after 30 days without new intake and negative tests.",
+        "source": "Namib Times",
+        "url": "https://www.namibtimes.net/fmd-outbreak-remains-confined-to-karasburg-district/"
       }
     ],
     "trade": [
@@ -7074,8 +7126,8 @@ const DASHBOARD_DATA = {
       },
       {
         "topic": "Livestock supply and prices",
-        "detail": "The loss of Namibian weaners and slaughter sheep tightens our supply, with mutton and lamb most exposed.",
-        "source": "Farmer's Weekly, 6 October 2026",
+        "detail": "The loss of Namibian weaners and slaughter sheep tightens our supply, with mutton and lamb most exposed. The RPO reports weaner calf prices of about R57 to R60 a kilogram and a jump of nearly R9 a kilogram in A2 lamb carcass prices within a week, and warns that some abattoirs could close; it questions whether the rises reflect a real shortage.",
+        "source": "Farmer's Weekly, 6 October 2026; The Namibian, 14 October 2026",
         "url": "https://farmersweekly.co.za/agri-news/africa/namibia-fmd-outbreak-could-drive-up-sa-red-meat-prices"
       },
       {
@@ -7194,6 +7246,7 @@ const DASHBOARD_DATA = {
     "WC GIS FMD Public FeatureServer (live ArcGIS REST API), pulled via browser 14 Oct 2026; raw aggregates archive/2026-10-14/wc_gis_pull_20261014.json",
     "WC GIS FMD Public FeatureServer (live ArcGIS REST API), pulled via browser 16 Oct 2026; raw aggregates archive/2026-10-16/wc_gis_pull_20261016.json",
     "WC GIS FMD Public FeatureServer (live ArcGIS REST API), pulled via browser 20 Oct 2026; raw aggregates archive/2026-10-20/wc_gis_pull_20261020.json",
+    "WC GIS FMD Public FeatureServer (live ArcGIS REST API), pulled via browser 21 Oct 2026; raw aggregates archive/2026-10-21/wc_gis_pull_20261021.json",
     "WC GIS portal (gis.westerncape.gov.za)",
     "WC-GIS portal live dashboard 2026-06-09",
     "Week 33 - Update on the state of FMD and vaccine rollouts in the dairy industry.pdf",
@@ -7221,6 +7274,7 @@ const DASHBOARD_DATA = {
     "archive/2026-04-28/04-10-2026_FMD ICC Update.pdf",
     "archive/2026-05-14/FMD PCM MEETING PACK 20260514 REV0.pdf",
     "email: AgriSA: FMD Weekly Engagement (19 Oct 2026), attachment 16 October 2026.pdf (ICC Industry Update 16 Oct 2026); not yet saved to inbox",
+    "email: FMD STATS (2026-10-20) -> FS FMD Vaccine Data - 16.10.2026.xlsx (attachment read via Microsoft 365 connector; not yet saved to inbox)",
     "https://rmis.shinyapps.io/rmis-industry-allocated-fmd-vaccine-distribution/",
     "inbox/01042026_FMD Graphics_V2.pdf",
     "inbox/04-17-2026_FMD ICC Update.pdf",

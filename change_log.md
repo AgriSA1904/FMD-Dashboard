@@ -6903,3 +6903,93 @@ Rebuilt via importlib, validation passed (2,000,407 bytes). Snapshot 20 October,
 - MPO Week 52 (due about 16 Oct) not received; per-province map and KZN IDtrax queries still open.
 - Watch for the outcome of the 21 Oct FMD engagement and the 27 Oct Joint Working Group meeting.
 - Ask an Owner to add gis.westerncape.gov.za to the network allowlist so the shell can pull it directly.
+
+
+## Session 98b. 20 October 2026. Second firing of the scheduled update, nothing outstanding.
+
+The scheduled 08:00 task fired again at about 08:01 South African time, while session 98 (fired 07:58) was still running. We watched session 98 finish rather than run in parallel, to avoid two writers on the master and two pushes.
+
+| Check | Result |
+|---|---|
+| Session 98 | Logged in full: 12 rows added (master 4,046), 4 news items, Namibia tab and supply pipeline review date updated, dashboard rebuilt (snapshot 20 Oct, validation passed). |
+| GitHub | Commit 29cfd0c on main; "Build and Deploy FMD Dashboard" and "pages build and deployment" both concluded success. |
+| Inbox, mailbox, Western Cape GIS, web | Covered by session 98 minutes earlier; not repeated. |
+
+No rows added, no curated files changed, no rebuild and no push. Session 98 action items stand, including saving the three attachments from the 19 Oct "AgriSA: FMD Weekly Engagement" email to the inbox.
+
+
+## Session 99. 21 October 2026. Scheduled update, Free State 16 October stats, Western Cape GIS, news scan and publish.
+
+Scheduled 08:00 run (started about 08:02 South African time). Session 98 and 98b ran yesterday; nothing logged yet today.
+
+### Sources processed
+
+| Source | Result |
+|---|---|
+| Inbox | Nothing new since session 98 (no file in inbox/ or a new dated root folder modified after 20 Oct 06:00 UTC). |
+| Mailbox (last 7 days) | One new FMD submission: "FMD STATS" from Gernie Botha, Free State Agriculture (20 Oct, 12:41), attachment `FS FMD Vaccine Data - 16.10.2026.xlsx`, stats as received on 16 Oct. The email body holds no figures. We read the attachment's cells through the Microsoft 365 connector (no guessing) and ingested them, following the session 98 precedent for the ICC update; the file is not yet in the inbox. Other FMD mail is the 21 Oct engagement reminder (same three attachments as 19 Oct) and an apology. |
+| Western Cape GIS | Device shell blocked (curl exit 56). Pulled through the built-in browser with ArcGIS REST statistics queries. Raw aggregates `archive/2026-10-21/wc_gis_pull_20261021.json`. |
+| Web | Searches on national, provincial, trade, industry, Afrikaans, international, Namibian and economic news for 14 to 21 October. |
+
+Scripts `archive/2026-10-21/ingest_session99.py` (backs up the master to `master_data.csv.bak_session99`) and `archive/2026-10-21/update_curated_session99.py`. Prepared 17, new 17, duplicates 0. Master now 4,063 rows.
+
+### Free State (as at 16 October 2026), 9 rows, FS-DARDLEA
+
+| Metric | Value | Change |
+|---|---|---|
+| positive_cases | 804 | Unchanged from 9 Oct. |
+| suspected_cases | 211 | Down from 237 (2 Oct); the 9 Oct cell was blank. |
+| doses_received | 1,961,840 | Unchanged since 18 Sep. |
+| animals_vaccinated (cattle) | 1,738,608 | Up 33,930 on 1,704,678 (9 Oct). |
+| positive_cases_district | 35, 370, 152, 195, 51 | Thabo Mofutsanyana 195 against 196 held for 9 Oct. |
+
+Arithmetic asserted: municipal cells sum to each district total; districts sum to 803 against the provincial cell of 804. The district table appears to have reverted to the 2 Oct breakdown (Phumelela 45 rather than 46 after the Warden case). Both held and flagged in the notes. No media release came with this submission, so there is no resolved or active split and no notification count.
+
+### Western Cape GIS (as at 21 October 2026), 8 rows
+
+| Metric | Value | Change |
+|---|---|---|
+| positive_cases | 50 | Unchanged total (23 active plus 27 resolved). Row added because the split changed. |
+| outbreaks_open / outbreaks_closed | 23 / 27 | Three establishments moved from active to resolved (was 26 / 24). |
+| suspected_cases | 6 | Unchanged; 9 Data Issue records excluded. |
+| animals_vaccinated and doses_administered | 586,154 | Up 455. 3,277 records, latest vaccination 20 Oct. Dose-count basis. |
+| primary_vaccinations | 408,677 | Down 153, all beef (162,139 to 161,986); likely records reclassified or corrected on the portal. |
+| booster_vaccinations | 177,477 | Up 608, all beef. Dairy 133,233 unchanged. |
+
+Arithmetic asserted (primary plus booster equals total; active plus resolved equals 50).
+
+### Conflicts
+
+- FS district cells (803) against the provincial total (804); Thabo Mofutsanyana 195 (16 Oct) against 196 (9 Oct). Both held.
+- WC primary vaccinations fell by 153 on the portal. Held as reported; watch whether it reverses.
+- WC dairy boosters: portal 133,233 against MPO Week 51 116,578 (9 Oct). Both held.
+- Farmer's Weekly (15 Oct) reports the Auditor-General could not confirm value for money on R311 million spent on 3.42 million imported doses, and OBP sales of about 17.5 million doses. Our economic box holds R494 million state vaccine spend to 1 June (Minister) and the supply pipeline holds 17 million arrived; media figures, not changed.
+- The Namibian (14 Oct) quotes Namibian lambs as about 15 percent of our sheep slaughter this year but also says abattoirs depend on Namibia for more than 70 percent of sheep slaughtered; both noted in the news summary.
+
+### News items added (3)
+
+- The Namibian, 14 Oct: NAU seeks supervised movement to abattoirs; RPO on prices and supply.
+- Farmer's Weekly, 15 Oct: ARC vaccine facility funding gap (about R1.6 billion cost against R453.8 million ring-fenced).
+- Namib Times, 17 Oct: Notification No. 20, outbreak confined to Karasburg, 18 farms and 131 positive as at 15 Oct.
+
+No new South African primary Ministry statement was found in the window, so no policy rows or events. Older items surfaced by the searches (SAnews May, June and September; Farmer's Weekly March, February and December; Rio Times 5 Oct) predate the window and were not added. The Times Live Addo report (16 Oct) duplicates the SANParks item already held.
+
+### Curated files
+
+- `news_feed.json`: 3 items, last_checked 21 Oct, 56 items (backup `.bak_session99`).
+- `namibia_data.json`: farms and positives headline sources moved to Notification No. 20 (as at 15 Oct, unchanged), new 15 Oct progression row, 17 Oct timeline event, ||Kharas status, summary, the livestock prices South Africa link, last_updated (backup `.bak_session99`).
+- `supply_pipeline.json`: reviewed, no new primary consignment information; last_reviewed set to 21 Oct (backup `.bak_session99`).
+- `sa_economic.json` and `policy_events.json`: no newer primary figures or events; unchanged.
+
+### Dashboard
+
+Rebuilt via importlib, validation passed (2,005,224 bytes). Snapshot 21 October, 94 weekly points. Checked in the payload: FS card 804 positive, 211 suspected, 1,738,608 vaccinated, as at 16 Oct; WC card 586,154 vaccinated (408,677 first dose, 177,477 boosters), 50 positive, 6 suspected, as at 21 Oct; national administered 9,709,126 (up 455), suspected 839; three news items and the Namibia update (last_updated 21 Oct) present.
+
+### Action items
+
+- Jay: save `FS FMD Vaccine Data - 16.10.2026.xlsx` from the 20 Oct "FMD STATS" email to `inbox/Free State/` for the audit trail, and the three attachments from the 19 Oct "AgriSA: FMD Weekly Engagement" email (still outstanding).
+- Ask Free State whether the 16 Oct district table should show Phumelela 46, and for the weekly media release (resolved and active split).
+- Provincial packs for the weeks ending 9 and 16 October outstanding for EC, KZN, LP, MP, NW, NC and WC; NW nothing since 14 September.
+- MPO Week 52 (due about 16 Oct) not received.
+- Watch for the outcome of today's FMD engagement and the 27 Oct Joint Working Group meeting.
+- Ask an Owner to add gis.westerncape.gov.za to the network allowlist so the shell can pull it directly.
