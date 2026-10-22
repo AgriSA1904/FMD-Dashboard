@@ -1,5 +1,5 @@
 {
-  "last_reviewed": "2026-10-21",
+  "last_reviewed": "2026-10-22",
   "note": "Vaccine supply pipeline shown on the Ministerial and ICC tab. Status is Arrived, Unconfirmed or Pipeline. Never add Unconfirmed or Pipeline doses to the arrived total. Update only from primary Ministry or Department statements, Portfolio Committee packs or the RMIS import tracker, and change last_reviewed whenever you check it.",
   "consignments": [
     {

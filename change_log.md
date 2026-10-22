@@ -7095,3 +7095,87 @@ Rebuilt via importlib, validation passed (2,007,088 bytes). Snapshot 21 October,
 
 - Ask Limpopo for the Week 45 pack (about 9 Oct), and whether the 120-dose booster gap is a district capture issue.
 - Limpopo positives fall as properties close; compare using confirmed including closed (143 on 16 Oct).
+
+### Publishing
+
+Commit 1d3d5f0 on main (local HEAD equals origin/main). This line was added after the push and will go out with the next commit.
+
+
+## Session 100. 22 October 2026. Scheduled update, Eastern Cape 8 October JOC, Western Cape GIS, news scan and publish.
+
+Scheduled 08:00 run (started about 08:01 South African time). Sessions 99, 99b and 99c ran yesterday; nothing logged yet today.
+
+### Sources processed
+
+| Source | Result |
+|---|---|
+| Inbox | One new file: `inbox/Eastern Cape/EC FMD Update - 08.10.2026.pptx` (saved 21 Oct 12:54). Six slides, each a phone screenshot of the DoA presentation with no text layer. Images extracted to `archive/2026-10-22/ec08oct/` and read visually. Ingested, 14 rows. |
+| Mailbox (last 7 days) | "FW: EC FMD Update 08.10.2026" (Megan Maritz, Agri Eastern Cape, 21 Oct): same attachment as the inbox file. The email says EC JOC meetings have moved to fortnightly, next on 22 Oct. AgriSA media release on the MTBPS (21 Oct) states that the Adjusted Estimates of National Expenditure carry forward R183 million for FMD vaccine procurement; we could not find the primary Treasury document online, so `sa_economic.json` is unchanged. Other FMD mail is the engagement reminder, the FS stats already ingested and the Second-Hand Goods Bill thread. No attachments outstanding. |
+| Western Cape GIS | Device shell blocked (curl exit 56). Pulled through the built-in browser with ArcGIS REST statistics queries. Raw aggregates `archive/2026-10-22/wc_gis_pull_20261022.json`. Ingested, 8 rows. |
+| Web | Searches on national, provincial, trade, industry, Afrikaans, international, Namibian and economic news for 15 to 22 October. |
+
+Scripts `archive/2026-10-22/ingest_session100.py` (backs up the master to `master_data.csv.bak_session100`) and `archive/2026-10-22/update_curated_session100.py`. Prepared 22, new 22, duplicates 0. Master now 4,157 rows.
+
+### Eastern Cape (as at 8 October 2026), 14 rows, EC-DRDAR
+
+| Metric | Value | Change |
+|---|---|---|
+| animals_vaccinated (dose-count) | 1,807,660 | Up 48,153 on 1,759,507 (1 Oct). |
+| primary_vaccinations | 1,581,907 | Basis change: now total primary (state districts 1,216,850, MPO first round 308,092, RPO 56,965). Earlier rows held the MPO line only. |
+| booster_vaccinations | 225,753 | Basis change: MPO boosters 225,395 plus Joe Gqabi 358. Earlier rows held the MPO line only (197,170). |
+| doses_received | 2,424,510 | Unchanged. |
+| suspected_cases | 232 | Unchanged. |
+| outbreaks_open / outbreaks_closed | 497 / 14 | Closed up from 13. |
+| District primary (6 rows) | Alfred Nzo 201,302; Amathole 422,186; Chris Hani 232,495; Joe Gqabi 136,910; OR Tambo 193,979; Sarah Baartman 29,978 | State channel. |
+
+The EC card now shows an official dose 1 of 1,581,907 and dose 2 of 225,753, as at 8 Oct. Usage 74.6 percent; primary coverage 52.5 percent of an estimated 3,012,999 cattle (the 1 Oct deck used 3,775,342; the herd figure on the card is unchanged).
+
+Arithmetic asserted: district vaccine splits equal district totals; districts plus MPO and RPO equal total primary; primary plus secondary equals 1,807,660; Biogenesis and Dollvet column totals reconcile; receipts sum to 2,424,510; usage and coverage percentages reproduce.
+
+### Western Cape GIS (as at 22 October 2026), 8 rows
+
+| Metric | Value | Change |
+|---|---|---|
+| positive_cases | 51 | Up 1: one new confirmed active establishment. |
+| outbreaks_open / outbreaks_closed | 24 / 27 | Open up 1. |
+| suspected_cases | 6 | Unchanged; 9 Data Issue records excluded. |
+| animals_vaccinated and doses_administered | 588,249 | Up 2,095. 3,301 records, latest vaccination 21 Oct. Dose-count basis. |
+| primary_vaccinations | 409,317 | Up 640, all beef (reverses the 153 fall on 21 Oct). |
+| booster_vaccinations | 178,932 | Up 1,455 (beef 670, dairy 785). |
+
+Arithmetic asserted (primary plus booster equals total; active plus resolved equals 51).
+
+### Conflicts
+
+- EC 8 Oct deck is internally inconsistent on outbreaks: total confirmed cell 497 against district cells summing to 498 (Sarah Baartman 43 against 42 open on 1 Oct); closed total 14 against district cells summing to 15; no new outbreaks shown, yet open plus closed (511 or 512) exceeds the 510 cumulative held for 1 Oct. Slide 5 also shows Joe Gqabi 81 confirmed and 0 suspected against 80 and 1 on slide 1. We held open and closed as given and did not restate positive_cases, so the EC card stays at 510 (1 Oct).
+- EC sector slide: district totals sum to 1,807,678 and communal plus commercial to 1,804,182, against the 1,807,660 headline. Headline held; sector split not ingested.
+- EC MPO booster line 225,395 equals MPO Week 50 (2 Oct); MPO Week 52 reports 239,471 (16 Oct). Both held.
+- WC dairy boosters: portal 134,018 against MPO Week 52 129,208. Both held.
+- National state vaccine funding: the AgriSA MTBPS release reports R183 million carried forward for vaccine procurement, against the R1.3 billion the Department said on 22 September it had requested in the adjustments budget. Not changed in `sa_economic.json` until we see the primary Treasury figure.
+
+### News items added (3)
+
+- The Namibian, 14 Oct: Meatco proposes two-thirds pay for three months.
+- New Era, 20 Oct: chief veterinary officer confirms 131 cases on 18 farms; surveillance stepped up; NCCI gives N$1.5 million.
+- New Era, 20 Oct: Namibia revisits plans for its own vaccine plant.
+
+No new South African primary Ministry or Department statement was found in the window, so no policy rows or events. ProAgri (19 Oct) on separate sheep and cattle protocols duplicates the Food For Mzansi item already held; IPP Media (21 Oct) republishes the Al Jazeera piece already held; SAnews (13 Oct) on Addo duplicates the SANParks item. Afrikaans searches surfaced nothing new in the window.
+
+### Curated files
+
+- `news_feed.json`: 3 items, last_checked 22 Oct, 59 items (backup `.bak_session100`).
+- `namibia_data.json`: farm and positive headline sources moved to the chief veterinary officer (New Era, 20 Oct; unchanged figures), new 20 Oct progression row, 14 Oct and 20 Oct timeline events, summary, last_updated (backup `.bak_session100`).
+- `supply_pipeline.json`: reviewed, no new primary consignment information; last_reviewed set to 22 Oct (backup `.bak_session100`).
+- `sa_economic.json` and `policy_events.json`: no newer primary figures or events; unchanged.
+
+### Dashboard
+
+Rebuilt via importlib, validation passed (2,011,231 bytes). Snapshot 22 October, 96 weekly points. Checked in the payload: EC card as at 8 Oct, 1,807,660 vaccinated (dose 1 1,581,907 official, dose 2 225,753), 510 positive, 232 suspected, 2,424,510 received; WC card as at 22 Oct, 588,249 vaccinated (409,317 and 178,932), 51 positive, 6 suspected; national positive 2,875, suspected 829, administered 9,838,316; three news items and the Namibia update (last_updated 22 Oct) present.
+
+### Action items
+
+- Ask EC to reconcile the 8 Oct outbreak table (497 against 498 open; 14 against 15 closed; Joe Gqabi 80 or 81) and confirm the cumulative confirmed count. EC JOC is now fortnightly; next meeting 22 Oct.
+- Find the Treasury Adjusted Estimates of National Expenditure 2026 entry for the R183 million FMD vaccine rollover and update the state spending box if confirmed.
+- Provincial packs outstanding for KZN, MP, NW, NC and WC; LP Week 45; NW nothing since 14 September.
+- Watch for the outcome of the 21 Oct FMD engagement and the 27 Oct Joint Working Group meeting.
+- Ask an Owner to add gis.westerncape.gov.za to the network allowlist so the shell can pull it directly.
