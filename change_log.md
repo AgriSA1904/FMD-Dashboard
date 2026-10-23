@@ -7179,3 +7179,102 @@ Rebuilt via importlib, validation passed (2,011,231 bytes). Snapshot 22 October,
 - Provincial packs outstanding for KZN, MP, NW, NC and WC; LP Week 45; NW nothing since 14 September.
 - Watch for the outcome of the 21 Oct FMD engagement and the 27 Oct Joint Working Group meeting.
 - Ask an Owner to add gis.westerncape.gov.za to the network allowlist so the shell can pull it directly.
+
+### Publishing
+
+Commit 6838e36 on main (local HEAD equals origin/main). "Build and Deploy FMD Dashboard" and "pages build and deployment" both concluded success. This line was added after the push and will go out with the next commit.
+
+
+## Session 101. 23 October 2026. Scheduled update, Mpumalanga VWG update, Western Cape GIS, news scan and publish.
+
+Scheduled 08:00 run (fired late; started about 09:37 South African time). Session 100 ran yesterday; nothing logged yet today.
+
+### Sources processed
+
+| Source | Result |
+|---|---|
+| Inbox | One new file: `inbox/Mpumalanga/MP FMD outbreak Update VWG 5 October 2026.pptx` (saved 22 Oct 12:13). Fifteen slides with text tables; images are logos only. Ingested, 24 rows. |
+| Mailbox (last 7 days) | "FMD report Mpumalanga" (Mpumalanga Agriculture, 22 Oct): same attachment as the inbox file. Other FMD mail is already covered (EC 8 Oct, FS 16 Oct, engagement reminders, AgriSA MTBPS release, Second-Hand Goods Bill thread). No attachments outstanding. |
+| Western Cape GIS | Device shell blocked (curl exit 56). Pulled through the built-in browser with ArcGIS REST statistics queries. Raw aggregates `archive/2026-10-23/wc_gis_pull_20261023.json`. Ingested, 8 rows. |
+| Web | Searches on national, provincial, trade, industry, Afrikaans, international, Namibian and economic news for 16 to 23 October. |
+
+Scripts `archive/2026-10-23/ingest_session101.py` (backs up the master to `master_data.csv.bak_session101`) and `archive/2026-10-23/update_curated_session101.py`. Prepared 32, new 32, duplicates 0. Master now 4,189 rows.
+
+### Mpumalanga (held at 9 October 2026), 24 rows, MP-DVS
+
+The deck cover is dated 5 October (VWG) but the vaccination table covers 1 March to 9 October, so we hold all rows at 9 October, the as-at date of the data.
+
+| Metric | Value | Change on 14 Sep |
+|---|---|---|
+| doses_received | 1,116,940 | Unchanged. |
+| doses_administered | 1,003,671 | Up 115,244 (90 percent of receipts). |
+| animals_vaccinated (dose-count) | 1,003,671 | Basis change, see below. |
+| primary_vaccinations | 840,638 | Up 16,983. Commercial 476,118 (1,963 owners), communal 364,520 (25,241 owners). |
+| booster_vaccinations | 163,033 | Up 98,261. Commercial 41,267, communal 121,766. |
+| vaccine_wastage / vaccine_balance | 6,499 / 106,891 | New. |
+| positive_cases | 262 | Unchanged; no new outbreaks. |
+| outbreaks_open / outbreaks_closed | 116 / 146 | From 137 / 125. |
+| District outbreaks (4 rows) | Nkangala 82, Gert Sibande 149, Ehlanzeni North 2, Ehlanzeni South 29 | Open and closed in notes. |
+| District primary (4 rows) | Ehlanzeni North 101,661; Ehlanzeni South 93,326; Gert Sibande 404,046; Nkangala 241,605 | Boosters in notes. |
+| controlled_slaughter | 38,487 | Up from 37,849; Red Cross permits 2,110. |
+| doses_received_industry (private) | 87,780 | Nkangala industry receipts; 59,500 administered. |
+| doses_distributed_industry (private) | 244,899 | Industry allocation, no vaccination figures reported. |
+| sheep / goats / pigs vaccinated | 1,414 / 493 / 4,550 | Cumulative special categories. |
+
+Coverage: 45 percent of 1,868,920 cattle (MTT estimate) or 57 percent of 1,480,241 (MVS estimate); boosters 9 or 11 percent.
+
+**Basis change.** MP `animals_vaccinated` was primary only (823,655 on 14 Sep). It now follows the EC, LP and WC dose-count basis (primary plus booster), with `primary_vaccinations` and `booster_vaccinations` held alongside. The MP card shows 1,003,671 vaccinated with an official dose 1 of 840,638 and dose 2 of 163,033. National administered moves to 10,021,044: 115,244 of the rise is new MP vaccination and 64,772 is the earlier MP boosters now counted on the dose-count basis.
+
+Arithmetic asserted: consignment rows sum to allocation, administered, wastage and in hand; districts sum to primary and boosters; commercial plus communal equals primary and boosters; district and municipal outbreaks reconcile (262, 116, 146); slaughter, permits, industry and species tables sum.
+
+### Western Cape GIS (as at 23 October 2026), 8 rows
+
+| Metric | Value | Change |
+|---|---|---|
+| positive_cases | 51 | Unchanged; one establishment moved from active to resolved. |
+| outbreaks_open / outbreaks_closed | 23 / 28 | From 24 / 27. |
+| suspected_cases | 6 | Unchanged; 9 Data Issue records excluded. |
+| animals_vaccinated and doses_administered | 590,961 | Up 2,712. 3,309 records, latest vaccination 22 Oct. Dose-count basis. |
+| primary_vaccinations | 409,427 | Up 110, all beef. |
+| booster_vaccinations | 181,534 | Up 2,602 (beef 367, dairy 2,235). |
+
+Arithmetic asserted (primary plus booster equals total; active plus resolved equals 51; species splits sum).
+
+### Conflicts and flags
+
+- MP vaccine in hand 106,891 against allocation minus administered minus wastage of 106,770: the 121 gap is the Bioaftogen 4 row, where wastage of 121 appears not to have been deducted. Both figures noted; in hand held as given.
+- MP slide 11 Ehlanzeni South total row reads 28 closed, but its municipalities and the summary slide give 29. 29 held.
+- MP Victor Khanye industry receipt printed as "40 3500"; read as 43,500, which reconciles with the 87,780 total.
+- MP `doses_received_industry`: 59,500 held for 14 Sep is the administered figure in this deck; 87,780 is received.
+- MP suspected cases are not reported in this deck; the card carries 127 forward from an earlier row.
+- WC dairy boosters: portal 136,253 against MPO Week 52 129,208. Both held.
+- National state vaccine funding: IOL (23 Oct) reports R606 million in the MTBPS (R423.4 million reprioritised within the Department plus the R183 million rollover). Media report only; `sa_economic.json` unchanged until we see the Treasury document.
+
+### News items added (5)
+
+- IOL, 23 Oct: MTBPS sets aside R606 million for FMD (media report; not ingested).
+- Farmer's Weekly, 22 Oct: concern deepens over FMD in kudu at Addo (EC).
+- New Era, 22 Oct: Namibia vaccinates 1,296 cattle in Karasburg and 42,286 in Zambezi.
+- The Namibian, 21 Oct: South African Feedlot Association will not support cattle and beef imports from Namibia and Botswana for now.
+- Republikein, 23 Oct: Namibia's mid-year budget proposes N$179 million for containment.
+
+No new South African primary Ministry or Department statement was found in the window, so no policy rows or events. Older articles surfaced by the searches (Farmer's Weekly 12 Jun and 26 Jun, Maroela Media Nov 2025 and Feb 2026, TimesLIVE 16 Oct on Addo, IPP Media 21 Oct republishing Al Jazeera) were not added.
+
+### Curated files
+
+- `news_feed.json`: 5 items, last_checked 23 Oct, 60 items (backup `.bak_session101`).
+- `namibia_data.json`: new ||Kharas vaccination headline (1,296); Zambezi vaccinated 42,286; containment funding headline now N$179 million (mid-year budget) with the earlier N$190 million estimate in the note; regions, timeline (22 and 23 Oct), feedlot association position under South Africa links, summary, last_updated (backup `.bak_session101`). No new case count, so no progression row.
+- `supply_pipeline.json`: reviewed, no new primary consignment information; last_reviewed set to 23 Oct (backup `.bak_session101`).
+- `sa_economic.json` and `policy_events.json`: no newer primary figures or events; unchanged.
+
+### Dashboard
+
+Rebuilt via importlib, validation passed (2,015,919 bytes). Snapshot 23 October, 97 weekly points. Checked in the payload: MP card as at 9 Oct, 1,003,671 vaccinated (dose 1 840,638 official, dose 2 163,033), 262 positive, 1,116,940 received; WC card as at 23 Oct, 590,961 vaccinated (409,427 and 181,534), 51 positive, 6 suspected; national positive 2,875, suspected 829, administered 10,021,044; five news items and the Namibia update (last_updated 23 Oct) present.
+
+### Action items
+
+- Ask Mpumalanga to confirm the as-at date of the VWG deck (cover 5 Oct, table to 9 Oct), the Bioaftogen 4 in-hand figure, and current suspected cases.
+- Find the Treasury document for the R606 million (R423.4 million plus R183 million) and update the state spending box if confirmed.
+- Provincial packs outstanding for KZN, NW, NC and GP; LP Week 45; NW nothing since 14 September. EC JOC met on 22 Oct (fortnightly).
+- Watch for the outcome of the 21 Oct FMD engagement and the 27 Oct Joint Working Group meeting.
+- Ask an Owner to add gis.westerncape.gov.za to the network allowlist so the shell can pull it directly.
