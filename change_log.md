@@ -7278,3 +7278,82 @@ Rebuilt via importlib, validation passed (2,015,919 bytes). Snapshot 23 October,
 - Provincial packs outstanding for KZN, NW, NC and GP; LP Week 45; NW nothing since 14 September. EC JOC met on 22 Oct (fortnightly).
 - Watch for the outcome of the 21 Oct FMD engagement and the 27 Oct Joint Working Group meeting.
 - Ask an Owner to add gis.westerncape.gov.za to the network allowlist so the shell can pull it directly.
+
+### Publishing
+
+Commit 89d56ba on main (local HEAD equals origin/main). "Build and Deploy FMD Dashboard" and "pages build and deployment" both concluded success. This line was added after the push and will go out with the next commit.
+
+
+## Session 102. 26 October 2026. Scheduled update, Limpopo PCM pack detail, Western Cape GIS, news scan and publish.
+
+Scheduled 08:00 run (started about 08:00 South African time). Session 101 ran on 23 October; no sessions on 24 or 25 October; nothing logged yet today.
+
+### Sources processed
+
+| Source | Result |
+|---|---|
+| Inbox | One new file: `inbox/Limpopo/FMD PCM MEETING PACK 20261026.pdf` (121 pages, saved 23 Oct 12:45). Agenda for 26 Oct, minutes of 14 Sep (pages 6 to 99, discussion only) and the LDARD Week 46 deck (pages 100 to 121, position 16 Oct). Headline figures already held from session 99c; 9 supplementary rows added. Embedded images are the cover, logos, two map images and small icons; the maps repeat the figures in the slide text. |
+| Mailbox (last 7 days) | "REMINDER: FMD PCM 26 OCT 2026 AT 14H00" (Limpopo Agriculture, 23 Oct): same pack as the inbox file. All other FMD mail already covered in sessions 99 to 101. No attachments outstanding. |
+| Western Cape GIS | Device shell blocked (curl exit 56). Pulled through the built-in browser with ArcGIS REST statistics queries. Raw aggregates `archive/2026-10-26/wc_gis_pull_20261026.json`. Ingested, 8 rows. |
+| Web | Searches on national, provincial, trade, industry, Afrikaans, international, Namibian and economic news for 19 to 26 October. |
+
+Scripts `archive/2026-10-26/ingest_session102.py` (backs up the master to `master_data.csv.bak_session102`) and `archive/2026-10-26/update_curated_session102.py`. Prepared 17, new 17, duplicates 0. Master now 4,206 rows.
+
+### Limpopo (held at 16 October 2026), 9 rows, LP-LDARD
+
+| Metric | Value | Note |
+|---|---|---|
+| animals_vaccinated, vet_channel state | 799,887 | Veterinary Services, 77.2 percent. |
+| animals_vaccinated, vet_channel private | 236,029 | Private sector, 22.8 percent; Waterberg 195,029 (deck text says 194,460; table held). |
+| communal_vaccinated / commercial_vaccinated / emerging_vaccinated | 587,786 / 362,197 / 85,933 | All species, primary plus booster; the dashboard labels read "cattle" but these include pigs, goats and sheep. |
+| pigs_vaccinated / goats_vaccinated / sheep_vaccinated | 73,359 / 2,394 / 1,311 | Outbreak-response vaccination. Cattle 958,852. |
+| total_investigations | 561 | Excludes 6 revisits. 474 farms affected to date; 9 game positives across all 5 districts. |
+
+Not ingested: border buffer ring vaccination on the Botswana line (3,979 cattle on 22 sites) and 10 new animal-handling facilities (no matching metric). Arithmetic asserted: provider, sector and species splits each sum to 1,035,916; district provider rows reconcile; district boosters sum to 50,596; case statuses sum to 561. The LP card is unchanged (1,035,916 vaccinated, 96 positive, 63 suspected, as at 16 Oct). Next LP PCM 30 Nov.
+
+### Western Cape GIS (as at 26 October 2026), 8 rows
+
+| Metric | Value | Change |
+|---|---|---|
+| positive_cases | 51 | Unchanged; one establishment moved from active to resolved. |
+| outbreaks_open / outbreaks_closed | 22 / 29 | From 23 / 28. |
+| suspected_cases | 6 | Unchanged; 9 Data Issue records excluded. |
+| animals_vaccinated and doses_administered | 591,550 | Up 589. 3,319 records, latest vaccination 23 Oct. Dose-count basis. |
+| primary_vaccinations | 409,474 | Up 47, all beef. |
+| booster_vaccinations | 182,076 | Up 542, all beef. |
+
+Arithmetic asserted (primary plus booster equals total; active plus resolved equals 51; species splits sum).
+
+### Conflicts and flags
+
+- WC dairy boosters: portal 136,253 against MPO Week 52 129,208. Both held.
+- LP vet channel panel: the private entry also shows a 23,000 doses_received figure from an older row with the 16 Oct date, and the communal, commercial and emerging channel entries still show April figures (older rows coded by vet_channel). Display quirk in `build_provincial_detail`, not changed this run; worth a fix.
+- National state vaccine funding: Farmer's Weekly (24 Oct) reports the R183 million AENE rollover. Media report only; `sa_economic.json` unchanged until we see the Treasury document.
+
+### News items added (4)
+
+- Farmer's Weekly, 24 Oct: budget offers farmers relief; R183 million carried forward for vaccines (media report; not ingested).
+- Daily Maverick, 22 Oct: Addo, 5 to 10 percent of kudu probably infected; red hartebeest and eland showing signs (EC; wildlife, not programme data).
+- Republikein, 25 Oct: four men arrested in Namibia for allegedly breaking movement rules.
+- The Brief, 19 Oct: Economic Association of Namibia warns on livestock recovery; 63,011 animals inspected as at 14 Oct.
+
+No new South African primary Ministry or Department statement was found in the window, so no policy rows or events. Afrikaans searches found nothing new in the window. Older items surfaced by the searches (Farmer's Weekly 24 Sep, New Era 9 Oct, Economist 6 Oct, SAnews 25 Jun, 3tres3 25 Jun) were not added.
+
+### Curated files
+
+- `news_feed.json`: 4 items, last_checked 26 Oct, 60 items (backup `.bak_session102`).
+- `namibia_data.json`: timeline events for 19 Oct (EAN, 63,011 inspected) and 25 Oct (arrests); last_updated 26 Oct (backup `.bak_session102`). No new case or vaccination counts, so headline figures, regions and progression unchanged.
+- `supply_pipeline.json`: reviewed, no new primary consignment information; last_reviewed set to 26 Oct (backup `.bak_session102`).
+- `sa_economic.json` and `policy_events.json`: no newer primary figures or events; unchanged.
+
+### Dashboard
+
+Rebuilt via importlib, validation passed (2,017,893 bytes). Snapshot 26 October, 98 weekly points. Checked in the payload: WC card as at 26 Oct, 591,550 vaccinated (409,474 and 182,076), 51 positive, 6 suspected; LP card unchanged at 16 Oct (1,035,916), with the new provider split and classification rows in the provincial detail; national positive 2,875, suspected 829, administered 10,021,633; four news items and the Namibia update (last_updated 26 Oct) present.
+
+### Action items
+
+- Fix the vet channel panel in `build_provincial_detail` so it does not mix dates across metrics and channels (see flags).
+- Find the Treasury AENE 2026 entry for the R183 million (and the R606 million total) and update the state spending box if confirmed.
+- Provincial packs outstanding for KZN, NW, NC and GP; NW nothing since 14 September; EC JOC met 22 Oct (fortnightly); LP PCM meets today at 14:00; watch for the minutes and a Week 47 or later deck.
+- Watch for the outcome of the 21 Oct FMD engagement and the 27 Oct Joint Working Group meeting.
+- Ask an Owner to add gis.westerncape.gov.za to the network allowlist so the shell can pull it directly.
