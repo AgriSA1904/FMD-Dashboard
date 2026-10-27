@@ -1168,8 +1168,8 @@
 
 <script>
 const DASHBOARD_DATA = {
-  "snapshot_date": "2026-10-26",
-  "build_date": "2026-10-26",
+  "snapshot_date": "2026-10-27",
+  "build_date": "2026-10-27",
   "provinces": [
     {
       "code": "EC",
@@ -1202,7 +1202,7 @@ const DASHBOARD_DATA = {
       "vaccinated": 1738608,
       "dose1": 1719490,
       "dose2": 19118,
-      "dose2_asof": "2026-10-16",
+      "dose2_asof": "2026-10-23",
       "dose2_source": "MPO",
       "dose1_derived": true,
       "dose2_partial": true
@@ -1220,7 +1220,7 @@ const DASHBOARD_DATA = {
       "vaccinated": 580838,
       "dose1": 567118,
       "dose2": 13720,
-      "dose2_asof": "2026-10-16",
+      "dose2_asof": "2026-10-23",
       "dose2_source": "MPO",
       "dose1_derived": true,
       "dose2_partial": true
@@ -1290,12 +1290,12 @@ const DASHBOARD_DATA = {
       "pending": 0,
       "received": 1665100,
       "vaccinated": 1347844,
-      "dose1": 1347844,
-      "dose2": 0,
-      "dose2_asof": null,
-      "dose2_source": null,
+      "dose1": 1346972,
+      "dose2": 872,
+      "dose2_asof": "2026-10-23",
+      "dose2_source": "MPO",
       "dose1_derived": true,
-      "dose2_partial": false
+      "dose2_partial": true
     },
     {
       "code": "NC",
@@ -1318,17 +1318,17 @@ const DASHBOARD_DATA = {
     {
       "code": "WC",
       "name": "Western Cape",
-      "as_of": "2026-10-26",
+      "as_of": "2026-10-27",
       "herd": 501875,
-      "positive": 51,
+      "positive": 52,
       "suspected": 6,
       "negative": 0,
       "pending": 0,
       "received": 647080,
-      "vaccinated": 591550,
-      "dose1": 409474,
-      "dose2": 182076,
-      "dose2_asof": "2026-10-26",
+      "vaccinated": 595746,
+      "dose1": 409864,
+      "dose2": 185882,
+      "dose2_asof": "2026-10-27",
       "dose2_source": "WC-GIS",
       "dose1_derived": false,
       "dose2_partial": false
@@ -2118,6 +2118,14 @@ const DASHBOARD_DATA = {
       "positive": 2875,
       "suspected": 829,
       "pending": null
+    },
+    {
+      "date": "2026-10-27",
+      "received": 12596130,
+      "administered": 10025829,
+      "positive": 2876,
+      "suspected": 829,
+      "pending": null
     }
   ],
   "sources": {
@@ -2128,23 +2136,23 @@ const DASHBOARD_DATA = {
     "unallocated": 3529620
   },
   "national": {
-    "positive": 2875,
+    "positive": 2876,
     "suspected": 829,
     "negative": 281,
     "pending": 89,
     "procured": 16000000,
     "distributed": 12596130,
     "received": 12596130,
-    "administered": 10021633,
+    "administered": 10025829,
     "herd_cattle": 15450142,
-    "balance": 2574497,
-    "dose2": 901296,
-    "dose1": 9120337,
+    "balance": 2570301,
+    "dose2": 905974,
+    "dose1": 9119855,
     "dose_split_note": "Dose 2 is the sum of the latest booster figures per province; several provinces report boosters for the dairy programme only, so dose 2 is a minimum and dose 1 a derived maximum.",
     "delta_received": 0,
     "delta_distributed": 0,
-    "delta_administered": 589,
-    "delta_positive": 0
+    "delta_administered": 4196,
+    "delta_positive": 1
   },
   "mpo": {
     "weekly": [
@@ -2433,9 +2441,22 @@ const DASHBOARD_DATA = {
         "NC": 0,
         "WC": 242502,
         "national": 962410
+      },
+      {
+        "date": "2026-10-23",
+        "EC": 308092,
+        "FS": 15104,
+        "GP": 14832,
+        "KZN": 360200,
+        "LP": 5475,
+        "MP": 9863,
+        "NW": 6342,
+        "NC": 0,
+        "WC": 242502,
+        "national": 962410
       }
     ],
-    "latest_date": "2026-10-16",
+    "latest_date": "2026-10-23",
     "provinces": [
       {
         "code": "EC",
@@ -2491,7 +2512,7 @@ const DASHBOARD_DATA = {
         "current": 6342,
         "previous": 6342,
         "change": 0,
-        "booster": 0
+        "booster": 872
       },
       {
         "code": "NC",
@@ -2507,13 +2528,13 @@ const DASHBOARD_DATA = {
         "current": 242502,
         "previous": 242502,
         "change": 0,
-        "booster": 129208
+        "booster": 136045
       }
     ],
     "farms_confirmed": 175,
-    "farms_confirmed_date": "2026-10-16",
+    "farms_confirmed_date": "2026-10-23",
     "farms_active": 128,
-    "farms_active_date": "2026-10-16",
+    "farms_active_date": "2026-10-23",
     "farms_resolved": 47,
     "farms_trend": [
       {
@@ -2638,6 +2659,12 @@ const DASHBOARD_DATA = {
       },
       {
         "date": "2026-10-16",
+        "active": 128,
+        "confirmed": 175,
+        "resolved": 47
+      },
+      {
+        "date": "2026-10-23",
         "active": 128,
         "confirmed": 175,
         "resolved": 47
@@ -3611,7 +3638,7 @@ const DASHBOARD_DATA = {
       "code": "EC",
       "name": "Eastern Cape",
       "joc": 1807660,
-      "joc_date": "2026-10-16",
+      "joc_date": "2026-10-23",
       "ministerial": 725632,
       "ministerial_date": "2026-06-04",
       "diff": 1082028,
@@ -3621,7 +3648,7 @@ const DASHBOARD_DATA = {
       "code": "FS",
       "name": "Free State",
       "joc": 1738608,
-      "joc_date": "2026-10-16",
+      "joc_date": "2026-10-23",
       "ministerial": 707986,
       "ministerial_date": "2026-06-04",
       "diff": 1030622,
@@ -3631,7 +3658,7 @@ const DASHBOARD_DATA = {
       "code": "GP",
       "name": "Gauteng",
       "joc": 580838,
-      "joc_date": "2026-10-16",
+      "joc_date": "2026-10-23",
       "ministerial": 325216,
       "ministerial_date": "2026-06-04",
       "diff": 255622,
@@ -3641,7 +3668,7 @@ const DASHBOARD_DATA = {
       "code": "KZN",
       "name": "KwaZulu-Natal",
       "joc": 1700000,
-      "joc_date": "2026-10-16",
+      "joc_date": "2026-10-23",
       "ministerial": 1163193,
       "ministerial_date": "2026-06-04",
       "diff": 536807,
@@ -3651,7 +3678,7 @@ const DASHBOARD_DATA = {
       "code": "LP",
       "name": "Limpopo",
       "joc": 1035916,
-      "joc_date": "2026-10-16",
+      "joc_date": "2026-10-23",
       "ministerial": 357045,
       "ministerial_date": "2026-06-04",
       "diff": 678871,
@@ -3661,7 +3688,7 @@ const DASHBOARD_DATA = {
       "code": "MP",
       "name": "Mpumalanga",
       "joc": 1003671,
-      "joc_date": "2026-10-16",
+      "joc_date": "2026-10-23",
       "ministerial": 465105,
       "ministerial_date": "2026-06-04",
       "diff": 538566,
@@ -3671,7 +3698,7 @@ const DASHBOARD_DATA = {
       "code": "NW",
       "name": "North West",
       "joc": 1347844,
-      "joc_date": "2026-10-16",
+      "joc_date": "2026-10-23",
       "ministerial": 600331,
       "ministerial_date": "2026-06-04",
       "diff": 747513,
@@ -3681,7 +3708,7 @@ const DASHBOARD_DATA = {
       "code": "NC",
       "name": "Northern Cape",
       "joc": 215546,
-      "joc_date": "2026-10-16",
+      "joc_date": "2026-10-23",
       "ministerial": 99642,
       "ministerial_date": "2026-06-04",
       "diff": 115904,
@@ -3690,11 +3717,11 @@ const DASHBOARD_DATA = {
     {
       "code": "WC",
       "name": "Western Cape",
-      "joc": 591550,
-      "joc_date": "2026-10-26",
+      "joc": 595746,
+      "joc_date": "2026-10-27",
       "ministerial": 265379,
       "ministerial_date": "2026-06-04",
-      "diff": 326171,
+      "diff": 330367,
       "flag": null
     }
   ],
@@ -3711,7 +3738,7 @@ const DASHBOARD_DATA = {
   "provincial_detail": {
     "EC": {
       "name": "Eastern Cape",
-      "latest_date": "2026-10-16",
+      "latest_date": "2026-10-23",
       "vaccine_types": [
         {
           "type": "dolvet",
@@ -4097,7 +4124,7 @@ const DASHBOARD_DATA = {
         "booster_vaccinations": {
           "label": "Booster vaccinations",
           "value": 239471,
-          "date": "2026-10-16"
+          "date": "2026-10-23"
         },
         "vaccine_balance": {
           "label": "Vaccine balance on hand",
@@ -4122,7 +4149,7 @@ const DASHBOARD_DATA = {
     },
     "FS": {
       "name": "Free State",
-      "latest_date": "2026-10-16",
+      "latest_date": "2026-10-23",
       "vaccine_types": [
         {
           "type": "dolvet",
@@ -4519,7 +4546,7 @@ const DASHBOARD_DATA = {
         "booster_vaccinations": {
           "label": "Booster vaccinations",
           "value": 19118,
-          "date": "2026-10-16"
+          "date": "2026-10-23"
         },
         "animals_vaccinated_dose1": {
           "label": "Dose 1 animals",
@@ -4560,7 +4587,7 @@ const DASHBOARD_DATA = {
     },
     "GP": {
       "name": "Gauteng",
-      "latest_date": "2026-10-16",
+      "latest_date": "2026-10-23",
       "vaccine_types": [
         {
           "type": "dolvet",
@@ -4607,7 +4634,7 @@ const DASHBOARD_DATA = {
         "booster_vaccinations": {
           "label": "Booster vaccinations",
           "value": 13720,
-          "date": "2026-10-16"
+          "date": "2026-10-23"
         },
         "controlled_slaughter": {
           "label": "Controlled slaughter",
@@ -4638,7 +4665,7 @@ const DASHBOARD_DATA = {
     },
     "KZN": {
       "name": "KwaZulu-Natal",
-      "latest_date": "2026-10-16",
+      "latest_date": "2026-10-23",
       "vaccine_types": [
         {
           "type": "dolvet",
@@ -4894,7 +4921,7 @@ const DASHBOARD_DATA = {
         "booster_vaccinations": {
           "label": "Booster vaccinations",
           "value": 334000,
-          "date": "2026-10-16"
+          "date": "2026-10-23"
         },
         "vaccine_balance": {
           "label": "Vaccine balance on hand",
@@ -4919,7 +4946,7 @@ const DASHBOARD_DATA = {
     },
     "LP": {
       "name": "Limpopo",
-      "latest_date": "2026-10-16",
+      "latest_date": "2026-10-23",
       "vaccine_types": [
         {
           "type": "dolvet",
@@ -5186,7 +5213,7 @@ const DASHBOARD_DATA = {
     },
     "MP": {
       "name": "Mpumalanga",
-      "latest_date": "2026-10-16",
+      "latest_date": "2026-10-23",
       "vaccine_types": [
         {
           "type": "bioaftogen",
@@ -5656,7 +5683,7 @@ const DASHBOARD_DATA = {
     },
     "NW": {
       "name": "North West",
-      "latest_date": "2026-10-16",
+      "latest_date": "2026-10-23",
       "vaccine_types": [
         {
           "type": "dolvet",
@@ -5988,6 +6015,11 @@ const DASHBOARD_DATA = {
           "value": 38666,
           "date": "2026-09-14"
         },
+        "booster_vaccinations": {
+          "label": "Booster vaccinations",
+          "value": 872,
+          "date": "2026-10-23"
+        },
         "vaccine_balance": {
           "label": "Vaccine balance on hand",
           "value": 112731,
@@ -6011,7 +6043,7 @@ const DASHBOARD_DATA = {
     },
     "NC": {
       "name": "Northern Cape",
-      "latest_date": "2026-10-16",
+      "latest_date": "2026-10-23",
       "vaccine_types": [
         {
           "type": "dolvet",
@@ -6127,7 +6159,7 @@ const DASHBOARD_DATA = {
     },
     "WC": {
       "name": "Western Cape",
-      "latest_date": "2026-10-26",
+      "latest_date": "2026-10-27",
       "vaccine_types": [
         {
           "type": "dolvet",
@@ -6167,13 +6199,13 @@ const DASHBOARD_DATA = {
       "extra": {
         "primary_vaccinations": {
           "label": "Primary vaccinations",
-          "value": 409474,
-          "date": "2026-10-26"
+          "value": 409864,
+          "date": "2026-10-27"
         },
         "booster_vaccinations": {
           "label": "Booster vaccinations",
-          "value": 182076,
-          "date": "2026-10-26"
+          "value": 185882,
+          "date": "2026-10-27"
         },
         "vaccination_sites": {
           "label": "Vaccination sites",
@@ -6326,9 +6358,29 @@ const DASHBOARD_DATA = {
     }
   },
   "news": {
-    "last_checked": "2026-10-26",
+    "last_checked": "2026-10-27",
     "note": "Curated daily by the scheduled ingest. Items are media and public reporting, not programme data. Figures quoted here do not feed the dashboard headlines unless they are also ingested into master_data.csv from a programme source.",
     "items": [
+      {
+        "date": "2026-10-26",
+        "headline": "Namibia declares the whole ||Kharas region a foot and mouth disease control area as farmers warn of job losses.",
+        "source": "The Namibian (via allAfrica)",
+        "url": "https://allafrica.com/stories/202610270104.html",
+        "summary": "At an information session in Keetmanshoop, veterinary officials said all movement of live cloven-hoofed animals into, out of and within ||Kharas is suspended, and that the region will be split into smaller containment zones using game fences. Farmers and the Namibia Agricultural Union are asking for supervised movement from unaffected farms and bio-secure transit routes; officials could not say when these might be approved.",
+        "category": "policy",
+        "province": "national",
+        "added": "2026-10-27"
+      },
+      {
+        "date": "2026-10-26",
+        "headline": "A Namibian legal analysis sets out the trade and compliance implications of the outbreak for farmers.",
+        "source": "The Namibian",
+        "url": "https://www.namibian.com.na/the-legal-trade-and-compliance-implications-of-namibias-fmd-outbreak/",
+        "summary": "A Cliffe Dekker Hofmeyr partner notes that exports to South Africa, the European Union, China and the United States have stopped, and that government estimates N$190.2 million for containment, including about N$47 million for 290 kilometres of control fencing. He urges farmers to report suspected cases, keep traceability records and document their losses. This is an opinion piece; our Namibia headline figures use the N$179 million in the mid-year budget.",
+        "category": "analysis",
+        "province": "national",
+        "added": "2026-10-27"
+      },
       {
         "date": "2026-10-25",
         "headline": "Four men are arrested in Namibia for allegedly breaking foot and mouth disease rules.",
@@ -6908,26 +6960,6 @@ const DASHBOARD_DATA = {
         "category": "cases",
         "province": "national",
         "added": "2026-09-28"
-      },
-      {
-        "date": "2026-09-25",
-        "headline": "Minister sets a target of 80 percent of the national herd vaccinated by December.",
-        "source": "Business Day",
-        "url": "https://www.businessday.co.za/news/2026-09-25-aucamp-urges-quicker-rollout-of-agriculture-master-plan/",
-        "summary": "Speaking on the agriculture master plan, Minister Willie Aucamp repeated that more than 23 million doses had been imported by early September and said vaccines now move directly from airports to veterinary practices. The 80 percent target compares with the 63 percent coverage in the Ministry's 14 September Portfolio Committee table, and the 23 million import figure still conflicts with the 16 million procured held in our master.",
-        "category": "policy",
-        "province": "national",
-        "added": "2026-09-28"
-      },
-      {
-        "date": "2026-09-24",
-        "headline": "Department says 19 million of 21 million doses secured this year have been distributed.",
-        "source": "EWN",
-        "url": "https://www.ewn.co.za/2026/09/24/agriculture-minister-says-private-sector-manufacturing-fmd-vaccines-will-strengthen-outbreak-response",
-        "summary": "Reporting on the private sector licensing of the ARC vaccine, the Department of Agriculture put doses secured this year at 21 million, with 19 million distributed. This adds a fourth national supply figure alongside the 16 million and 17 million procured held in our master and the 23 million imported cited by the Minister, and is well above the 11.8 million received by provinces in the 14 September Ministry table. Not ingested pending a primary Department statement.",
-        "category": "vaccination",
-        "province": "national",
-        "added": "2026-09-29"
       }
     ]
   },
@@ -6962,9 +6994,9 @@ const DASHBOARD_DATA = {
     ]
   },
   "namibia": {
-    "last_updated": "2026-10-26",
+    "last_updated": "2026-10-27",
     "note": "Regional context compiled from Namibian Government statements as reported in the media, the European Union delegation in Namibia and South African and Namibian media. These figures are not South African programme data and never feed the headline figures on the other tabs. Where reports differ, we show each figure with its source.",
-    "summary": "On 23 September 2026 Namibia confirmed foot and mouth disease on a commercial farm in the Karasburg state veterinary district of the ||Kharas region, inside its WOAH-recognised zone free without vaccination and its first outbreak in that zone in about 60 years. By 14 October the SAT1 outbreak had reached 18 farms, with 131 animals positive out of 63,011 inspected (unchanged on 20 October, when the chief veterinary officer confirmed it remained confined to the Karasburg district), and compulsory vaccination in three rounds over three months began that day. A second outbreak was confirmed on Kalala Island in the Zambezi region in early October; officials say it has no epidemiological link to ||Kharas, and 42,286 cattle there had been vaccinated by 21 October, when 1,296 cattle on 25 Karasburg farms had also been vaccinated. Namibia has suspended exports of cloven-hoofed animals and their raw products, the European Union and the United States have restricted imports, and live exports of weaners and slaughter sheep to South Africa have stopped. Roadblocks around Karasburg could stay until 23 December, and industry bodies on both sides are setting out positions on the protocols that would let trade with South Africa resume. Namibia's mid-year budget proposes N$179 million for containment, and our feedlot association has said it will not support cattle and beef imports from Namibia and Botswana for now.",
+    "summary": "On 23 September 2026 Namibia confirmed foot and mouth disease on a commercial farm in the Karasburg state veterinary district of the ||Kharas region, inside its WOAH-recognised zone free without vaccination and its first outbreak in that zone in about 60 years. By 14 October the SAT1 outbreak had reached 18 farms, with 131 animals positive out of 63,011 inspected (unchanged on 20 October, when the chief veterinary officer confirmed it remained confined to the Karasburg district), and compulsory vaccination in three rounds over three months began that day. A second outbreak was confirmed on Kalala Island in the Zambezi region in early October; officials say it has no epidemiological link to ||Kharas, and 42,286 cattle there had been vaccinated by 21 October, when 1,296 cattle on 25 Karasburg farms had also been vaccinated. Namibia has suspended exports of cloven-hoofed animals and their raw products, the European Union and the United States have restricted imports, and live exports of weaners and slaughter sheep to South Africa have stopped. Roadblocks around Karasburg could stay until 23 December, and industry bodies on both sides are setting out positions on the protocols that would let trade with South Africa resume. Namibia's mid-year budget proposes N$179 million for containment, and our feedlot association has said it will not support cattle and beef imports from Namibia and Botswana for now. On 26 October officials confirmed the whole ||Kharas region is a control area, to be split into smaller containment zones, while farmers there warn of job losses.",
     "kpis": [
       {
         "label": "Farms confirmed infected, ||Kharas",
@@ -7021,7 +7053,7 @@ const DASHBOARD_DATA = {
         "name": "||Kharas region, Karasburg state veterinary district",
         "first_confirmed": "2026-09-23",
         "serotype": "SAT1",
-        "status": "18 farms infected and 131 animals positive of 63,011 inspected, as at 14 October, unchanged at 15 October (Notification No. 20). The first surveillance round covered 82 farms within 30 kilometres of the index farm; the second round, extended to 50 kilometres, had inspected 11 of 65 targeted farms. Compulsory vaccination by state veterinary officials began on 14 October under Veterinary Public Notification No. 19 of 2026: three rounds over three months, ending in mid-January 2027, covering all farms south of the B3 and C10 roads to the Orange River. Owners may not vaccinate their own animals. Eighteen roadblocks operate in ||Kharas, Khomas and Otjozondjupa. By 21 October, 1,296 cattle on 25 farms had been vaccinated, of about 13,000 targeted in the first round (New Era, 22 October, which dates the start to 17 October).",
+        "status": "18 farms infected and 131 animals positive of 63,011 inspected, as at 14 October, unchanged at 15 October (Notification No. 20). The first surveillance round covered 82 farms within 30 kilometres of the index farm; the second round, extended to 50 kilometres, had inspected 11 of 65 targeted farms. Compulsory vaccination by state veterinary officials began on 14 October under Veterinary Public Notification No. 19 of 2026: three rounds over three months, ending in mid-January 2027, covering all farms south of the B3 and C10 roads to the Orange River. Owners may not vaccinate their own animals. Eighteen roadblocks operate in ||Kharas, Khomas and Otjozondjupa. By 21 October, 1,296 cattle on 25 farms had been vaccinated, of about 13,000 targeted in the first round (New Era, 22 October, which dates the start to 17 October). On 26 October veterinary officials confirmed the whole ||Kharas region is a control area (all movement of live cloven-hoofed animals into, out of and within it suspended) and said it will be split into smaller containment zones using game fences (The Namibian, 26 October).",
         "border": "Borders our Northern Cape along the Orange River."
       },
       {
@@ -7256,6 +7288,12 @@ const DASHBOARD_DATA = {
         "event": "Four men, including a farmer, are arrested for allegedly transporting raw meat in breach of the movement regulations.",
         "source": "Republikein",
         "url": "https://republikein.com.na/polisie-en-misdaad/boere-met-rou-vleis-vasgetrek-nmh020711-3-25350"
+      },
+      {
+        "date": "2026-10-26",
+        "event": "Veterinary officials in Keetmanshoop confirm the whole ||Kharas region is a control area, with all movement of live cloven-hoofed animals into, out of and within it suspended; the region is to be split into smaller containment zones using game fences. Farmers warn of job losses and ask for supervised movement from unaffected farms.",
+        "source": "The Namibian (via allAfrica)",
+        "url": "https://allafrica.com/stories/202610270104.html"
       }
     ],
     "trade": [
@@ -7327,7 +7365,7 @@ const DASHBOARD_DATA = {
     "open_questions": [
       "Serotype of the Zambezi outbreak; officials report no epidemiological link to ||Kharas.",
       "Whether Namibia will subdivide its former free zone so that unaffected areas can resume exports; officials have said a plan could take about six months to reach WOAH.",
-      "Whether the veterinary authorities of Namibia and South Africa accept an industry proposal for supervised movement of animals from unaffected areas to abattoirs."
+      "Whether the veterinary authorities of Namibia and South Africa accept an industry proposal for supervised movement of animals from unaffected areas to abattoirs; on 26 October Namibian officials could not say when bio-secure transit routes might be approved."
     ]
   },
   "sources_used": [
@@ -7431,6 +7469,7 @@ const DASHBOARD_DATA = {
     "WC GIS FMD Public FeatureServer (live ArcGIS REST API), pulled via browser 22 Oct 2026; raw aggregates archive/2026-10-22/wc_gis_pull_20261022.json",
     "WC GIS FMD Public FeatureServer (live ArcGIS REST API), pulled via browser 23 Oct 2026; raw aggregates archive/2026-10-23/wc_gis_pull_20261023.json",
     "WC GIS FMD Public FeatureServer (live ArcGIS REST API), pulled via browser 26 Oct 2026; raw aggregates archive/2026-10-26/wc_gis_pull_20261026.json",
+    "WC GIS FMD Public FeatureServer (live ArcGIS REST API), pulled via browser 27 Oct 2026; raw aggregates archive/2026-10-27/wc_gis_pull_20261027.json",
     "WC GIS portal (gis.westerncape.gov.za)",
     "WC-GIS portal live dashboard 2026-06-09",
     "Week 33 - Update on the state of FMD and vaccine rollouts in the dairy industry.pdf",
@@ -7515,6 +7554,7 @@ const DASHBOARD_DATA = {
     "inbox/MPO/Week 50 - Update on the state of FMD and vaccine rollouts in the dairy industry.pdf",
     "inbox/MPO/Week 51 - Update on the state of FMD and vaccine rollouts in the dairy industry.pdf",
     "inbox/MPO/Week 52 - Update on the state of FMD and vaccine rollouts in the dairy industry.pdf",
+    "inbox/MPO/Week 53 - Update on the state of FMD and vaccine rollouts in the dairy industry.pdf",
     "inbox/Media Statement Minister Steenhuisen announces progress in Foot and mouth disease vaccination strategy.pdf",
     "inbox/Media Statement More vaccines arrive to strengthen war against foot and mouth disease_22042026_.pdf",
     "inbox/Ministerial Updates/2026.05.15 Reg No 7484 of 15 May 2026 - Rescinding FMD management Area in KZN.pdf",

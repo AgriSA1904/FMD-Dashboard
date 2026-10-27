@@ -1,7 +1,7 @@
 {
-  "last_updated": "2026-10-26",
+  "last_updated": "2026-10-27",
   "note": "Regional context compiled from Namibian Government statements as reported in the media, the European Union delegation in Namibia and South African and Namibian media. These figures are not South African programme data and never feed the headline figures on the other tabs. Where reports differ, we show each figure with its source.",
-  "summary": "On 23 September 2026 Namibia confirmed foot and mouth disease on a commercial farm in the Karasburg state veterinary district of the ||Kharas region, inside its WOAH-recognised zone free without vaccination and its first outbreak in that zone in about 60 years. By 14 October the SAT1 outbreak had reached 18 farms, with 131 animals positive out of 63,011 inspected (unchanged on 20 October, when the chief veterinary officer confirmed it remained confined to the Karasburg district), and compulsory vaccination in three rounds over three months began that day. A second outbreak was confirmed on Kalala Island in the Zambezi region in early October; officials say it has no epidemiological link to ||Kharas, and 42,286 cattle there had been vaccinated by 21 October, when 1,296 cattle on 25 Karasburg farms had also been vaccinated. Namibia has suspended exports of cloven-hoofed animals and their raw products, the European Union and the United States have restricted imports, and live exports of weaners and slaughter sheep to South Africa have stopped. Roadblocks around Karasburg could stay until 23 December, and industry bodies on both sides are setting out positions on the protocols that would let trade with South Africa resume. Namibia's mid-year budget proposes N$179 million for containment, and our feedlot association has said it will not support cattle and beef imports from Namibia and Botswana for now.",
+  "summary": "On 23 September 2026 Namibia confirmed foot and mouth disease on a commercial farm in the Karasburg state veterinary district of the ||Kharas region, inside its WOAH-recognised zone free without vaccination and its first outbreak in that zone in about 60 years. By 14 October the SAT1 outbreak had reached 18 farms, with 131 animals positive out of 63,011 inspected (unchanged on 20 October, when the chief veterinary officer confirmed it remained confined to the Karasburg district), and compulsory vaccination in three rounds over three months began that day. A second outbreak was confirmed on Kalala Island in the Zambezi region in early October; officials say it has no epidemiological link to ||Kharas, and 42,286 cattle there had been vaccinated by 21 October, when 1,296 cattle on 25 Karasburg farms had also been vaccinated. Namibia has suspended exports of cloven-hoofed animals and their raw products, the European Union and the United States have restricted imports, and live exports of weaners and slaughter sheep to South Africa have stopped. Roadblocks around Karasburg could stay until 23 December, and industry bodies on both sides are setting out positions on the protocols that would let trade with South Africa resume. Namibia's mid-year budget proposes N$179 million for containment, and our feedlot association has said it will not support cattle and beef imports from Namibia and Botswana for now. On 26 October officials confirmed the whole ||Kharas region is a control area, to be split into smaller containment zones, while farmers there warn of job losses.",
   "kpis": [
     {
       "label": "Farms confirmed infected, ||Kharas",
@@ -58,7 +58,7 @@
       "name": "||Kharas region, Karasburg state veterinary district",
       "first_confirmed": "2026-09-23",
       "serotype": "SAT1",
-      "status": "18 farms infected and 131 animals positive of 63,011 inspected, as at 14 October, unchanged at 15 October (Notification No. 20). The first surveillance round covered 82 farms within 30 kilometres of the index farm; the second round, extended to 50 kilometres, had inspected 11 of 65 targeted farms. Compulsory vaccination by state veterinary officials began on 14 October under Veterinary Public Notification No. 19 of 2026: three rounds over three months, ending in mid-January 2027, covering all farms south of the B3 and C10 roads to the Orange River. Owners may not vaccinate their own animals. Eighteen roadblocks operate in ||Kharas, Khomas and Otjozondjupa. By 21 October, 1,296 cattle on 25 farms had been vaccinated, of about 13,000 targeted in the first round (New Era, 22 October, which dates the start to 17 October).",
+      "status": "18 farms infected and 131 animals positive of 63,011 inspected, as at 14 October, unchanged at 15 October (Notification No. 20). The first surveillance round covered 82 farms within 30 kilometres of the index farm; the second round, extended to 50 kilometres, had inspected 11 of 65 targeted farms. Compulsory vaccination by state veterinary officials began on 14 October under Veterinary Public Notification No. 19 of 2026: three rounds over three months, ending in mid-January 2027, covering all farms south of the B3 and C10 roads to the Orange River. Owners may not vaccinate their own animals. Eighteen roadblocks operate in ||Kharas, Khomas and Otjozondjupa. By 21 October, 1,296 cattle on 25 farms had been vaccinated, of about 13,000 targeted in the first round (New Era, 22 October, which dates the start to 17 October). On 26 October veterinary officials confirmed the whole ||Kharas region is a control area (all movement of live cloven-hoofed animals into, out of and within it suspended) and said it will be split into smaller containment zones using game fences (The Namibian, 26 October).",
       "border": "Borders our Northern Cape along the Orange River."
     },
     {
@@ -293,6 +293,12 @@
       "event": "Four men, including a farmer, are arrested for allegedly transporting raw meat in breach of the movement regulations.",
       "source": "Republikein",
       "url": "https://republikein.com.na/polisie-en-misdaad/boere-met-rou-vleis-vasgetrek-nmh020711-3-25350"
+    },
+    {
+      "date": "2026-10-26",
+      "event": "Veterinary officials in Keetmanshoop confirm the whole ||Kharas region is a control area, with all movement of live cloven-hoofed animals into, out of and within it suspended; the region is to be split into smaller containment zones using game fences. Farmers warn of job losses and ask for supervised movement from unaffected farms.",
+      "source": "The Namibian (via allAfrica)",
+      "url": "https://allafrica.com/stories/202610270104.html"
     }
   ],
   "trade": [
@@ -364,6 +370,6 @@
   "open_questions": [
     "Serotype of the Zambezi outbreak; officials report no epidemiological link to ||Kharas.",
     "Whether Namibia will subdivide its former free zone so that unaffected areas can resume exports; officials have said a plan could take about six months to reach WOAH.",
-    "Whether the veterinary authorities of Namibia and South Africa accept an industry proposal for supervised movement of animals from unaffected areas to abattoirs."
+    "Whether the veterinary authorities of Namibia and South Africa accept an industry proposal for supervised movement of animals from unaffected areas to abattoirs; on 26 October Namibian officials could not say when bio-secure transit routes might be approved."
   ]
 }

@@ -1,27 +1,7 @@
 {
-  "last_checked": "2026-10-26",
+  "last_checked": "2026-10-27",
   "note": "Curated daily by the scheduled ingest. Items are media and public reporting, not programme data. Figures quoted here do not feed the dashboard headlines unless they are also ingested into master_data.csv from a programme source.",
   "items": [
-    {
-      "date": "2026-09-24",
-      "headline": "Department says 19 million of 21 million doses secured this year have been distributed.",
-      "source": "EWN",
-      "url": "https://www.ewn.co.za/2026/09/24/agriculture-minister-says-private-sector-manufacturing-fmd-vaccines-will-strengthen-outbreak-response",
-      "summary": "Reporting on the private sector licensing of the ARC vaccine, the Department of Agriculture put doses secured this year at 21 million, with 19 million distributed. This adds a fourth national supply figure alongside the 16 million and 17 million procured held in our master and the 23 million imported cited by the Minister, and is well above the 11.8 million received by provinces in the 14 September Ministry table. Not ingested pending a primary Department statement.",
-      "category": "vaccination",
-      "province": "national",
-      "added": "2026-09-29"
-    },
-    {
-      "date": "2026-09-25",
-      "headline": "Minister sets a target of 80 percent of the national herd vaccinated by December.",
-      "source": "Business Day",
-      "url": "https://www.businessday.co.za/news/2026-09-25-aucamp-urges-quicker-rollout-of-agriculture-master-plan/",
-      "summary": "Speaking on the agriculture master plan, Minister Willie Aucamp repeated that more than 23 million doses had been imported by early September and said vaccines now move directly from airports to veterinary practices. The 80 percent target compares with the 63 percent coverage in the Ministry's 14 September Portfolio Committee table, and the 23 million import figure still conflicts with the 16 million procured held in our master.",
-      "category": "policy",
-      "province": "national",
-      "added": "2026-09-28"
-    },
     {
       "date": "2026-09-26",
       "headline": "Namibia confirms 17 foot and mouth cases in the Karasburg district.",
@@ -601,6 +581,26 @@
       "category": "policy",
       "province": "national",
       "added": "2026-10-26"
+    },
+    {
+      "date": "2026-10-26",
+      "headline": "Namibia declares the whole ||Kharas region a foot and mouth disease control area as farmers warn of job losses.",
+      "source": "The Namibian (via allAfrica)",
+      "url": "https://allafrica.com/stories/202610270104.html",
+      "summary": "At an information session in Keetmanshoop, veterinary officials said all movement of live cloven-hoofed animals into, out of and within ||Kharas is suspended, and that the region will be split into smaller containment zones using game fences. Farmers and the Namibia Agricultural Union are asking for supervised movement from unaffected farms and bio-secure transit routes; officials could not say when these might be approved.",
+      "category": "policy",
+      "province": "national",
+      "added": "2026-10-27"
+    },
+    {
+      "date": "2026-10-26",
+      "headline": "A Namibian legal analysis sets out the trade and compliance implications of the outbreak for farmers.",
+      "source": "The Namibian",
+      "url": "https://www.namibian.com.na/the-legal-trade-and-compliance-implications-of-namibias-fmd-outbreak/",
+      "summary": "A Cliffe Dekker Hofmeyr partner notes that exports to South Africa, the European Union, China and the United States have stopped, and that government estimates N$190.2 million for containment, including about N$47 million for 290 kilometres of control fencing. He urges farmers to report suspected cases, keep traceability records and document their losses. This is an opinion piece; our Namibia headline figures use the N$179 million in the mid-year budget.",
+      "category": "analysis",
+      "province": "national",
+      "added": "2026-10-27"
     }
   ]
 }
