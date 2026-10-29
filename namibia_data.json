@@ -1,7 +1,7 @@
 {
-  "last_updated": "2026-10-27",
+  "last_updated": "2026-10-29",
   "note": "Regional context compiled from Namibian Government statements as reported in the media, the European Union delegation in Namibia and South African and Namibian media. These figures are not South African programme data and never feed the headline figures on the other tabs. Where reports differ, we show each figure with its source.",
-  "summary": "On 23 September 2026 Namibia confirmed foot and mouth disease on a commercial farm in the Karasburg state veterinary district of the ||Kharas region, inside its WOAH-recognised zone free without vaccination and its first outbreak in that zone in about 60 years. By 14 October the SAT1 outbreak had reached 18 farms, with 131 animals positive out of 63,011 inspected (unchanged on 20 October, when the chief veterinary officer confirmed it remained confined to the Karasburg district), and compulsory vaccination in three rounds over three months began that day. A second outbreak was confirmed on Kalala Island in the Zambezi region in early October; officials say it has no epidemiological link to ||Kharas, and 42,286 cattle there had been vaccinated by 21 October, when 1,296 cattle on 25 Karasburg farms had also been vaccinated. Namibia has suspended exports of cloven-hoofed animals and their raw products, the European Union and the United States have restricted imports, and live exports of weaners and slaughter sheep to South Africa have stopped. Roadblocks around Karasburg could stay until 23 December, and industry bodies on both sides are setting out positions on the protocols that would let trade with South Africa resume. Namibia's mid-year budget proposes N$179 million for containment, and our feedlot association has said it will not support cattle and beef imports from Namibia and Botswana for now. On 26 October officials confirmed the whole ||Kharas region is a control area, to be split into smaller containment zones, while farmers there warn of job losses.",
+  "summary": "On 23 September 2026 Namibia confirmed foot and mouth disease on a commercial farm in the Karasburg state veterinary district of the ||Kharas region, inside its WOAH-recognised zone free without vaccination and its first outbreak in that zone in about 60 years. By 14 October the SAT1 outbreak had reached 18 farms, with 131 animals positive out of 63,011 inspected (unchanged on 20 October, when the chief veterinary officer confirmed it remained confined to the Karasburg district), and compulsory vaccination in three rounds over three months began that day. A second outbreak was confirmed on Kalala Island in the Zambezi region in early October; officials say it has no epidemiological link to ||Kharas, and 42,286 cattle there had been vaccinated by 21 October, when 1,296 cattle on 25 Karasburg farms had also been vaccinated. Namibia has suspended exports of cloven-hoofed animals and their raw products, the European Union and the United States have restricted imports, and live exports of weaners and slaughter sheep to South Africa have stopped. Roadblocks around Karasburg could stay until 23 December, and industry bodies on both sides are setting out positions on the protocols that would let trade with South Africa resume. Namibia's mid-year budget proposes N$179 million for containment, and our feedlot association has said it will not support cattle and beef imports from Namibia and Botswana for now. On 26 October officials confirmed the whole ||Kharas region is a control area, to be split into smaller containment zones, while farmers there warn of job losses. By 27 October more than 50,000 cattle had been vaccinated in Zambezi, where more than 1,300 cattle are reported affected, and Meatco ran a two-day slaughter of its own feedlot cattle for the domestic market only.",
   "kpis": [
     {
       "label": "Farms confirmed infected, ||Kharas",
@@ -33,10 +33,10 @@
     },
     {
       "label": "Cattle vaccinated, Zambezi",
-      "value": "42,286",
-      "sub": "At 34 crush pens in the affected and surrounding areas, as at 21 October 2026. Up from 10,864 on 13 October. No new cases outside the disease management area.",
-      "source": "Ministry of Agriculture weekly update (spokesperson Romeo Muyunda), reported by New Era, 22 October 2026",
-      "url": "https://neweralive.na/more-than-1-296-cattle-vaccinated-for-fmd"
+      "value": "More than 50,000",
+      "sub": "Over two weeks to build a buffer zone, reported 27 October 2026 during the minister's visit. Up from 42,286 at 34 crush pens on 21 October and 10,864 on 13 October. More than 1,300 cattle affected at 18 crush pens.",
+      "source": "Minister Inge Zaamwani's visit to Zambezi, reported by New Era, 27 October 2026",
+      "url": "https://neweralive.na/zaamwani-assesses-fmd-response-in-zambezi-region-more-than-50-000-cattle-vaccinated/"
     },
     {
       "label": "Beef exports at risk each year",
@@ -65,7 +65,7 @@
       "name": "Zambezi region, Kalala Island (Kabbe constituency)",
       "first_confirmed": "2026-10-06",
       "serotype": "Not yet reported",
-      "status": "12 positive samples; no new clinical cases by 13 October after six teams examined 6,226 cattle at 17 crush pens. 10,864 cattle vaccinated by 13 October (2,942 at Kalala, then 7,922 at 11 crush pens), rising to 42,286 at 34 crush pens by 21 October, with no new cases outside the disease management area. Roadblocks at Luhonono and Nakabolelwa are staffed jointly with the police. Five roadblocks from 14 October (Kongola, Selela, Luhonono, Bukalo, Nakabolelwa). Officials report no epidemiological link to ||Kharas. New Era dates confirmation to 6 October; earlier reports said 7 October. Auctions, movement and slaughter remain suspended, and The Namibian reports lost income for local meat sellers and households (18 October).",
+      "status": "12 positive samples; no new clinical cases by 13 October after six teams examined 6,226 cattle at 17 crush pens. 10,864 cattle vaccinated by 13 October (2,942 at Kalala, then 7,922 at 11 crush pens), rising to 42,286 at 34 crush pens by 21 October, with no new cases outside the disease management area. Roadblocks at Luhonono and Nakabolelwa are staffed jointly with the police. Five roadblocks from 14 October (Kongola, Selela, Luhonono, Bukalo, Nakabolelwa). Officials report no epidemiological link to ||Kharas. New Era dates confirmation to 6 October; earlier reports said 7 October. Auctions, movement and slaughter remain suspended, and The Namibian reports lost income for local meat sellers and households (18 October). By 27 October more than 50,000 cattle had been vaccinated over two weeks, and New Era reported more than 1,300 cattle affected at 18 crush pens, with infection spread across Kabbe South, Kabbe North, Katima Rural and Kongola, nearly three-quarters of the district. Checkpoint staff at Nakabolelwa and Luhonono reported staff and supply shortages (minister's visit, New Era, 27 October).",
       "border": "Namibia's north-eastern vaccination zone; does not border South Africa."
     }
   ],
@@ -141,6 +141,14 @@
       "detail": "Unchanged since 14 October, per the chief veterinary officer; movement controls in the Karasburg veterinary district to be tightened. Reported as cases.",
       "source": "New Era",
       "url": "https://neweralive.na/namibia-intensifies-fmd-surveillance-livestock-controls/"
+    },
+    {
+      "date": "2026-10-27",
+      "farms": "",
+      "positives": "More than 1,300 cattle affected",
+      "detail": "Zambezi region, not ||Kharas: more than 1,300 cattle affected at 18 crush pens, across four constituencies. Counted as cattle affected, not laboratory positives. No new ||Kharas count reported.",
+      "source": "New Era",
+      "url": "https://neweralive.na/zaamwani-assesses-fmd-response-in-zambezi-region-more-than-50-000-cattle-vaccinated/"
     }
   ],
   "timeline": [
@@ -299,6 +307,18 @@
       "event": "Veterinary officials in Keetmanshoop confirm the whole ||Kharas region is a control area, with all movement of live cloven-hoofed animals into, out of and within it suspended; the region is to be split into smaller containment zones using game fences. Farmers warn of job losses and ask for supervised movement from unaffected farms.",
       "source": "The Namibian (via allAfrica)",
       "url": "https://allafrica.com/stories/202610270104.html"
+    },
+    {
+      "date": "2026-10-27",
+      "event": "Agriculture Minister Inge Zaamwani visits the Zambezi region; more than 50,000 cattle have been vaccinated there over two weeks and more than 1,300 cattle are reported affected at 18 crush pens.",
+      "source": "New Era",
+      "url": "https://neweralive.na/zaamwani-assesses-fmd-response-in-zambezi-region-more-than-50-000-cattle-vaccinated/"
+    },
+    {
+      "date": "2026-10-27",
+      "event": "Meatco begins a two-day temporary slaughter (27 and 28 October) of cattle already in its feedlots, with all beef for the domestic market; normal slaughter has been suspended since 23 September.",
+      "source": "New Era",
+      "url": "https://neweralive.na/meatco-starts-two-day-temporary-slaughter-operation-beef-strictly-for-domestic-market/"
     }
   ],
   "trade": [
@@ -365,6 +385,12 @@
       "detail": "RMIS wants separate protocols for sheep and cattle. Imported sheep must be free of FMD risk, and cattle would need to come from below the ||Kharas red zone, be vaccinated and spend at least two weeks in a feedlot, meeting the same standards as our own herds. RMIS also asks for reciprocity on South African genetic material. Final protocols rest with the two veterinary authorities. Between 80 and 90 percent of Namibian sheep are destined for our market. On 20 October the South African Feedlot Association said it will not support imports of live cattle and beef from Namibia and Botswana while the disease remains a concern, despite a local calf shortage, and will review this later.",
       "source": "Food For Mzansi, 20 October 2026; The Namibian, 21 October 2026",
       "url": "https://www.foodformzansi.co.za/sa-and-namibia-reevaluate-livestock-trade-after-fmd-outbreak/"
+    },
+    {
+      "topic": "Livestock flows to South Africa",
+      "detail": "Namibia's Livestock and Livestock Products Board reports that, before the outbreak halted movements, South Africa took 46.9 percent of Namibian lamb and mutton exports by volume this year and 78,746 live goats went to our feedlots. South Africa also supplied 30.9 percent of Namibia's pork imports. The board expects a weaker final quarter.",
+      "source": "New Era, 27 October 2026",
+      "url": "https://neweralive.na/livestock-sector-records-growth-despite-fmd-disruptions/"
     }
   ],
   "open_questions": [

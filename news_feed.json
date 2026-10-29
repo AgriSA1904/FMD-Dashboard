@@ -1,37 +1,7 @@
 {
-  "last_checked": "2026-10-27",
+  "last_checked": "2026-10-29",
   "note": "Curated daily by the scheduled ingest. Items are media and public reporting, not programme data. Figures quoted here do not feed the dashboard headlines unless they are also ingested into master_data.csv from a programme source.",
   "items": [
-    {
-      "date": "2026-09-26",
-      "headline": "Namibia confirms 17 foot and mouth cases in the Karasburg district.",
-      "source": "Republikein",
-      "url": "https://www.republikein.com.na/landbou/bek-en-klouseer-17-bevestigde-gevalle-by-karasburg-nmh018827-5-23127-23129-23133",
-      "summary": "Enhanced surveillance found 17 positive animals out of 199 samples, all still confined to the Karasburg state veterinary district in the ||Kharas region, which borders our Northern Cape. Four cattle moved from the affected farm to Otjozondjupa tested negative. This is regional context only and does not change any South African figure in our master.",
-      "category": "cases",
-      "province": "national",
-      "added": "2026-09-28"
-    },
-    {
-      "date": "2026-09-28",
-      "headline": "Free State confirms a new case at Fauresmith, provincial total reaches 799.",
-      "source": "Farmer's Weekly",
-      "url": "https://www.farmersweekly.co.za/agri-news/south-africa/free-state-reports-new-fmd-case-despite-16-million-cattle-vaccinated/",
-      "summary": "The province reports 799 cases, of which 644 are resolved and 155 remain active under quarantine, with 1,664,385 cattle vaccinated and 128 farmer notifications to self-vaccinate. The case count moves past the 796 and 798 figures held in our master, while the vaccinated figure is lower than the 1,671,316 in the 18 September provincial pack. These are media figures and have not been ingested; we are waiting for the next Free State pack.",
-      "category": "cases",
-      "province": "FS",
-      "added": "2026-09-29"
-    },
-    {
-      "date": "2026-09-28",
-      "headline": "Namibia eases movement restrictions outside the ||Kharas region.",
-      "source": "New Era",
-      "url": "https://neweralive.na/govt-eases-fmd-restrictions/",
-      "summary": "Surveillance from 22 to 25 September found all 17 positive samples in the Karasburg district, so Namibia has lifted movement restrictions south of its veterinary cordon fence except in the ||Kharas region, which borders our Northern Cape and stays under lockdown. Regional context only; no South African figure is affected.",
-      "category": "trade",
-      "province": "national",
-      "added": "2026-09-29"
-    },
     {
       "date": "2026-09-29",
       "headline": "Red Meat Producers Organisation expects no further state vaccine and urges producers to run their own programmes.",
@@ -41,16 +11,6 @@
       "category": "vaccination",
       "province": "national",
       "added": "2026-10-01"
-    },
-    {
-      "date": "2026-09-29",
-      "headline": "Farmers and decision-makers to meet at Nampo Alfa on the road to recovery from foot and mouth disease.",
-      "source": "African Farming",
-      "url": "https://www.africanfarming.com/2026/09/29/fmd-farmers-have-say-decision-makers-listen-nampo-alfa-road-to-recovery/",
-      "summary": "A structured discussion on recovery from foot and mouth disease takes place at Nampo Park on Friday 2 October, with morning presentations on red meat strategy and the impact on the food system and farmer-led sessions in the afternoon. AgriSA, provincial affiliates, commodity bodies including the RPO, MPO, SAPPO and RMIS, organised agriculture groups, feedlots and processors are confirmed to attend. The discussion will be recorded and shared with all invited organisations. No programme figures, nothing to ingest.",
-      "category": "other",
-      "province": "national",
-      "added": "2026-09-30"
     },
     {
       "date": "2026-09-30",
@@ -601,6 +561,46 @@
       "category": "analysis",
       "province": "national",
       "added": "2026-10-27"
+    },
+    {
+      "date": "2026-10-27",
+      "headline": "Namibia vaccinates more than 50,000 cattle in Zambezi as the minister visits the outbreak area.",
+      "source": "New Era",
+      "url": "https://neweralive.na/zaamwani-assesses-fmd-response-in-zambezi-region-more-than-50-000-cattle-vaccinated/",
+      "summary": "Agriculture Minister Inge Zaamwani visited the Zambezi region, where more than 50,000 cattle were vaccinated over two weeks to build a buffer zone. New Era reports more than 1,300 cattle affected at 18 crush pens across Kabbe South, Kabbe North, Katima Rural and Kongola, and checkpoint staff raised shortages of staff and supplies. Regional context only; it does not change any South African figure.",
+      "category": "vaccination",
+      "province": "national",
+      "added": "2026-10-29"
+    },
+    {
+      "date": "2026-10-27",
+      "headline": "Meatco runs a two-day slaughter of its own feedlot cattle for the Namibian domestic market only.",
+      "source": "New Era",
+      "url": "https://neweralive.na/meatco-starts-two-day-temporary-slaughter-operation-beef-strictly-for-domestic-market/",
+      "summary": "Meatco slaughtered cattle already in its feedlots on 27 and 28 October under the veterinary standard operating procedure, with all beef sold locally at prices well below export levels. Normal slaughter has been suspended since 23 September, and any wider restart depends on further veterinary directives. Export markets remain closed.",
+      "category": "trade",
+      "province": "national",
+      "added": "2026-10-29"
+    },
+    {
+      "date": "2026-10-27",
+      "headline": "Namibia's livestock board expects a weaker final quarter after the outbreak disrupted September marketing.",
+      "source": "New Era",
+      "url": "https://neweralive.na/livestock-sector-records-growth-despite-fmd-disruptions/",
+      "summary": "The Livestock and Livestock Products Board reports year-to-date cattle marketing up 30.9 percent to 217,007 head, but September marketing fell 27.2 percent as movement controls took hold. South Africa took 46.9 percent of Namibia's lamb and mutton exports and 78,746 live goats went to our feedlots, flows now halted. Some pork figures in the article are internally inconsistent.",
+      "category": "analysis",
+      "province": "national",
+      "added": "2026-10-29"
+    },
+    {
+      "date": "2026-10-29",
+      "headline": "Our first joint quarterly trade report with Agbiz shows a US$2.14 billion agricultural trade surplus as foot and mouth disease keeps key red meat markets closed.",
+      "source": "African Insider",
+      "url": "https://www.africaninsider.com/business/worlds-biggest-economy-loses-ground-as-sa-agriculture-banks-2-14bn/",
+      "summary": "The AgriSA and Agbiz quarterly agricultural trade report puts second-quarter 2026 exports at US$4.12 billion and the surplus at US$2.14 billion, with livestock exports up 27.9 percent on the first quarter as the red meat industry works around closed markets. Our chief executive Johann Kotzé named foot and mouth disease, port and rail performance and phytosanitary access as the constraints within our control. This is trade context, not programme data.",
+      "category": "trade",
+      "province": "national",
+      "added": "2026-10-29"
     }
   ]
 }
