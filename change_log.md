@@ -7506,3 +7506,69 @@ Rebuilt via importlib, validation passed (2,022,857 bytes). Snapshot 29 October,
 - Provincial packs outstanding for KZN, NW, NC and GP; NW nothing since 14 September; LP PCM met 26 Oct, watch for minutes and a later deck; EC JOC next about 5 Nov (fortnightly); MPO Week 54 due about 2 Nov.
 - Watch for the outcome of the 21 Oct FMD engagement and the 27 Oct Joint Working Group meeting (draft Risk Assessment Plan).
 - Ask an Owner to add gis.westerncape.gov.za to the network allowlist so the shell can pull it directly.
+
+### Publishing
+
+Commit a629ce6 on main (local HEAD equals origin/main). "Build and Deploy FMD Dashboard" and "pages build and deployment" both concluded success. This line was added after the push and will go out with the next commit.
+
+
+## Session 105. 30 October 2026. Scheduled update, Western Cape GIS, news scan and publish.
+
+Scheduled 08:00 run. Session 104 ran on 29 October; nothing logged yet today.
+
+### Sources processed
+
+| Source | Result |
+|---|---|
+| Inbox | No files newer than session 104 in `inbox/` or its subfolders, and no new dated folder in the root. |
+| Mailbox (last 7 days) | No new provincial JOC, MPO, RMIS, SAPPO, ICC, Ministry or Portfolio Committee FMD submissions since session 104. The only FMD hits (Agbiz joint statement and RMIS colloquium invitations, 28 Oct) were already reviewed in session 104. No attachments outstanding. |
+| Western Cape GIS | Device shell blocked (curl exit 56). Pulled through the built-in browser with ArcGIS REST statistics queries. Raw aggregates `archive/2026-10-30/wc_gis_pull_20261030.json`. Ingested, 8 rows. |
+| Web | Searches on national, provincial, trade, industry, Afrikaans, international, Namibian and economic news for 23 to 30 October. |
+
+Scripts `archive/2026-10-30/ingest_session105.py` (backs up the master to `master_data.csv.bak_session105`) and `archive/2026-10-30/update_curated_session105.py`. Prepared 8, new 8, duplicates 0. Master now 4,261 rows.
+
+### Western Cape GIS (as at 30 October 2026), 8 rows
+
+| Metric | Value | Change |
+|---|---|---|
+| positive_cases | 52 | Unchanged total. |
+| outbreaks_open / outbreaks_closed | 20 / 32 | Two establishments resolved. |
+| suspected_cases | 7 | Up 1; 9 Data Issue records excluded. |
+| animals_vaccinated and doses_administered | 600,033 | Up 1,768. 3,411 records, latest vaccination 29 Oct. Dose-count basis. |
+| primary_vaccinations | 409,885 | Down 503 (beef up 88, dairy down 591). |
+| booster_vaccinations | 190,148 | Up 2,271 (beef 903, dairy 1,368). |
+
+Arithmetic asserted (primary plus booster equals total; species splits sum; active plus resolved equals 52).
+
+### Conflicts and flags
+
+- WC primary vaccinations fell by 503 between pulls. Dairy primary fell 591 while only 4 new primary records appeared, so existing portal records appear to have been edited or reclassified from primary to booster. Both pulls held; worth confirming with the Western Cape Department of Agriculture.
+- WC dairy boosters: portal 140,487 (30 Oct) against MPO Week 53 136,045 (23 Oct). Both held.
+- MPO per-province active map still byte-identical to Week 48 (open query with the MPO).
+- LP vet channel panel display quirk from session 102 not yet fixed.
+
+### News items added (1)
+
+- New Era, 29 Oct: Namibia reports no new cases in ||Kharas or Zambezi; more than 61,000 cattle vaccinated (7,402 on 81 farms in ||Kharas, 53,913 at 37 crush pens in Zambezi).
+
+No new South African primary Ministry or Department statement was found in the window, so no policy rows or events. Afrikaans searches found nothing new. Older items surfaced again (SABC Free State 687 cases, The Namibian 6 Oct on the EU suspension, Nature World News 29 Oct repeating Addo figures, Namibian Sun 28 Oct paywalled duplicate of the New Era report) were not added. Still no Treasury document found for the R183 million rollover or the R606 million total.
+
+### Curated files
+
+- `news_feed.json`: 1 item, last_checked 30 Oct, 60 items (backup `.bak_session105`).
+- `namibia_data.json`: ||Kharas vaccinated 7,402 (81 farms) and Zambezi 53,913 (37 crush pens) as at 28 Oct; ||Kharas farm and case cards re-sourced to 28 Oct (unchanged); region statuses; progression row for 28 Oct; timeline event; Zambezi serotype open question reworded (a media report mentions O and SAT, not officially confirmed); summary; last_updated (backup `.bak_session105`).
+- `supply_pipeline.json`: reviewed, no new primary consignment information; last_reviewed set to 30 Oct (backup `.bak_session105`).
+- `sa_economic.json` and `policy_events.json`: no newer primary figures or events; unchanged.
+
+### Dashboard
+
+Rebuilt via importlib, validation passed (2,024,511 bytes). Snapshot 30 October, 101 weekly points. Checked in the payload: WC figures 600,033, 409,885 and 190,148; national positive 2,876, suspected 830, administered 10,030,116 (up 1,768); news last_checked 30 Oct with the New Era item; Namibia last_updated 30 Oct with 7,402 and 53,913.
+
+### Action items
+
+- Fix the vet channel panel in `build_provincial_detail` (session 102 flag).
+- Find the Treasury AENE 2026 entry for the R183 million (and the R606 million total) and update the state spending box if confirmed.
+- Provincial packs outstanding for KZN, NW, NC and GP; NW nothing since 14 September; LP PCM minutes of 26 Oct; EC JOC next about 5 Nov; MPO Week 54 due about 2 Nov.
+- Watch for the outcome of the 21 Oct FMD engagement and the 27 Oct Joint Working Group meeting (draft Risk Assessment Plan).
+- Ask the Western Cape Department of Agriculture about the primary to booster reclassification on the portal.
+- Ask an Owner to add gis.westerncape.gov.za to the network allowlist so the shell can pull it directly.
