@@ -7572,3 +7572,72 @@ Rebuilt via importlib, validation passed (2,024,511 bytes). Snapshot 30 October,
 - Watch for the outcome of the 21 Oct FMD engagement and the 27 Oct Joint Working Group meeting (draft Risk Assessment Plan).
 - Ask the Western Cape Department of Agriculture about the primary to booster reclassification on the portal.
 - Ask an Owner to add gis.westerncape.gov.za to the network allowlist so the shell can pull it directly.
+
+### Publishing
+
+Commit 81590a8 on main (local HEAD equals origin/main). "Build and Deploy FMD Dashboard" and "pages build and deployment" both concluded success. This line was added after the push and will go out with the next commit.
+
+
+## Session 106. 2 November 2026. Scheduled update, Western Cape GIS, news scan and publish.
+
+Scheduled 08:00 run (started 08:25). Session 105 ran on 30 October; no sessions ran on 31 October or 1 November, and nothing is logged yet today.
+
+### Sources processed
+
+| Source | Result |
+|---|---|
+| Inbox | No files newer than session 105 in `inbox/` or its subfolders, and no new dated folder in the root. `ingest_log.txt` was written at 08:07 today by the old Windows `ingest.py` task (known broken; it did not change the master). |
+| Mailbox (last 7 days) | No new provincial JOC, MPO, RMIS, SAPPO, ICC, Ministry or Portfolio Committee FMD submissions since session 105. Searches for FMD, foot and mouth, vaccination, MPO and bek-en-klouseer found only the Free State Agriculture CEO strategy session reports (30 Oct; not FMD programme data). No attachments outstanding. |
+| Western Cape GIS | Device shell blocked (curl exit 56, HTTP 403 from proxy). Pulled through the built-in browser with ArcGIS REST statistics queries. Raw aggregates `archive/2026-11-02/wc_gis_pull_20261102.json`. Ingested, 8 rows. |
+| Department technical reports | Checked the public nda.gov.za FMD report folder: the 30 September report (already held) is still the latest. |
+| Web | Searches on national, provincial, trade, industry, Afrikaans, international, Namibian and economic news for 26 October to 2 November. |
+
+Scripts `archive/2026-11-02/ingest_session106.py` (backs up the master to `master_data.csv.bak_session106`) and `archive/2026-11-02/update_curated_session106.py`. Prepared 8, new 8, duplicates 0. Master now 4,269 rows.
+
+### Western Cape GIS (as at 2 November 2026), 8 rows
+
+| Metric | Value | Change |
+|---|---|---|
+| positive_cases | 52 | Unchanged total. |
+| outbreaks_open / outbreaks_closed | 15 / 37 | Five establishments resolved. |
+| suspected_cases | 7 | Unchanged; 9 Data Issue records excluded. |
+| animals_vaccinated and doses_administered | 603,814 | Up 3,781. 3,422 records (11 new), latest vaccination date still 29 Oct. Dose-count basis. |
+| primary_vaccinations | 410,845 | Up 960 (all beef; dairy unchanged at 241,146). |
+| booster_vaccinations | 192,969 | Up 2,821 (beef 384, dairy 2,437). |
+
+Arithmetic asserted (primary plus booster equals total; species splits sum; active plus resolved equals 52).
+
+### Conflicts and flags
+
+- WC: the 11 new vaccination records carry dates no later than 29 Oct, so they were captured late. The 30 Oct dairy primary fall (591) has not reversed.
+- WC dairy boosters: portal 142,924 (2 Nov) against MPO Week 53 136,045 (23 Oct). Both held.
+- MPO per-province active map still byte-identical to Week 48 (open query with the MPO).
+- LP vet channel panel display quirk from session 102 not yet fixed.
+
+### News items added (1)
+
+- The Namibian, 31 Oct: Savanna Beef Processors halts with about 240 jobs at risk; limited slaughter may resume towards the end of November; the Beef Value Chain Forum approves N$500,000 for an international expert.
+
+Not added: The Namibian, 30 Oct (repeats the New Era figures of 29 Oct: 53,913 cattle vaccinated in Zambezi, outbreak confined to Kalala Island; used as a source in the Namibia timeline); Observer24 on the EU assessment and the N$1.5 million support fund (no publication date shown); a Maroela Media item on lifted restrictions in the Eastern Cape and Limpopo (could not be opened or dated, likely from an earlier outbreak); older Republikein market item (28 April). No new South African primary Ministry or Department statement was found, so no policy rows or events. No new Treasury, Department or BFAP economic figures.
+
+### Curated files
+
+- `news_feed.json`: 1 item, last_checked 2 Nov, 60 items (backup `.bak_session106`).
+- `namibia_data.json`: Savanna Beef detail added to the domestic trade row; timeline event for 31 Oct; summary; last_updated (backup `.bak_session106`).
+- `supply_pipeline.json`: reviewed, no new primary consignment information; last_reviewed set to 2 Nov (backup `.bak_session106`).
+- `sa_economic.json` and `policy_events.json`: no newer primary figures or events; unchanged.
+
+### Dashboard
+
+Rebuilt via importlib, validation passed (2,025,890 bytes). Snapshot 2 November, 102 weekly points. Checked in the payload: WC figures 603,814, 410,845 and 192,969; national positive 2,876, suspected 830, administered 10,033,897 (up 3,781); news last_checked 2 Nov with the Savanna Beef item; Namibia last_updated 2 Nov.
+
+### Action items
+
+- Fix the vet channel panel in `build_provincial_detail` (session 102 flag).
+- Find the Treasury AENE 2026 entry for the R183 million (and the R606 million total) and update the state spending box if confirmed.
+- Watch for the Department's 31 October FMD technical report on nda.gov.za and ingest the WOAH outbreak counts when it appears.
+- Provincial packs outstanding for KZN, NW, NC and GP; NW nothing since 14 September; LP PCM minutes of 26 Oct; EC JOC next about 5 Nov; MPO Week 54 due about 2 Nov.
+- Watch for the outcome of the 21 Oct FMD engagement and the 27 Oct Joint Working Group meeting (draft Risk Assessment Plan).
+- Ask the Western Cape Department of Agriculture about the primary to booster reclassification and late capture on the portal.
+- Ask an Owner to add gis.westerncape.gov.za to the network allowlist so the shell can pull it directly.
+- Disable the old Windows `ingest.py` scheduled task (still running daily).

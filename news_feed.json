@@ -1,7 +1,17 @@
 {
-  "last_checked": "2026-10-30",
+  "last_checked": "2026-11-02",
   "note": "Curated daily by the scheduled ingest. Items are media and public reporting, not programme data. Figures quoted here do not feed the dashboard headlines unless they are also ingested into master_data.csv from a programme source.",
   "items": [
+    {
+      "date": "2026-10-31",
+      "headline": "About 240 jobs at Namibia's Savanna Beef export abattoir are at risk after the outbreak halted operations.",
+      "source": "The Namibian",
+      "url": "https://www.namibian.com.na/fmd-shutdown-puts-240-savanna-beef-jobs-at-risk/",
+      "summary": "Savanna Beef Processors stopped slaughtering after foot and mouth disease was found in Namibia's free zone on 23 September; before the outbreak it had reached 250 head a day and exported about 100 containers of beef to the United Kingdom, the European Union and Norway. Management hopes limited slaughtering may resume towards the end of November. The Beef Value Chain Forum has approved N$500,000 for an international expert to help Namibia regain its veterinary status.",
+      "category": "trade",
+      "province": "national",
+      "added": "2026-11-02"
+    },
     {
       "date": "2026-10-29",
       "headline": "Namibia reports no new foot and mouth cases and more than 61,000 cattle vaccinated in both regions.",
@@ -591,16 +601,6 @@
       "category": "trade",
       "province": "national",
       "added": "2026-10-03"
-    },
-    {
-      "date": "2026-09-30",
-      "headline": "Namibian report says officials warned of unregistered livestock crossing from South Africa before the outbreak.",
-      "source": "The Namibian (via allAfrica)",
-      "url": "https://allafrica.com/stories/202610010092.html",
-      "summary": "The Namibian reports that veterinary officials had warned months earlier about unregistered livestock crossing the border from South Africa, while procurement of a cordon fence along the ||Kharas border was delayed from June. Namibia's chief veterinary officer recorded 63 animals with symptoms and 10 of 11 tested animals positive. The report adds context to the Karasburg items already in this feed and carries no South African programme figures.",
-      "category": "trade",
-      "province": "NC",
-      "added": "2026-10-01"
     }
   ]
 }

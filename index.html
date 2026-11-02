@@ -1168,8 +1168,8 @@
 
 <script>
 const DASHBOARD_DATA = {
-  "snapshot_date": "2026-10-30",
-  "build_date": "2026-10-30",
+  "snapshot_date": "2026-11-02",
+  "build_date": "2026-11-02",
   "provinces": [
     {
       "code": "EC",
@@ -1318,17 +1318,17 @@ const DASHBOARD_DATA = {
     {
       "code": "WC",
       "name": "Western Cape",
-      "as_of": "2026-10-30",
+      "as_of": "2026-11-02",
       "herd": 501875,
       "positive": 52,
       "suspected": 7,
       "negative": 0,
       "pending": 0,
       "received": 647080,
-      "vaccinated": 600033,
-      "dose1": 409885,
-      "dose2": 190148,
-      "dose2_asof": "2026-10-30",
+      "vaccinated": 603814,
+      "dose1": 410845,
+      "dose2": 192969,
+      "dose2_asof": "2026-11-02",
       "dose2_source": "WC-GIS",
       "dose1_derived": false,
       "dose2_partial": false
@@ -2142,6 +2142,14 @@ const DASHBOARD_DATA = {
       "positive": 2876,
       "suspected": 830,
       "pending": null
+    },
+    {
+      "date": "2026-11-02",
+      "received": 12596130,
+      "administered": 10033897,
+      "positive": 2876,
+      "suspected": 830,
+      "pending": null
     }
   ],
   "sources": {
@@ -2159,15 +2167,15 @@ const DASHBOARD_DATA = {
     "procured": 16000000,
     "distributed": 12596130,
     "received": 12596130,
-    "administered": 10030116,
+    "administered": 10033897,
     "herd_cattle": 15450142,
-    "balance": 2566014,
-    "dose2": 910240,
-    "dose1": 9119876,
+    "balance": 2562233,
+    "dose2": 913061,
+    "dose1": 9120836,
     "dose_split_note": "Dose 2 is the sum of the latest booster figures per province; several provinces report boosters for the dairy programme only, so dose 2 is a minimum and dose 1 a derived maximum.",
     "delta_received": 0,
     "delta_distributed": 0,
-    "delta_administered": 1768,
+    "delta_administered": 3781,
     "delta_positive": 0
   },
   "mpo": {
@@ -3733,11 +3741,11 @@ const DASHBOARD_DATA = {
     {
       "code": "WC",
       "name": "Western Cape",
-      "joc": 600033,
-      "joc_date": "2026-10-30",
+      "joc": 603814,
+      "joc_date": "2026-11-02",
       "ministerial": 265379,
       "ministerial_date": "2026-06-04",
-      "diff": 334654,
+      "diff": 338435,
       "flag": null
     }
   ],
@@ -6175,7 +6183,7 @@ const DASHBOARD_DATA = {
     },
     "WC": {
       "name": "Western Cape",
-      "latest_date": "2026-10-30",
+      "latest_date": "2026-11-02",
       "vaccine_types": [
         {
           "type": "dolvet",
@@ -6215,13 +6223,13 @@ const DASHBOARD_DATA = {
       "extra": {
         "primary_vaccinations": {
           "label": "Primary vaccinations",
-          "value": 409885,
-          "date": "2026-10-30"
+          "value": 410845,
+          "date": "2026-11-02"
         },
         "booster_vaccinations": {
           "label": "Booster vaccinations",
-          "value": 190148,
-          "date": "2026-10-30"
+          "value": 192969,
+          "date": "2026-11-02"
         },
         "vaccination_sites": {
           "label": "Vaccination sites",
@@ -6374,9 +6382,19 @@ const DASHBOARD_DATA = {
     }
   },
   "news": {
-    "last_checked": "2026-10-30",
+    "last_checked": "2026-11-02",
     "note": "Curated daily by the scheduled ingest. Items are media and public reporting, not programme data. Figures quoted here do not feed the dashboard headlines unless they are also ingested into master_data.csv from a programme source.",
     "items": [
+      {
+        "date": "2026-10-31",
+        "headline": "About 240 jobs at Namibia's Savanna Beef export abattoir are at risk after the outbreak halted operations.",
+        "source": "The Namibian",
+        "url": "https://www.namibian.com.na/fmd-shutdown-puts-240-savanna-beef-jobs-at-risk/",
+        "summary": "Savanna Beef Processors stopped slaughtering after foot and mouth disease was found in Namibia's free zone on 23 September; before the outbreak it had reached 250 head a day and exported about 100 containers of beef to the United Kingdom, the European Union and Norway. Management hopes limited slaughtering may resume towards the end of November. The Beef Value Chain Forum has approved N$500,000 for an international expert to help Namibia regain its veterinary status.",
+        "category": "trade",
+        "province": "national",
+        "added": "2026-11-02"
+      },
       {
         "date": "2026-10-29",
         "headline": "Namibia reports no new foot and mouth cases and more than 61,000 cattle vaccinated in both regions.",
@@ -6966,16 +6984,6 @@ const DASHBOARD_DATA = {
         "category": "trade",
         "province": "national",
         "added": "2026-10-03"
-      },
-      {
-        "date": "2026-09-30",
-        "headline": "Namibian report says officials warned of unregistered livestock crossing from South Africa before the outbreak.",
-        "source": "The Namibian (via allAfrica)",
-        "url": "https://allafrica.com/stories/202610010092.html",
-        "summary": "The Namibian reports that veterinary officials had warned months earlier about unregistered livestock crossing the border from South Africa, while procurement of a cordon fence along the ||Kharas border was delayed from June. Namibia's chief veterinary officer recorded 63 animals with symptoms and 10 of 11 tested animals positive. The report adds context to the Karasburg items already in this feed and carries no South African programme figures.",
-        "category": "trade",
-        "province": "NC",
-        "added": "2026-10-01"
       }
     ]
   },
@@ -7010,9 +7018,9 @@ const DASHBOARD_DATA = {
     ]
   },
   "namibia": {
-    "last_updated": "2026-10-30",
+    "last_updated": "2026-11-02",
     "note": "Regional context compiled from Namibian Government statements as reported in the media, the European Union delegation in Namibia and South African and Namibian media. These figures are not South African programme data and never feed the headline figures on the other tabs. Where reports differ, we show each figure with its source.",
-    "summary": "On 23 September 2026 Namibia confirmed foot and mouth disease on a commercial farm in the Karasburg state veterinary district of the ||Kharas region, inside its WOAH-recognised zone free without vaccination and its first outbreak in that zone in about 60 years. By 14 October the SAT1 outbreak had reached 18 farms, with 131 animals positive out of 63,011 inspected (unchanged on 20 October, when the chief veterinary officer confirmed it remained confined to the Karasburg district), and compulsory vaccination in three rounds over three months began that day. A second outbreak was confirmed on Kalala Island in the Zambezi region in early October; officials say it has no epidemiological link to ||Kharas, and 42,286 cattle there had been vaccinated by 21 October, when 1,296 cattle on 25 Karasburg farms had also been vaccinated. Namibia has suspended exports of cloven-hoofed animals and their raw products, the European Union and the United States have restricted imports, and live exports of weaners and slaughter sheep to South Africa have stopped. Roadblocks around Karasburg could stay until 23 December, and industry bodies on both sides are setting out positions on the protocols that would let trade with South Africa resume. Namibia's mid-year budget proposes N$179 million for containment, and our feedlot association has said it will not support cattle and beef imports from Namibia and Botswana for now. On 26 October officials confirmed the whole ||Kharas region is a control area, to be split into smaller containment zones, while farmers there warn of job losses. By 27 October more than 50,000 cattle had been vaccinated in Zambezi, where more than 1,300 cattle are reported affected, and Meatco ran a two-day slaughter of its own feedlot cattle for the domestic market only. On 28 October the ministry reported no new cases in either region and more than 61,000 cattle vaccinated: 7,402 on 81 farms in ||Kharas and 53,913 in Zambezi.",
+    "summary": "On 23 September 2026 Namibia confirmed foot and mouth disease on a commercial farm in the Karasburg state veterinary district of the ||Kharas region, inside its WOAH-recognised zone free without vaccination and its first outbreak in that zone in about 60 years. By 14 October the SAT1 outbreak had reached 18 farms, with 131 animals positive out of 63,011 inspected (unchanged on 20 October, when the chief veterinary officer confirmed it remained confined to the Karasburg district), and compulsory vaccination in three rounds over three months began that day. A second outbreak was confirmed on Kalala Island in the Zambezi region in early October; officials say it has no epidemiological link to ||Kharas, and 42,286 cattle there had been vaccinated by 21 October, when 1,296 cattle on 25 Karasburg farms had also been vaccinated. Namibia has suspended exports of cloven-hoofed animals and their raw products, the European Union and the United States have restricted imports, and live exports of weaners and slaughter sheep to South Africa have stopped. Roadblocks around Karasburg could stay until 23 December, and industry bodies on both sides are setting out positions on the protocols that would let trade with South Africa resume. Namibia's mid-year budget proposes N$179 million for containment, and our feedlot association has said it will not support cattle and beef imports from Namibia and Botswana for now. On 26 October officials confirmed the whole ||Kharas region is a control area, to be split into smaller containment zones, while farmers there warn of job losses. By 27 October more than 50,000 cattle had been vaccinated in Zambezi, where more than 1,300 cattle are reported affected, and Meatco ran a two-day slaughter of its own feedlot cattle for the domestic market only. On 28 October the ministry reported no new cases in either region and more than 61,000 cattle vaccinated: 7,402 on 81 farms in ||Kharas and 53,913 in Zambezi. On 31 October the Savanna Beef export abattoir reported about 240 jobs at risk, and the Beef Value Chain Forum approved N$500,000 for an international expert to help restore Namibia's veterinary status.",
     "kpis": [
       {
         "label": "Farms confirmed infected, ||Kharas",
@@ -7344,6 +7352,12 @@ const DASHBOARD_DATA = {
         "event": "The ministry reports no new cases in either region; more than 61,000 cattle vaccinated (7,402 in ||Kharas, 53,913 in Zambezi). Eighteen roadblocks operate across ||Kharas, Hardap, Khomas and Otjozondjupa, and exports of animals from outside ||Kharas may proceed subject to destination requirements.",
         "source": "New Era",
         "url": "https://neweralive.na/no-new-fmd-cases/"
+      },
+      {
+        "date": "2026-10-31",
+        "event": "Savanna Beef Processors reports about 240 jobs at risk after halting operations; the Beef Value Chain Forum approves N$500,000 for an international expert to help restore Namibia's veterinary status. The ministry repeats on 30 October that no new cases have been found outside the disease management area in Zambezi.",
+        "source": "The Namibian",
+        "url": "https://www.namibian.com.na/fmd-shutdown-puts-240-savanna-beef-jobs-at-risk/"
       }
     ],
     "trade": [
@@ -7374,7 +7388,7 @@ const DASHBOARD_DATA = {
       {
         "market": "Domestic Namibia",
         "measure": "Export and local abattoir slaughter suspended in the affected areas; Meatco operations halted.",
-        "detail": "Butcheries in ||Kharas report putting staff on leave. Modelling cited by The Namibian suggests about 12,000 jobs could be lost in 2026 and 2027, and no exemption from the agricultural minimum wage is being considered.",
+        "detail": "Butcheries in ||Kharas report putting staff on leave. Modelling cited by The Namibian suggests about 12,000 jobs could be lost in 2026 and 2027, and no exemption from the agricultural minimum wage is being considered. Savanna Beef Processors, an export abattoir that had reached 250 head a day and shipped about 100 containers to the United Kingdom, the European Union and Norway, has halted operations with about 240 jobs at risk; limited slaughtering may resume towards the end of November (The Namibian, 31 October).",
         "date": "2026-10-05",
         "source": "The Brief; The Namibian",
         "url": "https://namibian.com.na/fmd-butcheries-scramble-to-keep-workers"
@@ -7520,6 +7534,7 @@ const DASHBOARD_DATA = {
     "WC GIS FMD Public FeatureServer (live ArcGIS REST API), pulled via browser 13 Oct 2026; raw aggregates archive/2026-10-13/wc_gis_pull_20261013.json",
     "WC GIS FMD Public FeatureServer (live ArcGIS REST API), pulled via browser 14 Oct 2026; raw aggregates archive/2026-10-14/wc_gis_pull_20261014.json",
     "WC GIS FMD Public FeatureServer (live ArcGIS REST API), pulled via browser 16 Oct 2026; raw aggregates archive/2026-10-16/wc_gis_pull_20261016.json",
+    "WC GIS FMD Public FeatureServer (live ArcGIS REST API), pulled via browser 2 Nov 2026; raw aggregates archive/2026-11-02/wc_gis_pull_20261102.json",
     "WC GIS FMD Public FeatureServer (live ArcGIS REST API), pulled via browser 20 Oct 2026; raw aggregates archive/2026-10-20/wc_gis_pull_20261020.json",
     "WC GIS FMD Public FeatureServer (live ArcGIS REST API), pulled via browser 21 Oct 2026; raw aggregates archive/2026-10-21/wc_gis_pull_20261021.json",
     "WC GIS FMD Public FeatureServer (live ArcGIS REST API), pulled via browser 22 Oct 2026; raw aggregates archive/2026-10-22/wc_gis_pull_20261022.json",
