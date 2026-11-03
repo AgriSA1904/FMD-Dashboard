@@ -1,7 +1,17 @@
 {
-  "last_checked": "2026-11-02",
+  "last_checked": "2026-11-03",
   "note": "Curated daily by the scheduled ingest. Items are media and public reporting, not programme data. Figures quoted here do not feed the dashboard headlines unless they are also ingested into master_data.csv from a programme source.",
   "items": [
+    {
+      "date": "2026-10-31",
+      "headline": "Meatco cuts cattle producer prices by about 20 percent from 1 November as export markets stay closed.",
+      "source": "The Brief",
+      "url": "https://thebrief.com.na/2026/10/meatco-cuts-cattle-producer-prices-by-20-amid-fmd-restrictions/",
+      "summary": "Namibia's Meat Corporation has lowered its cattle producer prices by about 20 percent for November, so farmers receive nearly N$15 less per kilogram; the average price for carcasses of 220 kilograms and above falls from N$75.08 to N$60.17 per kilogram. Meatco says its earlier prices were not sustainable while slaughter is limited to the lower-priced domestic market, and it is pursuing markets in Africa and the Middle East.",
+      "category": "trade",
+      "province": "national",
+      "added": "2026-11-03"
+    },
     {
       "date": "2026-10-31",
       "headline": "About 240 jobs at Namibia's Savanna Beef export abattoir are at risk after the outbreak halted operations.",
@@ -591,16 +601,6 @@
       "category": "other",
       "province": "national",
       "added": "2026-10-01"
-    },
-    {
-      "date": "2026-09-30",
-      "headline": "Namibia's Karasburg outbreak spreads to five farms as government warns against easing restrictions.",
-      "source": "Informanté",
-      "url": "https://informante.web.na/?p=401695",
-      "summary": "Namibia's Minister of Agriculture said affected farms in the Karasburg state veterinary district had risen from three to five, and cautioned against relaxing controls before the 14-day incubation period has passed. Animals traced to the Otjozondjupa region tested negative, and restrictions north of the veterinary cordon fence were partly lifted. This updates the 26 September report of 17 confirmed cases already in our feed.",
-      "category": "trade",
-      "province": "national",
-      "added": "2026-10-03"
     }
   ]
 }

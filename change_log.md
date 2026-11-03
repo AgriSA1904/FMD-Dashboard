@@ -7641,3 +7641,88 @@ Rebuilt via importlib, validation passed (2,025,890 bytes). Snapshot 2 November,
 - Ask the Western Cape Department of Agriculture about the primary to booster reclassification and late capture on the portal.
 - Ask an Owner to add gis.westerncape.gov.za to the network allowlist so the shell can pull it directly.
 - Disable the old Windows `ingest.py` scheduled task (still running daily).
+
+### Publishing
+
+Commit f22fe4a on main (local HEAD equals origin/main). "Build and Deploy FMD Dashboard" and "pages build and deployment" both concluded success. This line was added after the push and will go out with the next commit.
+
+
+## Session 107. 3 November 2026. Scheduled update, MPO Week 54, Western Cape GIS, news scan and publish.
+
+Scheduled 08:00 run (started about 08:00 South African time). Session 106 ran on 2 November; nothing logged yet today.
+
+### Sources processed
+
+| Source | Result |
+|---|---|
+| Inbox | One new file: `inbox/MPO/Week 54 - Update on the state of FMD and vaccine rollouts in the dairy industry.pdf` (3 pages, saved 2 Nov about 10:24, after session 106 had checked; snapshot 30 Oct). 32 rows. Embedded images extracted to `archive/2026-11-03/w54/`; the provincial map is byte-identical to Week 53 (MD5 match), the rest are logos. |
+| Mailbox (last 7 days) | No new provincial JOC, MPO, RMIS, SAPPO, ICC, Ministry or Portfolio Committee FMD submissions since session 106 (only the CEO Forum action register of 2 Nov, not FMD data). No attachments outstanding. |
+| Western Cape GIS | Device shell blocked (curl exit 56, HTTP 403 from proxy). Pulled through the built-in browser with ArcGIS REST statistics queries. Raw aggregates `archive/2026-11-03/wc_gis_pull_20261103.json`. Ingested, 9 rows (8 in the main script, the unchanged suspected row in a small addendum script so the WC card stays dated today). |
+| Department technical reports | The nda.gov.za outbreak page refuses our fetch tool (robots rule), so we could not check for an October technical report. |
+| Web | Searches on national, provincial, trade, industry, Afrikaans, international, Namibian and economic news for 27 October to 3 November. |
+
+Scripts `archive/2026-11-03/ingest_session107.py` (backs up the master to `master_data.csv.bak_session107`), `archive/2026-11-03/ingest_session107_suspected.py` and `archive/2026-11-03/update_curated_session107.py`. Prepared 41, new 41, duplicates 0. Master now 4,310 rows.
+
+### MPO Week 54 (snapshot 30 October 2026), 32 rows
+
+| Metric | Value | Change |
+|---|---|---|
+| dairy_cows_vaccinated (first round), national | 1,011,231 | Up 48,821 from 962,410; first time above one million. |
+| dairy_cows_vaccinated, GP | 63,970 | Up 49,138 from 14,832. The MPO only recently received these figures, which include non-MPO members, so this is mostly a reporting catch-up. |
+| dairy_cows_vaccinated, NC / WC | 274 / 241,911 | NC from 0; WC down 591, matching the 591 dairy primary fall on the WC portal on 30 Oct. |
+| booster_vaccinations, national | 763,629 | Up 20,403: WC +6,671 to 142,716, GP +10,130 to 23,850, LP 3,328 (first), NC 274 (first). |
+| North boosters (FS + GP + LP + NW + NC) | 47,442 | Only MP still reports no dairy boosters. |
+| dairy_farms_fmd_total / dairy_farms_active_fmd_prov | 175 / 128 | Unchanged; per-province map unchanged since Week 48. |
+| dairy_doses_idtrax_cumulative, KZN / EC / national | 129,420 / 29,040 / 158,460 | KZN up 12,000 (matches the text); EC down 180. |
+
+Arithmetic asserted: first-round and booster provinces sum to the national totals; the weekly changes reconcile by province; north boosters sum to 47,442; IDtrax provinces sum to 158,460; per-province active farms sum to 128.
+
+### Western Cape GIS (as at 3 November 2026), 9 rows
+
+| Metric | Value | Change |
+|---|---|---|
+| positive_cases | 52 | Unchanged total. |
+| outbreaks_open / outbreaks_closed | 14 / 38 | One establishment resolved. |
+| suspected_cases | 7 | Unchanged; 9 Data Issue records excluded. |
+| animals_vaccinated and doses_administered | 604,197 | Up 383. 3,430 records (8 new), latest vaccination date 2 Nov. Dose-count basis. |
+| primary_vaccinations | 410,876 | Up 31, all beef. |
+| booster_vaccinations | 193,321 | Up 352, all beef. |
+
+Arithmetic asserted (primary plus booster equals total; species splits sum; active plus resolved equals 52).
+
+### Conflicts and flags
+
+- MPO EC IDtrax cumulative falls from 29,220 (Week 53) to 29,040 (Week 54). A cumulative figure should not fall; both held, query with the MPO.
+- MPO GP first round jumps by 49,138 because the figures now include non-MPO members. The dairy trend chart will show a step in the week of 30 Oct that is a reporting change, not a week's vaccination.
+- MPO WC first round falls by 591, the same as the WC portal dairy primary fall on 30 Oct; the MPO appears to draw its WC figure from the portal.
+- WC dairy boosters: portal 142,924 (3 Nov) against MPO Week 54 142,716 (30 Oct). Both held; the gap has narrowed to 208.
+- MPO per-province active map still byte-identical to Week 48 (open query with the MPO).
+- LP vet channel panel display quirk from session 102 not yet fixed.
+
+### News items added (1)
+
+- The Brief, 31 Oct: Meatco cuts cattle producer prices by about 20 percent for 1 to 30 November (220 kilograms and above from N$75.08 to N$60.17 per kilogram) while slaughter is limited to the domestic market.
+
+Not added: Food Business MEA (23 Oct) and The Namibian on Meatco's two-day slaughter (already held from New Era, 27 Oct); The Citizen on North West (2 Sep), Farmer's Weekly on Limpopo feedlots (2019) and on SAT1 in China (April), all older items surfaced by the searches. Afrikaans searches found nothing new in the window. No new South African primary Ministry or Department statement, so no policy rows or events. No new Treasury, Department or BFAP economic figures; the R183 million AENE rollover is still unconfirmed by a Treasury document.
+
+### Curated files
+
+- `news_feed.json`: 1 item, last_checked 3 Nov, 60 items (backup `.bak_session107`).
+- `namibia_data.json`: Meatco price cut added to the domestic trade row; timeline event for 31 Oct; summary; last_updated (backup `.bak_session107`). No new case or vaccination counts, so headline figures and progression unchanged.
+- `supply_pipeline.json`: reviewed, no new primary consignment information; last_reviewed set to 3 Nov (backup `.bak_session107`).
+- `sa_economic.json` and `policy_events.json`: no newer primary figures or events; unchanged.
+
+### Dashboard
+
+Rebuilt via importlib, validation passed (2,027,659 bytes). Snapshot 3 November, 103 weekly points. Checked in the payload: WC card as at 3 Nov, 604,197 vaccinated (410,876 and 193,321), 52 positive, 7 suspected; MPO latest 30 Oct, national first round 1,011,231 (previous 962,410), boosters GP 23,850, LP 3,328, NC 274, WC 142,716; national positive 2,876, suspected 830, administered 10,034,280 (up 383); news last_checked 3 Nov with The Brief item; Namibia last_updated 3 Nov. IDtrax figures are held in the master but not shown on the dashboard (as before).
+
+### Action items
+
+- Ask the MPO about the EC IDtrax fall (29,220 to 29,040) and whether the per-province active farm map is still being refreshed.
+- Fix the vet channel panel in `build_provincial_detail` (session 102 flag).
+- Find the Treasury AENE 2026 entry for the R183 million (and the R606 million total) and update the state spending box if confirmed.
+- Check nda.gov.za manually for the Department's 31 October FMD technical report; our fetch tool is blocked there.
+- Provincial packs outstanding for KZN, NW, NC and GP; NW nothing since 14 September; LP PCM minutes of 26 Oct; EC JOC next about 5 Nov.
+- Watch for the outcome of the 21 Oct FMD engagement and the 27 Oct Joint Working Group meeting (draft Risk Assessment Plan).
+- Ask an Owner to add gis.westerncape.gov.za to the network allowlist so the shell can pull it directly.
+- Disable the old Windows `ingest.py` scheduled task (still running daily).

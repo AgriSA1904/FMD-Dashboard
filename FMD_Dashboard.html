@@ -1168,8 +1168,8 @@
 
 <script>
 const DASHBOARD_DATA = {
-  "snapshot_date": "2026-11-02",
-  "build_date": "2026-11-02",
+  "snapshot_date": "2026-11-03",
+  "build_date": "2026-11-03",
   "provinces": [
     {
       "code": "EC",
@@ -1202,7 +1202,7 @@ const DASHBOARD_DATA = {
       "vaccinated": 1738608,
       "dose1": 1719490,
       "dose2": 19118,
-      "dose2_asof": "2026-10-23",
+      "dose2_asof": "2026-10-30",
       "dose2_source": "MPO",
       "dose1_derived": true,
       "dose2_partial": true
@@ -1218,9 +1218,9 @@ const DASHBOARD_DATA = {
       "pending": 0,
       "received": 757320,
       "vaccinated": 580838,
-      "dose1": 567118,
-      "dose2": 13720,
-      "dose2_asof": "2026-10-23",
+      "dose1": 556988,
+      "dose2": 23850,
+      "dose2_asof": "2026-10-30",
       "dose2_source": "MPO",
       "dose1_derived": true,
       "dose2_partial": true
@@ -1292,7 +1292,7 @@ const DASHBOARD_DATA = {
       "vaccinated": 1347844,
       "dose1": 1346972,
       "dose2": 872,
-      "dose2_asof": "2026-10-23",
+      "dose2_asof": "2026-10-30",
       "dose2_source": "MPO",
       "dose1_derived": true,
       "dose2_partial": true
@@ -1308,27 +1308,27 @@ const DASHBOARD_DATA = {
       "pending": 0,
       "received": 383560,
       "vaccinated": 215546,
-      "dose1": 215546,
-      "dose2": 0,
-      "dose2_asof": null,
-      "dose2_source": null,
+      "dose1": 215272,
+      "dose2": 274,
+      "dose2_asof": "2026-10-30",
+      "dose2_source": "MPO",
       "dose1_derived": true,
-      "dose2_partial": false
+      "dose2_partial": true
     },
     {
       "code": "WC",
       "name": "Western Cape",
-      "as_of": "2026-11-02",
+      "as_of": "2026-11-03",
       "herd": 501875,
       "positive": 52,
       "suspected": 7,
       "negative": 0,
       "pending": 0,
       "received": 647080,
-      "vaccinated": 603814,
-      "dose1": 410845,
-      "dose2": 192969,
-      "dose2_asof": "2026-11-02",
+      "vaccinated": 604197,
+      "dose1": 410876,
+      "dose2": 193321,
+      "dose2_asof": "2026-11-03",
       "dose2_source": "WC-GIS",
       "dose1_derived": false,
       "dose2_partial": false
@@ -2150,6 +2150,14 @@ const DASHBOARD_DATA = {
       "positive": 2876,
       "suspected": 830,
       "pending": null
+    },
+    {
+      "date": "2026-11-03",
+      "received": 12596130,
+      "administered": 10034280,
+      "positive": 2876,
+      "suspected": 830,
+      "pending": null
     }
   ],
   "sources": {
@@ -2167,15 +2175,15 @@ const DASHBOARD_DATA = {
     "procured": 16000000,
     "distributed": 12596130,
     "received": 12596130,
-    "administered": 10033897,
+    "administered": 10034280,
     "herd_cattle": 15450142,
-    "balance": 2562233,
-    "dose2": 913061,
-    "dose1": 9120836,
+    "balance": 2561850,
+    "dose2": 923817,
+    "dose1": 9110463,
     "dose_split_note": "Dose 2 is the sum of the latest booster figures per province; several provinces report boosters for the dairy programme only, so dose 2 is a minimum and dose 1 a derived maximum.",
     "delta_received": 0,
     "delta_distributed": 0,
-    "delta_administered": 3781,
+    "delta_administered": 383,
     "delta_positive": 0
   },
   "mpo": {
@@ -2478,9 +2486,22 @@ const DASHBOARD_DATA = {
         "NC": 0,
         "WC": 242502,
         "national": 962410
+      },
+      {
+        "date": "2026-10-30",
+        "EC": 308092,
+        "FS": 15104,
+        "GP": 63970,
+        "KZN": 360200,
+        "LP": 5475,
+        "MP": 9863,
+        "NW": 6342,
+        "NC": 274,
+        "WC": 241911,
+        "national": 1011231
       }
     ],
-    "latest_date": "2026-10-23",
+    "latest_date": "2026-10-30",
     "provinces": [
       {
         "code": "EC",
@@ -2501,10 +2522,10 @@ const DASHBOARD_DATA = {
       {
         "code": "GP",
         "name": "Gauteng",
-        "current": 14832,
+        "current": 63970,
         "previous": 14832,
-        "change": 0,
-        "booster": 13720
+        "change": 49138,
+        "booster": 23850
       },
       {
         "code": "KZN",
@@ -2520,7 +2541,7 @@ const DASHBOARD_DATA = {
         "current": 5475,
         "previous": 5475,
         "change": 0,
-        "booster": 0
+        "booster": 3328
       },
       {
         "code": "MP",
@@ -2541,24 +2562,24 @@ const DASHBOARD_DATA = {
       {
         "code": "NC",
         "name": "Northern Cape",
-        "current": 0,
+        "current": 274,
         "previous": 0,
-        "change": 0,
-        "booster": 0
+        "change": 274,
+        "booster": 274
       },
       {
         "code": "WC",
         "name": "Western Cape",
-        "current": 242502,
+        "current": 241911,
         "previous": 242502,
-        "change": 0,
-        "booster": 136045
+        "change": -591,
+        "booster": 142716
       }
     ],
     "farms_confirmed": 175,
-    "farms_confirmed_date": "2026-10-23",
+    "farms_confirmed_date": "2026-10-30",
     "farms_active": 128,
-    "farms_active_date": "2026-10-23",
+    "farms_active_date": "2026-10-30",
     "farms_resolved": 47,
     "farms_trend": [
       {
@@ -2692,6 +2713,12 @@ const DASHBOARD_DATA = {
         "active": 128,
         "confirmed": 175,
         "resolved": 47
+      },
+      {
+        "date": "2026-10-30",
+        "active": 128,
+        "confirmed": 175,
+        "resolved": 47
       }
     ],
     "reinfections": [
@@ -2710,7 +2737,7 @@ const DASHBOARD_DATA = {
         "note": "MPO Week 31 (22 May 2026): 1 NW dairy farm reported FMD reinfection after vaccination \u2014 Lichtenburg. Confirms Week 30 suspected case."
       }
     ],
-    "national_current": 962410,
+    "national_current": 1011231,
     "national_previous": 962410,
     "active_by_province": [
       {
@@ -3662,7 +3689,7 @@ const DASHBOARD_DATA = {
       "code": "EC",
       "name": "Eastern Cape",
       "joc": 1807660,
-      "joc_date": "2026-10-23",
+      "joc_date": "2026-10-30",
       "ministerial": 725632,
       "ministerial_date": "2026-06-04",
       "diff": 1082028,
@@ -3672,7 +3699,7 @@ const DASHBOARD_DATA = {
       "code": "FS",
       "name": "Free State",
       "joc": 1738608,
-      "joc_date": "2026-10-23",
+      "joc_date": "2026-10-30",
       "ministerial": 707986,
       "ministerial_date": "2026-06-04",
       "diff": 1030622,
@@ -3682,7 +3709,7 @@ const DASHBOARD_DATA = {
       "code": "GP",
       "name": "Gauteng",
       "joc": 580838,
-      "joc_date": "2026-10-23",
+      "joc_date": "2026-10-30",
       "ministerial": 325216,
       "ministerial_date": "2026-06-04",
       "diff": 255622,
@@ -3692,7 +3719,7 @@ const DASHBOARD_DATA = {
       "code": "KZN",
       "name": "KwaZulu-Natal",
       "joc": 1700000,
-      "joc_date": "2026-10-23",
+      "joc_date": "2026-10-30",
       "ministerial": 1163193,
       "ministerial_date": "2026-06-04",
       "diff": 536807,
@@ -3702,7 +3729,7 @@ const DASHBOARD_DATA = {
       "code": "LP",
       "name": "Limpopo",
       "joc": 1035916,
-      "joc_date": "2026-10-23",
+      "joc_date": "2026-10-30",
       "ministerial": 357045,
       "ministerial_date": "2026-06-04",
       "diff": 678871,
@@ -3712,7 +3739,7 @@ const DASHBOARD_DATA = {
       "code": "MP",
       "name": "Mpumalanga",
       "joc": 1003671,
-      "joc_date": "2026-10-23",
+      "joc_date": "2026-10-30",
       "ministerial": 465105,
       "ministerial_date": "2026-06-04",
       "diff": 538566,
@@ -3722,7 +3749,7 @@ const DASHBOARD_DATA = {
       "code": "NW",
       "name": "North West",
       "joc": 1347844,
-      "joc_date": "2026-10-23",
+      "joc_date": "2026-10-30",
       "ministerial": 600331,
       "ministerial_date": "2026-06-04",
       "diff": 747513,
@@ -3732,7 +3759,7 @@ const DASHBOARD_DATA = {
       "code": "NC",
       "name": "Northern Cape",
       "joc": 215546,
-      "joc_date": "2026-10-23",
+      "joc_date": "2026-10-30",
       "ministerial": 99642,
       "ministerial_date": "2026-06-04",
       "diff": 115904,
@@ -3741,11 +3768,11 @@ const DASHBOARD_DATA = {
     {
       "code": "WC",
       "name": "Western Cape",
-      "joc": 603814,
-      "joc_date": "2026-11-02",
+      "joc": 604197,
+      "joc_date": "2026-11-03",
       "ministerial": 265379,
       "ministerial_date": "2026-06-04",
-      "diff": 338435,
+      "diff": 338818,
       "flag": null
     }
   ],
@@ -3762,7 +3789,7 @@ const DASHBOARD_DATA = {
   "provincial_detail": {
     "EC": {
       "name": "Eastern Cape",
-      "latest_date": "2026-10-23",
+      "latest_date": "2026-10-30",
       "vaccine_types": [
         {
           "type": "dolvet",
@@ -4148,7 +4175,7 @@ const DASHBOARD_DATA = {
         "booster_vaccinations": {
           "label": "Booster vaccinations",
           "value": 239471,
-          "date": "2026-10-23"
+          "date": "2026-10-30"
         },
         "vaccine_balance": {
           "label": "Vaccine balance on hand",
@@ -4173,7 +4200,7 @@ const DASHBOARD_DATA = {
     },
     "FS": {
       "name": "Free State",
-      "latest_date": "2026-10-23",
+      "latest_date": "2026-10-30",
       "vaccine_types": [
         {
           "type": "dolvet",
@@ -4570,7 +4597,7 @@ const DASHBOARD_DATA = {
         "booster_vaccinations": {
           "label": "Booster vaccinations",
           "value": 19118,
-          "date": "2026-10-23"
+          "date": "2026-10-30"
         },
         "animals_vaccinated_dose1": {
           "label": "Dose 1 animals",
@@ -4611,7 +4638,7 @@ const DASHBOARD_DATA = {
     },
     "GP": {
       "name": "Gauteng",
-      "latest_date": "2026-10-23",
+      "latest_date": "2026-10-30",
       "vaccine_types": [
         {
           "type": "dolvet",
@@ -4657,8 +4684,8 @@ const DASHBOARD_DATA = {
       "extra": {
         "booster_vaccinations": {
           "label": "Booster vaccinations",
-          "value": 13720,
-          "date": "2026-10-23"
+          "value": 23850,
+          "date": "2026-10-30"
         },
         "controlled_slaughter": {
           "label": "Controlled slaughter",
@@ -4689,7 +4716,7 @@ const DASHBOARD_DATA = {
     },
     "KZN": {
       "name": "KwaZulu-Natal",
-      "latest_date": "2026-10-23",
+      "latest_date": "2026-10-30",
       "vaccine_types": [
         {
           "type": "dolvet",
@@ -4945,7 +4972,7 @@ const DASHBOARD_DATA = {
         "booster_vaccinations": {
           "label": "Booster vaccinations",
           "value": 334000,
-          "date": "2026-10-23"
+          "date": "2026-10-30"
         },
         "vaccine_balance": {
           "label": "Vaccine balance on hand",
@@ -4970,7 +4997,7 @@ const DASHBOARD_DATA = {
     },
     "LP": {
       "name": "Limpopo",
-      "latest_date": "2026-10-23",
+      "latest_date": "2026-10-30",
       "vaccine_types": [
         {
           "type": "dolvet",
@@ -5205,8 +5232,8 @@ const DASHBOARD_DATA = {
         },
         "booster_vaccinations": {
           "label": "Booster vaccinations",
-          "value": 50596,
-          "date": "2026-10-16"
+          "value": 3328,
+          "date": "2026-10-30"
         },
         "vaccination_sites": {
           "label": "Vaccination sites",
@@ -5237,7 +5264,7 @@ const DASHBOARD_DATA = {
     },
     "MP": {
       "name": "Mpumalanga",
-      "latest_date": "2026-10-23",
+      "latest_date": "2026-10-30",
       "vaccine_types": [
         {
           "type": "bioaftogen",
@@ -5707,7 +5734,7 @@ const DASHBOARD_DATA = {
     },
     "NW": {
       "name": "North West",
-      "latest_date": "2026-10-23",
+      "latest_date": "2026-10-30",
       "vaccine_types": [
         {
           "type": "dolvet",
@@ -6042,7 +6069,7 @@ const DASHBOARD_DATA = {
         "booster_vaccinations": {
           "label": "Booster vaccinations",
           "value": 872,
-          "date": "2026-10-23"
+          "date": "2026-10-30"
         },
         "vaccine_balance": {
           "label": "Vaccine balance on hand",
@@ -6067,7 +6094,7 @@ const DASHBOARD_DATA = {
     },
     "NC": {
       "name": "Northern Cape",
-      "latest_date": "2026-10-23",
+      "latest_date": "2026-10-30",
       "vaccine_types": [
         {
           "type": "dolvet",
@@ -6156,6 +6183,11 @@ const DASHBOARD_DATA = {
         }
       ],
       "extra": {
+        "booster_vaccinations": {
+          "label": "Booster vaccinations",
+          "value": 274,
+          "date": "2026-10-30"
+        },
         "vaccination_sites": {
           "label": "Vaccination sites",
           "value": 641,
@@ -6183,7 +6215,7 @@ const DASHBOARD_DATA = {
     },
     "WC": {
       "name": "Western Cape",
-      "latest_date": "2026-11-02",
+      "latest_date": "2026-11-03",
       "vaccine_types": [
         {
           "type": "dolvet",
@@ -6223,13 +6255,13 @@ const DASHBOARD_DATA = {
       "extra": {
         "primary_vaccinations": {
           "label": "Primary vaccinations",
-          "value": 410845,
-          "date": "2026-11-02"
+          "value": 410876,
+          "date": "2026-11-03"
         },
         "booster_vaccinations": {
           "label": "Booster vaccinations",
-          "value": 192969,
-          "date": "2026-11-02"
+          "value": 193321,
+          "date": "2026-11-03"
         },
         "vaccination_sites": {
           "label": "Vaccination sites",
@@ -6382,9 +6414,19 @@ const DASHBOARD_DATA = {
     }
   },
   "news": {
-    "last_checked": "2026-11-02",
+    "last_checked": "2026-11-03",
     "note": "Curated daily by the scheduled ingest. Items are media and public reporting, not programme data. Figures quoted here do not feed the dashboard headlines unless they are also ingested into master_data.csv from a programme source.",
     "items": [
+      {
+        "date": "2026-10-31",
+        "headline": "Meatco cuts cattle producer prices by about 20 percent from 1 November as export markets stay closed.",
+        "source": "The Brief",
+        "url": "https://thebrief.com.na/2026/10/meatco-cuts-cattle-producer-prices-by-20-amid-fmd-restrictions/",
+        "summary": "Namibia's Meat Corporation has lowered its cattle producer prices by about 20 percent for November, so farmers receive nearly N$15 less per kilogram; the average price for carcasses of 220 kilograms and above falls from N$75.08 to N$60.17 per kilogram. Meatco says its earlier prices were not sustainable while slaughter is limited to the lower-priced domestic market, and it is pursuing markets in Africa and the Middle East.",
+        "category": "trade",
+        "province": "national",
+        "added": "2026-11-03"
+      },
       {
         "date": "2026-10-31",
         "headline": "About 240 jobs at Namibia's Savanna Beef export abattoir are at risk after the outbreak halted operations.",
@@ -6974,16 +7016,6 @@ const DASHBOARD_DATA = {
         "category": "other",
         "province": "national",
         "added": "2026-10-01"
-      },
-      {
-        "date": "2026-09-30",
-        "headline": "Namibia's Karasburg outbreak spreads to five farms as government warns against easing restrictions.",
-        "source": "Informant\u00e9",
-        "url": "https://informante.web.na/?p=401695",
-        "summary": "Namibia's Minister of Agriculture said affected farms in the Karasburg state veterinary district had risen from three to five, and cautioned against relaxing controls before the 14-day incubation period has passed. Animals traced to the Otjozondjupa region tested negative, and restrictions north of the veterinary cordon fence were partly lifted. This updates the 26 September report of 17 confirmed cases already in our feed.",
-        "category": "trade",
-        "province": "national",
-        "added": "2026-10-03"
       }
     ]
   },
@@ -7018,9 +7050,9 @@ const DASHBOARD_DATA = {
     ]
   },
   "namibia": {
-    "last_updated": "2026-11-02",
+    "last_updated": "2026-11-03",
     "note": "Regional context compiled from Namibian Government statements as reported in the media, the European Union delegation in Namibia and South African and Namibian media. These figures are not South African programme data and never feed the headline figures on the other tabs. Where reports differ, we show each figure with its source.",
-    "summary": "On 23 September 2026 Namibia confirmed foot and mouth disease on a commercial farm in the Karasburg state veterinary district of the ||Kharas region, inside its WOAH-recognised zone free without vaccination and its first outbreak in that zone in about 60 years. By 14 October the SAT1 outbreak had reached 18 farms, with 131 animals positive out of 63,011 inspected (unchanged on 20 October, when the chief veterinary officer confirmed it remained confined to the Karasburg district), and compulsory vaccination in three rounds over three months began that day. A second outbreak was confirmed on Kalala Island in the Zambezi region in early October; officials say it has no epidemiological link to ||Kharas, and 42,286 cattle there had been vaccinated by 21 October, when 1,296 cattle on 25 Karasburg farms had also been vaccinated. Namibia has suspended exports of cloven-hoofed animals and their raw products, the European Union and the United States have restricted imports, and live exports of weaners and slaughter sheep to South Africa have stopped. Roadblocks around Karasburg could stay until 23 December, and industry bodies on both sides are setting out positions on the protocols that would let trade with South Africa resume. Namibia's mid-year budget proposes N$179 million for containment, and our feedlot association has said it will not support cattle and beef imports from Namibia and Botswana for now. On 26 October officials confirmed the whole ||Kharas region is a control area, to be split into smaller containment zones, while farmers there warn of job losses. By 27 October more than 50,000 cattle had been vaccinated in Zambezi, where more than 1,300 cattle are reported affected, and Meatco ran a two-day slaughter of its own feedlot cattle for the domestic market only. On 28 October the ministry reported no new cases in either region and more than 61,000 cattle vaccinated: 7,402 on 81 farms in ||Kharas and 53,913 in Zambezi. On 31 October the Savanna Beef export abattoir reported about 240 jobs at risk, and the Beef Value Chain Forum approved N$500,000 for an international expert to help restore Namibia's veterinary status.",
+    "summary": "On 23 September 2026 Namibia confirmed foot and mouth disease on a commercial farm in the Karasburg state veterinary district of the ||Kharas region, inside its WOAH-recognised zone free without vaccination and its first outbreak in that zone in about 60 years. By 14 October the SAT1 outbreak had reached 18 farms, with 131 animals positive out of 63,011 inspected (unchanged on 20 October, when the chief veterinary officer confirmed it remained confined to the Karasburg district), and compulsory vaccination in three rounds over three months began that day. A second outbreak was confirmed on Kalala Island in the Zambezi region in early October; officials say it has no epidemiological link to ||Kharas, and 42,286 cattle there had been vaccinated by 21 October, when 1,296 cattle on 25 Karasburg farms had also been vaccinated. Namibia has suspended exports of cloven-hoofed animals and their raw products, the European Union and the United States have restricted imports, and live exports of weaners and slaughter sheep to South Africa have stopped. Roadblocks around Karasburg could stay until 23 December, and industry bodies on both sides are setting out positions on the protocols that would let trade with South Africa resume. Namibia's mid-year budget proposes N$179 million for containment, and our feedlot association has said it will not support cattle and beef imports from Namibia and Botswana for now. On 26 October officials confirmed the whole ||Kharas region is a control area, to be split into smaller containment zones, while farmers there warn of job losses. By 27 October more than 50,000 cattle had been vaccinated in Zambezi, where more than 1,300 cattle are reported affected, and Meatco ran a two-day slaughter of its own feedlot cattle for the domestic market only. On 28 October the ministry reported no new cases in either region and more than 61,000 cattle vaccinated: 7,402 on 81 farms in ||Kharas and 53,913 in Zambezi. On 31 October the Savanna Beef export abattoir reported about 240 jobs at risk, and the Beef Value Chain Forum approved N$500,000 for an international expert to help restore Namibia's veterinary status. From 1 November Meatco is paying producers about 20 percent less per kilogram while slaughter stays limited to the domestic market.",
     "kpis": [
       {
         "label": "Farms confirmed infected, ||Kharas",
@@ -7358,6 +7390,12 @@ const DASHBOARD_DATA = {
         "event": "Savanna Beef Processors reports about 240 jobs at risk after halting operations; the Beef Value Chain Forum approves N$500,000 for an international expert to help restore Namibia's veterinary status. The ministry repeats on 30 October that no new cases have been found outside the disease management area in Zambezi.",
         "source": "The Namibian",
         "url": "https://www.namibian.com.na/fmd-shutdown-puts-240-savanna-beef-jobs-at-risk/"
+      },
+      {
+        "date": "2026-10-31",
+        "event": "Meatco announces a cut of about 20 percent in cattle producer prices for November, nearly N$15 less per kilogram, while export markets remain closed.",
+        "source": "The Brief",
+        "url": "https://thebrief.com.na/2026/10/meatco-cuts-cattle-producer-prices-by-20-amid-fmd-restrictions/"
       }
     ],
     "trade": [
@@ -7388,7 +7426,7 @@ const DASHBOARD_DATA = {
       {
         "market": "Domestic Namibia",
         "measure": "Export and local abattoir slaughter suspended in the affected areas; Meatco operations halted.",
-        "detail": "Butcheries in ||Kharas report putting staff on leave. Modelling cited by The Namibian suggests about 12,000 jobs could be lost in 2026 and 2027, and no exemption from the agricultural minimum wage is being considered. Savanna Beef Processors, an export abattoir that had reached 250 head a day and shipped about 100 containers to the United Kingdom, the European Union and Norway, has halted operations with about 240 jobs at risk; limited slaughtering may resume towards the end of November (The Namibian, 31 October).",
+        "detail": "Butcheries in ||Kharas report putting staff on leave. Modelling cited by The Namibian suggests about 12,000 jobs could be lost in 2026 and 2027, and no exemption from the agricultural minimum wage is being considered. Savanna Beef Processors, an export abattoir that had reached 250 head a day and shipped about 100 containers to the United Kingdom, the European Union and Norway, has halted operations with about 240 jobs at risk; limited slaughtering may resume towards the end of November (The Namibian, 31 October). Meatco has cut cattle producer prices by about 20 percent for 1 to 30 November (average for carcasses of 220 kilograms and above from N$75.08 to N$60.17 per kilogram), because slaughter is limited to the domestic market (The Brief, 31 October).",
         "date": "2026-10-05",
         "source": "The Brief; The Namibian",
         "url": "https://namibian.com.na/fmd-butcheries-scramble-to-keep-workers"
@@ -7542,6 +7580,7 @@ const DASHBOARD_DATA = {
     "WC GIS FMD Public FeatureServer (live ArcGIS REST API), pulled via browser 26 Oct 2026; raw aggregates archive/2026-10-26/wc_gis_pull_20261026.json",
     "WC GIS FMD Public FeatureServer (live ArcGIS REST API), pulled via browser 27 Oct 2026; raw aggregates archive/2026-10-27/wc_gis_pull_20261027.json",
     "WC GIS FMD Public FeatureServer (live ArcGIS REST API), pulled via browser 29 Oct 2026; raw aggregates archive/2026-10-29/wc_gis_pull_20261029.json",
+    "WC GIS FMD Public FeatureServer (live ArcGIS REST API), pulled via browser 3 Nov 2026; raw aggregates archive/2026-11-03/wc_gis_pull_20261103.json",
     "WC GIS FMD Public FeatureServer (live ArcGIS REST API), pulled via browser 30 Oct 2026; raw aggregates archive/2026-10-30/wc_gis_pull_20261030.json",
     "WC GIS portal (gis.westerncape.gov.za)",
     "WC-GIS portal live dashboard 2026-06-09",
@@ -7628,6 +7667,7 @@ const DASHBOARD_DATA = {
     "inbox/MPO/Week 51 - Update on the state of FMD and vaccine rollouts in the dairy industry.pdf",
     "inbox/MPO/Week 52 - Update on the state of FMD and vaccine rollouts in the dairy industry.pdf",
     "inbox/MPO/Week 53 - Update on the state of FMD and vaccine rollouts in the dairy industry.pdf",
+    "inbox/MPO/Week 54 - Update on the state of FMD and vaccine rollouts in the dairy industry.pdf",
     "inbox/Media Statement Minister Steenhuisen announces progress in Foot and mouth disease vaccination strategy.pdf",
     "inbox/Media Statement More vaccines arrive to strengthen war against foot and mouth disease_22042026_.pdf",
     "inbox/Ministerial Updates/2026.05.15 Reg No 7484 of 15 May 2026 - Rescinding FMD management Area in KZN.pdf",
