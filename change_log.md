@@ -7726,3 +7726,72 @@ Rebuilt via importlib, validation passed (2,027,659 bytes). Snapshot 3 November,
 - Watch for the outcome of the 21 Oct FMD engagement and the 27 Oct Joint Working Group meeting (draft Risk Assessment Plan).
 - Ask an Owner to add gis.westerncape.gov.za to the network allowlist so the shell can pull it directly.
 - Disable the old Windows `ingest.py` scheduled task (still running daily).
+
+### Publishing
+
+Commit ac51096 on main (local HEAD equals origin/main). "Build and Deploy FMD Dashboard" and "pages build and deployment" both concluded success. This line was added after the push and will go out with the next commit.
+
+
+## Session 108. 5 November 2026. Scheduled update, Western Cape GIS, news scan and publish.
+
+Scheduled 08:00 run (started about 08:00 South African time). Session 107 ran on 3 November; no session ran on 4 November and nothing is logged yet today.
+
+### Sources processed
+
+| Source | Result |
+|---|---|
+| Inbox | No files newer than session 107 in `inbox/` or its subfolders, and no new dated folder in the root. `ingest_log.txt` was written at 08:00 today by the old Windows `ingest.py` task (known broken; it did not change the master). |
+| Mailbox (last 7 days) | No new provincial JOC, MPO, RMIS, SAPPO, ICC, Ministry or Portfolio Committee FMD submissions since session 107 (searches for FMD, foot and mouth, vaccination, MPO, JOC, RMIS and bek-en-klouseer; all mail since 3 Nov reviewed by subject). No attachments outstanding. |
+| Western Cape GIS | Device shell blocked (curl exit 56). Pulled through the built-in browser with ArcGIS REST statistics queries. Raw aggregates `archive/2026-11-05/wc_gis_pull_20261105.json`. Ingested, 8 rows. |
+| Department technical reports | The nda.gov.za outbreak page opened in the built-in browser: the 30 September report (already held) is still the latest. Department media releases page: no new FMD statement since 22 September. |
+| Web | Searches on national, provincial, trade, industry, Afrikaans, international, Namibian and economic news for 29 October to 5 November, plus the New Era, The Namibian and Farmer's Weekly FMD listings. |
+
+Scripts `archive/2026-11-05/ingest_session108.py` (backs up the master to `master_data.csv.bak_session108`) and `archive/2026-11-05/update_curated_session108.py`. Prepared 8, new 8, duplicates 0. Master now 4,318 rows.
+
+### Western Cape GIS (as at 5 November 2026), 8 rows
+
+| Metric | Value | Change |
+|---|---|---|
+| positive_cases | 52 | Unchanged. |
+| outbreaks_open / outbreaks_closed | 14 / 38 | Unchanged. |
+| suspected_cases | 7 | Unchanged; 9 Data Issue records excluded. |
+| animals_vaccinated and doses_administered | 604,454 | Up 257. 3,438 records (8 new), latest vaccination date 3 Nov. Dose-count basis. |
+| primary_vaccinations | 410,945 | Up 69, all beef. |
+| booster_vaccinations | 193,509 | Up 188, all beef. |
+
+The four unchanged disease rows were added with today's date so the WC card is dated with today's pull (session 107 pattern). Arithmetic asserted (primary plus booster equals total; species splits sum; active plus resolved equals 52).
+
+### Conflicts and flags
+
+- WC dairy boosters: portal 142,924 (5 Nov) against MPO Week 54 142,716 (30 Oct). Both held.
+- Open from session 107: MPO EC IDtrax fall (29,220 to 29,040); MPO per-province active map unchanged since Week 48; LP vet channel panel display quirk.
+
+### News items added (3)
+
+- New Era, 3 Nov: Bank of Namibia directive BID-42 (enacted 30 Oct) gives farmers hit by FMD or drought repayment holidays of 1 to 24 months, restructuring and new credit without a default classification.
+- The Namibian, 4 Nov: the chief veterinary officer plans a double fence around the infected ||Kharas farms and a two-year WOAH containment zone; Namibia aims to regain freedom without vaccination.
+- New Era, 4 Nov: Namibia's meat and milk movement rules, including a ban on raw meat and cloven-hoofed animal product imports from South Africa and Botswana without veterinary permits.
+
+Not added: The Namibian, 31 Oct (MPs say the N$179 million allocation is not enough; the allocation is already held); New Era opinion pieces (2 and 3 Nov); New Era, 29 Sep (Meatco on the partial easing, outside the window); older Farmer's Weekly items surfaced by the searches (June to September). Afrikaans searches found nothing new in the window. No new South African primary Ministry or Department statement, so no policy rows or events. No new Treasury, Department or BFAP economic figures; the R183 million AENE rollover is still unconfirmed by a Treasury document. No media figure conflicts with the master.
+
+### Curated files
+
+- `news_feed.json`: 3 items, last_checked 5 Nov, 60 items (backup `.bak_session108`).
+- `namibia_data.json`: two timeline events for 30 Oct (BID-42; containment zone plan), South Africa trade row (Namibia's import ban on raw meat from South Africa without permits), open question on subdividing the zone reworded to the WOAH containment application, summary, last_updated (backup `.bak_session108`). No new case or vaccination counts, so headline figures and progression unchanged.
+- `supply_pipeline.json`: reviewed, no new primary consignment information; last_reviewed set to 5 Nov (backup `.bak_session108`).
+- `sa_economic.json` and `policy_events.json`: no newer primary figures or events; unchanged.
+
+### Dashboard
+
+Rebuilt via importlib, validation passed (2,029,290 bytes). Snapshot 5 November, 104 weekly points. Checked in the payload: WC figures 604,454, 410,945 and 193,509; national positive 2,876, suspected 830, administered 10,034,537 (up 257); news last_checked 5 Nov with the three new items at the top; Namibia last_updated 5 Nov with BID-42 in the timeline.
+
+### Action items
+
+- Ask the MPO about the EC IDtrax fall and whether the per-province active farm map is still being refreshed; MPO Week 55 due about 9 Nov.
+- Fix the vet channel panel in `build_provincial_detail` (session 102 flag).
+- Find the Treasury AENE 2026 entry for the R183 million (and the R606 million total) and update the state spending box if confirmed.
+- Watch nda.gov.za for the Department's 31 October FMD technical report (the browser route works for this page).
+- Provincial packs outstanding for KZN, NW, NC, GP and FS (FS last 16 Oct); NW nothing since 14 September; EC JOC due about 5 Nov; LP PCM 30 Nov.
+- Watch for the outcome of the 21 Oct FMD engagement and the 27 Oct Joint Working Group meeting (draft Risk Assessment Plan).
+- Ask an Owner to add gis.westerncape.gov.za to the network allowlist so the shell can pull it directly.
+- Disable the old Windows `ingest.py` scheduled task (still running daily).

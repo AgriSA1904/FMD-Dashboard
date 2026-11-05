@@ -1,7 +1,7 @@
 {
-  "last_updated": "2026-11-03",
+  "last_updated": "2026-11-05",
   "note": "Regional context compiled from Namibian Government statements as reported in the media, the European Union delegation in Namibia and South African and Namibian media. These figures are not South African programme data and never feed the headline figures on the other tabs. Where reports differ, we show each figure with its source.",
-  "summary": "On 23 September 2026 Namibia confirmed foot and mouth disease on a commercial farm in the Karasburg state veterinary district of the ||Kharas region, inside its WOAH-recognised zone free without vaccination and its first outbreak in that zone in about 60 years. By 14 October the SAT1 outbreak had reached 18 farms, with 131 animals positive out of 63,011 inspected (unchanged on 20 October, when the chief veterinary officer confirmed it remained confined to the Karasburg district), and compulsory vaccination in three rounds over three months began that day. A second outbreak was confirmed on Kalala Island in the Zambezi region in early October; officials say it has no epidemiological link to ||Kharas, and 42,286 cattle there had been vaccinated by 21 October, when 1,296 cattle on 25 Karasburg farms had also been vaccinated. Namibia has suspended exports of cloven-hoofed animals and their raw products, the European Union and the United States have restricted imports, and live exports of weaners and slaughter sheep to South Africa have stopped. Roadblocks around Karasburg could stay until 23 December, and industry bodies on both sides are setting out positions on the protocols that would let trade with South Africa resume. Namibia's mid-year budget proposes N$179 million for containment, and our feedlot association has said it will not support cattle and beef imports from Namibia and Botswana for now. On 26 October officials confirmed the whole ||Kharas region is a control area, to be split into smaller containment zones, while farmers there warn of job losses. By 27 October more than 50,000 cattle had been vaccinated in Zambezi, where more than 1,300 cattle are reported affected, and Meatco ran a two-day slaughter of its own feedlot cattle for the domestic market only. On 28 October the ministry reported no new cases in either region and more than 61,000 cattle vaccinated: 7,402 on 81 farms in ||Kharas and 53,913 in Zambezi. On 31 October the Savanna Beef export abattoir reported about 240 jobs at risk, and the Beef Value Chain Forum approved N$500,000 for an international expert to help restore Namibia's veterinary status. From 1 November Meatco is paying producers about 20 percent less per kilogram while slaughter stays limited to the domestic market.",
+  "summary": "On 23 September 2026 Namibia confirmed foot and mouth disease on a commercial farm in the Karasburg state veterinary district of the ||Kharas region, inside its WOAH-recognised zone free without vaccination and its first outbreak in that zone in about 60 years. By 14 October the SAT1 outbreak had reached 18 farms, with 131 animals positive out of 63,011 inspected (unchanged on 20 October, when the chief veterinary officer confirmed it remained confined to the Karasburg district), and compulsory vaccination in three rounds over three months began that day. A second outbreak was confirmed on Kalala Island in the Zambezi region in early October; officials say it has no epidemiological link to ||Kharas, and 42,286 cattle there had been vaccinated by 21 October, when 1,296 cattle on 25 Karasburg farms had also been vaccinated. Namibia has suspended exports of cloven-hoofed animals and their raw products, the European Union and the United States have restricted imports, and live exports of weaners and slaughter sheep to South Africa have stopped. Roadblocks around Karasburg could stay until 23 December, and industry bodies on both sides are setting out positions on the protocols that would let trade with South Africa resume. Namibia's mid-year budget proposes N$179 million for containment, and our feedlot association has said it will not support cattle and beef imports from Namibia and Botswana for now. On 26 October officials confirmed the whole ||Kharas region is a control area, to be split into smaller containment zones, while farmers there warn of job losses. By 27 October more than 50,000 cattle had been vaccinated in Zambezi, where more than 1,300 cattle are reported affected, and Meatco ran a two-day slaughter of its own feedlot cattle for the domestic market only. On 28 October the ministry reported no new cases in either region and more than 61,000 cattle vaccinated: 7,402 on 81 farms in ||Kharas and 53,913 in Zambezi. On 31 October the Savanna Beef export abattoir reported about 240 jobs at risk, and the Beef Value Chain Forum approved N$500,000 for an international expert to help restore Namibia's veterinary status. From 1 November Meatco is paying producers about 20 percent less per kilogram while slaughter stays limited to the domestic market. On 30 October the chief veterinary officer said Namibia will build a double fence around the infected farms in ||Kharas and apply to WOAH for a two-year containment zone, and the Bank of Namibia issued a directive allowing banks to give affected farmers repayment holidays of up to 24 months.",
   "kpis": [
     {
       "label": "Farms confirmed infected, ||Kharas",
@@ -335,6 +335,18 @@
       "url": "https://neweralive.na/no-new-fmd-cases/"
     },
     {
+      "date": "2026-10-30",
+      "event": "The Bank of Namibia enacts directive BID-42, allowing banks to give farmers affected by foot and mouth disease or drought repayment holidays of 1 to 24 months, restructured loans and new credit without a default classification.",
+      "source": "New Era, 3 November 2026",
+      "url": "https://neweralive.na/explainer-inside-bons-fmd-relief-package-for-farmers/"
+    },
+    {
+      "date": "2026-10-30",
+      "event": "At the Bank Windhoek Agricultural Series the chief veterinary officer says a double fence, 10 metres apart, will enclose infected farms in ||Kharas and Namibia will apply to WOAH for a containment zone valid for two years, aiming to regain freedom without vaccination.",
+      "source": "The Namibian, 4 November 2026",
+      "url": "https://www.namibian.com.na/fmd-fence-divides-farmers-market-hopes/"
+    },
+    {
       "date": "2026-10-31",
       "event": "Savanna Beef Processors reports about 240 jobs at risk after halting operations; the Beef Value Chain Forum approves N$500,000 for an international expert to help restore Namibia's veterinary status. The ministry repeats on 30 October that no new cases have been found outside the disease management area in Zambezi.",
       "source": "The Namibian",
@@ -367,7 +379,7 @@
     {
       "market": "South Africa",
       "measure": "Namibian exports of live cloven-hoofed animals, including weaner calves and slaughter sheep, have stopped. Auction trade is under discussion.",
-      "detail": "South Africa had received 36,821 weaner calves and 417,808 slaughter sheep from Namibia so far in 2026. Namibian sheep make up about 15 percent of our slaughter supply, so the RPO expects a larger price effect on mutton and lamb than on beef.",
+      "detail": "South Africa had received 36,821 weaner calves and 417,808 slaughter sheep from Namibia so far in 2026. Namibian sheep make up about 15 percent of our slaughter supply, so the RPO expects a larger price effect on mutton and lamb than on beef. Namibia in turn bans imports of raw meat and cloven-hoofed animal products from South Africa and Botswana without veterinary permits and health certificates (New Era, 4 November).",
       "date": "2026-10-06",
       "source": "Farmer's Weekly; The Namibian",
       "url": "https://farmersweekly.co.za/agri-news/africa/namibia-fmd-outbreak-could-drive-up-sa-red-meat-prices"
@@ -421,7 +433,7 @@
   ],
   "open_questions": [
     "Serotype of the Zambezi outbreak; a 29 October New Era report refers to serotype O and SAT, but no official notification has confirmed it. Officials report no epidemiological link to ||Kharas.",
-    "Whether Namibia will subdivide its former free zone so that unaffected areas can resume exports; officials have said a plan could take about six months to reach WOAH.",
+    "When Namibia will submit its application to WOAH for a containment zone in ||Kharas, enclosed by a planned double fence, so that areas outside it can resume exports; the livestock board expects the application at the end of 2026 or early in 2027, and the zone would be valid for two years from approval.",
     "Whether the veterinary authorities of Namibia and South Africa accept an industry proposal for supervised movement of animals from unaffected areas to abattoirs; on 26 October Namibian officials could not say when bio-secure transit routes might be approved."
   ]
 }

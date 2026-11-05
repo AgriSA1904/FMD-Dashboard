@@ -1,7 +1,37 @@
 {
-  "last_checked": "2026-11-03",
+  "last_checked": "2026-11-05",
   "note": "Curated daily by the scheduled ingest. Items are media and public reporting, not programme data. Figures quoted here do not feed the dashboard headlines unless they are also ingested into master_data.csv from a programme source.",
   "items": [
+    {
+      "date": "2026-11-04",
+      "headline": "Namibia plans a double fence and a WOAH-recognised containment zone in ||Kharas that would last two years.",
+      "source": "The Namibian",
+      "url": "https://www.namibian.com.na/fmd-fence-divides-farmers-market-hopes/",
+      "summary": "Speaking on 30 October, Namibia's chief veterinary officer said the government will build a double disease control fence in ||Kharas to separate infected farms and then apply to WOAH for a containment zone valid for two years, so that trade can resume from areas outside it. Namibia aims to regain freedom without vaccination; industry leaders said farmers inside the zone face a longer recovery but will stay part of market negotiations.",
+      "category": "policy",
+      "province": "national",
+      "added": "2026-11-05"
+    },
+    {
+      "date": "2026-11-04",
+      "headline": "Namibia sets out which meat and milk products may move under its foot and mouth disease rules.",
+      "source": "New Era",
+      "url": "https://neweralive.na/explainer-namibias-fmd-restrictions-on-meat-and-milk/",
+      "summary": "Pasteurised milk, commercially cooked meat, biltong and droewors from registered facilities may move countrywide, but raw meat may not cross the veterinary cordon fence southwards or leave ||Kharas while controls continue. Imports of raw meat and cloven-hoofed animal products from South Africa and Botswana remain banned without veterinary permits and health certificates.",
+      "category": "trade",
+      "province": "national",
+      "added": "2026-11-05"
+    },
+    {
+      "date": "2026-11-03",
+      "headline": "The Bank of Namibia orders banks to offer repayment holidays and restructuring to farmers hit by the outbreak and drought.",
+      "source": "New Era",
+      "url": "https://neweralive.na/explainer-inside-bons-fmd-relief-package-for-farmers/",
+      "summary": "Directive BID-42, enacted on 30 October, lets commercial banks grant loan repayment holidays of 1 to 24 months, restructure loans and extend new credit to livestock, crop and wildlife farmers and dependent businesses affected by foot and mouth disease or El Nino conditions. Clients granted relief stay classed as performing with credit bureaus, and banks must give written reasons if they decline an application.",
+      "category": "policy",
+      "province": "national",
+      "added": "2026-11-05"
+    },
     {
       "date": "2026-10-31",
       "headline": "Meatco cuts cattle producer prices by about 20 percent from 1 November as export markets stay closed.",
@@ -571,36 +601,6 @@
       "category": "other",
       "province": "FS",
       "added": "2026-10-03"
-    },
-    {
-      "date": "2026-10-01",
-      "headline": "Livestock sector recovers on cheaper feed, but foot and mouth disease still weighs on beef exports.",
-      "source": "Farmer's Weekly",
-      "url": "https://farmersweekly.co.za/agri-news/south-africa/livestock-recovery-gains-ground-but-price-trends-diverge",
-      "summary": "An Absa outlook says lower feed costs and better grazing are supporting livestock margins, but foot and mouth disease movement restrictions continue to hold back the beef sector. It reports cattle slaughter down 47 percent year on year in July and beef exports down about half in the first seven months of 2026, and says restoring access to markets such as China depends on effective disease control and traceability. Market analysis only, nothing for the master.",
-      "category": "analysis",
-      "province": "national",
-      "added": "2026-10-02"
-    },
-    {
-      "date": "2026-10-01",
-      "headline": "Milk SA veterinary adviser sets out what the Section 9 regulations mean for dairy farms.",
-      "source": "Veeplaas (AgriOrbit)",
-      "url": "https://agriorbit.com/artikel-9-implikasies-vir-die-suiwelbedryf/",
-      "summary": "Dr Mark Chimes of Milk SA explains the Section 9 regulations under the Animal Diseases Act. OBP is no longer the sole importer and supplier of vaccine; any licensed entity may import and distribute approved vaccines. Owners of cloven-hoofed animals may register with the National Director of Animal Health to vaccinate their own animals, giving at least five days' notice and filing a vaccination report within 14 days. Raw milk from quarantined farms may be moved to processors under a red cross permit and may now share a tanker with milk from unaffected farms; single pasteurisation suffices for the domestic market. No programme figures, nothing to ingest.",
-      "category": "policy",
-      "province": "national",
-      "added": "2026-10-01"
-    },
-    {
-      "date": "2026-10-01",
-      "headline": "Field monitoring programme assesses the safe use of vaccine in commercial dairy, beef, feedlot and communal herds.",
-      "source": "RSG Landbou (AgriOrbit)",
-      "url": "https://agriorbit.com/rsg-landbou-1-oktober-2026/",
-      "summary": "Dr Danie Odendaal of Veearts Netwerk is working with veterinarians, farmers and producer organisations on a structured field monitoring programme evaluating vaccine safety in commercial dairy and beef herds, feedlots and communal herds. Radio interview; no figures published, nothing to ingest.",
-      "category": "other",
-      "province": "national",
-      "added": "2026-10-01"
     }
   ]
 }
