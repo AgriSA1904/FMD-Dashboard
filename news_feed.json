@@ -1,7 +1,37 @@
 {
-  "last_checked": "2026-11-05",
+  "last_checked": "2026-11-06",
   "note": "Curated daily by the scheduled ingest. Items are media and public reporting, not programme data. Figures quoted here do not feed the dashboard headlines unless they are also ingested into master_data.csv from a programme source.",
   "items": [
+    {
+      "date": "2026-11-05",
+      "headline": "Namibian farmers put foot and mouth disease losses at N$13 million a day as markets stay closed.",
+      "source": "New Era",
+      "url": "https://neweralive.na/bank-windhoek-leads-national-dialogue-as-namibia-fights-fmd/",
+      "summary": "At the Bank Windhoek Agricultural Series on 30 October the Namibia Agricultural Union estimated value chain losses of N$2.4 billion over six months and some 52,000 jobs at risk south of the cordon fence. The chief veterinary officer reported 131 positive samples on 18 farms in ||Kharas as at 27 October, 8,102 of 13,000 cattle vaccinated there and 53,913 of 56,360 in Zambezi, 1,344 cattle through controlled slaughter, and talks with Tunisia, Morocco and Nigeria; the ||Kharas vaccination figure is higher than the 7,402 the ministry gave for 28 October.",
+      "category": "analysis",
+      "province": "national",
+      "added": "2026-11-06"
+    },
+    {
+      "date": "2026-11-05",
+      "headline": "Namibia may review its foot and mouth disease restrictions before the festive season if no new cases appear.",
+      "source": "The Namibian",
+      "url": "https://www.namibian.com.na/fmd-restrictions-could-ease-before-festive-season/",
+      "summary": "The chief veterinary officer said that by 4 November surveillance had found no case outside the two outbreak areas, and restrictions could be reviewed before December if that holds. The ministry still reports 131 cases on 18 farms in ||Kharas, with 51 farms inspected in the second surveillance round and 19 roadblocks and checkpoints across ||Kharas, Hardap, Khomas and Otjozondjupa.",
+      "category": "cases",
+      "province": "national",
+      "added": "2026-11-06"
+    },
+    {
+      "date": "2026-11-05",
+      "headline": "Namibia's industry-led foot and mouth disease support fund reaches about N$16.2 million.",
+      "source": "The Namibian",
+      "url": "https://www.namibian.com.na/fmd-donations-reach-n16-2m/",
+      "summary": "The FMD Support Fund, set up by Namibia's four farmers' unions, has raised about N$16.2 million in donations and pledges, including N$1.6 million from B2Gold Namibia, towards a first-phase target of N$50 million. It buys equipment and supplies requested by the veterinary services for field teams, checkpoints and fence repairs; New Era put the total at more than N$15.35 million.",
+      "category": "other",
+      "province": "national",
+      "added": "2026-11-06"
+    },
     {
       "date": "2026-11-04",
       "headline": "Namibia plans a double fence and a WOAH-recognised containment zone in ||Kharas that would last two years.",
@@ -31,6 +61,16 @@
       "category": "policy",
       "province": "national",
       "added": "2026-11-05"
+    },
+    {
+      "date": "2026-11-02",
+      "headline": "Namibian beef shipped to the United Kingdom after the ban must be returned or sent to other markets.",
+      "source": "The Namibian",
+      "url": "https://www.namibian.com.na/uk-returns-beef-shipments-to-namibia/",
+      "summary": "Namibia's chief veterinary officer said beef had to enter the United Kingdom before 25 September, so containers still at sea when the ban took effect must come back or be redirected. He said market access negotiations have started with trading partners and that talks with Mauritius have been concluded after Namibia showed the outbreak is confined.",
+      "category": "trade",
+      "province": "national",
+      "added": "2026-11-06"
     },
     {
       "date": "2026-10-31",
@@ -561,46 +601,6 @@
       "category": "analysis",
       "province": "national",
       "added": "2026-10-05"
-    },
-    {
-      "date": "2026-10-04",
-      "headline": "Namibian farmers hit by the outbreak must still pay the national minimum wage.",
-      "source": "The Namibian (via allAfrica)",
-      "url": "https://allafrica.com/stories/202610050101.html",
-      "summary": "Namibia's labour ministry says no exemption from the agricultural minimum wage is being considered for farmers affected by the ||Kharas outbreak, despite income lost to sales and export restrictions. Economic modelling cited in the report suggests the outbreak could cost about 12,000 jobs in 2026 and 2027. Regional context only, not South African programme data.",
-      "category": "other",
-      "province": "national",
-      "added": "2026-10-05"
-    },
-    {
-      "date": "2026-10-04",
-      "headline": "Namibia needs about N$190 million to contain its ||Kharas outbreak, now confirmed on 11 farms.",
-      "source": "Informanté",
-      "url": "https://informante.web.na/?p=401855",
-      "summary": "Namibia's Ministry of Agriculture says it needs roughly N$190.2 million to manage the outbreak first detected on 22 September. By early October 79 positive samples had been confirmed across 11 farms, up from five farms reported on 30 September, with more than 15,000 animals inspected on 66 farms. The response includes a 290 kilometre disease control fence, vaccination and targeted culling. Regional context only, not South African programme data.",
-      "category": "cases",
-      "province": "national",
-      "added": "2026-10-04"
-    },
-    {
-      "date": "2026-10-03",
-      "headline": "Nampo Alfa recovery session calls for closer cooperation between producers, industry and government.",
-      "source": "Farmer's Weekly",
-      "url": "https://www.farmersweekly.co.za/agri-news/south-africa/recovery-and-unity-in-focus-as-livestock-industry-gathers-on-day-1-of-nampo-alfa/",
-      "summary": "The Road to Recovery session at Nampo Alfa on 2 October brought producers, industry bodies and decision-makers together to reflect on the foot and mouth disease response. Farmers raised concerns about vaccine availability and the state's handling of animal health, and participants called for producers, organised agriculture and government to work together more effectively. No new programme figures were reported.",
-      "category": "analysis",
-      "province": "national",
-      "added": "2026-10-03"
-    },
-    {
-      "date": "2026-10-02",
-      "headline": "Vaccination and biosecurity protocol allow a strong livestock turnout at Nampo Alfa.",
-      "source": "Farmer's Weekly",
-      "url": "https://www.farmersweekly.co.za/agri-news/south-africa/biosecurity-measures-help-drive-strong-livestock-turnout-at-nampo-alfa-2026/",
-      "summary": "Organisers required every exhibited animal to be vaccinated under an industry protocol developed by Dr Danie Odendaal, with veterinary inspections before animals left the farm and further checks at the showgrounds. More animals attended than in previous years, and the show was described as the first major livestock event north of the Orange River where animals could compete under current disease control conditions.",
-      "category": "other",
-      "province": "FS",
-      "added": "2026-10-03"
     }
   ]
 }
