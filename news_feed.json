@@ -1,7 +1,37 @@
 {
-  "last_checked": "2026-11-06",
+  "last_checked": "2026-11-09",
   "note": "Curated daily by the scheduled ingest. Items are media and public reporting, not programme data. Figures quoted here do not feed the dashboard headlines unless they are also ingested into master_data.csv from a programme source.",
   "items": [
+    {
+      "date": "2026-11-08",
+      "headline": "Foot and mouth disease reshapes livestock shows, with a national protocol now in place.",
+      "source": "Farmer's Weekly",
+      "url": "https://www.farmersweekly.co.za/agri-news/south-africa/biosecurity-threats-reshape-agricultural-shows-across-the-commonwealth/",
+      "summary": "The Bloem Show chief executive told the Commonwealth Agricultural Conference in Cape Town that South African shows were closed to cattle, sheep, goats and pigs for the first six months of the year. Requirements for livestock entering shows grew from three to eight, including compulsory vaccination, a booster 21 days before transport, quarantine, veterinary sign-off and traceability, under one national protocol set by the new South African Show Association.",
+      "category": "analysis",
+      "province": "national",
+      "added": "2026-11-09"
+    },
+    {
+      "date": "2026-11-07",
+      "headline": "No new foot and mouth cases in the Free State as the provincial outbreak nears its end.",
+      "source": "African Farming",
+      "url": "https://www.africanfarming.com/2026/11/07/no-new-fmd-cases-reported-as-free-state-outbreak-nears-its-end/",
+      "summary": "Reports the Free State department's release of 6 November: no new cases in the past week, the cumulative count unchanged at 804, with 799 resolved and 5 still under quarantine. The same release puts cattle vaccinated at 1,762,772, which we have ingested from the department's own statistics; the media report adds no new figures.",
+      "category": "cases",
+      "province": "FS",
+      "added": "2026-11-09"
+    },
+    {
+      "date": "2026-11-06",
+      "headline": "Namibia's finance minister confirms N$179 million for foot and mouth containment in the mid-year budget debate.",
+      "source": "New Era",
+      "url": "https://neweralive.na/debt-costs-swallow-development-funding-as-shafudah-warns-of-fiscal-squeeze-amidst-slowing-growth/",
+      "summary": "Finance Minister Ericah Shafudah told Parliament that N$179 million has been allocated to contain the outbreak, which threatens beef access to the European Union and the United Kingdom. A further N$685 million reallocated from non-performing projects will partly fund foot and mouth containment alongside grain reserves, medical aid and the contingency fund; the share for foot and mouth was not stated.",
+      "category": "policy",
+      "province": "national",
+      "added": "2026-11-09"
+    },
     {
       "date": "2026-11-05",
       "headline": "Namibian farmers put foot and mouth disease losses at N$13 million a day as markets stay closed.",
@@ -31,6 +61,16 @@
       "category": "other",
       "province": "national",
       "added": "2026-11-06"
+    },
+    {
+      "date": "2026-11-05",
+      "headline": "RMIS confirms a new four-year red meat statutory levy cycle to 2030.",
+      "source": "RMIS",
+      "url": "https://rmis.co.za/continuation-of-four-year-red-meat-statutory-levy-cycle-approved/",
+      "summary": "The new levy cycle, published in Government Gazette No. 55673, runs to 4 November 2030 at R15.80 a head of cattle and R3.08 a head of small stock for 2026/27, with RMIS as administrator. RMIS says the levy funded its Disease Operations Centre, set up in under 90 days during the outbreak, vaccines secured for industry at cost price and the tagging campaign; its national traceability platform now has more than 15,000 registered production units.",
+      "category": "policy",
+      "province": "national",
+      "added": "2026-11-09"
     },
     {
       "date": "2026-11-04",
@@ -561,46 +601,6 @@
       "category": "trade",
       "province": "national",
       "added": "2026-10-07"
-    },
-    {
-      "date": "2026-10-06",
-      "headline": "Namibia's outbreak could push up South African mutton and lamb prices more than beef.",
-      "source": "Farmer's Weekly",
-      "url": "https://farmersweekly.co.za/agri-news/africa/namibia-fmd-outbreak-could-drive-up-sa-red-meat-prices",
-      "summary": "Namibia's export ban on cloven-hoofed animals cuts a supply line that has sent South Africa 36,821 weaner calves and 417,808 slaughter sheep so far this year. The RPO's Dr Frikkie Maré expects the bigger price effect in mutton and lamb, since Namibian sheep make up about 15 percent of local slaughter supply against 2 percent for weaners. Regional trade context, no conflict with our programme figures.",
-      "category": "trade",
-      "province": "national",
-      "added": "2026-10-06"
-    },
-    {
-      "date": "2026-10-05",
-      "headline": "Department trade mission seeks Middle East market access for livestock exports.",
-      "source": "Agrinews",
-      "url": "https://agrinews.co.za/south-africa-seeks-middle-east-market-access/",
-      "summary": "A Department of Agriculture delegation led by Deputy Director-General Kwena Komape visited Saudi Arabia, Oman and the United Arab Emirates in late September to reopen export channels closed by foot and mouth disease. Draft memorandums of understanding with Oman and the UAE are to be developed. Media report only; we have not yet seen a primary Department statement, so no policy row was added.",
-      "category": "trade",
-      "province": "national",
-      "added": "2026-10-06"
-    },
-    {
-      "date": "2026-10-05",
-      "headline": "Namibia begins vaccinating around the ||Kharas outbreak as businesses put workers on leave.",
-      "source": "The Namibian",
-      "url": "https://namibian.com.na/fmd-butcheries-scramble-to-keep-workers",
-      "summary": "By 2 October Namibia had tested 531 samples, 79 of them positive for SAT 1, on 11 farms, and inspected 15,096 animals on 66 of 81 targeted farms. Vaccination is starting from the edge of the outbreak inwards, and a 290 kilometre fence is planned at a cost of about N$47 million. Butcheries in the region report placing staff on leave as meat stocks run down.",
-      "category": "cases",
-      "province": "national",
-      "added": "2026-10-06"
-    },
-    {
-      "date": "2026-10-05",
-      "headline": "Red meat industry urged to turn its recovery strategy into funded delivery after Nampo Alfa.",
-      "source": "Farmer's Weekly",
-      "url": "https://www.farmersweekly.co.za/agri-news/south-africa/red-meat-industry-needs-to-turn-strategy-into-delivery/",
-      "summary": "Speakers at the Nampo Alfa Road to Recovery session said the red meat sector has sound strategies but works in silos and lacks the funding and capacity to deliver them. BFAP modelling puts the gross production value lost to foot and mouth disease between 2025 and 2035 at about R21.1 billion against the pre-outbreak baseline, and beef exports for January to April 2026 were about 7,700 tonnes against 14,100 tonnes a year earlier. Industry analysis only; nothing here changes the programme figures in our master data.",
-      "category": "analysis",
-      "province": "national",
-      "added": "2026-10-05"
     }
   ]
 }
