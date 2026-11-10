@@ -1168,8 +1168,8 @@
 
 <script>
 const DASHBOARD_DATA = {
-  "snapshot_date": "2026-11-09",
-  "build_date": "2026-11-09",
+  "snapshot_date": "2026-11-10",
+  "build_date": "2026-11-10",
   "provinces": [
     {
       "code": "EC",
@@ -1318,17 +1318,17 @@ const DASHBOARD_DATA = {
     {
       "code": "WC",
       "name": "Western Cape",
-      "as_of": "2026-11-09",
+      "as_of": "2026-11-10",
       "herd": 501875,
       "positive": 52,
       "suspected": 7,
       "negative": 0,
       "pending": 0,
       "received": 647080,
-      "vaccinated": 605795,
-      "dose1": 411915,
-      "dose2": 193880,
-      "dose2_asof": "2026-11-09",
+      "vaccinated": 607229,
+      "dose1": 412791,
+      "dose2": 194438,
+      "dose2_asof": "2026-11-10",
       "dose2_source": "WC-GIS",
       "dose1_derived": false,
       "dose2_partial": false
@@ -2182,6 +2182,14 @@ const DASHBOARD_DATA = {
       "positive": 2876,
       "suspected": 830,
       "pending": null
+    },
+    {
+      "date": "2026-11-10",
+      "received": 12596130,
+      "administered": 10061476,
+      "positive": 2876,
+      "suspected": 830,
+      "pending": null
     }
   ],
   "sources": {
@@ -2199,15 +2207,15 @@ const DASHBOARD_DATA = {
     "procured": 16000000,
     "distributed": 12596130,
     "received": 12596130,
-    "administered": 10060042,
+    "administered": 10061476,
     "herd_cattle": 15450142,
-    "balance": 2536088,
-    "dose2": 924376,
-    "dose1": 9135666,
+    "balance": 2534654,
+    "dose2": 924934,
+    "dose1": 9136542,
     "dose_split_note": "Dose 2 is the sum of the latest booster figures per province; several provinces report boosters for the dairy programme only, so dose 2 is a minimum and dose 1 a derived maximum.",
     "delta_received": 0,
     "delta_distributed": 0,
-    "delta_administered": 607,
+    "delta_administered": 1434,
     "delta_positive": 0
   },
   "mpo": {
@@ -3811,11 +3819,11 @@ const DASHBOARD_DATA = {
     {
       "code": "WC",
       "name": "Western Cape",
-      "joc": 605795,
-      "joc_date": "2026-11-09",
+      "joc": 607229,
+      "joc_date": "2026-11-10",
       "ministerial": 265379,
       "ministerial_date": "2026-06-04",
-      "diff": 340416,
+      "diff": 341850,
       "flag": null
     }
   ],
@@ -6258,7 +6266,7 @@ const DASHBOARD_DATA = {
     },
     "WC": {
       "name": "Western Cape",
-      "latest_date": "2026-11-09",
+      "latest_date": "2026-11-10",
       "vaccine_types": [
         {
           "type": "dolvet",
@@ -6298,13 +6306,13 @@ const DASHBOARD_DATA = {
       "extra": {
         "primary_vaccinations": {
           "label": "Primary vaccinations",
-          "value": 411915,
-          "date": "2026-11-09"
+          "value": 412791,
+          "date": "2026-11-10"
         },
         "booster_vaccinations": {
           "label": "Booster vaccinations",
-          "value": 193880,
-          "date": "2026-11-09"
+          "value": 194438,
+          "date": "2026-11-10"
         },
         "vaccination_sites": {
           "label": "Vaccination sites",
@@ -6457,7 +6465,7 @@ const DASHBOARD_DATA = {
     }
   },
   "news": {
-    "last_checked": "2026-11-09",
+    "last_checked": "2026-11-10",
     "note": "Curated daily by the scheduled ingest. Items are media and public reporting, not programme data. Figures quoted here do not feed the dashboard headlines unless they are also ingested into master_data.csv from a programme source.",
     "items": [
       {
@@ -6489,6 +6497,16 @@ const DASHBOARD_DATA = {
         "category": "policy",
         "province": "national",
         "added": "2026-11-09"
+      },
+      {
+        "date": "2026-11-06",
+        "headline": "Namibia says its ||Kharas outbreak is contained, with 8,267 cattle vaccinated on 90 farms.",
+        "source": "Namib Times",
+        "url": "https://www.namibtimes.net/fmd-outbreak-contained-but-vigilance-remains-critical/",
+        "summary": "Namibia's agriculture ministry says the Karasburg outbreak remains confined to that district, with 18 farms and 131 positive cases as at 4 November. Compulsory vaccination has now reached 8,267 cattle on 90 farms, up from the 7,402 on 81 farms the ministry gave for 28 October, and 53,913 cattle have been vaccinated in Zambezi with no new cases outside its disease management area. This is regional context and does not affect any figure in our master.",
+        "category": "vaccination",
+        "province": "national",
+        "added": "2026-11-10"
       },
       {
         "date": "2026-11-05",
@@ -7032,16 +7050,6 @@ const DASHBOARD_DATA = {
       },
       {
         "date": "2026-10-06",
-        "headline": "Farmers and economists say opening ARC vaccine production to private manufacturers is long overdue.",
-        "source": "Daily Maverick",
-        "url": "https://dailymaverick.co.za/article/2026-10-06-foot-and-mouth-disease-vaccine-privatisation-long-overdue-say-farmers-experts",
-        "summary": "Following the ARC Board's 21 September decision to license private manufacture of its vaccine, the ARC says current infrastructure limits short-term volumes and pricing is still to be settled. FMD Response SA and farmer bodies welcome the move but point to long gaps in vaccine supply during the outbreak. The policy decision is already held in our master as session 77b policy rows; no new figures were ingested.",
-        "category": "vaccination",
-        "province": "national",
-        "added": "2026-10-11"
-      },
-      {
-        "date": "2026-10-06",
         "headline": "Namibian and South African officials discuss protocols to reopen livestock auctions.",
         "source": "The Namibian",
         "url": "https://www.namibian.com.na/namibia-sa-discuss-reopening-livestock-auctions/",
@@ -7093,9 +7101,9 @@ const DASHBOARD_DATA = {
     ]
   },
   "namibia": {
-    "last_updated": "2026-11-09",
+    "last_updated": "2026-11-10",
     "note": "Regional context compiled from Namibian Government statements as reported in the media, the European Union delegation in Namibia and South African and Namibian media. These figures are not South African programme data and never feed the headline figures on the other tabs. Where reports differ, we show each figure with its source.",
-    "summary": "On 23 September 2026 Namibia confirmed foot and mouth disease on a commercial farm in the Karasburg state veterinary district of the ||Kharas region, inside its WOAH-recognised zone free without vaccination and its first outbreak in that zone in about 60 years. By 14 October the SAT1 outbreak had reached 18 farms, with 131 animals positive out of 63,011 inspected (unchanged on 20 October, when the chief veterinary officer confirmed it remained confined to the Karasburg district), and compulsory vaccination in three rounds over three months began that day. A second outbreak was confirmed on Kalala Island in the Zambezi region in early October; officials say it has no epidemiological link to ||Kharas, and 42,286 cattle there had been vaccinated by 21 October, when 1,296 cattle on 25 Karasburg farms had also been vaccinated. Namibia has suspended exports of cloven-hoofed animals and their raw products, the European Union and the United States have restricted imports, and live exports of weaners and slaughter sheep to South Africa have stopped. Roadblocks around Karasburg could stay until 23 December, and industry bodies on both sides are setting out positions on the protocols that would let trade with South Africa resume. Namibia's mid-year budget proposes N$179 million for containment, and our feedlot association has said it will not support cattle and beef imports from Namibia and Botswana for now. On 26 October officials confirmed the whole ||Kharas region is a control area, to be split into smaller containment zones, while farmers there warn of job losses. By 27 October more than 50,000 cattle had been vaccinated in Zambezi, where more than 1,300 cattle are reported affected, and Meatco ran a two-day slaughter of its own feedlot cattle for the domestic market only. On 28 October the ministry reported no new cases in either region and more than 61,000 cattle vaccinated: 7,402 on 81 farms in ||Kharas and 53,913 in Zambezi. On 31 October the Savanna Beef export abattoir reported about 240 jobs at risk, and the Beef Value Chain Forum approved N$500,000 for an international expert to help restore Namibia's veterinary status. From 1 November Meatco is paying producers about 20 percent less per kilogram while slaughter stays limited to the domestic market. On 30 October the chief veterinary officer said Namibia will build a double fence around the infected farms in ||Kharas and apply to WOAH for a two-year containment zone, and the Bank of Namibia issued a directive allowing banks to give affected farmers repayment holidays of up to 24 months. By 4 November no case had been found outside the two outbreak areas and the chief veterinary officer said restrictions could be reviewed before the festive season. Beef bound for the United Kingdom after its ban must be returned, talks with Mauritius have been concluded, and the industry support fund has raised about N$16.2 million.",
+    "summary": "On 23 September 2026 Namibia confirmed foot and mouth disease on a commercial farm in the Karasburg state veterinary district of the ||Kharas region, inside its WOAH-recognised zone free without vaccination and its first outbreak in that zone in about 60 years. By 14 October the SAT1 outbreak had reached 18 farms, with 131 animals positive out of 63,011 inspected (unchanged on 20 October, when the chief veterinary officer confirmed it remained confined to the Karasburg district), and compulsory vaccination in three rounds over three months began that day. A second outbreak was confirmed on Kalala Island in the Zambezi region in early October; officials say it has no epidemiological link to ||Kharas, and 42,286 cattle there had been vaccinated by 21 October, when 1,296 cattle on 25 Karasburg farms had also been vaccinated. Namibia has suspended exports of cloven-hoofed animals and their raw products, the European Union and the United States have restricted imports, and live exports of weaners and slaughter sheep to South Africa have stopped. Roadblocks around Karasburg could stay until 23 December, and industry bodies on both sides are setting out positions on the protocols that would let trade with South Africa resume. Namibia's mid-year budget proposes N$179 million for containment, and our feedlot association has said it will not support cattle and beef imports from Namibia and Botswana for now. On 26 October officials confirmed the whole ||Kharas region is a control area, to be split into smaller containment zones, while farmers there warn of job losses. By 27 October more than 50,000 cattle had been vaccinated in Zambezi, where more than 1,300 cattle are reported affected, and Meatco ran a two-day slaughter of its own feedlot cattle for the domestic market only. On 28 October the ministry reported no new cases in either region and more than 61,000 cattle vaccinated: 7,402 on 81 farms in ||Kharas and 53,913 in Zambezi. On 31 October the Savanna Beef export abattoir reported about 240 jobs at risk, and the Beef Value Chain Forum approved N$500,000 for an international expert to help restore Namibia's veterinary status. From 1 November Meatco is paying producers about 20 percent less per kilogram while slaughter stays limited to the domestic market. On 30 October the chief veterinary officer said Namibia will build a double fence around the infected farms in ||Kharas and apply to WOAH for a two-year containment zone, and the Bank of Namibia issued a directive allowing banks to give affected farmers repayment holidays of up to 24 months. By 4 November no case had been found outside the two outbreak areas and the chief veterinary officer said restrictions could be reviewed before the festive season. Beef bound for the United Kingdom after its ban must be returned, talks with Mauritius have been concluded, and the industry support fund has raised about N$16.2 million. A ministry update reported on 6 November puts ||Kharas vaccinations at 8,267 cattle on 90 farms.",
     "kpis": [
       {
         "label": "Farms confirmed infected, ||Kharas",
@@ -7120,10 +7128,10 @@ const DASHBOARD_DATA = {
       },
       {
         "label": "Cattle vaccinated, ||Kharas",
-        "value": "7,402",
-        "sub": "On 81 farms in the Karasburg veterinary district, as at 28 October 2026. Up from 1,296 on 25 farms on 21 October. About 13,000 cattle targeted in the first round, which began on 17 October with 19 teams. Reports differ: on 30 October the chief veterinary officer cited 8,102 of 13,000 vaccinated as at 27 October (New Era, 5 November).",
-        "source": "Ministry of Agriculture spokesperson Romeo Muyunda, reported by New Era, 29 October 2026",
-        "url": "https://neweralive.na/no-new-fmd-cases/"
+        "value": "8,267",
+        "sub": "On 90 farms in the Karasburg veterinary district, reported on 6 November 2026 (the report gives 4 November as the as-at date for cases; it does not date the vaccination count separately). Up from 7,402 on 81 farms on 28 October and 1,296 on 25 farms on 21 October. About 13,000 cattle targeted in the first round, which began on 17 October with 19 teams. The chief veterinary officer cited 8,102 of 13,000 as at 27 October (New Era, 5 November).",
+        "source": "Ministry of Agriculture, Fisheries, Water and Land Reform figures, reported by Namib Times, 6 November 2026",
+        "url": "https://www.namibtimes.net/fmd-outbreak-contained-but-vigilance-remains-critical/"
       },
       {
         "label": "Cattle vaccinated, Zambezi",
@@ -7152,7 +7160,7 @@ const DASHBOARD_DATA = {
         "name": "||Kharas region, Karasburg state veterinary district",
         "first_confirmed": "2026-09-23",
         "serotype": "SAT1",
-        "status": "18 farms infected and 131 animals positive of 63,011 inspected, as at 14 October, unchanged at 15 October (Notification No. 20). The first surveillance round covered 82 farms within 30 kilometres of the index farm; the second round, extended to 50 kilometres, had inspected 11 of 65 targeted farms. Compulsory vaccination by state veterinary officials began on 14 October under Veterinary Public Notification No. 19 of 2026: three rounds over three months, ending in mid-January 2027, covering all farms south of the B3 and C10 roads to the Orange River. Owners may not vaccinate their own animals. Eighteen roadblocks operate in ||Kharas, Khomas and Otjozondjupa. By 21 October, 1,296 cattle on 25 farms had been vaccinated, of about 13,000 targeted in the first round (New Era, 22 October, which dates the start to 17 October). On 26 October veterinary officials confirmed the whole ||Kharas region is a control area (all movement of live cloven-hoofed animals into, out of and within it suspended) and said it will be split into smaller containment zones using game fences (The Namibian, 26 October). By 28 October, 7,402 cattle on 81 farms had been vaccinated, no new cases had been found, and the second surveillance round had inspected and sampled 10 farms (New Era, 29 October). By 4 November no case had been found outside the outbreak area, the second surveillance round had inspected 51 farms, and 19 roadblocks and checkpoints operated across ||Kharas, Hardap, Khomas and Otjozondjupa (The Namibian, 5 November).",
+        "status": "18 farms infected and 131 animals positive of 63,011 inspected, as at 14 October, unchanged at 15 October (Notification No. 20). The first surveillance round covered 82 farms within 30 kilometres of the index farm; the second round, extended to 50 kilometres, had inspected 11 of 65 targeted farms. Compulsory vaccination by state veterinary officials began on 14 October under Veterinary Public Notification No. 19 of 2026: three rounds over three months, ending in mid-January 2027, covering all farms south of the B3 and C10 roads to the Orange River. Owners may not vaccinate their own animals. Eighteen roadblocks operate in ||Kharas, Khomas and Otjozondjupa. By 21 October, 1,296 cattle on 25 farms had been vaccinated, of about 13,000 targeted in the first round (New Era, 22 October, which dates the start to 17 October). On 26 October veterinary officials confirmed the whole ||Kharas region is a control area (all movement of live cloven-hoofed animals into, out of and within it suspended) and said it will be split into smaller containment zones using game fences (The Namibian, 26 October). By 28 October, 7,402 cattle on 81 farms had been vaccinated, no new cases had been found, and the second surveillance round had inspected and sampled 10 farms (New Era, 29 October). By 4 November no case had been found outside the outbreak area, the second surveillance round had inspected 51 farms, and 19 roadblocks and checkpoints operated across ||Kharas, Hardap, Khomas and Otjozondjupa (The Namibian, 5 November). Namib Times (6 November) reports 8,267 cattle vaccinated on 90 farms with the outbreak still confined to the Karasburg district.",
         "border": "Borders our Northern Cape along the Orange River."
       },
       {
@@ -7658,6 +7666,7 @@ const DASHBOARD_DATA = {
     "VL BKS JOC verslag 260605.pdf",
     "Vaccine Orders Export (2026-06-02).xlsx",
     "WC GIS FMD Public FeatureServer (live ArcGIS REST API)",
+    "WC GIS FMD Public FeatureServer (live ArcGIS REST API), pulled via browser 10 Nov 2026; raw aggregates archive/2026-11-10/wc_gis_pull_20261110.json",
     "WC GIS FMD Public FeatureServer (live ArcGIS REST API), pulled via browser 12 Oct 2026; raw aggregates archive/2026-10-12/wc_gis_pull_20261012.json",
     "WC GIS FMD Public FeatureServer (live ArcGIS REST API), pulled via browser 13 Oct 2026; raw aggregates archive/2026-10-13/wc_gis_pull_20261013.json",
     "WC GIS FMD Public FeatureServer (live ArcGIS REST API), pulled via browser 14 Oct 2026; raw aggregates archive/2026-10-14/wc_gis_pull_20261014.json",

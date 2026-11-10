@@ -7962,3 +7962,73 @@ Note: the Free State card shows dose 1 as 1,743,654 and dose 2 as 19,118 because
 - Watch for the outcome of the 27 Oct Joint Working Group meeting (draft Risk Assessment Plan).
 - Ask an Owner to add gis.westerncape.gov.za to the network allowlist so the shell can pull it directly.
 - Disable the old Windows `ingest.py` scheduled task (still running daily).
+
+### Publishing
+
+Commit dd94574 on main (local HEAD equals origin/main). "Build and Deploy FMD Dashboard" and "pages build and deployment" both concluded success. The remote held two commits from the old Windows task (6 Nov, "Disable Jekyll processing" and "Update FMD dashboard 2026-11-06"); we rebased on them before pushing. This line was added after the push and will go out with the next commit.
+
+## Session 111. 10 November 2026. Scheduled update, Western Cape GIS, news scan and publish.
+
+Scheduled 08:00 run. Session 110 ran on 9 November; nothing was logged earlier today.
+
+### Sources processed
+
+| Source | Result |
+|---|---|
+| Inbox | Nothing new since session 110 (latest files are the FS zip and MPO Week 55, both ingested). |
+| Mailbox | "AgriSA: FMD Weekly Engagement" from Thea Liebenberg (9 Nov, after session 110) with two attachments: `Summary and Outcomes_FMD Bi-Weekly Engagement_2026.11.03.pdf` and `AgriSA Bi-weekly FMD Engagement Agenda_ 2026.11.18.pdf`. Read through the connector; neither holds programme figures, so nothing ingested (session 98 practice). "FMD Summary Gauteng" from Dalene Louw (10 Nov) holds only a Facebook share link and no figures; not read. No provincial, MPO, RMIS, SAPPO, ICC, Ministry or Portfolio Committee data submissions. |
+| Western Cape GIS | Device shell still blocked (curl exit 56, HTTP 403 from proxy). Pulled through the built-in browser with ArcGIS REST statistics queries; raw aggregates in `archive/2026-11-10/wc_gis_pull_20261110.json`. |
+| Web | Searches on national, provincial, trade, Afrikaans, Namibian and economic news, plus the WordPress listings of Farmer's Weekly, Food For Mzansi, New Era, RMIS and African Farming. Maroela Media (client error) and nda.gov.za (robots refusal) could not be fetched. |
+
+Scripts `archive/2026-11-10/ingest_session111.py` (backs up the master to `master_data.csv.bak_session111`) and `archive/2026-11-10/update_curated_session111.py`. Prepared 8, new 8, duplicates 0. Master now 4,386 rows.
+
+### Western Cape GIS (as at 10 November 2026), 8 rows
+
+| Metric | Value | Change |
+|---|---|---|
+| positive_cases | 52 | Unchanged (14 active, 38 resolved). |
+| outbreaks_open / outbreaks_closed | 14 / 38 | Unchanged. |
+| suspected_cases | 7 | Unchanged; 9 Data Issue records excluded. |
+| animals_vaccinated and doses_administered | 607,229 | Up 1,434. 3,472 records (12 new), latest vaccination date 9 Nov. Dose-count basis. |
+| primary_vaccinations | 412,791 | Up 876 (dairy 742, beef 134). |
+| booster_vaccinations | 194,438 | Up 558, all beef. |
+
+Arithmetic asserted (primary plus booster equals total; species splits sum; active plus resolved equals 52).
+
+### Engagement outcomes of 3 November (context only, not ingested)
+
+The outcomes report, among other things: ICC support for compulsory vaccination; a possible national disaster declaration around 20 November; about seven million doses reportedly in the country plus one million on an outstanding order (allocation unclear); the North West department buying about 600,000 doses; the Eastern Cape department allocating about R55 million to vaccine procurement; Section 10 committee establishment now at ministerial level; concern that feedlot movements double-count vaccinations. None of these is a primary Ministry or Department figure, so no master rows, policy events, supply consignments or economic boxes were changed. Next engagement 18 November.
+
+### Conflicts and flags
+
+- Namibia ||Kharas vaccinations: 8,267 on 90 farms (Namib Times, 6 Nov) is now the card value; the earlier 7,402 (28 Oct) and the chief veterinary officer's 8,102 (27 Oct) are kept in the card note.
+- Open from earlier sessions: MPO Week 55 booster total 791,672 against cell sum 791,942; MPO Mpumalanga boosters above first round; MPO EC IDtrax fall; MPO per-province map unchanged since Week 48; WC dairy boosters portal 142,950 against MPO 142,716; LP vet channel panel display quirk.
+
+### News items added (1)
+
+- Namib Times, 6 Nov: Namibia says the ||Kharas outbreak is contained (18 farms, 131 positive as at 4 Nov); 8,267 cattle vaccinated on 90 farms; 53,913 in Zambezi.
+
+Not added: Farmer's Weekly, 9 Nov (Western Cape agri worker awards, FMD only incidental); BusinessTech disaster article surfaced by search (dated 15 January 2026, already history). Afrikaans searches found nothing new. No new South African primary Ministry or Department statement, so no policy rows or events. No new Treasury, Department or BFAP economic figures. No media figure conflicts with the master.
+
+### Curated files
+
+- `news_feed.json`: 1 item, last_checked 10 Nov, 60 items (oldest, Daily Maverick 6 Oct, dropped; backup `.bak_session111`).
+- `namibia_data.json`: ||Kharas vaccination card (8,267 on 90 farms), ||Kharas region status, summary, last_updated (backup `.bak_session111`).
+- `supply_pipeline.json`: reviewed, no new primary consignment information; last_reviewed set to 10 Nov (backup `.bak_session111`).
+- `sa_economic.json` and `policy_events.json`: no newer primary figures or events; unchanged.
+
+### Dashboard
+
+Rebuilt via importlib, validation passed (2,035,455 bytes). Snapshot 10 November, 107 weekly points. Checked in the payload: WC figures 607,229, 412,791 and 194,438 present; national positive 2,876, suspected 830, administered 10,061,476 (up 1,434); news last_checked 10 Nov with the new item; Namibia last_updated 10 Nov with the 8,267 card.
+
+### Action items
+
+- Save the 3 Nov engagement outcomes and the 18 Nov agenda from Thea's email (9 Nov) to `inbox/AgriSA Summary and Outcomes - FMD Weekly Engagement/`.
+- Watch for a primary statement on a national disaster declaration (mentioned for about 20 November), the North West purchase of about 600,000 doses and the Eastern Cape R55 million allocation.
+- Ask the MPO about the Week 55 booster total, Mpumalanga boosters above first round, and the EC IDtrax fall.
+- Fix the vet channel panel in `build_provincial_detail` (session 102 flag).
+- Find the Treasury AENE 2026 entry for the R183 million (and the R606 million total).
+- Watch nda.gov.za for the Department's October FMD technical report.
+- Provincial packs outstanding for KZN, NW, NC, GP and EC; NW nothing since 14 September; LP PCM 30 Nov.
+- Ask an Owner to add gis.westerncape.gov.za to the network allowlist.
+- Disable the old Windows `ingest.py` scheduled task (still running daily).
