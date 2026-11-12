@@ -1,77 +1,7 @@
 {
-  "last_checked": "2026-11-10",
+  "last_checked": "2026-11-12",
   "note": "Curated daily by the scheduled ingest. Items are media and public reporting, not programme data. Figures quoted here do not feed the dashboard headlines unless they are also ingested into master_data.csv from a programme source.",
   "items": [
-    {
-      "date": "2026-10-06",
-      "headline": "Namibian and South African officials discuss protocols to reopen livestock auctions.",
-      "source": "The Namibian",
-      "url": "https://www.namibian.com.na/namibia-sa-discuss-reopening-livestock-auctions/",
-      "summary": "Technical officials from both countries met online on 6 October, and South African animal health experts were due in Namibia on 9 October to agree the conditions for resuming auction trade, including animals destined for South Africa. Namibia says trade will reopen gradually once the Karasburg outbreak is shown to be contained.",
-      "category": "trade",
-      "province": "national",
-      "added": "2026-10-11"
-    },
-    {
-      "date": "2026-10-06",
-      "headline": "European Union suspends fresh beef, mutton and goat meat imports from Namibia.",
-      "source": "Maroela Media (AFP)",
-      "url": "https://maroelamedia.co.za/landbou/namibie-se-beesvleisuitvoer-kry-knou-weens-bek-en-klou/",
-      "summary": "The European Union, which takes more than 80 percent of Namibia's beef exports, has temporarily suspended imports of fresh beef, mutton and goat meat after the outbreak in Namibia's main commercial zone spread to 11 farms. Heavily processed products that meet strict risk-reduction standards may still be exported. This is regional trade context, not South African programme data, and does not affect any figure in our master.",
-      "category": "trade",
-      "province": "national",
-      "added": "2026-10-07"
-    },
-    {
-      "date": "2026-10-07",
-      "headline": "Namibia's confirmed cases rise to 127 on 15 farms as it plans border fencing with South Africa.",
-      "source": "Farmer's Weekly",
-      "url": "https://www.farmersweekly.co.za/agri-news/africa/namibia-steps-up-fmd-controls-as-cases-rise-to-127/",
-      "summary": "Namibia's SAT1 outbreak in the Karasburg district has grown to 127 confirmed cases on 15 farms, up from 79 positive samples on 11 farms three days earlier, with 29,313 animals inspected on 68 farms by 5 October. Cabinet has approved a containment plan including a buffer zone, ring vaccination and veterinary cordon fencing along the border with South Africa. South Africa imports weaner calves and slaughter sheep from Namibia, so prolonged restrictions could affect local red meat supply. Regional context only; no South African programme figures.",
-      "category": "trade",
-      "province": "national",
-      "added": "2026-10-08"
-    },
-    {
-      "date": "2026-10-08",
-      "headline": "Nampo Alfa recovery speakers call for more funding, a new approach to state animal health and wider farmer participation.",
-      "source": "Farmer's Weekly",
-      "url": "https://www.farmersweekly.co.za/agri-news/south-africa/leaders-urged-to-address-red-meat-industry-challenges/",
-      "summary": "AgriSA chief executive Johann Kotzé urged the red meat industry to take its concerns about state animal health management directly to the Minister, and speakers cited delays in vaccine supply and export approvals. The proposed statutory levy provides for a 5 percent adjustment over four years, and a vaccination price premium and buyer traceability requirements were proposed. Shared points will be consolidated into a written statement for member consultation.",
-      "category": "analysis",
-      "province": "national",
-      "added": "2026-10-12"
-    },
-    {
-      "date": "2026-10-08",
-      "headline": "Namibia rules out culling and turns to vaccination to contain its outbreak.",
-      "source": "The Namibian",
-      "url": "https://namibian.com.na/no-culling-for-fmd-cattle-only-vaccinations-zaamwani",
-      "summary": "Agriculture minister Inge Zaamwani told Parliament that the window for culling had passed and that vaccination is now the only viable option, with 100,000 doses moved south from the Zambezi region. Investigations into the source continue along the Orange River border area.",
-      "category": "policy",
-      "province": "national",
-      "added": "2026-10-11"
-    },
-    {
-      "date": "2026-10-09",
-      "headline": "Minister Aucamp calls for regional cooperation with Namibia and Botswana on foot and mouth disease.",
-      "source": "Farmer's Weekly",
-      "url": "https://farmersweekly.co.za/agri-news/south-africa/regional-collaboration-needed-to-fight-fmd-in-sa-namibia-and-botswana",
-      "summary": "Speaking in Bothaville, the Minister said South Africa has made 50,000 vaccine doses available to Namibia, Eswatini and Lesotho this year, and that resuming red meat imports from Namibia and Botswana depends on agreed biosecurity protocols, which have been submitted to Botswana. He cited a national herd of 15.2 million cattle, above the 12.4 to 12.5 million held in our master from AgriSA national sheets; we have not changed the master because this is a media report, not a primary statement.",
-      "category": "policy",
-      "province": "national",
-      "added": "2026-10-12"
-    },
-    {
-      "date": "2026-10-09",
-      "headline": "Settlement with the Minister confirmed as a court order on independent vaccination.",
-      "source": "Maroela Media",
-      "url": "https://maroelamedia.co.za/nuus/sa-nuus/bks-hofbevel-bring-duidelikheid-vir-veeboere/",
-      "summary": "Free State Agriculture, Sakeliga and Saai report that their settlement with the Minister of Agriculture has been made an order of court, which they say confirms farmers' right to obtain and administer foot and mouth vaccine independently. The report names no court and gives no figures. No primary Department statement has been seen, so we have not added a policy row.",
-      "category": "policy",
-      "province": "national",
-      "added": "2026-10-12"
-    },
     {
       "date": "2026-10-09",
       "headline": "Namibia's outbreak reaches 17 farms and 129 positive samples in ||Kharas.",
@@ -601,6 +531,76 @@
       "category": "analysis",
       "province": "national",
       "added": "2026-11-09"
+    },
+    {
+      "date": "2026-11-08",
+      "headline": "Namibia's economic task force calls for an urgent livestock trade deal with South Africa.",
+      "source": "The Namibian",
+      "url": "https://www.namibian.com.na/economic-task-force-calls-for-urgent-deal-with-sa-to-rescue-fmd-hit-farmers/",
+      "summary": "The Presidential Task Force on Economic Recovery and Transformation wants Namibia to negotiate a bilateral arrangement with South Africa so that exports of weaners, sheep, goats and meat can resume. It says the domestic market absorbs only 30 to 40 percent of Namibian meat. This is regional context and does not affect any figure in our master.",
+      "category": "trade",
+      "province": "national",
+      "added": "2026-11-12"
+    },
+    {
+      "date": "2026-11-08",
+      "headline": "Namibia's livestock board puts lost sales at close to N$1 billion in six weeks.",
+      "source": "The Namibian",
+      "url": "https://www.namibian.com.na/six-weeks-nearly-n1-billion/",
+      "summary": "An opinion piece cites the Livestock and Livestock Products Board's estimate of about N$150 million a week in lost livestock sales since the outbreak was confirmed on 23 September. It notes that regaining WOAH status will not by itself reopen markets, because South Africa, the European Union, Norway and China will each set their own conditions.",
+      "category": "analysis",
+      "province": "national",
+      "added": "2026-11-12"
+    },
+    {
+      "date": "2026-11-10",
+      "headline": "Meatco weighs recalling about 96 tonnes of beef held in South Africa.",
+      "source": "The Namibian",
+      "url": "https://www.namibian.com.na/meatco-weighs-recalling-96-tonnes-of-beef-stuck-in-south-africa/",
+      "summary": "Four or five containers of Meatco beef that entered South Africa before the outbreak cannot be exported without fresh certification, and Meatco may bring them home or sell them here. The report repeats RPO figures of 417,808 lambs and 36,821 weaner calves imported from Namibia so far in 2026, and notes that some of our abattoirs rely on Namibia for more than 70 percent of their sheep.",
+      "category": "trade",
+      "province": "national",
+      "added": "2026-11-12"
+    },
+    {
+      "date": "2026-11-10",
+      "headline": "Namibia looks to regional markets as its export suspensions continue.",
+      "source": "New Era",
+      "url": "https://neweralive.na/namibia-exploring-new-markets-as-fmd-bites-deepfarmers-crying-for-help/",
+      "summary": "The Livestock and Livestock Products Board is negotiating with regional markets that can accept Namibia's current status, while farmers in Rehoboth describe mounting feed and finance costs with no outlet for their animals. The report puts total Namibian FMD vaccinations at 62,180 cattle, consistent with 8,267 in ||Kharas and 53,913 in Zambezi.",
+      "category": "trade",
+      "province": "national",
+      "added": "2026-11-12"
+    },
+    {
+      "date": "2026-11-11",
+      "headline": "Namibia prepares a first meat container for Zambia and plans a staged return to South African trade.",
+      "source": "The Namibian",
+      "url": "https://www.namibian.com.na/zambia-next-stop-for-namibian-meat/",
+      "summary": "The livestock board says a container will go to Zambia soon and that the first six months of its trade recovery plan focus on reopening trade with South Africa and other neighbours. It warns the local market could be flooded if exports stay closed; some sheep producers are already sending animals to approved abattoirs.",
+      "category": "trade",
+      "province": "national",
+      "added": "2026-11-12"
+    },
+    {
+      "date": "2026-11-12",
+      "headline": "Namibia completes its first vaccination round in ||Kharas with no new cases for three weeks.",
+      "source": "New Era",
+      "url": "https://neweralive.na/three-weeks-later-no-new-fmd-cases-recorded-response-shift-to-surveillance-booster-shots/",
+      "summary": "The ministry's update of 11 November says the first round in ||Kharas is complete, with the 13,000 targeted cattle nearly all vaccinated, and cases unchanged at 131 on 18 farms. Risk-based surveillance will now extend south of the Veterinary Cordon Fence, including communal areas, and a booster round is planned for Kalala Island in Zambezi, where no case has been found outside the management area for three weeks.",
+      "category": "vaccination",
+      "province": "national",
+      "added": "2026-11-12"
+    },
+    {
+      "date": "2026-11-12",
+      "headline": "Meatco suspends slaughter as export closures strain its finances.",
+      "source": "New Era",
+      "url": "https://neweralive.na/aochamub-meatco-facing-difficult-choices-amid-fmd-crisis/",
+      "summary": "Meatco says more than 85 percent of its earnings came from exports suspended since 23 September and that it has suspended slaughter until it can resume sustainably. It is consulting the union on cost measures for nearly 800 staff, with a monthly wage bill of about N$15 million.",
+      "category": "trade",
+      "province": "national",
+      "added": "2026-11-12"
     }
   ]
 }

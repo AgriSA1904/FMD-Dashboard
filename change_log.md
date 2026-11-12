@@ -8032,3 +8032,77 @@ Rebuilt via importlib, validation passed (2,035,455 bytes). Snapshot 10 November
 - Provincial packs outstanding for KZN, NW, NC, GP and EC; NW nothing since 14 September; LP PCM 30 Nov.
 - Ask an Owner to add gis.westerncape.gov.za to the network allowlist.
 - Disable the old Windows `ingest.py` scheduled task (still running daily).
+
+### Publishing
+
+Commit 8d667ef on main (local HEAD equals origin/main). "Build and Deploy FMD Dashboard" and "pages build and deployment" both concluded success. This line was added after the push and will go out with the next commit.
+
+
+## Session 112. 12 November 2026. Scheduled update, Western Cape GIS, news scan and publish.
+
+Scheduled 08:00 run (started about 10:30 South African time). The 11 November run did not complete: the device shell could list the project folder but every file read returned "Invalid argument" (errno 22), so it stopped before any ingest and wrote `AgriSA FMD Updates/update-status-20261111-FAILED.md`. Nothing was changed or pushed that day. Today the same fault appeared on files OneDrive held cloud-only; staging each file through the desktop bridge downloaded it and the shell could then read it. We did this for change_log.md, news_feed.json, namibia_data.json, sa_economic.json, supply_pipeline.json, rmis_orders.json, wc_live_data.json, scripts/build_dashboard.py, scripts/dashboard_template.html and scripts/github_config.json. This session covers everything since session 111.
+
+### Sources processed
+
+| Source | Result |
+|---|---|
+| Inbox | Nothing new since session 111. |
+| Mailbox | No provincial, MPO, RMIS, SAPPO, ICC, Ministry or Portfolio Committee FMD submissions since 10 Nov. The 9 Nov engagement email (Thea Liebenberg) was handled in session 111; its two attachments are still not in inbox/. |
+| Western Cape GIS | Device shell still blocked (curl exit 56). Pulled through the built-in browser with ArcGIS REST statistics queries; raw aggregates in `archive/2026-11-12/wc_gis_pull_20261112.json`. |
+| Web | Searches on national, provincial, trade, Afrikaans, Namibian and economic news, plus the WordPress listings of Farmer's Weekly, Food For Mzansi, New Era, The Namibian, RMIS, African Farming and Kouga Express. No new South African primary statement found. |
+
+Scripts `archive/2026-11-12/ingest_session112.py` (backs up the master to `master_data.csv.bak_session112`) and `archive/2026-11-12/update_curated_session112.py`. Prepared 8, new 8, duplicates 0. Master now 4,394 rows.
+
+### Western Cape GIS (as at 12 November 2026), 8 rows
+
+| Metric | Value | Change |
+|---|---|---|
+| positive_cases | 52 | Unchanged (14 active, 38 resolved). |
+| outbreaks_open / outbreaks_closed | 14 / 38 | Unchanged. |
+| suspected_cases | 7 | Unchanged; 9 Data Issue records excluded. |
+| animals_vaccinated and doses_administered | 609,318 | Up 2,089. 3,503 records (31 new), latest vaccination date 11 Nov. Dose-count basis. |
+| primary_vaccinations | 413,233 | Up 442, all beef. |
+| booster_vaccinations | 196,085 | Up 1,647 (beef 1,279, dairy 113, unclassified 255). |
+
+Arithmetic asserted (primary plus booster equals total; species splits sum to the changes; active plus resolved equals 52).
+
+### Conflicts and flags
+
+- WC dairy boosters: portal 143,063 against MPO Week 55 142,716; both held.
+- Namibia: New Era (10 Nov) gives 62,180 cattle vaccinated nationally, which matches 8,267 (||Kharas) plus 53,913 (Zambezi). The ministry's 11 Nov update says the ||Kharas first round is complete but gives no new count, so the card stays at 8,267 with a note.
+- Open from earlier sessions: MPO Week 55 booster total 791,672 against cell sum 791,942; MPO Mpumalanga boosters above first round; MPO EC IDtrax fall; MPO per-province map unchanged since Week 48; LP vet channel panel display quirk.
+
+### News items added (7)
+
+- The Namibian, 8 Nov: economic task force calls for an urgent livestock trade deal with South Africa.
+- The Namibian, 8 Nov: livestock board puts lost sales at about N$150 million a week, close to N$1 billion in six weeks.
+- The Namibian, 10 Nov: Meatco weighs recalling about 96 tonnes of beef held in South Africa.
+- New Era, 10 Nov: Namibia looks to regional markets; 62,180 cattle vaccinated in total.
+- The Namibian, 11 Nov: first container for Zambia; recovery plan puts South African trade first.
+- New Era, 12 Nov: first ||Kharas vaccination round complete, no new cases for three weeks, surveillance widened, Zambezi booster round being prepared.
+- New Era, 12 Nov: Meatco suspends slaughter.
+
+Not added: The Namibian, 11 Nov (public asked to report illegal movements; folded into the 12 Nov item); Food For Mzansi, 10 Nov (RMIS levy cycle, already covered on 5 Nov). Afrikaans searches found nothing new. No media figure conflicts with the master. No new Treasury, Department or BFAP economic figures and no new primary Ministry or Department event, so no policy rows or events.
+
+### Curated files
+
+- `news_feed.json`: 7 items, last_checked 12 Nov, 60 items (seven oldest dropped; backup `.bak_session112`).
+- `namibia_data.json`: ||Kharas vaccination card note, new card for the livestock board loss estimate, progression row for 11 Nov, both region statuses, four timeline events, South Africa and Domestic Namibia trade rows, new Zambia and regional markets row, new South Africa link on a bilateral trade arrangement, summary, last_updated (backup `.bak_session112`). Open questions unchanged; none answered.
+- `supply_pipeline.json`: reviewed, no new primary consignment information; last_reviewed set to 12 Nov (backup `.bak_session112`).
+- `sa_economic.json` and `policy_events.json`: no newer primary figures or events; unchanged.
+
+### Dashboard
+
+Rebuilt via importlib, validation passed (2,040,489 bytes). Snapshot 12 November, 108 weekly points. Checked in the payload: WC 609,318 vaccinated (413,233 dose 1, 196,085 dose 2, as at 12 Nov); national positive 2,876, suspected 830, administered 10,063,565 (up 2,089); news last_checked 12 Nov with the seven new items at the top; Namibia last_updated 12 Nov with 40 timeline events and the new loss card.
+
+### Action items
+
+- OneDrive is holding project files cloud-only, which breaks the device shell (errno 22). Consider marking the FMD Vaccine Data folder "Always keep on this device" in OneDrive so scheduled runs can read every file.
+- Save the 3 Nov engagement outcomes and the 18 Nov agenda from Thea's email (9 Nov) to `inbox/AgriSA Summary and Outcomes - FMD Weekly Engagement/`.
+- Watch for a primary statement on a national disaster declaration (mentioned for about 20 November), the North West purchase of about 600,000 doses and the Eastern Cape R55 million allocation.
+- Ask the MPO about the Week 55 booster total, Mpumalanga boosters above first round, and the EC IDtrax fall.
+- Fix the vet channel panel in `build_provincial_detail` (session 102 flag).
+- Find the Treasury AENE 2026 entry for the R183 million (and the R606 million total).
+- Provincial packs outstanding for KZN, NW, NC, GP and EC; NW nothing since 14 September; LP PCM 30 Nov.
+- Ask an Owner to add gis.westerncape.gov.za to the network allowlist.
+- Disable the old Windows `ingest.py` scheduled task (still running daily).
